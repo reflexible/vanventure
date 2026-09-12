@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>VanVenture — Fahrzeugdaten prüfen</title>
+    <link rel="stylesheet" href="vehicle-review.css" />
+  </head>
+  <body>
+    <main class="review-shell">
+      <header class="review-header">
+        <a class="back" href="index.html" aria-label="Zur VanVenture Startseite">← <span>VanVenture</span></a>
+        <p class="local-badge">LOKALE VORSCHAU · NICHT VERÖFFENTLICHT</p>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">FAHRZEUGPROFIL · FREIGABE</p>
+        <h1>Dein Grand Canyon S.<br /><em>Deine Daten.</em></h1>
+        <p>Prüfe jeden Eintrag direkt hier. Erst nach deiner Freigabe übernehme ich ausgewählte Angaben in die Website — nichts wird automatisch veröffentlicht.</p>
+        <div class="legend" aria-label="Bedeutung der Auswahl">
+          <span><i class="dot approve"></i>freigeben</span><span><i class="dot edit"></i>ändern</span><span><i class="dot hide"></i>ausblenden</span>
+        </div>
+      </section>
+
+      <form id="review-form">
+        <section class="group">
+          <div class="group-title"><p class="eyebrow">01 / BASIS</p><h2>Das Fahrzeug</h2><p>Offizielle Modelljahr-2025-Daten von HYMER.</p></div>
+          <div class="rows">
+            <article class="row" data-id="model"><div><small>MODELL</small><strong>HYMER Grand Canyon S CrossOver · Modelljahr 2025</strong></div><div class="choice" role="group" aria-label="Modell freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="chassis"><div><small>BASISFAHRZEUG</small><strong>Mercedes-Benz Sprinter 419 CDI · permanenter Allradantrieb</strong></div><div class="choice" role="group" aria-label="Basisfahrzeug freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="powertrain"><div><small>MOTOR & GETRIEBE</small><strong>140 kW / 190 PS · 9G-TRONIC Automatik</strong></div><div class="choice" role="group" aria-label="Motor und Getriebe freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="dimensions"><div><small>ABMESSUNGEN</small><strong>5,93 m Länge · 2,06 m Breite · 2,85 m Höhe</strong></div><div class="choice" role="group" aria-label="Abmessungen freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="seats"><div><small>PLÄTZE</small><strong>4 Sitzplätze · 2–4 Schlafplätze</strong></div><div class="choice" role="group" aria-label="Plätze freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+          </div>
+        </section>
+
+        <section class="group dark">
+          <div class="group-title"><p class="eyebrow">02 / UNTERWEGS</p><h2>Autarkie & Wohnen</h2><p>Diese Daten machen das tatsächliche Reise-Setup sichtbar.</p></div>
+          <div class="rows">
+            <article class="row" data-id="water"><div><small>WASSER</small><strong>100 l Frischwasser · 85 l Abwasser</strong></div><div class="choice" role="group" aria-label="Wasser freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="power"><div><small>ENERGIE</small><strong>320 Ah Lithium · 1 × 95 W Solar · 230 V / 12 V / USB</strong></div><div class="choice" role="group" aria-label="Energie freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="z. B. 2 × 95 W Solar" /></article>
+            <article class="row" data-id="heating"><div><small>HEIZUNG</small><strong>6-kW-Dieselheizung · 10-l-Boiler · Höhenkit</strong></div><div class="choice" role="group" aria-label="Heizung freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="living"><div><small>WOHNEN</small><strong>90-l-Kompressorkühlschrank · Kompaktbad · Aufstelldach</strong></div><div class="choice" role="group" aria-label="Wohnen freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+          </div>
+        </section>
+
+        <section class="group">
+          <div class="group-title"><p class="eyebrow">03 / ABSEITS DER STRASSE</p><h2>CrossOver-Setup</h2><p>Bitte nur zeigen, was an deinem Fahrzeug wirklich verbaut ist.</p></div>
+          <div class="rows">
+            <article class="row" data-id="offroad"><div><small>FAHRWERK & SCHUTZ</small><strong>All-Terrain-Reifen · 16″ schwarze Stahlfelgen · Unterbodenschutz</strong></div><div class="choice" role="group" aria-label="Fahrwerk freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="rear-suspension"><div><small>HINTERACHSE · UPGRADE</small><strong>Dritte Blattfeder hinten · verstärkte Stoßdämpfer</strong><span class="maker">HERSTELLER: Bitte ergänzen</span></div><div class="choice" role="group" aria-label="Hinterachs-Upgrade freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Hersteller / Modell oder Korrektur …" /></article>
+            <article class="row" data-id="expedition"><div><small>EXPEDITION</small><strong>LED-Lightbar · elektrische Offroad-Trittstufe · LED-Markise</strong></div><div class="choice" role="group" aria-label="Expedition freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Nur tatsächlich vorhandene Extras …" /></article>
+            <article class="row" data-id="cockpit"><div><small>COCKPIT</small><strong>MBUX 10,25″ · Navigation · 360°-Kamera · Assistenzsysteme</strong></div><div class="choice" role="group" aria-label="Cockpit freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+          </div>
+        </section>
+
+        <section class="group dark">
+          <div class="group-title"><p class="eyebrow">04 / DEIN AUSBAU</p><h2>Die individuellen Upgrades</h2><p>Vom Hecksystem bis zum Stauraum im Fahrerhaus — nur dein tatsächlich verbautes Setup.</p></div>
+          <div class="rows">
+            <article class="row" data-id="kitt-backrack"><div><small>HECKSYSTEM · KITT</small><strong>KITT Backrack+ mit zwei Fahrradträger-Modulen und zwei Aluminium-Stauboxen</strong><span class="maker">HERSTELLER: KITT</span></div><div class="choice" role="group" aria-label="KITT Hecksystem freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Genaue Module / Farbe / Anzahl Räder …" /></article>
+            <article class="row" data-id="poptop"><div><small>AUFSTELLDACH</small><strong>Aufstelldach mit zusätzlichem Schlafplatz</strong><span class="maker">HERSTELLER: HYMER</span></div><div class="choice" role="group" aria-label="Aufstelldach freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Ausführung oder Korrektur …" /></article>
+            <article class="row" data-id="overland-drawer"><div><small>HECKGARAGE · OVERLAND EQUIPMENT</small><strong>Heckauszug für HYMER Grand Canyon S ab Modelljahr 2024 · Eurobox-kompatibel · bis 130 kg Traglast</strong><span class="maker">HERSTELLER: OVERLAND EQUIPMENT</span></div><div class="choice" role="group" aria-label="Heckauszug freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Ausführung / tatsächliche Beladung …" /></article>
+            <article class="row" data-id="overland-indicators"><div><small>FRONT · OVERLAND EQUIPMENT</small><strong>Blinkerabdeckung für Mercedes Sprinter W907 · Aluminium · matt schwarz</strong><span class="maker">HERSTELLER: OVERLAND EQUIPMENT</span></div><div class="choice" role="group" aria-label="Blinkerabdeckung freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Korrektur oder Ergänzung …" /></article>
+            <article class="row" data-id="bravo-snorkel"><div><small>ANSAUGSYSTEM · BRAVO SNORKEL</small><strong>Nachgerüsteter Ansaugschnorchel für Mercedes Sprinter</strong><span class="maker">HERSTELLER: BRAVO SNORKEL</span></div><div class="choice" role="group" aria-label="Bravo Schnorchel freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Genaues Modell oder Korrektur …" /></article>
+            <article class="row" data-id="overland-seat-storage"><div><small>SITZKASTEN · OVERLAND EQUIPMENT</small><strong>Innenliegende Sitzkasten-Staufächer für Fahrer- und Beifahrerseite</strong><span class="maker">HERSTELLER: OVERLAND EQUIPMENT</span></div><div class="choice" role="group" aria-label="Sitzkasten-Ablage freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Fahrer, Beifahrer oder beide Seiten …" /></article>
+            <article class="row" data-id="h32-overhead"><div><small>FAHRERHAUS · H32 DESIGN</small><strong>Fahrerhaus-Dachablage für Sprinter 907/910 mit optionaler Airlineschiene und Molle-Aufnahmen</strong><span class="maker">HERSTELLER: H32 DESIGN</span></div><div class="choice" role="group" aria-label="H32 Dachablage freigeben"><button type="button" data-state="approve">✓</button><button type="button" data-state="edit">Ändern</button><button type="button" data-state="hide">Ausblenden</button></div><input class="note" placeholder="Airlineschiene / Molle-Ausstattung …" /></article>
+          </div>
+        </section>
+
+        <section class="group confirm">
+          <div class="group-title"><p class="eyebrow">05 / DEINE KONFIGURATION</p><h2>Noch kurz bestätigen</h2><p>Diese Optionen können je nach Bestellung unterschiedlich sein.</p></div>
+          <div class="configuration">
+            <label><span>ZULÄSSIGES GESAMTGEWICHT</span><select name="weight"><option value="">Bitte wählen</option><option>3,88 t</option><option>4,10 t</option><option>nicht veröffentlichen</option></select></label>
+            <label><span>ANHÄNGERKUPPLUNG</span><select name="hitch"><option value="">Bitte wählen</option><option>ja</option><option>nein</option><option>nicht veröffentlichen</option></select></label>
+            <label><span>WECHSELRICHTER</span><select name="inverter"><option value="">Bitte wählen</option><option>1.600 VA vorhanden</option><option>nicht vorhanden</option><option>nicht veröffentlichen</option></select></label>
+            <label><span>WINTERPAKET</span><select name="winter"><option value="">Bitte wählen</option><option>vorhanden</option><option>nicht vorhanden</option><option>nicht veröffentlichen</option></select></label>
+            <label><span>HECKLAST / ACHSLAST GEPRÜFT</span><select name="rear-load"><option value="">Bitte wählen</option><option>ja, dokumentiert</option><option>noch offen</option><option>nicht veröffentlichen</option></select></label>
+          </div>
+        </section>
+      </form>
+
+      <section class="review-footer">
+        <div><p class="eyebrow">DEIN STAND</p><strong id="progress">0 von 12 Angaben geprüft</strong><p id="summary">Wähle für jeden Eintrag eine Entscheidung.</p></div>
+        <div class="footer-actions"><button id="save" class="primary" type="button">Lokal speichern</button><button id="export" class="secondary" type="button">Freigabe zusammenfassen</button><button id="clear" class="text-button" type="button">Zurücksetzen</button></div>
+        <p class="privacy-note">Die Auswahl wird nur in diesem Browser gespeichert. Sie verändert weder die Website noch veröffentlicht sie Daten.</p>
+      </section>
+    </main>
+    <dialog id="export-dialog"><button class="close" type="button" aria-label="Schließen">×</button><p class="eyebrow">FREIGABE-ENTWURF</p><h2>Deine Auswahl</h2><pre id="export-text"></pre><button id="copy" class="primary" type="button">In Zwischenablage kopieren</button></dialog>
+    <script src="vehicle-review.js"></script>
+  </body>
+</html>
