@@ -1,0 +1,20 @@
+exclude:
+  - editor
+  - deploy
+  - tools
+  - node_modules
+  - video-analysis
+  - reisebilder-originale
+  - assets/heroes/originals
+  - assets/hero-selection
+  - assets/heroes/sources.json
+  - Dockerfile
+  - compose.yaml
+  - compose.override.yaml
+  - package.json
+  - package-lock.json
+  - build-travel-pages.py
+  - AGENTS.md
+  - CONTRIBUTING.md
+  - README.md
+  - Reisebilder-herunterladen.cmd

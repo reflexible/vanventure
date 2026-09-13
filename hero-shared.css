@@ -1,0 +1,25 @@
+/* Shared hero design, based on the vehicle detail page. */
+:root{--hero-wash:linear-gradient(90deg,rgba(229,236,228,.88) 0%,rgba(229,236,228,.76) 25%,rgba(229,236,228,.35) 40%,rgba(229,236,228,0) 58%)}
+.hero,.story-hero,.vehicle-hero{position:relative;isolation:isolate;min-height:650px;height:auto;display:grid;align-content:end;padding:clamp(110px,14vw,190px) clamp(20px,8vw,130px) clamp(70px,9vw,115px);color:var(--ink);background-color:#e5ece4}
+.hero-content,.story-hero-copy,.hero-copy{width:100%;max-width:1050px;margin:0;padding:0;text-shadow:none}
+.hero h1,.story-hero h1,.vehicle-hero h1{margin:0;max-width:1050px;font:600 clamp(62px,9.4vw,138px)/.8 "Playfair Display",serif;letter-spacing:-.065em;text-wrap:balance}
+.hero-intro,.story-hero .story-subtitle,.vehicle-lead{max-width:510px;margin:34px 0 0;font-size:20px;line-height:1.58;color:var(--ink)}
+.hero .eyebrow,.story-hero .eyebrow{color:var(--pine-2)}
+.hero-shade{background:var(--hero-wash)}
+.hero-media{transform:none}
+.story-hero-image{object-position:right center;z-index:-2}
+.story-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--hero-wash);pointer-events:none}
+.vehicle-hero{background-image:var(--hero-wash),url("assets/vehicle/vehicle-header-clean-v3.png")}
+.hero-actions{margin-top:30px}
+.hero-meta,.story-hero .story-meta{position:static;margin:45px 0 0;color:#52645d;font:11px/1.6 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.hero-meta strong{color:var(--ink)}
+.meta-rule{background:var(--line)}
+.site-header{position:relative;color:var(--ink);border-bottom:1px solid var(--line)}
+.site-header .language{border-color:rgba(16,25,23,.45)}
+@media(max-width:760px){
+ :root{--hero-wash:linear-gradient(90deg,rgba(229,236,228,.84) 0%,rgba(229,236,228,.65) 40%,rgba(229,236,228,0) 75%)}
+ .hero,.story-hero,.vehicle-hero{min-height:570px;height:auto;padding:95px 24px 60px}
+ .hero h1,.story-hero h1,.vehicle-hero h1{font-size:clamp(57px,16vw,88px)}
+ .hero-intro,.story-hero .story-subtitle,.vehicle-lead{font-size:17px;margin-top:25px}
+ .hero-meta,.story-hero .story-meta{position:static;margin-top:35px}
+}

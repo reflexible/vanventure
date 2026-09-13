@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+!.env.example
+node_modules
+.editor-data
+_analysis_tools
+video-analysis
+reisebilder-originale
+tools
+*.backup
+*.sql
+*.dump
+backups
