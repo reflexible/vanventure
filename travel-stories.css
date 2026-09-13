@@ -16,4 +16,3 @@
 
 .story-sidebar,.story-body{min-width:0}
 @media(max-width:760px){.story-layout{grid-template-columns:minmax(0,1fr)}.story-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px}.story-header .brand{grid-column:1;grid-row:1}.story-header .language{grid-column:2;grid-row:1}.story-header nav{grid-column:1/-1;grid-row:2;justify-content:flex-start;gap:24px}}
-
