@@ -1,0 +1,12 @@
+# Automatically used for LOCAL development. Hetzner uses only compose.yaml explicitly.
+services:
+  web:
+    environment:
+      NODE_ENV: development
+      EDITOR_ORIGIN: http://localhost:8080
+      EDITOR_SECURE_COOKIE: "false"
+    ports:
+      - "127.0.0.1:8080:8787"
+    volumes:
+      - .:/app:ro
+      - /app/node_modules

@@ -1,0 +1,6 @@
+.riverstar-profile { background: var(--cream); scroll-margin-top: 100px; }
+.riverstar-profile h2 { font-size: clamp(38px, 5vw, 68px); max-width: 850px; margin: 16px 0 28px; }
+.riverstar-profile h3 { font-size: 26px; margin: 32px 0 12px; }
+.riverstar-profile > p:not(.eyebrow) { max-width: 850px; }
+.riverstar-profile a { color: var(--pine); text-underline-offset: 4px; }
+.riverstar-sources { font-size: 14px; line-height: 1.8; border-top: 1px solid var(--line); padding-top: 22px; }

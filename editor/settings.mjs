@@ -1,0 +1,5 @@
+import { createCipheriv,createDecipheriv,randomBytes } from 'node:crypto';
+function key(){const value=process.env.EDITOR_SECRET;if(!/^[a-f0-9]{64}$/i.test(value||''))throw new Error('EDITOR_SECRET fehlt.');return Buffer.from(value,'hex');}
+export function encrypt(value){const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key(),iv);const data=Buffer.concat([cipher.update(value,'utf8'),cipher.final()]);return [iv.toString('hex'),data.toString('hex'),cipher.getAuthTag().toString('hex')].join(':');}
+export function decrypt(value){const [iv,data,tag]=value.split(':'),cipher=createDecipheriv('aes-256-gcm',key(),Buffer.from(iv,'hex'));cipher.setAuthTag(Buffer.from(tag,'hex'));return Buffer.concat([cipher.update(Buffer.from(data,'hex')),cipher.final()]).toString('utf8');}
+export async function aiSettings(db){const stored=await db.setting('openai_key');return {apiKey:stored?decrypt(stored):process.env.OPENAI_API_KEY||'',model:await db.setting('openai_model')||process.env.OPENAI_MODEL||'gpt-4.1'};}
