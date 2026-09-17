@@ -9,6 +9,7 @@ Lokal http://localhost:8080 öffnen und „Anmelden“ auswählen. Bei einer lee
 Nach dem Login gibt es:
 
 - Direkte Textbearbeitung, Stichworte, Faktenkorrekturen und Highlights.
+- Chronologische Etappenliste mit Datum, Ort, kurzer Beschreibung und optionalen Koordinaten. Etappen lassen sich nach oben und unten verschieben. „Kartendaten“ exportiert vorhandene Koordinaten als GeoJSON mit Punkten und Reiseroute.
 - „Texte und Wünsche speichern“: gemeinsame Texte und Notizen in PostgreSQL ablegen. Danach im Codex-Chat die Überarbeitung und Aktualisierung der Homepage beauftragen. Es erfolgt keine API-Anfrage.
 - Vorschau des gespeicherten Entwurfs im Seitenlayout.
 - „Für Website freigeben“ für Administratoren: Der gespeicherte Stand wird sofort auf der Website sichtbar; Startseitenübersicht und Reisebericht verwenden denselben freigegebenen Inhalt.
@@ -21,7 +22,7 @@ Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewie
 
 ## Überarbeitung durch Codex
 
-Der Agent liest die Daten innerhalb des laufenden Containers mit:
+Der Agent liest die Daten einschließlich der geordneten Etappenliste innerhalb des laufenden Containers mit:
 
     docker compose exec -T web node editor/redaction.mjs read
 

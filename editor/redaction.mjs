@@ -17,7 +17,7 @@ try {
     // Keep photo references intact; the agent edits text, not the photo archive.
     if(story.chapters.length!==current.story.chapters.length)throw new Error('Keep chapter structure and photo references');
     story.chapters=story.chapters.map((c,i)=>({...current.story.chapters[i],title:c.title,paragraphs:c.paragraphs}));
-    const revision=await db.save(slug,{story:{...current.story,...story},notes:{facts:'',highlights:'',keywords:''}},current.revision,'codex-redaktion');
+    const revision=await db.save(slug,{story:{...current.story,...story},notes:{facts:'',highlights:'',keywords:'',itinerary:current.notes.itinerary||[]}},current.revision,'codex-redaktion');
     await db.publish(slug,revision,'codex-redaktion');
     console.log(JSON.stringify({slug,revision,published:true}));
   } else throw new Error('Use: node editor/redaction.mjs read [slug] | apply slug (JSON from stdin)');

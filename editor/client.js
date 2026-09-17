@@ -8,10 +8,26 @@ async function api(path,method='GET',data){
 function run(fn){return async e=>{e?.preventDefault();try{await fn(e);}catch(error){message(error.message);}};}
 function markDirty(){dirty=true;$('saved').textContent='Ungespeicherte Änderungen';}
 function button(text,fn){const b=document.createElement('button');b.type='button';b.textContent=text;b.addEventListener('click',fn);return b;}
+function itinerary(){return Array.isArray(current.notes.itinerary)?current.notes.itinerary:(current.notes.itinerary=[]);}
+function renderItinerary(){
+  const list=$('itinerary');list.replaceChildren();
+  itinerary().forEach((stop,i)=>{
+    const row=document.createElement('div');row.className='itinerary-stop';
+    const field=(label,name,value,cls='')=>{const l=document.createElement('label');l.textContent=label;l.className=cls;const input=document.createElement('input');input.value=value??'';input.dataset.stop=i;input.dataset.stopField=name;l.append(input);return l;};
+    const details=field('Was geschah dort?','details',stop.details,'stop-details');details.querySelector('input').placeholder='Kurzes Erlebnis, Aktivität oder wichtige Korrektur';
+    const actions=document.createElement('div');actions.className='stop-actions';actions.append(button('↑',()=>moveStop(i,-1)),button('↓',()=>moveStop(i,1)),button('Löschen',()=>removeStop(i)));
+    row.append(field('Datum / Tag','date',stop.date),field('Ort','place',stop.place,'place'),field('Breite','lat',stop.lat),field('Länge','lon',stop.lon),actions,details);list.append(row);
+  });
+  if(!itinerary().length){const p=document.createElement('p');p.className='hint';p.textContent='Noch keine Etappen eingetragen.';list.append(p);}
+}
+function collectItinerary(){document.querySelectorAll('[data-stop]').forEach(el=>{const stop=itinerary()[Number(el.dataset.stop)];if(stop)stop[el.dataset.stopField]=el.value.trim();});}
+function moveStop(i,d){collectItinerary();const j=i+d;if(j<0||j>=itinerary().length)return;[itinerary()[i],itinerary()[j]]=[itinerary()[j],itinerary()[i]];renderItinerary();markDirty();}
+function removeStop(i){collectItinerary();itinerary().splice(i,1);renderItinerary();markDirty();}
 function render(){
   const s=current.story;
   for(const k of ['title','subtitle','meta','lead'])$(k).value=s[k][0];
   for(const k of ['facts','highlights','keywords'])$(k).value=current.notes[k];
+  renderItinerary();
   $('chapters').replaceChildren();
   s.chapters.forEach((c,i)=>{
     const section=document.createElement('section');section.className='chapter';
@@ -21,10 +37,11 @@ function render(){
     const text=document.createElement('textarea');text.rows=Math.max(7,c.paragraphs.length*4);text.value=c.paragraphs.map(p=>p[0]).join('\n\n');text.dataset.chapter=i;text.dataset.field='text';textLabel.append(text);
     section.append(label,textLabel);$('chapters').append(section);
   });
-  $('export').href=`/api/stories/${s.slug}/export`;dirty=false;$('saved').textContent=`Gespeichert · Version ${current.revision}`;
+  $('export').href=`/api/stories/${s.slug}/export`;$('route-export').href=`/api/stories/${s.slug}/route.geojson`;dirty=false;$('saved').textContent=`Gespeichert · Version ${current.revision}`;
   $('draft-preview').href=`/api/stories/${s.slug}/preview`;
 }
 function collect(){
+  collectItinerary();
   for(const k of ['title','subtitle','meta','lead'])current.story[k][0]=$(k).value;
   for(const k of ['facts','highlights','keywords'])current.notes[k]=$(k).value;
   document.querySelectorAll('[data-chapter]').forEach(el=>{
@@ -48,8 +65,14 @@ $('save').addEventListener('click',run(async()=>{await save();message('Änderung
 $('reload').addEventListener('click',run(async()=>{if(dirty&&!confirm('Ungespeicherte Änderungen verwerfen und neu laden?'))return;await load(current.story.slug);}));
 $('trip').addEventListener('change',run(async()=>{if(busy){$('trip').value=current.story.slug;return;}if(dirty&&!confirm('Ungespeicherte Änderungen verwerfen und Reise wechseln?')){$('trip').value=current.story.slug;return;}await load($('trip').value);}));
 $('add-chapter').addEventListener('click',()=>{collect();current.story.chapters.push({title:['Neues Kapitel','New chapter'],paragraphs:[['','']]});render();markDirty();});
+$('add-stop').addEventListener('click',()=>{collectItinerary();itinerary().push({date:'',place:'',details:'',lat:'',lon:''});renderItinerary();markDirty();});
+$('import-stops').addEventListener('click',()=>{
+  collect();if(itinerary().length&&!confirm('Die vorhandene Etappenliste durch die Kapitel des Berichts ersetzen?'))return;
+  current.notes.itinerary=current.story.chapters.map(c=>({date:'',place:c.title[0],details:c.paragraphs.map(p=>p[0]).join(' '),lat:'',lon:''}));renderItinerary();markDirty();
+});
 $('request-edit').addEventListener('click',run(async()=>{await save();message('Texte und Änderungswünsche gespeichert. Schreibt jetzt im Codex-Chat: Bitte überarbeite die gespeicherten Reiseberichte und aktualisiere die Homepage.');}));
 $('export').addEventListener('click',e=>{if(dirty){e.preventDefault();message('Bitte zuerst speichern, bevor ihr den Entwurf exportiert.');}});
+$('route-export').addEventListener('click',e=>{if(dirty){e.preventDefault();message('Bitte zuerst speichern, bevor ihr die Kartendaten exportiert.');}});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
 function dialogRun(id,fn){return async e=>{e?.preventDefault();try{await fn(e);}catch(error){$(id).textContent=error.message;}};}

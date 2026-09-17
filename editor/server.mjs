@@ -39,6 +39,11 @@ function validate(data, original) {
     if (!Array.isArray(c.title)||c.title.length!==2||c.title.some(t=>typeof t!=='string')||!Array.isArray(c.paragraphs)||c.paragraphs.length>40||c.paragraphs.some(p=>!Array.isArray(p)||p.length!==2||p.some(t=>typeof t!=='string'))) fail(400,'Ungültige Kapiteltexte.');
   }
   for (const k of ['facts','highlights','keywords']) if (typeof data.notes[k]!=='string'||data.notes[k].length>20000) fail(400,'Ungültige Notizen.');
+  if(!Array.isArray(data.notes.itinerary)||data.notes.itinerary.length>150)fail(400,'Ungültige Etappenliste.');
+  for(const stop of data.notes.itinerary){
+    if(!stop||typeof stop!=='object'||typeof stop.date!=='string'||stop.date.length>40||typeof stop.place!=='string'||!stop.place.trim()||stop.place.length>160||typeof stop.details!=='string'||stop.details.length>2000)fail(400,'Bitte jede Etappe mit einem Ort angeben.');
+    for(const key of ['lat','lon'])if(stop[key]!==''&&stop[key]!==null&&stop[key]!==undefined&&(!Number.isFinite(Number(stop[key]))||(key==='lat'&&Math.abs(Number(stop[key]))>90)||(key==='lon'&&Math.abs(Number(stop[key]))>180)))fail(400,'Ungültige Kartenkoordinaten.');
+  }
   for (const k of ['slug','country','year','videos']) data.story[k]=original.story[k];
 }
 async function body(req) {
@@ -134,10 +139,16 @@ const server=http.createServer(async (req,res)=>{
     if (path.startsWith('/api/jobs/')&&req.method==='GET') {
       const job=jobs.get(path.split('/')[3]);if (!job||job.author!==session.name) fail(404,'Entwurf nicht gefunden.');return send(200,job);
     }
-    const match=path.match(/^\/api\/stories\/([a-z0-9-]+)(?:\/(generate|export|preview|publish))?$/);if (!match) fail(404,'Nicht gefunden.');
+    const match=path.match(/^\/api\/stories\/([a-z0-9-]+)(?:\/(generate|export|preview|publish|route\.geojson))?$/);if (!match) fail(404,'Nicht gefunden.');
     const [,slug,action]=match, current=await draft(slug);
     if (req.method==='GET'&&!action) return send(200,current);
     if (req.method==='GET'&&action==='export') return send(200,current.story,{'Content-Disposition':`attachment; filename="${slug}-entwurf.json"`});
+    if(req.method==='GET'&&action==='route.geojson'){
+      const stops=current.notes.itinerary||[],located=stops.filter(s=>s.lat!==''&&s.lon!==''&&Number.isFinite(Number(s.lat))&&Number.isFinite(Number(s.lon)));
+      const features=located.map((s,i)=>({type:'Feature',properties:{order:i+1,date:s.date,place:s.place,details:s.details},geometry:{type:'Point',coordinates:[Number(s.lon),Number(s.lat)]}}));
+      if(located.length>1)features.unshift({type:'Feature',properties:{name:current.story.title[0]},geometry:{type:'LineString',coordinates:located.map(s=>[Number(s.lon),Number(s.lat)])}});
+      return send(200,{type:'FeatureCollection',features},{'Content-Disposition':`attachment; filename="${slug}-route.geojson"`,'Content-Type':'application/geo+json; charset=utf-8'});
+    }
     if(req.method==='GET'&&action==='preview'){res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-ancestors 'none'; base-uri 'none'");res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});return res.end(renderStory(current.story,true));}
     if(req.method==='POST'&&action==='publish'){if(activeUser.role!=='admin')fail(403,'Freigaben sind nur für Administratoren verfügbar.');const b=await body(req);await db.publish(slug,b.revision,activeUser.name);return send(200,{published:true});}
     if (req.method==='PUT'&&!action) {
