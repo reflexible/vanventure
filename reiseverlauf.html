@@ -1,10 +1,10 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reiseberichte ordnen | VanVenture</title><meta name="robots" content="noindex"><link rel="stylesheet" href="reiseverlauf.css"></head><body>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reiseberichte ordnen | VanVenture</title><meta name="robots" content="noindex"><link rel="stylesheet" href="reiseverlauf.css?v=3"></head><body>
 <header><a href="index.html">VANVENTURE</a><span>Mobile Textredaktion</span></header>
 <main><p class="eyebrow">REISEBERICHTE</p><h1>Aktuelle Texte ordnen</h1><p>Wähle eine Reise. Alle vorhandenen Absätze erscheinen als Karten. Verschiebe sie von oben nach unten in die richtige zeitliche Reihenfolge.</p>
 <label class="journey">Reise<select id="journey"></select></label>
 <div class="actions"><button id="reset">Aktuelle Texte neu laden</button></div>
-<p id="message" role="status" aria-live="polite"></p><div id="stops"></div>
+<p id="message" role="status" aria-live="polite">Aktuelle Texte werden geladen …</p><div id="stops"></div>
 <div class="finish"><button id="copy" class="primary">Geordnete Texte für Codex kopieren</button><button id="share">Teilen</button><button id="download">Datei speichern</button></div>
 <section class="help"><h2>So geht es weiter</h2><ol><li>Jeden Absatz mit ↑ und ↓ an die richtige Stelle schieben.</li><li>Bei Bedarf Überschrift oder Text direkt verbessern.</li><li>„Geordnete Texte für Codex kopieren“ wählen und hier im Chat einfügen.</li></ol><p>Deine Sortierung wird automatisch und ausschließlich im Browser dieses Handys gespeichert.</p></section></main>
 <template id="stop-template"><article class="stop"><div class="stop-number"></div><div class="move"><button data-action="up" aria-label="Nach oben">↑</button><button data-action="down" aria-label="Nach unten">↓</button></div><label class="wide">Kapitelüberschrift<input data-field="chapter"></label><label class="wide">Aktueller Absatz<textarea data-field="text" rows="7"></textarea></label></article></template>
-<script src="reiseverlauf.js"></script></body></html>
+<script src="reiseverlauf.js?v=3"></script></body></html>
