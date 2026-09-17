@@ -46,10 +46,10 @@ export async function openPostgres(config = {}) {
       }catch(e){await client.query('ROLLBACK');throw e;}finally{client.release();}
     },
     async changePassword(name,password){await pool.query('UPDATE users SET hash=$1,auth_version=auth_version+1 WHERE name=$2',[passwordHash(password),name]);},
-    async seed(story){await pool.query('INSERT INTO drafts(slug,data) VALUES($1,$2) ON CONFLICT(slug) DO NOTHING',[story.slug,JSON.stringify({story,notes:{facts:'',highlights:'',keywords:''}})]);},
+    async seed(story){await pool.query('INSERT INTO drafts(slug,data) VALUES($1,$2) ON CONFLICT(slug) DO NOTHING',[story.slug,JSON.stringify({story,notes:{facts:'',highlights:'',keywords:'',itinerary:[]}})]);},
     async user(name){return (await pool.query('SELECT * FROM users WHERE name=$1',[name])).rows[0];},
     async account(name,password){await pool.query('INSERT INTO users(name,hash) VALUES($1,$2) ON CONFLICT(name) DO UPDATE SET hash=excluded.hash',[name,passwordHash(password)]);},
-    async draft(slug){const row=(await pool.query('SELECT data,revision FROM drafts WHERE slug=$1',[slug])).rows[0];return row?{...row.data,revision:row.revision}:null;},
+    async draft(slug){const row=(await pool.query('SELECT data,revision FROM drafts WHERE slug=$1',[slug])).rows[0];if(!row)return null;const data=row.data;data.notes={facts:'',highlights:'',keywords:'',itinerary:[],...data.notes};if(!Array.isArray(data.notes.itinerary))data.notes.itinerary=[];return {...data,revision:row.revision};},
     async list(){return (await pool.query('SELECT slug,data FROM drafts ORDER BY slug')).rows.map(r=>({slug:r.slug,title:r.data.story.country[0]}));},
     async health(){await pool.query('SELECT 1');},
     async save(slug,data,revision,author){
