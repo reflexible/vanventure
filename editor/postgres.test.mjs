@@ -16,3 +16,14 @@ test('PostgreSQL preserves drafts, rejects stale writes and rolls back history o
     await db.pool.query('ALTER TABLE history DROP CONSTRAINT test_reject');
   }finally{await db.close();await database.close();}
 });
+test('one-time story migration preserves notes and records the previous draft',async()=>{
+  const database=await testDatabase(),db=await openPostgres({connectionString:database.url,max:1});
+  try{
+    const oldStory={slug:'trip',country:['Norwegen','Norway'],chapters:[{paragraphs:[['old chronology marker','old']]}]};await db.seed(oldStory);
+    const draft=await db.draft('trip');draft.notes.highlights='Behalten';await db.save('trip',{story:draft.story,notes:draft.notes},draft.revision,'sabine');
+    const next={...oldStory,chapters:[{paragraphs:[['new order','new order']]}]};
+    assert.equal(await db.migrateStory('trip','migration:test-order','old chronology marker',next),true);
+    const migrated=await db.draft('trip');assert.equal(migrated.story.chapters[0].paragraphs[0][0],'new order');assert.equal(migrated.notes.highlights,'Behalten');assert.equal((await db.published('trip')).chapters[0].paragraphs[0][0],'new order');
+    assert.equal(await db.migrateStory('trip','migration:test-order','new order',oldStory),false);assert.equal((await db.draft('trip')).story.chapters[0].paragraphs[0][0],'new order');
+  }finally{await db.close();await database.close();}
+});

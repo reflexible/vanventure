@@ -47,6 +47,19 @@ export async function openPostgres(config = {}) {
     },
     async changePassword(name,password){await pool.query('UPDATE users SET hash=$1,auth_version=auth_version+1 WHERE name=$2',[passwordHash(password),name]);},
     async seed(story){await pool.query('INSERT INTO drafts(slug,data) VALUES($1,$2) ON CONFLICT(slug) DO NOTHING',[story.slug,JSON.stringify({story,notes:{facts:'',highlights:'',keywords:'',itinerary:[]}})]);},
+    async migrateStory(slug,migration,oldText,story){
+      const client=await pool.connect();try{
+        await client.query('BEGIN');await client.query('LOCK TABLE drafts IN ROW EXCLUSIVE MODE');
+        if((await client.query('SELECT 1 FROM settings WHERE key=$1',[migration])).rowCount){await client.query('COMMIT');return false;}
+        const row=(await client.query('SELECT data,revision FROM drafts WHERE slug=$1 FOR UPDATE',[slug])).rows[0];
+        if(row&&JSON.stringify(row.data.story).includes(oldText)){
+          await client.query('INSERT INTO history(slug,author,data) VALUES($1,$2,$3)',[slug,'content-migration',JSON.stringify(row.data)]);
+          const data={...row.data,story};await client.query('UPDATE drafts SET data=$1,revision=revision+1 WHERE slug=$2',[JSON.stringify(data),slug]);
+          await client.query('INSERT INTO published(slug,story,author) VALUES($1,$2,$3) ON CONFLICT(slug) DO UPDATE SET story=excluded.story,author=excluded.author,saved=NOW()',[slug,JSON.stringify(story),'content-migration']);
+        }
+        await client.query('INSERT INTO settings(key,value) VALUES($1,$2)',[migration,new Date().toISOString()]);await client.query('COMMIT');return true;
+      }catch(e){await client.query('ROLLBACK');throw e;}finally{client.release();}
+    },
     async user(name){return (await pool.query('SELECT * FROM users WHERE name=$1',[name])).rows[0];},
     async account(name,password){await pool.query('INSERT INTO users(name,hash) VALUES($1,$2) ON CONFLICT(name) DO UPDATE SET hash=excluded.hash',[name,passwordHash(password)]);},
     async draft(slug){const row=(await pool.query('SELECT data,revision FROM drafts WHERE slug=$1',[slug])).rows[0];if(!row)return null;const data=row.data;data.notes={facts:'',highlights:'',keywords:'',itinerary:[],...data.notes};if(!Array.isArray(data.notes.itinerary))data.notes.itinerary=[];return {...data,revision:row.revision};},

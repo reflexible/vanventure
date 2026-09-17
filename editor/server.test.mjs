@@ -31,10 +31,10 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
       {date:'29.06.2018',place:'Oslo',details:'Ankunft in Norwegen',lat:'59.9139',lon:'10.7522'}
     ];assert.equal((await fetch(url,{method:'PUT',headers,body:JSON.stringify(original)})).status,200);
     assert.equal((await fetch(url,{method:'PUT',headers,body:JSON.stringify(original)})).status,409);
-    const saved=await (await fetch(url,{headers})).json();assert.equal(saved.notes.highlights,'Neue Wanderung');assert.equal(saved.revision,1);
+    const saved=await (await fetch(url,{headers})).json();assert.equal(saved.notes.highlights,'Neue Wanderung');assert.equal(saved.revision,original.revision+1);
     assert.equal(saved.notes.itinerary[1].place,'Oslo');
     const route=await (await fetch(url+'/route.geojson',{headers})).json();assert.equal(route.type,'FeatureCollection');assert.equal(route.features[0].geometry.type,'LineString');assert.deepEqual(route.features[0].geometry.coordinates[1],[10.7522,59.9139]);
-    assert.equal((await fetch(url+'/generate',{method:'POST',headers,body:JSON.stringify({revision:1})})).status,503);
+    assert.equal((await fetch(url+'/generate',{method:'POST',headers,body:JSON.stringify({revision:saved.revision})})).status,503);
     assert.equal((await fetch(origin+'/api/logout',{method:'POST',headers,body:'{}'})).status,200);
     assert.equal((await fetch(url,{headers})).status,401);
   }finally{if(child.exitCode===null){child.kill();await new Promise(r=>child.once('exit',r));}await database.close();}
