@@ -10,9 +10,11 @@ import { renderStory, renderHomepage } from './render.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
-for (const story of JSON.parse(readFileSync(resolve(root,'travel-stories.json'),'utf8'))) {
+const seededStories=JSON.parse(readFileSync(resolve(root,'travel-stories.json'),'utf8'));
+for (const story of seededStories) {
   await db.seed(story);
 }
+await db.migrateStory('norwegen-2018','migration:norway-flam-order:2026-09-17','Im Lærdalstunnel führt die Straße rund 24,5 Kilometer durch den Berg',seededStories.find(s=>s.slug==='norwegen-2018'));
 const port = Number(process.env.PORT || 8787);
 const origin = process.env.EDITOR_ORIGIN || `http://127.0.0.1:${port}`;
 const secure = process.env.EDITOR_SECURE_COOKIE === 'true';
