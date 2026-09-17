@@ -1,0 +1,27 @@
+{
+  "capture_metadata": {
+    "observed_at": "2026-09-17",
+    "source": "Gemini web UI in authenticated account",
+    "capture_method": "visible DOM text read through approved browser tooling",
+    "complete_transcript_export": false
+  },
+  "chat": {
+    "chat_id": "6fb53afad2eefac4",
+    "title": "YouTube Short auf Instagram teilen",
+    "url": "https://gemini.google.com/app/6fb53afad2eefac4?hl=de",
+    "observed_date": "2026-09-16",
+    "capture_status": "visible_content_summarized",
+    "project_assignment": null,
+    "topics": [
+      "YouTube Shorts",
+      "Instagram Reel",
+      "Instagram Story",
+      "Link-Sticker",
+      "Link in Bio"
+    ],
+    "user_decisions": [
+      "Das zu teilende Short ist ein eigenes Video."
+    ],
+    "caveat": "Nur sichtbarer DOM-Inhalt gesichert; keine Medien oder Kontoeinstellungen verändert."
+  }
+}
