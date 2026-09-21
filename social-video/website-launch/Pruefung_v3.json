@@ -1,0 +1,14 @@
+{
+  "decode_exit": 0,
+  "frames": 720,
+  "duration": 24,
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "audio_peak_dbfs": -1.2,
+  "archive_copy_sha256_verified": true,
+  "visual_review": "7 scenes inspected; no full-frame dark gradients; recognizable bicycle; lifted coastal colors",
+  "contact_sheet": "work/v3/Kontaktbogen_v3.jpg"
+}

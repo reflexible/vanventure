@@ -7,6 +7,7 @@ import { checkPassword, passwordHash } from './store.mjs';
 import { openPostgres } from './postgres.mjs';
 import { aiSettings, encrypt } from './settings.mjs';
 import { renderStory, renderHomepage } from './render.mjs';
+import { sitemap, robots } from './seo.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
@@ -60,13 +61,21 @@ const server=http.createServer(async (req,res)=>{
   const send=(status,data,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8',...headers});res.end(JSON.stringify(data));};
   try {
     const url=new URL(req.url,origin), path=url.pathname;
+    if (/^\/(redaktion|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
+    if ((req.method==='GET'||req.method==='HEAD') && (path==='/sitemap.xml'||path==='/robots.txt')) {
+      res.writeHead(200,{'Content-Type':path==='/sitemap.xml'?'application/xml; charset=utf-8':'text/plain; charset=utf-8'});
+      return res.end(req.method==='HEAD'?undefined:path==='/sitemap.xml'?sitemap():robots());
+    }
+    if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
+      res.writeHead(301,{'Location':'/'+url.search}); return res.end();
+    }
     if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css'].includes(path)) {
       const file=path.endsWith('.js')?'client.js':path.endsWith('.css')?'editor.css':'index.html';
       res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
     if(req.method==='GET'||req.method==='HEAD'){
-      const publicFiles=new Set(['index.html','styles.css','script.js','travel-stories.css','riverstar.css','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
+      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','bike.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
       let relative;try{relative=decodeURIComponent(path).replace(/^\//,'')||'index.html';}catch{fail(400,'Ungültiger Pfad.');}
       const asset=/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_.-]+\.(png|jpe?g|webp|svg|gif|woff2)$/i.test(relative);
       if(publicFiles.has(relative)||/^[a-zA-Z][a-zA-Z0-9_-]*\.(css|js)$/.test(relative)||asset){
@@ -80,6 +89,7 @@ const server=http.createServer(async (req,res)=>{
         const types={html:'text/html; charset=utf-8',css:'text/css',js:'text/javascript',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',svg:'image/svg+xml',gif:'image/gif',woff2:'font/woff2'};
         res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
         let content=relative==='index.html'?renderHomepage(readFileSync(file,'utf8'),await db.allPublished()):readFileSync(file);
+        if(ext==='html')content=String(content).replaceAll('href="riverstar-entwurf.html"','href="kajak.html"');
         if(relative==='index.html'&&!content.includes('href="/redaktion"'))content=content.replace('<footer>','<footer><a href="/redaktion" data-de="Redaktion · Anmelden" data-en="Editorial · Sign in">Redaktion · Anmelden</a>');
         res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'});return res.end(req.method==='HEAD'?undefined:content);
       }

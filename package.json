@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:seo": "node tools/build-seo.mjs",
     "start": "docker compose up --build -d",
     "test": "node --test editor/*.test.mjs"
   },

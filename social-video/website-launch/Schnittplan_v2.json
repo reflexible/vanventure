@@ -1,0 +1,50 @@
+{
+  "duration": 24,
+  "fps": 30,
+  "shots": [
+    {
+      "i": 0,
+      "name": "Sardinien · La Pelosa",
+      "file": "E:/eigene_movies/sardinien/sardinien_master.mp4",
+      "start": 209,
+      "duration": 3,
+      "crop": "540:960:1070:60",
+      "title": "Wir sind\nonline.",
+      "label": "SARDINIEN · UNSERE REISEN",
+      "locked": true
+    },
+    {
+      "i": 2,
+      "name": "Norwegen · Aurlandsfjord",
+      "file": "D:\\work\\_venventure\\social-video\\norwegen\\source\\norway_2018.mp4",
+      "start": 366,
+      "duration": 2,
+      "crop": "540:960:360:60",
+      "title": "Raus aufs\nWasser.",
+      "label": "NORWEGEN · MIT DEM KAJAK",
+      "locked": true
+    },
+    {
+      "i": 3,
+      "name": "Sardinien · mit dem Bike",
+      "file": "E:/eigene_movies/sardinien/sardinien_master.mp4",
+      "start": 89,
+      "duration": 2,
+      "crop": "540:960:690:60",
+      "title": "Neue Wege\nentdecken.",
+      "label": "SARDINIEN · MIT DEM BIKE"
+    },
+    {
+      "i": 4,
+      "name": "Italien · Tropea",
+      "file": "D:\\work\\_venventure\\video-analysis\\sources\\al5rjX3PDWM.mp4",
+      "start": 31.5,
+      "duration": 3,
+      "crop": "360:640:670:40",
+      "title": "Das Meer\nim Blick.",
+      "label": "ITALIEN · REISEBERICHTE & INSPIRATION"
+    }
+  ],
+  "stabilization": "Bike and Italy: two-pass vidstab, Gaussian smoothing=20; fixed per-shot zoom; fixed crop; no zoompan. Already steady sea/kayak scenes retain original camera motion: correction rejected after measured degradation. Italy 24fps converted with motion-compensated interpolation to 30fps. Norway: motion-compensated 24-to-30fps interpolation after fixed crop.",
+  "audio": "Original v1 audio retained"
+}

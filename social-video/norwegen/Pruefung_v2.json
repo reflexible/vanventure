@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Norwegen_Reel_v2",
+    "decode_exit": 0,
+    "duration": 22.625,
+    "shots": 18,
+    "max_beat_rounding_error_ms": 20.29,
+    "unexpected_scene_changes": [],
+    "black_sections": [],
+    "silences": [],
+    "peak_volume": [
+      "max_volume: -6.6 dB"
+    ]
+  },
+  {
+    "name": "Norwegen_YouTube_Short_v2",
+    "decode_exit": 0,
+    "duration": 26.75,
+    "shots": 17,
+    "max_beat_rounding_error_ms": 16.8,
+    "unexpected_scene_changes": [],
+    "black_sections": [],
+    "silences": [],
+    "peak_volume": [
+      "max_volume: -1.5 dB"
+    ]
+  }
+]

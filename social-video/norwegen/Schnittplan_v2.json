@@ -1,0 +1,683 @@
+[
+  {
+    "name": "Norwegen_Reel_v2",
+    "music_start": 410.06965986394556,
+    "bpm": 174.999999999998,
+    "rows": [
+      {
+        "index": 0,
+        "source": 791,
+        "source_end": 792.375,
+        "frames": 33,
+        "start_frame": 0,
+        "end_frame": 33,
+        "beat": 4,
+        "cut_error_ms": 5.02,
+        "settings": [
+          791,
+          4,
+          1100,
+          "NORWEGEN.\nVOLLES GEFÜHL.",
+          "PREIKESTOLEN",
+          "cliff",
+          1
+        ]
+      },
+      {
+        "index": 1,
+        "source": 411,
+        "source_end": 412.375,
+        "frames": 33,
+        "start_frame": 33,
+        "end_frame": 66,
+        "beat": 8,
+        "cut_error_ms": 10.05,
+        "settings": [
+          411,
+          4,
+          1040,
+          "NORWEGEN.\nVOLLES GEFÜHL.",
+          "JULIE IST DABEI",
+          "dog",
+          1
+        ]
+      },
+      {
+        "index": 2,
+        "source": 366,
+        "source_end": 367.375,
+        "frames": 33,
+        "start_frame": 66,
+        "end_frame": 99,
+        "beat": 12,
+        "cut_error_ms": 15.07,
+        "settings": [
+          366,
+          4,
+          360,
+          "RAUS.\nAUFS WASSER.",
+          "AURLANDSFJORD",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 3,
+        "source": 468,
+        "source_end": 468.8666666666667,
+        "frames": 16,
+        "start_frame": 99,
+        "end_frame": 115,
+        "beat": 14,
+        "cut_error_ms": -3.25,
+        "settings": [
+          468,
+          2,
+          600,
+          "RAUS.\nAUFS WASSER.",
+          "PERSPEKTIVE WECHSELN",
+          null,
+          1.3
+        ]
+      },
+      {
+        "index": 4,
+        "source": 487,
+        "source_end": 487.7083333333333,
+        "frames": 17,
+        "start_frame": 115,
+        "end_frame": 132,
+        "beat": 16,
+        "cut_error_ms": 14.29,
+        "settings": [
+          487,
+          2,
+          690,
+          "RAUS.\nAUFS WASSER.",
+          "HARDANGERFJORD",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 5,
+        "source": 543,
+        "source_end": 543.8666666666667,
+        "frames": 16,
+        "start_frame": 132,
+        "end_frame": 148,
+        "beat": 18,
+        "cut_error_ms": -4.04,
+        "settings": [
+          543,
+          2,
+          690,
+          "EIS.\nWASSER. WILDNIS.",
+          "NORWEGEN",
+          null,
+          1.3
+        ]
+      },
+      {
+        "index": 6,
+        "source": 545,
+        "source_end": 546.375,
+        "frames": 33,
+        "start_frame": 148,
+        "end_frame": 181,
+        "beat": 22,
+        "cut_error_ms": 0.99,
+        "settings": [
+          545,
+          4,
+          640,
+          "EIS.\nWASSER. WILDNIS.",
+          "BUARBREEN",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 7,
+        "source": 550.25,
+        "source_end": 551.625,
+        "frames": 33,
+        "start_frame": 181,
+        "end_frame": 214,
+        "beat": 26,
+        "cut_error_ms": 6.01,
+        "settings": [
+          550.25,
+          4,
+          730,
+          "EIS.\nWASSER. WILDNIS.",
+          "ZWISCHEN DEN BERGEN",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 8,
+        "source": 330,
+        "source_end": 332.2,
+        "frames": 33,
+        "start_frame": 214,
+        "end_frame": 247,
+        "beat": 30,
+        "cut_error_ms": 11.03,
+        "settings": [
+          330,
+          4,
+          690,
+          "IMMER\nWEITER RAUS.",
+          "ROADTRIP",
+          null,
+          1.6
+        ]
+      },
+      {
+        "index": 9,
+        "source": 493,
+        "source_end": 493.6666666666667,
+        "frames": 16,
+        "start_frame": 247,
+        "end_frame": 263,
+        "beat": 32,
+        "cut_error_ms": -7.29,
+        "settings": [
+          493,
+          2,
+          1050,
+          "IMMER\nWEITER RAUS.",
+          "UNTERWEGS ZU ZWEIT",
+          "selfie",
+          1
+        ]
+      },
+      {
+        "index": 10,
+        "source": 935,
+        "source_end": 935.85,
+        "frames": 17,
+        "start_frame": 263,
+        "end_frame": 280,
+        "beat": 34,
+        "cut_error_ms": 10.25,
+        "settings": [
+          935,
+          2,
+          580,
+          "IMMER\nWEITER RAUS.",
+          "WASSERFALL",
+          null,
+          1.2
+        ]
+      },
+      {
+        "index": 11,
+        "source": 910,
+        "source_end": 911.65,
+        "frames": 33,
+        "start_frame": 280,
+        "end_frame": 313,
+        "beat": 38,
+        "cut_error_ms": 15.27,
+        "settings": [
+          910,
+          4,
+          690,
+          "IMMER\nWEITER RAUS.",
+          "DURCH DEN WALD",
+          null,
+          1.2
+        ]
+      },
+      {
+        "index": 12,
+        "source": 1049,
+        "source_end": 1050.375,
+        "frames": 33,
+        "start_frame": 313,
+        "end_frame": 346,
+        "beat": 42,
+        "cut_error_ms": 20.29,
+        "settings": [
+          1049,
+          4,
+          900,
+          "BIS\nANS MEER.",
+          "NEBEL AN DER KÜSTE",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 13,
+        "source": 1055,
+        "source_end": 1056.3333333333333,
+        "frames": 32,
+        "start_frame": 346,
+        "end_frame": 378,
+        "beat": 46,
+        "cut_error_ms": -16.35,
+        "settings": [
+          1055,
+          4,
+          300,
+          "BIS\nANS MEER.",
+          "AM LEUCHTTURM",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 14,
+        "source": 1070,
+        "source_end": 1071.65,
+        "frames": 33,
+        "start_frame": 378,
+        "end_frame": 411,
+        "beat": 50,
+        "cut_error_ms": -17.13,
+        "settings": [
+          1070,
+          4,
+          700,
+          "SO VIEL\nZU ENTDECKEN.",
+          "MOMENTE AM WASSER",
+          null,
+          1.2
+        ]
+      },
+      {
+        "index": 15,
+        "source": 1130,
+        "source_end": 1131.65,
+        "frames": 33,
+        "start_frame": 411,
+        "end_frame": 444,
+        "beat": 54,
+        "cut_error_ms": -12.11,
+        "settings": [
+          1130,
+          4,
+          740,
+          "SO VIEL\nZU ENTDECKEN.",
+          "NORWEGEN VOM WASSER AUS",
+          null,
+          1.2
+        ]
+      },
+      {
+        "index": 16,
+        "source": 1150,
+        "source_end": 1151.5125,
+        "frames": 33,
+        "start_frame": 444,
+        "end_frame": 477,
+        "beat": 58,
+        "cut_error_ms": -12.89,
+        "settings": [
+          1150,
+          4,
+          680,
+          "SO VIEL\nZU ENTDECKEN.",
+          "NOCH EIN LETZTER BLICK",
+          null,
+          1.1
+        ]
+      },
+      {
+        "index": 17,
+        "source": 1187.5,
+        "source_end": 1190.25,
+        "frames": 66,
+        "start_frame": 477,
+        "end_frame": 543,
+        "beat": 66,
+        "cut_error_ms": 2.96,
+        "settings": [
+          1187.5,
+          8,
+          460,
+          "MEHR DAVON?\n@VanVenture",
+          "GANZER FILM AUF YOUTUBE",
+          null,
+          1
+        ]
+      }
+    ],
+    "duration": 22.625
+  },
+  {
+    "name": "Norwegen_YouTube_Short_v2",
+    "music_start": 627.0464399092971,
+    "bpm": 174.999999999998,
+    "rows": [
+      {
+        "index": 0,
+        "source": 592,
+        "source_end": 592.7083333333334,
+        "frames": 17,
+        "start_frame": 0,
+        "end_frame": 17,
+        "beat": 2,
+        "cut_error_ms": 5.93,
+        "settings": [
+          592,
+          2,
+          690,
+          "FÜR\nDIESEN BLICK.",
+          "TROLLTUNGA · NORWEGEN",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 1,
+        "source": 589,
+        "source_end": 590.375,
+        "frames": 33,
+        "start_frame": 17,
+        "end_frame": 50,
+        "beat": 6,
+        "cut_error_ms": 10.95,
+        "settings": [
+          589,
+          4,
+          850,
+          "FÜR\nDIESEN BLICK.",
+          "LOS GEHT’S",
+          "hiker",
+          1
+        ]
+      },
+      {
+        "index": 2,
+        "source": 595,
+        "source_end": 595.7083333333334,
+        "frames": 17,
+        "start_frame": 50,
+        "end_frame": 67,
+        "beat": 8,
+        "cut_error_ms": 5.27,
+        "settings": [
+          595,
+          2,
+          690,
+          "FÜR\nDIESEN BLICK.",
+          "SCHRITT FÜR SCHRITT",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 3,
+        "source": 596.5,
+        "source_end": 597.875,
+        "frames": 33,
+        "start_frame": 67,
+        "end_frame": 100,
+        "beat": 12,
+        "cut_error_ms": 4.49,
+        "settings": [
+          596.5,
+          4,
+          760,
+          "RUCKSACK AUF.\nJULIE DABEI.",
+          "UNTERWEGS IN DEN BERGEN",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 4,
+        "source": 609.5,
+        "source_end": 610.8333333333334,
+        "frames": 32,
+        "start_frame": 100,
+        "end_frame": 132,
+        "beat": 16,
+        "cut_error_ms": -3.13,
+        "settings": [
+          609.5,
+          4,
+          780,
+          "RUCKSACK AUF.\nJULIE DABEI.",
+          "RAUS AUS DEM ALLTAG",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 5,
+        "source": 621.5,
+        "source_end": 622.875,
+        "frames": 33,
+        "start_frame": 132,
+        "end_frame": 165,
+        "beat": 20,
+        "cut_error_ms": 7.7,
+        "settings": [
+          621.5,
+          4,
+          1050,
+          "RUCKSACK AUF.\nJULIE DABEI.",
+          "PAUSE AM WASSER",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 6,
+        "source": 629.25,
+        "source_end": 631.175,
+        "frames": 66,
+        "start_frame": 165,
+        "end_frame": 231,
+        "beat": 28,
+        "cut_error_ms": 6.13,
+        "settings": [
+          629.25,
+          8,
+          760,
+          "DER WEG?\nSCHON EIN HIGHLIGHT.",
+          "ÜBER DEN WOLKEN",
+          null,
+          0.7
+        ]
+      },
+      {
+        "index": 7,
+        "source": 635,
+        "source_end": 636.5125,
+        "frames": 33,
+        "start_frame": 231,
+        "end_frame": 264,
+        "beat": 32,
+        "cut_error_ms": 15.01,
+        "settings": [
+          635,
+          4,
+          690,
+          "DER WEG?\nSCHON EIN HIGHLIGHT.",
+          "WEITE STATT ALLTAG",
+          null,
+          1.1
+        ]
+      },
+      {
+        "index": 8,
+        "source": 639,
+        "source_end": 639.6666666666666,
+        "frames": 16,
+        "start_frame": 264,
+        "end_frame": 280,
+        "beat": 34,
+        "cut_error_ms": -1.36,
+        "settings": [
+          639,
+          2,
+          650,
+          "DER WEG?\nSCHON EIN HIGHLIGHT.",
+          "BERGSEEN",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 9,
+        "source": 645,
+        "source_end": 646.65,
+        "frames": 33,
+        "start_frame": 280,
+        "end_frame": 313,
+        "beat": 38,
+        "cut_error_ms": -7.95,
+        "settings": [
+          645,
+          4,
+          690,
+          "DER WEG?\nSCHON EIN HIGHLIGHT.",
+          "WEITER NACH OBEN",
+          null,
+          1.2
+        ]
+      },
+      {
+        "index": 10,
+        "source": 655,
+        "source_end": 656.375,
+        "frames": 33,
+        "start_frame": 313,
+        "end_frame": 346,
+        "beat": 42,
+        "cut_error_ms": 2.88,
+        "settings": [
+          655,
+          4,
+          450,
+          "KURZ\nDURCHATMEN.",
+          "ZEIT FÜR EINE PAUSE",
+          "tea",
+          1
+        ]
+      },
+      {
+        "index": 11,
+        "source": 662,
+        "source_end": 663.375,
+        "frames": 33,
+        "start_frame": 346,
+        "end_frame": 379,
+        "beat": 46,
+        "cut_error_ms": 7.9,
+        "settings": [
+          662,
+          4,
+          430,
+          "DA IST SIE.\nTROLLTUNGA.",
+          "DIESER MOMENT",
+          "wide",
+          1
+        ]
+      },
+      {
+        "index": 12,
+        "source": 664.75,
+        "source_end": 665.4583333333334,
+        "frames": 17,
+        "start_frame": 379,
+        "end_frame": 396,
+        "beat": 48,
+        "cut_error_ms": -3.58,
+        "settings": [
+          664.75,
+          2,
+          820,
+          "DA IST SIE.\nTROLLTUNGA.",
+          "DIESER MOMENT",
+          "ledge",
+          1
+        ]
+      },
+      {
+        "index": 13,
+        "source": 667.5,
+        "source_end": 669.5416666666666,
+        "frames": 49,
+        "start_frame": 396,
+        "end_frame": 445,
+        "beat": 54,
+        "cut_error_ms": -5.27,
+        "settings": [
+          667.5,
+          6,
+          280,
+          "DA IST SIE.\nTROLLTUNGA.",
+          "DIESER MOMENT",
+          null,
+          1
+        ]
+      },
+      {
+        "index": 14,
+        "source": 681.5,
+        "source_end": 683.8020833333334,
+        "frames": 65,
+        "start_frame": 445,
+        "end_frame": 510,
+        "beat": 62,
+        "cut_error_ms": -2.06,
+        "settings": [
+          681.5,
+          8,
+          1050,
+          "WIR BLEIBEN.\nÜBER NACHT.",
+          "ZELT, BERGE UND JULIE",
+          null,
+          0.85
+        ]
+      },
+      {
+        "index": 15,
+        "source": 687,
+        "source_end": 690.1625,
+        "frames": 66,
+        "start_frame": 510,
+        "end_frame": 576,
+        "beat": 70,
+        "cut_error_ms": -15.24,
+        "settings": [
+          687,
+          8,
+          780,
+          "AUFWACHEN.\nSTAUNEN.",
+          "MORGENLICHT IN NORWEGEN",
+          null,
+          1.15
+        ]
+      },
+      {
+        "index": 16,
+        "source": 695,
+        "source_end": 697.475,
+        "frames": 66,
+        "start_frame": 576,
+        "end_frame": 642,
+        "beat": 78,
+        "cut_error_ms": -16.8,
+        "settings": [
+          695,
+          8,
+          850,
+          "DIE GANZE REISE:\n@VanVenture",
+          "AUF YOUTUBE WEITERSCHAUEN",
+          "hiker",
+          0.9
+        ]
+      }
+    ],
+    "duration": 26.75
+  }
+]

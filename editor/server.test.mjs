@@ -16,7 +16,14 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     assert.equal((await fetch(origin+'/.env')).status,404);
     assert.equal((await fetch(origin+'/travel-stories.json')).status,404);
     assert.equal((await fetch(origin+'/editor/server.mjs')).status,404);
-    const homepage=await (await fetch(origin+'/')).text();assert.ok(homepage.includes('Redaktion · Anmelden'));assert.ok(homepage.includes('VanVenture — Go further. Stay longer.'));
+    const homepage=await (await fetch(origin+'/')).text();assert.ok(homepage.includes('Redaktion · Anmelden'));assert.ok(homepage.includes('VanVenture – Reisen mit Camper, Mountainbike und Kajak'));
+    const redirect=await fetch(origin+'/index.html',{redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),'/');
+    const sitemap=await fetch(origin+'/sitemap.xml');assert.equal(sitemap.status,200);assert.match(sitemap.headers.get('content-type'),/application\/xml/);assert.equal(((await sitemap.text()).match(/<loc>/g)||[]).length,7);
+    assert.match(await (await fetch(origin+'/robots.txt')).text(),/Sitemap: https:\/\/vanventure.at\/sitemap.xml/);
+    assert.equal((await fetch(origin+'/redaktion')).headers.get('x-robots-tag'),'noindex, nofollow');
+    const storyHtml=await (await fetch(origin+'/norwegen-2018.html')).text();assert.match(storyHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/norwegen-2018.html">/);
+    const kayakHtml=await (await fetch(origin+'/kajak.html')).text();assert.match(kayakHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/kajak.html">/);assert.equal((await fetch(origin+'/riverstar-entwurf.html')).status,404);
+    const bikeHtml=await (await fetch(origin+'/bike.html')).text();assert.match(bikeHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/bike.html">/);
     assert.ok((await (await fetch(origin+'/redaktion')).text()).includes('login-form'));
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
     assert.equal((await fetch(origin+'/healthz')).status,200);

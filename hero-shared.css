@@ -1,25 +1,35 @@
-/* Shared hero design, based on the vehicle detail page. */
-:root{--hero-wash:linear-gradient(90deg,rgba(229,236,228,.88) 0%,rgba(229,236,228,.76) 25%,rgba(229,236,228,.35) 40%,rgba(229,236,228,0) 58%)}
-.hero,.story-hero,.vehicle-hero{position:relative;isolation:isolate;min-height:650px;height:auto;display:grid;align-content:end;padding:clamp(110px,14vw,190px) clamp(20px,8vw,130px) clamp(70px,9vw,115px);color:var(--ink);background-color:#e5ece4}
-.hero-content,.story-hero-copy,.hero-copy{width:100%;max-width:1050px;margin:0;padding:0;text-shadow:none}
-.hero h1,.story-hero h1,.vehicle-hero h1{margin:0;max-width:1050px;font:600 clamp(62px,9.4vw,138px)/.8 "Playfair Display",serif;letter-spacing:-.065em;text-wrap:balance}
-.hero-intro,.story-hero .story-subtitle,.vehicle-lead{max-width:510px;margin:34px 0 0;font-size:20px;line-height:1.58;color:var(--ink)}
-.hero .eyebrow,.story-hero .eyebrow{color:var(--pine-2)}
+/* Shared hero typography and photo wash, approved in the hero preview. */
+:root{--hero-ink:#15251e;--hero-accent:#245b3e;--hero-paper:#f2f3e9;--hero-wash:linear-gradient(90deg,rgba(229,236,228,.88) 0%,rgba(229,236,228,.76) 25%,rgba(229,236,228,.35) 40%,rgba(229,236,228,0) 58%)}
+.hero,.story-hero,.vehicle-hero{position:relative;isolation:isolate;min-height:clamp(470px,60vw,650px);height:auto;display:grid;align-content:center;padding:clamp(52px,7vw,100px) 6%;color:var(--hero-ink);background-color:var(--hero-paper)}
+.hero-content,.story-hero-copy,.hero-copy{width:67%;max-width:620px;min-width:0;margin:0;padding:0;text-shadow:none}
+.hero h1,.story-hero h1,.vehicle-hero h1{margin:0;max-width:620px;font:600 clamp(37px,7.2vw,80px)/1.04 "DM Sans",sans-serif;letter-spacing:-.05em;text-wrap:balance}
+.hero h1 em,.story-hero h1 em,.vehicle-hero h1 em{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-style:italic;letter-spacing:-.04em;color:var(--hero-accent)}
+.hero-intro,.story-hero .story-subtitle,.vehicle-lead{max-width:470px;margin:25px 0 0;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:#243b30}
+.hero .eyebrow,.story-hero .eyebrow,.vehicle-hero .eyebrow{color:#315444;margin:0 0 22px}
 .hero-shade{background:var(--hero-wash)}
 .hero-media{transform:none}
 .story-hero-image{object-position:right center;z-index:-2}
 .story-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--hero-wash);pointer-events:none}
 .vehicle-hero{background-image:var(--hero-wash),url("assets/vehicle/vehicle-header-clean-v3.png")}
 .hero-actions{margin-top:30px}
-.hero-meta,.story-hero .story-meta{position:static;margin:45px 0 0;color:#52645d;font:11px/1.6 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
-.hero-meta strong{color:var(--ink)}
+.hero-meta,.story-hero .story-meta{position:static;margin:26px 0 0;color:#355344;font:11px/1.7 "DM Mono",monospace;letter-spacing:.055em;text-transform:uppercase}
+.hero-meta strong{color:var(--hero-ink)}
 .meta-rule{background:var(--line)}
 .site-header{position:relative;color:var(--ink);border-bottom:1px solid var(--line)}
 .site-header .language{border-color:rgba(16,25,23,.45)}
+.button{border-radius:999px;padding-inline:26px}
+.button.button-dark{background:var(--ink);color:var(--cream)}
+.button.button-dark:hover{background:var(--ink);color:#fff}
+.button.button-lime{color:var(--ink)}
+.button:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+.journey a.button{width:auto;height:auto;display:inline-flex;border:1px solid transparent;border-radius:999px;font:700 14px "DM Sans",sans-serif;letter-spacing:normal;padding:0 26px;color:var(--cream)}
 @media(max-width:760px){
  :root{--hero-wash:linear-gradient(90deg,rgba(229,236,228,.84) 0%,rgba(229,236,228,.65) 40%,rgba(229,236,228,0) 75%)}
- .hero,.story-hero,.vehicle-hero{min-height:570px;height:auto;padding:95px 24px 60px}
- .hero h1,.story-hero h1,.vehicle-hero h1{font-size:clamp(57px,16vw,88px)}
- .hero-intro,.story-hero .story-subtitle,.vehicle-lead{font-size:17px;margin-top:25px}
- .hero-meta,.story-hero .story-meta{position:static;margin-top:35px}
+}
+@media(max-width:540px){
+ .hero,.story-hero,.vehicle-hero{min-height:470px;height:auto;padding:95px 24px 40px;align-content:end}
+ .hero-content,.story-hero-copy,.hero-copy{width:100%;max-width:420px}
+ .hero h1,.story-hero h1,.vehicle-hero h1{font-size:clamp(36px,9.5vw,51px)}
+ .hero-intro,.story-hero .story-subtitle,.vehicle-lead{font-size:17px;margin-top:22px}
+ .hero-meta,.story-hero .story-meta{position:static;margin-top:26px}
 }

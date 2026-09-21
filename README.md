@@ -1,6 +1,6 @@
 # VanVenture Website
 
-Die zweisprachige Homepage und die Reiseberichte werden über GitHub Pages aus `main` veröffentlicht: https://reflexible.github.io/vanventure/.
+Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf Marvin: https://vanventure.at/. Der frühere GitHub-Pages-Auftritt besteht als ältere Veröffentlichung. SEO und Live-Betrieb sind unter [docs/seo.md](docs/seo.md) dokumentiert.
 
 ## Vor Veröffentlichung ergänzen
 
@@ -12,6 +12,6 @@ Die zweisprachige Homepage und die Reiseberichte werden über GitHub Pages aus `
 
 Zum lokalen Ansehen `index.html` in einem Browser öffnen. Keine Veröffentlichung oder externe Änderung erfolgt ohne ausdrückliche Freigabe.
 
-Homepage und geschützte Redaktion laufen lokal gemeinsam in Docker mit PostgreSQL. Kontoeinrichtung, Benutzerverwaltung und Textbearbeitung erfolgen unter http://localhost:8080/redaktion. Überarbeitungen werden im Codex-Chat beauftragt. GitHub Pages stellt nur die öffentliche statische Seite bereit. Infrastruktur, Datenbank-Backups und der spätere HTTPS-Betrieb auf Hetzner sind unter [editor/README.md](editor/README.md) beschrieben.
+Homepage und geschützte Redaktion laufen auf Marvin gemeinsam in Docker mit PostgreSQL. Die Redaktion ist unter https://vanventure.at/redaktion erreichbar. Überarbeitungen werden im Codex-Chat beauftragt. Änderungen dürfen auf Benutzerauftrag direkt im Live-System bereitgestellt werden; ein kurzer Neustart ist akzeptiert. Die Serverdatenbank ist maßgeblich. Der lokale Docker-Stack ist gestoppt, sein Datenbank-Volume bleibt erhalten. Technische Grundlagen stehen unter [editor/README.md](editor/README.md).
 
 Vor einem GitHub-Pages-Release `node tools/export-pages.mjs` ausführen: Das exportiert die freigegebenen Datenbankberichte in `travel-stories.json`, aktualisiert die Startseite und baut die statischen Reiseseiten. Dafür müssen Docker und Python verfügbar sein; bei Bedarf `DOCKER_BIN` und `PYTHON_BIN` setzen. Zugangsdaten, Datenbankdumps, Originalbilder und private Analyseunterlagen werden nicht eingecheckt.

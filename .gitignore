@@ -16,3 +16,18 @@ assets/heroes/italien-2021.jpg
 __pycache__/
 *.pyc
 *.log
+*.key
+# Generated and source media files are kept locally, outside of Git.
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.avif
+*.heic
+*.mp4
+*.mov
+*.m4v
+*.avi
+*.mkv
+*.webm

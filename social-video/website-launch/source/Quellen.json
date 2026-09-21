@@ -1,0 +1,13 @@
+{
+  "copies": {
+    "logo.png": "assets/vanventure-logo-transparent.png",
+    "van.png": "assets/vehicle/vehicle-side-camp-v2.png",
+    "italien.jpg": "assets/heroes/italien-2021-tropea.jpg",
+    "fjord.jpg": "assets/heroes/norwegen-2018.jpg"
+  },
+  "video": "D:\\work\\_venventure\\social-video\\norwegen\\source\\norway_2018.mp4",
+  "website": "https://vanventure.at/",
+  "website_capture": "2026-09-20",
+  "audio": "Original instrumental synthesized by build.py; no third-party samples",
+  "archive": "No reads or writes to protected photo archives"
+}

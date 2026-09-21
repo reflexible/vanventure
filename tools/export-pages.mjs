@@ -14,4 +14,6 @@ homepage=homepage.replace(/<a href="\/redaktion"[^>]*>[^<]*<\/a>/g,'');
 writeFileSync('index.html',homepage);
 const build=spawnSync(process.env.PYTHON_BIN||'python',['build-travel-pages.py'],{stdio:'inherit'});
 if(build.status!==0)throw new Error('Statische Reiseseiten konnten nicht erstellt werden.');
+const seo=spawnSync(process.execPath,['tools/build-seo.mjs'],{stdio:'inherit'});
+if(seo.status!==0)throw new Error('SEO-Metadaten konnten nicht erstellt werden.');
 console.log(`${published.length} freigegebene Berichte für GitHub Pages exportiert.`);

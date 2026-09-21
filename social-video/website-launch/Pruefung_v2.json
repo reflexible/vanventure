@@ -1,0 +1,30 @@
+{
+  "motion_estimate": [
+    {
+      "scene": "Sardinien · La Pelosa",
+      "before": 0.00517563308860245,
+      "after": 0.00740957461341674,
+      "reduction_percent": -43.2
+    },
+    {
+      "scene": "Norwegen · Aurlandsfjord",
+      "before": 0.01729191790405584,
+      "after": 0.015203943757245339,
+      "reduction_percent": 12.1
+    },
+    {
+      "scene": "Sardinien · mit dem Bike",
+      "before": 0.07463776100877632,
+      "after": 0.042973163797022054,
+      "reduction_percent": 42.4
+    },
+    {
+      "scene": "Italien · Tropea",
+      "before": 0.018519599853408838,
+      "after": 0.008016476405043224,
+      "reduction_percent": 56.7
+    }
+  ],
+  "decode_exit": 0,
+  "note": "Optical-flow estimate of frame-to-frame acceleration at 480x270, not a guarantee for every local object or rolling-shutter distortion."
+}

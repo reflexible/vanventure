@@ -1,0 +1,39 @@
+[
+  {
+    "source": "E:/_fotos_original/urlaubsSammlungen/norwegen/handy_sabine/DSC_1545.jpg",
+    "unchanged_copy": "reisebilder-originale/riverstar/sichtung-sabine/DSC_1545.jpg",
+    "sha256": "81e897d092ae21719e7995a76d59e2b7bc2ad654ea7c87135bf73e86f2ddd034",
+    "web_image": "assets\\riverstar\\riverstar-am-ufer.jpg",
+    "selection": "Aufmacher: Boot am Ufer mit Mensch und weiter Landschaft.",
+    "dimensions": [
+      1800,
+      1013
+    ],
+    "location": "Norwegen laut Archiv; genauer Aufnahmeort noch offen"
+  },
+  {
+    "source": "E:/_fotos_original/urlaubsSammlungen/norwegen/rudern/DSC_1547.jpg",
+    "unchanged_copy": "reisebilder-originale/riverstar/DSC_1547.jpg",
+    "sha256": "078918e56b053c6d55961a672a1ad57f5d55055123e8012d0b2d26ae8e3a680e",
+    "web_image": "assets\\riverstar\\riverstar-julie.jpg",
+    "selection": "Detail: Boot, Gepäck und Julie am Ufer.",
+    "dimensions": [
+      1800,
+      1013
+    ],
+    "location": "Norwegen laut Archiv; genauer Aufnahmeort noch offen"
+  },
+  {
+    "source": "E:/_fotos_original/urlaubsSammlungen/norwegen/handy_sabine/DSC_1514.jpg",
+    "unchanged_copy": "reisebilder-originale/riverstar/sichtung-sabine/DSC_1514.jpg",
+    "sha256": "10259a1fe2c4b1dba976674a3b0c59905491dd7f4130cc08791931ab27b376f4",
+    "web_image": "assets/riverstar/california-camping-anonymisiert.png",
+    "selection": "Kontext: Reisen mit dem California.",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "location": "Norwegen laut Archiv; genauer Aufnahmeort noch offen",
+    "processing": "Imagegen: Kennzeichen im Vorder- und Hintergrund anonymisiert; unveränderte Archivkopie erhalten."
+  }
+]
