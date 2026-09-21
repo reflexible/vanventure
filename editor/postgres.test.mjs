@@ -27,3 +27,13 @@ test('one-time story migration preserves notes and records the previous draft',a
     assert.equal(await db.migrateStory('trip','migration:test-order','new order',oldStory),false);assert.equal((await db.draft('trip')).story.chapters[0].paragraphs[0][0],'new order');
   }finally{await db.close();await database.close();}
 });
+test('cockpit schema is additive and exposes an empty private overview',async()=>{
+  const database=await testDatabase(),db=await openPostgres({connectionString:database.url,max:1});
+  try{
+    const overview=await db.cockpitOverview();
+    assert.deepEqual(overview,{phase:1,connection:null,videos:0,contentItems:0,approvedContextEntries:0,lastSync:null});
+    assert.equal(Number((await db.pool.query("SELECT count(*) AS n FROM information_schema.tables WHERE table_name='yt_connections'")).rows[0].n),1);
+    await db.cockpitAudit(null,'cockpit.overview.viewed','cockpit','phase-1',null,{role:'editor'});
+    assert.deepEqual((await db.pool.query('SELECT action,entity_type,entity_id,after_safe FROM cockpit_audit_log')).rows,[{action:'cockpit.overview.viewed',entity_type:'cockpit',entity_id:'phase-1',after_safe:{role:'editor'}}]);
+  }finally{await db.close();await database.close();}
+});

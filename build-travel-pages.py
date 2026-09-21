@@ -54,6 +54,24 @@ def photographs(chapter):
     )
 
 
+def gallery(story):
+    photos = story.get('gallery', [])
+    if not photos:
+        return ''
+    tiles = ''.join(
+        '<button class="gallery-photo" type="button"><img src="' + escape(photo['src'], quote=True)
+        + '" alt="' + escape(photo['caption'][0], quote=True) + '" loading="lazy">'
+        + text('span', photo['caption'], 'gallery-caption') + '</button>'
+        for photo in photos
+    )
+    return ('<section class="story-gallery" data-photo-gallery aria-label="Fotogalerie">'
+            + text('p', ['FOTOGALERIE', 'PHOTO GALLERY'], 'eyebrow')
+            + text('h2', ['Momente dieser Reise.', 'Moments from this journey.'])
+            + text('p', ['Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten.',
+                         'Select an image to enlarge it. Use the arrows to browse the gallery or start the slideshow.'], 'gallery-intro')
+            + '<div class="gallery-grid">' + tiles + '</div></section>')
+
+
 for story in stories:
     toc = ''.join(link(f'#kapitel-{i + 1}', c['title']) for i, c in enumerate(story['chapters']))
     chapters = ''.join(
@@ -89,7 +107,7 @@ for story in stories:
         + '</div></section><div class="story-layout"><aside class="story-sidebar">'
         + text('p', ['DIE ETAPPEN', 'THE CHAPTERS'], 'eyebrow') + '<nav aria-label="Kapitel">' + toc
         + '</nav></aside><article class="story-body">' + text('p', story['lead'], 'story-lead') + chapters
-        + '</article></div><section class="story-end">' + text('p', ['AUS UNSEREM REISETAGEBUCH', 'FROM OUR TRAVEL DIARY'], 'eyebrow')
+        + '</article></div>' + gallery(story) + '<section class="story-end">' + text('p', ['AUS UNSEREM REISETAGEBUCH', 'FROM OUR TRAVEL DIARY'], 'eyebrow')
         + text('h2', ['Die Reise in bewegten Bildern.', 'The journey in motion.']) + '<div class="story-videos">' + videos
         + '</div>' + text('p', ['Damals im VW California unterwegs. Seit 2025 fahren wir den HYMER Grand Canyon S CrossOver.',
                               'We travelled in a VW California back then. Since 2025, we have driven the HYMER Grand Canyon S CrossOver.'], 'story-history')

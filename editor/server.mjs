@@ -8,6 +8,7 @@ import { openPostgres } from './postgres.mjs';
 import { aiSettings, encrypt } from './settings.mjs';
 import { renderStory, renderHomepage } from './render.mjs';
 import { sitemap, robots } from './seo.mjs';
+import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics } from './youtube.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
@@ -21,8 +22,9 @@ const origin = process.env.EDITOR_ORIGIN || `http://127.0.0.1:${port}`;
 const secure = process.env.EDITOR_SECURE_COOKIE === 'true';
 const host = process.env.EDITOR_HOST || '127.0.0.1';
 if ((!secure || !origin.startsWith('https://')) && !(process.env.NODE_ENV==='development' && ['localhost','127.0.0.1'].includes(new URL(origin).hostname))) throw new Error('Öffentlicher Betrieb benötigt HTTPS-Origin und sichere Cookies.');
-const sessions = new Map(), attempts = new Map(), jobs = new Map();
+const sessions = new Map(), attempts = new Map(), jobs = new Map(), oauthStates = new Map();
 const dummyHash = passwordHash(randomBytes(32).toString('hex'));
+async function syncYoutube(){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,'automatic',async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);return (await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));});}
 const cookie = (token, age=28800) => `vv_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${secure?'; Secure':''}`;
 function fail(status, message) { const e = new Error(message); e.status=status; throw e; }
 function validateAccount(b,passwordRequired=true){
@@ -61,7 +63,7 @@ const server=http.createServer(async (req,res)=>{
   const send=(status,data,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8',...headers});res.end(JSON.stringify(data));};
   try {
     const url=new URL(req.url,origin), path=url.pathname;
-    if (/^\/(redaktion|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
+    if (/^\/(redaktion|cockpit|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
     if ((req.method==='GET'||req.method==='HEAD') && (path==='/sitemap.xml'||path==='/robots.txt')) {
       res.writeHead(200,{'Content-Type':path==='/sitemap.xml'?'application/xml; charset=utf-8':'text/plain; charset=utf-8'});
       return res.end(req.method==='HEAD'?undefined:path==='/sitemap.xml'?sitemap():robots());
@@ -69,8 +71,8 @@ const server=http.createServer(async (req,res)=>{
     if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
       res.writeHead(301,{'Location':'/'+url.search}); return res.end();
     }
-    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css'].includes(path)) {
-      const file=path.endsWith('.js')?'client.js':path.endsWith('.css')?'editor.css':'index.html';
+    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css'].includes(path)) {
+      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path.startsWith('/cockpit')?'cockpit.html':'index.html';
       res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
@@ -93,6 +95,14 @@ const server=http.createServer(async (req,res)=>{
         if(relative==='index.html'&&!content.includes('href="/redaktion"'))content=content.replace('<footer>','<footer><a href="/redaktion" data-de="Redaktion · Anmelden" data-en="Editorial · Sign in">Redaktion · Anmelden</a>');
         res.writeHead(200,{'Content-Type':types[ext]||'application/octet-stream'});return res.end(req.method==='HEAD'?undefined:content);
       }
+    }
+    if (path==='/api/cockpit/youtube/callback'&&req.method==='GET') {
+      const state=url.searchParams.get('state')||'',authorization=oauthStates.get(state);
+      if(!authorization||authorization.expires<Date.now())fail(403,'Die Google-Verbindung konnte nicht zugeordnet werden. Bitte erneut im Cockpit beginnen.');
+      oauthStates.delete(state);
+      if(url.searchParams.get('error'))fail(400,'Die Google-Berechtigung wurde nicht erteilt.');
+      const activeUser=await db.user(authorization.name);if(!activeUser||activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Kanal verbinden.');
+      const tokenData=await exchange(url.searchParams.get('code')||'');const channel=await inspect(tokenData.access_token);await db.saveCockpitConnection(channel,seal(tokenData.refresh_token),activeUser.name);await db.cockpitAudit(activeUser.name,'youtube.connected','yt_connection',channel.id,null,{scopes:['youtube.readonly','yt-analytics.readonly']});try{await syncYoutube();}catch{await db.cockpitAudit(activeUser.name,'youtube.initial_sync.failed','yt_connection',channel.id,null,{safe:true});}res.writeHead(303,{'Location':'/cockpit?youtube=connected'});return res.end();
     }
     if (!path.startsWith('/api/')) fail(404,'Nicht gefunden.');
     if (req.method!=='GET' && req.headers.origin!==origin) fail(403,'Anfrage nicht erlaubt.');
@@ -123,6 +133,15 @@ const server=http.createServer(async (req,res)=>{
     if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
     if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf));
     if (path==='/api/logout'&&req.method==='POST') {sessions.delete(token);return send(200,{}, {'Set-Cookie':cookie('',0)});}
+    if(path==='/api/cockpit/health'&&req.method==='GET')return send(200,{status:'ok',phase:1});
+    if(path==='/api/cockpit/overview'&&req.method==='GET'){
+      await db.cockpitAudit(activeUser.name,'cockpit.overview.viewed','cockpit','phase-1',null,{role:activeUser.role});
+      return send(200,await db.cockpitOverview());
+    }
+    if(path==='/api/cockpit/youtube/connect'&&req.method==='POST'){
+      if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen YouTube-Kanal verbinden.');if(!youtubeReady())fail(503,'Die private Google-Konfiguration ist noch nicht vollständig.');
+      const state=randomBytes(32).toString('hex');oauthStates.set(state,{name:activeUser.name,expires:Date.now()+600000});await db.cockpitAudit(activeUser.name,'youtube.authorization.started','yt_connection',process.env.YOUTUBE_CHANNEL_ID,null,{scopes:['youtube.readonly','yt-analytics.readonly']});return send(200,{url:authorizationUrl(state)});
+    }
     if(path==='/api/password'&&req.method==='POST'){
       limit(req,'password:'+activeUser.name);const b=await body(req);
       if(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash))fail(403,'Aktuelles Passwort stimmt nicht.');
@@ -176,6 +195,7 @@ const server=http.createServer(async (req,res)=>{
     const [status,message]=known[e.message]|| (e.code==='23505'?[409,'Dieser Benutzername ist bereits vergeben.']:[e.status||500,e.status?e.message:'Die Anfrage konnte nicht verarbeitet werden.']);send(status,{error:message});
   }
 });
-setInterval(()=>{for(const [k,v] of sessions) if(v.expires<Date.now()) sessions.delete(k);for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);},60000).unref();
+setInterval(()=>{for(const [k,v] of sessions) if(v.expires<Date.now()) sessions.delete(k);for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);for(const [k,v] of oauthStates)if(v.expires<Date.now())oauthStates.delete(k);},60000).unref();
+if(process.env.COCKPIT_SYNC_ENABLED==='true')setInterval(()=>{syncYoutube().catch(()=>{});},24*60*60*1000).unref();
 server.listen(port,host,()=>console.log(`VanVenture Redaktion: ${origin}/redaktion`));
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{server.close(async()=>{await db.close();process.exit(0);});setTimeout(()=>process.exit(1),10000).unref();});

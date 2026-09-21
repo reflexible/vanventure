@@ -97,7 +97,7 @@ $('password-form').addEventListener('submit',dialogRun('password-message',async(
 $('draft-preview').addEventListener('click',e=>{if(dirty){e.preventDefault();message('Bitte zuerst speichern, bevor ihr die Vorschau öffnet.');}});
 $('publish').addEventListener('click',run(async()=>{if(dirty){message('Bitte zuerst speichern und die Vorschau prüfen.');return;}if(!confirm('Diesen gespeicherten Reisebericht für die Website freigeben? Er wird dort sofort sichtbar.'))return;await api(`stories/${current.story.slug}/publish`,'POST',{revision:current.revision});message('Reisebericht für die Website freigegeben.');}));
 async function start(){
-  try{await enter(await api('session'));return;}catch{}
+  try{await enter(await api('session'));return;}catch(error){if(error.message!=='Bitte anmelden.')message(`Bestehende Sitzung konnte nicht geladen werden: ${error.message}`);}
   try{if((await api('setup')).available){$('login').hidden=true;$('setup').hidden=false;const token=new URL(location.href).searchParams.get('setup');if(token){$('setup-form').elements.setupToken.value=token;history.replaceState(null,'','/redaktion');}}}catch(error){message(error.message);}
 }
 start();

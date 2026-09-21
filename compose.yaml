@@ -33,6 +33,12 @@ services:
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1}
       EDITOR_SECRET: ${EDITOR_SECRET:?EDITOR_SECRET fehlt}
       EDITOR_SETUP_TOKEN: ${EDITOR_SETUP_TOKEN:?EDITOR_SETUP_TOKEN fehlt}
+      GOOGLE_OAUTH_CLIENT_ID: ${GOOGLE_OAUTH_CLIENT_ID:-}
+      GOOGLE_OAUTH_CLIENT_SECRET: ${GOOGLE_OAUTH_CLIENT_SECRET:-}
+      GOOGLE_OAUTH_REDIRECT_URI: ${GOOGLE_OAUTH_REDIRECT_URI:-https://vanventure.at/api/cockpit/youtube/callback}
+      COCKPIT_TOKEN_ENCRYPTION_KEY: ${COCKPIT_TOKEN_ENCRYPTION_KEY:-}
+      YOUTUBE_CHANNEL_ID: ${YOUTUBE_CHANNEL_ID:-}
+      COCKPIT_SYNC_ENABLED: ${COCKPIT_SYNC_ENABLED:-false}
     depends_on:
       db:
         condition: service_healthy
@@ -44,6 +50,8 @@ services:
       start_period: 20s
     read_only: true
     tmpfs: [/tmp]
+    ports:
+      - "127.0.0.1:18082:8787"
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
     networks: [database, frontend]

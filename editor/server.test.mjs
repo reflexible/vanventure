@@ -6,13 +6,14 @@ import { openPostgres } from './postgres.mjs';
 import { testDatabase } from './test-database.mjs';
 test('HTTP login, CSRF, persistent drafts, conflict and private-file protection',async()=>{
   const database=await testDatabase(),db=await openPostgres({connectionString:database.url,max:1});
-  await db.account('sabine','test password 123');await db.close();
+  await db.account('sabine','test password 123');await db.createUser('helmut','Helmut','test password 456','admin');await db.close();
   const socket=net.createServer();await new Promise(r=>socket.listen(0,'127.0.0.1',r));const port=socket.address().port;await new Promise(r=>socket.close(r));
   const origin=`http://127.0.0.1:${port}`;
   const child=spawn(process.execPath,['editor/server.mjs'],{env:{...process.env,NODE_ENV:'development',DATABASE_URL:database.url,PORT:String(port),EDITOR_ORIGIN:origin,EDITOR_HOST:'127.0.0.1',EDITOR_SECURE_COOKIE:'false',OPENAI_API_KEY:''},stdio:['ignore','pipe','pipe']});
   try{
     await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Server timeout')),10000);child.stdout.once('data',()=>{clearTimeout(timer);resolve();});child.once('exit',()=>{clearTimeout(timer);reject(new Error('Server failed'));});});
     assert.equal((await fetch(origin+'/api/stories')).status,401);
+    assert.equal((await fetch(origin+'/api/cockpit/overview')).status,401);
     assert.equal((await fetch(origin+'/.env')).status,404);
     assert.equal((await fetch(origin+'/travel-stories.json')).status,404);
     assert.equal((await fetch(origin+'/editor/server.mjs')).status,404);
@@ -21,15 +22,19 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const sitemap=await fetch(origin+'/sitemap.xml');assert.equal(sitemap.status,200);assert.match(sitemap.headers.get('content-type'),/application\/xml/);assert.equal(((await sitemap.text()).match(/<loc>/g)||[]).length,7);
     assert.match(await (await fetch(origin+'/robots.txt')).text(),/Sitemap: https:\/\/vanventure.at\/sitemap.xml/);
     assert.equal((await fetch(origin+'/redaktion')).headers.get('x-robots-tag'),'noindex, nofollow');
+    const cockpit=await fetch(origin+'/cockpit');assert.equal(cockpit.status,200);assert.equal(cockpit.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(await cockpit.text(),/VanVenture Cockpit/);
     const storyHtml=await (await fetch(origin+'/norwegen-2018.html')).text();assert.match(storyHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/norwegen-2018.html">/);
     const kayakHtml=await (await fetch(origin+'/kajak.html')).text();assert.match(kayakHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/kajak.html">/);assert.equal((await fetch(origin+'/riverstar-entwurf.html')).status,404);
     const bikeHtml=await (await fetch(origin+'/bike.html')).text();assert.match(bikeHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/bike.html">/);
     assert.ok((await (await fetch(origin+'/redaktion')).text()).includes('login-form'));
+    assert.match(await (await fetch(origin+'/editor/client.js')).text(),/async function start\(\)/);
+    assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
     assert.equal((await fetch(origin+'/healthz')).status,200);
     const login=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'sabine',password:'test password 123'})});assert.equal(login.status,200);
     const cookie=login.headers.get('set-cookie');assert.ok(cookie.includes('HttpOnly'));const session=await login.json();
     const headers={Cookie:cookie.split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':session.csrf};
+    const cockpitResponse=await fetch(origin+'/api/cockpit/overview',{headers});assert.equal(cockpitResponse.status,200);const cockpitOverview=await cockpitResponse.json();assert.equal(cockpitOverview.phase,1);assert.equal(cockpitOverview.videos,0);assert.equal((await fetch(origin+'/api/cockpit/health',{headers})).status,200);
     const original=await (await fetch(origin+'/api/stories/norwegen-2018',{headers})).json();
     const url=origin+'/api/stories/norwegen-2018';
     assert.equal((await fetch(url,{method:'PUT',headers:{...headers,'X-CSRF-Token':'wrong'},body:JSON.stringify(original)})).status,403);
