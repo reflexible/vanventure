@@ -152,8 +152,8 @@ Ausnahme.
    live abnehmen. **Erledigt am 22. September 2026; der Footer blieb bewusst
    kurz und ohne konkurrierende Navigation.**
 
-## Umsetzungshinweis
+## Umsetzungsnachweis
 
-Der Kajak-Hero wird nach Auswahl des konkreten Bildes als erster vollständiger
-Referenzfall dieses Systems umgesetzt: gespiegelt mit Boot rechts sowie mit
-Verlauf, Eyebrow, Titel und Einleitung links.
+Der Kajak-Hero ist der vollständige Referenzfall dieses Systems: das ausgewählte
+Bild ist gespiegelt (Boot rechts) und kombiniert Verlauf, Eyebrow, Titel und
+Einleitung. Er wurde am 22. September 2026 live geprüft.

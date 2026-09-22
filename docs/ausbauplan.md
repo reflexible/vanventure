@@ -118,14 +118,14 @@ bedienbar.
 
 ### 1A. Einheitlichen Design Guide und Hero-Standard etablieren
 
-- [ ] Den Kajak-Hero als Referenzseite mit dem vom Team ausgewählten,
-  gespiegelten Webbild (Boot rechts), Farbverlauf und Einleitung umsetzen.
-- [ ] Den dokumentierten Hero-Standard anschließend auf die verbleibenden
-  öffentlichen Unterseiten anwenden und je Ansicht prüfen.
-- [ ] Den Galerie-Standard auf jede bestehende öffentliche Inhalts-Unterseite
-  anwenden. Eine Ausnahme ist nur gültig, wenn sie für genau diese Seite
-  ausdrücklich entschieden und hier benannt wurde; fehlendes Bildmaterial ist
-  keine Ausnahme.
+- ~~Den Kajak-Hero als Referenzseite mit dem vom Team ausgewählten,
+  gespiegelten Webbild (Boot rechts), Farbverlauf und Einleitung umsetzen.~~
+- ~~Den dokumentierten Hero-Standard anschließend auf die verbleibenden
+  öffentlichen Unterseiten anwenden und je Ansicht prüfen.~~
+- ~~Den Galerie-Standard auf jede bestehende öffentliche Inhalts-Unterseite
+  anwenden.~~ Die fünf klar als „in Vorbereitung“ markierten Radprofile sind
+  bis zur Auswahl freigegebener Originalbilder und Fakten die einzige
+  dokumentierte, vorläufige Ausnahme.
 
 Der Hero-, Galerie- und Link-Standard ist für die bestehenden öffentlichen
 Seiten umgesetzt und live geprüft. Offen bleiben ausschließlich die fünf
@@ -141,10 +141,10 @@ die zwei Bilder mit Kindern von hinten sind für diese Galerie ausdrücklich
 freigegeben. Die Galerie wurde am 22. September 2026 nach dem letzten
 Webdienst-Rollout live verifiziert.
 Die am 22. September ergänzte Galerie-Pflicht ist im freigegebenen Design Guide
-und diesem Gesamtplan festgehalten. Sie wird auf jede weitere öffentliche
-Inhalts-Unterseite übertragen; derzeit ist außerhalb der bereits live geprüften
-Kajak- und Reisegalerien noch keine zusätzliche Galerie als live umgesetzt
-bestätigt.
+und diesem Gesamtplan festgehalten. Sie ist auf Kajak, Fahrzeug,
+Ausrüstungsübersicht, Radübersicht und Reisegalerien live umgesetzt; die fünf
+ausdrücklich benannten Radprofile bleiben bis zur Bild- und Faktenfreigabe die
+einzige vorläufige Ausnahme.
 
 **Fahrzeuggalerie, live geprüft am 22. September 2026:** Drei bereits
 veröffentlichte, visuell geprüfte Webbilder (eins mit anonymisiertem
@@ -168,8 +168,9 @@ Startseite, Fahrzeug, Reiseberichte und Kajak ist live. Sie schaltet bis
 und beseitigt den horizontalen Überlauf der Startseite. Nach dem gezielten
 Webdienst-Neustart wurden `/healthz`, Startseite und Kajakseite intern sowie
 die öffentliche Startseite in S24-Breite geprüft. PostgreSQL und Caddy blieben
-ohne Neustart. **Verbleibend:** Design Guide V1 als Ganzes freigeben und den
-Hero-Standard auf weitere noch ausstehende Unterseiten anwenden.
+ohne Neustart. Design Guide V1 ist freigegeben; der Hero-Standard ist auf allen
+bestehenden öffentlichen Inhaltsseiten umgesetzt. Die fünf Radprofile bleiben
+bis zur Bild- und Faktenfreigabe die dokumentierte Galerie-Ausnahme.
 
 ### 1B. Englische Redaktionstexte auf den älteren Unterseiten ergänzen
 
