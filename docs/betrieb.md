@@ -43,7 +43,7 @@ Kommunikationskanal umgesetzt ist, verschickt der Befehl selbst keine Nachrichte
 
 ## Wiederherstellungstest
 
-Mindestens quartalsweise einen aktuellen Dump in einer getrennten, kurzlebigen
+Alle zwei bis vier Wochen einen aktuellen Dump in einer getrennten, kurzlebigen
 PostgreSQL-Instanz wiederherstellen und dort Tabellen, Cockpit-Videozahl und
 Healthcheck prüfen. Die Produktionsdatenbank bleibt dabei unverändert. Nach dem
 Test Dump und Testinstanz nach der geltenden Aufbewahrungsvorgabe entfernen.

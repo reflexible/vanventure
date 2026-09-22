@@ -1,5 +1,33 @@
 # Working rules
 
+## Live deployment by default
+
+- This rule applies to every task and every new chat opened for this project.
+- Unless the user explicitly asks to keep work local, every requested website, cockpit,
+  editorial, or operational change includes its rollout to the production host at
+  `vanventure.at`. Do not leave a completed requested change only in the local
+  workspace for the user to transfer or synchronize manually.
+- Prefer a live-safe update without restarting a container whenever the deployed
+  architecture actually supports it. Do not modify the read-only running container
+  or bypass the release process merely to avoid a restart. When an image rebuild or
+  database migration is required, restart only the affected web service; PostgreSQL,
+  Caddy, public files, and unrelated services remain running.
+- Before a production rollout, run the relevant release checks. Create a protected
+  database dump only when the rollout changes persistent data, applies a database
+  migration, or otherwise makes a material change that is not easily reversible.
+  A backup is not required for a reversible presentation, CSS, JavaScript, or
+  stateless application update. After rollout, verify `/healthz`, the affected
+  private or public route, and the visible result on the live host.
+- Report the live URL and whether a web-service restart was necessary. A failed
+  check blocks the rollout; report the concrete blocker instead of claiming that the
+  change is live.
+- Use this fixed production workflow for every task: **open a short-lived remote
+  session → make the requested change → run the relevant tests and verify the live
+  result → close the session**. Close every SSH session, deployment shell, tunnel,
+  and background helper immediately after verification. Do not leave an interactive
+  or persistent remote session open between tasks; every later task opens its own
+  short-lived connection.
+
 ## Protected photo archive
 
 - `E:\_fotos_original` and the user-specified `E:\_fotos\_original` are strictly read-only, including every subfolder and file.

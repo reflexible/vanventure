@@ -54,7 +54,7 @@ Cockpit-Ausbau aber nicht unnötig aufhalten soll.
 - [x] Fehler beim Erstlauf und beim Tageslauf klar im Cockpit anzeigen; keine
   Fehlermeldungen still verschlucken.
 - [ ] Alle Kanalvideos seitenweise und ohne die heutige 500-Video-Grenze erfassen.
-- [ ] OAuth-, Sync-, Sperr-, Snapshot- und Fehlerfälle automatisiert testen.
+- [x] OAuth-, Sync-, Sperr-, Snapshot- und Fehlerfälle automatisiert testen.
 
 **Abnahme:** Ein Admin kann einen manuellen Lauf nachvollziehbar starten; ein
 wiederholter Lauf erzeugt keine Dubletten; Fehlzustände sind sichtbar; Kanal- und
@@ -62,7 +62,7 @@ Videozahlen werden mit YouTube Studio abgeglichen.
 
 ### 1.2 Cockpit-Oberfläche für Entscheidungen
 
-- [ ] Dashboard: Views, Watchtime, Abonnentenentwicklung, Impressionen, CTR,
+- [x] Dashboard: Views, Watchtime, Abonnentenentwicklung, Impressionen, CTR,
   letzte erfolgreiche Synchronisierung und Datenqualitäts-Hinweise.
 - [ ] Videoansicht: filterbare Liste, Detailseite, Zeitreihe und Vergleiche nach
   Tag 1, 7, 28, 90 und 365.
@@ -139,7 +139,7 @@ werden daraus und aus den Cockpit-Daten abgeleitet.
 
 - [x] Wiederholbare Release-Prüfung für Tests, Compose-Konfiguration, Datenbankdump
   und Healthcheck bereitstellen; vor jedem produktiven Release ausführen.
-- [ ] Backup/Restore inklusive Cockpit-Tabellen regelmäßig testen.
+- [ ] Backup/Restore inklusive Cockpit-Tabellen alle zwei bis vier Wochen testen.
 - [x] Lokalen Monitor für fehlgeschlagene Syncs, abgelaufene OAuth-Verbindungen und
   lange fehlende Daten bereitstellen; die persistente Warnungs-Inbox des geplanten
   Familien-Dashboards ist der verbindliche Benachrichtigungskanal. Sie wird erst

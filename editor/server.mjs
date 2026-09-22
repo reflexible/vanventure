@@ -2,7 +2,7 @@ import http from 'node:http';
 import { readFileSync, existsSync, realpathSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { checkPassword, passwordHash } from './store.mjs';
 import { openPostgres } from './postgres.mjs';
 import { aiSettings, encrypt } from './settings.mjs';
@@ -117,8 +117,8 @@ const server=http.createServer(async (req,res)=>{
       if(!authorization||authorization.expires<Date.now())fail(403,'Die Google-Verbindung konnte nicht zugeordnet werden. Bitte erneut im Cockpit beginnen.');
       oauthStates.delete(state);
       if(url.searchParams.get('error'))fail(400,'Die Google-Berechtigung wurde nicht erteilt.');
-      const activeUser=await db.user(authorization.name);if(!activeUser||activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Kanal verbinden.');
-      const tokenData=await exchange(url.searchParams.get('code')||'');const channel=await inspect(tokenData.access_token);await db.saveCockpitConnection(channel,seal(tokenData.refresh_token),activeUser.name);await db.cockpitAudit(activeUser.name,'youtube.connected','yt_connection',channel.id,null,{scopes:['youtube.readonly','yt-analytics.readonly']});try{await syncYoutube();}catch{await db.cockpitAudit(activeUser.name,'youtube.initial_sync.failed','yt_connection',channel.id,null,{safe:true});}res.writeHead(303,{'Location':'/cockpit?youtube=connected'});return res.end();
+      const activeUser=await db.user(authorization.name);if(!activeUser||!activeUser.enabled||activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Kanal verbinden.');
+      const tokenData=await exchange(url.searchParams.get('code')||'',authorization.codeVerifier);const channel=await inspect(tokenData.access_token);await db.saveCockpitConnection(channel,seal(tokenData.refresh_token),activeUser.name);await db.cockpitAudit(activeUser.name,'youtube.connected','yt_connection',channel.id,null,{scopes:['youtube.readonly','yt-analytics.readonly']});try{await syncYoutube();}catch{await db.cockpitAudit(activeUser.name,'youtube.initial_sync.failed','yt_connection',channel.id,null,{safe:true});}res.writeHead(303,{'Location':'/cockpit?youtube=connected'});return res.end();
     }
     if (!path.startsWith('/api/')) fail(404,'Nicht gefunden.');
     if (req.method!=='GET' && req.headers.origin!==origin) fail(403,'Anfrage nicht erlaubt.');
@@ -154,10 +154,17 @@ const server=http.createServer(async (req,res)=>{
       return send(200,{status:health.connection&&(!health.lastRun||health.lastRun.status==='succeeded')&&!stale?'ok':'warning',phase:4,intervalHours,stale,connection:health.connection,lastRun:health.lastRun});
     }
     if(path==='/api/cockpit/overview'&&req.method==='GET'){
+      const periodDays=Number(url.searchParams.get('days')||28);if(![28,90,365].includes(periodDays))fail(400,'Ungültiger Zeitraum.');
       await db.cockpitAudit(activeUser.name,'cockpit.overview.viewed','cockpit','phase-3',null,{role:activeUser.role});
-      return send(200,await db.cockpitOverview());
+      return send(200,await db.cockpitOverview(periodDays));
     }
     if(path==='/api/cockpit/videos'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitVideos(url.searchParams.get('q')||'')});
+    if(path==='/api/cockpit/audit/export'&&req.method==='GET'){
+      const audit=await db.cockpitAuditExport();
+      await db.cockpitAudit(activeUser.name,'cockpit.audit.exported','cockpit','channel-audit',null,{schema_version:audit.schema_version,video_count:audit.videos.length,as_of:audit.as_of});
+      const stamp=(audit.generated_at||new Date().toISOString()).slice(0,10);
+      return send(200,audit,{'Content-Disposition':`attachment; filename="vanventure-channel-audit-${stamp}.json"`});
+    }
     const videoMatch=path.match(/^\/api\/cockpit\/videos\/([^/]+)(?:\/(snapshots))?$/);
     if(videoMatch&&req.method==='GET'){const videoId=decodeURIComponent(videoMatch[1]);if(videoMatch[2])return send(200,{version:1,items:await db.cockpitVideoSnapshots(videoId)});const video=await db.cockpitVideo(videoId);if(!video)fail(404,'Video nicht gefunden.');return send(200,{version:1,item:video});}
     if(path==='/api/cockpit/sync-runs'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitSyncRuns()});
@@ -191,7 +198,7 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/api/cockpit/youtube/connect'&&req.method==='POST'){
       if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen YouTube-Kanal verbinden.');if(!youtubeReady())fail(503,'Die private Google-Konfiguration ist noch nicht vollständig.');
-      const state=randomBytes(32).toString('hex');oauthStates.set(state,{name:activeUser.name,expires:Date.now()+600000});await db.cockpitAudit(activeUser.name,'youtube.authorization.started','yt_connection',process.env.YOUTUBE_CHANNEL_ID,null,{scopes:['youtube.readonly','yt-analytics.readonly']});return send(200,{url:authorizationUrl(state)});
+      const state=randomBytes(32).toString('hex'),codeVerifier=randomBytes(48).toString('base64url'),codeChallenge=createHash('sha256').update(codeVerifier).digest('base64url');oauthStates.set(state,{name:activeUser.name,codeVerifier,expires:Date.now()+600000});await db.cockpitAudit(activeUser.name,'youtube.authorization.started','yt_connection',process.env.YOUTUBE_CHANNEL_ID,null,{scopes:['youtube.readonly','yt-analytics.readonly']});return send(200,{url:authorizationUrl(state,codeChallenge)});
     }
     if(path==='/api/password'&&req.method==='POST'){
       limit(req,'password:'+activeUser.name);const b=await body(req);
