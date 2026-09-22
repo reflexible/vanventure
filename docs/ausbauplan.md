@@ -61,10 +61,9 @@ abgenommen ist. Die Freigabeliste wird ausschließlich in der vorhandenen
 Benutzerverwaltung gepflegt; es gibt keine offene Registrierung und keine
 automatische Google-Kontoübernahme.
 
-- [ ] Google-Adressen der künftigen Administratoren und Redaktionskonten
-  verbindlich festlegen und je vorhandenem Benutzer zuordnen. **Live offen:**
-  Die Benutzerverwaltung kann die Adressen jetzt speichern, aber es wurde keine
-  Adresse geraten oder ohne ausdrückliche Auswahl hinterlegt.
+- ~~Google-Adressen der künftigen Administratoren und Redaktionskonten
+  verbindlich festlegen und je vorhandenem Benutzer zuordnen.~~ Zwei aktive
+  Administrationskonten sind in der Produktions-Freigabeliste zugeordnet.
 - ~~Additive Datenhaltung für Google-Provider, Google-`sub`, verifizierte
   E-Mail und Zeitpunkt der Zuordnung ergänzen.~~
 - ~~Start- und Callback-Routen unter `/api/auth/google/*` mit sicherem,

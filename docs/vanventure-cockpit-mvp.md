@@ -123,9 +123,10 @@ Das MVP umfasst:
 Benutzerverwaltung, PKCE-/State-/Nonce-Ablauf, persistente gemeinsame Sitzung,
 Audit-Protokoll und beide Einstiegsschaltflächen sind implementiert und auf
 Marvin ausgerollt; `/healthz`, `/redaktion` und `/cockpit` waren danach live
-erfolgreich. Die tatsächliche Google-Anmeldung
-bleibt dort bis zur Anlage eines separaten OAuth-Webclients und der expliziten
-Zuordnung der Kontoadressen deaktiviert; Passwortanmeldung bleibt verfügbar.
+erfolgreich. Zwei aktive Administrationskonten sind in der
+Produktions-Freigabeliste zugeordnet. Die tatsächliche Google-Anmeldung bleibt
+dort bis zur Anlage und privaten Hinterlegung eines separaten OAuth-Webclients
+deaktiviert; Passwortanmeldung bleibt verfügbar.
 Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.
 
 Die privaten Bereiche `https://vanventure.at/redaktion` und

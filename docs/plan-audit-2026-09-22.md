@@ -30,7 +30,7 @@ Arbeitsliste.
 | Master Context | Tabelle/Oberfläche vorhanden, Produktion: 0 Einträge | Oberfläche erledigt; erste geprüfte Fakten bleiben offen. |
 | Traffic/Retention | Produktion: 46 Traffic- und 200 Retention-Zeilen | Erfassung erledigt; Darstellung und fachliche Auswertung bleiben offen. |
 | Audit V1 | Flow Trail 986 öffentliche Views; Norwegen 108 und Sardinien 38 Minuten Watchtime/365 Tage; Trolltunga 149 Views bis Tagesabschluss, 120 aus Shorts-Feed | Erledigt, als Analysegrundlage im Gesamtplan geführt. |
-| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert und auf Marvin ausgerollt | Technisch und Live-Bereitstellung erledigt; Live-Anlage des separaten Google-Webclients und bewusst ausgewählte Adressen bleiben offen. |
+| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert und auf Marvin ausgerollt | Zwei Admin-Adressen sind zugeordnet; private Hinterlegung des separaten Google-Webclients und die anschließende Anmeldeabnahme bleiben offen. |
 | Sitzungsspeicherung | Sitzungen liegen gehasht mit Ablauf und CSRF-Wert in PostgreSQL; `auth_version`, Sperrung und Abmeldung prüfen bzw. widerrufen sie serverseitig | Erledigt; nach OAuth-Client-Anlage live abnehmen. |
 | YouTube trennen | Technische Referenz fordert `POST /api/cockpit/youtube/disconnect`; Route/Umsetzung fehlt | Offen und ergänzt. |
 | Kanalimport | Code paginiert, beendet aber bei 500 Videos | Offen und ergänzt. |
