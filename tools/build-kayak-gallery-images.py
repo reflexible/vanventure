@@ -10,10 +10,11 @@ DESTINATION = ROOT / "assets" / "riverstar" / "gallery"
 HEIF_CONVERTER = Path(r"C:\Users\helmu\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin\heif-convert.exe")
 REDACTIONS = {
     # All visible vehicle license plates in the camping image. Coordinates refer
-    # to its 1920 × 1080 web derivative; rectangles intentionally exceed plates.
+    # to its 1920 × 1080 web derivative and fit each plate closely.
     "kajak-11.jpg": [
-        (455, 255, 565, 315), (1025, 248, 1110, 302), (1125, 252, 1208, 310),
-        (1190, 262, 1260, 315), (1260, 266, 1335, 315), (1325, 268, 1405, 320),
+        (499, 276, 535, 291), (1060, 282, 1090, 295), (1141, 285, 1170, 299),
+        (1200, 290, 1225, 302), (1265, 294, 1293, 306), (1308, 295, 1337, 307),
+        (1362, 298, 1384, 310),
     ],
 }
 
@@ -36,8 +37,14 @@ def anonymize_license_plates(output: Path) -> None:
         image = original.convert("RGB")
         for rectangle in rectangles:
             crop = image.crop(rectangle)
-            blur = crop.filter(ImageFilter.GaussianBlur(max(crop.size) // 5))
-            image.paste(blur, rectangle)
+            # Multiple close blurs make a plate unreadable. A feathered mask
+            # prevents a hard-edged anonymization field from distracting from
+            # the documentary image.
+            blur = crop.filter(ImageFilter.GaussianBlur(3)).filter(ImageFilter.GaussianBlur(3))
+            mask = Image.new("L", crop.size, 0)
+            ImageDraw.Draw(mask).rectangle((0, 0, crop.width - 1, crop.height - 1), fill=255)
+            mask = mask.filter(ImageFilter.GaussianBlur(1))
+            image.paste(blur, rectangle, mask)
         image.save(output, quality=88, optimize=True, progressive=True)
 
 
