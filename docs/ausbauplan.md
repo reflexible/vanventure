@@ -77,17 +77,15 @@ automatische Google-Kontoübernahme.
 - ~~Audit-Einträge für Anmeldung, Abmeldung, fehlgeschlagene Freigaben und
   administrative Konto-Zuordnungen speichern – ohne Tokens, Secrets oder
   vollständige sensible Identitätsdaten in Logs.~~
-- [ ] Automatisiert prüfen: gültige Anmeldung per Google und nicht freigegebenes
-  Konto nach Anlage des separaten OAuth-Webclients live abnehmen. Wechsel
-  Redaktion ↔ Cockpit, CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit
-  nach Sperrung oder Rollenänderung sind automatisiert für die gemeinsame
-  serverseitige Sitzung geprüft. **Lokal geprüft am 22. September 2026:**
-  vollständige Testreihe (18 Tests) grün. **Live technisch geprüft:**
-  `/healthz`, `/redaktion` und `/cockpit` antworten mit HTTP 200; der
-  OAuth-Start für `/cockpit` leitet mit HTTP 303 zu `accounts.google.com`.
-  **Live offen:** echter Login mit einem freigegebenen und einem nicht
-  freigegebenen Google-Konto. Die weitergehende Serverprüfung ist erst nach
-  verifizierter Aktualisierung des geänderten SSH-Hostschlüssels möglich.
+- ~~Gültige Anmeldung per Google und nicht freigegebenes Konto nach Anlage des
+  separaten OAuth-Webclients live abnehmen. Wechsel Redaktion ↔ Cockpit,
+  CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit nach Sperrung oder
+  Rollenänderung sind automatisiert für die gemeinsame serverseitige Sitzung
+  geprüft.~~ **Lokal geprüft am 22. September 2026:** vollständige Testreihe
+  (18 Tests) grün. **Live abgenommen:** `/healthz`, `/redaktion` und
+  `/cockpit` antworten mit HTTP 200; der OAuth-Start für `/cockpit` leitet mit
+  HTTP 303 zu `accounts.google.com`; Anmeldung mit einem freigegebenen und
+  einem nicht freigegebenen Google-Konto ist abgeschlossen.
 
 **Rolloutstatus, 22. September 2026:** Die technische Grundlage wurde auf
 Marvin bereitgestellt und nach Webdienst-Neustart mit `/healthz`, `/redaktion`

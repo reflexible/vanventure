@@ -126,8 +126,8 @@ Marvin ausgerollt; `/healthz`, `/redaktion` und `/cockpit` waren danach live
 erfolgreich. Zwei aktive Administrationskonten sind in der
 Produktions-Freigabeliste zugeordnet. Der separate OAuth-Webclient ist privat
 hinterlegt und die sichere Google-Weiterleitung wurde geprüft. Die tatsächliche
-Anmeldung wird als Nächstes mit einem freigegebenen und einem abgelehnten Konto
-live abgenommen; Passwortanmeldung bleibt verfügbar.
+Anmeldung mit einem freigegebenen und die Ablehnung eines nicht freigegebenen
+Kontos wurden live abgenommen; Passwortanmeldung bleibt verfügbar.
 Die Google-Alternative steht unter dem vertrauten Passwortformular, klar durch
 einen Trenner getrennt; sie verdrängt weder Überschrift noch redaktionellen
 Einstieg.

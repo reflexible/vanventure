@@ -15,7 +15,7 @@ Arbeitsliste.
 | `vorhaben-uebersicht.md` | Frühere Übersicht | Keine eigenen Aufgaben mehr; verweist korrekt auf den Gesamtplan. |
 | `content-plan-90-tage.md` | Audit-V1-Planungsstand | Keine eigenen Aufgaben mehr; Testtitel und Analysewerte stimmen mit Audit V1 überein. |
 | `channel-audit-v1.md` | Analysequelle | Werte stimmen mit Produktionsklassifikation und Exportstichtag überein. |
-| `vanventure-cockpit-mvp.md` | Rollout-/Phasennachweis | Phase 1A ist offen; der vollständige Aufgabenblock steht nun im Gesamtplan. |
+| `vanventure-cockpit-mvp.md` | Rollout-/Phasennachweis | Gemeinsamer Google-Login ist live abgenommen; der vollständige Aufgabenblock steht im Gesamtplan. |
 | `vanventure-cockpit-plan.md` | Technische Referenz | Fehlende Umsetzungsreste wurden in den Gesamtplan übernommen. |
 | `creator-system.md` | Wiederverwendbare Checkliste | Die offenen Kästchen sind absichtlich je Reise/Projekt zu verwenden, keine offenen Entwicklungsaufgaben. |
 | `seo.md`, `riverstar/entwurf.md`, `betrieb.md` | Fach- und Betriebsreferenzen | Offene operative Punkte sind im Gesamtplan abgebildet. |
@@ -30,9 +30,9 @@ Arbeitsliste.
 | Master Context | Tabelle/Oberfläche vorhanden, Produktion: 0 Einträge | Oberfläche erledigt; erste geprüfte Fakten bleiben offen. |
 | Traffic/Retention | Produktion: 46 Traffic- und 200 Retention-Zeilen | Erfassung erledigt; Darstellung und fachliche Auswertung bleiben offen. |
 | Audit V1 | Flow Trail 986 öffentliche Views; Norwegen 108 und Sardinien 38 Minuten Watchtime/365 Tage; Trolltunga 149 Views bis Tagesabschluss, 120 aus Shorts-Feed | Erledigt, als Analysegrundlage im Gesamtplan geführt. |
-| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert. Lokal sind 18 Tests grün; live antworten `/healthz`, `/redaktion` und `/cockpit` mit 200, der OAuth-Start leitet zu Google weiter. Der SSH-Hostschlüssel des Contabo-Servers wurde über dessen VNC-Konsole verifiziert und der Vertrauenseintrag aktualisiert. | Zwei Admin-Adressen und der separate Client sind privat hinterlegt; die echte Anmeldung mit freigegebenem und abgelehntem Konto bleibt offen. |
+| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert. Lokal sind 18 Tests grün; live antworten `/healthz`, `/redaktion` und `/cockpit` mit 200, der OAuth-Start leitet zu Google weiter. Anmeldung mit einem freigegebenen sowie Ablehnung eines nicht freigegebenen Google-Kontos sind live abgenommen. Der SSH-Hostschlüssel des Contabo-Servers wurde über dessen VNC-Konsole verifiziert und der Vertrauenseintrag aktualisiert. | Abgeschlossen; zwei Admin-Adressen und der separate Client sind privat hinterlegt. |
 | Private Benutzerverwaltung | Eigener linker Navigationspunkt für Administratoren führt auf die geschützte Seite `/benutzerverwaltung`; Redaktionskonten sehen ihn nicht. | Am 22. September nach Webdienst-Neustart mit `/healthz`, Redaktion, Cockpit und Benutzerverwaltung live geprüft; PostgreSQL und Caddy blieben unverändert. |
-| Sitzungsspeicherung | Sitzungen liegen gehasht mit Ablauf und CSRF-Wert in PostgreSQL; `auth_version`, Sperrung und Abmeldung prüfen bzw. widerrufen sie serverseitig | Erledigt; nach OAuth-Client-Anlage live abnehmen. |
+| Sitzungsspeicherung | Sitzungen liegen gehasht mit Ablauf und CSRF-Wert in PostgreSQL; `auth_version`, Sperrung und Abmeldung prüfen bzw. widerrufen sie serverseitig | Erledigt und im gemeinsamen Google-Login live abgenommen. |
 | YouTube trennen | Technische Referenz fordert `POST /api/cockpit/youtube/disconnect`; Route/Umsetzung fehlt | Offen und ergänzt. |
 | Kanalimport | Code paginiert, beendet aber bei 500 Videos | Offen und ergänzt. |
 | Planmetriken | Technische Referenz nennt `content_item_metrics`; Tabelle/CRUD fehlen | Offen und ergänzt. |

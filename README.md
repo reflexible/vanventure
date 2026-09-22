@@ -11,11 +11,11 @@ Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf dem Contab
 5. Google-Produktionsfreigabe erst nach Rechtstexten, Domainbestätigung und
    erforderlicher Scope-Verifizierung
 
-Der technische gemeinsame Google-Login für Redaktion und Cockpit ist auf
-Marvin vorbereitet und nutzt einen eigenen, minimal berechtigten OAuth-Webclient.
-Die Live-Endpunkte antworten und der OAuth-Start leitet zu Google weiter; die
-fachliche Live-Abnahme mit einem freigegebenen und einem abgelehnten Google-Konto
-bleibt offen. Der getrennte YouTube-Zugang bleibt davon unberührt.
+Der gemeinsame Google-Login für Redaktion und Cockpit ist auf Marvin live
+abgenommen und nutzt einen eigenen, minimal berechtigten OAuth-Webclient. Die
+Anmeldung mit einem freigegebenen sowie die Ablehnung eines nicht freigegebenen
+Google-Kontos sind verifiziert. Der getrennte YouTube-Zugang bleibt davon
+unberührt.
 
 Zum lokalen Ansehen `index.html` in einem Browser öffnen. Keine Veröffentlichung oder externe Änderung erfolgt ohne ausdrückliche Freigabe.
 
