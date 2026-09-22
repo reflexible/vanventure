@@ -106,7 +106,16 @@ bedienbar.
 
 Der verbindliche Gestaltungsrahmen steht in
 [Design Guide](design-guide.md). Die Bildauswahl für den Kajak-Hero ist noch
-offen; bis dahin bleibt kein Bild unbearbeitet oder veröffentlicht verändert.
+abgeschlossen und der Kajak-Hero ist live. Der Hero-Standard für die übrigen
+Unterseiten bleibt offen.
+
+### 1B. Englische Redaktionstexte auf den älteren Unterseiten ergänzen
+
+- [ ] Die Seiten Bike, Kajak und Riverstar vollständig mit abgestimmten
+  englischen Redaktionstexten ausstatten. Die EN-Schaltfläche ist dort bereits
+  sichtbar; sie übersetzt Navigation und merkt sich die Sprachwahl. Die
+  bestehenden deutschen Langtexte werden erst nach redaktioneller Übersetzung
+  umgeschaltet.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 
