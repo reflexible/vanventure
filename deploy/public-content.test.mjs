@@ -10,7 +10,7 @@ const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const publicPages={
   'index.html':{modules:['<main','id="reisen"','id="ausruestung"','id="ueber-uns"']},
   'vehicle.html':{modules:['<main','vehicle-gallery','data-photo-gallery'],gallery:3},
-  'kajak.html':{modules:['<main','kayak-gallery story-gallery','data-photo-gallery','kajak-gallery.css'],gallery:11,prefix:'assets/riverstar/gallery/'},
+  'kajak.html':{modules:['<main','kayak-page-hero','riverstar-fjord-gespiegelt.png','kajak-hero.css','kayak-gallery story-gallery','data-photo-gallery','kajak-gallery.css','UNSER GELIEBTER GRABNER RIVERSTAR'],gallery:11,prefix:'assets/riverstar/gallery/'},
   'ausruestung.html':{modules:['<main','equipment-gallery','equipment-gallery-grid'],photoLinks:3},
   'norwegen-2018.html':{modules:['<main','story-gallery','data-photo-gallery'],gallery:6},
   'sardinien-2019.html':{modules:['<main','story-gallery','data-photo-gallery'],gallery:6},

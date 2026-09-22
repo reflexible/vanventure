@@ -119,8 +119,9 @@ Ausnahme.
   Galerie wurde am 22. September 2026 nach dem letzten Webdienst-Rollout live
   verifiziert. Eine automatisierte Inhaltsprüfung sichert alle öffentlichen
   Seiten mit ihren Kernmodulen sowie Galerie-Abschnitt, Kachelanzahl, CSS und
-  Bilddateien gegen versehentliche Entfernung. Weitere Galerien folgen diesem
-  Aufbau unverändert.
+  Bilddateien gegen versehentliche Entfernung; für Kajak umfasst sie auch das
+  gespiegelte Referenzbild, Verlauf und Hero-Einleitung. Weitere Galerien
+  folgen diesem Aufbau unverändert.
 
 ## Privater Bereich
 

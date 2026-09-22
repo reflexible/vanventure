@@ -144,6 +144,8 @@ Nach einer beim Hero-Umbau entdeckten Regression ist die Galerie wiederhergestel
 eine automatisierte Inhaltsprüfung sichert seitdem alle sieben öffentlichen
 Seiten mit ihren freigegebenen Kernmodulen, Galerien, Kachelzahlen, Bilddateien,
 Canonical-Links und internen Seitenlinks gegen stillschweigende Entfernung ab.
+Für den Kajak-Referenzfall prüft sie zusätzlich den gespiegelten Fjord-Hero,
+das zugehörige Verlauf-Stylesheet und die freigegebene Hero-Einleitung.
 Die am 22. September ergänzte Galerie-Pflicht ist im freigegebenen Design Guide
 und diesem Gesamtplan festgehalten. Sie ist auf Kajak, Fahrzeug,
 Ausrüstungsübersicht, Radübersicht und Reisegalerien live umgesetzt; die fünf
