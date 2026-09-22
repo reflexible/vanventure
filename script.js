@@ -40,9 +40,18 @@ function setLanguage(next) {
   try { localStorage.setItem('vanventure-language', language); } catch {}
   document.documentElement.lang = language;
   document.querySelectorAll('[data-de][data-en]').forEach((element) => { element.textContent = element.dataset[language]; });
+  window.applyEditorialTranslations?.(language);
   styleHeroTitles();
   langButton.textContent = language === 'de' ? 'EN' : 'DE';
   langButton.setAttribute('aria-label', language === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
+}
+
+const editorialPage = location.pathname.split('/').pop() || 'index.html';
+if (['bike.html', 'ausruestung.html', 'kajak.html'].includes(editorialPage)) {
+  const translations = document.createElement('script');
+  translations.src = 'editorial-translations.js';
+  translations.onload = () => window.applyEditorialTranslations?.(language);
+  document.head.append(translations);
 }
 
 if (langButton) {

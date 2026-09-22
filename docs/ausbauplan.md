@@ -174,11 +174,12 @@ bis zur Bild- und Faktenfreigabe die dokumentierte Galerie-Ausnahme.
 
 ### 1B. Englische Redaktionstexte auf den älteren Unterseiten ergänzen
 
-- [ ] Die Seiten Bike, Kajak und Riverstar vollständig mit abgestimmten
-  englischen Redaktionstexten ausstatten. Die EN-Schaltfläche ist dort bereits
-  sichtbar; sie übersetzt Navigation und merkt sich die Sprachwahl. Die
-  bestehenden deutschen Langtexte werden erst nach redaktioneller Übersetzung
-  umgeschaltet.
+- ~~Die Seiten Bike, Kajak und Riverstar vollständig mit abgestimmten
+  englischen Redaktionstexten ausstatten.~~ Die EN-Schaltfläche schaltet auf
+  `kajak.html`, `ausruestung.html` und `bike.html` die vollständigen
+  redaktionellen Inhalte, nicht nur die Navigation. Die Sprachwahl bleibt
+  gespeichert; Rückwechsel auf Deutsch ist live geprüft. Die englische
+  Riverstar-Fassung ist die öffentliche Kajakseite `kajak.html`.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 
