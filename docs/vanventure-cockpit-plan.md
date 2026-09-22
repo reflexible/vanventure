@@ -170,6 +170,12 @@ Indizes gehören verbindlich in die Migration.
 | `content_items` | `id`, `planned_year`, `slot`, `title_working`, `format`, `pillar`, `status`, `target_publish_date`, `youtube_video_id`, `brief`, `estimated_hours`, `actual_hours`, `owner`, `updated_by` | Editorialer Jahresplan; `format=longform` und zwölf nummerierte Slots sind der Standard. Stundenwerte machen die spätere Nutzen-pro-Stunde-Review nachvollziehbar. |
 | `content_item_metrics` | `content_item_id`, `metric_name`, `target_value`, `actual_value`, `evaluated_at` | Ziele und Auswertung der geplanten Videos. |
 | `master_context_entries` | `id`, `category`, `title`, `body`, `status`, `source_url`, `effective_from`, `effective_to`, `updated_by` | Versionierbare, redaktionell gepflegte Faktenbasis. |
+| `scrum_items` | `id`, `type`, `title`, `description`, `priority`, `parent_id`, `created_at`, `due_date`, `archived_at` | Epics, Stories, Tasks, To-dos und Warnungs-Tasks für das Familien-Scrum-Board. |
+| `scrum_board_positions` | `item_id`, `lane`, `column`, `sort_order`, `moved_at`, `moved_by` | Aktuelle Board-Position; `lane=fast_track|scrum`. |
+| `scrum_work_assignments` | `item_id`, `assignee_user_id`, `claimed_at`, `released_at`, `claimed_by` | Aktuelle und historische Übernahmen. |
+| `scrum_item_events` | `id`, `item_id`, `actor_type`, `actor_id`, `action`, `before_safe`, `after_safe`, `created_at` | Für Nutzer sichtbarer, datensparsamer Kartenverlauf. |
+| `scrum_alert_inbox` | `event_id`, `source`, `alert_key`, `vehicle_id`, `severity`, `payload_safe`, `received_at`, `status` | Idempotente Warnungseingänge ohne Geheimnisse. |
+| `scrum_alert_links` | `inbox_event_id`, `item_id`, `resolution_state`, `last_source_update_at` | Zuordnung einer Warnung zur Karte. |
 | `cockpit_audit_log` | `id`, `actor`, `action`, `entity_type`, `entity_id`, `before_safe`, `after_safe`, `created_at` | Auditierbare Admin-, OAuth-, Sync- und Planungsaktionen ohne Token/Passwortwerte. |
 
 `metrics_json` bewahrt API-Metriken, die noch nicht als eigene Spalte benötigt werden.
@@ -189,6 +195,7 @@ Paginierungsformat; Zeitstempel sind ISO-8601 in UTC.
 | Videos | `GET /api/cockpit/videos`, `GET /api/cockpit/videos/:id`, `GET /api/cockpit/videos/:id/snapshots` | angemeldet |
 | Planung | `GET/POST /api/cockpit/content`, `PUT /api/cockpit/content/:id` | lesen: angemeldet; schreiben: editor/admin |
 | Master Context | `GET /api/cockpit/context`, `POST/PUT /api/cockpit/context/:id` | lesen: angemeldet; schreiben: editor/admin |
+| Familien-Scrum-Board | `GET /api/cockpit/scrum/backlog`, `GET /api/cockpit/scrum/board`, `POST/PUT /api/cockpit/scrum/items`, `POST /api/cockpit/scrum/items/:id/move` | lesen und schreiben: editor/admin; Marvin nur mit eingeschränktem Dienstrecht |
 | OAuth | `POST /api/cockpit/youtube/connect`, `GET /api/cockpit/youtube/callback`, `POST /api/cockpit/youtube/disconnect` | admin |
 | Synchronisierung | `GET /api/cockpit/sync-runs`, `POST /api/cockpit/sync` | lesen: angemeldet; starten: admin |
 
@@ -230,6 +237,24 @@ Verantwortung, Brief und spätere YouTube-Verknüpfung. Mögliche Statusfolge:
 `idea → validated → briefed → production → scheduled → published → reviewed`.
 Kurzformate können ergänzend geplant werden, dürfen aber die Longform-Jahresplanung
 nicht verdrängen.
+
+### Familien-Scrum-Board
+
+Das private Board ist die gemeinsame, tabletoptimierte Arbeitszentrale für
+Familie, Reise, Fahrzeug, Haushalt und VanVenture-Aufgaben; es ersetzt den
+Content Planner nicht. Ein separates Backlog führt ungeplante Ideen, Epics,
+Stories, Tasks und To-dos. Auf dem Board stehen die Zeilen **Fast Track** und
+**Scrum Board** mit `Offen → Bereit → In Arbeit → Review → Done`. Der Wechsel
+nach **In Arbeit** erfordert eine Übernahme, Review verlangt eine Sicht- oder
+Rückmeldeprüfung und Done eine bewusste Bestätigung.
+
+Die persistente Warnungs-Inbox verarbeitet später nur authentifizierte,
+idempotente VanVenture-Ereignisse; `high` und `critical` werden einmalig als
+Fast-Track-Karte angelegt. Bis Ereignisvertrag, Dienstidentität und
+Prioritätsregeln abgenommen sind, findet keine automatische Kartenanlage statt.
+Der vollständige technische Entwurf steht im
+[Hauptentwicklungsplan mit Marvin Scrum Board](VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md),
+der verbindliche Umsetzungsstatus im [Gesamtplan](ausbauplan.md).
 
 ### Insights
 

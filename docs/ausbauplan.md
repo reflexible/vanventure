@@ -202,6 +202,71 @@ Hero-Standard auf weitere noch ausstehende Unterseiten anwenden.
 - [ ] Nach jeder Veröffentlichung tatsächliche Produktionsstunden ergänzen und
   nach frühestens 28 Tagen Nutzen pro investierter Stunde bewerten.
 
+### 2A. Familien-Scrum-Board als private Arbeitszentrale entwickeln
+
+**Ziel:** Das Board ist die private, auf einem Küchen-Tablet dauerhaft sichtbare
+Aufgabenfläche für Familie, Reisen, Fahrzeug, Haushalt und VanVenture-Arbeit.
+Es nutzt dieselbe geschützte Anwendung, Sitzung, Datenbank und Audit-Grundlage
+wie das Cockpit, bleibt aber fachlich vom Content Planner getrennt. Der
+[Hauptentwicklungsplan mit Marvin Scrum Board](VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md)
+ist die technische Referenz; dieser Abschnitt ist die verbindliche Arbeitsliste.
+
+**Erstes verbindliches Gate – Phase 0 (nur Festlegung, keine Datenanlage):**
+
+- [ ] Familienmitglieder, Anzeige-Namen und Board-Zugriffe festlegen; dabei
+  klären, welche bestehende Rolle das Tablet im Küchenbetrieb benötigt.
+- [ ] Prioritäten (`niedrig`, `normal`, `hoch`, `kritisch`), Fast-Track-Kriterien,
+  Archivfrist, Review-Regeln und die ersten Beispiel-Epics/Stories gemeinsam
+  bestätigen.
+- [ ] Den VanVenture-Warnungskatalog mit Schlüssel, Schweregrad, Text und
+  empfohlener Handlung je Fahrzeugwarnung erstellen sowie den versionierten
+  Ereignisvertrag, Dienstidentität, Schlüsselrotation, Zustellwiederholung und
+  Betriebsverantwortung verbindlich festlegen.
+- [ ] Phase 0 schriftlich abnehmen. Bis dahin werden weder Board-Karten,
+  automatische Warnungen noch Marvin-Schreibrechte produktiv angelegt.
+
+**Umsetzung erst nach Phase-0-Abnahme:**
+
+- [ ] Backlog und die zwei Board-Zeilen **Fast Track** und **Scrum Board** mit
+  den Spalten `Offen → Bereit → In Arbeit → Review → Done` umsetzen. Nur
+  bewusst eingeplante Tasks und To-dos dürfen aus dem Backlog aufs Board;
+  Fast Track bleibt hoch- oder kritisch priorisierten Aufgaben vorbehalten.
+- [ ] Additive `scrum_*`-Migrationen für Items, Board-Positionen,
+  Arbeitsübernahmen, sichtbaren Ereignisverlauf, Warnungs-Inbox und
+  Warnungszuordnung erstellen: `scrum_items`, `scrum_board_positions`,
+  `scrum_work_assignments`, `scrum_item_events`, `scrum_alert_inbox` und
+  `scrum_alert_links`. Epics und Stories strukturieren das Backlog; nur Tasks,
+  To-dos und Warnungs-Tasks können aufs Board.
+- [ ] Private, CSRF-geschützte Endpunkte unter `/api/cockpit/scrum/*` für
+  Backlog, Board, Karten, Verschiebungen, Übernahmen und Verlauf ergänzen.
+  Der Wechsel nach **In Arbeit** muss atomar eine Übernahme festhalten. Alle
+  Browseränderungen brauchen Rollenprüfung und erzeugen datensparsame
+  Audit-/Verlaufsdaten; private Beschreibungen erscheinen nie in Logs oder
+  öffentlichen Antworten.
+- [ ] Eine zugängliche Tablet-Ansicht im Querformat bauen: beide Zeilen,
+  Backlog, Karten-Details, große Bedienelemente sowie eine vollständige
+  Tastaturalternative zu Drag-and-drop. Karte, Priorität, Fälligkeit,
+  Übernahme und Verlauf müssen ohne Leistungs- oder Personenranking sichtbar
+  und verständlich sein.
+- [ ] Den zunächst eng begrenzten Marvin-Zugriff umsetzen: Er darf auf klaren
+  Auftrag Backlog-Items anlegen und vorbereiten sowie ausdrücklich angeordnete
+  Verschiebungen ausführen, aber niemals autonom priorisieren, Personen
+  übernehmen lassen, Done markieren oder Warnungen auflösen.
+- [ ] Die persistente Warnungs-Inbox über einen separaten,
+  idempotenten und authentifizierten VanVenture-Ereigniskanal vorbereiten.
+  `info` und `normal` bleiben Inbox-Ereignisse; `high` und `critical` erzeugen
+  genau eine Fast-Track-Karte. Dienstidentität, Signatur/Schlüsselrotation,
+  Wiederholung, Datenminimierung und der Warnungskatalog werden vor dem
+  Einschalten verbindlich festgelegt.
+- [ ] Content Planner und Scrum Board getrennt halten. Eine freiwillige
+  Verknüpfung zu Story/Epic oder Planner-Eintrag darf nie Status, Inhalt oder
+  Stunden automatisch überschreiben.
+- [ ] Migrations-, Rechte-, CSRF-, Transaktions-, Idempotenz-, Archiv- und
+  Tablet-Tests sowie Wiederherstellung von Board, Inbox und Verlauf aus Backup
+  durchführen. Vor der Live-Migration einen geschützten Dump erstellen; danach
+  `/healthz`, private Board-Route und sichtbare Bedienung live prüfen. Nur der
+  Webdienst darf bei Bedarf kurz neu starten.
+
 ### 3. Audit V2 erst mit belastbaren externen Daten abschließen
 
 - [ ] Die künstliche 500-Video-Grenze im paginierten YouTube-Import entfernen
@@ -250,8 +315,9 @@ Hero-Standard auf weitere noch ausstehende Unterseiten anwenden.
 
 - [ ] Backup/Restore inklusive Cockpit-Tabellen alle zwei bis vier Wochen
   wiederholen und dokumentieren.
-- [ ] Die persistente Warnungs-Inbox im Familien-Dashboard festlegen und erst
-  dann als Benachrichtigungskanal anschließen.
+- [ ] Die persistente Warnungs-Inbox erst nach Umsetzung und gemeinsamer
+  Prioritätsregel des Familien-Scrum-Boards als Benachrichtigungskanal
+  anschließen.
 - [ ] Bei jedem Web-Release Website, PostgreSQL und Caddy geschützt
   weiterbetreiben und `/healthz`, betroffene Route sowie sichtbares Ergebnis
   prüfen.

@@ -49,11 +49,13 @@ Kennzeichen:
   Kanalverbindung.
 
 Für die regelmäßige Ausführung eignet sich ein System-Timer oder der bestehende
-Server-Monitor. Die geplante persistente Warnungs-Inbox des Familien-Dashboards
-ist der verbindlich gewählte Benachrichtigungskanal. Sie soll Statuskennzeichen
-als lesbare Warnungen übernehmen und kritische Fälle als Fast-Track-Karten
-sichtbar machen, ohne Tokens, Namen oder YouTube-Daten zu speichern. Bis dieser
-Kommunikationskanal umgesetzt ist, verschickt der Befehl selbst keine Nachrichten.
+Server-Monitor. Die geplante persistente Warnungs-Inbox gehört zum
+Familien-Scrum-Board. Sie soll Statuskennzeichen erst nach einer gemeinsam
+festgelegten Prioritätsregel als lesbare Backlog- oder Fast-Track-Karten
+übernehmen, ohne Tokens, Namen oder YouTube-Daten zu speichern. Bis dieser
+Kommunikationskanal umgesetzt ist, verschickt der Befehl selbst keine
+Nachrichten. Der verbindliche Umsetzungsstatus steht im
+[Gesamtplan](ausbauplan.md).
 
 ## Wiederherstellungstest
 

@@ -116,6 +116,16 @@
       "requiredCanonicalPhrases": [
         "GCS nach einem Jahr"
       ]
+    },
+    {
+      "path": "docs/VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "Fast Track",
+        "scrum_items",
+        "/api/cockpit/scrum/*",
+        "persistente Warnungs-Inbox"
+      ]
     }
   ]
 }

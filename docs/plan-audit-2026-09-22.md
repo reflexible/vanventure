@@ -58,6 +58,11 @@ belegt, fehlten aber zuvor im Gesamtplan. Sie wurden als offene Punkte ergänzt:
    bleiben im Gesamtplan offen;
 7. ungeklärter Ort der Riverstar-Uferbilder und konkrete Kritik an den
    Schwimmwesten.
+8. Familien-Scrum-Board als private Arbeitszentrale: der bestätigte Entwurf
+   umfasst Backlog, Fast Track und Scrum Board, `scrum_*`-Datenmodell,
+   CSRF-/Audit-Schutz, eingeschränkte Marvin-Aktionen sowie den späteren,
+   idempotenten Warnungs-Inbox-Anschluss. Er ist als offener Umsetzungsblock im
+   Gesamtplan ergänzt.
 
 ## Ergebnis
 

@@ -10,6 +10,8 @@ Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf dem Contab
 4. Kontakt-E-Mail, Impressum und Datenschutzerklärung
 5. Google-Produktionsfreigabe erst nach Rechtstexten, Domainbestätigung und
    erforderlicher Scope-Verifizierung
+6. Privates Familien-Scrum-Board für gemeinsame Aufgaben; der Content Planner
+   bleibt davon getrennt
 
 Der gemeinsame Google-Login für Redaktion und Cockpit ist auf Marvin live
 abgenommen und nutzt einen eigenen, minimal berechtigten OAuth-Webclient. Die
