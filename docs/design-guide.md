@@ -112,12 +112,15 @@ Ausnahme.
 - Desktop zeigt drei Spalten, Mobil zwei; die Kacheln nutzen 4:3. Die
   Vollansicht zeigt stets das unbeschnittene Bild über den gemeinsamen,
   tastaturbedienbaren Foto-Viewer.
-- Die Kajak-Galerie ist der live umgesetzte Musterfall: 12 Bilder, Auswahl
+- Die Kajak-Galerie ist der live umgesetzte Musterfall: 11 veröffentlichte Bilder, Auswahl
   und Herkunft sind in `kajak-galerie-bildquellen.json` dokumentiert;
   sichtbare Kennzeichen sind in der Webableitung anonymisiert. Die zwei Bilder
   mit Kindern von hinten wurden für diese Galerie ausdrücklich freigegeben. Die
   Galerie wurde am 22. September 2026 nach dem letzten Webdienst-Rollout live
-  verifiziert. Weitere Galerien folgen diesem Aufbau unverändert.
+  verifiziert. Eine automatisierte Inhaltsprüfung sichert alle öffentlichen
+  Seiten mit ihren Kernmodulen sowie Galerie-Abschnitt, Kachelanzahl, CSS und
+  Bilddateien gegen versehentliche Entfernung. Weitere Galerien folgen diesem
+  Aufbau unverändert.
 
 ## Privater Bereich
 
