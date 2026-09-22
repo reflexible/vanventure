@@ -1,8 +1,8 @@
 # VanVenture Cockpit – MVP und sicherer Rollout
 
-Stand: 21. September 2026
-Status: Phase 1 abgeschlossen und produktiv geprüft. Die Phase-2-OAuth-Strecke
-ist produktiv bereit; der erste Abruf wartet auf die Google-Testnutzerfreigabe.
+Stand: 22. September 2026
+Status: Phase 1 und Phase 2 abgeschlossen und produktiv geprüft. Phase 3 kann
+nach Benutzerfreigabe beginnen.
 
 ## Aktueller Entscheidungsstand vom 21. September 2026
 
@@ -49,17 +49,16 @@ Zugriff mit HTTP 401. Alle additiven Cockpit-Tabellen wurden angelegt, der
 Webcontainer und `/healthz` sind gesund. Das Audit protokolliert den Aufruf der
 Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
 
-## Phase 2 – Stand 21. September 2026
+## Phase 2 – Abschluss am 22. September 2026
 
-- Der private OAuth-Ablauf, verschlüsselte Refresh-Token-Ablage und der
-  automatische Abruf von Kanal, Videos sowie 35 Tagen Kanalwerten laufen auf
-  Marvin. Nach erfolgreicher Google-Freigabe startet der erste Abruf selbsttätig
-  und der Dienst aktualisiert die Daten täglich; es gibt keinen manuellen
-  Export oder Import.
-- Google Cloud meldet noch `0` Testnutzer. Solange die Anwendung im Testmodus
-  bleibt, muss `helmut.brandner@gmail.com` unter Google Auth Platform →
-  Zielgruppe als Testnutzer eingetragen werden. Diese Änderung wurde noch nicht
-  durchgeführt und ist der einzige aktuelle Blocker.
+- `helmut.brandner@gmail.com` hat die Google-Freigabe für den Kanal erfolgreich
+  erteilt. Der verschlüsselt gespeicherte Refresh-Token bleibt ausschließlich in
+  der privaten Produktionsdatenbank.
+- Der automatische Erstlauf war erfolgreich: 25 Videos, 33 Kanal-Tageswerte,
+  825 Video-Tageswerte und 117 fällige Vergleichs-Snapshots wurden gespeichert.
+  Es gibt keine ausstehenden, altersbedingt fälligen Snapshots.
+- Der Dienst aktualisiert Daten täglich; es gibt keinen manuellen Export oder
+  Import.
 - Die Produktionsprüfung nach dem Release ist erfolgreich: Web und Datenbank
   sind gesund, `/healthz` und `/cockpit` liefern HTTP 200. Die Cockpit-Routen
   bleiben mit `noindex, nofollow` und `no-store` privat.
@@ -74,21 +73,62 @@ Google oder YouTube.
 
 Das MVP umfasst:
 
-1. Zugang nur für die vorhandenen Rollen `admin` und `editor`.
-2. Eine getrennte, ausschließlich von Administratoren verwaltete YouTube-OAuth-
+1. Einen gemeinsamen Google-Login für Redaktion und Cockpit: eine Anmeldung auf
+   `vanventure.at` genügt für beide privaten Bereiche.
+2. Zugang nur für die vorhandenen Rollen `admin` und `editor`.
+3. Eine getrennte, ausschließlich von Administratoren verwaltete YouTube-OAuth-
    Verbindung.
-3. Einen sicheren täglichen Datenabgleich für einen Kanal.
-4. Ein Dashboard und eine Videoansicht mit Kanal- und Videokennzahlen.
-5. Vergleichswerte nach Tag 1, 7 und 28; Tag 90 und 365 werden von derselben
+4. Einen sicheren täglichen Datenabgleich für einen Kanal.
+5. Ein Dashboard und eine Videoansicht mit Kanal- und Videokennzahlen.
+6. Vergleichswerte nach Tag 1, 7 und 28; Tag 90 und 365 werden von derselben
    Datenbasis automatisch ergänzt, sobald die Videos alt genug sind.
-6. Einen Jahresplan mit zwölf Longform-Video-Slots.
-7. Einen redaktionell gepflegten Master Context für Van/Hymer, Reisen, Outdoor,
+7. Einen Jahresplan mit zwölf Longform-Video-Slots.
+8. Einen redaktionell gepflegten Master Context für Van/Hymer, Reisen, Outdoor,
    MTB, Kajak, Hund und Mission Paris.
+
+## Gemeinsamer Google-Login für Redaktion und Cockpit
+
+Die privaten Bereiche `https://vanventure.at/redaktion` und
+`https://vanventure.at/cockpit` erhalten denselben Einstieg „Mit Google
+anmelden“. Der Server stellt nach dem Google-Login eine einzige VanVenture-
+Sitzung aus. Das sichere Cookie gilt mit `Path=/` für beide Bereiche und ihre
+APIs; der Wechsel zwischen Redaktion und Cockpit benötigt keine zweite
+Anmeldung. Ein zentraler Einstieg `/anmelden` führt nach erfolgreichem Login
+sicher zur gewünschten Zielseite zurück.
+
+Google bestätigt dabei nur die Identität. Zugriff erhält ausschließlich ein in
+der VanVenture-Benutzerverwaltung freigeschaltetes, verifiziertes Google-Konto.
+Die Zuordnung basiert auf der stabilen Google-Kennung `sub`; Rollen (`admin`,
+`editor`), Sperrungen und die Regel „mindestens ein aktiver Admin“ bleiben in
+VanVenture. Bestehende Passwortkonten werden vor dem Umschalten dem jeweiligen
+Google-Konto zugeordnet und zunächst als kontrollierter Notfallzugang erhalten.
+
+Für den Login wird ein eigener Google-OAuth-Webclient mit den minimalen OpenID-
+Scopes `openid`, `email` und optional `profile` verwendet. Der bestehende
+YouTube-Client und sein Callback `/api/cockpit/youtube/callback` bleiben strikt
+getrennt: Nur ein Administrator kann dort den Kanal ausdrücklich mit den
+Leserechten `youtube.readonly` und `yt-analytics.readonly` verbinden. Eine
+Google-Anmeldung für Redaktion oder Cockpit verleiht daher nie YouTube-Zugriff.
+
+Der Login benötigt kein Rechnungskonto, keine kostenpflichtige API und keinen
+kostenpflichtigen Google-Cloud-Dienst. Erfordert wird nur ein zusätzlicher
+OAuth-Webclient, beispielsweise „VanVenture Anmeldung“, mit dem Callback
+`https://vanventure.at/api/auth/google/callback`. Kostenpflichtige Dienste und
+Abrechnung bleiben deaktiviert; die bestehenden kostenlosen YouTube-API-
+Kontingente bleiben unberührt.
 
 ## Betriebsschutz
 
 - Die Cockpit-Routen bleiben vollständig privat und erhalten `noindex`,
   `no-store` und dieselben HTTPS-/Cookie-Regeln wie die Redaktion.
+- Der Google-Login nutzt Authorization Code Flow mit PKCE, `state` und `nonce`.
+  Akzeptiert werden ausschließlich die HTTPS-Produktionsdomain und exakt
+  registrierte Callback-Adressen.
+- Die gemeinsame VanVenture-Sitzung bleibt HTTP-only, `Secure`,
+  `SameSite=Strict` und unter `Path=/` für beide Bereiche gültig. Sie wird bei
+  Abmeldung, Kontosperre oder Rollenänderung sofort ungültig.
+- Sitzungen werden dauerhaft oder kryptografisch signiert verwaltet, damit ein
+  regulärer Neustart des Webcontainers nicht unnötig alle Anmeldungen beendet.
 - Die Datenbankmigrationen sind additiv: Sie ändern keine Tabellen oder Daten der
   Redaktion und berühren keine veröffentlichten Reiseberichte.
 - Ein Release baut zuerst ein neues Web-Image. Der spätere, kurze Neustart des
@@ -106,6 +146,7 @@ Das MVP umfasst:
 | --- | --- | --- | --- |
 | 0 – Vorbereitung | Konfiguration, Datenzugang und Rolloutplan sind klar | keine | Google-Zugangsdaten und Kanal bestätigen |
 | 1 – Sichere Basis | private Cockpit-Route, Datenmodell, Rollen- und Audit-Grundlage | noch keine Google-Abfragen | lokal und auf Staging anmelden, Rechte prüfen |
+| 1A – Gemeinsame Anmeldung | Google-Identität ist mit den bestehenden Rollen verknüpft; eine Sitzung gilt für Redaktion und Cockpit | zusätzlicher, kostenfreier Google-OAuth-Webclient; keine YouTube-Abfrage | mit jedem freigegebenen Konto anmelden, zwischen beiden Bereichen wechseln, abmelden und Sperrung prüfen |
 | 2 – YouTube-Daten | OAuth, manueller Sync, Tageswerte und Snapshots | einmaliger OAuth-Dialog; keine öffentliche Änderung | Zahlen mit YouTube Studio vergleichen |
 | 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context | kurzer Webcontainer-Neustart beim Release | gemeinsam im Live-Cockpit abnehmen |
 | 4 – Automatisierung | täglicher Sync und regelbasierte Insights | ein zusätzlicher interner Tageslauf | erste Woche auf Fehlermeldungen und Datenqualität prüfen |
@@ -130,6 +171,29 @@ In Google Cloud werden ausschließlich die YouTube Data API v3 und YouTube
 Analytics API aktiviert. Die OAuth-Einwilligung verwendet nur die Leserechte
 `youtube.readonly` und `yt-analytics.readonly`. Der Login ins Cockpit bleibt davon
 getrennt.
+
+## Phase 1A – Angaben und Umsetzung für den gemeinsamen Login
+
+Vor dem produktiven Umschalten werden die Google-Adressen der künftigen
+Administratoren und Redaktionskonten verbindlich festgelegt. Diese Freigabeliste
+wird nicht über eine offene Registrierung, sondern über die vorhandene
+Benutzerverwaltung gepflegt.
+
+Die Umsetzung umfasst:
+
+- additive Spalten oder eine eigene Tabelle für Google-Provider, Google-`sub`,
+  verifizierte E-Mail und Zeitpunkt der Zuordnung;
+- Start- und Callback-Routen unter `/api/auth/google/*` sowie einen sicheren
+  Rücksprung nach `/redaktion` oder `/cockpit`;
+- eine gemeinsame, serverseitig prüfbare VanVenture-Sitzung für beide Bereiche;
+- Login-Schaltflächen und einen verständlichen Hinweis bei nicht freigegebenen
+  Google-Konten;
+- Audit-Einträge für Anmeldung, Abmeldung, fehlgeschlagene Freigaben sowie
+  administrative Konto-Zuordnungen – ohne Tokens, Secrets oder vollständige
+  sensible Identitätsdaten in Logs;
+- automatisierte Tests für gültige Anmeldung, nicht freigegebenes Konto,
+  Sitzungswechsel Redaktion ↔ Cockpit, CSRF-Schutz, Abmeldung und die sofortige
+  Ungültigkeit nach Sperrung beziehungsweise Rollenänderung.
 
 ## Technische Umsetzung ab Phase 1
 

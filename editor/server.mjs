@@ -8,7 +8,7 @@ import { openPostgres } from './postgres.mjs';
 import { aiSettings, encrypt } from './settings.mjs';
 import { renderStory, renderHomepage } from './render.mjs';
 import { sitemap, robots } from './seo.mjs';
-import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics } from './youtube.mjs';
+import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics, videoDailyMetrics, snapshots as youtubeSnapshots } from './youtube.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
@@ -24,7 +24,7 @@ const host = process.env.EDITOR_HOST || '127.0.0.1';
 if ((!secure || !origin.startsWith('https://')) && !(process.env.NODE_ENV==='development' && ['localhost','127.0.0.1'].includes(new URL(origin).hostname))) throw new Error('Öffentlicher Betrieb benötigt HTTPS-Origin und sichere Cookies.');
 const sessions = new Map(), attempts = new Map(), jobs = new Map(), oauthStates = new Map();
 const dummyHash = passwordHash(randomBytes(32).toString('hex'));
-async function syncYoutube(){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,'automatic',async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);return (await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));});}
+async function syncYoutube(){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,'automatic',async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);let written=(await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));let videoMetrics;try{videoMetrics=await videoDailyMetrics(videos.map(video=>video.video_id),accessToken);}catch(error){throw new Error(`VIDEO_DAILY_${error.message}`);}written+=await db.upsertYoutubeVideoDailyMetrics(videoMetrics);const candidates=await db.youtubeSnapshotCandidates();let snapshotRows;try{snapshotRows=await youtubeSnapshots(candidates,accessToken);}catch(error){throw new Error(`SNAPSHOTS_${error.message}`);}return written+(await db.upsertYoutubeSnapshots(snapshotRows));});}
 const cookie = (token, age=28800) => `vv_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${secure?'; Secure':''}`;
 function fail(status, message) { const e = new Error(message); e.status=status; throw e; }
 function validateAccount(b,passwordRequired=true){
@@ -196,6 +196,6 @@ const server=http.createServer(async (req,res)=>{
   }
 });
 setInterval(()=>{for(const [k,v] of sessions) if(v.expires<Date.now()) sessions.delete(k);for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);for(const [k,v] of oauthStates)if(v.expires<Date.now())oauthStates.delete(k);},60000).unref();
-if(process.env.COCKPIT_SYNC_ENABLED==='true')setInterval(()=>{syncYoutube().catch(()=>{});},24*60*60*1000).unref();
+if(process.env.COCKPIT_SYNC_ENABLED==='true'){syncYoutube().catch(()=>{});setInterval(()=>{syncYoutube().catch(()=>{});},24*60*60*1000).unref();}
 server.listen(port,host,()=>console.log(`VanVenture Redaktion: ${origin}/redaktion`));
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{server.close(async()=>{await db.close();process.exit(0);});setTimeout(()=>process.exit(1),10000).unref();});
