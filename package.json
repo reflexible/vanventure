@@ -5,7 +5,9 @@
   "scripts": {
     "build:seo": "node tools/build-seo.mjs",
     "start": "docker compose up --build -d",
-    "test": "node --test editor/*.test.mjs"
+    "test": "node --test editor/*.test.mjs deploy/*.test.mjs",
+    "check:release": "node deploy/release-check.mjs",
+    "monitor:cockpit": "node deploy/cockpit-monitor.mjs"
   },
   "engines": {
     "node": ">=24"

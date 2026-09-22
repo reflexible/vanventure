@@ -46,12 +46,12 @@ Cockpit-Ausbau aber nicht unnötig aufhalten soll.
 
 - [x] Privates Cockpit, Rollenprüfung, verschlüsselte Tokenablage, Google-Verbindung,
   Kanal- und erster Datenabruf.
-- [ ] Manuellen Sync mit sichtbarem Ergebnis und anschließender Freigabe des
+- [x] Manuellen Sync mit sichtbarem Ergebnis und anschließender Freigabe des
   automatischen Tageslaufs bereitstellen.
-- [ ] Datenbanksperre pro Kanal tatsächlich verwenden, damit nie zwei Syncs parallel
+- [x] Datenbanksperre pro Kanal tatsächlich verwenden, damit nie zwei Syncs parallel
   schreiben.
-- [ ] Callback auch bei zwischenzeitlich deaktiviertem Admin sicher ablehnen.
-- [ ] Fehler beim Erstlauf und beim Tageslauf klar im Cockpit anzeigen; keine
+- [x] Callback auch bei zwischenzeitlich deaktiviertem Admin sicher ablehnen.
+- [x] Fehler beim Erstlauf und beim Tageslauf klar im Cockpit anzeigen; keine
   Fehlermeldungen still verschlucken.
 - [ ] Alle Kanalvideos seitenweise und ohne die heutige 500-Video-Grenze erfassen.
 - [ ] OAuth-, Sync-, Sperr-, Snapshot- und Fehlerfälle automatisiert testen.
@@ -137,17 +137,22 @@ werden daraus und aus den Cockpit-Daten abgeleitet.
 
 ## Phase 5 – Betrieb und Qualität
 
-- [ ] Vor jedem produktiven Release Datenbankdump und Healthcheck durchführen.
+- [x] Wiederholbare Release-Prüfung für Tests, Compose-Konfiguration, Datenbankdump
+  und Healthcheck bereitstellen; vor jedem produktiven Release ausführen.
 - [ ] Backup/Restore inklusive Cockpit-Tabellen regelmäßig testen.
-- [ ] Monitoring für fehlgeschlagene Syncs, abgelaufene OAuth-Verbindungen und lange
-  fehlende Daten einrichten; einen bewussten Benachrichtigungskanal bestimmen.
-- [ ] Tests vor Releases vollständig ausführen; private Tokens, Secrets und
-  personenbezogene Daten weder in Git, Browserantworten noch Logs veröffentlichen.
+- [x] Lokalen Monitor für fehlgeschlagene Syncs, abgelaufene OAuth-Verbindungen und
+  lange fehlende Daten bereitstellen; die persistente Warnungs-Inbox des geplanten
+  Familien-Dashboards ist der verbindliche Benachrichtigungskanal. Sie wird erst
+  mit dessen Kommunikationskanal und Fast-Track-Verarbeitung produktiv aktiviert.
+- [x] Tests in die Release-Prüfung aufnehmen; private Tokens, Secrets und
+  personenbezogene Daten weiterhin weder in Git, Browserantworten noch Logs veröffentlichen.
 - [ ] Öffentliche Website, PostgreSQL und Caddy bei kurzen Webcontainer-Releases
   geschützt weiterbetreiben.
 
 **Abnahme:** Ein Fehler ist erkennbar, nachvollziehbar und ohne Datenverlust
-behebbar; ein Restore wurde erfolgreich erprobt.
+behebbar; ein Restore wurde erfolgreich erprobt. Bis das Familien-Dashboard
+Warnungen persistent entgegennimmt und sichtbar übernimmt, bleibt der
+Benachrichtigungspunkt offen.
 
 ## Ideen & Backlog
 
