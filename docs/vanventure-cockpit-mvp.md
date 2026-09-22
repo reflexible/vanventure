@@ -63,6 +63,20 @@ Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
   sind gesund, `/healthz` und `/cockpit` liefern HTTP 200. Die Cockpit-Routen
   bleiben mit `noindex, nofollow` und `no-store` privat.
 
+## Phase 4 – Betrieb und Qualität
+
+- Parallele YouTube-Abgleiche sind durch eine Datenbanksperre pro Kanal ausgeschlossen.
+  Ein zweiter Start liefert einen nachvollziehbaren Konflikt, statt dieselben Daten
+  parallel zu schreiben.
+- Das Cockpit signalisiert einen fehlgeschlagenen letzten Lauf oder einen überfälligen
+  Datenstand direkt in der privaten Übersicht.
+- Am 22. September 2026 wurde ein Produktionsdump in eine getrennte, kurzlebige
+  PostgreSQL-Instanz wiederhergestellt. Die Cockpit-Tabellen einschließlich der 25
+  erfassten Videos waren danach vorhanden. Die produktive Datenbank blieb dabei
+  unverändert; der Testcontainer und der temporäre Dump wurden entfernt.
+- Ein externer Benachrichtigungskanal wird erst eingerichtet, wenn der gewünschte
+  Empfänger und Kanal bewusst festgelegt sind.
+
 ## Ziel des MVP
 
 Das Cockpit ist eine private Erweiterung der bestehenden Redaktion unter
