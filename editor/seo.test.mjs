@@ -7,7 +7,7 @@ import { renderStory } from './render.mjs';
 test('static SEO is idempotent, references existing images, and has exactly one canonical per public page', () => {
   for (const file of Object.keys(pages)) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-    assert.equal(applySeo(html, file), html);
+    assert.equal(applySeo(html, file).replaceAll('\r\n','\n'), html.replaceAll('\r\n','\n'));
     assert.equal((html.match(/rel="canonical"/g)||[]).length, 1);
     assert.equal((html.match(/<title>/g)||[]).length, 1);
     assert.equal((html.match(/name="description"/g)||[]).length, 1);

@@ -22,7 +22,7 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const sitemap=await fetch(origin+'/sitemap.xml');assert.equal(sitemap.status,200);assert.match(sitemap.headers.get('content-type'),/application\/xml/);assert.equal(((await sitemap.text()).match(/<loc>/g)||[]).length,7);
     assert.match(await (await fetch(origin+'/robots.txt')).text(),/Sitemap: https:\/\/vanventure.at\/sitemap.xml/);
     assert.equal((await fetch(origin+'/redaktion')).headers.get('x-robots-tag'),'noindex, nofollow');
-    const cockpit=await fetch(origin+'/cockpit');assert.equal(cockpit.status,200);assert.equal(cockpit.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(await cockpit.text(),/VanVenture Cockpit/);
+    const cockpit=await fetch(origin+'/cockpit');assert.equal(cockpit.status,200);assert.equal(cockpit.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(cockpit.headers.get('content-security-policy'),/https:\/\/i\.ytimg\.com/);assert.match(await cockpit.text(),/VanVenture Cockpit/);
     const storyHtml=await (await fetch(origin+'/norwegen-2018.html')).text();assert.match(storyHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/norwegen-2018.html">/);
     const kayakHtml=await (await fetch(origin+'/kajak.html')).text();assert.match(kayakHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/kajak.html">/);assert.equal((await fetch(origin+'/riverstar-entwurf.html')).status,404);
     const bikeHtml=await (await fetch(origin+'/bike.html')).text();assert.match(bikeHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/bike.html">/);
@@ -34,7 +34,10 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const login=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'sabine',password:'test password 123'})});assert.equal(login.status,200);
     const cookie=login.headers.get('set-cookie');assert.ok(cookie.includes('HttpOnly'));const session=await login.json();
     const headers={Cookie:cookie.split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':session.csrf};
-    const cockpitResponse=await fetch(origin+'/api/cockpit/overview',{headers});assert.equal(cockpitResponse.status,200);const cockpitOverview=await cockpitResponse.json();assert.equal(cockpitOverview.phase,1);assert.equal(cockpitOverview.videos,0);assert.equal((await fetch(origin+'/api/cockpit/health',{headers})).status,200);
+    const cockpitResponse=await fetch(origin+'/api/cockpit/overview',{headers});assert.equal(cockpitResponse.status,200);const cockpitOverview=await cockpitResponse.json();assert.equal(cockpitOverview.phase,3);assert.equal(cockpitOverview.videos,0);assert.equal((await fetch(origin+'/api/cockpit/health',{headers})).status,200);
+    const planner=await fetch(origin+'/api/cockpit/content?year=2027',{headers});assert.equal(planner.status,200);assert.equal((await planner.json()).items.length,12);
+    const context=await fetch(origin+'/api/cockpit/context',{method:'POST',headers,body:JSON.stringify({category:'Reisen',title:'Test',body:'Geprüfter Fakt',status:'approved'})});assert.equal(context.status,201);
+    assert.equal((await (await fetch(origin+'/api/cockpit/context',{headers})).json()).items.length,1);
     const original=await (await fetch(origin+'/api/stories/norwegen-2018',{headers})).json();
     const url=origin+'/api/stories/norwegen-2018';
     assert.equal((await fetch(url,{method:'PUT',headers:{...headers,'X-CSRF-Token':'wrong'},body:JSON.stringify(original)})).status,403);

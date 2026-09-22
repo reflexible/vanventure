@@ -117,12 +117,45 @@ export async function openPostgres(config = {}) {
       const content=await pool.query('SELECT COUNT(*)::int AS count FROM content_items');
       const context=await pool.query("SELECT COUNT(*)::int AS count FROM master_context_entries WHERE status='approved'");
       const lastSync=await pool.query("SELECT status,finished_at FROM yt_sync_runs ORDER BY started_at DESC LIMIT 1");
-      return {phase:1,connection:connection.rows[0]||null,videos:videos.rows[0].count,contentItems:content.rows[0].count,approvedContextEntries:context.rows[0].count,lastSync:lastSync.rows[0]||null};
+      return {phase:3,connection:connection.rows[0]||null,videos:videos.rows[0].count,contentItems:content.rows[0].count,approvedContextEntries:context.rows[0].count,lastSync:lastSync.rows[0]||null};
+    },
+    async cockpitVideos(query=''){
+      const term=`%${query.trim()}%`;
+      return (await pool.query(`SELECT v.video_id,v.title,v.published_at,v.thumbnail_url,v.privacy_status,v.last_seen_at,
+        m.views,m.watch_time_minutes,m.impressions,m.impressions_ctr,m.likes,m.comments,
+        c.id AS content_item_id,c.pillar,c.format
+        FROM yt_videos v
+        LEFT JOIN LATERAL (SELECT views,watch_time_minutes,impressions,impressions_ctr,likes,comments FROM yt_video_daily_metrics WHERE video_id=v.video_id ORDER BY metric_date DESC LIMIT 1) m ON true
+        LEFT JOIN content_items c ON c.youtube_video_id=v.video_id
+        WHERE v.title ILIKE $1 ORDER BY v.published_at DESC NULLS LAST LIMIT 200`,[term])).rows;
+    },
+    async cockpitVideo(videoId){return (await pool.query(`SELECT v.video_id,v.title,v.description,v.published_at,v.thumbnail_url,v.privacy_status,v.metadata,
+      c.id AS content_item_id,c.title_working AS content_title,c.pillar,c.format FROM yt_videos v LEFT JOIN content_items c ON c.youtube_video_id=v.video_id WHERE v.video_id=$1`,[videoId])).rows[0]||null;},
+    async cockpitVideoSnapshots(videoId){return (await pool.query('SELECT age_days,snapshot_date,metrics_json,complete FROM yt_video_snapshots WHERE video_id=$1 ORDER BY age_days',[videoId])).rows;},
+    async cockpitSyncRuns(){return (await pool.query('SELECT id,kind,status,started_at,finished_at,records_written,error_code,error_detail_safe FROM yt_sync_runs ORDER BY started_at DESC LIMIT 20')).rows;},
+    async ensurePlannerYear(year,actor){
+      const slots=year===2026?[10,11,12]:Array.from({length:12},(_,index)=>index+1);
+      for(const slot of slots)await pool.query(`INSERT INTO content_items(planned_year,slot,title_working,format,status,target_publish_date,updated_by)
+        VALUES($1,$2,$3,'longform','idea',$4,$5) ON CONFLICT(planned_year,slot) DO NOTHING`,[year,slot,`Longform ${String(slot).padStart(2,'0')}`,`${year}-${String(slot).padStart(2,'0')}-15`,actor]);
+    },
+    async cockpitContent(year){return (await pool.query(`SELECT id,planned_year,slot,title_working,format,pillar,status,target_publish_date,youtube_video_id,brief,owner,updated_by,updated_at
+      FROM content_items WHERE planned_year=$1 ORDER BY slot NULLS LAST, target_publish_date NULLS LAST,id`,[year])).rows;},
+    async createCockpitContent(item,actor){return (await pool.query(`INSERT INTO content_items(planned_year,slot,title_working,format,pillar,status,target_publish_date,youtube_video_id,brief,owner,updated_by)
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id`,[item.planned_year,item.slot,item.title_working,item.format,item.pillar,item.status,item.target_publish_date,item.youtube_video_id,item.brief,item.owner,actor])).rows[0];},
+    async updateCockpitContent(id,item,actor){return (await pool.query(`UPDATE content_items SET title_working=$1,format=$2,pillar=$3,status=$4,target_publish_date=$5,youtube_video_id=$6,brief=$7,owner=$8,updated_by=$9,updated_at=NOW() WHERE id=$10 RETURNING id`,[item.title_working,item.format,item.pillar,item.status,item.target_publish_date,item.youtube_video_id,item.brief,item.owner,actor,id])).rows[0]||null;},
+    async cockpitContext(){return (await pool.query('SELECT id,category,title,body,status,source_url,effective_from,effective_to,updated_by,updated_at FROM master_context_entries ORDER BY category,title,id')).rows;},
+    async createCockpitContext(item,actor){return (await pool.query(`INSERT INTO master_context_entries(category,title,body,status,source_url,effective_from,effective_to,updated_by)
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id`,[item.category,item.title,item.body,item.status,item.source_url,item.effective_from,item.effective_to,actor])).rows[0];},
+    async updateCockpitContext(id,item,actor){return (await pool.query(`UPDATE master_context_entries SET category=$1,title=$2,body=$3,status=$4,source_url=$5,effective_from=$6,effective_to=$7,updated_by=$8,updated_at=NOW() WHERE id=$9 RETURNING id`,[item.category,item.title,item.body,item.status,item.source_url,item.effective_from,item.effective_to,actor,id])).rows[0]||null;},
+    async cockpitInsights(){
+      const missingBrief=await pool.query("SELECT id,title_working,slot FROM content_items WHERE brief='' AND status NOT IN ('published','reviewed') ORDER BY planned_year,slot LIMIT 10");
+      const videos=await pool.query(`SELECT v.video_id,v.title,COALESCE(SUM(m.views),0)::bigint AS views FROM yt_videos v LEFT JOIN yt_video_daily_metrics m ON m.video_id=v.video_id AND m.metric_date>=CURRENT_DATE-28 GROUP BY v.video_id,v.title ORDER BY views DESC LIMIT 3`);
+      return {basis:{periodDays:28,asOf:new Date().toISOString()},items:[...missingBrief.rows.map(row=>({kind:'missing_brief',level:'action',title:`${row.title_working}: Brief ergänzen`,basis:'Geplanter Inhalt ohne Brief; veröffentlichte und ausgewertete Inhalte sind ausgeschlossen.',contentItemId:row.id})),...videos.rows.filter(row=>Number(row.views)>0).map(row=>({kind:'top_video',level:'signal',title:row.title,basis:`${row.views} Views in den letzten 28 Tagen.`,videoId:row.video_id}))]};
     },
     async cockpitAudit(actor,action,entityType,entityId=null,before=null,after=null){
       await pool.query('INSERT INTO cockpit_audit_log(actor,action,entity_type,entity_id,before_safe,after_safe) VALUES($1,$2,$3,$4,$5,$6)',[actor,action,entityType,entityId,before,after]);
     },
-    async cockpitConnection(){return (await pool.query("SELECT id,channel_id,channel_title,status,token_ciphertext,token_iv,token_tag FROM yt_connections WHERE status='active' ORDER BY connected_at DESC LIMIT 1")).rows[0]||null;},
+    async cockpitConnection(){return (await pool.query("SELECT id,channel_id,channel_title,status,token_ciphertext,token_iv,token_tag,last_sync_at FROM yt_connections WHERE status='active' ORDER BY connected_at DESC LIMIT 1")).rows[0]||null;},
     async saveCockpitConnection(channel,token,actor){
       const row=(await pool.query(`INSERT INTO yt_connections(channel_id,channel_title,status,token_ciphertext,token_iv,token_tag,scopes,connected_by,connected_at,updated_at)
         VALUES($1,$2,'active',$3,$4,$5,$6,$7,NOW(),NOW()) ON CONFLICT(channel_id) DO UPDATE SET channel_title=EXCLUDED.channel_title,status='active',token_ciphertext=EXCLUDED.token_ciphertext,token_iv=EXCLUDED.token_iv,token_tag=EXCLUDED.token_tag,scopes=EXCLUDED.scopes,connected_by=EXCLUDED.connected_by,connected_at=NOW(),updated_at=NOW() RETURNING id`,[channel.id,channel.snippet.title,token.ciphertext,token.iv,token.tag,['youtube.readonly','yt-analytics.readonly'],actor])).rows[0];

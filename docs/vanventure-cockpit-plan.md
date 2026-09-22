@@ -261,6 +261,29 @@ Briefings oder KI-Kontexte einfließen.
   Antworten an Proxies. Rate Limits für Login und OAuth-Start bleiben bzw. werden
   erweitert.
 
+### Website-Rechtstexte und Google-Produktionsfreigabe
+
+Vor einer Umstellung der externen Google-OAuth-Anwendung von **Test** auf
+**Produktion** werden auf `https://vanventure.at` öffentlich erreichbare Seiten für
+Datenschutzerklärung und Nutzungsbedingungen erstellt. Die konkreten URLs werden
+erst nach redaktioneller und rechtlicher Freigabe in Google Auth Platform hinterlegt.
+Sie dürfen weder Platzhalter noch nicht veröffentlichte Seiten sein.
+
+Der Entwurf der Datenschutzerklärung behandelt mindestens den Zweck der privaten
+YouTube-Auswertung, die verwendeten Google-/YouTube-Leseberechtigungen, die
+verschlüsselte serverseitige Ablage des Refresh-Tokens, die Datenminimierung,
+Aufbewahrungs- und Löschregeln sowie eine Kontaktmöglichkeit. Die
+Nutzungsbedingungen beschreiben den privaten, rollenbasierten Zugang zum Cockpit.
+Beide Texte werden vor Veröffentlichung rechtlich geprüft; der technische Plan
+ersetzt keine Rechtsberatung.
+
+Für die Google-Veröffentlichung werden außerdem App-Name, Support- und
+Entwickler-Kontakt, Homepage, autorisierte Domain `vanventure.at` und die
+tatsächlich angeforderten Scopes geprüft. Eine erforderliche Domainbestätigung und
+eine gegebenenfalls von Google verlangte OAuth-/Scope-Verifizierung werden vor der
+Umstellung abgeschlossen. Bis dahin bleibt die Anwendung im Testmodus; die
+Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
+
 ## Phasenplan
 
 ### Phase 0 – Festlegung und Google-Vorbereitung

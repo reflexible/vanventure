@@ -1,6 +1,6 @@
 # VanVenture Website
 
-Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf Marvin: https://vanventure.at/. Der frühere GitHub-Pages-Auftritt besteht als ältere Veröffentlichung. SEO und Live-Betrieb sind unter [docs/seo.md](docs/seo.md) dokumentiert.
+Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf Marvin: https://vanventure.at/. Der frühere GitHub-Pages-Auftritt besteht als ältere Veröffentlichung. Der verbindliche Überblick für Prioritäten, Phasen und neue Ideen steht im [Ausbauplan](docs/ausbauplan.md); SEO und Live-Betrieb sind unter [docs/seo.md](docs/seo.md) dokumentiert.
 
 ## Vor Veröffentlichung ergänzen
 

@@ -31,9 +31,13 @@ test('cockpit schema is additive and exposes an empty private overview',async()=
   const database=await testDatabase(),db=await openPostgres({connectionString:database.url,max:1});
   try{
     const overview=await db.cockpitOverview();
-    assert.deepEqual(overview,{phase:1,connection:null,videos:0,contentItems:0,approvedContextEntries:0,lastSync:null});
+    assert.deepEqual(overview,{phase:3,connection:null,videos:0,contentItems:0,approvedContextEntries:0,lastSync:null});
     assert.equal(Number((await db.pool.query("SELECT count(*) AS n FROM information_schema.tables WHERE table_name='yt_connections'")).rows[0].n),1);
-    await db.cockpitAudit(null,'cockpit.overview.viewed','cockpit','phase-1',null,{role:'editor'});
-    assert.deepEqual((await db.pool.query('SELECT action,entity_type,entity_id,after_safe FROM cockpit_audit_log')).rows,[{action:'cockpit.overview.viewed',entity_type:'cockpit',entity_id:'phase-1',after_safe:{role:'editor'}}]);
+    await db.account('helmut','test password 456');await db.ensurePlannerYear(2027,'helmut');assert.equal((await db.cockpitContent(2027)).length,12);
+    await db.ensurePlannerYear(2026,'helmut');const remaining2026=await db.cockpitContent(2026),firstPlannerDate=new Date(remaining2026[0].target_publish_date);assert.deepEqual(remaining2026.map(item=>item.slot),[10,11,12]);assert.equal(firstPlannerDate.getFullYear(),2026);assert.equal(firstPlannerDate.getMonth(),9);assert.equal(firstPlannerDate.getDate(),15);
+    const context=await db.createCockpitContext({category:'Reisen',title:'Test',body:'Geprüfter Fakt',status:'approved',source_url:null,effective_from:null,effective_to:null},'helmut');assert.ok(context.id);
+    assert.equal((await db.cockpitContext()).length,1);
+    await db.cockpitAudit(null,'cockpit.overview.viewed','cockpit','phase-3',null,{role:'editor'});
+    assert.deepEqual((await db.pool.query('SELECT action,entity_type,entity_id,after_safe FROM cockpit_audit_log')).rows,[{action:'cockpit.overview.viewed',entity_type:'cockpit',entity_id:'phase-3',after_safe:{role:'editor'}}]);
   }finally{await db.close();await database.close();}
 });

@@ -21,10 +21,11 @@ const port = Number(process.env.PORT || 8787);
 const origin = process.env.EDITOR_ORIGIN || `http://127.0.0.1:${port}`;
 const secure = process.env.EDITOR_SECURE_COOKIE === 'true';
 const host = process.env.EDITOR_HOST || '127.0.0.1';
+const cockpitPolicy="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://i.ytimg.com https://i9.ytimg.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'";
 if ((!secure || !origin.startsWith('https://')) && !(process.env.NODE_ENV==='development' && ['localhost','127.0.0.1'].includes(new URL(origin).hostname))) throw new Error('Öffentlicher Betrieb benötigt HTTPS-Origin und sichere Cookies.');
 const sessions = new Map(), attempts = new Map(), jobs = new Map(), oauthStates = new Map();
 const dummyHash = passwordHash(randomBytes(32).toString('hex'));
-async function syncYoutube(){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,'automatic',async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);let written=(await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));let videoMetrics;try{videoMetrics=await videoDailyMetrics(videos.map(video=>video.video_id),accessToken);}catch(error){throw new Error(`VIDEO_DAILY_${error.message}`);}written+=await db.upsertYoutubeVideoDailyMetrics(videoMetrics);const candidates=await db.youtubeSnapshotCandidates();let snapshotRows;try{snapshotRows=await youtubeSnapshots(candidates,accessToken);}catch(error){throw new Error(`SNAPSHOTS_${error.message}`);}return written+(await db.upsertYoutubeSnapshots(snapshotRows));});}
+async function syncYoutube(kind='automatic'){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,kind,async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);let written=(await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));let videoMetrics;try{videoMetrics=await videoDailyMetrics(videos.map(video=>video.video_id),accessToken);}catch(error){throw new Error(`VIDEO_DAILY_${error.message}`);}written+=await db.upsertYoutubeVideoDailyMetrics(videoMetrics);const candidates=await db.youtubeSnapshotCandidates();let snapshotRows;try{snapshotRows=await youtubeSnapshots(candidates,accessToken);}catch(error){throw new Error(`SNAPSHOTS_${error.message}`);}return written+(await db.upsertYoutubeSnapshots(snapshotRows));});}
 const cookie = (token, age=28800) => `vv_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${secure?'; Secure':''}`;
 function fail(status, message) { const e = new Error(message); e.status=status; throw e; }
 function validateAccount(b,passwordRequired=true){
@@ -33,6 +34,20 @@ function validateAccount(b,passwordRequired=true){
   if((passwordRequired||b.password)&& (typeof b.password!=='string'||b.password.length<12||b.password.length>128))fail(400,'Passwort: 12 bis 128 Zeichen.');
   if(b.role&&!['admin','editor'].includes(b.role))fail(400,'Ungültige Rolle.');
 }
+const contentStatuses=new Set(['idea','validated','briefed','production','scheduled','published','reviewed']);
+const contextStatuses=new Set(['draft','approved','archived']);
+const contextCategories=new Set(['Van / Hymer','Reisen','Outdoor','MTB','Kajak','Hund','Mission Paris']);
+function text(value,max,label,required=false){if(value===undefined||value===null)value='';if(typeof value!=='string'||value.length>max||(required&&!value.trim()))fail(400,`Ungültiges Feld: ${label}.`);return value.trim();}
+function date(value,label){if(value===undefined||value===null||value==='')return null;if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))fail(400,`Ungültiges Datum: ${label}.`);return value;}
+function nullableId(value,label){if(value===undefined||value===null||value==='')return null;if(typeof value!=='string'||value.length>120)fail(400,`Ungültige Verknüpfung: ${label}.`);return value;}
+function contentInput(value,create=false){
+  const plannedYear=Number(value.planned_year);if(!Number.isInteger(plannedYear)||plannedYear<2020||plannedYear>2100)fail(400,'Ungültiges Planjahr.');
+  const slot=value.slot===''||value.slot===null||value.slot===undefined?null:Number(value.slot);if(slot!==null&&(!Number.isInteger(slot)||slot<1||slot>12))fail(400,'Ungültiger Jahres-Slot.');
+  const status=text(value.status||'idea',20,'Status',true);if(!contentStatuses.has(status))fail(400,'Ungültiger Content-Status.');
+  const format=text(value.format||'longform',40,'Format',true);
+  return {planned_year:plannedYear,slot,title_working:text(value.title_working,180,'Arbeitstitel',true),format,pillar:text(value.pillar,80,'Pillar'),status,target_publish_date:date(value.target_publish_date,'Veröffentlichung'),youtube_video_id:nullableId(value.youtube_video_id,'Video'),brief:text(value.brief,12000,'Brief'),owner:nullableId(value.owner,'Verantwortung')};
+}
+function contextInput(value){const category=text(value.category,80,'Kategorie',true);if(!contextCategories.has(category))fail(400,'Ungültige Context-Kategorie.');const status=text(value.status||'draft',20,'Status',true);if(!contextStatuses.has(status))fail(400,'Ungültiger Context-Status.');const source=text(value.source_url,1000,'Quelle');if(source&&(!/^https?:\/\//.test(source)))fail(400,'Quelle muss eine vollständige http(s)-Adresse sein.');return {category,title:text(value.title,180,'Titel',true),body:text(value.body,20000,'Inhalt',true),status,source_url:source||null,effective_from:date(value.effective_from,'gültig ab'),effective_to:date(value.effective_to,'gültig bis')};}
 function limit(req,path){const key=path+':'+req.socket.remoteAddress;let count=attempts.get(key);if(!count||count.until<Date.now())count={n:0,until:Date.now()+900000};if(++count.n>10)fail(429,'Zu viele Versuche. Bitte in 15 Minuten erneut versuchen.');attempts.set(key,count);return key;}
 async function sessionInfo(user,csrf){return {name:user.name,displayName:user.display_name||user.name,role:user.role,csrf,aiReady:false,editorialMode:'chat'};}
 async function draft(slug) { const row=await db.draft(slug); if (!row) fail(404,'Reise nicht gefunden.'); return row; }
@@ -73,6 +88,7 @@ const server=http.createServer(async (req,res)=>{
     }
     if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css'].includes(path)) {
       const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path.startsWith('/cockpit')?'cockpit.html':'index.html';
+      if(path==='/cockpit'||path==='/cockpit/')res.setHeader('Content-Security-Policy',cockpitPolicy);
       res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
@@ -133,10 +149,42 @@ const server=http.createServer(async (req,res)=>{
     if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
     if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf));
     if (path==='/api/logout'&&req.method==='POST') {sessions.delete(token);return send(200,{}, {'Set-Cookie':cookie('',0)});}
-    if(path==='/api/cockpit/health'&&req.method==='GET')return send(200,{status:'ok',phase:1});
+    if(path==='/api/cockpit/health'&&req.method==='GET')return send(200,{status:'ok',phase:3});
     if(path==='/api/cockpit/overview'&&req.method==='GET'){
-      await db.cockpitAudit(activeUser.name,'cockpit.overview.viewed','cockpit','phase-1',null,{role:activeUser.role});
+      await db.cockpitAudit(activeUser.name,'cockpit.overview.viewed','cockpit','phase-3',null,{role:activeUser.role});
       return send(200,await db.cockpitOverview());
+    }
+    if(path==='/api/cockpit/videos'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitVideos(url.searchParams.get('q')||'')});
+    const videoMatch=path.match(/^\/api\/cockpit\/videos\/([^/]+)(?:\/(snapshots))?$/);
+    if(videoMatch&&req.method==='GET'){const videoId=decodeURIComponent(videoMatch[1]);if(videoMatch[2])return send(200,{version:1,items:await db.cockpitVideoSnapshots(videoId)});const video=await db.cockpitVideo(videoId);if(!video)fail(404,'Video nicht gefunden.');return send(200,{version:1,item:video});}
+    if(path==='/api/cockpit/sync-runs'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitSyncRuns()});
+    if(path==='/api/cockpit/sync'&&req.method==='POST'){
+      if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Datenabgleich starten.');if(!youtubeReady())fail(503,'Die private Google-Konfiguration ist noch nicht vollständig.');
+      const written=await syncYoutube('manual');await db.cockpitAudit(activeUser.name,'youtube.sync.started','yt_connection',null,null,{kind:'manual',records_written:written||0});return send(200,{started:true,recordsWritten:written||0});
+    }
+    if(path==='/api/cockpit/sync-settings'&&req.method==='GET')return send(200,{intervalHours:await cockpitSyncIntervalHours()});
+    if(path==='/api/cockpit/sync-settings'&&req.method==='PUT'){
+      if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen den automatischen Abgleich einstellen.');const intervalHours=Number((await body(req)).intervalHours);if(![0,12,24].includes(intervalHours))fail(400,'Ungültiger Abgleichrhythmus.');await db.setSetting('cockpit_sync_interval_hours',String(intervalHours));await db.cockpitAudit(activeUser.name,'youtube.sync.schedule.updated','cockpit','sync-schedule',null,{intervalHours});return send(200,{intervalHours});
+    }
+    if(path==='/api/cockpit/insights'&&req.method==='GET')return send(200,{version:1,...await db.cockpitInsights()});
+    if(path==='/api/cockpit/content'&&req.method==='GET'){
+      const year=Number(url.searchParams.get('year')||new Date().getUTCFullYear());if(!Number.isInteger(year)||year<2020||year>2100)fail(400,'Ungültiges Planjahr.');
+      await db.ensurePlannerYear(year,activeUser.name);return send(200,{version:1,year,items:await db.cockpitContent(year)});
+    }
+    if(path==='/api/cockpit/content'&&req.method==='POST'){
+      if(!['admin','editor'].includes(activeUser.role))fail(403,'Keine Schreibberechtigung.');const item=contentInput(await body(req),true);if(item.youtube_video_id&&!(await db.cockpitVideo(item.youtube_video_id)))fail(400,'Das verknüpfte YouTube-Video wurde nicht gefunden.');const created=await db.createCockpitContent(item,activeUser.name);await db.cockpitAudit(activeUser.name,'content.created','content_item',String(created.id),null,{planned_year:item.planned_year,status:item.status});return send(201,{id:created.id});
+    }
+    const contentMatch=path.match(/^\/api\/cockpit\/content\/(\d+)$/);
+    if(contentMatch&&req.method==='PUT'){
+      if(!['admin','editor'].includes(activeUser.role))fail(403,'Keine Schreibberechtigung.');const item=contentInput(await body(req));if(item.youtube_video_id&&!(await db.cockpitVideo(item.youtube_video_id)))fail(400,'Das verknüpfte YouTube-Video wurde nicht gefunden.');const updated=await db.updateCockpitContent(contentMatch[1],item,activeUser.name);if(!updated)fail(404,'Plan-Eintrag nicht gefunden.');await db.cockpitAudit(activeUser.name,'content.updated','content_item',String(updated.id),null,{status:item.status});return send(200,{updated:true});
+    }
+    if(path==='/api/cockpit/context'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitContext()});
+    if(path==='/api/cockpit/context'&&req.method==='POST'){
+      if(!['admin','editor'].includes(activeUser.role))fail(403,'Keine Schreibberechtigung.');const item=contextInput(await body(req));const created=await db.createCockpitContext(item,activeUser.name);await db.cockpitAudit(activeUser.name,'context.created','master_context',String(created.id),null,{category:item.category,status:item.status});return send(201,{id:created.id});
+    }
+    const contextMatch=path.match(/^\/api\/cockpit\/context\/(\d+)$/);
+    if(contextMatch&&req.method==='PUT'){
+      if(!['admin','editor'].includes(activeUser.role))fail(403,'Keine Schreibberechtigung.');const item=contextInput(await body(req));const updated=await db.updateCockpitContext(contextMatch[1],item,activeUser.name);if(!updated)fail(404,'Context-Eintrag nicht gefunden.');await db.cockpitAudit(activeUser.name,'context.updated','master_context',String(updated.id),null,{category:item.category,status:item.status});return send(200,{updated:true});
     }
     if(path==='/api/cockpit/youtube/connect'&&req.method==='POST'){
       if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen YouTube-Kanal verbinden.');if(!youtubeReady())fail(503,'Die private Google-Konfiguration ist noch nicht vollständig.');
@@ -196,6 +244,14 @@ const server=http.createServer(async (req,res)=>{
   }
 });
 setInterval(()=>{for(const [k,v] of sessions) if(v.expires<Date.now()) sessions.delete(k);for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);for(const [k,v] of oauthStates)if(v.expires<Date.now())oauthStates.delete(k);},60000).unref();
-if(process.env.COCKPIT_SYNC_ENABLED==='true'){syncYoutube().catch(()=>{});setInterval(()=>{syncYoutube().catch(()=>{});},24*60*60*1000).unref();}
+async function cockpitSyncIntervalHours(){const value=Number(await db.setting('cockpit_sync_interval_hours')||'24');return [0,12,24].includes(value)?value:24;}
+async function runScheduledCockpitSync(){
+  if(process.env.COCKPIT_SYNC_ENABLED!=='true')return;
+  const intervalHours=await cockpitSyncIntervalHours(),connection=await db.cockpitConnection();
+  if(!intervalHours||!connection)return;
+  if(connection.last_sync_at&&Date.now()-new Date(connection.last_sync_at).getTime()<intervalHours*60*60*1000)return;
+  await syncYoutube('automatic');
+}
+if(process.env.COCKPIT_SYNC_ENABLED==='true'){runScheduledCockpitSync().catch(()=>{});setInterval(()=>{runScheduledCockpitSync().catch(()=>{});},60*60*1000).unref();}
 server.listen(port,host,()=>console.log(`VanVenture Redaktion: ${origin}/redaktion`));
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{server.close(async()=>{await db.close();process.exit(0);});setTimeout(()=>process.exit(1),10000).unref();});

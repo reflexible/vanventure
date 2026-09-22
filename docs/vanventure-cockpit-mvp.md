@@ -57,7 +57,7 @@ Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
 - Der automatische Erstlauf war erfolgreich: 25 Videos, 33 Kanal-Tageswerte,
   825 Video-Tageswerte und 117 fällige Vergleichs-Snapshots wurden gespeichert.
   Es gibt keine ausstehenden, altersbedingt fälligen Snapshots.
-- Der Dienst aktualisiert Daten täglich; es gibt keinen manuellen Export oder
+- Der Dienst aktualisiert Daten täglich (oder im Cockpit administrativ gewähltem Rhythmus); es gibt keinen manuellen Export oder
   Import.
 - Die Produktionsprüfung nach dem Release ist erfolgreich: Web und Datenbank
   sind gesund, `/healthz` und `/cockpit` liefern HTTP 200. Die Cockpit-Routen
@@ -149,7 +149,7 @@ Kontingente bleiben unberührt.
 | 1A – Gemeinsame Anmeldung | Google-Identität ist mit den bestehenden Rollen verknüpft; eine Sitzung gilt für Redaktion und Cockpit | zusätzlicher, kostenfreier Google-OAuth-Webclient; keine YouTube-Abfrage | mit jedem freigegebenen Konto anmelden, zwischen beiden Bereichen wechseln, abmelden und Sperrung prüfen |
 | 2 – YouTube-Daten | OAuth, manueller Sync, Tageswerte und Snapshots | einmaliger OAuth-Dialog; keine öffentliche Änderung | Zahlen mit YouTube Studio vergleichen |
 | 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context | kurzer Webcontainer-Neustart beim Release | gemeinsam im Live-Cockpit abnehmen |
-| 4 – Automatisierung | täglicher Sync und regelbasierte Insights | ein zusätzlicher interner Tageslauf | erste Woche auf Fehlermeldungen und Datenqualität prüfen |
+| 4 – Automatisierung | täglicher bzw. administrativ einstellbarer Sync und regelbasierte Insights | ein zusätzlicher interner Tageslauf | erste Woche auf Fehlermeldungen und Datenqualität prüfen |
 
 Nach jeder Phase bleibt das System in einem nutzbaren Zustand. Die nächste Phase
 beginnt erst nach Sichtprüfung des Ergebnisses; ein Rückbau ist nicht erforderlich,
