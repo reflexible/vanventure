@@ -57,8 +57,10 @@ Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
 - Der automatische Erstlauf war erfolgreich: 25 Videos, 33 Kanal-Tageswerte,
   825 Video-Tageswerte und 117 fällige Vergleichs-Snapshots wurden gespeichert.
   Es gibt keine ausstehenden, altersbedingt fälligen Snapshots.
-- Der Dienst aktualisiert Daten täglich (oder im Cockpit administrativ gewähltem Rhythmus); es gibt keinen manuellen Export oder
-  Import.
+- Der Dienst aktualisiert Daten täglich (oder im Cockpit administrativ gewähltem Rhythmus). Ein authentifizierter Download
+  „Channel Audit exportieren“ liefert ein versioniertes JSON mit Kanal-, Video-,
+  Kennzahlen-, Snapshot- und Content-Zuordnungsdaten; Tokens, Secrets,
+  Sitzungen und Kontodaten sind ausgeschlossen. Ein Import ist nicht vorgesehen.
 - Die Produktionsprüfung nach dem Release ist erfolgreich: Web und Datenbank
   sind gesund, `/healthz` und `/cockpit` liefern HTTP 200. Die Cockpit-Routen
   bleiben mit `noindex, nofollow` und `no-store` privat.

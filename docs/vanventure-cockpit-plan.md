@@ -1,6 +1,8 @@
 # VanVenture Cockpit – technische Spezifikation
 
-Stand: 21. September 2026 · Status: Planungsgrundlage, keine Implementierung
+Stand: 22. September 2026 · Status: Planungsgrundlage mit Umsetzungsstand.
+Phasen 0 bis 4 sind weitgehend produktiv umgesetzt; Phase 5 ergänzt die noch
+offene Channel-Audit-Arbeitsfläche.
 
 ## Zielbild
 
@@ -334,6 +336,23 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
    Daten einrichten; Benachrichtigungskanal bewusst festlegen.
 4. Erst nach Datenschutz-, Sicherheits- und fachlicher Abnahme auf Hetzner aktivieren.
 
+### Phase 5 – Channel Audit & Content Intelligence
+
+1. Video-Impressions/CTR, Video- und Kanal-Traffic-Sources sowie verfügbare
+   Retention-/Engagement-Serien ergänzen und API-Verzug beziehungsweise Leerwerte
+   sichtbar behandeln.
+2. Die Short-/Longform-Klassifikation absichern und im Planner geschätzte sowie
+   tatsächliche Produktionsstunden für spätere Effizienzvergleiche erfassen.
+3. Eine Audit-Ansicht mit Vergleichsgruppen, Datenqualitätsstatus,
+   Long-Tail-/Alterslogik und Snapshot-Vergleich umsetzen.
+4. **Erledigt:** Der Cockpit-Button „Channel Audit exportieren“ erzeugt bereits
+   einen authentifizierten, versionierten JSON-Download mit expliziter Feldliste,
+   Datenstand und ohne Tokens, Secrets, Sitzungen oder Kontodaten. CSV bleibt
+   optional und nicht kanonisch.
+5. Den wiederkehrenden Ablauf dokumentieren: Export → Audit → geprüfte Erkenntnisse
+   in Insights, Planner und Master Context übernehmen. Es gibt keine automatische
+   Rückschreibung nach YouTube oder ungeprüfte Übernahme.
+
 ## Akzeptanzkriterien für die spätere Umsetzung
 
 - Ohne erlaubtes, aktives Konto sind Cockpit-HTML und sämtliche Cockpit-APIs nicht
@@ -344,6 +363,13 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
   Sync-Protokoll nachvollziehbar.
 - Ein Video zeigt nach Verfügbarkeit korrekte, klar als vollständig/unvollständig
   markierte 1/7/28/90/365-Stände.
+- Ein authentifizierter Channel-Audit-Export liefert mindestens
+  `schema_version`, `generated_at`, `as_of`, Kanal-, Video-, Kennzahlen-,
+  Snapshot-, Zuordnungs- und Datenqualitätsdaten. Er enthält keine Tokens,
+  Secrets, Nutzer-/Kontodaten oder Sitzungen.
+- Audit-Vergleiche trennen Shorts und Longform; CTR-, Retention- und
+  Traffic-Source-Schlussfolgerungen sind bei fehlender oder API-seitig
+  eingeschränkter Datenlage klar als vorläufig markiert oder unterdrückt.
 - Dashboard, Videos, Planner, Insights und Master Context arbeiten vollständig mit der
   privaten API; die öffentliche GitHub-Pages-Ausgabe enthält keine Cockpitdaten.
 - Geheimnisse und Tokens erscheinen weder im Repository noch in Browserantworten,

@@ -20,7 +20,7 @@ privaten Cockpit- und Google-Daten.
 | --- | --- | --- |
 | Öffentliche Website | `https://vanventure.at` läuft produktiv mit HTTPS, Reiseberichten und SEO-Grundlage. | Rechtstexte und Kontakt vervollständigen. |
 | Redaktion | Private Redaktion mit Rollen, Sitzungen und PostgreSQL läuft produktiv. | Inhalte anhand belegter Fakten ausbauen. |
-| YouTube-Verbindung | Kanal ist verbunden; der erste Abruf hat 25 Videos und Tageswerte erfasst. | Cockpit fachlich und technisch absichern, dann ausbauen. |
+| YouTube-Verbindung | Kanal ist verbunden; 25 Videos, Tageswerte, Snapshots und ein sicherer Audit-Export sind vorhanden. | Channel Audit V1 durchführen und daraus den 90-Tage-Plan ableiten. |
 | Google OAuth | Externe Anwendung im Testmodus; ein berechtigter Testnutzer ist eingetragen. | Produktionsfreigabe parallel vorbereiten, noch nicht veröffentlichen. |
 | SEO | Technische Basis, Sitemap und Indexierungsgrundlagen sind umgesetzt. | Search Console/Bing bestätigen und Inhalte stärken. |
 
@@ -72,6 +72,25 @@ Videozahlen werden mit YouTube Studio abgeglichen.
   Kajak, Hund und Mission Paris – jeweils mit Quelle und Aktualität.
 - [ ] Regelbasierte Insights: nachvollziehbare Signale für Themen, Formate und
   nächste Produktionsentscheidungen; keine automatischen Veröffentlichungen.
+
+### 1.3 Channel Audit & Content Intelligence
+
+- [x] Sicherer, versionierter JSON-Export aus dem privaten Cockpit mit Kanal-,
+  Video-, Kennzahlen-, Snapshot- und Content-Zuordnungsdaten bereitstellen;
+  keine Tokens, Secrets, Sitzungen oder Kontodaten exportieren.
+- [ ] Channel Audit V1 mit den vorhandenen Daten durchführen: Shorts und
+  Longform getrennt nach Alter, Views, Watchtime, Ø Wiedergabedauer,
+  Likes/Kommentaren und 1/7/28/90/365-Snapshots vergleichen.
+- [ ] Die daraus belegten Gewinner, Evergreen-Kandidaten und Lücken in drei
+  konkrete Videos sowie drei bis vier flexible Kandidaten für die nächsten
+  90 Tage übersetzen.
+- [ ] Impressions/CTR, Traffic Sources, Retention und Content-Efficiency als
+  Audit V2 ergänzen; fehlende oder verzögerte Daten nie als belastbare Nullwerte
+  interpretieren.
+
+**Abnahme:** Audit V1 führt zu nachvollziehbar priorisierten Content-Säulen,
+einem konkreten 90-Tage-Plan und einer bewussten Entscheidung über die nächste
+Analytics-Ausbaustufe.
 
 **Abnahme:** Das Cockpit beantwortet mindestens: Welche Themen/Videoformate
 funktionieren, welche Inhalte stehen als Nächstes an und worauf stützen sich diese
