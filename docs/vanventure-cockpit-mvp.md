@@ -128,6 +128,9 @@ Produktions-Freigabeliste zugeordnet. Der separate OAuth-Webclient ist privat
 hinterlegt und die sichere Google-Weiterleitung wurde geprüft. Die tatsächliche
 Anmeldung wird als Nächstes mit einem freigegebenen und einem abgelehnten Konto
 live abgenommen; Passwortanmeldung bleibt verfügbar.
+Die Google-Alternative steht unter dem vertrauten Passwortformular, klar durch
+einen Trenner getrennt; sie verdrängt weder Überschrift noch redaktionellen
+Einstieg.
 Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.
 
 Die privaten Bereiche `https://vanventure.at/redaktion` und
