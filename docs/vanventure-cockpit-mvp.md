@@ -139,6 +139,8 @@ die auf allen geschützten Seiten erhalten bleibt. Der private Bereich zeigt
 Benutzername und Anmeldeart sowie bei Google die zugeordnete Adresse nur lesbar.
 Nur Passwort-Konten erhalten eine frei pflegbare Kontakt-E-Mail und einen
 Passwortwechsel; die Google-Freigabeliste bleibt stets getrennt.
+Der Inhaltsbereich beginnt direkt neben der Seitenleiste und nutzt die
+verbleibende Arbeitsbreite ohne ein zweites leeres Spaltenraster.
 Die Sprachumschaltung ist auf allen öffentlichen Unterseiten vorhanden; die
 mobile Navigation liegt oberhalb des Titelbilds und ist ohne sichtbaren
 Scrollbalken bedienbar.

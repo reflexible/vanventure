@@ -96,6 +96,8 @@ Profil-Einstellungen – dieselbe Leiste bleibt auch in Redaktion und Cockpit
 erhalten. Google-Konten zeigen ihre Google-Adresse nur lesbar und verwalten
 kein VanVenture-Passwort; nur Passwort-Konten erhalten getrennte Kontakt-E-Mail
 und Passwortwechsel.
+Die private Übersicht nutzt den Arbeitsbereich neben der Leiste breit und
+linksbündig; kein zusätzliches, leeres Navigationsraster darf Platz belegen.
 Auf jeder öffentlichen Seite stehen die Sprachumschaltung und der Login direkt
 nebeneinander. Die mobile Navigation liegt als eigene, kontrastreiche Ebene über
 dem Hero-Bild und bleibt bei kleinen Viewports ohne sichtbaren Scrollbalken

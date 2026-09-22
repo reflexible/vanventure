@@ -89,6 +89,9 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
   Seitenleiste über die volle Seitenhöhe. Sie enthält Übersicht, Konto &
   Einstellungen, Redaktion und Cockpit und lässt sich über einen Burger-Button
   schmal und wieder breit schalten; mobil steht sie vor dem Inhalt.
+- Der Arbeitsbereich nutzt die verbleibende Breite sichtbar aus: Er beginnt
+  direkt neben der Seitenleiste, bleibt linksbündig und darf nicht durch ein
+  altes, unsichtbares Spaltenraster eingeengt werden.
 - Konto & Einstellungen zeigt Benutzername und Anmeldeart. Bei Google steht
   ausschließlich die von Google übernommene E-Mail lesbar da – ohne
   Passwortwechsel oder zweites E-Mail-Feld. Nur Passwort-Konten erhalten eine
