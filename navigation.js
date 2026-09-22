@@ -48,8 +48,8 @@
     actions.prepend(privateMenu);
     const flyout=privateMenu.querySelector('.private-flyout'),form=flyout.querySelector('form'),error=flyout.querySelector('.private-login-error');
     const showError=value=>{error.textContent=value;error.hidden=!value;};
-    const showSignedIn=session=>{privateMenu.querySelector('summary').textContent='Konto';flyout.innerHTML='<p class="private-flyout-title"></p><p class="private-flyout-copy">Dein Zugang ist aktiv.</p><a class="private-area-link" href="/privat#profil">Konto &amp; Einstellungen</a><a href="/redaktion">Redaktion</a><a href="/cockpit">Cockpit</a>';flyout.querySelector('.private-flyout-title').textContent=`Hallo, ${session.displayName||session.name}`;};
-    fetch('/api/session').then(response=>response.ok?response.json():null).then(session=>{if(session)showSignedIn(session);}).catch(()=>{});
+    const showSignedIn=()=>{const accountLink=document.createElement('a');accountLink.className='private-account-link';accountLink.href='/privat';accountLink.textContent='Konto';privateMenu.replaceWith(accountLink);};
+    fetch('/api/session').then(response=>response.ok?response.json():null).then(session=>{if(session)showSignedIn();}).catch(()=>{});
     form.addEventListener('submit',async event=>{event.preventDefault();showError('');const button=form.querySelector('button');button.disabled=true;try{const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))}),result=await response.json();if(!response.ok)throw new Error(result.error||'Anmeldung fehlgeschlagen.');location.assign('/privat');}catch(errorValue){showError(errorValue.message);}finally{button.disabled=false;}});
     document.addEventListener('click',event=>{if(!mobile.matches&&privateMenu.open&&!privateMenu.contains(event.target))privateMenu.removeAttribute('open');});
     document.addEventListener('keydown',event=>{if(event.key==='Escape')privateMenu.removeAttribute('open');});

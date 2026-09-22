@@ -75,22 +75,31 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 - Desktop zeigt drei Spalten, Mobil zwei; die Kacheln nutzen 4:3. Die
   Vollansicht zeigt stets das unbeschnittene Bild über den gemeinsamen,
   tastaturbedienbaren Foto-Viewer.
-- Die Kajak-Galerie ist der nächste Musterfall. Vor der Veröffentlichung werden
-  Auswahl, Herkunft und Anonymisierung jedes Bildes dokumentiert.
+- Die Kajak-Galerie ist der lokal umgesetzte Musterfall: 11 Bilder, Auswahl
+  und Herkunft sind in `kajak-galerie-bildquellen.json` dokumentiert;
+  sichtbare Kennzeichen sind in der Webableitung anonymisiert. Bilder mit
+  Kindern werden erst nach ausdrücklicher Freigabe veröffentlicht. Der
+  Live-Rollout wird mit dieser Prüfung abgeschlossen. Weitere Galerien folgen
+  diesem Aufbau unverändert.
 
 ## Privater Bereich
 
 - Nach der Anmeldung führt `/privat` zur geschützten Übersicht.
-- Die Navigation steht rechts und enthält Übersicht, Konto & Einstellungen,
-  Redaktion und Cockpit; mobil steht sie vor dem Inhalt.
-- Konto & Einstellungen zeigt Benutzername, Anmeldeart, Google-Adresse (nur
-  lesbar), getrennte Kontakt-E-Mail und Passwortwechsel. Die Kontakt-E-Mail
-  darf die Google-Freigabe nie verändern.
+- Die Navigation steht auf **allen geschützten Seiten** als feste, linke
+  Seitenleiste über die volle Seitenhöhe. Sie enthält Übersicht, Konto &
+  Einstellungen, Redaktion und Cockpit und lässt sich über einen Burger-Button
+  schmal und wieder breit schalten; mobil steht sie vor dem Inhalt.
+- Konto & Einstellungen zeigt Benutzername und Anmeldeart. Bei Google steht
+  ausschließlich die von Google übernommene E-Mail lesbar da – ohne
+  Passwortwechsel oder zweites E-Mail-Feld. Nur Passwort-Konten erhalten eine
+  getrennte Kontakt-E-Mail und den Passwortwechsel. Beides darf die
+  Google-Freigabe nie verändern.
 
 ## Verbindliche Freigabe-Reihenfolge
 
 1. Design Guide V1 freigeben.
-2. Kajak-Galerie als Referenz umsetzen.
+2. Kajak-Galerie als Referenz umsetzen. **Lokal erledigt; der Live-Status wird
+   mit diesem Rollout verifiziert.**
 3. Fahrzeug, Bike und Reise-Unterseiten auf Hero-, Galerie- und Link-Standard
    bringen.
 4. Startseite und Footer nach diesem System angleichen und Desktop sowie Mobil

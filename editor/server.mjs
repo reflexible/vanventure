@@ -94,10 +94,12 @@ const server=http.createServer(async (req,res)=>{
     if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
       res.writeHead(301,{'Location':'/'+url.search}); return res.end();
     }
-    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css','/editor/private-account.css'].includes(path)) {
-      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path==='/editor/private-account.css'?'private-account.css':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
+    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css','/editor/private-account.css','/editor/private-nav.js'].includes(path)) {
+      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path==='/editor/private-account.css'?'private-account.css':path==='/editor/private-nav.js'?'private-nav.js':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
       if(path==='/cockpit'||path==='/cockpit/')res.setHeader('Content-Security-Policy',cockpitPolicy);
-      res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
+      let content=readFileSync(resolve(root,'editor',file));
+      if(file==='index.html'||file==='cockpit.html')content=Buffer.from(content.toString().replace('</head>','<link rel="stylesheet" href="/editor/private-account.css"><script src="/editor/private-nav.js" defer></script></head>'));
+      res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(content);
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
     if(req.method==='GET'||req.method==='HEAD'){
@@ -238,10 +240,10 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/api/password'&&req.method==='POST'){
       limit(req,'password:'+activeUser.name);const b=await body(req);
-      const googleFallback=activeUser.google_provider==='google'&&!b.currentPassword;
-      if(!googleFallback&&(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash)))fail(403,'Aktuelles Passwort stimmt nicht.');
+      if(activeUser.google_provider==='google')fail(403,'Google-Konten verwalten ihr Passwort ausschließlich bei Google.');
+      if(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash))fail(403,'Aktuelles Passwort stimmt nicht.');
       validateAccount({name:activeUser.name,displayName:activeUser.display_name||activeUser.name,password:b.password});
-      await db.changePassword(activeUser.name,b.password);await db.cockpitAudit(activeUser.name,'auth.password.changed','user',activeUser.name,null,{google_fallback:googleFallback});if(token)await db.deleteSession(authTokenHash(token));return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
+      await db.changePassword(activeUser.name,b.password);await db.cockpitAudit(activeUser.name,'auth.password.changed','user',activeUser.name,null,{provider:'password'});if(token)await db.deleteSession(authTokenHash(token));return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
     }
     if(path==='/api/users'||path.startsWith('/api/users/')){
       if(activeUser.role!=='admin')fail(403,'Benutzerverwaltung ist nur für Administratoren verfügbar.');
