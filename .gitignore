@@ -4,6 +4,7 @@ tools/photo-download/node_modules/
 .env
 .editor-data/
 travel-stories.json.backup
+vanventure-channel-audit-*.json
 node_modules/
 backups/
 *.dump
