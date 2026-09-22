@@ -1,9 +1,15 @@
 # VanVenture – Design Guide
 
-Stand: 22. September 2026. **Entwurf V1 zur Freigabe.** Diese Referenz ergänzt
-den verbindlichen [Gesamtplan](ausbauplan.md); sie ist keine eigene
-Aufgabenliste. Nach der Freigabe wird sie auf alle öffentlichen Seiten
-angewandt.
+Stand: 22. September 2026. **V1 freigegeben.** Diese Referenz ergänzt den
+verbindlichen [Gesamtplan](ausbauplan.md); sie ist keine eigene Aufgabenliste
+und wird auf alle öffentlichen Seiten angewandt.
+
+## Pflege des Guides
+
+- Bei jeder visuellen oder gestalterischen Änderung wird ausdrücklich geprüft,
+  ob sie diesen Guide verändert oder erweitert. Falls ja, weisen wir vor oder
+  während der Umsetzung darauf hin und nehmen die Regel nach Abstimmung in den
+  Guide auf.
 
 ## Gestaltungsidee
 
@@ -34,6 +40,10 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
   Ebene oberhalb jeder Hero-Grafik. Es darf keinen sichtbaren Scrollbalken
   zeigen; bei geringer Höhe bleibt es per Touch oder Tastatur scrollbar.
 - Fokuszustände sind immer sichtbar; Escape schließt Menü und Flyouts.
+- Ausrüstung ist ein eigener Navigationsbereich: Die Übersicht führt zu Kajak
+  und Rädern; die Radübersicht kann wiederum zu einzelnen Radprofilen führen.
+  Unvollständige Profile sind klar als „in Vorbereitung“ markiert und werden
+  nicht als getestete oder abschließend redigierte Empfehlungen dargestellt.
 
 ## Unterseiten mit Hero
 
@@ -46,6 +56,27 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
   **Web-Kopie** horizontal gespiegelt oder der Bildausschnitt angepasst – nie
   das Archivoriginal.
 - Bildunterschrift und Vergrößerung bleiben verfügbar und tastaturbedienbar.
+
+### Mobilansicht
+
+- Bis einschließlich **600 CSS-Pixel im Hochformat** erhalten Hero-Bereiche
+  eine eigene Lesefläche: Das Bild steht als oberer Abschnitt, darunter liegen
+  Eyebrow, Titel, Einleitung und Metadaten auf einer durchgehenden hellen
+  Editorial-Fläche. Kein Text darf über einem unruhigen Bildbereich stehen.
+- Im Querformat sowie ab 601 CSS-Pixeln bleibt die Bild-Text-Komposition mit
+  Verlauf erhalten.
+- Mobile Grid-Kinder müssen sich mit `min-width: 0` in ihren verfügbaren Raum
+  verkleinern; die ausgeblendete Mobilnavigation darf keinen horizontalen
+  Dokumentüberlauf erzeugen.
+
+**Rolloutstatus, 22. September 2026:** Diese Mobilregel ist auf Startseite,
+Fahrzeug, Reiseberichte, Kajak und Ausrüstung umgesetzt. Startseite, Fahrzeug,
+Reiseberichte und Kajak wurden in S24-Breite live geprüft; die
+Ausrüstungsübersicht erhielt zusätzlich ein klickbares Bild-Hero mit
+Kontrastverlauf und der beschriebenen mobilen Lesefläche. Der Design Guide V1
+ist freigegeben. Die fünf als „in Vorbereitung“ markierten Radprofile bleiben
+bis zur Freigabe von Bildmaterial und Fakten die ausdrücklich dokumentierte
+Ausnahme.
 
 ## Inhaltsrhythmus
 
@@ -69,18 +100,24 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 
 ## Galerie-Standard
 
-- Fahrzeug, Kajak, Bike und Reiseberichte erhalten dieselbe Galerie: Eyebrow,
-  Überschrift, kurzer Hinweis und Raster aus klickbaren Bildern mit
-  Bildunterschrift.
+- Jede **öffentliche Inhalts-Unterseite** erhält grundsätzlich eine Galerie –
+  auch neue Unterseiten. Dazu zählen insbesondere Fahrzeug, Kajak, Bike und
+  Reiseberichte. Eine Galerie entfällt nur, wenn sie für die betreffende Seite
+  ausdrücklich beauftragt oder entschieden ausgeschlossen wurde; diese
+  Ausnahme wird in der Seitenaufgabe beziehungsweise im Gesamtplan benannt.
+  Fehlendes Bildmaterial oder ein bislang nicht umgesetzter Abschnitt ist keine
+  stillschweigende Ausnahme.
+- Die Galerie besteht aus Eyebrow, Überschrift, kurzem Hinweis und einem Raster
+  aus klickbaren Bildern mit Bildunterschrift.
 - Desktop zeigt drei Spalten, Mobil zwei; die Kacheln nutzen 4:3. Die
   Vollansicht zeigt stets das unbeschnittene Bild über den gemeinsamen,
   tastaturbedienbaren Foto-Viewer.
-- Die Kajak-Galerie ist der lokal umgesetzte Musterfall: 11 Bilder, Auswahl
+- Die Kajak-Galerie ist der live umgesetzte Musterfall: 12 Bilder, Auswahl
   und Herkunft sind in `kajak-galerie-bildquellen.json` dokumentiert;
-  sichtbare Kennzeichen sind in der Webableitung anonymisiert. Bilder mit
-  Kindern werden erst nach ausdrücklicher Freigabe veröffentlicht. Der
-  Live-Rollout wird mit dieser Prüfung abgeschlossen. Weitere Galerien folgen
-  diesem Aufbau unverändert.
+  sichtbare Kennzeichen sind in der Webableitung anonymisiert. Die zwei Bilder
+  mit Kindern von hinten wurden für diese Galerie ausdrücklich freigegeben. Die
+  Galerie wurde am 22. September 2026 nach dem letzten Webdienst-Rollout live
+  verifiziert. Weitere Galerien folgen diesem Aufbau unverändert.
 
 ## Privater Bereich
 
@@ -103,13 +140,17 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 
 ## Verbindliche Freigabe-Reihenfolge
 
-1. Design Guide V1 freigeben.
-2. Kajak-Galerie als Referenz umsetzen. **Lokal erledigt; der Live-Status wird
-   mit diesem Rollout verifiziert.**
-3. Fahrzeug, Bike und Reise-Unterseiten auf Hero-, Galerie- und Link-Standard
-   bringen.
+1. Design Guide V1 freigeben. **Erledigt am 22. September 2026.**
+2. Kajak-Galerie als Referenz umsetzen. **Erledigt und am 22. September 2026
+   live verifiziert.**
+3. Fahrzeug, Bike und alle bestehenden Reise-Unterseiten auf Hero-, Galerie-
+   und Link-Standard bringen; jede Ausnahme vom Galerie-Standard ausdrücklich
+   dokumentieren. **Für Fahrzeug und Reiseberichte erledigt; die fünf
+   ausdrücklich als „in Vorbereitung“ markierten Radprofile bleiben bis zur
+   Bild- und Faktenfreigabe die dokumentierte Ausnahme.**
 4. Startseite und Footer nach diesem System angleichen und Desktop sowie Mobil
-   live abnehmen.
+   live abnehmen. **Erledigt am 22. September 2026; der Footer blieb bewusst
+   kurz und ohne konkurrierende Navigation.**
 
 ## Umsetzungshinweis
 

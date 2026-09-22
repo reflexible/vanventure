@@ -1,5 +1,5 @@
 /* Shared magazine navigation for every public VanVenture page. */
-html { overflow-x: clip; }
+html, body { overflow-x: clip; }
 body.nav-open { overflow: hidden; }
 .manifesto, .journeys, #fahrzeug, #ausruestung, #riverstar { scroll-margin-top: 78px; }
 

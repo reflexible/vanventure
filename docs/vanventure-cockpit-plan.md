@@ -42,7 +42,7 @@ Analytics-Routen oder private Cockpit-Daten.
 | Öffentliche Website | Statisches HTML/CSS/JavaScript, GitHub Pages | Unverändert lassen. |
 | Private Anwendung | Eigenes Node.js-ESM-HTTP-Backend in `editor/server.mjs` und Vanilla-JS-Client | Cockpit als zusätzliche, geschützte Route und API im selben Dienst entwickeln. |
 | Datenhaltung | PostgreSQL 18 via `pg`; PGlite nur für Tests | Cockpit-Tabellen in derselben PostgreSQL-Datenbank, mit klaren Tabellenpräfixen. |
-| Betrieb | Docker Compose, Caddy/HTTPS in Produktion | Bestehendes Image und Compose weiterverwenden; kein weiterer Dienst für die erste Ausbaustufe. |
+| Betrieb | Docker Compose, Caddy/HTTPS auf dem Contabo-Server in Produktion | Bestehendes Image und Compose weiterverwenden; kein weiterer Dienst für die erste Ausbaustufe. |
 | Zugriffsmodell | Lokale Benutzer, Passwort-Hashes, HttpOnly/SameSite-Strict-Sitzung, CSRF, Rollen `admin`/`editor` | Das bestehende Muster konsequent erweitern. |
 
 Es werden keine zusätzlichen Frontend-, Backend- oder Datenbank-Frameworks eingeführt.
@@ -308,7 +308,7 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
    Datenaufbewahrung verbindlich festlegen.
 2. OAuth-Consent-Screen, Produktions-Redirect-URI und minimale Scopes konfigurieren;
    Datenschutz-/Nutzungsanforderungen von Google prüfen.
-3. Cockpit-URL und Ausführungsort des täglichen Jobs im bestehenden Docker/Hetzner-
+3. Cockpit-URL und Ausführungsort des täglichen Jobs im bestehenden Docker/Contabo-
    Betrieb festlegen.
 
 ### Phase 1 – Sichere Grundlage
@@ -348,7 +348,7 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
    spezifizieren bzw. implementieren.
 3. Monitoring für fehlgeschlagene Syncs, abgelaufene Verbindung und lange fehlende
    Daten einrichten; Benachrichtigungskanal bewusst festlegen.
-4. Erst nach Datenschutz-, Sicherheits- und fachlicher Abnahme auf Hetzner aktivieren.
+4. Erst nach Datenschutz-, Sicherheits- und fachlicher Abnahme auf Contabo aktivieren.
 
 ### Phase 5 – Channel Audit & Content Intelligence
 

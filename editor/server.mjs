@@ -86,7 +86,7 @@ const server=http.createServer(async (req,res)=>{
   const send=(status,data,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8',...headers});res.end(JSON.stringify(data));};
   try {
     const url=new URL(req.url,origin), path=url.pathname;
-    if (/^\/(redaktion|cockpit|privat|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
+    if (/^\/(redaktion|cockpit|privat|benutzerverwaltung|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
     if ((req.method==='GET'||req.method==='HEAD') && (path==='/sitemap.xml'||path==='/robots.txt')) {
       res.writeHead(200,{'Content-Type':path==='/sitemap.xml'?'application/xml; charset=utf-8':'text/plain; charset=utf-8'});
       return res.end(req.method==='HEAD'?undefined:path==='/sitemap.xml'?sitemap():robots());
@@ -94,8 +94,8 @@ const server=http.createServer(async (req,res)=>{
     if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
       res.writeHead(301,{'Location':'/'+url.search}); return res.end();
     }
-    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css','/editor/private-account.css','/editor/private-nav.js'].includes(path)) {
-      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path==='/editor/private-account.css'?'private-account.css':path==='/editor/private-nav.js'?'private-nav.js':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
+    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/benutzerverwaltung','/benutzerverwaltung/','/editor/users.js','/editor/private.js','/editor/private.css','/editor/private-account.css','/editor/private-nav.js'].includes(path)) {
+      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/users.js'?'users.js':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path==='/editor/private-account.css'?'private-account.css':path==='/editor/private-nav.js'?'private-nav.js':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':path.startsWith('/benutzerverwaltung')?'users.html':'index.html';
       if(path==='/cockpit'||path==='/cockpit/')res.setHeader('Content-Security-Policy',cockpitPolicy);
       let content=readFileSync(resolve(root,'editor',file));
       if(file==='index.html'||file==='cockpit.html')content=Buffer.from(content.toString().replace('</head>','<link rel="stylesheet" href="/editor/private-account.css"><script src="/editor/private-nav.js" defer></script></head>'));
@@ -103,7 +103,7 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
     if(req.method==='GET'||req.method==='HEAD'){
-      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','kajak-hero.css','bike.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
+      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','equipment-pages.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','kajak-hero.css','ausruestung.html','bike.html','cube.html','scott-mountainbike.html','trek-gravelbike.html','woom-2.html','diamant-stadtraeder.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
       let relative;try{relative=decodeURIComponent(path).replace(/^\//,'')||'index.html';}catch{fail(400,'Ungültiger Pfad.');}
       const asset=/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_.-]+\.(png|jpe?g|webp|svg|gif|woff2)$/i.test(relative);
       if(publicFiles.has(relative)||/^[a-zA-Z][a-zA-Z0-9_-]*\.(css|js)$/.test(relative)||asset){

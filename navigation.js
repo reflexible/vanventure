@@ -5,8 +5,19 @@
   const navigation = header.querySelector('.main-navigation');
   const toggle = header.querySelector('.menu-toggle');
   const trips = header.querySelector('.nav-trips');
+  const kayak = header.querySelector('[data-nav="kayak"]');
+  const gearLink = header.querySelector('[data-nav="gear"]');
   const mobile = window.matchMedia('(max-width: 760px)');
   const actions = header.querySelector('.header-actions');
+
+  if (kayak && gearLink) {
+    const gear = document.createElement('details');
+    gear.className = 'nav-trips nav-gear';
+    gear.innerHTML = '<summary data-nav="gear" data-de="Ausrüstung" data-en="Gear">Ausrüstung</summary><div class="trip-menu"><a href="ausruestung.html" data-de="Übersicht" data-en="Overview">Übersicht</a><a href="kajak.html"><b data-de="Kajak" data-en="Kayak">Kajak</b><span data-de="Grabner Riverstar" data-en="Grabner Riverstar">Grabner Riverstar</span></a><a href="bike.html"><b data-de="Räder" data-en="Bikes">Räder</b><span data-de="in Vorbereitung" data-en="in progress">in Vorbereitung</span></a></div>';
+    gearLink.replaceWith(gear);
+    kayak.remove();
+  }
+  const gear = header.querySelector('.nav-gear');
 
   document.querySelectorAll('a[href="riverstar-entwurf.html"]').forEach((link) => {
     link.href = 'kajak.html';
@@ -34,11 +45,13 @@
     if (event.key !== 'Escape') return;
     closeMenu();
     trips?.removeAttribute('open');
+    gear?.removeAttribute('open');
     toggle?.focus();
   });
 
   document.addEventListener('click', (event) => {
     if (!mobile.matches && trips?.open && !trips.contains(event.target)) trips.removeAttribute('open');
+    if (!mobile.matches && gear?.open && !gear.contains(event.target)) gear.removeAttribute('open');
   });
 
   if (actions) {
@@ -79,7 +92,9 @@
       homepageSections.forEach(([section, key]) => { if (section.offsetTop <= marker) current = key; });
       header.querySelectorAll('[data-nav]').forEach((item) => item.removeAttribute('aria-current'));
       trips?.classList.remove('is-active');
+      gear?.classList.remove('is-active');
       if (current === 'trips') trips?.classList.add('is-active');
+      else if (current === 'gear' || current === 'kayak') gear?.classList.add('is-active');
       else if (current) header.querySelector(`[data-nav="${current}"]`)?.setAttribute('aria-current', 'location');
     };
     const requestUpdate = () => {

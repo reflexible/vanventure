@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-let csrf='',current=null,dirty=false,proposal=null,busy=false,editingUser=null;
+let csrf='',current=null,dirty=false,proposal=null,busy=false;
 function message(text){$('message').textContent=text;}
 async function api(path,method='GET',data){
   const r=await fetch(`/api/${path}`,{method,headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:data?JSON.stringify(data):undefined});
@@ -54,12 +54,11 @@ async function save(){collect();const r=await api(`stories/${current.story.slug}
 async function load(slug){current=await api(`stories/${slug}`);render();message('');}
 async function enter(session){
   csrf=session.csrf;$('name').textContent=session.displayName||session.name;$('account').hidden=false;$('login').hidden=true;$('setup').hidden=true;$('workspace').hidden=false;
-  for(const id of ['users-button','publish'])$(id).hidden=session.role!=='admin';
+  $('publish').hidden=session.role!=='admin';
   $('ai-status').textContent='Texte und Notizen werden in der Datenbank gespeichert. Beauftragt die Überarbeitung anschließend im Codex-Chat.';
   const stories=await api('stories');$('trip').replaceChildren();for(const s of stories){const o=document.createElement('option');o.value=s.slug;o.textContent=s.title;$('trip').append(o);}await load(stories[0].slug);
 }
 $('login-form').addEventListener('submit',run(async()=>{const form=new FormData($('login-form'));const session=await api('login','POST',Object.fromEntries(form));$('login-form').reset();await enter(session);}));
-$('logout').addEventListener('click',run(async()=>{if(dirty&&!confirm('Ungespeicherte Änderungen verwerfen und abmelden?'))return;await api('logout','POST',{});location.reload();}));
 $('workspace').addEventListener('input',e=>{if(e.target.matches('input,textarea'))markDirty();});
 $('save').addEventListener('click',run(async()=>{await save();message('Änderungen gespeichert.');}));
 $('reload').addEventListener('click',run(async()=>{if(dirty&&!confirm('Ungespeicherte Änderungen verwerfen und neu laden?'))return;await load(current.story.slug);}));
@@ -80,24 +79,11 @@ $('setup-form').addEventListener('submit',run(async()=>{
   const b=Object.fromEntries(new FormData($('setup-form')));if(b.password!==b.confirmPassword)throw new Error('Die Passwörter stimmen nicht überein.');
   await api('setup','POST',b);const session=await api('login','POST',{name:b.name,password:b.password});$('setup-form').reset();await enter(session);message('Willkommen! Weitere Konten könnt ihr unter Benutzer anlegen.');
 }));
-function newUser(){editingUser=null;$('user-form').reset();$('user-form').elements.name.disabled=false;$('user-form').elements.password.required=true;$('user-form-title').textContent='Neuen Benutzer anlegen';}
-async function users(){
-  const list=await api('users');$('user-list').replaceChildren();
-  for(const user of list){const row=document.createElement('div');row.className='user-row';const name=document.createElement('span');name.textContent=`${user.display_name||user.name} · ${user.name} · ${user.role==='admin'?'Administrator':'Redaktion'}${user.enabled?'':' · inaktiv'}`;
-    row.append(name,button('Bearbeiten',()=>{editingUser=user.name;const f=$('user-form').elements;f.name.value=user.name;f.name.disabled=true;f.displayName.value=user.display_name||user.name;f.googleEmail.value=user.google_email||'';f.role.value=user.role;f.enabled.checked=user.enabled;f.password.value='';f.password.required=false;$('user-form-title').textContent='Benutzer bearbeiten · Passwort leer lassen, um es beizubehalten';}));if(user.google_email){const note=document.createElement('small');note.textContent=`Google: ${user.google_email}${user.google_linked_at?' · bestätigt':''}`;row.append(note);}$('user-list').append(row);}
-}
-$('users-button').addEventListener('click',run(async()=>{newUser();await users();$('users-message').textContent='';$('users-dialog').showModal();}));
-$('new-user').addEventListener('click',newUser);
-$('user-form').addEventListener('submit',dialogRun('users-message',async()=>{
-  const f=$('user-form').elements,b=Object.fromEntries(new FormData($('user-form')));b.enabled=f.enabled.checked;if(editingUser)b.name=editingUser;
-  await api(editingUser?`users/${encodeURIComponent(editingUser)}`:'users',editingUser?'PUT':'POST',b);newUser();await users();$('users-message').textContent='Benutzer gespeichert. Geänderte Konten müssen sich neu anmelden.';
-}));
-$('password-button').addEventListener('click',()=>{$('password-form').reset();$('password-message').textContent='';$('password-dialog').showModal();});
 $('password-form').addEventListener('submit',dialogRun('password-message',async()=>{const b=Object.fromEntries(new FormData($('password-form')));if(b.password!==b.confirmPassword)throw new Error('Die Passwörter stimmen nicht überein.');await api('password','POST',b);dirty=false;location.reload();}));
 $('draft-preview').addEventListener('click',e=>{if(dirty){e.preventDefault();message('Bitte zuerst speichern, bevor ihr die Vorschau öffnet.');}});
 $('publish').addEventListener('click',run(async()=>{if(dirty){message('Bitte zuerst speichern und die Vorschau prüfen.');return;}if(!confirm('Diesen gespeicherten Reisebericht für die Website freigeben? Er wird dort sofort sichtbar.'))return;await api(`stories/${current.story.slug}/publish`,'POST',{revision:current.revision});message('Reisebericht für die Website freigegeben.');}));
 async function start(){
-  try{await enter(await api('session'));return;}catch(error){if(error.message!=='Bitte anmelden.')message(`Bestehende Sitzung konnte nicht geladen werden: ${error.message}`);}
+  try{const session=await api('session');await enter(session);return;}catch(error){if(error.message!=='Bitte anmelden.')message(`Bestehende Sitzung konnte nicht geladen werden: ${error.message}`);}
   try{if((await api('setup')).available){$('login').hidden=true;$('setup').hidden=false;const token=new URL(location.href).searchParams.get('setup');if(token){$('setup-form').elements.setupToken.value=token;history.replaceState(null,'','/redaktion');}}}catch(error){message(error.message);}
 }
 start();

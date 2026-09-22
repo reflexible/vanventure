@@ -1,6 +1,6 @@
 # VanVenture: Homepage, Redaktion und PostgreSQL
 
-Die Anwendung läuft vollständig in Docker: Webserver und PostgreSQL als Compose-Projekt, auf Hetzner zusätzlich Caddy für HTTPS. Konten, Entwürfe, veröffentlichte Berichte, Versionshistorie und KI-Einstellungen werden in PostgreSQL gespeichert. Passwort-Hashes sind gesalzen; der KI-Schlüssel wird mit AES-256-GCM verschlüsselt.
+Die Anwendung läuft vollständig in Docker: Webserver und PostgreSQL als Compose-Projekt, auf dem Contabo-Server zusätzlich Caddy für HTTPS. Konten, Entwürfe, veröffentlichte Berichte, Versionshistorie und KI-Einstellungen werden in PostgreSQL gespeichert. Passwort-Hashes sind gesalzen; der KI-Schlüssel wird mit AES-256-GCM verschlüsselt.
 
 ## Verwendung über die Homepage
 
@@ -13,7 +13,7 @@ Nach dem Login gibt es:
 - „Texte und Wünsche speichern“: gemeinsame Texte und Notizen in PostgreSQL ablegen. Danach im Codex-Chat die Überarbeitung und Aktualisierung der Homepage beauftragen. Es erfolgt keine API-Anfrage.
 - Vorschau des gespeicherten Entwurfs im Seitenlayout.
 - „Für Website freigeben“ für Administratoren: Der gespeicherte Stand wird sofort auf der Website sichtbar; Startseitenübersicht und Reisebericht verwenden denselben freigegebenen Inhalt.
-- „Benutzer“ für Administratoren: Neue Konten anlegen, Rollen vergeben, Anzeigenamen ändern, Passwörter zurücksetzen und Konten deaktivieren. Optional wird dort die vorab freigegebene Google-Adresse hinterlegt; erst die bestätigte Google-Anmeldung bindet deren stabile Google-Kennung. Der letzte aktive Administrator kann nicht entfernt oder herabgestuft werden.
+- „Benutzerverwaltung“ steht Administratoren als eigener Eintrag in der linken privaten Navigation zur Verfügung. Dort lassen sich neue Konten anlegen, Rollen vergeben, Anzeigenamen ändern, Passwörter zurücksetzen und Konten deaktivieren. Optional wird dort die vorab freigegebene Google-Adresse hinterlegt; erst die bestätigte Google-Anmeldung bindet deren stabile Google-Kennung. Der letzte aktive Administrator kann nicht entfernt oder herabgestuft werden.
 - Eigenes Passwort ändern. Neue Passwörter brauchen mindestens zwölf Zeichen. Änderungen an Konten beenden deren bestehende Sitzungen.
 
 Die Rollen sind „Redaktion“ (Texte und Notizen) und „Administrator“ (zusätzlich Benutzer und Freigaben). Die Überarbeitung erfolgt im Codex-Chat im Rahmen des vorhandenen Abos; der Website-Knopf nutzt keine kostenpflichtige API. Gespeicherte frühere KI-Einstellungen bleiben ungenutzt erhalten.
@@ -39,7 +39,7 @@ Die Ausgabe enthält ausschließlich Reiseberichte, Notizen und Versionsnummern,
 
     docker compose exec -T web node editor/redaction.mjs apply REISE-SLUG
 
-JSON kommt über stdin. Der Befehl prüft die Version, erhält Bilder und Reisedaten, speichert den überarbeiteten Bericht und gibt ihn für die Homepage frei. Erledigte Notizen werden geleert; die bisherigen gespeicherten Stände bleiben in der Historie. Bei zwischenzeitlichen Änderungen erneut lesen und abgleichen. Keine automatische Zeitplanung: Der Auftrag wird im Chat erteilt. Nach Umzug auf Hetzner benötigt der Agent einen autorisierten Zugang zum dortigen Container.
+JSON kommt über stdin. Der Befehl prüft die Version, erhält Bilder und Reisedaten, speichert den überarbeiteten Bericht und gibt ihn für die Homepage frei. Erledigte Notizen werden geleert; die bisherigen gespeicherten Stände bleiben in der Historie. Bei zwischenzeitlichen Änderungen erneut lesen und abgleichen. Keine automatische Zeitplanung: Der Auftrag wird im Chat erteilt. Für die Produktion benötigt der Agent einen autorisierten Zugang zum Contabo-Container.
 
 ## Infrastruktur und Entwicklung
 
@@ -54,7 +54,7 @@ configure ergänzt fehlende private Geheimnisse in .env und gibt sie nicht aus. 
 
 Logs: docker compose logs -f web. Stoppen: docker compose down. Das Datenbankvolume bleibt erhalten. down -v löscht dessen Daten und ist kein normaler Stoppbefehl. Das initialisierte PostgreSQL-Passwort nicht nur in .env ändern; PostgreSQL übernimmt Umgebungswerte nicht automatisch in bestehende Konten.
 
-## Hetzner
+## Contabo
 
 Projekt mit Dockerfile, compose.yaml, deploy/, editor/, package-lock.json, öffentlichen Seiten, travel-stories.json und assets/ auf den Linux-Server übertragen. Docker Engine und Compose müssen dort installiert sein. .env separat geschützt übertragen (chmod 600 .env). EDITOR_SECRET unbedingt erhalten: Damit werden vorhandene KI-Schlüssel entschlüsselt. node_modules, Analysewerkzeuge und Originalfotoarchive sind nicht nötig.
 

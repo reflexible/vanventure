@@ -81,8 +81,13 @@ automatische Google-Kontoübernahme.
   Konto nach Anlage des separaten OAuth-Webclients live abnehmen. Wechsel
   Redaktion ↔ Cockpit, CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit
   nach Sperrung oder Rollenänderung sind automatisiert für die gemeinsame
-  serverseitige Sitzung geprüft. **Live offen:** echter Login mit einem
-  freigegebenen und einem nicht freigegebenen Google-Konto abnehmen.
+  serverseitige Sitzung geprüft. **Lokal geprüft am 22. September 2026:**
+  vollständige Testreihe (18 Tests) grün. **Live technisch geprüft:**
+  `/healthz`, `/redaktion` und `/cockpit` antworten mit HTTP 200; der
+  OAuth-Start für `/cockpit` leitet mit HTTP 303 zu `accounts.google.com`.
+  **Live offen:** echter Login mit einem freigegebenen und einem nicht
+  freigegebenen Google-Konto. Die weitergehende Serverprüfung ist erst nach
+  verifizierter Aktualisierung des geänderten SSH-Hostschlüssels möglich.
 
 **Rolloutstatus, 22. September 2026:** Die technische Grundlage wurde auf
 Marvin bereitgestellt und nach Webdienst-Neustart mit `/healthz`, `/redaktion`
@@ -100,7 +105,13 @@ Die private Übersicht nutzt den Arbeitsbereich neben der Leiste breit und
 linksbündig; kein zusätzliches, leeres Navigationsraster darf Platz belegen.
 Benutzername, Passwortwechsel und Abmeldung erscheinen ausschließlich in der
 gemeinsamen privaten Navigation beziehungsweise in `/privat`; Redaktion und
-Cockpit duplizieren diese Kontofunktionen nicht.
+Cockpit duplizieren diese Kontofunktionen nicht. **Am 22. September 2026 live
+ausgerollt und geprüft:** „Abmelden“ steht direkt unter der Kontoanzeige. Für
+Administratoren führt der eigene Navigationspunkt auf die geschützte Seite
+`/benutzerverwaltung`; Redaktionskonten sehen ihn nicht. Der frühere
+Redaktions-Dialog wurde entfernt. Nach dem Webdienst-Neustart antworteten
+`/healthz`, `/redaktion`, `/cockpit` und `/benutzerverwaltung` mit HTTP 200;
+PostgreSQL und Caddy blieben unverändert.
 Auf jeder öffentlichen Seite stehen die Sprachumschaltung und der Login direkt
 nebeneinander. Die mobile Navigation liegt als eigene, kontrastreiche Ebene über
 dem Hero-Bild und bleibt bei kleinen Viewports ohne sichtbaren Scrollbalken
@@ -112,14 +123,54 @@ bedienbar.
   gespiegelten Webbild (Boot rechts), Farbverlauf und Einleitung umsetzen.
 - [ ] Den dokumentierten Hero-Standard anschließend auf die verbleibenden
   öffentlichen Unterseiten anwenden und je Ansicht prüfen.
+- [ ] Den Galerie-Standard auf jede bestehende öffentliche Inhalts-Unterseite
+  anwenden. Eine Ausnahme ist nur gültig, wenn sie für genau diese Seite
+  ausdrücklich entschieden und hier benannt wurde; fehlendes Bildmaterial ist
+  keine Ausnahme.
 
-Der [Design Guide V1](design-guide.md) liegt zur Freigabe vor. Der Kajak-Hero
-ist live; die Kajak-Galerie ist lokal fertig vorbereitet. Auswahl, Herkunft und
-Kennzeichenredaktion der 11 veröffentlichten Galeriebilder sind dokumentiert;
-Bilder mit Kindern bleiben bis zu einer ausdrücklichen Freigabe ausgeschlossen.
-Der Live-Rollout wird mit dieser Prüfung abgeschlossen.
-Der Galerie-Standard wird erst nach Freigabe des Guides auf weitere Unterseiten
-übertragen.
+Der Hero-, Galerie- und Link-Standard ist für die bestehenden öffentlichen
+Seiten umgesetzt und live geprüft. Offen bleiben ausschließlich die fünf
+explizit als unvollständig markierten Radprofile; ihre Galerie-Ausnahme gilt
+nur bis zur Auswahl freigegebener Originalbilder und Fakten.
+
+Der [Design Guide V1](design-guide.md) ist am 22. September 2026 freigegeben
+worden und gilt für alle öffentlichen Seiten. Bei jeder gestalterischen
+Änderung wird geprüft und ausdrücklich darauf hingewiesen, ob der Guide ergänzt
+werden soll. Der Kajak-Hero und die Kajak-Galerie sind live. Auswahl, Herkunft und
+Kennzeichenredaktion der 12 veröffentlichten Galeriebilder sind dokumentiert;
+die zwei Bilder mit Kindern von hinten sind für diese Galerie ausdrücklich
+freigegeben. Die Galerie wurde am 22. September 2026 nach dem letzten
+Webdienst-Rollout live verifiziert.
+Die am 22. September ergänzte Galerie-Pflicht ist im freigegebenen Design Guide
+und diesem Gesamtplan festgehalten. Sie wird auf jede weitere öffentliche
+Inhalts-Unterseite übertragen; derzeit ist außerhalb der bereits live geprüften
+Kajak- und Reisegalerien noch keine zusätzliche Galerie als live umgesetzt
+bestätigt.
+
+**Fahrzeuggalerie, live geprüft am 22. September 2026:** Drei bereits
+veröffentlichte, visuell geprüfte Webbilder (eins mit anonymisiertem
+Kennzeichen) bilden nun die klickbare Galerie auf `vehicle.html`. Der
+gemeinsame Foto-Viewer stellt die Bilder vergrößert und tastaturbedienbar dar.
+
+**Ausrüstungsstruktur, live geprüft am 22. September 2026:** Kajak und Räder
+sind Unterseiten der neuen Ausrüstungsübersicht. Die Übersicht folgt dem
+verbindlichen Hero- und Galerie-Standard mit klickbaren Bildern,
+Kontrastverlauf und eigener mobiler Lesefläche. Die Profile für Sabines Cube,
+Helmuts Scott-Mountainbike, Helmuts Trek-Gravelbike, Adrians Woom 2 sowie die
+beiden Diamant-Stadträder sind als „in Vorbereitung“ angelegt. Bis je Profil
+freigegebene Originalbilder und Fakten vorliegen, ist das Weglassen einer
+Galerie für genau diese fünf Profile ausdrücklich und vorläufig erlaubt. Die
+Übersicht, die Radseite und alle fünf Profile wurden nach Webdienst-Neustart
+auf `https://vanventure.at` mit HTTP 200 geprüft.
+
+**Mobil-Hero-Rollout, 22. September 2026:** Die responsive Lesefläche für
+Startseite, Fahrzeug, Reiseberichte und Kajak ist live. Sie schaltet bis
+600 CSS-Pixel im Hochformat um, hält die Hero-Texte außerhalb des Bildbereichs
+und beseitigt den horizontalen Überlauf der Startseite. Nach dem gezielten
+Webdienst-Neustart wurden `/healthz`, Startseite und Kajakseite intern sowie
+die öffentliche Startseite in S24-Breite geprüft. PostgreSQL und Caddy blieben
+ohne Neustart. **Verbleibend:** Design Guide V1 als Ganzes freigeben und den
+Hero-Standard auf weitere noch ausstehende Unterseiten anwenden.
 
 ### 1B. Englische Redaktionstexte auf den älteren Unterseiten ergänzen
 

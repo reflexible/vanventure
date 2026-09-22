@@ -33,3 +33,18 @@
  .hero-intro,.story-hero .story-subtitle,.vehicle-lead{font-size:17px;margin-top:22px}
  .hero-meta,.story-hero .story-meta{position:static;margin-top:26px}
 }
+
+@media (max-width:600px) and (orientation:portrait){
+ :root{--mobile-hero-photo-height:clamp(250px,70vw,330px)}
+ .hero,.story-hero,.vehicle-hero{display:block;min-height:0;height:auto;padding:var(--mobile-hero-photo-height) 0 0;background-color:var(--hero-paper)}
+ .hero-media,.hero-shade,.story-hero::before{top:0;bottom:auto;height:var(--mobile-hero-photo-height)}
+ .story-hero-image{top:0;bottom:auto;height:var(--mobile-hero-photo-height);object-position:right center}
+ .hero-content,.story-hero-copy,.hero-copy{position:relative;z-index:1;width:100%;max-width:none;margin:0;padding:28px 24px 30px;background:var(--hero-paper)}
+ .hero h1,.story-hero h1,.vehicle-hero h1{font-size:clamp(38px,11vw,48px);line-height:1.04}
+ .hero-intro,.story-hero .story-subtitle,.vehicle-lead{font-size:17px;margin-top:22px}
+ .hero .eyebrow,.story-hero .eyebrow,.vehicle-hero .eyebrow{margin-bottom:18px}
+ .hero-meta,.story-hero .story-meta{position:relative;right:auto;bottom:auto;left:auto;z-index:1;width:100%;margin:0;padding:0 24px 28px;background:var(--hero-paper)}
+ .hero-meta{gap:10px}
+ .vehicle-hero{background-size:100% var(--mobile-hero-photo-height),auto var(--mobile-hero-photo-height);background-position:left top,right top;background-repeat:no-repeat}
+ .vehicle-hero .hero-stats{position:relative;z-index:1;width:100%;margin:0;padding:0 24px 30px;background:var(--hero-paper)}
+}

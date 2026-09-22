@@ -134,7 +134,9 @@ Einstieg.
 Die öffentliche Navigation bietet zusätzlich einen sichtbaren Login-Link direkt
 neben der Sprachwahl; sein Flyout enthält Passwort- und Google-Anmeldung. Nach
 der Anmeldung führt `/privat` als geschützte Übersicht mit
-fester linker Navigation zu Übersicht, Redaktion, Cockpit und Profil-Einstellungen,
+fester linker Navigation zu Übersicht, Redaktion, Cockpit und Profil-Einstellungen;
+Administratoren erhalten zusätzlich „Benutzerverwaltung“ (am 22. September
+2026 live ausgerollt und mit Healthcheck sowie privaten Routen geprüft),
 die auf allen geschützten Seiten erhalten bleibt. Der private Bereich zeigt
 Benutzername und Anmeldeart sowie bei Google die zugeordnete Adresse nur lesbar.
 Nur Passwort-Konten erhalten eine frei pflegbare Kontakt-E-Mail und einen

@@ -30,11 +30,17 @@ Arbeitsliste.
 | Master Context | Tabelle/Oberfläche vorhanden, Produktion: 0 Einträge | Oberfläche erledigt; erste geprüfte Fakten bleiben offen. |
 | Traffic/Retention | Produktion: 46 Traffic- und 200 Retention-Zeilen | Erfassung erledigt; Darstellung und fachliche Auswertung bleiben offen. |
 | Audit V1 | Flow Trail 986 öffentliche Views; Norwegen 108 und Sardinien 38 Minuten Watchtime/365 Tage; Trolltunga 149 Views bis Tagesabschluss, 120 aus Shorts-Feed | Erledigt, als Analysegrundlage im Gesamtplan geführt. |
-| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert, auf Marvin ausgerollt und mit Google-Weiterleitung geprüft | Zwei Admin-Adressen und der separate Client sind privat hinterlegt; die echte Anmeldung mit freigegebenem und abgelehntem Konto bleibt offen. |
+| Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert. Lokal sind 18 Tests grün; live antworten `/healthz`, `/redaktion` und `/cockpit` mit 200, der OAuth-Start leitet zu Google weiter. Der SSH-Hostschlüssel des Contabo-Servers wurde über dessen VNC-Konsole verifiziert und der Vertrauenseintrag aktualisiert. | Zwei Admin-Adressen und der separate Client sind privat hinterlegt; die echte Anmeldung mit freigegebenem und abgelehntem Konto bleibt offen. |
+| Private Benutzerverwaltung | Eigener linker Navigationspunkt für Administratoren führt auf die geschützte Seite `/benutzerverwaltung`; Redaktionskonten sehen ihn nicht. | Am 22. September nach Webdienst-Neustart mit `/healthz`, Redaktion, Cockpit und Benutzerverwaltung live geprüft; PostgreSQL und Caddy blieben unverändert. |
 | Sitzungsspeicherung | Sitzungen liegen gehasht mit Ablauf und CSRF-Wert in PostgreSQL; `auth_version`, Sperrung und Abmeldung prüfen bzw. widerrufen sie serverseitig | Erledigt; nach OAuth-Client-Anlage live abnehmen. |
 | YouTube trennen | Technische Referenz fordert `POST /api/cockpit/youtube/disconnect`; Route/Umsetzung fehlt | Offen und ergänzt. |
 | Kanalimport | Code paginiert, beendet aber bei 500 Videos | Offen und ergänzt. |
 | Planmetriken | Technische Referenz nennt `content_item_metrics`; Tabelle/CRUD fehlen | Offen und ergänzt. |
+| Kajak-Galerie | 12 freigegebene Bilder, dokumentierte Herkunft und anonymisierte Kennzeichen; die zwei Bilder mit Kindern sind ausschließlich von hinten gezeigt | Am 22. September nach Webdienst-Rollout auf `https://vanventure.at/kajak.html` live geprüft; der Design-Guide bleibt zur Freigabe offen. |
+| Galerie-Default | Jede öffentliche Inhalts-Unterseite erhält eine Galerie; Ausnahmen müssen für die jeweilige Seite ausdrücklich entschieden und im Gesamtplan festgehalten sein | Mit der Freigabe von Design Guide V1 am 22. September verbindlich. Über die bereits verifizierten Kajak- und Reisegalerien hinaus ist noch kein zusätzlicher Live-Rollout bestätigt. |
+| Fahrzeuggalerie | Drei geprüfte Fahrzeugbilder, inklusive einer anonymisierten Frontansicht, als klickbare Galerie mit gemeinsamem Foto-Viewer | Am 22. September nach Webdienst-Neustart auf `https://vanventure.at/vehicle.html` mit HTTP 200 live geprüft. |
+| Ausrüstung → Räder | Ausrüstungsübersicht, Radübersicht und fünf klar unvollständige Profile für Cube, Scott, Trek, Woom 2 und Diamant angelegt | Am 22. September nach Webdienst-Neustart auf `https://vanventure.at/ausruestung.html`, der Radübersicht und allen fünf Profilen mit HTTP 200 live geprüft. Die Ausrüstungsübersicht erfüllt Hero- und Galerie-Standard samt mobiler Lesefläche und klickbaren Bildern. Die fünf Profile sind `noindex` und haben bis zur Auswahl freigegebener Originalbilder eine ausdrücklich dokumentierte, vorläufige Galerie-Ausnahme. |
+| Benutzerverwaltung | Der alte Verwaltungszugang im Kopf der Redaktion und sein Dialog entfernt | Am 22. September nach Webdienst-Neustart geprüft: Die Benutzerverwaltung ist nur noch für Administratoren über die gemeinsame private Seitenleiste auf der eigenen geschützten Seite `/benutzerverwaltung` erreichbar; „Abmelden“ steht direkt unter der Kontoanzeige. |
 
 ## Übernommene Lücken
 
@@ -55,6 +61,7 @@ belegt, fehlten aber zuvor im Gesamtplan. Sie wurden als offene Punkte ergänzt:
 
 Der Gesamtplan enthält jetzt alle belegten offenen Punkte aus den geprüften
 Plan-, Phasen- und Referenzdokumenten. Historische Dokumente führen keine
-eigenen Aufgabenlisten mehr. Neue Arbeit wird ausschließlich im Gesamtplan
-angelegt; bei jedem Abschluss wird dieser Audit bei Bedarf erneut gegen Code und
-Produktion abgeglichen.
+eigenen Aufgabenlisten mehr. Der am 22. September veröffentlichte Kajak-Stand
+ist in Gesamtplan, Design Guide und diesem Prüfprotokoll gleich ausgewiesen.
+Neue Arbeit wird ausschließlich im Gesamtplan angelegt; bei jedem Abschluss
+wird dieser Audit bei Bedarf erneut gegen Code und Produktion abgeglichen.

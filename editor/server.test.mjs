@@ -30,7 +30,7 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     assert.ok((await (await fetch(origin+'/redaktion')).text()).includes('login-form'));
     assert.match(await (await fetch(origin+'/editor/client.js')).text(),/async function start\(\)/);
     assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
-    assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);assert.match(await (await fetch(origin+'/editor/private-account.css')).text(),/account-facts/);assert.match(await (await fetch(origin+'/editor/private-nav.js')).text(),/private-app-shell/);assert.match(await (await fetch(origin+'/redaktion')).text(),/private-nav\.js/);
+    assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);assert.match(await (await fetch(origin+'/editor/private-account.css')).text(),/account-facts/);const privateNavigation=await (await fetch(origin+'/editor/private-nav.js')).text();assert.match(privateNavigation,/private-app-shell/);assert.match(privateNavigation,/Benutzerverwaltung/);assert.match(privateNavigation,/benutzerverwaltung/);assert.match(await (await fetch(origin+'/redaktion')).text(),/private-nav\.js/);assert.match(await (await fetch(origin+'/benutzerverwaltung')).text(),/Benutzerverwaltung/);assert.match(await (await fetch(origin+'/editor/users.js')).text(),/async function users/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
     assert.equal((await fetch(origin+'/healthz')).status,200);
     assert.equal((await fetch(origin+'/api/auth/google/start?returnTo=/cockpit',{redirect:'manual'})).status,503);

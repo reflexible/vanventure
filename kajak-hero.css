@@ -19,3 +19,14 @@
   .kayak-hero-meta{right:23px;bottom:18px;max-width:220px;text-align:right}
   .intro-label h2{font-size:44px}
 }
+
+@media (max-width:600px) and (orientation:portrait){
+  :root{--kayak-mobile-photo-height:clamp(250px,70vw,330px)}
+  .kayak-page-hero{display:block;min-height:0;padding:var(--kayak-mobile-photo-height) 0 0;background:#f2f3e9}
+  .kayak-page-hero>.photo-link,.kayak-page-hero::before{top:0;bottom:auto;height:var(--kayak-mobile-photo-height)}
+  .kayak-page-hero>.photo-link img{object-position:center 70%}
+  .kayak-hero-copy{position:relative;z-index:1;width:100%;max-width:none;margin:0;padding:28px 24px 30px;background:#f2f3e9}
+  .kayak-hero-copy h1{font-size:clamp(38px,11vw,48px);line-height:1.04}
+  .kayak-hero-copy p:last-child{font-size:17px;margin-top:22px}
+  .kayak-hero-meta{position:relative;right:auto;bottom:auto;z-index:1;max-width:none;margin:0;padding:0 24px 28px;background:#f2f3e9;color:#355344;text-align:left;text-shadow:none}
+}
