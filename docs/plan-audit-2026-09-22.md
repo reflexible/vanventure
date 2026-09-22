@@ -26,8 +26,8 @@ Arbeitsliste.
 | --- | --- | --- |
 | Video-Klassifikation | Produktion: 2 `short`, 4 `legacy_clip`, 19 `longform` | Erledigt, durchgestrichen. |
 | Redaktionsentscheidungen | Produktion: 7 `keep`, 9 `repackage`, 9 `do_not_pursue` | Erledigt, durchgestrichen. |
-| Planner | Produktion: 36 `idea`, 3 `validated`; `estimated_hours`/`actual_hours` vorhanden, beide noch ohne Werte | Oberfläche erledigt; Erfassung und spätere Auswertung bleiben offen. |
-| Master Context | Tabelle/Oberfläche vorhanden, Produktion: 0 Einträge | Oberfläche erledigt; erste geprüfte Fakten bleiben offen. |
+| Planner | Produktion: 36 `idea`, 2 `validated`, 1 `briefed`; der VAN-Test „GCS nach einem Jahr“ enthält einen verbindlichen Brief und 24 geschätzte Stunden, `actual_hours` bleibt leer | VAN-Brief erledigt; EXPLORE, MOVE und die spätere Auswertung bleiben offen. |
+| Master Context | Produktion: 10 freigegebene VAN-/GCS-Fakten | Erste geprüfte Fakten erledigt; Fakten zu EXPLORE und MOVE bleiben offen. |
 | Traffic/Retention | Produktion: 46 Traffic- und 200 Retention-Zeilen | Erfassung erledigt; Darstellung und fachliche Auswertung bleiben offen. |
 | Audit V1 | Flow Trail 986 öffentliche Views; Norwegen 108 und Sardinien 38 Minuten Watchtime/365 Tage; Trolltunga 149 Views bis Tagesabschluss, 120 aus Shorts-Feed | Erledigt, als Analysegrundlage im Gesamtplan geführt. |
 | Gemeinsamer Google-Login | Additive Google-Provider-/`sub`-/E-Mail-Daten, allowlist-geprüfte `/api/auth/google/*`-Routen und getrennte Konfigurationsnamen sind implementiert. Lokal sind 18 Tests grün; live antworten `/healthz`, `/redaktion` und `/cockpit` mit 200, der OAuth-Start leitet zu Google weiter. Anmeldung mit einem freigegebenen sowie Ablehnung eines nicht freigegebenen Google-Kontos sind live abgenommen. Der SSH-Hostschlüssel des Contabo-Servers wurde über dessen VNC-Konsole verifiziert und der Vertrauenseintrag aktualisiert. | Abgeschlossen; zwei Admin-Adressen und der separate Client sind privat hinterlegt. |

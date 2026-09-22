@@ -102,6 +102,20 @@
       "path": "docs/plan-audit-2026-09-22.md",
       "role": "audit-reference",
       "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/source-notes/gcs-1-jahr-erfahrung.md",
+      "role": "editorial-reference",
+      "requiredCanonicalPhrases": [
+        "GCS nach einem Jahr"
+      ]
+    },
+    {
+      "path": "docs/production-briefs/gcs-nach-einem-jahr.md",
+      "role": "editorial-reference",
+      "requiredCanonicalPhrases": [
+        "GCS nach einem Jahr"
+      ]
     }
   ]
 }

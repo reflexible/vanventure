@@ -77,7 +77,8 @@ automatische Google-Kontoübernahme.
 - ~~Audit-Einträge für Anmeldung, Abmeldung, fehlgeschlagene Freigaben und
   administrative Konto-Zuordnungen speichern – ohne Tokens, Secrets oder
   vollständige sensible Identitätsdaten in Logs.~~
-- ~~Gültige Anmeldung per Google und nicht freigegebenes Konto nach Anlage des
+- ~~Automatisiert prüfen: gültige Anmeldung per Google und nicht freigegebenes
+  Konto nach Anlage des
   separaten OAuth-Webclients live abnehmen. Wechsel Redaktion ↔ Cockpit,
   CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit nach Sperrung oder
   Rollenänderung sind automatisiert für die gemeinsame serverseitige Sitzung
@@ -180,14 +181,24 @@ Hero-Standard auf weitere noch ausstehende Unterseiten anwenden.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 
-- [ ] Für die drei validierten Tests jeweils Zielgruppe, Nutzenversprechen,
+- ~~Für den VAN-Test „GCS nach einem Jahr“ Zielgruppe, Nutzenversprechen,
+  Format, Ziel/KPI, geschätzte Stunden und Verwertung verbindlich festlegen.~~
+  Der vollständige [Production Brief](production-briefs/gcs-nach-einem-jahr.md)
+  ist im Live-Planner als `briefed` mit 24 geschätzten Stunden hinterlegt.
+- [ ] Für die zwei übrigen validierten Tests EXPLORE (California → Hymer) und
+  MOVE (Bike oder Kajak / Basecamp) jeweils Zielgruppe, Nutzenversprechen,
   Format, Ziel/KPI, geschätzte Stunden und Verwertung verbindlich festlegen.
-- [ ] Für jeden Test das Paket festlegen: Longform → 2 eigenständige
-  Shorts/Reels → belegte Website-Ergänzung → geprüfte Context-Fakten →
-  28-Tage-Review.
-- [ ] Die ersten geprüften Fakten zu den drei Tests im Master Context anlegen;
-  die Verwaltungsoberfläche ist live, der Produktionsbestand enthält aktuell
-  noch keine Context-Einträge.
+- ~~Für den VAN-Test das Paket Longform → 2 eigenständige Shorts/Reels →
+  belegte Website-Ergänzung → geprüfte Context-Fakten → 28-Tage-Review
+  festlegen.~~ Die einzelnen Produktions- und Freigabeschritte bleiben bis zur
+  Veröffentlichung offen.
+- [ ] Für EXPLORE und MOVE die jeweiligen Pakete festlegen: Longform → 2
+  eigenständige Shorts/Reels → belegte Website-Ergänzung → geprüfte
+  Context-Fakten → 28-Tage-Review.
+- ~~Die ersten geprüften Fakten zum VAN-Test im Master Context anlegen.~~ Zehn
+  freigegebene, dauerhafte GCS-Fakten sind in Produktion gespeichert.
+- [ ] Die ersten geprüften Fakten zu EXPLORE und MOVE im Master Context
+  anlegen.
 - [ ] Nach jeder Veröffentlichung tatsächliche Produktionsstunden ergänzen und
   nach frühestens 28 Tagen Nutzen pro investierter Stunde bewerten.
 
