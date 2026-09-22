@@ -149,7 +149,10 @@ const server=http.createServer(async (req,res)=>{
     if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
     if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf));
     if (path==='/api/logout'&&req.method==='POST') {sessions.delete(token);return send(200,{}, {'Set-Cookie':cookie('',0)});}
-    if(path==='/api/cockpit/health'&&req.method==='GET')return send(200,{status:'ok',phase:3});
+    if(path==='/api/cockpit/health'&&req.method==='GET'){
+      const health=await db.cockpitHealth(),intervalHours=await cockpitSyncIntervalHours(),lastFinished=health.lastRun?.finished_at?new Date(health.lastRun.finished_at).getTime():0,stale=!!(health.connection&&intervalHours&&(!lastFinished||Date.now()-lastFinished>(intervalHours+2)*60*60*1000));
+      return send(200,{status:health.connection&&(!health.lastRun||health.lastRun.status==='succeeded')&&!stale?'ok':'warning',phase:4,intervalHours,stale,connection:health.connection,lastRun:health.lastRun});
+    }
     if(path==='/api/cockpit/overview'&&req.method==='GET'){
       await db.cockpitAudit(activeUser.name,'cockpit.overview.viewed','cockpit','phase-3',null,{role:activeUser.role});
       return send(200,await db.cockpitOverview());
@@ -239,7 +242,7 @@ const server=http.createServer(async (req,res)=>{
     }
     fail(405,'Methode nicht erlaubt.');
   } catch(e) {
-    const known={CONFLICT:[409,'Der Text wurde inzwischen geändert. Bitte neu laden.'],SETUP_CLOSED:[409,'Die erste Einrichtung ist bereits abgeschlossen.'],LAST_ADMIN:[400,'Mindestens ein aktiver Administrator muss erhalten bleiben.'],NO_USER:[404,'Benutzer nicht gefunden.']};
+    const known={CONFLICT:[409,'Der Text wurde inzwischen geändert. Bitte neu laden.'],SETUP_CLOSED:[409,'Die erste Einrichtung ist bereits abgeschlossen.'],LAST_ADMIN:[400,'Mindestens ein aktiver Administrator muss erhalten bleiben.'],NO_USER:[404,'Benutzer nicht gefunden.'],SYNC_RUNNING:[409,'Ein Abgleich läuft bereits. Bitte kurz warten.']};
     const [status,message]=known[e.message]|| (e.code==='23505'?[409,'Dieser Benutzername ist bereits vergeben.']:[e.status||500,e.status?e.message:'Die Anfrage konnte nicht verarbeitet werden.']);send(status,{error:message});
   }
 });

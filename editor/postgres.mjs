@@ -155,6 +155,11 @@ export async function openPostgres(config = {}) {
     async cockpitAudit(actor,action,entityType,entityId=null,before=null,after=null){
       await pool.query('INSERT INTO cockpit_audit_log(actor,action,entity_type,entity_id,before_safe,after_safe) VALUES($1,$2,$3,$4,$5,$6)',[actor,action,entityType,entityId,before,after]);
     },
+    async cockpitHealth(){
+      const connection=(await pool.query("SELECT channel_title,status,last_sync_at FROM yt_connections WHERE status='active' ORDER BY connected_at DESC LIMIT 1")).rows[0]||null;
+      const lastRun=(await pool.query('SELECT status,finished_at,error_code FROM yt_sync_runs ORDER BY started_at DESC LIMIT 1')).rows[0]||null;
+      return {connection,lastRun};
+    },
     async cockpitConnection(){return (await pool.query("SELECT id,channel_id,channel_title,status,token_ciphertext,token_iv,token_tag,last_sync_at FROM yt_connections WHERE status='active' ORDER BY connected_at DESC LIMIT 1")).rows[0]||null;},
     async saveCockpitConnection(channel,token,actor){
       const row=(await pool.query(`INSERT INTO yt_connections(channel_id,channel_title,status,token_ciphertext,token_iv,token_tag,scopes,connected_by,connected_at,updated_at)
@@ -162,8 +167,10 @@ export async function openPostgres(config = {}) {
       return row.id;
     },
     async recordYoutubeSync(connectionId,kind,work){
-      const run=(await pool.query("INSERT INTO yt_sync_runs(connection_id,kind,status) VALUES($1,$2,'running') RETURNING id",[connectionId,kind])).rows[0];
-      try{const records=await work();await pool.query("UPDATE yt_sync_runs SET status='succeeded',finished_at=NOW(),records_written=$2 WHERE id=$1",[run.id,records]);await pool.query('UPDATE yt_connections SET last_sync_at=NOW(),updated_at=NOW() WHERE id=$1',[connectionId]);return records;}catch(error){await pool.query("UPDATE yt_sync_runs SET status='failed',finished_at=NOW(),error_code=$2,error_detail_safe=$3 WHERE id=$1",[run.id,String(error.message||'SYNC_FAILED').slice(0,80),'Google-Abruf konnte nicht abgeschlossen werden.']);throw error;}
+      const client=await pool.connect();let run;
+      try{await client.query('BEGIN');const lock=await client.query(`INSERT INTO yt_sync_locks(connection_id,locked_until) VALUES($1,NOW()+INTERVAL '15 minutes') ON CONFLICT(connection_id) DO UPDATE SET locked_until=EXCLUDED.locked_until WHERE yt_sync_locks.locked_until<NOW() RETURNING connection_id`,[connectionId]);if(!lock.rowCount)throw new Error('SYNC_RUNNING');run=(await client.query("INSERT INTO yt_sync_runs(connection_id,kind,status) VALUES($1,$2,'running') RETURNING id",[connectionId,kind])).rows[0];await client.query('UPDATE yt_sync_locks SET run_id=$2 WHERE connection_id=$1',[connectionId,run.id]);await client.query('COMMIT');
+      }catch(error){await client.query('ROLLBACK').catch(()=>{});throw error;}finally{client.release();}
+      try{const records=await work();await pool.query("UPDATE yt_sync_runs SET status='succeeded',finished_at=NOW(),records_written=$2 WHERE id=$1",[run.id,records]);await pool.query('UPDATE yt_connections SET last_sync_at=NOW(),updated_at=NOW() WHERE id=$1',[connectionId]);return records;}catch(error){await pool.query("UPDATE yt_sync_runs SET status='failed',finished_at=NOW(),error_code=$2,error_detail_safe=$3 WHERE id=$1",[run.id,String(error.message||'SYNC_FAILED').slice(0,80),'Google-Abruf konnte nicht abgeschlossen werden.']);throw error;}finally{await pool.query('DELETE FROM yt_sync_locks WHERE connection_id=$1 AND run_id=$2',[connectionId,run.id]);}
     },
     async upsertYoutubeVideos(connectionId,videos){for(const video of videos)await pool.query(`INSERT INTO yt_videos(video_id,connection_id,title,description,published_at,thumbnail_url,last_seen_at) VALUES($1,$2,$3,$4,$5,$6,NOW()) ON CONFLICT(video_id) DO UPDATE SET connection_id=EXCLUDED.connection_id,title=EXCLUDED.title,description=EXCLUDED.description,published_at=EXCLUDED.published_at,thumbnail_url=EXCLUDED.thumbnail_url,last_seen_at=NOW()`,[video.video_id,connectionId,video.title,video.description,video.published_at,video.thumbnail_url]);return videos.length;},
     async upsertYoutubeDailyMetrics(connectionId,metrics){for(const row of metrics)await pool.query(`INSERT INTO yt_channel_daily_metrics(connection_id,metric_date,views,watch_time_minutes,subscribers_gained,subscribers_lost,metrics_json) VALUES($1,$2,$3,$4,$5,$6,$7) ON CONFLICT(connection_id,metric_date) DO UPDATE SET views=EXCLUDED.views,watch_time_minutes=EXCLUDED.watch_time_minutes,subscribers_gained=EXCLUDED.subscribers_gained,subscribers_lost=EXCLUDED.subscribers_lost,metrics_json=EXCLUDED.metrics_json`,[connectionId,row.day,Number(row.views)||0,Number(row.estimatedMinutesWatched)||0,Number(row.subscribersGained)||0,Number(row.subscribersLost)||0,row]);return metrics.length;},
