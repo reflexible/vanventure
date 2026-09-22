@@ -85,8 +85,9 @@ automatische Google-Kontoübernahme.
   serverseitige Sitzung geprüft. **Live offen:** eigener Client und
   freigegebene Testkonten fehlen noch.
 
-**Rolloutstatus, 22. September 2026:** Die technische Grundlage wird mit diesem
-Release auf Marvin bereitgestellt, einschließlich sicherem Passwort-Fallback.
+**Rolloutstatus, 22. September 2026:** Die technische Grundlage wurde auf
+Marvin bereitgestellt und nach Webdienst-Neustart mit `/healthz`, `/redaktion`
+und `/cockpit` live geprüft, einschließlich sicherem Passwort-Fallback.
 Die Google-Schaltfläche aktiviert sich erst mit einem separaten OAuth-Webclient
 (`GOOGLE_LOGIN_*`) und den bewusst zugeordneten Adressen. Der bestehende
 YouTube-Client bleibt strikt getrennt und wird nicht wiederverwendet.

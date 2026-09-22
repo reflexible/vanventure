@@ -121,8 +121,9 @@ Das MVP umfasst:
 
 **Umsetzungsstatus, 22. September 2026:** Datenmodell, Freigabeliste in der
 Benutzerverwaltung, PKCE-/State-/Nonce-Ablauf, persistente gemeinsame Sitzung,
-Audit-Protokoll und beide Einstiegsschaltflächen sind implementiert und werden
-mit dem Web-Release auf Marvin ausgerollt. Die tatsächliche Google-Anmeldung
+Audit-Protokoll und beide Einstiegsschaltflächen sind implementiert und auf
+Marvin ausgerollt; `/healthz`, `/redaktion` und `/cockpit` waren danach live
+erfolgreich. Die tatsächliche Google-Anmeldung
 bleibt dort bis zur Anlage eines separaten OAuth-Webclients und der expliziten
 Zuordnung der Kontoadressen deaktiviert; Passwortanmeldung bleibt verfügbar.
 Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.

@@ -11,7 +11,7 @@ Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf Marvin: ht
 5. Google-Produktionsfreigabe erst nach Rechtstexten, Domainbestätigung und
    erforderlicher Scope-Verifizierung
 
-Der technische gemeinsame Google-Login für Redaktion und Cockpit wird auf
+Der technische gemeinsame Google-Login für Redaktion und Cockpit ist auf
 Marvin vorbereitet und nutzt einen eigenen, minimal berechtigten OAuth-Webclient.
 Die Live-Freischaltung bleibt offen, bis die künftigen Kontoadressen bewusst
 zugeordnet und der Client in Google Auth Platform angelegt sind; der getrennte
