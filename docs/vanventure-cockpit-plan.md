@@ -340,7 +340,8 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
 
 1. Video-Impressions/CTR, Video- und Kanal-Traffic-Sources sowie verfügbare
    Retention-/Engagement-Serien ergänzen und API-Verzug beziehungsweise Leerwerte
-   sichtbar behandeln.
+   sichtbar behandeln. Nicht unterstützte optionale Analytics-Abfragen dürfen den
+   Kern-Sync nie blockieren.
 2. Die Short-/Longform-Klassifikation absichern und im Planner geschätzte sowie
    tatsächliche Produktionsstunden für spätere Effizienzvergleiche erfassen.
 3. Eine Audit-Ansicht mit Vergleichsgruppen, Datenqualitätsstatus,
