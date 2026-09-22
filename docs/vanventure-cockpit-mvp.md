@@ -134,7 +134,10 @@ Einstieg.
 Die öffentliche Navigation bietet zusätzlich einen sichtbaren Login-Link direkt
 neben der Sprachwahl; sein Flyout enthält Passwort- und Google-Anmeldung. Nach
 der Anmeldung führt `/privat` als geschützte Übersicht mit
-linker Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
+rechter Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
+Der private Bereich zeigt Benutzername, Anmeldeart und gegebenenfalls die
+zugeordnete Google-Adresse. Eine frei pflegbare Kontakt-E-Mail bleibt getrennt
+von der Google-Freigabeliste; Passwortwechsel beenden danach alle Sitzungen.
 Die Sprachumschaltung ist auf allen öffentlichen Unterseiten vorhanden; die
 mobile Navigation liegt oberhalb des Titelbilds und ist ohne sichtbaren
 Scrollbalken bedienbar.

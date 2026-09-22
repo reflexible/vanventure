@@ -1,7 +1,9 @@
 # VanVenture – Design Guide
 
-Stand: 22. September 2026. Diese Referenz ergänzt den verbindlichen
-[Gesamtplan](ausbauplan.md); sie ist keine eigene Aufgabenliste.
+Stand: 22. September 2026. **Entwurf V1 zur Freigabe.** Diese Referenz ergänzt
+den verbindlichen [Gesamtplan](ausbauplan.md); sie ist keine eigene
+Aufgabenliste. Nach der Freigabe wird sie auf alle öffentlichen Seiten
+angewandt.
 
 ## Gestaltungsidee
 
@@ -26,6 +28,8 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
   Hauptnavigation, **Login**, Sprachwechsel und Menü.
 - Login steht direkt neben der Sprachwahl. Das Flyout bietet zuerst
   Benutzername/Passwort und danach „Mit Google anmelden“.
+- Der Sprachwechsel ist auf jeder Seite ein runder, 40 × 40 px großer Button
+  mit feiner Kontur – nie ein rechteckiger Textbutton.
 - Auf kleinen Bildschirmen öffnet das Menü als vollständig deckende, helle
   Ebene oberhalb jeder Hero-Grafik. Es darf keinen sichtbaren Scrollbalken
   zeigen; bei geringer Höhe bleibt es per Touch oder Tastatur scrollbar.
@@ -49,6 +53,48 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 - Wechsel aus hellem Hintergrund, gedecktem Grün und dunklem Kieferngrün.
 - Karten und Fakten beginnen mit feinen Linien statt schweren Rahmen.
 - Handlungslinks sind textlich eindeutig und nur sparsam eingesetzt.
+
+## Startseite und Footer
+
+- Der Einstieg bleibt eine starke Bild-Text-Komposition mit einer einzigen
+  klaren Hauptaussage und höchstens einem primären Link.
+- Die folgenden Bereiche behalten den Rhythmus Reisen → Fahrzeug → Ausrüstung
+  → Über uns. Papier- und Grünflächen wechseln sich ab, ohne den Inhalt in
+  voneinander unabhängige Stilwelten zu teilen.
+- Links auf der Startseite folgen denselben Regeln wie auf Unterseiten:
+  Textlinks erhalten eine klare Unterstreichung/Fokusmarke, gefüllte Flächen
+  bleiben primären Aktionen vorbehalten.
+- Der Footer enthält nur eindeutige Weiterführungen und keine zweite,
+  konkurrierende Navigation.
+
+## Galerie-Standard
+
+- Fahrzeug, Kajak, Bike und Reiseberichte erhalten dieselbe Galerie: Eyebrow,
+  Überschrift, kurzer Hinweis und Raster aus klickbaren Bildern mit
+  Bildunterschrift.
+- Desktop zeigt drei Spalten, Mobil zwei; die Kacheln nutzen 4:3. Die
+  Vollansicht zeigt stets das unbeschnittene Bild über den gemeinsamen,
+  tastaturbedienbaren Foto-Viewer.
+- Die Kajak-Galerie ist der nächste Musterfall. Vor der Veröffentlichung werden
+  Auswahl, Herkunft und Anonymisierung jedes Bildes dokumentiert.
+
+## Privater Bereich
+
+- Nach der Anmeldung führt `/privat` zur geschützten Übersicht.
+- Die Navigation steht rechts und enthält Übersicht, Konto & Einstellungen,
+  Redaktion und Cockpit; mobil steht sie vor dem Inhalt.
+- Konto & Einstellungen zeigt Benutzername, Anmeldeart, Google-Adresse (nur
+  lesbar), getrennte Kontakt-E-Mail und Passwortwechsel. Die Kontakt-E-Mail
+  darf die Google-Freigabe nie verändern.
+
+## Verbindliche Freigabe-Reihenfolge
+
+1. Design Guide V1 freigeben.
+2. Kajak-Galerie als Referenz umsetzen.
+3. Fahrzeug, Bike und Reise-Unterseiten auf Hero-, Galerie- und Link-Standard
+   bringen.
+4. Startseite und Footer nach diesem System angleichen und Desktop sowie Mobil
+   live abnehmen.
 
 ## Umsetzungshinweis
 

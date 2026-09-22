@@ -91,7 +91,9 @@ Der separate OAuth-Webclient ist privat konfiguriert und die beiden Admin-Adress
 sind zugeordnet. Der bestehende YouTube-Client bleibt strikt getrennt und wird
 nicht wiederverwendet.
 Der öffentliche Einstieg führt nach Anmeldung in die geschützte Übersicht
-`/privat` mit linker Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
+`/privat` mit rechter Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
+Der private Bereich enthält Kontoangaben, eine getrennte Kontakt-E-Mail und
+einen Passwortwechsel; die Google-Freigabeadresse bleibt davon unverändert.
 Auf jeder öffentlichen Seite stehen die Sprachumschaltung und der Login direkt
 nebeneinander. Die mobile Navigation liegt als eigene, kontrastreiche Ebene über
 dem Hero-Bild und bleibt bei kleinen Viewports ohne sichtbaren Scrollbalken
@@ -104,10 +106,9 @@ bedienbar.
 - [ ] Den dokumentierten Hero-Standard anschließend auf die verbleibenden
   öffentlichen Unterseiten anwenden und je Ansicht prüfen.
 
-Der verbindliche Gestaltungsrahmen steht in
-[Design Guide](design-guide.md). Die Bildauswahl für den Kajak-Hero ist noch
-abgeschlossen und der Kajak-Hero ist live. Der Hero-Standard für die übrigen
-Unterseiten bleibt offen.
+Der [Design Guide V1](design-guide.md) liegt zur Freigabe vor. Der Kajak-Hero
+ist live; Galerie- und Unterseiten-Standard werden erst nach Freigabe des
+Guides verbindlich umgesetzt.
 
 ### 1B. Englische Redaktionstexte auf den älteren Unterseiten ergänzen
 

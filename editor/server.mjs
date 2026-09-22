@@ -57,7 +57,7 @@ function contentInput(value,create=false){
 }
 function contextInput(value){const category=text(value.category,80,'Kategorie',true);if(!contextCategories.has(category))fail(400,'Ungültige Context-Kategorie.');const status=text(value.status||'draft',20,'Status',true);if(!contextStatuses.has(status))fail(400,'Ungültiger Context-Status.');const source=text(value.source_url,1000,'Quelle');if(source&&(!/^https?:\/\//.test(source)))fail(400,'Quelle muss eine vollständige http(s)-Adresse sein.');return {category,title:text(value.title,180,'Titel',true),body:text(value.body,20000,'Inhalt',true),status,source_url:source||null,effective_from:date(value.effective_from,'gültig ab'),effective_to:date(value.effective_to,'gültig bis')};}
 function limit(req,path){const key=path+':'+req.socket.remoteAddress;let count=attempts.get(key);if(!count||count.until<Date.now())count={n:0,until:Date.now()+900000};if(++count.n>10)fail(429,'Zu viele Versuche. Bitte in 15 Minuten erneut versuchen.');attempts.set(key,count);return key;}
-async function sessionInfo(user,csrf){return {name:user.name,displayName:user.display_name||user.name,role:user.role,csrf,aiReady:false,editorialMode:'chat'};}
+async function sessionInfo(user,csrf){return {name:user.name,displayName:user.display_name||user.name,role:user.role,csrf,googleEmail:user.google_email||null,profileEmail:user.profile_email||null,signInProvider:user.google_provider==='google'?'google':'password',aiReady:false,editorialMode:'chat'};}
 async function draft(slug) { const row=await db.draft(slug); if (!row) fail(404,'Reise nicht gefunden.'); return row; }
 function validate(data, original) {
   if (!data || !data.story || !data.notes) fail(400,'Ungültiger Entwurf.');
@@ -94,8 +94,8 @@ const server=http.createServer(async (req,res)=>{
     if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
       res.writeHead(301,{'Location':'/'+url.search}); return res.end();
     }
-    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css'].includes(path)) {
-      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
+    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css','/editor/private-account.css'].includes(path)) {
+      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path==='/editor/private-account.css'?'private-account.css':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
       if(path==='/cockpit'||path==='/cockpit/')res.setHeader('Content-Security-Policy',cockpitPolicy);
       res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
     }
@@ -178,7 +178,9 @@ const server=http.createServer(async (req,res)=>{
     if (path==='/api/logout'&&req.method==='POST') {if(token)await db.deleteSession(authTokenHash(token));await db.cockpitAudit(activeUser.name,'auth.logout','auth_session','logout',null,{provider:'vanventure'});return send(200,{}, {'Set-Cookie':cookie('',0)});}
     if(path==='/api/profile'&&req.method==='GET')return send(200,await sessionInfo(activeUser,session.csrf_token));
     if(path==='/api/profile'&&req.method==='PUT'){
-      const displayName=text((await body(req)).displayName,80,'Anzeigename',true);await db.updateProfile(activeUser.name,displayName);await db.cockpitAudit(activeUser.name,'auth.profile.updated','user',activeUser.name,null,{display_name_changed:true});return send(200,{displayName});
+      const b=await body(req),displayName=text(b.displayName,80,'Anzeigename',true),profileEmail=text(b.profileEmail,254,'Kontakt-E-Mail');
+      if(profileEmail&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profileEmail))fail(400,'Kontakt-E-Mail ist ungültig.');
+      await db.updateProfile(activeUser.name,displayName,profileEmail||null);await db.cockpitAudit(activeUser.name,'auth.profile.updated','user',activeUser.name,null,{display_name_changed:true,contact_email_changed:true});return send(200,{displayName,profileEmail:profileEmail||null});
     }
     if(path==='/api/cockpit/health'&&req.method==='GET'){
       const health=await db.cockpitHealth(),intervalHours=await cockpitSyncIntervalHours(),lastFinished=health.lastRun?.finished_at?new Date(health.lastRun.finished_at).getTime():0,stale=!!(health.connection&&intervalHours&&(!lastFinished||Date.now()-lastFinished>(intervalHours+2)*60*60*1000));
@@ -236,9 +238,10 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/api/password'&&req.method==='POST'){
       limit(req,'password:'+activeUser.name);const b=await body(req);
-      if(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash))fail(403,'Aktuelles Passwort stimmt nicht.');
+      const googleFallback=activeUser.google_provider==='google'&&!b.currentPassword;
+      if(!googleFallback&&(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash)))fail(403,'Aktuelles Passwort stimmt nicht.');
       validateAccount({name:activeUser.name,displayName:activeUser.display_name||activeUser.name,password:b.password});
-      await db.changePassword(activeUser.name,b.password);if(token)await db.deleteSession(authTokenHash(token));return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
+      await db.changePassword(activeUser.name,b.password);await db.cockpitAudit(activeUser.name,'auth.password.changed','user',activeUser.name,null,{google_fallback:googleFallback});if(token)await db.deleteSession(authTokenHash(token));return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
     }
     if(path==='/api/users'||path.startsWith('/api/users/')){
       if(activeUser.role!=='admin')fail(403,'Benutzerverwaltung ist nur für Administratoren verfügbar.');

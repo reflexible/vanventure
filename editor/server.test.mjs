@@ -30,7 +30,7 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     assert.ok((await (await fetch(origin+'/redaktion')).text()).includes('login-form'));
     assert.match(await (await fetch(origin+'/editor/client.js')).text(),/async function start\(\)/);
     assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
-    assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);
+    assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);assert.match(await (await fetch(origin+'/editor/private-account.css')).text(),/account-facts/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
     assert.equal((await fetch(origin+'/healthz')).status,200);
     assert.equal((await fetch(origin+'/api/auth/google/start?returnTo=/cockpit',{redirect:'manual'})).status,503);
@@ -38,6 +38,7 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const cookie=login.headers.get('set-cookie');assert.ok(cookie.includes('HttpOnly'));const session=await login.json();
     const headers={Cookie:cookie.split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':session.csrf};
     const profile=await fetch(origin+'/api/profile',{headers});assert.equal(profile.status,200);assert.equal((await profile.json()).name,'sabine');
+    const profileUpdate=await fetch(origin+'/api/profile',{method:'PUT',headers,body:JSON.stringify({displayName:'Sabine Redaktion',profileEmail:'sabine@example.test'})});assert.equal(profileUpdate.status,200);assert.equal((await profileUpdate.json()).profileEmail,'sabine@example.test');
     assert.equal((await fetch(origin+'/api/cockpit/youtube/connect',{method:'POST',headers,body:'{}'})).status,403);
     const adminLogin=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'helmut',password:'test password 456'})});assert.equal(adminLogin.status,200);const adminSession=await adminLogin.json(),adminHeaders={Cookie:adminLogin.headers.get('set-cookie').split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':adminSession.csrf};
     const authorization=await (await fetch(origin+'/api/cockpit/youtube/connect',{method:'POST',headers:adminHeaders,body:'{}'})).json(),authorizationUrl=new URL(authorization.url);assert.equal(authorizationUrl.searchParams.get('code_challenge_method'),'S256');assert.ok(authorizationUrl.searchParams.get('state'));assert.ok(authorizationUrl.searchParams.get('code_challenge'));

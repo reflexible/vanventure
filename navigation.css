@@ -155,6 +155,16 @@ body.nav-open { overflow: hidden; }
 .magazine-header .private-flyout > a:not(.private-google):hover { color:#183d33;font-weight:700; }
 .magazine-header .language {
   flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
   border-color: rgba(16, 25, 23, .45);
 }
 .magazine-header .menu-toggle {
