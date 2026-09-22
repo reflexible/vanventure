@@ -53,7 +53,9 @@ belegt, fehlten aber zuvor im Gesamtplan. Sie wurden als offene Punkte ergänzt:
 3. Entfernen und Testen der 500-Video-Grenze;
 4. YouTube-OAuth sicher trennen/widerrufen und auditieren;
 5. strukturierte `content_item_metrics` für Ziel-/Ist-Werte;
-6. erste geprüfte Master-Context-Fakten;
+6. erste geprüfte Master-Context-Fakten; **erledigt für den VAN-Test:** zehn
+   freigegebene GCS-Fakten sind in Produktion gespeichert. EXPLORE und MOVE
+   bleiben im Gesamtplan offen;
 7. ungeklärter Ort der Riverstar-Uferbilder und konkrete Kritik an den
    Schwimmwesten.
 
@@ -62,6 +64,7 @@ belegt, fehlten aber zuvor im Gesamtplan. Sie wurden als offene Punkte ergänzt:
 Der Gesamtplan enthält jetzt alle belegten offenen Punkte aus den geprüften
 Plan-, Phasen- und Referenzdokumenten. Historische Dokumente führen keine
 eigenen Aufgabenlisten mehr. Der am 22. September veröffentlichte Kajak-Stand
-ist in Gesamtplan, Design Guide und diesem Prüfprotokoll gleich ausgewiesen.
-Neue Arbeit wird ausschließlich im Gesamtplan angelegt; bei jedem Abschluss
-wird dieser Audit bei Bedarf erneut gegen Code und Produktion abgeglichen.
+und der am selben Tag live gespeicherte GCS-Production-Brief sind in
+Gesamtplan, Statusnachweisen und diesem Prüfprotokoll gleich ausgewiesen. Neue
+Arbeit wird ausschließlich im Gesamtplan angelegt; bei jedem Abschluss wird
+dieser Audit gegen Code und Produktion abgeglichen.

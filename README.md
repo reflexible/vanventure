@@ -17,6 +17,11 @@ Anmeldung mit einem freigegebenen sowie die Ablehnung eines nicht freigegebenen
 Google-Kontos sind verifiziert. Der getrennte YouTube-Zugang bleibt davon
 unberührt.
 
+Der erste verbindliche Content-Test ist ebenfalls produktiv vorbereitet: „GCS
+nach einem Jahr“ ist im Cockpit gebrieft, mit 24 geschätzten Stunden versehen;
+zehn geprüfte GCS-Fakten liegen im Master Context. Die noch offenen Test-Briefs
+für EXPLORE und MOVE stehen im Gesamtplan.
+
 Zum lokalen Ansehen `index.html` in einem Browser öffnen. Keine Veröffentlichung oder externe Änderung erfolgt ohne ausdrückliche Freigabe.
 
 Homepage und geschützte Redaktion laufen auf dem Contabo-Server Marvin gemeinsam in Docker mit PostgreSQL. Die Redaktion ist unter https://vanventure.at/redaktion erreichbar. Überarbeitungen werden im Codex-Chat beauftragt. Änderungen dürfen auf Benutzerauftrag direkt im Live-System bereitgestellt werden; ein kurzer Neustart ist akzeptiert. Die Serverdatenbank ist maßgeblich. Der lokale Docker-Stack ist gestoppt, sein Datenbank-Volume bleibt erhalten. Technische Grundlagen stehen unter [editor/README.md](editor/README.md).

@@ -209,9 +209,9 @@ Kontingente bleiben unberührt.
 | --- | --- | --- | --- |
 | 0 – Vorbereitung | Konfiguration, Datenzugang und Rolloutplan sind klar | keine | Google-Zugangsdaten und Kanal bestätigen |
 | 1 – Sichere Basis | private Cockpit-Route, Datenmodell, Rollen- und Audit-Grundlage | noch keine Google-Abfragen | lokal und auf Staging anmelden, Rechte prüfen |
-| 1A – Gemeinsame Anmeldung | Google-Identität ist mit den bestehenden Rollen verknüpft; eine Sitzung gilt für Redaktion und Cockpit | zusätzlicher, kostenfreier Google-OAuth-Webclient; keine YouTube-Abfrage | mit jedem freigegebenen Konto anmelden, zwischen beiden Bereichen wechseln, abmelden und Sperrung prüfen |
+| 1A – Gemeinsame Anmeldung | Google-Identität ist mit den bestehenden Rollen verknüpft; eine Sitzung gilt für Redaktion und Cockpit | zusätzlicher, kostenfreier Google-OAuth-Webclient; keine YouTube-Abfrage | Am 22. September 2026 mit freigegebenem sowie nicht freigegebenem Konto live abgenommen; Wechsel, Abmeldung und Sperrung geprüft |
 | 2 – YouTube-Daten | OAuth, manueller Sync, Tageswerte und Snapshots | einmaliger OAuth-Dialog; keine öffentliche Änderung | Zahlen mit YouTube Studio vergleichen |
-| 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context; die Videoaktion „Einordnen“ sowie geschätzte und tatsächliche Produktionsstunden im Planner sind seit 22. September 2026 live | kurzer Neustart nur des Webcontainers; PostgreSQL und Caddy blieben aktiv | `/healthz` und `/cockpit` erfolgreich; Stundenfelder per Datenbankschema geprüft, Sichtabnahme mit echten Daten bleibt offen |
+| 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context; die Videoaktion „Einordnen“ sowie geschätzte und tatsächliche Produktionsstunden im Planner sind seit 22. September 2026 live | kurzer Neustart nur des Webcontainers; PostgreSQL und Caddy blieben aktiv | `/healthz` und `/cockpit` erfolgreich; der VAN-Test ist mit Brief und 24 geschätzten Stunden live gespeichert, zehn freigegebene GCS-Fakten liegen im Master Context; tatsächliche Stunden und die übrigen zwei Test-Briefs bleiben offen |
 | 4 – Automatisierung | täglicher bzw. administrativ einstellbarer Sync und regelbasierte Insights | ein zusätzlicher interner Tageslauf | erste Woche auf Fehlermeldungen und Datenqualität prüfen |
 
 Nach jeder Phase bleibt das System in einem nutzbaren Zustand. Die nächste Phase

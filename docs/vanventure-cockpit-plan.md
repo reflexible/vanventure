@@ -334,6 +334,12 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
 
 ### Phase 3 – Cockpit-Oberfläche
 
+**Produktionsstand, 22. September 2026:** Die Oberfläche ist umgesetzt. Der
+VAN-Planer-Eintrag „GCS nach einem Jahr“ steht auf `briefed`, enthält den
+verbindlichen Brief und 24 geschätzte Stunden; zehn freigegebene GCS-Fakten
+sind im Master Context gespeichert. Die technischen Restaufgaben und die zwei
+noch ungebriesten Tests stehen ausschließlich im [Gesamtplan](ausbauplan.md).
+
 1. Vanilla-JS-Ansichten für Dashboard, Videos, Sync-Status und Fehlerzustände bauen.
 2. Content Planner mit Jahresansicht, zwölf Longform-Startslots, Statusfluss und
    Videoverknüpfung ergänzen.
