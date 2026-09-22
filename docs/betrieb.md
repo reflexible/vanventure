@@ -8,10 +8,12 @@ ausdrücklich beauftragt ist.
 
 1. Den neuen Stand übertragen, ohne `.env`, Dumps oder Verzeichnisse mit
    Originalfotos zu kopieren.
-2. In `/opt/vanventure` `npm run check:release` ausführen. Der Ablauf führt die
-   vollständigen Tests aus, prüft die öffentliche Compose-Konfiguration, erzeugt
-   einen geschützten Datenbankdump und prüft die bereits laufende Anwendung per
-   Healthcheck. Bei einem Fehler darf kein Release erfolgen.
+2. Die vollständigen Anwendungstests vor dem Upload lokal ausführen. Auf dem
+   Produktionshost anschließend `sh deploy/release-check.sh` ausführen. Der
+   Host hat bewusst keine Node-Installation; der Shell-Ablauf prüft die
+   produktive Compose-Konfiguration, erzeugt einen geschützten Datenbankdump
+   und prüft die bereits laufende Anwendung per Healthcheck. Bei einem Fehler
+   darf kein Release erfolgen.
 3. Erst danach den ausdrücklich freigegebenen Webcontainer aktualisieren. Danach
    `/healthz`, die Homepage, `/redaktion` und `/cockpit` prüfen. PostgreSQL und
    Caddy bleiben dabei unverändert aktiv; nur der Webcontainer startet kurz neu.
