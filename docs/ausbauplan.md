@@ -136,9 +136,8 @@ Der [Design Guide V1](design-guide.md) ist am 22. September 2026 freigegeben
 worden und gilt für alle öffentlichen Seiten. Bei jeder gestalterischen
 Änderung wird geprüft und ausdrücklich darauf hingewiesen, ob der Guide ergänzt
 werden soll. Der Kajak-Hero und die Kajak-Galerie sind live. Auswahl, Herkunft und
-Kennzeichenredaktion der 11 veröffentlichten Galeriebilder sind dokumentiert;
-die zwei Bilder mit Kindern von hinten sind für diese Galerie ausdrücklich
-freigegeben. Die Galerie wurde am 22. September 2026 nach dem letzten
+Kennzeichenredaktion der 14 veröffentlichten Galeriebilder sind dokumentiert;
+die drei Bilder mit Kind sind für diese Galerie ausdrücklich freigegeben. Die Galerie wurde am 22. September 2026 nach dem letzten
 Webdienst-Rollout live verifiziert.
 Nach einer beim Hero-Umbau entdeckten Regression ist die Galerie wiederhergestellt;
 eine automatisierte Inhaltsprüfung sichert seitdem alle sieben öffentlichen
