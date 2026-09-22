@@ -6,8 +6,7 @@ Verbindliche offene und erledigte Punkte stehen ausschließlich im
 
 Stand: 20. September 2026. Ansicht: [riverstar-entwurf.html](../../riverstar-entwurf.html).
 
-**Vorgesehener Aufmacher:** Die öffentliche Kajak-Seite verwendet nach dem
-anstehenden Rollout
+**Live-Aufmacher:** Die öffentliche Kajak-Seite verwendet
 `P7020092.jpg` als gespiegeltes Reviewderivat. Das Boot liegt dadurch rechts;
 links sorgt der standardisierte, helle Farbverlauf für den Seitentitel und die
 Einleitung. Quelle, unveränderte Projektkopie und Hash stehen in
