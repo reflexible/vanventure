@@ -124,9 +124,10 @@ Benutzerverwaltung, PKCE-/State-/Nonce-Ablauf, persistente gemeinsame Sitzung,
 Audit-Protokoll und beide Einstiegsschaltflächen sind implementiert und auf
 Marvin ausgerollt; `/healthz`, `/redaktion` und `/cockpit` waren danach live
 erfolgreich. Zwei aktive Administrationskonten sind in der
-Produktions-Freigabeliste zugeordnet. Die tatsächliche Google-Anmeldung bleibt
-dort bis zur Anlage und privaten Hinterlegung eines separaten OAuth-Webclients
-deaktiviert; Passwortanmeldung bleibt verfügbar.
+Produktions-Freigabeliste zugeordnet. Der separate OAuth-Webclient ist privat
+hinterlegt und die sichere Google-Weiterleitung wurde geprüft. Die tatsächliche
+Anmeldung wird als Nächstes mit einem freigegebenen und einem abgelehnten Konto
+live abgenommen; Passwortanmeldung bleibt verfügbar.
 Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.
 
 Die privaten Bereiche `https://vanventure.at/redaktion` und

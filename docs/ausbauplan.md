@@ -81,15 +81,15 @@ automatische Google-Kontoübernahme.
   Konto nach Anlage des separaten OAuth-Webclients live abnehmen. Wechsel
   Redaktion ↔ Cockpit, CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit
   nach Sperrung oder Rollenänderung sind automatisiert für die gemeinsame
-  serverseitige Sitzung geprüft. **Live offen:** eigener Client und
-  freigegebene Testkonten fehlen noch.
+  serverseitige Sitzung geprüft. **Live offen:** echter Login mit einem
+  freigegebenen und einem nicht freigegebenen Google-Konto abnehmen.
 
 **Rolloutstatus, 22. September 2026:** Die technische Grundlage wurde auf
 Marvin bereitgestellt und nach Webdienst-Neustart mit `/healthz`, `/redaktion`
 und `/cockpit` live geprüft, einschließlich sicherem Passwort-Fallback.
-Die Google-Schaltfläche aktiviert sich erst mit einem separaten OAuth-Webclient
-(`GOOGLE_LOGIN_*`) und den bewusst zugeordneten Adressen. Der bestehende
-YouTube-Client bleibt strikt getrennt und wird nicht wiederverwendet.
+Der separate OAuth-Webclient ist privat konfiguriert und die beiden Admin-Adressen
+sind zugeordnet. Der bestehende YouTube-Client bleibt strikt getrennt und wird
+nicht wiederverwendet.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 
