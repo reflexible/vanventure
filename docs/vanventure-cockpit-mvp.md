@@ -141,6 +141,9 @@ Nur Passwort-Konten erhalten eine frei pflegbare Kontakt-E-Mail und einen
 Passwortwechsel; die Google-Freigabeliste bleibt stets getrennt.
 Der Inhaltsbereich beginnt direkt neben der Seitenleiste und nutzt die
 verbleibende Arbeitsbreite ohne ein zweites leeres Spaltenraster.
+Kontofunktionen werden nicht innerhalb von Redaktion oder Cockpit wiederholt:
+die gemeinsame Seitenleiste führt zur Übersicht und enthält die Abmeldung;
+die Benutzerverwaltung bleibt nur für Administratoren erreichbar.
 Die Sprachumschaltung ist auf allen öffentlichen Unterseiten vorhanden; die
 mobile Navigation liegt oberhalb des Titelbilds und ist ohne sichtbaren
 Scrollbalken bedienbar.

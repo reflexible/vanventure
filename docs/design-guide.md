@@ -92,6 +92,9 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 - Der Arbeitsbereich nutzt die verbleibende Breite sichtbar aus: Er beginnt
   direkt neben der Seitenleiste, bleibt linksbündig und darf nicht durch ein
   altes, unsichtbares Spaltenraster eingeengt werden.
+- Die Seitenleiste ist die einzige Stelle für Benutzername, Kontowechsel und
+  Abmeldung. Redaktion und Cockpit zeigen diese Aktionen nicht noch einmal;
+  die Benutzerverwaltung bleibt als reine Administratorfunktion erhalten.
 - Konto & Einstellungen zeigt Benutzername und Anmeldeart. Bei Google steht
   ausschließlich die von Google übernommene E-Mail lesbar da – ohne
   Passwortwechsel oder zweites E-Mail-Feld. Nur Passwort-Konten erhalten eine

@@ -98,6 +98,9 @@ kein VanVenture-Passwort; nur Passwort-Konten erhalten getrennte Kontakt-E-Mail
 und Passwortwechsel.
 Die private Übersicht nutzt den Arbeitsbereich neben der Leiste breit und
 linksbündig; kein zusätzliches, leeres Navigationsraster darf Platz belegen.
+Benutzername, Passwortwechsel und Abmeldung erscheinen ausschließlich in der
+gemeinsamen privaten Navigation beziehungsweise in `/privat`; Redaktion und
+Cockpit duplizieren diese Kontofunktionen nicht.
 Auf jeder öffentlichen Seite stehen die Sprachumschaltung und der Login direkt
 nebeneinander. Die mobile Navigation liegt als eigene, kontrastreiche Ebene über
 dem Hero-Bild und bleibt bei kleinen Viewports ohne sichtbaren Scrollbalken
