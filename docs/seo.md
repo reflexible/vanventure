@@ -1,5 +1,8 @@
 # SEO für VanVenture
 
+Diese Datei ist eine SEO-Referenz. Verbindliche offene und erledigte Arbeit
+steht ausschließlich im [Gesamtplan](ausbauplan.md).
+
 Zieldomain: https://vanventure.at/ (Deutsch als initiale Seitensprache).
 
 ## Umgesetzt am 19.09.2026

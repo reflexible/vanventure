@@ -1,0 +1,100 @@
+{
+  "canonicalPlan": "docs/ausbauplan.md",
+  "sources": [
+    {
+      "path": "docs/vorhaben-uebersicht.md",
+      "role": "archived-plan",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/content-plan-90-tage.md",
+      "role": "archived-plan",
+      "requiredCanonicalPhrases": [
+        "Langzeiterfahrung), EXPLORE",
+        "California → Hymer",
+        "Bike oder Kajak"
+      ]
+    },
+    {
+      "path": "docs/vanventure-cockpit-mvp.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "Google-Adressen der künftigen Administratoren",
+        "Google-Provider, Google-`sub`",
+        "/api/auth/google/*",
+        "gemeinsame, serverseitig prüfbare VanVenture-Sitzung",
+        "Login-Schaltflächen",
+        "Audit-Einträge für Anmeldung",
+        "Automatisiert prüfen: gültige Anmeldung"
+      ]
+    },
+    {
+      "path": "docs/vanventure-cockpit-plan.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "500-Video-Grenze",
+        "YouTube\n  trennen",
+        "content_item_metrics",
+        "Traffic Sources sowie verfügbare Retention"
+      ]
+    },
+    {
+      "path": "docs/channel-audit-v1.md",
+      "role": "analysis-source",
+      "requiredCanonicalPhrases": [
+        "Flow Trail: 986",
+        "Norwegen: 108",
+        "Trolltunga: 149",
+        "Traffic Sources für 19 Videos"
+      ]
+    },
+    {
+      "path": "docs/creator-system.md",
+      "role": "operating-checklist",
+      "requiredCanonicalPhrases": [
+        "Low-Effort-Creator-System",
+        "tatsächliche Produktionsstunden"
+      ]
+    },
+    {
+      "path": "docs/seo.md",
+      "role": "operating-reference",
+      "requiredCanonicalPhrases": [
+        "Search Console und Bing Webmaster Tools",
+        "ausgewählten Reisevideos passende Website-Links"
+      ]
+    },
+    {
+      "path": "docs/riverstar/entwurf.md",
+      "role": "editorial-reference",
+      "requiredCanonicalPhrases": [
+        "Gewässer/Ort der Uferbilder",
+        "Kritik\n  an den Schwimmwesten"
+      ]
+    },
+    {
+      "path": "docs/betrieb.md",
+      "role": "operating-reference",
+      "requiredCanonicalPhrases": [
+        "Backup/Restore inklusive Cockpit-Tabellen",
+        "persistente Warnungs-Inbox",
+        "Bei jedem Web-Release"
+      ]
+    },
+    {
+      "path": "docs/gemini-sources.md",
+      "role": "research-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/marvin-server.md",
+      "role": "historical-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/plan-audit-2026-09-22.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    }
+  ]
+}

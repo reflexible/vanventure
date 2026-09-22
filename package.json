@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "build:seo": "node tools/build-seo.mjs",
-    "start": "docker compose up --build -d",
+    "start": "docker compose -f compose.yaml -f compose.dev.yaml up --build -d",
     "test": "node --test editor/*.test.mjs deploy/*.test.mjs",
     "check:release": "node deploy/release-check.mjs",
+    "check:plans": "node deploy/plan-consistency.mjs",
     "monitor:cockpit": "node deploy/cockpit-monitor.mjs"
   },
   "engines": {

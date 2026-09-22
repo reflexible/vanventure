@@ -31,6 +31,7 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
     assert.equal((await fetch(origin+'/healthz')).status,200);
+    assert.equal((await fetch(origin+'/api/auth/google/start?returnTo=/cockpit',{redirect:'manual'})).status,503);
     const login=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'sabine',password:'test password 123'})});assert.equal(login.status,200);
     const cookie=login.headers.get('set-cookie');assert.ok(cookie.includes('HttpOnly'));const session=await login.json();
     const headers={Cookie:cookie.split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':session.csrf};
@@ -38,9 +39,10 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const adminLogin=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'helmut',password:'test password 456'})});assert.equal(adminLogin.status,200);const adminSession=await adminLogin.json(),adminHeaders={Cookie:adminLogin.headers.get('set-cookie').split(';')[0],Origin:origin,'Content-Type':'application/json','X-CSRF-Token':adminSession.csrf};
     const authorization=await (await fetch(origin+'/api/cockpit/youtube/connect',{method:'POST',headers:adminHeaders,body:'{}'})).json(),authorizationUrl=new URL(authorization.url);assert.equal(authorizationUrl.searchParams.get('code_challenge_method'),'S256');assert.ok(authorizationUrl.searchParams.get('state'));assert.ok(authorizationUrl.searchParams.get('code_challenge'));
     assert.equal((await fetch(origin+'/api/users/helmut',{method:'PUT',headers:adminHeaders,body:JSON.stringify({displayName:'Helmut',role:'admin',enabled:false})})).status,200);
+    assert.equal((await fetch(origin+'/api/session',{headers:adminHeaders})).status,401);
     assert.equal((await fetch(origin+'/api/cockpit/youtube/callback?state='+encodeURIComponent(authorizationUrl.searchParams.get('state')))).status,403);
     const cockpitResponse=await fetch(origin+'/api/cockpit/overview',{headers});assert.equal(cockpitResponse.status,200);const cockpitOverview=await cockpitResponse.json();assert.equal(cockpitOverview.phase,3);assert.equal(cockpitOverview.videos,0);const cockpitHealth=await fetch(origin+'/api/cockpit/health',{headers});assert.equal(cockpitHealth.status,200);assert.equal((await cockpitHealth.json()).phase,4);
-    const auditExport=await fetch(origin+'/api/cockpit/audit/export',{headers});assert.equal(auditExport.status,200);assert.match(auditExport.headers.get('content-disposition'),/vanventure-channel-audit-\d{4}-\d{2}-\d{2}\.json/);const audit=await auditExport.json();assert.equal(audit.schema_version,1);assert.deepEqual(audit.videos,[]);assert.ok(!JSON.stringify(audit).includes('test-secret'));
+    const auditExport=await fetch(origin+'/api/cockpit/audit/export',{headers});assert.equal(auditExport.status,200);assert.match(auditExport.headers.get('content-disposition'),/vanventure-channel-audit-\d{4}-\d{2}-\d{2}\.json/);const audit=await auditExport.json();assert.equal(audit.schema_version,2);assert.deepEqual(audit.videos,[]);assert.ok(!JSON.stringify(audit).includes('test-secret'));
     const planner=await fetch(origin+'/api/cockpit/content?year=2027',{headers});assert.equal(planner.status,200);assert.equal((await planner.json()).items.length,12);
     const context=await fetch(origin+'/api/cockpit/context',{method:'POST',headers,body:JSON.stringify({category:'Reisen',title:'Test',body:'Geprüfter Fakt',status:'approved'})});assert.equal(context.status,201);
     assert.equal((await (await fetch(origin+'/api/cockpit/context',{headers})).json()).items.length,1);

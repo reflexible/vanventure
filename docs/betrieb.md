@@ -1,5 +1,8 @@
 # Betrieb: sichere Releases und Cockpit-Monitoring
 
+Diese Datei ist eine Betriebsreferenz. Verbindliche offene Aufgaben und ihr
+Status stehen ausschließlich im [Gesamtplan](ausbauplan.md).
+
 Diese Anleitung gilt für die Produktionskopie unter `/opt/vanventure`. Sie gibt
 keine Geheimnisse aus und verändert keine öffentliche Website, bevor ein Release
 ausdrücklich beauftragt ist.
@@ -17,6 +20,15 @@ ausdrücklich beauftragt ist.
 3. Erst danach den ausdrücklich freigegebenen Webcontainer aktualisieren. Danach
    `/healthz`, die Homepage, `/redaktion` und `/cockpit` prüfen. PostgreSQL und
    Caddy bleiben dabei unverändert aktiv; nur der Webcontainer startet kurz neu.
+
+Für den gemeinsamen Google-Login gelten zusätzlich eigene Werte
+`GOOGLE_LOGIN_CLIENT_ID`, `GOOGLE_LOGIN_CLIENT_SECRET` und
+`GOOGLE_LOGIN_REDIRECT_URI=https://vanventure.at/api/auth/google/callback` in
+der privaten Server-`.env`. Diese Werte gehören zu einem neuen OAuth-Webclient
+mit ausschließlich `openid email profile`; der YouTube-OAuth-Client darf nicht
+wiederverwendet werden. Vor dem Einschalten werden die vorgesehenen
+Google-Adressen in der Benutzerverwaltung zugeordnet und mindestens ein
+freigegebenes sowie ein abgelehntes Konto live geprüft.
 
 `npm run check:release` ist absichtlich keine Deployment-Automatik. Der vorher
 erstellte Dump bleibt die direkte Rückfallmöglichkeit.

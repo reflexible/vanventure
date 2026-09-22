@@ -13,12 +13,21 @@ Nach dem Login gibt es:
 - „Texte und Wünsche speichern“: gemeinsame Texte und Notizen in PostgreSQL ablegen. Danach im Codex-Chat die Überarbeitung und Aktualisierung der Homepage beauftragen. Es erfolgt keine API-Anfrage.
 - Vorschau des gespeicherten Entwurfs im Seitenlayout.
 - „Für Website freigeben“ für Administratoren: Der gespeicherte Stand wird sofort auf der Website sichtbar; Startseitenübersicht und Reisebericht verwenden denselben freigegebenen Inhalt.
-- „Benutzer“ für Administratoren: Neue Konten anlegen, Rollen vergeben, Anzeigenamen ändern, Passwörter zurücksetzen und Konten deaktivieren. Der letzte aktive Administrator kann nicht entfernt oder herabgestuft werden.
+- „Benutzer“ für Administratoren: Neue Konten anlegen, Rollen vergeben, Anzeigenamen ändern, Passwörter zurücksetzen und Konten deaktivieren. Optional wird dort die vorab freigegebene Google-Adresse hinterlegt; erst die bestätigte Google-Anmeldung bindet deren stabile Google-Kennung. Der letzte aktive Administrator kann nicht entfernt oder herabgestuft werden.
 - Eigenes Passwort ändern. Neue Passwörter brauchen mindestens zwölf Zeichen. Änderungen an Konten beenden deren bestehende Sitzungen.
 
 Die Rollen sind „Redaktion“ (Texte und Notizen) und „Administrator“ (zusätzlich Benutzer und Freigaben). Die Überarbeitung erfolgt im Codex-Chat im Rahmen des vorhandenen Abos; der Website-Knopf nutzt keine kostenpflichtige API. Gespeicherte frühere KI-Einstellungen bleiben ungenutzt erhalten.
 
-Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewiesen. Gespeicherte Texte und Freigaben bleiben beim Neustart erhalten; Sitzungen enden dabei.
+Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewiesen. Gespeicherte Texte, Freigaben und die serverseitig geprüften Sitzungen bleiben bei einem regulären Web-Neustart erhalten; Abmeldung, Sperrung, Rollen- oder Passwortänderung machen Sitzungen sofort ungültig.
+
+## Gemeinsame Google-Anmeldung
+
+Redaktion und Cockpit teilen eine VanVenture-Sitzung unter `Path=/`. Der
+separate Google-Webclient fordert nur `openid email profile` an und verwendet
+Authorization Code mit PKCE, einmaligem serverseitigem State und Nonce. Ohne
+vollständige private `GOOGLE_LOGIN_*`-Konfiguration bleibt der Passwortzugang
+aktiv und die Google-Schaltfläche erklärt neutral, dass die Anmeldung noch
+vorbereitet wird. Es gibt keine Registrierung oder automatische Kontoübernahme.
 
 ## Überarbeitung durch Codex
 

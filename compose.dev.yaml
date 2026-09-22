@@ -1,4 +1,4 @@
-# Automatically used for LOCAL development. Hetzner uses only compose.yaml explicitly.
+# Local development only. It must be named explicitly, so production commands cannot load it by accident.
 services:
   web:
     environment:

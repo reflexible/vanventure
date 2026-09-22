@@ -8,7 +8,8 @@ import { openPostgres } from './postgres.mjs';
 import { aiSettings, encrypt } from './settings.mjs';
 import { renderStory, renderHomepage } from './render.mjs';
 import { sitemap, robots } from './seo.mjs';
-import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics, videoDailyMetrics, snapshots as youtubeSnapshots } from './youtube.mjs';
+import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics, videoDailyMetrics, reachMetrics, trafficSources, retention, snapshots as youtubeSnapshots } from './youtube.mjs';
+import { authorizationUrl as googleLoginAuthorizationUrl, exchange as googleLoginExchange, identity as googleLoginIdentity, ready as googleLoginReady, tokenHash as authTokenHash } from './google-login.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
@@ -23,9 +24,9 @@ const secure = process.env.EDITOR_SECURE_COOKIE === 'true';
 const host = process.env.EDITOR_HOST || '127.0.0.1';
 const cockpitPolicy="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://i.ytimg.com https://i9.ytimg.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'";
 if ((!secure || !origin.startsWith('https://')) && !(process.env.NODE_ENV==='development' && ['localhost','127.0.0.1'].includes(new URL(origin).hostname))) throw new Error('Öffentlicher Betrieb benötigt HTTPS-Origin und sichere Cookies.');
-const sessions = new Map(), attempts = new Map(), jobs = new Map(), oauthStates = new Map();
+const attempts = new Map(), jobs = new Map(), oauthStates = new Map();
 const dummyHash = passwordHash(randomBytes(32).toString('hex'));
-async function syncYoutube(kind='automatic'){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,kind,async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken)]);let written=(await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));let videoMetrics;try{videoMetrics=await videoDailyMetrics(videos.map(video=>video.video_id),accessToken);}catch(error){throw new Error(`VIDEO_DAILY_${error.message}`);}written+=await db.upsertYoutubeVideoDailyMetrics(videoMetrics);const candidates=await db.youtubeSnapshotCandidates();let snapshotRows;try{snapshotRows=await youtubeSnapshots(candidates,accessToken);}catch(error){throw new Error(`SNAPSHOTS_${error.message}`);}return written+(await db.upsertYoutubeSnapshots(snapshotRows));});}
+async function syncYoutube(kind='automatic'){const connection=await db.cockpitConnection();if(!connection)return false;return db.recordYoutubeSync(connection.id,kind,async()=>{const accessToken=await refresh(unseal(connection));const channel=await inspect(accessToken);let reach=[];try{reach=await reachMetrics(accessToken);}catch(error){console.warn(`YouTube Reach-Export noch nicht verfügbar: ${error.message}`);}const [videos,metrics]=await Promise.all([youtubeVideos(channel,accessToken),dailyMetrics(accessToken,reach)]),videoIds=videos.map(video=>video.video_id);let written=(await db.upsertYoutubeVideos(connection.id,videos))+(await db.upsertYoutubeDailyMetrics(connection.id,metrics));let videoMetrics;try{videoMetrics=await videoDailyMetrics(videoIds,accessToken,reach);}catch(error){throw new Error(`VIDEO_DAILY_${error.message}`);}written+=await db.upsertYoutubeVideoDailyMetrics(videoMetrics);const candidates=await db.youtubeSnapshotCandidates();let snapshotRows;try{snapshotRows=await youtubeSnapshots(candidates,accessToken);}catch(error){throw new Error(`SNAPSHOTS_${error.message}`);}written+=await db.upsertYoutubeSnapshots(snapshotRows);const [traffic,retentionData]=await Promise.all([trafficSources(videoIds,accessToken),retention(videoIds,accessToken)]);written+=await db.replaceYoutubeTrafficSources(traffic);written+=await db.replaceYoutubeRetention(retentionData);return written;});}
 const cookie = (token, age=28800) => `vv_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${age}${secure?'; Secure':''}`;
 function fail(status, message) { const e = new Error(message); e.status=status; throw e; }
 function validateAccount(b,passwordRequired=true){
@@ -33,6 +34,12 @@ function validateAccount(b,passwordRequired=true){
   if(typeof b.displayName!=='string'||b.displayName.length<1||b.displayName.length>80)fail(400,'Bitte einen Anzeigenamen angeben.');
   if((passwordRequired||b.password)&& (typeof b.password!=='string'||b.password.length<12||b.password.length>128))fail(400,'Passwort: 12 bis 128 Zeichen.');
   if(b.role&&!['admin','editor'].includes(b.role))fail(400,'Ungültige Rolle.');
+  if(b.googleEmail!==undefined&&b.googleEmail!==null&&b.googleEmail!==''&&(typeof b.googleEmail!=='string'||b.googleEmail.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.googleEmail)))fail(400,'Google-Adresse ist ungültig.');
+}
+function videoClassificationInput(value){
+  const allowed={format:['longform','short','legacy_clip'],pillar:['van','explore','move','gear','stories'],audit_decision:['keep','repackage','do_not_pursue'],reuse_potential:['high','medium','low','none']},result={};
+  for(const [key,options] of Object.entries(allowed)){const current=value[key];if(current!==null&&current!==undefined&&current!==''&&!options.includes(current))fail(400,`Ungültige Video-Klassifikation: ${key}.`);result[key]=current||null;}
+  return result;
 }
 const contentStatuses=new Set(['idea','validated','briefed','production','scheduled','published','reviewed']);
 const contextStatuses=new Set(['draft','approved','archived']);
@@ -40,12 +47,13 @@ const contextCategories=new Set(['Van / Hymer','Reisen','Outdoor','MTB','Kajak',
 function text(value,max,label,required=false){if(value===undefined||value===null)value='';if(typeof value!=='string'||value.length>max||(required&&!value.trim()))fail(400,`Ungültiges Feld: ${label}.`);return value.trim();}
 function date(value,label){if(value===undefined||value===null||value==='')return null;if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))fail(400,`Ungültiges Datum: ${label}.`);return value;}
 function nullableId(value,label){if(value===undefined||value===null||value==='')return null;if(typeof value!=='string'||value.length>120)fail(400,`Ungültige Verknüpfung: ${label}.`);return value;}
+function hours(value,label){if(value===undefined||value===null||value==='')return null;const parsed=Number(value);if(!Number.isFinite(parsed)||parsed<0||parsed>10000)fail(400,`Ungültige Stundenangabe: ${label}.`);return Math.round(parsed*100)/100;}
 function contentInput(value,create=false){
   const plannedYear=Number(value.planned_year);if(!Number.isInteger(plannedYear)||plannedYear<2020||plannedYear>2100)fail(400,'Ungültiges Planjahr.');
   const slot=value.slot===''||value.slot===null||value.slot===undefined?null:Number(value.slot);if(slot!==null&&(!Number.isInteger(slot)||slot<1||slot>12))fail(400,'Ungültiger Jahres-Slot.');
   const status=text(value.status||'idea',20,'Status',true);if(!contentStatuses.has(status))fail(400,'Ungültiger Content-Status.');
   const format=text(value.format||'longform',40,'Format',true);
-  return {planned_year:plannedYear,slot,title_working:text(value.title_working,180,'Arbeitstitel',true),format,pillar:text(value.pillar,80,'Pillar'),status,target_publish_date:date(value.target_publish_date,'Veröffentlichung'),youtube_video_id:nullableId(value.youtube_video_id,'Video'),brief:text(value.brief,12000,'Brief'),owner:nullableId(value.owner,'Verantwortung')};
+  return {planned_year:plannedYear,slot,title_working:text(value.title_working,180,'Arbeitstitel',true),format,pillar:text(value.pillar,80,'Pillar'),status,target_publish_date:date(value.target_publish_date,'Veröffentlichung'),youtube_video_id:nullableId(value.youtube_video_id,'Video'),brief:text(value.brief,12000,'Brief'),estimated_hours:hours(value.estimated_hours,'geschätzte Produktionszeit'),actual_hours:hours(value.actual_hours,'tatsächliche Produktionszeit'),owner:nullableId(value.owner,'Verantwortung')};
 }
 function contextInput(value){const category=text(value.category,80,'Kategorie',true);if(!contextCategories.has(category))fail(400,'Ungültige Context-Kategorie.');const status=text(value.status||'draft',20,'Status',true);if(!contextStatuses.has(status))fail(400,'Ungültiger Context-Status.');const source=text(value.source_url,1000,'Quelle');if(source&&(!/^https?:\/\//.test(source)))fail(400,'Quelle muss eine vollständige http(s)-Adresse sein.');return {category,title:text(value.title,180,'Titel',true),body:text(value.body,20000,'Inhalt',true),status,source_url:source||null,effective_from:date(value.effective_from,'gültig ab'),effective_to:date(value.effective_to,'gültig bis')};}
 function limit(req,path){const key=path+':'+req.socket.remoteAddress;let count=attempts.get(key);if(!count||count.until<Date.now())count={n:0,until:Date.now()+900000};if(++count.n>10)fail(429,'Zu viele Versuche. Bitte in 15 Minuten erneut versuchen.');attempts.set(key,count);return key;}
@@ -120,6 +128,7 @@ const server=http.createServer(async (req,res)=>{
       const activeUser=await db.user(authorization.name);if(!activeUser||!activeUser.enabled||activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Kanal verbinden.');
       const tokenData=await exchange(url.searchParams.get('code')||'',authorization.codeVerifier);const channel=await inspect(tokenData.access_token);await db.saveCockpitConnection(channel,seal(tokenData.refresh_token),activeUser.name);await db.cockpitAudit(activeUser.name,'youtube.connected','yt_connection',channel.id,null,{scopes:['youtube.readonly','yt-analytics.readonly']});try{await syncYoutube();}catch{await db.cockpitAudit(activeUser.name,'youtube.initial_sync.failed','yt_connection',channel.id,null,{safe:true});}res.writeHead(303,{'Location':'/cockpit?youtube=connected'});return res.end();
     }
+    if(path==='/anmelden'&&req.method==='GET'){const returnTo=url.searchParams.get('returnTo')==='/cockpit'?'/cockpit':'/redaktion';res.writeHead(303,{'Location':returnTo});return res.end();}
     if (!path.startsWith('/api/')) fail(404,'Nicht gefunden.');
     if (req.method!=='GET' && req.headers.origin!==origin) fail(403,'Anfrage nicht erlaubt.');
     if(path==='/api/setup'&&req.method==='GET')return send(200,{available:!(await db.hasUsers())});
@@ -132,23 +141,41 @@ const server=http.createServer(async (req,res)=>{
       await db.bootstrap(b.name,b.displayName,b.password);attempts.delete(attemptKey);return send(201,{created:true});
     }
     const token=req.headers.cookie?.match(/(?:^|;\s*)vv_session=([a-f0-9]+)/)?.[1];
-    let session=sessions.get(token); if (session && session.expires<Date.now()) { sessions.delete(token);session=null; }
+    if(path==='/api/auth/google/start'&&req.method==='GET'){
+      if(!googleLoginReady())fail(503,'Die Google-Anmeldung wird noch vorbereitet. Bitte vorübergehend mit Benutzername und Passwort anmelden.');
+      const returnTo=url.searchParams.get('returnTo')==='/cockpit'?'/cockpit':'/redaktion',state=randomBytes(32).toString('hex'),nonce=randomBytes(32).toString('hex'),codeVerifier=randomBytes(48).toString('base64url'),codeChallenge=createHash('sha256').update(codeVerifier).digest('base64url');
+      await db.createGoogleLoginState(authTokenHash(state),codeVerifier,nonce,returnTo);
+      return res.writeHead(303,{'Location':googleLoginAuthorizationUrl({state,nonce,codeChallenge})}).end();
+    }
+    if(path==='/api/auth/google/callback'&&req.method==='GET'){
+      const state=url.searchParams.get('state')||'',authorization=state?await db.takeGoogleLoginState(authTokenHash(state)):null;
+      if(!authorization)fail(403,'Die Google-Anmeldung konnte nicht zugeordnet werden. Bitte erneut beginnen.');
+      if(url.searchParams.get('error'))fail(403,'Die Google-Anmeldung wurde nicht abgeschlossen.');
+      try{
+        const idToken=await googleLoginExchange(url.searchParams.get('code')||'',authorization.code_verifier),user=await db.googleUser(await googleLoginIdentity(idToken,authorization.nonce)),sessionToken=randomBytes(32).toString('hex'),csrf=randomBytes(32).toString('hex');
+        await db.createSession(authTokenHash(sessionToken),user,csrf);await db.cockpitAudit(user.name,'auth.google.login','auth_session','google',null,{provider:'google'});
+        return res.writeHead(303,{'Location':authorization.return_to,'Set-Cookie':cookie(sessionToken)}).end();
+      }catch(error){
+        await db.cockpitAudit(null,'auth.google.denied','auth_session','google',null,{reason:error.message==='GOOGLE_LOGIN_NOT_ALLOWED'?'not_allowed':'verification_failed'});throw error;
+      }
+    }
+    let session=token?await db.session(authTokenHash(token)):null;
     if (path==='/api/login' && req.method==='POST') {
       const key=limit(req,'login');
       const b=await body(req), user=await db.user(String(b.name).toLowerCase());
       const valid=checkPassword(String(b.password||''),user?.hash||dummyHash);
       if (!user||!valid||!user.enabled) fail(401,'Benutzername oder Passwort stimmt nicht.');
       attempts.delete(key); const t=randomBytes(32).toString('hex'), csrf=randomBytes(32).toString('hex');
-      if (token) sessions.delete(token);
-      sessions.set(t,{name:user.name,version:user.auth_version,csrf,expires:Date.now()+28800000});
+      if (token) await db.deleteSession(authTokenHash(token));
+      await db.createSession(authTokenHash(t),user,csrf);await db.cockpitAudit(user.name,'auth.password.login','auth_session','password',null,{provider:'password'});
       return send(200,await sessionInfo(user,csrf),{'Set-Cookie':cookie(t)});
     }
     if (!session) fail(401,'Bitte anmelden.');
-    const activeUser=await db.user(session.name);
-    if(!activeUser||!activeUser.enabled||activeUser.auth_version!==session.version){sessions.delete(token);fail(401,'Die Sitzung ist abgelaufen. Bitte neu anmelden.');}
-    if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
-    if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf));
-    if (path==='/api/logout'&&req.method==='POST') {sessions.delete(token);return send(200,{}, {'Set-Cookie':cookie('',0)});}
+    const activeUser=session;
+    if(!activeUser.enabled||activeUser.auth_version!==session.session_auth_version){if(token)await db.deleteSession(authTokenHash(token));fail(401,'Die Sitzung ist abgelaufen. Bitte neu anmelden.');}
+    if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf_token) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
+    if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf_token));
+    if (path==='/api/logout'&&req.method==='POST') {if(token)await db.deleteSession(authTokenHash(token));await db.cockpitAudit(activeUser.name,'auth.logout','auth_session','logout',null,{provider:'vanventure'});return send(200,{}, {'Set-Cookie':cookie('',0)});}
     if(path==='/api/cockpit/health'&&req.method==='GET'){
       const health=await db.cockpitHealth(),intervalHours=await cockpitSyncIntervalHours(),lastFinished=health.lastRun?.finished_at?new Date(health.lastRun.finished_at).getTime():0,stale=!!(health.connection&&intervalHours&&(!lastFinished||Date.now()-lastFinished>(intervalHours+2)*60*60*1000));
       return send(200,{status:health.connection&&(!health.lastRun||health.lastRun.status==='succeeded')&&!stale?'ok':'warning',phase:4,intervalHours,stale,connection:health.connection,lastRun:health.lastRun});
@@ -167,6 +194,9 @@ const server=http.createServer(async (req,res)=>{
     }
     const videoMatch=path.match(/^\/api\/cockpit\/videos\/([^/]+)(?:\/(snapshots))?$/);
     if(videoMatch&&req.method==='GET'){const videoId=decodeURIComponent(videoMatch[1]);if(videoMatch[2])return send(200,{version:1,items:await db.cockpitVideoSnapshots(videoId)});const video=await db.cockpitVideo(videoId);if(!video)fail(404,'Video nicht gefunden.');return send(200,{version:1,item:video});}
+    if(videoMatch&&!videoMatch[2]&&req.method==='PUT'){
+      if(!['admin','editor'].includes(activeUser.role))fail(403,'Keine Schreibberechtigung.');const videoId=decodeURIComponent(videoMatch[1]),item=videoClassificationInput(await body(req));const updated=await db.updateCockpitVideoClassification(videoId,item);if(!updated)fail(404,'Video nicht gefunden.');await db.cockpitAudit(activeUser.name,'video.classification.updated','yt_video',videoId,null,item);return send(200,{updated:true});
+    }
     if(path==='/api/cockpit/sync-runs'&&req.method==='GET')return send(200,{version:1,items:await db.cockpitSyncRuns()});
     if(path==='/api/cockpit/sync'&&req.method==='POST'){
       if(activeUser.role!=='admin')fail(403,'Nur Administratoren dürfen einen Datenabgleich starten.');if(!youtubeReady())fail(503,'Die private Google-Konfiguration ist noch nicht vollständig.');
@@ -204,15 +234,15 @@ const server=http.createServer(async (req,res)=>{
       limit(req,'password:'+activeUser.name);const b=await body(req);
       if(typeof b.currentPassword!=='string'||b.currentPassword.length>128||!checkPassword(b.currentPassword,activeUser.hash))fail(403,'Aktuelles Passwort stimmt nicht.');
       validateAccount({name:activeUser.name,displayName:activeUser.display_name||activeUser.name,password:b.password});
-      await db.changePassword(activeUser.name,b.password);sessions.delete(token);return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
+      await db.changePassword(activeUser.name,b.password);if(token)await db.deleteSession(authTokenHash(token));return send(200,{changed:true},{'Set-Cookie':cookie('',0)});
     }
     if(path==='/api/users'||path.startsWith('/api/users/')){
       if(activeUser.role!=='admin')fail(403,'Benutzerverwaltung ist nur für Administratoren verfügbar.');
       if(path==='/api/users'&&req.method==='GET')return send(200,await db.users());
-      const b=await body(req);b.name=path==='/api/users'?String(b.name||'').toLowerCase():decodeURIComponent(path.slice('/api/users/'.length));validateAccount(b,path==='/api/users');
+      const b=await body(req);b.name=path==='/api/users'?String(b.name||'').toLowerCase():decodeURIComponent(path.slice('/api/users/'.length));b.googleEmail=b.googleEmail?String(b.googleEmail).trim().toLowerCase():null;validateAccount(b,path==='/api/users');
       if(!['admin','editor'].includes(b.role))fail(400,'Rolle fehlt.');
-      if(path==='/api/users'&&req.method==='POST'){await db.createUser(b.name,b.displayName,b.password,b.role);return send(201,{created:true});}
-      if(req.method==='PUT'){if(typeof b.enabled!=='boolean')fail(400,'Kontostatus fehlt.');await db.updateUser(b.name,b);return send(200,{updated:true});}
+      if(path==='/api/users'&&req.method==='POST'){await db.createUser(b.name,b.displayName,b.password,b.role,b.googleEmail);await db.cockpitAudit(activeUser.name,'auth.user.created','user',b.name,null,{role:b.role,google_configured:!!b.googleEmail});return send(201,{created:true});}
+      if(req.method==='PUT'){if(typeof b.enabled!=='boolean')fail(400,'Kontostatus fehlt.');await db.updateUser(b.name,b);await db.cockpitAudit(activeUser.name,'auth.user.updated','user',b.name,null,{role:b.role,enabled:b.enabled,google_configured:!!b.googleEmail});return send(200,{updated:true});}
       fail(405,'Methode nicht erlaubt.');
     }
     if(path==='/api/settings'){
@@ -249,11 +279,11 @@ const server=http.createServer(async (req,res)=>{
     }
     fail(405,'Methode nicht erlaubt.');
   } catch(e) {
-    const known={CONFLICT:[409,'Der Text wurde inzwischen geändert. Bitte neu laden.'],SETUP_CLOSED:[409,'Die erste Einrichtung ist bereits abgeschlossen.'],LAST_ADMIN:[400,'Mindestens ein aktiver Administrator muss erhalten bleiben.'],NO_USER:[404,'Benutzer nicht gefunden.'],SYNC_RUNNING:[409,'Ein Abgleich läuft bereits. Bitte kurz warten.']};
+    const known={CONFLICT:[409,'Der Text wurde inzwischen geändert. Bitte neu laden.'],SETUP_CLOSED:[409,'Die erste Einrichtung ist bereits abgeschlossen.'],LAST_ADMIN:[400,'Mindestens ein aktiver Administrator muss erhalten bleiben.'],NO_USER:[404,'Benutzer nicht gefunden.'],SYNC_RUNNING:[409,'Ein Abgleich läuft bereits. Bitte kurz warten.'],GOOGLE_EMAIL_IN_USE:[409,'Diese Google-Adresse ist bereits einem anderen Konto zugeordnet.'],GOOGLE_LOGIN_NOT_ALLOWED:[403,'Dieses Google-Konto ist nicht freigegeben. Bitte mit dem zugeordneten Konto anmelden oder die Redaktion kontaktieren.'],GOOGLE_LOGIN_TOKEN_EXCHANGE:[403,'Die Google-Anmeldung konnte nicht bestätigt werden. Bitte erneut versuchen.'],GOOGLE_LOGIN_ID_TOKEN:[403,'Die Google-Anmeldung konnte nicht bestätigt werden. Bitte erneut versuchen.'],GOOGLE_LOGIN_IDENTITY_INVALID:[403,'Die Google-Anmeldung konnte nicht bestätigt werden. Bitte erneut versuchen.']};
     const [status,message]=known[e.message]|| (e.code==='23505'?[409,'Dieser Benutzername ist bereits vergeben.']:[e.status||500,e.status?e.message:'Die Anfrage konnte nicht verarbeitet werden.']);send(status,{error:message});
   }
 });
-setInterval(()=>{for(const [k,v] of sessions) if(v.expires<Date.now()) sessions.delete(k);for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);for(const [k,v] of oauthStates)if(v.expires<Date.now())oauthStates.delete(k);},60000).unref();
+setInterval(()=>{for(const [k,v] of attempts) if(v.until<Date.now()) attempts.delete(k);for(const [k,v] of oauthStates)if(v.expires<Date.now())oauthStates.delete(k);db.cleanupAuth().catch(()=>{});},60000).unref();
 async function cockpitSyncIntervalHours(){const value=Number(await db.setting('cockpit_sync_interval_hours')||'24');return [0,12,24].includes(value)?value:24;}
 async function runScheduledCockpitSync(){
   if(process.env.COCKPIT_SYNC_ENABLED!=='true')return;

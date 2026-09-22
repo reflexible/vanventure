@@ -1,5 +1,13 @@
 # Working rules
 
+## Plan status is part of every delivery
+
+- Every completed project task must update every affected plan, overview, and
+  implementation-status document in the same turn. The status must distinguish
+  local preparation from a verified live rollout and name remaining work plainly.
+- Before reporting completion, reconcile duplicate status entries across the
+  relevant plan documents so they never contradict one another.
+
 ## Live deployment by default
 
 - This rule applies to every task and every new chat opened for this project.

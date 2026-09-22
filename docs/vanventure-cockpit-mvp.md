@@ -1,8 +1,11 @@
-# VanVenture Cockpit – MVP und sicherer Rollout
+# VanVenture Cockpit – Rolloutnachweis
 
 Stand: 22. September 2026
-Status: Phase 1 und Phase 2 abgeschlossen und produktiv geprüft. Phase 3 kann
-nach Benutzerfreigabe beginnen.
+
+Diese Datei ist der technische Rollout- und Betriebsnachweis, kein aktiver
+Plan. Alle erledigten und offenen Aufgaben stehen ausschließlich im
+[verbindlichen Gesamtplan](ausbauplan.md). Die historischen Phasen weiter unten
+bleiben als Nachweis erhalten.
 
 ## Aktueller Entscheidungsstand vom 21. September 2026
 
@@ -57,10 +60,11 @@ Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
 - Der automatische Erstlauf war erfolgreich: 25 Videos, 33 Kanal-Tageswerte,
   825 Video-Tageswerte und 117 fällige Vergleichs-Snapshots wurden gespeichert.
   Es gibt keine ausstehenden, altersbedingt fälligen Snapshots.
-- Der Dienst aktualisiert Daten täglich (oder im Cockpit administrativ gewähltem Rhythmus). Ein authentifizierter Download
-  „Channel Audit exportieren“ liefert ein versioniertes JSON mit Kanal-, Video-,
-  Kennzahlen-, Snapshot- und Content-Zuordnungsdaten; Tokens, Secrets,
-  Sitzungen und Kontodaten sind ausgeschlossen. Ein Import ist nicht vorgesehen.
+- Der Dienst aktualisiert Daten täglich (oder im Cockpit administrativ gewähltem Rhythmus). Der am 22. September 2026 live geprüfte,
+  authentifizierte Download „Channel Audit exportieren“ liefert Schema V2 mit
+  Kanal-, Video-, vorhandenen Analytics-, Snapshot-, Content-Zuordnungs- und
+  Datenqualitätsdaten; Tokens, Secrets, Sitzungen und Kontodaten sind
+  ausgeschlossen. Ein anonymer Abruf erhält HTTP 401; ein Import ist nicht vorgesehen.
 - Die Produktionsprüfung nach dem Release ist erfolgreich: Web und Datenbank
   sind gesund, `/healthz` und `/cockpit` liefern HTTP 200. Die Cockpit-Routen
   bleiben mit `noindex, nofollow` und `no-store` privat.
@@ -78,6 +82,17 @@ Cockpit-Übersicht mit Rolle, jedoch ohne Sitzungs- oder OAuth-Geheimnisse.
   unverändert; der Testcontainer und der temporäre Dump wurden entfernt.
 - Ein externer Benachrichtigungskanal wird erst eingerichtet, wenn der gewünschte
   Empfänger und Kanal bewusst festgelegt sind.
+
+## Erste Analysewerte – Audit V1 vom 22. September 2026
+
+Der erste gesicherte Audit trennt 25 Videos in zwei aktuelle Shorts, vier
+Legacy-Clips und 19 Longforms. Flow Trail hat 986 öffentliche Gesamt-Views;
+Norwegen (108 Min.) und Sardinien (38 Min.) führen bei der Watchtime der letzten
+365 Tage. Trolltunga erreichte bis zum letzten Tagesabschluss 149 Views, davon
+120 über den Shorts-Feed. Traffic Sources liegen für 19 Videos vor; Retention
+nur für Trolltunga und Norwegen. Daraus sind die drei unterschiedlichen Tests
+VAN, EXPLORE und MOVE im Planner als `validated` angelegt. Details:
+[Channel Audit V1](channel-audit-v1.md).
 
 ## Ziel des MVP
 
@@ -103,6 +118,14 @@ Das MVP umfasst:
    MTB, Kajak, Hund und Mission Paris.
 
 ## Gemeinsamer Google-Login für Redaktion und Cockpit
+
+**Umsetzungsstatus, 22. September 2026:** Datenmodell, Freigabeliste in der
+Benutzerverwaltung, PKCE-/State-/Nonce-Ablauf, persistente gemeinsame Sitzung,
+Audit-Protokoll und beide Einstiegsschaltflächen sind implementiert und werden
+mit dem Web-Release auf Marvin ausgerollt. Die tatsächliche Google-Anmeldung
+bleibt dort bis zur Anlage eines separaten OAuth-Webclients und der expliziten
+Zuordnung der Kontoadressen deaktiviert; Passwortanmeldung bleibt verfügbar.
+Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.
 
 Die privaten Bereiche `https://vanventure.at/redaktion` und
 `https://vanventure.at/cockpit` erhalten denselben Einstieg „Mit Google
@@ -164,7 +187,7 @@ Kontingente bleiben unberührt.
 | 1 – Sichere Basis | private Cockpit-Route, Datenmodell, Rollen- und Audit-Grundlage | noch keine Google-Abfragen | lokal und auf Staging anmelden, Rechte prüfen |
 | 1A – Gemeinsame Anmeldung | Google-Identität ist mit den bestehenden Rollen verknüpft; eine Sitzung gilt für Redaktion und Cockpit | zusätzlicher, kostenfreier Google-OAuth-Webclient; keine YouTube-Abfrage | mit jedem freigegebenen Konto anmelden, zwischen beiden Bereichen wechseln, abmelden und Sperrung prüfen |
 | 2 – YouTube-Daten | OAuth, manueller Sync, Tageswerte und Snapshots | einmaliger OAuth-Dialog; keine öffentliche Änderung | Zahlen mit YouTube Studio vergleichen |
-| 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context | kurzer Webcontainer-Neustart beim Release | gemeinsam im Live-Cockpit abnehmen |
+| 3 – MVP-Oberfläche | Dashboard, Videos, Planner, Master Context; die Videoaktion „Einordnen“ sowie geschätzte und tatsächliche Produktionsstunden im Planner sind seit 22. September 2026 live | kurzer Neustart nur des Webcontainers; PostgreSQL und Caddy blieben aktiv | `/healthz` und `/cockpit` erfolgreich; Stundenfelder per Datenbankschema geprüft, Sichtabnahme mit echten Daten bleibt offen |
 | 4 – Automatisierung | täglicher bzw. administrativ einstellbarer Sync und regelbasierte Insights | ein zusätzlicher interner Tageslauf | erste Woche auf Fehlermeldungen und Datenqualität prüfen |
 
 Nach jeder Phase bleibt das System in einem nutzbaren Zustand. Die nächste Phase

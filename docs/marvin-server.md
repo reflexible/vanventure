@@ -1,5 +1,9 @@
 # Marvin – übernommene Server- und Backupangaben
 
+Diese Datei ist ein historischer Server- und Backupnachweis. Verbindliche
+offene oder erledigte Arbeit steht ausschließlich im
+[Gesamtplan](ausbauplan.md).
+
 Stand: 19.09.2026. Quelle: `D:/work/_marvin_backup_2026`; erste Bestandsaufnahme per SSH ausschließlich lesend. Anschließende Veröffentlichungsvorbereitung auf ausdrücklichen Benutzerauftrag siehe nächsten Abschnitt.
 
 ## Aktueller Stand: HTTPS aktiv, DNS-Caches werden aktualisiert
@@ -33,7 +37,7 @@ Ein frischer Dump vom 19.09.2026, 14:08 UTC wurde restauriert. Alle fünf Tabell
 
 Prüfungen: zehn Anwendungstests erfolgreich, acht interne Routen HTTP 200, Einrichtung vorhandener Konten gesperrt, 25 referenzierte Bilder erreichbar, private Pfade HTTP 404 und nicht angemeldete API-Zugriffe HTTP 401. Das Übertragungsarchiv wurde mit SHA-256 geprüft. Lokale Nachweise, Server-Compose-Datei und private Wiederherstellungsdaten: `backups/marvin-release-20260919/`. Keine Originalfotoarchive oder lokalen Analyseunterlagen übertragen.
 
-Betrieb auf Marvin: `cd /opt/vanventure && docker compose ps`. Stoppen ohne Datenverlust: `docker compose stop`; Starten: `docker compose start`. Nie `down -v` zum normalen Stoppen verwenden. Der frühere GitHub-Pages-Auftritt wurde bei diesem Server-Deployment nicht geändert. Ab Verwendung der öffentlichen Redaktion ist die Serverdatenbank maßgeblich; spätere lokale Dumps dürfen deren Änderungen nicht überschreiben.
+Betrieb auf Marvin: `cd /opt/vanventure && docker compose -f compose.yaml ps`. Stoppen ohne Datenverlust: `docker compose -f compose.yaml stop`; Starten: `docker compose -f compose.yaml start`. Nie `down -v` zum normalen Stoppen verwenden. Die lokale Entwicklungs-Ergänzung heißt absichtlich `compose.dev.yaml` und wird auf Marvin nie automatisch geladen. Der frühere GitHub-Pages-Auftritt wurde bei diesem Server-Deployment nicht geändert. Ab Verwendung der öffentlichen Redaktion ist die Serverdatenbank maßgeblich; spätere lokale Dumps dürfen deren Änderungen nicht überschreiben.
 
 ## Frühere Bestandsaufnahme vor der Installation
 

@@ -1,5 +1,9 @@
 # Riverstar – Entwurf 04
 
+Dieser Entwurf ist eine redaktionelle Referenz, kein eigener Arbeitsplan.
+Verbindliche offene und erledigte Punkte stehen ausschließlich im
+[Gesamtplan](../ausbauplan.md).
+
 Stand: 20. September 2026. Ansicht: [riverstar-entwurf.html](../../riverstar-entwurf.html).
 
 ## Redaktionelle Richtung

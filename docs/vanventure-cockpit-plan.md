@@ -1,8 +1,18 @@
-# VanVenture Cockpit – technische Spezifikation
+# VanVenture Cockpit – technische Referenz
 
-Stand: 22. September 2026 · Status: Planungsgrundlage mit Umsetzungsstand.
-Phasen 0 bis 4 sind weitgehend produktiv umgesetzt; Phase 5 ergänzt die noch
-offene Channel-Audit-Arbeitsfläche.
+Stand: 22. September 2026 · Diese Datei beschreibt Architektur, Datenmodell und
+API-Entscheidungen. Sie ist **kein aktiver Plan**: Erledigte und offene Arbeit
+wird ausschließlich im [verbindlichen Gesamtplan](ausbauplan.md) geführt.
+Historische Phasenbeschreibungen weiter unten erklären den Entstehungskontext,
+ohne eigene Aufgaben oder Prioritäten zu setzen.
+
+**Audit-V1-Stand (22. September 2026):** Der erste Abgleich umfasst 25 Videos:
+zwei aktuelle Shorts, vier Legacy-Clips und 19 Longforms. Flow Trail führt mit
+986 öffentlichen Gesamt-Views; Norwegen (108 Minuten) und Sardinien (38
+Minuten) liefern die stärkste Watchtime der letzten 365 Tage. Trolltunga steht
+bei 149 Views bis Tagesabschluss, davon 120 aus dem Shorts-Feed. Diese Werte
+begründen drei getrennte Tests (VAN, EXPLORE, MOVE), keine automatische
+Säulen-Gewichtung. Siehe [Channel Audit V1](channel-audit-v1.md).
 
 ## Zielbild
 
@@ -157,7 +167,7 @@ Indizes gehören verbindlich in die Migration.
 | `yt_video_daily_metrics` | `video_id`, `metric_date`, `views`, `watch_time_minutes`, `average_view_duration`, `impressions`, `impressions_ctr`, `likes`, `comments`, `metrics_json` | Tägliche Video-Kennzahlen, eindeutig je Video/Datum. |
 | `yt_video_snapshots` | `video_id`, `age_days` (1/7/28/90/365), `snapshot_date`, `metrics_json`, `complete` | Materialisierte Vergleichsstichtage aus Tagesdaten. |
 | `yt_sync_locks` | `connection_id`, `locked_until`, `run_id` | Datenbankgestützte Ausschluss-Sperre für Syncs. |
-| `content_items` | `id`, `planned_year`, `slot`, `title_working`, `format`, `pillar`, `status`, `target_publish_date`, `youtube_video_id`, `brief`, `owner`, `updated_by` | Editorialer Jahresplan; `format=longform` und zwölf nummerierte Slots sind der Standard. |
+| `content_items` | `id`, `planned_year`, `slot`, `title_working`, `format`, `pillar`, `status`, `target_publish_date`, `youtube_video_id`, `brief`, `estimated_hours`, `actual_hours`, `owner`, `updated_by` | Editorialer Jahresplan; `format=longform` und zwölf nummerierte Slots sind der Standard. Stundenwerte machen die spätere Nutzen-pro-Stunde-Review nachvollziehbar. |
 | `content_item_metrics` | `content_item_id`, `metric_name`, `target_value`, `actual_value`, `evaluated_at` | Ziele und Auswertung der geplanten Videos. |
 | `master_context_entries` | `id`, `category`, `title`, `body`, `status`, `source_url`, `effective_from`, `effective_to`, `updated_by` | Versionierbare, redaktionell gepflegte Faktenbasis. |
 | `cockpit_audit_log` | `id`, `actor`, `action`, `entity_type`, `entity_id`, `before_safe`, `after_safe`, `created_at` | Auditierbare Admin-, OAuth-, Sync- und Planungsaktionen ohne Token/Passwortwerte. |
@@ -202,6 +212,10 @@ Google-Antwortdetails mit personenbezogenen oder geheimen Daten.
 
 - Filterbare Tabelle aller erkannten Videos mit Titel, Veröffentlichung, Format/Pillar,
   aktuellen Kennzahlen und Sync-Status.
+- Jede Videozeile führt die Aktion „Einordnen“ als eigenständige, deutlich
+  erkennbare und per Tastatur erreichbare Schaltfläche. **Am 22. September 2026
+  live ausgerollt und technisch geprüft; die Sichtabnahme mit echten Daten bleibt
+  offen.**
 - Detailseite mit Zeitreihe, Traffic-/Engagement-Werten soweit von der API geliefert,
   sowie 1/7/28/90/365-Snapshot-Vergleich.
 - Verknüpfung eines YouTube-Videos mit einem `content_items`-Eintrag, ohne Daten aus
@@ -338,19 +352,33 @@ Testnutzer- und erneute Freigabe-Regeln werden berücksichtigt.
 
 ### Phase 5 – Channel Audit & Content Intelligence
 
-1. Video-Impressions/CTR, Video- und Kanal-Traffic-Sources sowie verfügbare
-   Retention-/Engagement-Serien ergänzen und API-Verzug beziehungsweise Leerwerte
-   sichtbar behandeln. Nicht unterstützte optionale Analytics-Abfragen dürfen den
-   Kern-Sync nie blockieren.
-2. Die Short-/Longform-Klassifikation absichern und im Planner geschätzte sowie
+**Status vom 22. September 2026:** Die Impressions-/CTR-Implementierung ist live:
+das Cockpit verwendet den offiziellen täglichen YouTube-Reporting-Job
+`channel_reach_basic_a1`, behandelt fehlende Werte als nicht verfügbar und
+blockiert den Kern-Sync nicht. Es ist dafür kein weiterer Code zu implementieren.
+YouTube hat den ersten Tagesreport noch nicht geliefert; dessen automatische
+Einlesung und fachliche Abnahme bleiben als externer Wartepunkt offen.
+
+1. **Implementiert:** Video-Impressions/CTR über den Reporting-Export erfassen.
+   Traffic Sources und verfügbare Retention-/Engagement-Serien mit Zeitraum und
+   API-Grenzen anzeigen. Nicht unterstützte optionale Analytics-Abfragen dürfen
+   den Kern-Sync nie blockieren.
+2. **Offen, extern abhängig:** Den ersten von YouTube bereitgestellten
+   Reach-Tagesreport einlesen und die Werte im Cockpit abnehmen. Erst dann CTR
+   und Impressions in einem Audit V2 bewerten.
+3. Die Short-/Longform-Klassifikation absichern und im Planner geschätzte sowie
    tatsächliche Produktionsstunden für spätere Effizienzvergleiche erfassen.
-3. Eine Audit-Ansicht mit Vergleichsgruppen, Datenqualitätsstatus,
+   **Umgesetzt und live am 22. September 2026:** Beide Stundenfelder sind
+   additiv migriert, validiert und im Planner sichtbar; die Kennzahl folgt erst
+   mit tatsächlichen Veröffentlichungsdaten.
+4. Eine Audit-Ansicht mit Vergleichsgruppen, Datenqualitätsstatus,
    Long-Tail-/Alterslogik und Snapshot-Vergleich umsetzen.
-4. **Erledigt:** Der Cockpit-Button „Channel Audit exportieren“ erzeugt bereits
-   einen authentifizierten, versionierten JSON-Download mit expliziter Feldliste,
-   Datenstand und ohne Tokens, Secrets, Sitzungen oder Kontodaten. CSV bleibt
-   optional und nicht kanonisch.
-5. Den wiederkehrenden Ablauf dokumentieren: Export → Audit → geprüfte Erkenntnisse
+5. ~~**Erledigt und am 22. September 2026 live verifiziert:** Der Cockpit-Button
+   „Channel Audit exportieren“ erzeugt einen authentifizierten, versionierten
+   JSON-Download (Schema V2) mit expliziter Feldliste und Datenstand. Er enthält
+   keine Tokens, Secrets, Sitzungen oder Kontodaten; anonyme Abrufe erhalten
+   HTTP 401. CSV bleibt optional und nicht kanonisch.~~
+6. Den wiederkehrenden Ablauf dokumentieren: Export → Audit → geprüfte Erkenntnisse
    in Insights, Planner und Master Context übernehmen. Es gibt keine automatische
    Rückschreibung nach YouTube oder ungeprüfte Übernahme.
 

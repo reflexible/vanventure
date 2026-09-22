@@ -84,7 +84,7 @@ function newUser(){editingUser=null;$('user-form').reset();$('user-form').elemen
 async function users(){
   const list=await api('users');$('user-list').replaceChildren();
   for(const user of list){const row=document.createElement('div');row.className='user-row';const name=document.createElement('span');name.textContent=`${user.display_name||user.name} · ${user.name} · ${user.role==='admin'?'Administrator':'Redaktion'}${user.enabled?'':' · inaktiv'}`;
-    row.append(name,button('Bearbeiten',()=>{editingUser=user.name;const f=$('user-form').elements;f.name.value=user.name;f.name.disabled=true;f.displayName.value=user.display_name||user.name;f.role.value=user.role;f.enabled.checked=user.enabled;f.password.value='';f.password.required=false;$('user-form-title').textContent='Benutzer bearbeiten · Passwort leer lassen, um es beizubehalten';}));$('user-list').append(row);}
+    row.append(name,button('Bearbeiten',()=>{editingUser=user.name;const f=$('user-form').elements;f.name.value=user.name;f.name.disabled=true;f.displayName.value=user.display_name||user.name;f.googleEmail.value=user.google_email||'';f.role.value=user.role;f.enabled.checked=user.enabled;f.password.value='';f.password.required=false;$('user-form-title').textContent='Benutzer bearbeiten · Passwort leer lassen, um es beizubehalten';}));if(user.google_email){const note=document.createElement('small');note.textContent=`Google: ${user.google_email}${user.google_linked_at?' · bestätigt':''}`;row.append(note);}$('user-list').append(row);}
 }
 $('users-button').addEventListener('click',run(async()=>{newUser();await users();$('users-message').textContent='';$('users-dialog').showModal();}));
 $('new-user').addEventListener('click',newUser);

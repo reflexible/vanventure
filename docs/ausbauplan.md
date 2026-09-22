@@ -1,207 +1,172 @@
-# VanVenture – verbindlicher Ausbauplan
+# VanVenture – verbindlicher Gesamtplan
 
 Stand: 22. September 2026  
-Dieser Plan ist die zentrale Übersicht für Prioritäten, Phasen, Entscheidungen und
-neue Ideen rund um `vanventure.at`. Technische Spezifikationen, Prüfprotokolle und
-historische Notizen bleiben als Referenz erhalten, werden aber nicht als getrennte
-aktive Roadmaps gepflegt.
+Dies ist die **einzige aktive Arbeitsliste** für VanVenture. Erledigte Punkte
+sind durchgestrichen. Die übrigen Dateien unter `docs/` sind Quellen,
+Rolloutnachweise oder technische Referenzen – keine konkurrierenden Pläne.
 
-## Zielbild
+## Plan-Sicherung
 
-VanVenture verbindet eine glaubwürdige öffentliche Reise- und Outdoor-Website mit
-einem privaten Cockpit. Das Cockpit unterstützt die Einkommensstrategie: Es macht
-YouTube-Leistung sichtbar, hilft bei der Planung von Longform-Inhalten und bündelt
-die belastbaren Fakten für bessere Inhalte. Die öffentliche Website bleibt frei von
-privaten Cockpit- und Google-Daten.
+Jede neue oder geänderte Aufgabe wird zuerst hier ergänzt. Die registrierten
+Planquellen und ihre Pflichtpunkte stehen in
+[`plan-register.json`](plan-register.json); `npm run check:plans` prüft, dass
+jede Quelle auf diesen Gesamtplan verweist, keine Referenzdatei eine zweite
+aktive Aufgabenliste führt und alle registrierten Pflichtpunkte hier enthalten
+sind. Die Prüfung ist Teil von `npm test`. Ein Plan-Update ohne erfolgreichen
+Planabgleich ist nicht fertig.
 
-## Status heute
+## Ausgangslage: erste Analyse
 
-| Bereich | Stand | Nächster verbindlicher Schritt |
+Quelle: [Channel Audit V1](channel-audit-v1.md), erfolgreicher Abgleich vom 22.
+September 2026; Tageswerte bis einschließlich 19. September.
+
+| Bereich | Gesicherter Befund | Konsequenz |
 | --- | --- | --- |
-| Öffentliche Website | `https://vanventure.at` läuft produktiv mit HTTPS, Reiseberichten und SEO-Grundlage. | Rechtstexte und Kontakt vervollständigen. |
-| Redaktion | Private Redaktion mit Rollen, Sitzungen und PostgreSQL läuft produktiv. | Inhalte anhand belegter Fakten ausbauen. |
-| YouTube-Verbindung | Kanal ist verbunden; 25 Videos, Tageswerte, Snapshots und ein sicherer Audit-Export sind vorhanden. | Channel Audit V1 durchführen und daraus den 90-Tage-Plan ableiten. |
-| Google OAuth | Externe Anwendung im Testmodus; ein berechtigter Testnutzer ist eingetragen. | Produktionsfreigabe parallel vorbereiten, noch nicht veröffentlichen. |
-| SEO | Technische Basis, Sitemap und Indexierungsgrundlagen sind umgesetzt. | Search Console/Bing bestätigen und Inhalte stärken. |
+| Bestand | 25 Videos: 2 aktuelle Shorts, 4 Legacy-Clips, 19 Longforms | Nur die zwei aktuellen Shorts bilden die Shorts-Vergleichsgruppe. |
+| MOVE / Discovery | Flow Trail: 986 öffentliche Gesamt-Views; Such-Traffic auch für Kenda Line | MOVE als eigenständigen Test führen, alte Clips nicht mit heutigen Shorts vergleichen. |
+| EXPLORE / Watchtime | Norwegen: 108 Min.; Sardinien: 38 Min. Watchtime in 365 Tagen | Reiseerzählung als eigenständigen Test führen. |
+| Shorts | Trolltunga: 149 Views bis Tagesabschluss, 120 über Shorts-Feed, ca. 82 % verfügbare Retention | Zwei eigenständige Shorts/Reels je Erlebnis vorsehen. |
+| Datenqualität | Traffic Sources für 19 Videos; Retention nur für Trolltunga und Norwegen; Reach-Report noch ausständig | Keine Säulen-Gewichtung und keine CTR-/Impressionsentscheidung ableiten. |
 
-## Prioritäten und Arbeitsstränge
+## Bereits erledigt und live geprüft
 
-1. **Priorität 1 – Cockpit und Einkommensstrategie:** Daten in nutzbare Entscheidungen,
-   Themenplanung und wiederholbare Content-Produktion überführen.
-2. **Priorität 2 – Google-Produktionsreife:** Die YouTube-Verbindung dauerhaft,
-   nachvollziehbar und rechtlich sauber betreiben.
-3. **Priorität 3 – Website und Vertrauen:** Rechtstexte, Kontakt, belastbare Inhalte
-   und vollständige Ausrüstung-/Fahrzeugseiten.
-4. **Priorität 4 – Sichtbarkeit und Reichweite:** SEO, YouTube-Verlinkung und
-   dokumentarische Reiseinhalte kontinuierlich verbessern.
-5. **Priorität 5 – Betrieb:** Backups, Monitoring, Tests und sichere Releases.
+- ~~Private Redaktion und privates Cockpit mit Rollen, Sitzungen, CSRF-Schutz,
+  `noindex` und `no-store`.~~
+- ~~Verschlüsselte Google-/YouTube-Verbindung, manueller und zeitgesteuerter
+  Sync, Datenbanksperre, Monitoring, Audit-Log und automatisierte Tests.~~
+- ~~Erster Import mit 25 Videos, 33 Kanal-Tageswerten, 825 Video-Tageswerten
+  und allen damals fälligen Snapshots.~~
+- ~~Dashboard, Video-Liste, Content Planner, Master Context und regelbasierte
+  Basis-Insights.~~
+- ~~Format- und Content-Audit: 2 aktuelle Shorts, 4 Legacy-Clips, 19 Longforms
+  sowie Keep-/Repackage-/Nicht-weiterverfolgen-Entscheidungen.~~
+- ~~Sicherer Audit-Export V2; anonym ist der Endpunkt nicht erreichbar.~~
+- ~~Drei nächste Tests im Live-Planner als `validated`: VAN (Hymer
+  Langzeiterfahrung), EXPLORE (California → Hymer), MOVE (Bike oder Kajak /
+  Basecamp).~~
+- ~~Low-Effort-Creator-System mit Vorher-/Währenddessen-/Danach-Checkliste,
+  festem Wiederverwendungsablauf sowie geschätzten und tatsächlichen Stunden im
+  Planner.~~
+- ~~Produktions-Release-Check, geschützter Datenbankdump und erfolgreicher
+  Restoretest der Cockpit-Tabellen.~~
+- ~~Öffentliche HTTPS-Website, SEO-Basis und gemeinsamer, tastaturbedienbarer
+  Foto-Viewer.~~
 
-Die Phasen sind in dieser Reihenfolge priorisiert. Phase 2 läuft teilweise parallel
-zu Phase 1, weil sie die dauerhafte YouTube-Verbindung ermöglicht, den
-Cockpit-Ausbau aber nicht unnötig aufhalten soll.
+## Nächste verbindliche Schritte
 
-## Phase 1 – Cockpit als Steuerzentrale für die Einkommensstrategie
+### 1. Gemeinsamen Google-Login vor dem Umschalten sauber umsetzen
 
-### 1.1 Verlässliche Datenbasis abschließen
+Der bestehende Passwort-Login bleibt aktiv, bis diese Phase vollständig
+abgenommen ist. Die Freigabeliste wird ausschließlich in der vorhandenen
+Benutzerverwaltung gepflegt; es gibt keine offene Registrierung und keine
+automatische Google-Kontoübernahme.
 
-- [x] Privates Cockpit, Rollenprüfung, verschlüsselte Tokenablage, Google-Verbindung,
-  Kanal- und erster Datenabruf.
-- [x] Manuellen Sync mit sichtbarem Ergebnis und anschließender Freigabe des
-  automatischen Tageslaufs bereitstellen.
-- [x] Datenbanksperre pro Kanal tatsächlich verwenden, damit nie zwei Syncs parallel
-  schreiben.
-- [x] Callback auch bei zwischenzeitlich deaktiviertem Admin sicher ablehnen.
-- [x] Fehler beim Erstlauf und beim Tageslauf klar im Cockpit anzeigen; keine
-  Fehlermeldungen still verschlucken.
-- [ ] Alle Kanalvideos seitenweise und ohne die heutige 500-Video-Grenze erfassen.
-- [x] OAuth-, Sync-, Sperr-, Snapshot- und Fehlerfälle automatisiert testen.
+- [ ] Google-Adressen der künftigen Administratoren und Redaktionskonten
+  verbindlich festlegen und je vorhandenem Benutzer zuordnen. **Live offen:**
+  Die Benutzerverwaltung kann die Adressen jetzt speichern, aber es wurde keine
+  Adresse geraten oder ohne ausdrückliche Auswahl hinterlegt.
+- ~~Additive Datenhaltung für Google-Provider, Google-`sub`, verifizierte
+  E-Mail und Zeitpunkt der Zuordnung ergänzen.~~
+- ~~Start- und Callback-Routen unter `/api/auth/google/*` mit sicherem,
+  allowlist-geprüftem Rücksprung nach `/redaktion` oder `/cockpit` umsetzen.~~
+- ~~Eine gemeinsame, serverseitig prüfbare VanVenture-Sitzung für Redaktion
+  und Cockpit einführen; Abmeldung, Kontosperre und Rollenänderung müssen sie
+  sofort ungültig machen und ein regulärer Web-Neustart darf sie nicht
+  unbeabsichtigt behalten oder unkontrolliert verlieren.~~
+- ~~Verständliche Login-Schaltflächen und einen neutralen Hinweis für nicht
+  freigegebene Google-Konten bereitstellen.~~
+- ~~Audit-Einträge für Anmeldung, Abmeldung, fehlgeschlagene Freigaben und
+  administrative Konto-Zuordnungen speichern – ohne Tokens, Secrets oder
+  vollständige sensible Identitätsdaten in Logs.~~
+- [ ] Automatisiert prüfen: gültige Anmeldung per Google und nicht freigegebenes
+  Konto nach Anlage des separaten OAuth-Webclients live abnehmen. Wechsel
+  Redaktion ↔ Cockpit, CSRF-Schutz, Abmeldung sowie sofortige Ungültigkeit
+  nach Sperrung oder Rollenänderung sind automatisiert für die gemeinsame
+  serverseitige Sitzung geprüft. **Live offen:** eigener Client und
+  freigegebene Testkonten fehlen noch.
 
-**Abnahme:** Ein Admin kann einen manuellen Lauf nachvollziehbar starten; ein
-wiederholter Lauf erzeugt keine Dubletten; Fehlzustände sind sichtbar; Kanal- und
-Videozahlen werden mit YouTube Studio abgeglichen.
+**Rolloutstatus, 22. September 2026:** Die technische Grundlage wird mit diesem
+Release auf Marvin bereitgestellt, einschließlich sicherem Passwort-Fallback.
+Die Google-Schaltfläche aktiviert sich erst mit einem separaten OAuth-Webclient
+(`GOOGLE_LOGIN_*`) und den bewusst zugeordneten Adressen. Der bestehende
+YouTube-Client bleibt strikt getrennt und wird nicht wiederverwendet.
 
-### 1.2 Cockpit-Oberfläche für Entscheidungen
+### 2. Aus den Analysewerten echte Test-Briefs machen
 
-- [x] Dashboard: Views, Watchtime, Abonnentenentwicklung, Impressionen, CTR,
-  letzte erfolgreiche Synchronisierung und Datenqualitäts-Hinweise.
-- [ ] Videoansicht: filterbare Liste, Detailseite, Zeitreihe und Vergleiche nach
-  Tag 1, 7, 28, 90 und 365.
-- [ ] Content Planner: zwölf verschiebbare Longform-Slots pro Jahr, Arbeitstitel,
-  Zielgruppe, Themen-Pillar, Format, Status, Ziel/KPI, Brief und Videoverknüpfung.
-- [ ] Master Context: freigegebene Fakten zu Van/Hymer, Reisen, Outdoor, MTB,
-  Kajak, Hund und Mission Paris – jeweils mit Quelle und Aktualität.
-- [ ] Regelbasierte Insights: nachvollziehbare Signale für Themen, Formate und
-  nächste Produktionsentscheidungen; keine automatischen Veröffentlichungen.
+- [ ] Für die drei validierten Tests jeweils Zielgruppe, Nutzenversprechen,
+  Format, Ziel/KPI, geschätzte Stunden und Verwertung verbindlich festlegen.
+- [ ] Für jeden Test das Paket festlegen: Longform → 2 eigenständige
+  Shorts/Reels → belegte Website-Ergänzung → geprüfte Context-Fakten →
+  28-Tage-Review.
+- [ ] Die ersten geprüften Fakten zu den drei Tests im Master Context anlegen;
+  die Verwaltungsoberfläche ist live, der Produktionsbestand enthält aktuell
+  noch keine Context-Einträge.
+- [ ] Nach jeder Veröffentlichung tatsächliche Produktionsstunden ergänzen und
+  nach frühestens 28 Tagen Nutzen pro investierter Stunde bewerten.
 
-### 1.3 Channel Audit & Content Intelligence
+### 3. Audit V2 erst mit belastbaren externen Daten abschließen
 
-- [x] Sicherer, versionierter JSON-Export aus dem privaten Cockpit mit Kanal-,
-  Video-, Kennzahlen-, Snapshot- und Content-Zuordnungsdaten bereitstellen;
-  keine Tokens, Secrets, Sitzungen oder Kontodaten exportieren.
-- [ ] Channel Audit V1 mit den vorhandenen Daten durchführen: Shorts und
-  Longform getrennt nach Alter, Views, Watchtime, Ø Wiedergabedauer,
-  Likes/Kommentaren und 1/7/28/90/365-Snapshots vergleichen.
-- [ ] Die daraus belegten Gewinner, Evergreen-Kandidaten und Lücken in drei
-  konkrete Videos sowie drei bis vier flexible Kandidaten für die nächsten
-  90 Tage übersetzen.
-- [ ] Impressions/CTR, Traffic Sources, Retention und Content-Efficiency als
-  Audit V2 ergänzen; fehlende oder verzögerte Daten nie als belastbare Nullwerte
-  interpretieren.
+- [ ] Die künstliche 500-Video-Grenze im paginierten YouTube-Import entfernen
+  und mit einem Bestand über 500 Videos automatisiert prüfen.
+- [ ] Die im technischen Entwurf vorgesehene Administrator-Aktion „YouTube
+  trennen“ ergänzen: gespeicherte Token sicher löschen/widerrufen, Folge-Syncs
+  stoppen und den Vorgang auditieren.
+- [ ] Den ersten YouTube-Reach-Report abnehmen; Impressions und CTR erst bei
+  positiven oder echten Nullwerten als Daten bewerten.
+- [ ] Traffic Sources sowie verfügbare Retention-/Engagement-Zeitreihen mit
+  Zeitraum, Datenstand und API-Grenzen im Cockpit sichtbar machen.
+- [ ] Video-Detailseite mit 1/7/28/90/365-Tage-Vergleich, Datenqualität und
+  Long-Tail-/Alterslogik ergänzen.
+- [ ] Strukturierte Ziel- und Ist-Metriken für Plan-Einträge ergänzen
+  (`content_item_metrics`); Ziel/KPI steht aktuell nur im Brief-Freitext.
+- [ ] Effizienzmetriken aus tatsächlichen Stunden und veröffentlichten
+  Ergebnissen berechnen; bis dahin keine Erfolgsbehauptung aus Views allein.
+- [ ] Den wiederkehrenden Workflow im Cockpit dokumentieren: Export → externe
+  Analyse → geprüfte Erkenntnisse in Planner und Master Context übernehmen.
 
-**Abnahme:** Audit V1 führt zu nachvollziehbar priorisierten Content-Säulen,
-einem konkreten 90-Tage-Plan und einer bewussten Entscheidung über die nächste
-Analytics-Ausbaustufe.
+### 4. Google-Produktionsreife und rechtliche Basis
 
-**Abnahme:** Das Cockpit beantwortet mindestens: Welche Themen/Videoformate
-funktionieren, welche Inhalte stehen als Nächstes an und worauf stützen sich diese
-Entscheidungen?
+- [ ] Öffentliche Datenschutzerklärung, Nutzungsbedingungen, Kontakt-E-Mail und
+  Impressum erstellen und rechtlich prüfen lassen.
+- [ ] Google Auth Platform mit echten Rechtstext-URLs, Domainbestätigung und
+  erforderlicher OAuth-/Scope-Verifizierung abschließen.
+- [ ] Erst danach OAuth von Test auf Produktion umstellen und die Verbindung
+  erneut prüfen.
+- [ ] Aufbewahrungs-, Export- und Löschkonzept für Cockpitdaten verbindlich
+  festlegen.
 
-## Phase 2 – Google-Produktionsreife und Website-Rechtstexte
+### 5. Website, Vertrauen und Sichtbarkeit
 
-Diese Phase läuft parallel zu Phase 1. Der Testmodus bleibt aktiv, bis alle Punkte
-abgenommen sind; er verursacht keine Google-Cloud-Kosten, lässt OAuth-Freigaben
-jedoch nach sieben Tagen ablaufen.
+- [ ] Fahrzeugseite, Reiseberichte und Ausrüstungsliste nur mit belegten,
+  freigegebenen Fakten und Fotos erweitern; Kennzeichen auf Webderivaten
+  anonymisieren.
+- [ ] Riverstar-/Kajak-Entwurf fachlich und redaktionell freigeben, bevor er
+  öffentlich wird; vorher Gewässer/Ort der Uferbilder und die konkrete Kritik
+  an den Schwimmwesten klären.
+- [ ] Search Console und Bing Webmaster Tools verifizieren, Sitemap einreichen
+  und erst danach Suchdaten auswerten.
+- [ ] Bei ausdrücklich ausgewählten Reisevideos passende Website-Links ergänzen;
+  keine automatisierten Fremdbeiträge oder gekauften Links.
 
-- [ ] Öffentliche Datenschutzerklärung unter `https://vanventure.at/...` erstellen.
-- [ ] Öffentliche Nutzungsbedingungen unter `https://vanventure.at/...` erstellen.
-- [ ] Rechtliche Prüfung beider Texte vor Veröffentlichung einholen; dieser Plan
-  ersetzt keine Rechtsberatung.
-- [ ] Datenschutzerklärung mindestens mit Zweck der YouTube-Auswertung,
-  Google-/YouTube-Leseberechtigungen, verschlüsselter Refresh-Token-Ablage,
-  Datenminimierung, Aufbewahrung/Löschung und Kontakt ausstatten.
-- [ ] Nutzungsbedingungen für den privaten, rollenbasierten Cockpit-Zugang festlegen.
-- [ ] Google Auth Platform: App-Name, Support- und Entwicklerkontakt, Homepage,
-  echte Rechtstext-URLs sowie `vanventure.at` als autorisierte Domain prüfen.
-- [ ] Domainbestätigung und erforderliche OAuth-/Scope-Verifizierung bei Google
-  vorbereiten beziehungsweise abschließen.
-- [ ] Erst danach die App von **Test** auf **Produktion** stellen und die bestehende
-  YouTube-Verbindung erneut prüfen.
+### 6. Betrieb
 
-**Abnahme:** Die dauerhafte OAuth-Verbindung funktioniert nach der Google-Freigabe;
-alle im Zustimmungsbildschirm genannten URLs sind öffentlich erreichbar, korrekt und
-rechtlich geprüft.
+- [ ] Backup/Restore inklusive Cockpit-Tabellen alle zwei bis vier Wochen
+  wiederholen und dokumentieren.
+- [ ] Die persistente Warnungs-Inbox im Familien-Dashboard festlegen und erst
+  dann als Benachrichtigungskanal anschließen.
+- [ ] Bei jedem Web-Release Website, PostgreSQL und Caddy geschützt
+  weiterbetreiben und `/healthz`, betroffene Route sowie sichtbares Ergebnis
+  prüfen.
 
-## Phase 3 – Website, Inhalte und Vertrauen
+## Referenzen – keine aktiven Pläne
 
-- [ ] Kontakt-E-Mail und Impressum veröffentlichen.
-- [ ] Aktuelle Fahrzeugdaten und sorgfältig ausgewählte, rechtlich veröffentlichbare
-  Fotos ergänzen; Kennzeichen auf Webderivaten anonymisieren.
-- [ ] Reiseberichte mit belegten Routen, Etappen, Stellplätzen, Reisezeiten und
-  persönlichen Erfahrungen ausbauen. Keine Kosten oder Tipps erfinden.
-- [ ] Ausrüstungsliste aus real genutzter Ausrüstung erstellen; mögliche
-  Affiliate-Links deutlich kennzeichnen.
-- [ ] Riverstar-/Kajak-Entwurf fachlich und redaktionell abnehmen, erst dann in die
-  öffentliche Website übernehmen.
-- [ ] Eingebettete Reise-, Fahrzeug- und Kajakfotos überall mit dem gemeinsamen,
-  tastaturbedienbaren Foto-Viewer vergrößerbar halten.
-
-**Abnahme:** Rechtliche Basis, Kontakt und die wichtigsten öffentlichen Inhaltsseiten
-sind vollständig, konsistent und anhand eigener Erfahrungen belegt.
-
-## Phase 4 – Sichtbarkeit und Reichweite
-
-- [ ] Eigentum an `vanventure.at` in Google Search Console und Bing Webmaster Tools
-  bestätigen; Sitemap einreichen.
-- [ ] Die öffentlichen URLs indexieren lassen und Impressionen, Suchbegriffe und
-  Klicks nach einigen Wochen auswerten.
-- [ ] Inhaltliche Schwerpunkte stärken: Norwegen mit VW California, Sardinien mit
-  Camper und Mountainbike, fünf Wochen Italien sowie HYMER Grand Canyon S CrossOver.
-- [ ] Bei passenden bestehenden YouTube-Reisevideos den Website-Link ergänzen, wenn
-  ausdrücklich entschieden; keine gekauften Links oder automatisierten Fremdbeiträge.
-- [ ] Englische, eigenständig erreichbare Seiten nur als eigenes Vorhaben planen;
-  keine irreführenden `hreflang`-Angaben.
-
-**Abnahme:** Search Console/Bing liefern belastbare Messwerte; die Content-Entscheidungen
-werden daraus und aus den Cockpit-Daten abgeleitet.
-
-## Phase 5 – Betrieb und Qualität
-
-- [x] Wiederholbare Release-Prüfung für Tests, Compose-Konfiguration, Datenbankdump
-  und Healthcheck bereitstellen; vor jedem produktiven Release ausführen.
-- [ ] Backup/Restore inklusive Cockpit-Tabellen alle zwei bis vier Wochen testen.
-- [x] Lokalen Monitor für fehlgeschlagene Syncs, abgelaufene OAuth-Verbindungen und
-  lange fehlende Daten bereitstellen; die persistente Warnungs-Inbox des geplanten
-  Familien-Dashboards ist der verbindliche Benachrichtigungskanal. Sie wird erst
-  mit dessen Kommunikationskanal und Fast-Track-Verarbeitung produktiv aktiviert.
-- [x] Tests in die Release-Prüfung aufnehmen; private Tokens, Secrets und
-  personenbezogene Daten weiterhin weder in Git, Browserantworten noch Logs veröffentlichen.
-- [ ] Öffentliche Website, PostgreSQL und Caddy bei kurzen Webcontainer-Releases
-  geschützt weiterbetreiben.
-
-**Abnahme:** Ein Fehler ist erkennbar, nachvollziehbar und ohne Datenverlust
-behebbar; ein Restore wurde erfolgreich erprobt. Bis das Familien-Dashboard
-Warnungen persistent entgegennimmt und sichtbar übernimmt, bleibt der
-Benachrichtigungspunkt offen.
-
-## Ideen & Backlog
-
-Neue Ideen werden zuerst hier eingetragen und erst nach Priorisierung einer Phase
-zugeordnet. So gehen sie nicht verloren, blockieren aber keine laufende Arbeit.
-
-| Idee | Nutzen / Hypothese | Priorität | Status | Nächste Entscheidung |
-| --- | --- | --- | --- | --- |
-|  |  | Jetzt / Später / Vielleicht | Idee |  |
-
-## Entscheidungsregeln
-
-- Kein öffentlicher Release, keine Google-Veröffentlichung und keine externe
-  Kommunikation ohne ausdrückliche Freigabe.
-- Fotoarchive bleiben unverändert; Bearbeitung und Kennzeichenanonymisierung erfolgen
-  ausschließlich an Projektkopien beziehungsweise Webderivaten.
-- Das Cockpit bleibt privat. Es veröffentlicht weder Analytics noch Tokens und schreibt
-  nichts nach YouTube zurück.
-- Datenbasierte Insights unterstützen Entscheidungen; sie treffen keine automatischen
-  redaktionellen oder finanziellen Entscheidungen.
-
-## Referenzen und Archiv
-
-- [Cockpit-Status und Rollout](/D:/work/_venventure/docs/vanventure-cockpit-mvp.md)
-- [Technische Cockpit-Spezifikation](/D:/work/_venventure/docs/vanventure-cockpit-plan.md)
-- [SEO-Umsetzung und Detailnotizen](/D:/work/_venventure/docs/seo.md)
-- [Riverstar-Entwurf](/D:/work/_venventure/docs/riverstar/entwurf.md)
-- [Server- und Backuphistorie](/D:/work/_venventure/docs/marvin-server.md)
-- [Betrieb der Redaktion](/D:/work/_venventure/editor/README.md)
-
-Bei Konflikten gilt dieser Ausbauplan für Priorität und Status. Technische Details
-werden in den jeweiligen Referenzen nachgeschlagen und bei einer Umsetzung an diesen
-Plan angeglichen.
+- [Channel Audit V1](channel-audit-v1.md): Daten, Methodik und Grenzen der ersten Analyse.
+- [Plan-Audit](plan-audit-2026-09-22.md): unabhängiger Abgleich aller Plan- und
+  Statusdokumente mit Code und Produktionsdatenbestand.
+- [Planregister](plan-register.json): maschinenprüfbare Quellen- und
+  Pflichtpunktliste für den Gesamtplan.
+- [Creator-System](creator-system.md): wiederverwendbare Reise-/Projektcheckliste.
+- [Cockpit-Status](vanventure-cockpit-mvp.md): Rollout- und Betriebsnachweis.
+- [Technische Cockpit-Spezifikation](vanventure-cockpit-plan.md): Architektur und API-Referenz.
+- [SEO-Notizen](seo.md), [Riverstar-Entwurf](riverstar/entwurf.md) und
+  [Betriebsanleitung](betrieb.md): fachliche bzw. technische Referenzen.

@@ -2,13 +2,20 @@
 
 Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf Marvin: https://vanventure.at/. Der frühere GitHub-Pages-Auftritt besteht als ältere Veröffentlichung. Der verbindliche Überblick für Prioritäten, Phasen und neue Ideen steht im [Ausbauplan](docs/ausbauplan.md); SEO und Live-Betrieb sind unter [docs/seo.md](docs/seo.md) dokumentiert.
 
-## Vor Veröffentlichung ergänzen
+## Noch offen – maßgeblich im Gesamtplan
 
 1. Aktuelle Fahrzeugdaten und Fotos
 2. Reiseberichte mit Routen, Karten, Kosten und Stellplätzen
 3. Echte Ausrüstungsliste und Kennzeichnung möglicher Affiliate-Links
 4. Kontakt-E-Mail, Impressum und Datenschutzerklärung
-5. Gewünschte Domain und Hosting
+5. Google-Produktionsfreigabe erst nach Rechtstexten, Domainbestätigung und
+   erforderlicher Scope-Verifizierung
+
+Der technische gemeinsame Google-Login für Redaktion und Cockpit wird auf
+Marvin vorbereitet und nutzt einen eigenen, minimal berechtigten OAuth-Webclient.
+Die Live-Freischaltung bleibt offen, bis die künftigen Kontoadressen bewusst
+zugeordnet und der Client in Google Auth Platform angelegt sind; der getrennte
+YouTube-Zugang bleibt davon unberührt.
 
 Zum lokalen Ansehen `index.html` in einem Browser öffnen. Keine Veröffentlichung oder externe Änderung erfolgt ohne ausdrückliche Freigabe.
 
