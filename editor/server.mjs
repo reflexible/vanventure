@@ -101,7 +101,7 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
     if(req.method==='GET'||req.method==='HEAD'){
-      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','bike.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
+      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','kajak-hero.css','bike.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
       let relative;try{relative=decodeURIComponent(path).replace(/^\//,'')||'index.html';}catch{fail(400,'Ungültiger Pfad.');}
       const asset=/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_.-]+\.(png|jpe?g|webp|svg|gif|woff2)$/i.test(relative);
       if(publicFiles.has(relative)||/^[a-zA-Z][a-zA-Z0-9_-]*\.(css|js)$/.test(relative)||asset){

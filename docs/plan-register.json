@@ -73,6 +73,13 @@
       ]
     },
     {
+      "path": "docs/design-guide.md",
+      "role": "design-reference",
+      "requiredCanonicalPhrases": [
+        "Einheitlichen Design Guide und Hero-Standard"
+      ]
+    },
+    {
       "path": "docs/betrieb.md",
       "role": "operating-reference",
       "requiredCanonicalPhrases": [

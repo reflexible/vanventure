@@ -1,5 +1,6 @@
 const langButton = document.getElementById('language');
 let language = 'de';
+try { language = localStorage.getItem('vanventure-language') === 'en' ? 'en' : 'de'; } catch {}
 
 // Exact editorial titles work in both static and editor-generated pages.
 // Each inner array is a line; object segments receive the green italic accent.
@@ -36,6 +37,7 @@ function styleHeroTitles() {
 
 function setLanguage(next) {
   language = next;
+  try { localStorage.setItem('vanventure-language', language); } catch {}
   document.documentElement.lang = language;
   document.querySelectorAll('[data-de][data-en]').forEach((element) => { element.textContent = element.dataset[language]; });
   styleHeroTitles();
@@ -43,6 +45,10 @@ function setLanguage(next) {
   langButton.setAttribute('aria-label', language === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
 }
 
-langButton.addEventListener('click', () => setLanguage(language === 'de' ? 'en' : 'de'));
-document.getElementById('year').textContent = new Date().getFullYear();
+if (langButton) {
+  langButton.addEventListener('click', () => setLanguage(language === 'de' ? 'en' : 'de'));
+  setLanguage(language);
+}
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
 styleHeroTitles();

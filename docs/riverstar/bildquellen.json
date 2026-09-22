@@ -1,5 +1,16 @@
 [
   {
+    "source": "E:/_fotos_original/urlaubsSammlungen/norwegen/P7020092.jpg",
+    "unchanged_copy": "reisebilder-originale/kajak/P7020092.jpg",
+    "sha256": "4d2a13975a6c31c834e10f15b31735f3ea70bc0767f37455e3ad1881a6b47d71",
+    "web_image": "assets/riverstar/riverstar-fjord-gespiegelt.png",
+    "web_image_sha256": "6a6d6bf96a00adbb87fe470300e2dc69d42894e63d4d2270ec6a3dd240082acc",
+    "selection": "Kajak-Aufmacher: Fjord und Riverstar; horizontal gespiegelt, damit das Boot rechts liegt und die linke Bildhälfte Text trägt.",
+    "dimensions": [1449, 1086],
+    "location": "Norwegen laut Archiv; genauer Aufnahmeort noch offen",
+    "processing": "Imagegen-Reviewderivat: ausschließlich horizontal gespiegelt; unveränderte Projektkopie erhalten. Vor Veröffentlichung visuell mit der Projektkopie verglichen."
+  },
+  {
     "source": "E:/_fotos_original/urlaubsSammlungen/norwegen/handy_sabine/DSC_1545.jpg",
     "unchanged_copy": "reisebilder-originale/riverstar/sichtung-sabine/DSC_1545.jpg",
     "sha256": "81e897d092ae21719e7995a76d59e2b7bc2ad654ea7c87135bf73e86f2ddd034",

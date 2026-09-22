@@ -92,6 +92,21 @@ sind zugeordnet. Der bestehende YouTube-Client bleibt strikt getrennt und wird
 nicht wiederverwendet.
 Der öffentliche Einstieg führt nach Anmeldung in die geschützte Übersicht
 `/privat` mit linker Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
+Auf jeder öffentlichen Seite stehen die Sprachumschaltung und der Login direkt
+nebeneinander. Die mobile Navigation liegt als eigene, kontrastreiche Ebene über
+dem Hero-Bild und bleibt bei kleinen Viewports ohne sichtbaren Scrollbalken
+bedienbar.
+
+### 1A. Einheitlichen Design Guide und Hero-Standard etablieren
+
+- [ ] Den Kajak-Hero als Referenzseite mit dem vom Team ausgewählten,
+  gespiegelten Webbild (Boot rechts), Farbverlauf und Einleitung umsetzen.
+- [ ] Den dokumentierten Hero-Standard anschließend auf die verbleibenden
+  öffentlichen Unterseiten anwenden und je Ansicht prüfen.
+
+Der verbindliche Gestaltungsrahmen steht in
+[Design Guide](design-guide.md). Die Bildauswahl für den Kajak-Hero ist noch
+offen; bis dahin bleibt kein Bild unbearbeitet oder veröffentlicht verändert.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 

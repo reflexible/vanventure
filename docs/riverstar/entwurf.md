@@ -6,6 +6,13 @@ Verbindliche offene und erledigte Punkte stehen ausschließlich im
 
 Stand: 20. September 2026. Ansicht: [riverstar-entwurf.html](../../riverstar-entwurf.html).
 
+**Vorgesehener Aufmacher:** Die öffentliche Kajak-Seite verwendet nach dem
+anstehenden Rollout
+`P7020092.jpg` als gespiegeltes Reviewderivat. Das Boot liegt dadurch rechts;
+links sorgt der standardisierte, helle Farbverlauf für den Seitentitel und die
+Einleitung. Quelle, unveränderte Projektkopie und Hash stehen in
+[bildquellen.json](bildquellen.json).
+
 ## Redaktionelle Richtung
 
 „Am Ufer hört unsere Reise nicht auf.“ Ein persönlicher Einstieg mit großem Originalfoto, drei Vorteile für Reisen mit dem Van, eine kurze eigene Reiseerinnerung, eigenständig formulierte Hinweise zu Fahreigenschaften, Packen und Transport und die tatsächlich genutzte Ausstattung. Naturfarben und großzügige Bilder passen zum bestehenden Auftritt. Die Vorschau ist deutschsprachig; die englische Fassung folgt bei der Übernahme der abgestimmten Inhalte in die zweisprachige Startseite.

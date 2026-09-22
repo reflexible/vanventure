@@ -44,7 +44,7 @@
   if (actions) {
     const privateMenu = document.createElement('details');
     privateMenu.className = 'private-menu';
-    privateMenu.innerHTML = '<summary>Privat</summary><div class="private-flyout"><p class="private-flyout-title">Privater Bereich</p><p class="private-flyout-copy">Redaktion, Cockpit und eure Einstellungen.</p><form><label>Benutzername<input name="name" autocomplete="username" required></label><label>Passwort<input name="password" type="password" autocomplete="current-password" required></label><p class="private-login-error" role="status" hidden></p><button>Anmelden</button></form><div class="private-flyout-divider"><span>oder</span></div><a class="private-google" href="/api/auth/google/start?returnTo=/privat">Mit Google anmelden</a></div>';
+    privateMenu.innerHTML = '<summary>Login</summary><div class="private-flyout"><p class="private-flyout-title">Privater Bereich</p><p class="private-flyout-copy">Redaktion, Cockpit und eure Einstellungen.</p><form><label>Benutzername<input name="name" autocomplete="username" required></label><label>Passwort<input name="password" type="password" autocomplete="current-password" required></label><p class="private-login-error" role="status" hidden></p><button>Anmelden</button></form><div class="private-flyout-divider"><span>oder</span></div><a class="private-google" href="/api/auth/google/start?returnTo=/privat">Mit Google anmelden</a></div>';
     actions.prepend(privateMenu);
     const flyout=privateMenu.querySelector('.private-flyout'),form=flyout.querySelector('form'),error=flyout.querySelector('.private-login-error');
     const showError=value=>{error.textContent=value;error.hidden=!value;};
