@@ -86,7 +86,7 @@ const server=http.createServer(async (req,res)=>{
   const send=(status,data,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8',...headers});res.end(JSON.stringify(data));};
   try {
     const url=new URL(req.url,origin), path=url.pathname;
-    if (/^\/(redaktion|cockpit|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
+    if (/^\/(redaktion|cockpit|privat|editor|api)(\/|$)/.test(path) || path === '/vehicle-review.html') res.setHeader('X-Robots-Tag','noindex, nofollow');
     if ((req.method==='GET'||req.method==='HEAD') && (path==='/sitemap.xml'||path==='/robots.txt')) {
       res.writeHead(200,{'Content-Type':path==='/sitemap.xml'?'application/xml; charset=utf-8':'text/plain; charset=utf-8'});
       return res.end(req.method==='HEAD'?undefined:path==='/sitemap.xml'?sitemap():robots());
@@ -94,8 +94,8 @@ const server=http.createServer(async (req,res)=>{
     if ((req.method==='GET'||req.method==='HEAD') && path==='/index.html') {
       res.writeHead(301,{'Location':'/'+url.search}); return res.end();
     }
-    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css'].includes(path)) {
-      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path.startsWith('/cockpit')?'cockpit.html':'index.html';
+    if (req.method==='GET' && ['/redaktion', '/redaktion/', '/editor/client.js','/editor/editor.css','/cockpit','/cockpit/','/editor/cockpit.js','/editor/cockpit.css','/privat','/privat/','/editor/private.js','/editor/private.css'].includes(path)) {
+      const file=path==='/editor/client.js'?'client.js':path==='/editor/editor.css'?'editor.css':path==='/editor/cockpit.js'?'cockpit.js':path==='/editor/cockpit.css'?'cockpit.css':path==='/editor/private.js'?'private.js':path==='/editor/private.css'?'private.css':path.startsWith('/cockpit')?'cockpit.html':path.startsWith('/privat')?'private.html':'index.html';
       if(path==='/cockpit'||path==='/cockpit/')res.setHeader('Content-Security-Policy',cockpitPolicy);
       res.writeHead(200,{'Content-Type':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html; charset=utf-8'}); return res.end(readFileSync(resolve(root,'editor',file)));
     }
@@ -143,7 +143,7 @@ const server=http.createServer(async (req,res)=>{
     const token=req.headers.cookie?.match(/(?:^|;\s*)vv_session=([a-f0-9]+)/)?.[1];
     if(path==='/api/auth/google/start'&&req.method==='GET'){
       if(!googleLoginReady())fail(503,'Die Google-Anmeldung wird noch vorbereitet. Bitte vorübergehend mit Benutzername und Passwort anmelden.');
-      const returnTo=url.searchParams.get('returnTo')==='/cockpit'?'/cockpit':'/redaktion',state=randomBytes(32).toString('hex'),nonce=randomBytes(32).toString('hex'),codeVerifier=randomBytes(48).toString('base64url'),codeChallenge=createHash('sha256').update(codeVerifier).digest('base64url');
+      const requestedReturnTo=url.searchParams.get('returnTo'),returnTo=['/redaktion','/cockpit','/privat'].includes(requestedReturnTo)?requestedReturnTo:'/redaktion',state=randomBytes(32).toString('hex'),nonce=randomBytes(32).toString('hex'),codeVerifier=randomBytes(48).toString('base64url'),codeChallenge=createHash('sha256').update(codeVerifier).digest('base64url');
       await db.createGoogleLoginState(authTokenHash(state),codeVerifier,nonce,returnTo);
       return res.writeHead(303,{'Location':googleLoginAuthorizationUrl({state,nonce,codeChallenge})}).end();
     }
@@ -176,6 +176,10 @@ const server=http.createServer(async (req,res)=>{
     if (req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf_token) fail(403,'Sitzung ungültig. Bitte neu anmelden.');
     if (path==='/api/session') return send(200,await sessionInfo(activeUser,session.csrf_token));
     if (path==='/api/logout'&&req.method==='POST') {if(token)await db.deleteSession(authTokenHash(token));await db.cockpitAudit(activeUser.name,'auth.logout','auth_session','logout',null,{provider:'vanventure'});return send(200,{}, {'Set-Cookie':cookie('',0)});}
+    if(path==='/api/profile'&&req.method==='GET')return send(200,await sessionInfo(activeUser,session.csrf_token));
+    if(path==='/api/profile'&&req.method==='PUT'){
+      const displayName=text((await body(req)).displayName,80,'Anzeigename',true);await db.updateProfile(activeUser.name,displayName);await db.cockpitAudit(activeUser.name,'auth.profile.updated','user',activeUser.name,null,{display_name_changed:true});return send(200,{displayName});
+    }
     if(path==='/api/cockpit/health'&&req.method==='GET'){
       const health=await db.cockpitHealth(),intervalHours=await cockpitSyncIntervalHours(),lastFinished=health.lastRun?.finished_at?new Date(health.lastRun.finished_at).getTime():0,stale=!!(health.connection&&intervalHours&&(!lastFinished||Date.now()-lastFinished>(intervalHours+2)*60*60*1000));
       return send(200,{status:health.connection&&(!health.lastRun||health.lastRun.status==='succeeded')&&!stale?'ok':'warning',phase:4,intervalHours,stale,connection:health.connection,lastRun:health.lastRun});

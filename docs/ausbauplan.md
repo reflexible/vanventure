@@ -90,6 +90,8 @@ und `/cockpit` live geprüft, einschließlich sicherem Passwort-Fallback.
 Der separate OAuth-Webclient ist privat konfiguriert und die beiden Admin-Adressen
 sind zugeordnet. Der bestehende YouTube-Client bleibt strikt getrennt und wird
 nicht wiederverwendet.
+Der öffentliche Einstieg führt nach Anmeldung in die geschützte Übersicht
+`/privat` mit linker Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 

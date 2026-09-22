@@ -132,6 +132,7 @@ export async function openPostgres(config = {}) {
       }catch(e){await client.query('ROLLBACK');throw e;}finally{client.release();}
     },
     async changePassword(name,password){await pool.query('UPDATE users SET hash=$1,auth_version=auth_version+1 WHERE name=$2',[passwordHash(password),name]);},
+    async updateProfile(name,displayName){await pool.query('UPDATE users SET display_name=$1 WHERE name=$2',[displayName,name]);},
     async createSession(tokenHash,user,csrf){await pool.query("INSERT INTO auth_sessions(token_hash,user_name,auth_version,csrf_token,expires_at) VALUES($1,$2,$3,$4,NOW()+INTERVAL '8 hours')",[tokenHash,user.name,user.auth_version,csrf]);},
     async session(tokenHash){return (await pool.query('SELECT s.token_hash,s.auth_version AS session_auth_version,s.csrf_token,u.* FROM auth_sessions s JOIN users u ON u.name=s.user_name WHERE s.token_hash=$1 AND s.expires_at>NOW()',[tokenHash])).rows[0]||null;},
     async deleteSession(tokenHash){await pool.query('DELETE FROM auth_sessions WHERE token_hash=$1',[tokenHash]);},

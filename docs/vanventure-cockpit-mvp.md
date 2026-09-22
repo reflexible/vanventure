@@ -131,6 +131,9 @@ live abgenommen; Passwortanmeldung bleibt verfügbar.
 Die Google-Alternative steht unter dem vertrauten Passwortformular, klar durch
 einen Trenner getrennt; sie verdrängt weder Überschrift noch redaktionellen
 Einstieg.
+Die öffentliche Navigation bietet zusätzlich ein zurückhaltendes privates
+Login-Flyout; nach der Anmeldung führt `/privat` als geschützte Übersicht mit
+linker Navigation zu Redaktion, Cockpit und Profil-Einstellungen.
 Der vorhandene YouTube-Client wird nicht für Nutzeranmeldung verwendet.
 
 Die privaten Bereiche `https://vanventure.at/redaktion` und
