@@ -191,7 +191,9 @@ bis zur Bild- und Faktenfreigabe die dokumentierte Galerie-Ausnahme.
 - ~~Für den VAN-Test „GCS nach einem Jahr“ Zielgruppe, Nutzenversprechen,
   Format, Ziel/KPI, geschätzte Stunden und Verwertung verbindlich festlegen.~~
   Der vollständige [Production Brief](production-briefs/gcs-nach-einem-jahr.md)
-  ist im Live-Planner als `briefed` mit 24 geschätzten Stunden hinterlegt.
+  ist im Live-Planner als `briefed` mit einem Zielaufwand von 8–11 Stunden
+  hinterlegt; Archiv-first und sieben gezielte neue Dreh-Setups ersetzen einen
+  aufwändigen Voll-Dreh.
 - [ ] Für die zwei übrigen validierten Tests EXPLORE (California → Hymer) und
   MOVE (Bike oder Kajak / Basecamp) jeweils Zielgruppe, Nutzenversprechen,
   Format, Ziel/KPI, geschätzte Stunden und Verwertung verbindlich festlegen.
