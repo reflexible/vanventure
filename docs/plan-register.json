@@ -80,6 +80,20 @@
       ]
     },
     {
+      "path": "docs/responsive-templates.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "Zentrale responsive Unterseiten-Templates"
+      ]
+    },
+    {
+      "path": "docs/vanventure-responsive-templates-auftrag.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "Zentrale responsive Unterseiten-Templates"
+      ]
+    },
+    {
       "path": "docs/betrieb.md",
       "role": "operating-reference",
       "requiredCanonicalPhrases": [

@@ -51,13 +51,12 @@ Die vollständige Zuordnung ist im privaten Cockpit je Video gespeichert.
 
 - Der frühere Impressions-/CTR-Export war technisch falsch angebunden. Am
   22. September 2026 wurde der offizielle YouTube-Reporting-Job
-  `channel_reach_basic_a1` aktiviert und für das Cockpit angelegt. YouTube stellt
-  dessen ersten Tagesreport innerhalb von 24 Stunden bereit; ab dann werden
-  Impressionen und CTR mit Datum und Video-ID gespeichert. Historische Reach-
-  Werte vor dem Jobstart lassen sich über diese Schnittstelle nicht nachträglich
-  erzeugen und bleiben im Audit V1 ausdrücklich außerhalb der Bewertung. Der
-  technische Export ist damit erledigt; offen ist nur die automatische
-  Datenlieferung und ihre Abnahme.
+  `channel_reach_basic_a1` aktiviert und für das Cockpit angelegt. Am 23.
+  September wurde der erste Tagesreport erfolgreich eingelesen: zwei Videos
+  enthalten positive Impressionswerte, CTR 0 ist als echter Messwert bestätigt.
+  Historische Reach-Werte vor dem Jobstart lassen sich über diese Schnittstelle
+  nicht nachträglich erzeugen und bleiben im Audit V1 ausdrücklich außerhalb der
+  Bewertung. Der technische Export und seine erste Datenabnahme sind erledigt.
 - Traffic Sources sind für 19 Videos vorhanden; Retention liefert YouTube nur
   für Trolltunga und Norwegen. Diese Kennzahlen stützen Einzelbeobachtungen,
   aber noch keinen belastbaren Formatvergleich.

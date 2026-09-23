@@ -43,10 +43,23 @@
 - Copy selected source photos into the project first. Perform all subsequent processing only on project copies.
 - Preserve an unchanged project copy of each selected original and record its source path.
 
+## Verbindliche Bildrichtlinie für vanventure.at
+
+- Bei jeder Aufgabe, bei der Bilder für vanventure.at ausgewählt, bearbeitet, zugeschnitten, optimiert, exportiert, eingebunden, ersetzt oder veröffentlicht werden, muss der Bild-Skill [`C:\Users\helmu\.codex\skills\photo-archive-safety\SKILL.md`](C:\Users\helmu\.codex\skills\photo-archive-safety\SKILL.md) gelesen und angewendet werden. Die Anwendung erfolgt ohne zusätzliche Erinnerung durch den Nutzer. Diese Pflicht gilt auch, wenn die Bildarbeit nur Teil einer größeren Aufgabe ist, etwa beim Erstellen eines Reiseberichts oder beim Überarbeiten einer Seite.
+- **Geltungsbereich:** Alle Bilder der gesamten Website, einschließlich Startseite, Fahrzeugseiten, Kajak-/Aktivitätsseiten, Reiseberichten, Übersichts- und Ausrüstungsseiten. Dazu gehören Hero- und Hintergrundbilder, Bilder im Fließtext, Galerien, Vorschaubilder, vergrößerte Lightbox-Ansichten und sämtliche Desktop-, Tablet- und Mobilvarianten. Die Ausnahme der Startseite von der Template-Vereinheitlichung ist keine Ausnahme von dieser Bildrichtlinie.
+- Jeweils die für den Bildtyp zutreffenden Skill-Vorgaben anwenden. Eine gemeinsame Bildrichtlinie bedeutet nicht, alle Motive blind mit identischen Bearbeitungseinstellungen zu behandeln. Bestehende Projektregeln zum Schutz der Originalbilder, zur Bildbearbeitung und zu Veröffentlichungsfreigaben bleiben erhalten. Widersprüche ausdrücklich melden, nicht stillschweigend eine Regel ignorieren.
+- Vor der Veröffentlichung müssen alle im jeweiligen Auftrag neu hinzugefügten oder geänderten Bilder geprüft sein. Bereits geprüfte und unveränderte Bilder müssen nicht erneut bearbeitet werden.
+- Ist der Skill nicht zugänglich oder eine erforderliche Prüfung nicht möglich, den konkreten offenen Punkt melden und die betroffenen Bilder nicht als geprüft oder freigegeben ausgeben.
+- Diese Anwendungspflicht gilt ausschließlich für vanventure.at. Keine entsprechende Pflicht in globale Codex-Anweisungen oder andere Projekte eintragen.
+
 ## Website photos
 
 - Anonymize all visible vehicle license plates in published/preview web images, including enlarged views and background vehicles. Work only on project derivatives; preserve unchanged original copies.
 - Photos embedded in editorial text across the entire website (travel stories, vehicle page and kayak section) should open an enlarged view on click, with keyboard-accessible close controls. Use the shared photo-viewer.js / photo-viewer.css in static pages and page generators.
+
+## Responsive public-site templates
+
+- Public subpages use central responsive components and the designated reusable kayak/activity, vehicle, and travel-story templates. Shared markup, CSS, and behavior must not be copied or maintained separately per page. The current kayak page is the design reference. These rules apply on desktop, tablet, and smartphone. The homepage retains its independent layout and its existing presentation and functions at every screen size; shared components must not change it unintentionally. Page-specific differences are implemented through content, configuration, or explicitly defined variants. Before relevant changes, read the complete binding specification in [`docs/responsive-templates.md`](docs/responsive-templates.md) and apply its acceptance criteria.
 
 ## Editorial photo processing
 

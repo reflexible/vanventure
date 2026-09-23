@@ -383,20 +383,20 @@ noch ungebriesten Tests stehen ausschließlich im [Gesamtplan](ausbauplan.md).
 
 ### Phase 5 – Channel Audit & Content Intelligence
 
-**Status vom 22. September 2026:** Die Impressions-/CTR-Implementierung ist live:
+**Status vom 23. September 2026:** Die Impressions-/CTR-Implementierung ist live:
 das Cockpit verwendet den offiziellen täglichen YouTube-Reporting-Job
 `channel_reach_basic_a1`, behandelt fehlende Werte als nicht verfügbar und
-blockiert den Kern-Sync nicht. Es ist dafür kein weiterer Code zu implementieren.
-YouTube hat den ersten Tagesreport noch nicht geliefert; dessen automatische
-Einlesung und fachliche Abnahme bleiben als externer Wartepunkt offen.
+blockiert den Kern-Sync nicht. Der erste Tagesreport wurde eingelesen: zwei
+positive Impressionswerte und echte CTR-Nullwerte sind im Cockpit verifiziert.
+Es ist dafür kein weiterer Code oder externer Wartepunkt offen.
 
 1. **Implementiert:** Video-Impressions/CTR über den Reporting-Export erfassen.
    Traffic Sources und verfügbare Retention-/Engagement-Serien mit Zeitraum und
    API-Grenzen anzeigen. Nicht unterstützte optionale Analytics-Abfragen dürfen
    den Kern-Sync nie blockieren.
-2. **Offen, extern abhängig:** Den ersten von YouTube bereitgestellten
-   Reach-Tagesreport einlesen und die Werte im Cockpit abnehmen. Erst dann CTR
-   und Impressions in einem Audit V2 bewerten.
+2. **Erledigt:** Den ersten von YouTube bereitgestellten Reach-Tagesreport
+   einlesen und die Werte im Cockpit abnehmen. CTR und Impressions können nun
+   für die künftig wachsende Datenbasis eines Audit V2 verwendet werden.
 3. Die Short-/Longform-Klassifikation absichern und im Planner geschätzte sowie
    tatsächliche Produktionsstunden für spätere Effizienzvergleiche erfassen.
    **Umgesetzt und live am 22. September 2026:** Beide Stundenfelder sind

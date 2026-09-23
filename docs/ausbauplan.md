@@ -26,7 +26,7 @@ September 2026; Tageswerte bis einschließlich 19. September.
 | MOVE / Discovery | Flow Trail: 986 öffentliche Gesamt-Views; Such-Traffic auch für Kenda Line | MOVE als eigenständigen Test führen, alte Clips nicht mit heutigen Shorts vergleichen. |
 | EXPLORE / Watchtime | Norwegen: 108 Min.; Sardinien: 38 Min. Watchtime in 365 Tagen | Reiseerzählung als eigenständigen Test führen. |
 | Shorts | Trolltunga: 149 Views bis Tagesabschluss, 120 über Shorts-Feed, ca. 82 % verfügbare Retention | Zwei eigenständige Shorts/Reels je Erlebnis vorsehen. |
-| Datenqualität | Traffic Sources für 19 Videos; Retention nur für Trolltunga und Norwegen; Reach-Report noch ausständig | Keine Säulen-Gewichtung und keine CTR-/Impressionsentscheidung ableiten. |
+| Datenqualität | Traffic Sources für 19 Videos; Retention nur für Trolltunga und Norwegen; erster Reach-Report erfolgreich eingelesen | CTR/Impressions sind technisch und mit echten Werten geprüft, für belastbare Vergleiche muss die tägliche Datenbasis noch wachsen. |
 
 ## Bereits erledigt und live geprüft
 
@@ -167,6 +167,15 @@ Galerie für genau diese fünf Profile ausdrücklich und vorläufig erlaubt. Die
 Übersicht, die Radseite und alle fünf Profile wurden nach Webdienst-Neustart
 auf `https://vanventure.at` mit HTTP 200 geprüft.
 
+**Ausrüstungs-Hero, live geprüft am 23. September 2026:** Das bisher mit der
+Kajakseite identische Fjord-Hero wurde durch das freigegebene Motiv
+`IMG_1841.jpg` (Radfahrerin in mediterraner Landschaft) ersetzt. Die
+unveränderte Projektkopie bleibt erhalten; die separat erzeugte, farblich
+zurückhaltende Derivative ohne Stromleitungen und Masten wurde nach visueller
+Prüfung veröffentlicht. `/healthz`, `https://vanventure.at/ausruestung.html`
+und die Hero-Datei antworteten erfolgreich; nur der Webdienst wurde neu
+gestartet, PostgreSQL und Caddy blieben unverändert.
+
 **Mobil-Hero-Rollout, 22. September 2026:** Die responsive Lesefläche für
 Startseite, Fahrzeug, Reiseberichte und Kajak ist live. Sie schaltet bis
 600 CSS-Pixel im Hochformat um, hält die Hero-Texte außerhalb des Bildbereichs
@@ -185,6 +194,25 @@ bis zur Bild- und Faktenfreigabe die dokumentierte Galerie-Ausnahme.
   redaktionellen Inhalte, nicht nur die Navigation. Die Sprachwahl bleibt
   gespeichert; Rückwechsel auf Deutsch ist live geprüft. Die englische
   Riverstar-Fassung ist die öffentliche Kajakseite `kajak.html`.
+
+### 1C. Zentrale responsive Unterseiten-Templates umsetzen
+
+- [ ] Die vollständige verbindliche Spezifikation für zentrale responsive
+  Komponenten sowie Kajak-/Aktivitäts-, Fahrzeug- und Reisebericht-Templates
+  ist in [`responsive-templates.md`](responsive-templates.md) gesichert. Sie
+  ist **dokumentiert**, aber noch nicht technisch implementiert, geprüft oder
+  live ausgerollt. Vor Beginn sind die aktuelle Kajak-Seite als
+  Gestaltungsreferenz und die eigenständige Startseite in Desktop-, Tablet- und
+  Mobilansicht als Vergleichsbasis zu sichern.
+- [ ] Gemeinsame Komponenten und zentrale responsive Regeln aus der bestehenden
+  Architektur ableiten, die Kajak-Seite selbst auf das Aktivitäts-Template
+  migrieren und anschließend Fahrzeugseiten, Reiseberichte sowie passende
+  weitere Unterseiten ohne Inhalts- oder Funktionsverlust umstellen. Die
+  Startseite bleibt ausdrücklich eigenständig.
+- [ ] Die Abnahmekriterien der Spezifikation nachvollziehbar erfüllen:
+  zentrale Änderungswirkung sowie visuelle und funktionale Prüfungen bei 360,
+  390, 768, 1024 und 1440 CSS-Pixeln. Erst danach einen Live-Rollout nach den
+  Betriebsregeln durchführen und getrennt dokumentieren.
 
 ### 2. Aus den Analysewerten echte Test-Briefs machen
 
@@ -283,8 +311,9 @@ ist die technische Referenz; dieser Abschnitt ist die verbindliche Arbeitsliste.
 - [ ] Die im technischen Entwurf vorgesehene Administrator-Aktion „YouTube
   trennen“ ergänzen: gespeicherte Token sicher löschen/widerrufen, Folge-Syncs
   stoppen und den Vorgang auditieren.
-- [ ] Den ersten YouTube-Reach-Report abnehmen; Impressions und CTR erst bei
-  positiven oder echten Nullwerten als Daten bewerten.
+- [x] Den ersten YouTube-Reach-Report abnehmen: Am 23. September 2026 wurden
+  zwei positive Impressionswerte (5 und 1) sowie echte CTR-Nullwerte im Cockpit
+  eingelesen und geprüft.
 - [ ] Traffic Sources sowie verfügbare Retention-/Engagement-Zeitreihen mit
   Zeitraum, Datenstand und API-Grenzen im Cockpit sichtbar machen.
 - [ ] Video-Detailseite mit 1/7/28/90/365-Tage-Vergleich, Datenqualität und
@@ -309,6 +338,12 @@ ist die technische Referenz; dieser Abschnitt ist die verbindliche Arbeitsliste.
 
 ### 5. Website, Vertrauen und Sichtbarkeit
 
+- **Arbeitsregel, lokal dokumentiert am 23. September 2026:** Für jede
+  Bildaufgabe auf vanventure.at ist der verbindliche Skill in
+  `C:\Users\helmu\.codex\skills\photo-archive-safety\SKILL.md` zu lesen und
+  anzuwenden. Diese Regel wurde nur in `AGENTS.md` des VanVenture-
+  Repositories verankert; es wurden keine Website-Bilder verändert, geprüft,
+  veröffentlicht oder live ausgerollt.
 - [ ] Fahrzeugseite, Reiseberichte und Ausrüstungsliste nur mit belegten,
   freigegebenen Fakten und Fotos erweitern; Kennzeichen auf Webderivaten
   anonymisieren.
