@@ -948,6 +948,15 @@ Der verifizierte Quellenstand `9befff7` wurde auf `origin/main` gepusht.
 Der Push ist kein Rollout; Sichtabnahme, Release-Prüfung auf dem Host und
 Live-Nachweis bleiben getrennt offen.
 
+**Nachlauf Textlinks, 24. September 2026:** Der bisher nur auf Kajak über
+ein altes Basis-Stylesheet geerbte Textlink-Stil wurde in
+`detail-editorial.css` zentralisiert. Die konkurrierende Scott-Regel in
+`equipment-pages.css` entfällt. Der lokale Browservergleich prüft
+Einleitungs- und Storylinks auf beiden Seiten und allen fünf Breiten;
+Sichtabnahme und Live-Nachweis bleiben offen. Der Design-Guide ist
+inhaltlich unverändert, weil hier die freigegebene Kajak-Referenz angewandt
+und keine neue Linkgestaltung eingeführt wird.
+
 ## Referenzen – keine aktiven Pläne
 
 - [Channel Audit V1](channel-audit-v1.md): Daten, Methodik und Grenzen der ersten Analyse.

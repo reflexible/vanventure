@@ -67,6 +67,10 @@ test('Kajak und fertiges Radprofil behalten die gemeinsame Editorial-Grundlage',
     'Wiesenpause und Trail müssen im Seitenlayout ein eigenes Panoramaformat erhalten.');
   assert.match(read('detail-editorial.css'),/\.detail-page \.benefits \.cards h3\{[^}]*27px\/1\.18/,
     'Kajak und Scott brauchen dieselbe Kartentitel-Typografie aus dem gemeinsamen CSS.');
+  assert.match(read('detail-editorial.css'),/\.detail-page a:not\(\.photo-link\)\{[^}]*color:inherit;[^}]*text-decoration:underline;[^}]*text-underline-offset:5px/,
+    'Redaktionelle Textlinks brauchen den Kajak-Stil aus dem gemeinsamen CSS.');
+  assert.doesNotMatch(read('equipment-pages.css'),/\.gear-links a/,
+    'Scott-Textlinks dürfen nicht im alten Ausrüstungs-CSS separat gestaltet werden.');
   assert.doesNotMatch(read('bike-pages.css'),/\.scott-page \.benefits|\.scott-page \.cards/,
     'Karten dürfen keine Scott-spezifische CSS-Kopie erhalten.');
 });

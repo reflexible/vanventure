@@ -142,6 +142,11 @@ Kajak-Referenz geprüft werden. Die vier unvollständigen Radprofile bleiben
 nach erneuter Nutzerentscheidung vom 24. September 2026 vorläufig bei der
 freigegebenen Poster-Ausnahme, bis Bilder und Erfahrungsinhalte vorliegen.
 Ein gemeinsamer Renderer allein ist kein Nachweis visueller Übereinstimmung.
+Auch redaktionelle Textlinks in Einleitungen und Bild-Text-Abschnitten
+beziehen Farbe, Unterstreichung, Unterstreichungsabstand und Fokusmarke
+aus `detail-editorial.css`. Ein seitenspezifischer Linkstil für fertige
+Ausrüstungsprofile ist nicht zulässig. Der Browser-Abgleich prüft die
+berechneten Stile auf Kajak und Scott in allen Referenzbreiten.
 
 ## 6. Responsive Vereinheitlichung ist verbindlicher Bestandteil
 

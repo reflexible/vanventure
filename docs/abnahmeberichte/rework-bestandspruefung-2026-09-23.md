@@ -1398,3 +1398,18 @@ am 24. September bestand 10/10 Ansichten ohne technischen Fehler. Dies ist
 ein lokaler Prüfstand; Sichtfreigabe und Live-Nachweis stehen aus.
 Der geprüfte Stand `9befff7` wurde auf `origin/main` gepusht. Dies bestätigt
 den Repository-Stand, nicht eine Veröffentlichung auf `vanventure.at`.
+
+### Nachlauf: redaktionelle Textlinks der Ausrüstungsseiten
+
+Der Nutzer meldete nach dem ersten Main-Push, dass Scotts Textlinks als
+Browser-Standardlinks erscheinen, während Kajak die freigegebene
+Unterstreichung und Textfarbe zeigt. Ursache: Kajak erbte `a{color:inherit;
+text-underline-offset:5px}` aus `riverstar-entwurf.css`; das gemeinsame
+`detail-editorial.css` definierte diese Werte nicht. Scott hatte zusätzlich
+eine abweichende alte `.gear-links a`-Regel in `equipment-pages.css`.
+Die Werte sind nun in der gemeinsamen Detailseiten-CSS einschließlich
+Fokusmarke definiert, und die Scott-Sonderregel ist entfernt. Der
+Browserlauf prüft berechnete Stile für Kajak und Scott auf fünf Breiten;
+der technische Projekttest verbietet die Rückkehr der Sonderregel.
+Lokale Sichtprüfung und Live-Verifikation bleiben getrennte Schritte.
+Design-Guide inhaltlich unverändert; keine neue Gestaltungsregel.

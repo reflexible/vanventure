@@ -28,6 +28,12 @@ try {
         const storyCopy = story?.querySelector('.scott-story-copy') || story?.querySelector(':scope > div');
         const cardTitle = document.querySelector('main > .benefits .cards h3');
         const cardEyebrow = document.querySelector('main > .benefits > .eyebrow');
+        const editorialLinks = [...document.querySelectorAll('main > .intro .lead a, main .gear-story .gear-links a, main .detail-story-pair > div > a')].map(link => {
+          const style = getComputedStyle(link);
+          return {color:style.color,parentColor:getComputedStyle(link.parentElement).color,
+            fontSize:style.fontSize,textDecorationLine:style.textDecorationLine,
+            textUnderlineOffset:style.textUnderlineOffset};
+        });
         const editorialPhotos = [...document.querySelectorAll('.gear-story figure img')].map(image => {
           const rect = image.getBoundingClientRect();
           const section = image.closest('section').getBoundingClientRect();
@@ -51,6 +57,7 @@ try {
           cardTitleFontSize:cardTitle&&getComputedStyle(cardTitle).fontSize,
           cardTitleLineHeight:cardTitle&&getComputedStyle(cardTitle).lineHeight,
           cardEyebrowFontSize:cardEyebrow&&getComputedStyle(cardEyebrow).fontSize,
+          editorialLinks,
           storyDisplay:story&&getComputedStyle(story).display,
           storyFigureOrder:storyFigure&&getComputedStyle(storyFigure).order,
           editorialPhotos,
@@ -101,6 +108,13 @@ try {
 } finally {await browser.close();}
 await writeFile(path.join(output,'audit.json'),JSON.stringify(records,null,2));
 const failed = records.filter(record => record.status!==200 || !record.imageLoaded || record.overflow || !record.copyInsideHero || record.heroBoxSizing!=='border-box' || record.storyDisplay!==(record.width<=720?'flex':'grid') || (record.width<=720 && record.storyFigureOrder!=='-1'));
+for (const record of records) {
+  if (!record.editorialLinks?.length || record.editorialLinks.some(link =>
+      link.color!==link.parentColor || link.fontSize!=='14px' ||
+      link.textDecorationLine!=='underline' || link.textUnderlineOffset!=='5px')) {
+    failed.push({route:record.route,name:record.name,reason:'Editorial text links differ from shared Kajak style',links:record.editorialLinks});
+  }
+}
 const scottDesktop = records.find(record=>record.route==='scott-mountainbike.html'&&record.name==='desktop');
 const scottPhone = records.find(record=>record.route==='scott-mountainbike.html'&&record.name==='phone-portrait');
 for (const record of [scottDesktop,scottPhone].filter(Boolean)) {
