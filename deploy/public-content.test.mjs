@@ -85,6 +85,11 @@ test('Startseite zeigt Fahrzeug, Black Beauty und Kajak im bestehenden Setup',()
   assert.match(read('styles.css'),/\.field-kit\.section\{padding-top:clamp\(50px,6vw,90px\);padding-bottom:0\}/);
 });
 
+test('Produktionsimage enthält die zentralen öffentlichen Routen',()=>{
+  assert.match(read('editor/server.mjs'),/from '\.\.\/public-page-routes\.mjs'/);
+  assert.match(read('Dockerfile'),/COPY --chown=node:node \*\.html \*\.css \*\.js \*\.mjs travel-stories\.json \.\//);
+});
+
 test('jede öffentliche Seite enthält ihre freigegebenen Kernmodule',()=>{
   for(const [file,expectation] of Object.entries(publicPages)){
     const page=read(file);
