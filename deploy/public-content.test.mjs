@@ -82,7 +82,7 @@ test('Startseite zeigt Fahrzeug, Black Beauty und Kajak im bestehenden Setup',()
     ['vehicle.html','scott-mountainbike.html','kajak.html']);
   assert.match(setup,/data-en="Our kayak: experiences, gear and moments on the water\."/);
   assert.match(read('styles.css'),/\.vehicle-data\.section\{padding-bottom:clamp\(50px,6vw,90px\)\}/);
-  assert.match(read('styles.css'),/\.field-kit\.section\{padding-top:clamp\(50px,6vw,90px\)\}/);
+  assert.match(read('styles.css'),/\.field-kit\.section\{padding-top:clamp\(50px,6vw,90px\);padding-bottom:0\}/);
 });
 
 test('jede öffentliche Seite enthält ihre freigegebenen Kernmodule',()=>{

@@ -10,4 +10,4 @@ footer a{color:inherit;text-decoration:none}footer a:hover{text-decoration:under
 
 /* Keep the homepage setup close to the vehicle profile without changing other sections. */
 .vehicle-data.section{padding-bottom:clamp(50px,6vw,90px)}
-.field-kit.section{padding-top:clamp(50px,6vw,90px)}
+.field-kit.section{padding-top:clamp(50px,6vw,90px);padding-bottom:0}

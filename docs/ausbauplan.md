@@ -968,8 +968,16 @@ Startseitenstruktur bleibt erhalten; es gibt kein neues Unterseiten-Template
 und keine neue Bildableitung. Lokal sind 55/55 Responsive-Ansichten und
 9/9 öffentliche Inhaltstests bestanden; die Setup-Lücke beträgt im
 Browser 100–173 px statt des früheren großen Doppelabstands. Diese letzte
-Änderung ist für einen erneuten lokalen Nutzerreview vorgelegt. **Bis zur
-Rückmeldung weder diesen noch den vorherigen Commit live ausrollen.**
+Änderung wurde einschließlich des bündigen Übergangs zum Riverstar-Block
+vom Nutzer am 24. September ausdrücklich zur Veröffentlichung freigegeben.
+Der Live-Nachweis steht noch aus.
+**Letzter Startseiten-Feinschliff:** Auf ausdrücklichen Nutzerhinweis endet
+die weiße Setup-Fläche nun direkt am unteren Rand der Kartenlinien;
+`#riverstar` beginnt ohne zusätzliche weiße Leerzone. Nur der untere
+Innenabstand von `.field-kit.section` wurde auf null gesetzt. Diese
+Anpassung wurde vor dem Rollout erneut lokal auf fünf Breiten geprüft und
+als Vorschau gezeigt; der Nutzer hat auch diesen Feinschliff ausdrücklich
+freigegeben. Umsetzung und Prüfung sind lokal, nicht live.
 
 ## Referenzen – keine aktiven Pläne
 
