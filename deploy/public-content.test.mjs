@@ -75,6 +75,16 @@ test('Kajak und fertiges Radprofil behalten die gemeinsame Editorial-Grundlage',
     'Karten dürfen keine Scott-spezifische CSS-Kopie erhalten.');
 });
 
+test('Startseite zeigt Fahrzeug, Black Beauty und Kajak im bestehenden Setup',()=>{
+  const homepage=read('index.html');
+  const setup=homepage.match(/<section id="ausruestung"[\s\S]*?<\/section>/)?.[0]||'';
+  assert.deepEqual([...setup.matchAll(/<a href="([^"]+)"/g)].map(match=>match[1]),
+    ['vehicle.html','scott-mountainbike.html','kajak.html']);
+  assert.match(setup,/data-en="Our kayak: experiences, gear and moments on the water\."/);
+  assert.match(read('styles.css'),/\.vehicle-data\.section\{padding-bottom:clamp\(50px,6vw,90px\)\}/);
+  assert.match(read('styles.css'),/\.field-kit\.section\{padding-top:clamp\(50px,6vw,90px\)\}/);
+});
+
 test('jede öffentliche Seite enthält ihre freigegebenen Kernmodule',()=>{
   for(const [file,expectation] of Object.entries(publicPages)){
     const page=read(file);

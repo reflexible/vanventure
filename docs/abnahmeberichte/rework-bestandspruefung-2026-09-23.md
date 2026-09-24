@@ -1416,3 +1416,17 @@ Inhaltstests, 9/9 Generator-Tests und 80/80 referenzierte Bildvarianten
 ohne fehlenden Nachweis. Commit `eea8261` ist auf `origin/main` gepusht.
 Sichtabnahme durch den Nutzer und Live-Verifikation bleiben getrennte Schritte.
 Design-Guide inhaltlich unverändert; keine neue Gestaltungsregel.
+
+### Startseite: dritte Setup-Karte und engerer Übergang
+
+| Anforderung | Umsetzung | Lokale Prüfung | Status |
+| --- | --- | --- | --- |
+| Kajak in „Unser Setup“ als dritte Karte | `index.html`: Riverstar-Karte mit direktem Link zu `kajak.html`, deutsche und englische Beschriftung | `deploy/public-content.test.mjs` 9/9; Browser 5/5 Startseitenbreiten mit genau drei Karten | lokal umgesetzt und geprüft; erneute Sichtabnahme offen |
+| Abstand nach Fahrzeugprofil reduzieren | `styles.css`: nur `vehicle-data.section` unten und `field-kit.section` oben auf `clamp(50px,6vw,90px)` reduziert | Browserlücke Desktop 173 px, Tablet 100–123 px, Mobil 100–101 px; kein horizontaler Überlauf; gesamter Responsive-Lauf 55/55 | lokal umgesetzt und geprüft; nicht live |
+| Bild- und Originalschutz erhalten | Keine neue oder geänderte Bilddatei; vorhandene referenzierte Webvarianten unverändert | strenger Bildlauf 80/80 Referenzen, 0 fehlende Dateien/Quellprüfungen/Hashabweichungen | geprüft; Originalarchive nicht beschrieben |
+
+Die erneute lokale Vorschau liegt unter `review/responsive-2026-09-24/`
+(`index-*-setup-transition.png`). Der frühere Gesamtumfang war vom Nutzer
+zur Sichtabnahme freigegeben; die danach beauftragte Startseitenänderung
+wartet separat auf dessen Rückmeldung. Der vorbereitete ältere Release wurde
+vor jeder Produktionsänderung gestoppt. Design-Guide inhaltlich unverändert.

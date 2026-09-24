@@ -7,3 +7,7 @@
 .journey{grid-template-columns:.38fr 1.2fr;align-items:start;padding:38px 0}.journey>span{padding-top:10px}.journey>div{min-width:0}.journey p{max-width:720px}.trip-details{margin-top:22px}.trip-details summary{display:list-item;cursor:pointer;color:var(--lime);font-size:14px;font-weight:700;width:fit-content;padding:8px 0}.trip-story{margin-top:24px;border-left:1px solid rgba(203,223,92,.35);padding-left:26px}.trip-story p{font-size:16px;line-height:1.75;margin:15px 0 20px;color:#d2dbd5}.trip-chapter{margin-bottom:30px}.trip-chapter h4{font:600 25px/1.2 "Playfair Display",serif;margin:0 0 14px;color:var(--cream)}.journey .trip-video{display:inline-block;border:0;border-radius:0;width:auto;height:auto;font:700 14px "DM Sans",sans-serif;padding:6px 0;border-bottom:1px solid var(--lime);letter-spacing:0}.journey .trip-video:hover{background:transparent;color:#fff}.archive-setup{max-width:710px;margin:35px 0 0;color:#aebdb4;font-size:14px}.trip-details[open] summary{margin-bottom:8px}@media(max-width:760px){.journey{grid-template-columns:1fr}.journey>span{padding:0}.trip-story{padding-left:16px}.trip-chapter h4{font-size:23px}.trip-story p{font-size:15px}}
 footer a{color:inherit;text-decoration:none}footer a:hover{text-decoration:underline}
 .rig>*{min-width:0}
+
+/* Keep the homepage setup close to the vehicle profile without changing other sections. */
+.vehicle-data.section{padding-bottom:clamp(50px,6vw,90px)}
+.field-kit.section{padding-top:clamp(50px,6vw,90px)}

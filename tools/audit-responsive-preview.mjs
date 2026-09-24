@@ -45,16 +45,28 @@ try {
           return rect.width > 0 && rect.left < innerWidth && rect.right > innerWidth + 2 &&
             !['absolute', 'fixed'].includes(style.position) && style.visibility !== 'hidden';
         }).slice(0, 8).map(element => ({ tag: element.tagName, className: String(element.className).slice(0, 100) }));
+        const vehicleContent = document.querySelector('#fahrzeugdaten > :last-child');
+        const setupHeading = document.querySelector('#ausruestung .section-topline');
         return {
           viewport: innerWidth, documentWidth: document.documentElement.scrollWidth,
           h1Count: document.querySelectorAll('h1').length,
           images: document.querySelectorAll('main img').length,
           brokenImages: [...document.querySelectorAll('main img')].filter(image => image.complete && !image.naturalWidth).map(image => image.getAttribute('src')),
+          setupCards: [...document.querySelectorAll('#ausruestung .kit-grid > a')].map(link => link.getAttribute('href')),
+          setupGap: vehicleContent && setupHeading ? Math.round(setupHeading.getBoundingClientRect().top - vehicleContent.getBoundingClientRect().bottom) : null,
           overflowing,
         };
       });
       const stem = filename.replace('.html', '');
       await page.screenshot({ path: path.join(output, `${stem}-${size.name}.png`) });
+      if (filename === 'index.html') {
+        await page.locator('#ausruestung').screenshot({ path: path.join(output, `index-${size.name}-setup.png`) });
+        await page.evaluate(() => {
+          const setup = document.querySelector('#ausruestung');
+          scrollTo(0, setup.getBoundingClientRect().top + scrollY - Math.min(innerHeight * 0.65, 390));
+        });
+        await page.screenshot({ path: path.join(output, `index-${size.name}-setup-transition.png`) });
+      }
       let viewer = 'none';
       const trigger = page.locator('main .site-photo-trigger').first();
       if (await trigger.count()) {
@@ -79,7 +91,8 @@ try {
   }
 } finally { await browser.close(); }
 await writeFile(path.join(output, 'audit.json'), JSON.stringify(result, null, 2));
-const failures = result.filter(row => row.status !== 200 || row.documentWidth > row.viewport + 2 || row.h1Count !== 1 || row.brokenImages.length || row.errors.length || row.viewer.includes('failed'));
+const failures = result.filter(row => row.status !== 200 || row.documentWidth > row.viewport + 2 || row.h1Count !== 1 || row.brokenImages.length || row.errors.length || row.viewer.includes('failed') ||
+  (row.filename === 'index.html' && (row.setupCards.join(',') !== 'vehicle.html,scott-mountainbike.html,kajak.html' || row.setupGap === null || row.setupGap > 200)));
 console.log(`${result.length} viewport/page checks; ${failures.length} failures. Screenshots and audit.json: ${output}`);
 for (const row of failures) console.log(`${row.filename} ${row.size}: width ${row.documentWidth}/${row.viewport}, broken ${row.brokenImages.length}, h1 ${row.h1Count}, viewer ${row.viewer}, errors ${row.errors.length}`);
 if (failures.length) process.exitCode = 1;

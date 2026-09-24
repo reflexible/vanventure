@@ -959,6 +959,18 @@ und keine neue Linkgestaltung eingeführt wird.
 Der Link-Fix ist als `eea8261` auf `origin/main` gesichert; der Push ist
 keine Live-Veröffentlichung.
 
+**Startseite/Release-Nachlauf, 24. September 2026:** Die Sichtabnahme für
+das bisherige Gesamtpaket ist ausdrücklich erteilt. Während der
+Release-Vorbereitung wurde die vom Nutzer gewünschte dritte Setup-Karte
+„Riverstar“ ergänzt und der zu große Abstand zwischen Fahrzeugprofil und
+„Unser Setup“ nur auf der Startseite verkleinert. Die selbstständige
+Startseitenstruktur bleibt erhalten; es gibt kein neues Unterseiten-Template
+und keine neue Bildableitung. Lokal sind 55/55 Responsive-Ansichten und
+9/9 öffentliche Inhaltstests bestanden; die Setup-Lücke beträgt im
+Browser 100–173 px statt des früheren großen Doppelabstands. Diese letzte
+Änderung ist für einen erneuten lokalen Nutzerreview vorgelegt. **Bis zur
+Rückmeldung weder diesen noch den vorherigen Commit live ausrollen.**
+
 ## Referenzen – keine aktiven Pläne
 
 - [Channel Audit V1](channel-audit-v1.md): Daten, Methodik und Grenzen der ersten Analyse.
