@@ -944,6 +944,9 @@ Vollbild-Viewer zeigt weiterhin jedes Motiv unbeschnitten.
 Die Zuordnung folgt der Textmenge: kurze Paare erhalten flache 2:1- oder
 3:2-Fenster, längere Passagen zu Fahrwerk und Verschleiß höhere 4:3-Fotos.
 Lokal geprüft; Produktion bleibt bis zum Gesamtreview unverändert.
+Der verifizierte Quellenstand `9befff7` wurde auf `origin/main` gepusht.
+Der Push ist kein Rollout; Sichtabnahme, Release-Prüfung auf dem Host und
+Live-Nachweis bleiben getrennt offen.
 
 ## Referenzen – keine aktiven Pläne
 

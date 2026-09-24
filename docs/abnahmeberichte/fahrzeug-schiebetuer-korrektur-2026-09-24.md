@@ -26,7 +26,7 @@ verwende diese bild für webseite!“
 | IMG-VEH-DOOR-20260924 | Geöffnete Tür und Hinterrad physisch plausibel darstellen | Neue, nicht destruktive Webableitung `assets/vehicle/vehicle-side-camp-v3.png`, lokal in `vehicle.html` eingebunden; Nutzerfreigabe erteilt | Visueller Vergleich mit V2 und der vom Nutzer genannten Referenz `vehicle-side-dog.png` | bestanden: die nach hinten geschobene Tür überlappt den oberen Hinterradbereich; das Rad ist nur unterhalb der Tür normal sichtbar |
 | IMG-ORIG-20260924 | Unveränderte Quelle erhalten | Projektkopie `review/selected-originals/vehicle/20250610_124826.jpg` blieb unverändert; Archiv wurde nicht verwendet oder beschrieben | vorhandene Quellen- und Prüfsummenangabe in `docs/vehicle-bildquellen.json` geprüft | bestanden |
 | IMG-PRIV-20260924 | Kennzeichenschutz und Bildschutz nicht umgehen | Korrekturumfang auf Tür, hinteres Seitenpanel und Radüberlagerung beschränkt; kein Kennzeichen sichtbar | Sichtprüfung der V3 bei voller Auflösung | bestanden |
-| REL-VEH-20260924 | Lokale Integration und spätere Live-Kette getrennt halten | `vehicle.html` verweist auf V3; V2 bleibt erhalten | Quellpfad- und Prüfsummenprüfung | lokal bestanden; Commit/Push/Release/Live-Prüfung offen |
+| REL-VEH-20260924 | Lokale Integration und spätere Live-Kette getrennt halten | `vehicle.html` verweist auf V3; V2 bleibt erhalten | Quellpfad- und Prüfsummenprüfung | lokal bestanden; Commit `9befff7` auf `main` gepusht; Release/Live-Prüfung offen |
 
 ## Quell- und Variantenstand
 
@@ -38,6 +38,8 @@ verwende diese bild für webseite!“
 
 Der Design-Guide ist inhaltlich unverändert. Die Korrektur ist weder eine
 allgemeine Freigabe für weitere KI-Bildbearbeitung noch ein Live-Nachweis.
+Der Satz zur offenen Commit-/Push-Stufe in der früheren Matrix wurde durch
+den dokumentierten Stand `9befff7` ersetzt; die Live-Stufe bleibt offen.
 Vor einem Rollout sind die lokale Webroute und die vorgeschriebenen
 Release-Prüfungen auszuführen; anschließend muss exakt der gepushte Commit auf
 `vanventure.at` ausgerollt sowie `/healthz`, die Fahrzeugroute und das sichtbar

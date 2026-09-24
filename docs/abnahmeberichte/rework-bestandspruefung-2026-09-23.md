@@ -1396,3 +1396,5 @@ Die flachen Ausschnitte stehen bei kürzeren Textpaaren, die höheren
 4:3-Fotos bei längeren Abschnitten. Der erneute Kajak-/Scott-Browservergleich
 am 24. September bestand 10/10 Ansichten ohne technischen Fehler. Dies ist
 ein lokaler Prüfstand; Sichtfreigabe und Live-Nachweis stehen aus.
+Der geprüfte Stand `9befff7` wurde auf `origin/main` gepusht. Dies bestätigt
+den Repository-Stand, nicht eine Veröffentlichung auf `vanventure.at`.
