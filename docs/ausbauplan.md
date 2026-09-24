@@ -956,6 +956,8 @@ Einleitungs- und Storylinks auf beiden Seiten und allen fünf Breiten;
 Sichtabnahme und Live-Nachweis bleiben offen. Der Design-Guide ist
 inhaltlich unverändert, weil hier die freigegebene Kajak-Referenz angewandt
 und keine neue Linkgestaltung eingeführt wird.
+Der Link-Fix ist als `eea8261` auf `origin/main` gesichert; der Push ist
+keine Live-Veröffentlichung.
 
 ## Referenzen – keine aktiven Pläne
 

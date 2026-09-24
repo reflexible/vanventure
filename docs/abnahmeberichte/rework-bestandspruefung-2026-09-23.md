@@ -1411,5 +1411,8 @@ Die Werte sind nun in der gemeinsamen Detailseiten-CSS einschließlich
 Fokusmarke definiert, und die Scott-Sonderregel ist entfernt. Der
 Browserlauf prüft berechnete Stile für Kajak und Scott auf fünf Breiten;
 der technische Projekttest verbietet die Rückkehr der Sonderregel.
-Lokale Sichtprüfung und Live-Verifikation bleiben getrennte Schritte.
+Ergebnis am geprüften Quellstand: 10/10 Browseransichten, 8/8 öffentliche
+Inhaltstests, 9/9 Generator-Tests und 80/80 referenzierte Bildvarianten
+ohne fehlenden Nachweis. Commit `eea8261` ist auf `origin/main` gepusht.
+Sichtabnahme durch den Nutzer und Live-Verifikation bleiben getrennte Schritte.
 Design-Guide inhaltlich unverändert; keine neue Gestaltungsregel.
