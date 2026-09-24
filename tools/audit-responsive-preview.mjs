@@ -9,7 +9,7 @@ try { ({ chromium } = require('playwright')); }
 catch { ({ chromium } = require(path.resolve(path.dirname(process.execPath), '../node_modules/playwright'))); }
 
 const origin = process.env.VANVENTURE_PREVIEW_ORIGIN || 'http://127.0.0.1:8788';
-const output = path.resolve('review/responsive-2026-09-24');
+const output = path.resolve(process.env.VANVENTURE_AUDIT_OUTPUT || 'review/responsive-2026-09-24');
 const pages = [
   'index.html', 'vehicle.html', 'kajak.html', 'norwegen-2018.html',
   'sardinien-2019.html', 'italien-2021.html',
@@ -35,7 +35,10 @@ try {
       const page = await browser.newPage({ viewport: size, deviceScaleFactor: 1 });
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
-      const response = await page.goto(`${origin}/${filename}`, { waitUntil: 'networkidle' });
+      page.on('console', message => {
+        if (message.type() === 'error' && message.text().includes('Content Security Policy')) errors.push(message.text());
+      });
+      const response = await page.goto(`${origin}/${filename}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
       await page.waitForTimeout(250);
       const metrics = await page.evaluate(() => {
         const all = [...document.querySelectorAll('body *')];
@@ -62,6 +65,12 @@ try {
       });
       const stem = filename.replace('.html', '');
       await page.screenshot({ path: path.join(output, `${stem}-${size.name}.png`) });
+      if (['kajak.html', 'scott-mountainbike.html'].includes(filename)) {
+        const galleryPhoto = page.locator('[data-photo-gallery] .gallery-photo').first();
+        await galleryPhoto.scrollIntoViewIfNeeded();
+        await galleryPhoto.locator('img').evaluate(image => image.decode().catch(() => {}));
+        await galleryPhoto.screenshot({ path: path.join(output, `${stem}-${size.name}-zoom.png`) });
+      }
       if (filename === 'index.html') {
         await page.locator('#ausruestung').screenshot({ path: path.join(output, `index-${size.name}-setup.png`) });
         await page.evaluate(() => {

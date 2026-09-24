@@ -90,6 +90,13 @@ test('Produktionsimage enthält die zentralen öffentlichen Routen',()=>{
   assert.match(read('Dockerfile'),/COPY --chown=node:node \*\.html \*\.css \*\.js \*\.mjs travel-stories\.json \.\//);
 });
 
+test('Lupen-Symbol ist mit der Live-Bildrichtlinie kompatibel',()=>{
+  const css=read('photo-viewer.css');
+  assert.match(css,/url\("assets\/icons\/zoom\.svg"\)/);
+  assert.doesNotMatch(css,/data:image\/svg/);
+  assert.match(read('assets/icons/zoom.svg'),/<circle[^>]+cx="10\.5"/);
+});
+
 test('jede öffentliche Seite enthält ihre freigegebenen Kernmodule',()=>{
   for(const [file,expectation] of Object.entries(publicPages)){
     const page=read(file);
@@ -158,7 +165,7 @@ test('alle Vergrößerungen nutzen die freigegebene zentrale Lupe ohne sichtbare
   assert.match(css,/\.photo-zoom,[^\n]*\.gallery-photo::after/);
   assert.match(css,/\.site-photo-zoom-icon/);
   assert.match(css,/font-size:0/);
-  assert.match(css,/svg%3E/);
+  assert.match(css,/url\("assets\/icons\/zoom\.svg"\)/);
   const viewer=read('photo-viewer.js');
   assert.match(viewer,/site-photo-zoom-host/);
   assert.match(viewer,/control\.classList\.contains\('photo-link'\) && !control\.querySelector\('\.photo-zoom'\)/);

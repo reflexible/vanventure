@@ -1,7 +1,7 @@
 @import url("gallery-shared.css");
 .site-photo-trigger{cursor:zoom-in}.site-photo-trigger:focus-visible{outline:3px solid #8a9c4c;outline-offset:5px}body.site-photo-open{overflow:hidden}
 /* Approved 2026-09-24: one compact, text-free magnifier at the upper right. */
-:root body .photo-zoom,:root body [data-photo-gallery] .gallery-photo::after,:root body .site-photo-zoom-icon{box-sizing:border-box;display:block;position:absolute;z-index:2;top:10px;right:10px;width:34px;height:34px;padding:0;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(23,58,48,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='5.5'/%3E%3Cpath d='m15 15 5 5'/%3E%3C/svg%3E") center/19px 19px no-repeat;color:transparent;font-size:0;line-height:0;pointer-events:none}
+:root body .photo-zoom,:root body [data-photo-gallery] .gallery-photo::after,:root body .site-photo-zoom-icon{box-sizing:border-box;display:block;position:absolute;z-index:2;top:10px;right:10px;width:34px;height:34px;padding:0;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(23,58,48,.92) url("assets/icons/zoom.svg") center/19px 19px no-repeat;color:transparent;font-size:0;line-height:0;pointer-events:none}
 :root body [data-photo-gallery] .gallery-photo::after{content:""}
 :root body [data-photo-gallery] .gallery-photo::after,:root body [data-photo-gallery] .photo-zoom{top:8px;right:8px;width:27px;height:27px;background-size:16px 16px}
 :root body .site-photo-zoom-host{position:relative}
