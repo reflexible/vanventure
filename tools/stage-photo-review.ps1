@@ -28,13 +28,21 @@ $manifest = foreach ($selection in $selections) {
     $tripDestination = Join-Path $destinationRoot $selection.Trip
     New-Item -ItemType Directory -Force -Path $tripDestination | Out-Null
     $destination = Join-Path $tripDestination ([IO.Path]::GetFileName($selection.Source))
-    Copy-Item -LiteralPath $selection.Source -Destination $destination -Force
+    $sourceHash = (Get-FileHash -LiteralPath $selection.Source -Algorithm SHA256).Hash.ToLowerInvariant()
+    if (Test-Path -LiteralPath $destination) {
+        $copyHash = (Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($copyHash -ne $sourceHash) { throw "Unveränderte Projektkopie weicht ab: $destination" }
+    } else {
+        Copy-Item -LiteralPath $selection.Source -Destination $destination
+        $copyHash = (Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($copyHash -ne $sourceHash) { throw "Kopie-Prüfsumme weicht ab: $destination" }
+    }
     [pscustomobject]@{
         trip = $selection.Trip
         title = $selection.Title
         source_path = $selection.Source
         unchanged_project_copy = $destination
-        sha256 = (Get-FileHash -LiteralPath $selection.Source -Algorithm SHA256).Hash.ToLowerInvariant()
+        sha256 = $sourceHash
         editing_brief = $selection.Editing
     }
 }

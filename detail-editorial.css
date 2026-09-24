@@ -1,0 +1,58 @@
+/* Common editorial structures shared by the Kajak reference and finished gear profiles. */
+.detail-page>.intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:7vw;align-items:start;padding:76px 6vw}
+.equipment-page .detail-page>.intro{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(48px,7vw,112px)}
+.detail-page>.intro .intro-label .eyebrow{margin:0 0 22px;font:700 11px/1.3 Arial,sans-serif;letter-spacing:.16em}
+.detail-page>.intro .lead{padding-top:36px}
+.detail-page .intro .lead p:first-child{margin-top:0;font-size:23px;line-height:1.5}
+.detail-page .intro .lead p{max-width:510px}
+.detail-page .intro .lead a{display:inline-block;margin-top:14px;font-size:14px}
+.detail-page>.benefits{padding:76px 6vw}
+.detail-page>.benefits>.eyebrow{margin:0 0 22px;font:700 11px/1.3 Arial,sans-serif;letter-spacing:.16em}
+.detail-page>.benefits>h2{font:normal clamp(36px,4vw,58px)/1.06 Georgia,serif;letter-spacing:-.035em}
+.detail-page .benefits .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;margin-top:45px}
+.detail-page .benefits .cards article{border-top:1px solid #aebbb0;padding-top:20px}
+.detail-page .benefits .cards h3{margin:25px 0 18px;font:normal 27px/1.18 Georgia,serif;letter-spacing:0}
+.detail-page .benefits .cards p{font-size:16px}
+.detail-page .benefits .cards article>span{font-size:11px;letter-spacing:.16em;font-weight:bold}
+.detail-page .detail-story-pair{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:7vw;align-items:center;padding:76px 6vw}
+.detail-page .detail-story-pair>figure,.detail-page .detail-story-pair>.scott-editorial-photo{grid-column:1;grid-row:1;min-width:0;width:100%;margin:0}
+.detail-page .detail-story-pair>div,.detail-page .detail-story-pair>.scott-story-copy{grid-column:2;grid-row:1;min-width:0}
+.detail-page .detail-story-pair>.scott-story-copy{max-width:600px}
+.detail-page .gear-story section.detail-story-pair.detail-balanced{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(48px,7vw,112px)}
+.detail-page .detail-story-pair.detail-balanced>.scott-editorial-photo{max-width:none}
+.detail-page .detail-story-pair.detail-balanced>.scott-editorial-photo .photo-link{height:auto}
+.detail-page .detail-story-pair.detail-balanced>.scott-editorial-photo img{aspect-ratio:4/3;height:auto;object-fit:contain}
+.detail-page .detail-story-pair.detail-wide-crop>.scott-editorial-photo img{aspect-ratio:3/2;object-fit:cover;object-position:center bottom}
+.detail-page .detail-story-pair.detail-panorama-crop>.scott-editorial-photo img{aspect-ratio:2/1}
+.detail-page .detail-story-pair.detail-media-right>.scott-editorial-photo{grid-column:2}
+.detail-page .detail-story-pair.detail-media-right>.scott-story-copy{grid-column:1}
+.detail-page .gear-story section.detail-photo-feature{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(48px,7vw,112px);align-items:center;padding:76px 6vw}
+.detail-page .detail-photo-feature>.scott-story-photo{grid-column:1;grid-row:1/span 4;min-height:0;width:100%;margin:0}
+.detail-page .detail-photo-feature>.scott-story-photo .photo-link{height:auto;min-height:0}
+.detail-page .detail-photo-feature>.scott-story-photo img{display:block;width:100%;height:auto;min-height:0;aspect-ratio:4/3;object-fit:contain}
+.detail-page .detail-photo-feature.detail-wide-crop>.scott-story-photo img{aspect-ratio:3/2;object-fit:cover;object-position:center bottom}
+.detail-page .detail-photo-feature.detail-panorama-crop>.scott-story-photo img{aspect-ratio:2/1}
+.detail-page .detail-photo-feature>.scott-story-photo figcaption{position:static;margin-top:10px;padding:0;background:transparent;color:inherit;font:12px/1.5 Arial,sans-serif;letter-spacing:0}
+.detail-page .detail-photo-feature>.equipment-kicker,.detail-page .detail-photo-feature>h2,.detail-page .detail-photo-feature>p{grid-column:2}
+.detail-page .detail-story-pair img{display:block;width:100%;height:auto}
+.detail-page .detail-story-pair figcaption{position:static;margin-top:10px;padding:0;background:transparent;color:inherit;font:12px/1.5 Arial,sans-serif;letter-spacing:0}
+.detail-page .detail-specs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8vw;align-items:start;padding:76px 6vw}
+.detail-page .detail-specs dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:0}
+.detail-page .detail-specs dl>div{padding-top:14px;border-top:1px solid #b8c3b7}
+@media(max-width:720px){
+  .detail-page>.intro{grid-template-columns:1fr;gap:32px;padding:46px 23px}
+  .equipment-page .detail-page>.intro{grid-template-columns:1fr}
+  .detail-page>.intro .lead{padding-top:0}
+  .detail-page .intro .lead p:first-child{font-size:21px}
+  .detail-page>.benefits{padding:46px 23px}
+  .detail-page .benefits .cards{grid-template-columns:1fr;gap:24px;margin-top:30px}
+  .detail-page .benefits .cards h3{margin-top:18px}
+  .detail-page .benefits .cards article{padding-top:15px}
+  .detail-page section.detail-story-pair{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:46px 23px}
+  .detail-page .detail-story-pair.detail-media-right>.scott-editorial-photo,.detail-page .detail-story-pair.detail-media-right>.scott-story-copy{grid-column:auto}
+  .detail-page .gear-story section.detail-photo-feature{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:46px 23px}
+  .detail-page .detail-photo-feature>.scott-story-photo{order:-1;margin:0 0 32px}
+  .detail-page .detail-specs{display:block;padding:46px 23px}
+  .detail-page .detail-story-pair>figure,.detail-page .detail-story-pair>.scott-editorial-photo{order:-1;margin:0 0 32px}
+  .detail-page .detail-specs dl{gap:26px 15px;margin-top:32px}
+}

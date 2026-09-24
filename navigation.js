@@ -4,20 +4,57 @@
 
   const navigation = header.querySelector('.main-navigation');
   const toggle = header.querySelector('.menu-toggle');
-  const trips = header.querySelector('.nav-trips');
-  const kayak = header.querySelector('[data-nav="kayak"]');
-  const gearLink = header.querySelector('[data-nav="gear"]');
   const mobile = window.matchMedia('(max-width: 760px)');
   const actions = header.querySelector('.header-actions');
+  if (!navigation) return;
+  const footer = document.querySelector('body > footer');
+  if (footer) footer.innerHTML = `<span>© <span id="year">${new Date().getFullYear()}</span> VanVenture</span><span>Travel slow. Go far.</span>`;
 
-  if (kayak && gearLink) {
-    const gear = document.createElement('details');
-    gear.className = 'nav-trips nav-gear';
-    gear.innerHTML = '<summary data-nav="gear" data-de="Ausrüstung" data-en="Gear">Ausrüstung</summary><div class="trip-menu"><a href="ausruestung.html" data-de="Übersicht" data-en="Overview">Übersicht</a><a href="kajak.html"><b data-de="Kajak" data-en="Kayak">Kajak</b><span data-de="Grabner Riverstar" data-en="Grabner Riverstar">Grabner Riverstar</span></a><a href="bike.html"><b data-de="Räder" data-en="Bikes">Räder</b><span data-de="in Vorbereitung" data-en="in progress">in Vorbereitung</span></a></div>';
-    gearLink.replaceWith(gear);
-    kayak.remove();
+  // The public menu has one source. Existing page headers supply only the
+  // brand, the menu button and page-specific context.
+  navigation.innerHTML = `
+    <details class="nav-trips"><summary data-nav="trips" data-de="Reisen" data-en="Trips">Reisen</summary>
+      <div class="trip-menu">
+        <a href="norwegen-2018.html" data-de="Norwegen 2018" data-en="Norway 2018">Norwegen 2018</a>
+        <a href="sardinien-2019.html" data-de="Sardinien 2019" data-en="Sardinia 2019">Sardinien 2019</a>
+        <a href="italien-2021.html" data-de="Italien 2021" data-en="Italy 2021">Italien 2021</a>
+      </div>
+    </details>
+    <a href="vehicle.html" data-nav="vehicle" data-de="Fahrzeug" data-en="Vehicle">Fahrzeug</a>
+    <details class="nav-trips nav-gear"><summary data-nav="gear" data-de="Ausrüstung" data-en="Gear">Ausrüstung</summary>
+      <div class="trip-menu">
+        <a href="kajak.html" data-de="Kajak" data-en="Kayak">Kajak</a>
+        <details class="trip-submenu"><summary data-de="Räder" data-en="Bikes">Räder</summary>
+          <div class="trip-submenu-links">
+            <a href="scott-mountainbike.html">Black Beauty</a>
+            <a href="cube.html" data-de="Sabines Cube" data-en="Sabine’s Cube">Sabines Cube</a>
+            <a href="trek-gravelbike.html" data-de="Trek Gravelbike" data-en="Trek gravel bike">Trek Gravelbike</a>
+            <a href="woom-2.html" data-de="Adrians Woom 2" data-en="Adrian’s Woom 2">Adrians Woom 2</a>
+            <a href="diamant-stadtraeder.html" data-de="Diamant Stadträder" data-en="Diamant city bikes">Diamant Stadträder</a>
+          </div>
+        </details>
+      </div>
+    </details>
+    <a href="index.html#ueber-uns" data-nav="about" data-de="Über uns" data-en="About us">Über uns</a>`;
+  const trips = navigation.querySelector('.nav-trips');
+  const tripMenu = trips.querySelector('.trip-menu');
+  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  const currentTrip = tripMenu.querySelector(`a[href="${currentPage}"]`);
+  if (currentTrip) { currentTrip.setAttribute('aria-current','page'); trips.classList.add('is-active'); }
+  if (currentPage === 'vehicle.html') navigation.querySelector('[data-nav="vehicle"]').setAttribute('aria-current', 'page');
+  if (actions && !document.getElementById('language')) {
+    const languageButton = document.createElement('button');
+    languageButton.id = 'language'; languageButton.className = 'language'; languageButton.type = 'button';
+    actions.insertBefore(languageButton, actions.firstChild);
   }
-  const gear = header.querySelector('.nav-gear');
+  const menuLabel = actions?.querySelector('.menu-label');
+  if (menuLabel) { menuLabel.dataset.de = 'Menü'; menuLabel.dataset.en = 'Menu'; }
+  const gear = navigation.querySelector('.nav-gear');
+  const gearPages = new Set(['kajak.html','scott-mountainbike.html','cube.html','trek-gravelbike.html','woom-2.html','diamant-stadtraeder.html']);
+  if (gearPages.has(currentPage)) gear.classList.add('is-active');
+  navigation.querySelectorAll('.trip-menu a').forEach(link => {
+    if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
+  });
 
   document.querySelectorAll('a[href="riverstar-entwurf.html"]').forEach((link) => {
     link.href = 'kajak.html';
@@ -46,6 +83,7 @@
     closeMenu();
     trips?.removeAttribute('open');
     gear?.removeAttribute('open');
+    gear?.querySelectorAll('details[open]').forEach(menu => menu.removeAttribute('open'));
     toggle?.focus();
   });
 
@@ -67,6 +105,7 @@
     document.addEventListener('click',event=>{if(!mobile.matches&&privateMenu.open&&!privateMenu.contains(event.target))privateMenu.removeAttribute('open');});
     document.addEventListener('keydown',event=>{if(event.key==='Escape')privateMenu.removeAttribute('open');});
   }
+  document.dispatchEvent(new Event('vanventure:public-header-ready'));
 
   mobile.addEventListener('change', closeMenu);
   closeMenu();

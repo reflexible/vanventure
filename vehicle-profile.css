@@ -89,3 +89,6 @@
   .build-image { height: 310px; margin-top: 56px; }
   .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gallery-caption{padding:8px 9px 9px;font-size:12px}
 }
+
+/* Let the public photo gallery use the available width on large displays. */
+@media(min-width:761px){.vehicle-gallery .gallery-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));max-width:none;width:100%}}

@@ -2,9 +2,27 @@ from pathlib import Path
 from html import escape
 import json
 import re
+import sys
+from site_gallery import travel_gallery as gallery
 
 r = Path(__file__).parent
 stories = json.loads((r / 'travel-stories.json').read_text(encoding='utf-8'))
+check_only = '--check' in sys.argv
+
+
+def save_or_check(path, page):
+    if not check_only:
+        path.write_text(page, encoding='utf-8')
+        return
+    if not path.exists():
+        raise SystemExit(f'Missing generated travel page: {path.name}')
+    current = path.read_text(encoding='utf-8')
+    # SEO metadata is added in a separate build stage. The story template
+    # owns the main structure and must remain byte-identical after generation.
+    generated_main = re.search(r'<main\b[^>]*>[\s\S]*?</main>', page)
+    current_main = re.search(r'<main\b[^>]*>[\s\S]*?</main>', current)
+    if not generated_main or not current_main or generated_main.group() != current_main.group():
+        raise SystemExit(f'Travel template output differs: {path.name}')
 
 
 def text(tag, pair, cls=''):
@@ -30,7 +48,7 @@ def site_header(active_slug=''):
     )
     return (
         '<header class="site-header magazine-header story-header" data-section="trips">'
-        '<a class="brand" href="index.html" aria-label="VanVenture Home"><img src="assets/vanventure-logo-transparent.png" alt="" aria-hidden="true"><span>VANVENTURE</span></a>'
+        '<a class="brand" href="index.html" aria-label="VanVenture Home"><img src="assets/vanventure-logo-header-v1.webp" alt="" aria-hidden="true"><span>VANVENTURE</span></a>'
         '<nav id="site-navigation" class="main-navigation" aria-label="Hauptnavigation">'
         '<details class="nav-trips is-active"><summary data-de="Reisen" data-en="Trips">Reisen</summary><div class="trip-menu">'
         '<a href="index.html#reisen" data-de="Alle Reisen" data-en="All trips">Alle Reisen</a>'
@@ -52,24 +70,6 @@ def photographs(chapter):
         + text('figcaption', photo['caption']) + '</figure>'
         for photo in chapter.get('photos', [])
     )
-
-
-def gallery(story):
-    photos = story.get('gallery', [])
-    if not photos:
-        return ''
-    tiles = ''.join(
-        '<button class="gallery-photo" type="button"><img src="' + escape(photo['src'], quote=True)
-        + '" alt="' + escape(photo['caption'][0], quote=True) + '" loading="lazy">'
-        + text('span', photo['caption'], 'gallery-caption') + '</button>'
-        for photo in photos
-    )
-    return ('<section class="story-gallery" data-photo-gallery aria-label="Fotogalerie">'
-            + text('p', ['FOTOGALERIE', 'PHOTO GALLERY'], 'eyebrow')
-            + text('h2', ['Momente dieser Reise.', 'Moments from this journey.'])
-            + text('p', ['Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten.',
-                         'Select an image to enlarge it. Use the arrows to browse the gallery or start the slideshow.'], 'gallery-intro')
-            + '<div class="gallery-grid">' + tiles + '</div></section>')
 
 
 for story in stories:
@@ -115,7 +115,7 @@ for story in stories:
         + '</div></section></main><footer><span>© <span id="year"></span> VanVenture</span><span>Travel slow. Go far.</span></footer>'
         '<script src="script.js"></script><script src="navigation.js"></script><script src="photo-viewer.js" defer></script></body></html>'
     )
-    (r / (story['slug'] + '.html')).write_text(page, encoding='utf-8')
+    save_or_check(r / (story['slug'] + '.html'), page)
 
 homepage = r / 'index.html'
 s = homepage.read_text(encoding='utf-8')
@@ -129,7 +129,11 @@ for i, story in enumerate(stories):
         s = s[:pos] + link(story['slug'] + '.html', ['Den ganzen Reisebericht lesen ↗', 'Read the full travel story ↗'], 'full-story-link') + s[pos:]
 s = s.replace('data-de="Reisebericht lesen" data-en="Read the travel story">Reisebericht lesen',
               'data-de="Etappen im Überblick" data-en="Stages at a glance">Etappen im Überblick')
-homepage.write_text(s, encoding='utf-8')
+if check_only:
+    if homepage.read_text(encoding='utf-8') != s:
+        raise SystemExit('Homepage travel links differ from the generated state')
+else:
+    homepage.write_text(s, encoding='utf-8')
 
 for story in stories:
     words = sum(len(p[0].split()) for c in story['chapters'] for p in c['paragraphs']) + len(story['lead'][0].split())

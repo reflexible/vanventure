@@ -1,0 +1,30 @@
+[
+  {
+    "collection": "home-hero",
+    "web_image": "assets/hero-norway.jpg",
+    "source_path": "E:/_fotos_original/_eigene_fotos/_olympus_M1/2018/2018-07-04/P7040212.JPG",
+    "unchanged_project_copy": "review/selected-originals/home-hero/P7040212.JPG",
+    "sha256": "6cc19f239f5c2e87abe9cec0195a7ec74027d3055807e07b1fef06893895e0ec",
+    "web_image_sha256": "54955889ca88653d12b1a5b68f21d681674a99554d27cde8f7abc76cce285bd4",
+    "processing": "Corrupted existing OG JPEG preserved under review/defective/. Rebuilt from unchanged project original with EXIF orientation, 2000 x 1500 thumbnail, JPEG quality 90, no creative changes; visually compared with the intact on-page WebP on 2026-09-23.",
+    "publication_status": "Local correction only; not deployed or live verified."
+  },
+  {
+    "collection": "home-hero",
+    "web_image": "assets/hero-norway-v1.webp",
+    "source_path": "E:/_fotos_original/_eigene_fotos/_olympus_M1/2018/2018-07-04/P7040212.JPG",
+    "unchanged_project_copy": "review/selected-originals/home-hero/P7040212.JPG",
+    "sha256": "6cc19f239f5c2e87abe9cec0195a7ec74027d3055807e07b1fef06893895e0ec",
+    "web_image_sha256": "34b21c4170e08ab0e40101db83b4129fbb6f89cb307453f4b5cbf6efb880d5d0",
+    "mapping_evidence": "Original timestamp 2018-07-04 12:07:01 matches the former JPEG EXIF; read-only visual similarity of the archive source to this WebP is 0.9932. Existing web variant unchanged."
+  },
+  {
+    "collection": "site-branding",
+    "web_image": "assets/vanventure-logo-header-v1.webp",
+    "source_path": "assets/vanventure-logo-transparent.png",
+    "unchanged_project_copy": "assets/vanventure-logo-transparent.png",
+    "sha256": "79b9544a8db2f2e04a943677268819a4e4bc45e3c69fc48633211720f11239de",
+    "web_image_sha256": "1122858a4cb0f7bb8897351eb7d5f62f62b7692df1d552b61dd3a589f46a53df",
+    "mapping_evidence": "Existing 1254-pixel project logo and 256-pixel header WebP have 0.983 RGB correlation after resize; exact source and web hashes recorded on 2026-09-23. This is a branding asset, not an archive travel photo."
+  }
+]

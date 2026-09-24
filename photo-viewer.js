@@ -14,9 +14,9 @@
         </div>
       </div>
       <div class="site-photo-stage">
-        <button type="button" class="site-photo-previous" aria-label="Vorheriges Foto"><span aria-hidden="true">←</span></button>
+        <button type="button" class="site-photo-previous" aria-label="Vorheriges Foto"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 5-7 7 7 7"/></svg></button>
         <img alt="">
-        <button type="button" class="site-photo-next" aria-label="Nächstes Foto"><span aria-hidden="true">→</span></button>
+        <button type="button" class="site-photo-next" aria-label="Nächstes Foto"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 5 7 7-7 7"/></svg></button>
       </div>
       <div class="site-photo-bottom"><p class="site-photo-caption"></p><div class="site-photo-thumbs" role="tablist" aria-label="Bilder auswählen"></div></div>
     </div>`;
@@ -48,6 +48,17 @@
       }
       control.setAttribute('aria-haspopup', 'dialog');
       control.setAttribute('aria-label', `${english() ? 'View photo' : 'Foto ansehen'}${image.alt ? ': ' + image.alt : ''}`);
+      // Keep the entire image/link as the accessible trigger; the icon is visual only.
+      if (control.matches('img') || (control.classList.contains('photo-link') && !control.querySelector('.photo-zoom'))) {
+        const host = control.matches('img') ? image.parentElement : control;
+        host.classList.add('site-photo-zoom-host');
+        if (!host.querySelector(':scope > .site-photo-zoom-icon')) {
+          const icon = document.createElement('span');
+          icon.className = 'site-photo-zoom-icon';
+          icon.setAttribute('aria-hidden', 'true');
+          host.append(icon);
+        }
+      }
     });
   }
 
@@ -79,7 +90,7 @@
     const image = imageFor(control);
     if (!image) return;
     trigger = control;
-    large.src = image.currentSrc || image.src;
+    large.src = image.dataset.fullSrc || image.currentSrc || image.src;
     large.alt = image.alt;
     caption.textContent = image.closest('figure')?.querySelector('figcaption')?.textContent || image.closest('.gallery-photo')?.querySelector('.gallery-caption')?.textContent || image.alt;
     counter.textContent = `${String(galleryIndex + 1).padStart(2, '0')} / ${String(galleryItems.length).padStart(2, '0')}`;

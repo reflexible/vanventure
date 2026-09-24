@@ -25,13 +25,21 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     const cockpit=await fetch(origin+'/cockpit');assert.equal(cockpit.status,200);assert.equal(cockpit.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(cockpit.headers.get('content-security-policy'),/https:\/\/i\.ytimg\.com/);assert.match(await cockpit.text(),/VanVenture Cockpit/);
     const privateArea=await fetch(origin+'/privat');assert.equal(privateArea.status,200);assert.equal(privateArea.headers.get('x-robots-tag'),'noindex, nofollow');assert.match(await privateArea.text(),/Privater Bereich/);
     const storyHtml=await (await fetch(origin+'/norwegen-2018.html')).text();assert.match(storyHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/norwegen-2018.html">/);
-    const kayakHtml=await (await fetch(origin+'/kajak.html')).text();assert.match(kayakHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/kajak.html">/);assert.equal((await fetch(origin+'/riverstar-entwurf.html')).status,404);
-    const bikeHtml=await (await fetch(origin+'/bike.html')).text();assert.match(bikeHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/bike.html">/);
+    const kayakHtml=await (await fetch(origin+'/kajak.html')).text();assert.match(kayakHtml,/<link rel="canonical" href="https:\/\/vanventure.at\/kajak.html">/);assert.equal((await fetch(origin+'/riverstar-entwurf.html',{redirect:'manual'})).status,302);
+    for(const retired of ['/bike.html','/ausruestung.html']){
+      const response=await fetch(origin+retired,{redirect:'manual'});
+      assert.equal(response.status,301);assert.equal(response.headers.get('location'),'/');
+    }
+    const missingPage=await fetch(origin+'/nicht-vorhanden.html',{redirect:'manual'});
+    assert.equal(missingPage.status,302);assert.equal(missingPage.headers.get('location'),'/');
     assert.ok((await (await fetch(origin+'/redaktion')).text()).includes('login-form'));
     assert.match(await (await fetch(origin+'/editor/client.js')).text(),/async function start\(\)/);
     assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
     assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);assert.match(await (await fetch(origin+'/editor/private-account.css')).text(),/account-facts/);const privateNavigation=await (await fetch(origin+'/editor/private-nav.js')).text();assert.match(privateNavigation,/private-app-shell/);assert.match(privateNavigation,/Benutzerverwaltung/);assert.match(privateNavigation,/benutzerverwaltung/);assert.match(await (await fetch(origin+'/redaktion')).text(),/private-nav\.js/);assert.match(await (await fetch(origin+'/benutzerverwaltung')).text(),/Benutzerverwaltung/);assert.match(await (await fetch(origin+'/editor/users.js')).text(),/async function users/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
+    assert.equal((await fetch(origin+'/assets/review/vehicle-front-camp-clean.png')).status,404);
+    assert.equal((await fetch(origin+'/assets/hero-selection/vehicle.jpg')).status,404);
+    assert.equal((await fetch(origin+'/assets/heroes/originals/italien-2021/P9200258.JPG')).status,404);
     assert.equal((await fetch(origin+'/healthz')).status,200);
     assert.equal((await fetch(origin+'/api/auth/google/start?returnTo=/cockpit',{redirect:'manual'})).status,503);
     const login=await fetch(origin+'/api/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({name:'sabine',password:'test password 123'})});assert.equal(login.status,200);

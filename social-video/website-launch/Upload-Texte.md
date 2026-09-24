@@ -48,7 +48,7 @@ Für beide Plattformen kann dieselbe MP4 verwendet werden. Version 3 wurde am 20
 
 ## Quellen und Prüfung
 
-Verwendet wurden vorhandene Projektdateien und eine Browseraufnahme von https://vanventure.at/ vom 20.09.2026. Unveränderte Asset-Kopien und Zuordnung stehen unter `source/`. Das ursprüngliche Reisevideo liegt bereits als unveränderte Projektkopie unter `social-video/norwegen/source/`; seine Herkunft dokumentiert die dortige `SOURCE.txt`. Fotoherkunft siehe `assets/heroes/sources.json`. Die geschützten Fotoarchive wurden nicht verändert oder für diesen Export geöffnet.
+Verwendet wurden vorhandene Projektdateien und eine Browseraufnahme von https://vanventure.at/ vom 20.09.2026. Unveränderte Asset-Kopien und Zuordnung stehen unter `source/`. Das ursprüngliche Reisevideo liegt bereits als unveränderte Projektkopie unter `social-video/norwegen/source/`; seine Herkunft dokumentiert die dortige `SOURCE.txt`. Fotoherkunft siehe `docs/hero-bildquellen.json`. Die geschützten Fotoarchive wurden nicht verändert oder für diesen Export geöffnet.
 
 Geprüft: alle sieben Szenen als Standbilder, vollständige Dekodierung des fertigen Videos (720 Bilder), 24 Sekunden Laufzeit, Ton ohne Übersteuerung (gemessener Spitzenpegel −1,2 dBFS).
 

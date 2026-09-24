@@ -4,6 +4,10 @@ $projectRoot = 'D:\work\_venventure'
 $copyRoot = Join-Path $projectRoot 'review\selected-originals\kajak'
 $zipSource = 'D:\work\Photos-1-001.zip'
 $heicConverter = 'C:\Users\helmu\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin\heif-convert.exe'
+$zipDestination = Join-Path $copyRoot 'photos-1-001'
+if (Test-Path -LiteralPath $zipDestination) {
+  throw "Vorhandene unveränderte Archivkopien werden nicht überschrieben: $zipDestination"
+}
 
 New-Item -ItemType Directory -Force -Path $copyRoot | Out-Null
 
@@ -15,20 +19,26 @@ $sources = @(
 
 $records = foreach ($item in $sources) {
   $destination = Join-Path $copyRoot $item.Name
-  Copy-Item -LiteralPath $item.Source -Destination $destination -Force
+  $sourceHash = (Get-FileHash -LiteralPath $item.Source -Algorithm SHA256).Hash.ToLowerInvariant()
+  if (Test-Path -LiteralPath $destination) {
+    $copyHash = (Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($copyHash -ne $sourceHash) { throw "Unveränderte Projektkopie weicht ab: $destination" }
+  } else {
+    Copy-Item -LiteralPath $item.Source -Destination $destination
+    $copyHash = (Get-FileHash -LiteralPath $destination -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($copyHash -ne $sourceHash) { throw "Kopie-Prüfsumme weicht ab: $destination" }
+  }
   [pscustomobject]@{
     collection = 'kajak-gallery'
     title = $item.Title
     source_path = $item.Source
     unchanged_project_copy = $destination
-    sha256 = (Get-FileHash -LiteralPath $item.Source -Algorithm SHA256).Hash.ToLowerInvariant()
+    sha256 = $sourceHash
     editing_brief = $item.Brief
   }
 }
 
-$zipDestination = Join-Path $copyRoot 'photos-1-001'
-Remove-Item -LiteralPath $zipDestination -Recurse -Force -ErrorAction SilentlyContinue
-Expand-Archive -LiteralPath $zipSource -DestinationPath $zipDestination -Force
+Expand-Archive -LiteralPath $zipSource -DestinationPath $zipDestination
 $records += Get-ChildItem -LiteralPath $zipDestination -File | Where-Object { $_.Extension -match '^\.(jpg|jpeg|heic)$' } | ForEach-Object {
   [pscustomobject]@{
     collection = 'kajak-gallery'

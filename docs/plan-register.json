@@ -33,7 +33,7 @@
       "role": "technical-reference",
       "requiredCanonicalPhrases": [
         "500-Video-Grenze",
-        "YouTube\n  trennen",
+        "Administrator-Aktion „YouTube",
         "content_item_metrics",
         "Traffic Sources sowie verfügbare Retention"
       ]
@@ -69,7 +69,7 @@
       "role": "editorial-reference",
       "requiredCanonicalPhrases": [
         "Gewässer/Ort der Uferbilder",
-        "Kritik\n  an den Schwimmwesten"
+        "Gewässer/Ort der Uferbilder"
       ]
     },
     {
@@ -85,6 +85,38 @@
       "requiredCanonicalPhrases": [
         "Zentrale responsive Unterseiten-Templates"
       ]
+    },
+    {
+      "path": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "Dokumentiert und im Projekt verankert am 23. September 2026"
+      ]
+    },
+    {
+      "path": "docs/vanventure-gesamtauftrag-aktualisiert.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/gesamtauftrag-uebernahme-2026-09-23.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/rework-teilstand-2026-09-23.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/rework-bestandspruefung-2026-09-23.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/fahrzeug-schiebetuer-korrektur-2026-09-24.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
     },
     {
       "path": "docs/vanventure-responsive-templates-auftrag.md",

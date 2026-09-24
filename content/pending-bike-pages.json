@@ -1,0 +1,58 @@
+{
+  "cube.html": {
+    "number": "02",
+    "category": {"de": "RÄDER · MOUNTAINBIKE", "en": "BIKES · MOUNTAIN BIKE"},
+    "title_html": "Sabines <em>Cube.</em>",
+    "intro": {
+      "de": "Ein Rad gehört nicht nur auf eine Ausrüstungsliste. Seine Geschichte entsteht draußen – und die sammeln wir hier noch.",
+      "en": "A bike deserves more than a place on a gear list. Its story is made outdoors, and we are still putting it together here."
+    },
+    "profile_label": {"de": "SABINES RAD", "en": "SABINE'S BIKE"},
+    "body": {
+      "de": "Modellangaben, eigene Erfahrungen, Fotos und die Galerie ergänzen wir, sobald alles redaktionell bereit ist.",
+      "en": "We will add the model details, personal experience, photos and gallery when they are ready for publication."
+    }
+  },
+  "trek-gravelbike.html": {
+    "number": "03",
+    "category": {"de": "RÄDER · GRAVEL", "en": "BIKES · GRAVEL"},
+    "title_html": "Trek <em>Gravelbike.</em>",
+    "intro": {
+      "de": "Zwischen Asphalt und Schotter liegt viel Platz für Geschichten. Dieses Radprofil bauen wir gerade auf.",
+      "en": "There is a lot of room for stories between tarmac and gravel. We are building this bike profile now."
+    },
+    "profile_label": {"de": "HELMUTS GRAVELBIKE", "en": "HELMUT'S GRAVEL BIKE"},
+    "body": {
+      "de": "Modellangaben, eigene Erfahrungen, Fotos und die Galerie ergänzen wir, sobald alles redaktionell bereit ist.",
+      "en": "We will add the model details, personal experience, photos and gallery when they are ready for publication."
+    }
+  },
+  "woom-2.html": {
+    "number": "04",
+    "category": {"de": "RÄDER · KINDERRAD", "en": "BIKES · CHILDREN'S BIKE"},
+    "title_html": "Adrians <em>Woom 2.</em>",
+    "intro": {
+      "de": "Auch kleine Räder gehören zu unserer Geschichte. Dieses Profil ergänzen wir mit den passenden Erfahrungen und freigegebenen Bildern.",
+      "en": "Small bikes are part of our story too. We will add our experience and approved photos to this profile."
+    },
+    "profile_label": {"de": "ADRIANS RAD", "en": "ADRIAN'S BIKE"},
+    "body": {
+      "de": "Modellangaben, eigene Erfahrungen und eine Galerie ergänzen wir, sobald die Radgeschichte vollständig ist.",
+      "en": "We will add model details, personal experience and a gallery when the bike story is complete."
+    }
+  },
+  "diamant-stadtraeder.html": {
+    "number": "05",
+    "category": {"de": "RÄDER · ALLTAG", "en": "BIKES · EVERYDAY"},
+    "title_html": "Diamant <em>Stadträder.</em>",
+    "intro": {
+      "de": "Nicht jeder Weg ist ein Trail. Unsere beiden Stadträder gehören genauso zu unserem Alltag – ihre Geschichte folgt.",
+      "en": "Not every route is a trail. Our two city bikes are part of everyday life too, and their story is coming."
+    },
+    "profile_label": {"de": "UNSERE STADTRÄDER", "en": "OUR CITY BIKES"},
+    "body": {
+      "de": "Modellangaben, eigene Erfahrungen, Fotos und die Galerie ergänzen wir, sobald alles redaktionell bereit ist.",
+      "en": "We will add the model details, personal experience, photos and gallery when they are ready for publication."
+    }
+  }
+}

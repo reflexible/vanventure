@@ -1,0 +1,448 @@
+{
+  "kajak.html": {
+    "type": "activity",
+    "before_hero": "\n    ",
+    "sections": {
+      "items": [
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "class",
+              "intro"
+            ]
+          ],
+          "content": "\n      <div class=\"intro-label\"><p class=\"eyebrow\">VOM VAN AUFS WASSER</p><h2>Ein Boot, das mitreist.</h2></div>\n      <div class=\"lead\"><p>Spätestens seit 2018 gehört unser rot-schwarzer Riverstar zu unseren Reisen wie die Mountainbikes und Julie. Wir finden ihn einfach wunderschön – und mit ihm entdecken wir Orte aus einer Perspektive, die uns von der Straße aus entgeht.</p><a href=\"#warum\">Warum er zu uns passt <span aria-hidden=\"true\">↓</span></a></div>\n    "
+        },
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "id",
+              "warum"
+            ],
+            [
+              "class",
+              "benefits"
+            ]
+          ],
+          "content": "\n      <p class=\"eyebrow\">UNSERE GRÜNDE</p><h2>Was ihn für uns besonders macht.</h2>\n      <!--section-card-group-->\n    ",
+          "card_group": {
+            "class": "cards",
+            "items": [
+              {
+                "before": "\n        ",
+                "content": "<span>01 / MITNEHMEN</span><h3>Groß auf dem Wasser.<br>Zusammengelegt im Van.</h3><p>Schnell aufgebaut und einfach im Van verstaut: Genau das mögen wir an unserem Riverstar. Wir brauchen keinen aufwendigen Aufbau, um vom Reisen auf der Straße zum Paddeln zu wechseln.</p>"
+              },
+              {
+                "before": "\n        ",
+                "content": "<span>02 / GEMEINSAM DRAUSSEN</span><h3>Platz für die<br>gemeinsame Zeit.</h3><p>Viel Stauraum im Boot und eine hohe Zuladung machen den Riverstar für uns zum vielseitigen Reisebegleiter. Für uns ist er auch mit zwei Erwachsenen und einem Kind oder Jugendlichen noch nutzbar. Dazu kommt unsere Grabner-Hecktasche oben auf dem Boot – zusätzlicher Platz für die Ausrüstung.</p>"
+              },
+              {
+                "before": "\n        ",
+                "content": "<span>03 / PERSPEKTIVE WECHSELN</span><h3>Die Landschaft<br>kommt näher.</h3><p>Auf dem Aurlandsfjord waren wir mit Julie unterwegs; auf Sardinien führte uns eine Bootsfahrt auf einen Stausee. Erinnerungen, für die wir gerne wieder die Paddel einpacken.</p>"
+              }
+            ],
+            "trailing": "\n      "
+          }
+        },
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "class",
+              "story"
+            ]
+          ],
+          "content": "\n      <figure><a class=\"photo-link\" href=\"assets/riverstar/riverstar-julie.jpg\" aria-label=\"Foto vergrößern\"><img loading=\"lazy\" src=\"assets/riverstar/riverstar-julie.jpg\" alt=\"Riverstar mit verstauter Ausrüstung im flachen Wasser und Julie am Bildrand\" width=\"1800\" height=\"1013\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Unser Boot und Julie am Ufer in Norwegen.</figcaption></figure>\n      <div><p class=\"eyebrow\">UNSERE MOMENTE</p><h2>Ein anderer Blick.<br>Dieselbe Reiselust.</h2><p>In Norwegen paddeln wir zwischen den Felswänden des Aurlandsfjords. Vom Wasser aus wirken die Berge noch größer. Der Riverstar ist unser kleines Stück Bewegungsfreiheit mitten in dieser Landschaft.</p><p>Später geht es zurück zum California. Das Boot kommt mit – und mit ihm die Möglichkeit, unterwegs wieder aufs Wasser zu wechseln.</p><a href=\"norwegen-2018.html\">Unsere Norwegenreise lesen ↗</a></div>\n    "
+        },
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "class",
+              "voices"
+            ]
+          ],
+          "content": "\n      <div><p class=\"eyebrow\">UNSERE ERFAHRUNGEN</p><h2>Darum lieben wir<br>unseren Riverstar.</h2><p>Nach all den gemeinsamen Touren sind es vor allem seine Fahreigenschaften und seine robuste Bauweise, die uns begeistern. Ein Boot, das sich gut mitnehmen lässt und auf dem Wasser richtig Freude macht.</p></div>\n      <!--section-card-group-->\n    ",
+          "card_group": {
+            "class": "reviews",
+            "items": [
+              {
+                "before": "",
+                "content": "<span>STABILITÄT &amp; FAHRGEFÜHL</span><h3>Liegt ruhig. Läuft richtig gut.</h3><p>Wir erleben unseren Riverstar als ausgesprochen kippstabil – auch bei hohen Wellen hat er uns mit seiner stabilen Lage überzeugt. Für ein Luftkajak finden wir seine Spurtreue sehr gut und sein Tempo beeindruckend. Unsere Lenkanlage gehört dabei zur Ausstattung.</p>"
+              },
+              {
+                "before": "",
+                "content": "<span>MATERIAL &amp; LEBENSDAUER</span><h3>Ein robuster Begleiter für viele Jahre.</h3><p>Die Kautschuk-Bootshaut ist für uns eine der großen Stärken des Riverstar. Wir empfinden das Boot als extrem robust und langlebig. Dass es uns schon seit vielen Jahren auf Reisen begleitet, schätzen wir mindestens so sehr wie den schnellen Aufbau.</p>"
+              }
+            ],
+            "trailing": ""
+          }
+        },
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "class",
+              "specs equipment"
+            ]
+          ],
+          "content": "\n      <div><p class=\"eyebrow\">SO IST UNSER BOOT AUSGESTATTET</p><h2>Unser Riverstar.<br>Unser Zubehör.</h2><p>Wir haben unseren Riverstar mit einem großen Zubehörpaket direkt von Grabner gekauft. Die Grabner-Bug/Heck-Tasche sitzt bei uns oben auf dem Heck und schafft zusätzlichen Stauraum. Eine Zweier-Spritzdecke und die Lenkanlage gehören ebenfalls zu unserer Ausstattung. Für den Weg zum Wasser nutzen wir einen Eckla-Foldy Bootswagen. Er lässt sich ohne Werkzeug zusammenfalten und kann sowohl das aufgebaute als auch das verpackte Boot transportieren.</p><p>Auch die Schwimmwesten sind von Grabner. Mit ihnen sind wir weniger zufrieden als mit dem Boot selbst.</p></div>\n      <dl><div><dt>Gepäck oben auf dem Boot</dt><dd>Grabner<small> Hecktasche</small></dd></div><div><dt>Spritzdecke</dt><dd>2er</dd></div><div><dt>Kurs halten</dt><dd>Lenkanlage</dd></div><div><dt>Transport zum Wasser</dt><dd>Eckla-Foldy</dd></div><div><dt>Schwimmwesten</dt><dd>Grabner</dd></div><div><dt>Mit uns unterwegs</dt><dd>Seit spätestens 2018</dd></div></dl>\n    "
+        }
+      ],
+      "trailing": "\n    "
+    },
+    "closing_sections": {
+      "items": [
+        {
+          "before": "\n    ",
+          "attributes": [
+            [
+              "class",
+              "camp"
+            ]
+          ],
+          "content": "<a class=\"photo-link\" href=\"assets/riverstar/california-camping-anonymisiert.png\" aria-label=\"Foto vergrößern\"><img loading=\"lazy\" src=\"assets/riverstar/california-camping-anonymisiert.png\" alt=\"California mit geöffnetem Aufstelldach und Vorzelt auf einem Campingplatz in Norwegen\" width=\"1800\" height=\"1013\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><div><p class=\"eyebrow\">VAN · BIKE · KAYAK</p><h2>Weiterfahren.<br>Wieder ablegen.</h2><p>Jedes eröffnet uns einen anderen Weg durch die Landschaft. Zusammen machen sie unsere Art zu reisen aus.</p></div>"
+        }
+      ],
+      "trailing": "\n  "
+    },
+    "hero": {
+      "image": {
+        "src": "assets/riverstar/riverstar-fjord-gespiegelt.png",
+        "label": "Foto vergrößern",
+        "alt": "Gespiegelte Ansicht: Rot-schwarzer Grabner Riverstar am flachen Ufer eines norwegischen Fjords, rechts im Bild, mit Bergen und blauem Himmel",
+        "width": 1449,
+        "height": 1086,
+        "zoom": "＋ Vergrößern"
+      },
+      "eyebrow": "UNSER GELIEBTER GRABNER RIVERSTAR",
+      "title_html": "Am Ufer hört<br>unsere Reise<br><em>nicht auf.</em>",
+      "intro": "Den Van abstellen. Das Boot ins Wasser bringen. Und die Landschaft noch einmal ganz anders erleben.",
+      "meta": "Norwegen · Unser Riverstar, bereit fürs Wasser."
+    }
+  },
+  "vehicle.html": {
+    "type": "vehicle",
+    "before_hero": "\n      ",
+    "sections": {
+      "items": [
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "profile-section facts"
+            ]
+          ],
+          "content": "<div class=\"base-intro\"><!--section-heading--><figure class=\"context-image base-image\"><img src=\"assets/vehicle/vehicle-front-camp.png\" alt=\"HYMER Grand Canyon S CrossOver von VanVenture im Camp\" /></figure></div><div class=\"fact-table\"><div><span data-de=\"MODELL\" data-en=\"MODEL\">MODELL</span><strong>HYMER Grand Canyon S CrossOver · 2025</strong></div><div><span data-de=\"BASISFAHRZEUG\" data-en=\"BASE VEHICLE\">BASISFAHRZEUG</span><strong>Mercedes-Benz Sprinter 419 CDI</strong></div><div><span data-de=\"MOTOR & GETRIEBE\" data-en=\"ENGINE & GEARBOX\">MOTOR & GETRIEBE</span><strong>140 kW / 190 PS · 9G-TRONIC Automatik</strong></div><div><span data-de=\"ANTRIEB\" data-en=\"DRIVETRAIN\">ANTRIEB</span><strong data-de=\"Permanenter Allradantrieb\" data-en=\"Permanent all-wheel drive\">Permanenter Allradantrieb</strong></div><div><span data-de=\"ABMESSUNGEN\" data-en=\"DIMENSIONS\">ABMESSUNGEN</span><strong>5,93 m × 2,06 m × 2,85 m</strong></div><div><span data-de=\"GEWICHT\" data-en=\"GROSS WEIGHT\">GEWICHT</span><strong data-de=\"4,10 t zulässiges Gesamtgewicht\" data-en=\"4.10 t gross vehicle weight\">4,10 t zulässiges Gesamtgewicht</strong></div><div><span data-de=\"PLÄTZE\" data-en=\"BERTHS\">PLÄTZE</span><strong data-de=\"4 Sitzplätze · 4 Schlafplätze\" data-en=\"4 seats · sleeps 4\">4 Sitzplätze · 4 Schlafplätze</strong></div><div><span data-de=\"ANHÄNGERKUPPLUNG\" data-en=\"TOW HITCH\">ANHÄNGERKUPPLUNG</span><strong data-de=\"vorhanden\" data-en=\"fitted\">vorhanden</strong></div></div>",
+          "heading": {
+            "eyebrow": {
+              "de": "DAS FAHRZEUG",
+              "en": "THE VEHICLE",
+              "content": "DAS FAHRZEUG"
+            },
+            "title": {
+              "de": "Ein Basislager mit Reichweite.",
+              "en": "A base camp with range.",
+              "content": "Ein Basislager mit Reichweite."
+            },
+            "note": {
+              "de": "Die Daten zeigen unser tatsächlich freigegebenes Setup — nicht eine Wunschliste.",
+              "en": "These specifications show our real, approved setup — not a wish list.",
+              "content": "Die Daten zeigen unser tatsächlich freigegebenes Setup — nicht eine Wunschliste."
+            }
+          }
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "profile-section dark-profile"
+            ]
+          ],
+          "content": "<!--section-heading--><!--section-card-group-->",
+          "heading": {
+            "eyebrow": {
+              "de": "AUTARK UNTERWEGS",
+              "en": "OFF-GRID",
+              "content": "AUTARK UNTERWEGS"
+            },
+            "title": {
+              "de": "Strom, Wasser, Wärme.",
+              "en": "Power, water, warmth.",
+              "content": "Strom, Wasser, Wärme."
+            }
+          },
+          "card_group": {
+            "class": "systems-grid",
+            "items": [
+              {
+                "before": "",
+                "content": "<span>320 Ah</span><h3 data-de=\"Lithium-Energie\" data-en=\"Lithium power\">Lithium-Energie</h3><p data-de=\"Smart Battery System mit 95-W-Solarpanel und 1.600-VA-Wechselrichter.\" data-en=\"Smart Battery System with a 95 W solar panel and 1,600 VA inverter.\">Smart Battery System mit 95-W-Solarpanel und 1.600-VA-Wechselrichter.</p>"
+              },
+              {
+                "before": "",
+                "content": "<span>100 l</span><h3 data-de=\"Frischwasser\" data-en=\"Fresh water\">Frischwasser</h3><p data-de=\"85 l Abwasser. Wasser für längere Etappen unabhängig vom nächsten Campingplatz.\" data-en=\"85 l waste water. Water for longer stages away from the next campsite.\">85 l Abwasser. Wasser für längere Etappen unabhängig vom nächsten Campingplatz.</p>"
+              },
+              {
+                "before": "",
+                "content": "<span>6 kW</span><h3 data-de=\"Dieselheizung\" data-en=\"Diesel heating\">Dieselheizung</h3><p data-de=\"Mit 10-l-Boiler, Höhenkit und Winterpaket.\" data-en=\"With a 10 l boiler, altitude kit and winter package.\">Mit 10-l-Boiler, Höhenkit und Winterpaket.</p>"
+              },
+              {
+                "before": "",
+                "content": "<span>90 l</span><h3 data-de=\"Kühlen & Wohnen\" data-en=\"Chill & live\">Kühlen & Wohnen</h3><p data-de=\"Kompressorkühlschrank mit 6,5-l-Gefrierfach, Kompaktbad und Aufstelldach.\" data-en=\"Compressor fridge with a 6.5 l freezer, compact bathroom and pop-top roof.\">Kompressorkühlschrank mit 6,5-l-Gefrierfach, Kompaktbad und Aufstelldach.</p>"
+              }
+            ],
+            "trailing": ""
+          }
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "profile-section terrain-section"
+            ]
+          ],
+          "content": "<!--section-heading--><div class=\"setup-columns\"><ul><li data-de=\"All-Terrain-Reifen auf schwarzen 16-Zoll-Stahlfelgen\" data-en=\"All-terrain tyres on black 16-inch steel wheels\">All-Terrain-Reifen auf schwarzen 16-Zoll-Stahlfelgen</li><li data-de=\"Unterbodenschutz und elektrische Offroad-Trittstufe\" data-en=\"Underbody protection and electric off-road step\">Unterbodenschutz und elektrische Offroad-Trittstufe</li><li data-de=\"Dritte Blattfeder an der Hinterachse\" data-en=\"Third leaf spring on the rear axle\">Dritte Blattfeder an der Hinterachse</li><li data-de=\"Verstärkte Stoßdämpfer\" data-en=\"Reinforced shock absorbers\">Verstärkte Stoßdämpfer</li><li data-de=\"Bravo-Schnorchel für eine höhergelegte Ansaugluftführung\" data-en=\"Bravo snorkel for a raised air intake\">Bravo-Schnorchel für eine höhergelegte Ansaugluftführung</li></ul><ul><li data-de=\"LED-Lightbar und LED-Markise\" data-en=\"LED light bar and LED awning\">LED-Lightbar und LED-Markise</li><li data-de=\"MBUX 10,25 Zoll mit Navigation und 360°-Kamera\" data-en=\"10.25-inch MBUX with navigation and 360° camera\">MBUX 10,25 Zoll mit Navigation und 360°-Kamera</li><li data-de=\"Mercedes-Fahrassistenzsysteme\" data-en=\"Mercedes driver-assistance systems\">Mercedes-Fahrassistenzsysteme</li><li data-de=\"Hecklast und Achslast dokumentiert geprüft\" data-en=\"Rear load and axle load documented and checked\">Hecklast und Achslast dokumentiert geprüft</li></ul></div>",
+          "heading": {
+            "eyebrow": {
+              "de": "CROSSOVER-SETUP",
+              "en": "CROSSOVER SETUP",
+              "content": "CROSSOVER-SETUP"
+            },
+            "title": {
+              "de": "Für schlechte Wege.",
+              "en": "For rough roads.",
+              "content": "Für schlechte Wege."
+            }
+          }
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "id",
+              "ausbau"
+            ],
+            [
+              "class",
+              "profile-section build-section"
+            ]
+          ],
+          "content": "<!--section-heading--><!--section-card-group--><figure class=\"context-image build-image\"><img src=\"assets/vehicle/vehicle-side-dog.png\" alt=\"Der HYMER Grand Canyon S CrossOver von VanVenture im Reisealltag\" /></figure>",
+          "heading": {
+            "eyebrow": {
+              "de": "INDIVIDUELLER AUSBAU",
+              "en": "CUSTOM BUILD",
+              "content": "INDIVIDUELLER AUSBAU"
+            },
+            "title": {
+              "de": "So wird aus einem Van unser Van.",
+              "en": "How a van becomes our van.",
+              "content": "So wird aus einem Van unser Van."
+            }
+          },
+          "card_group": {
+            "class": "brand-builds",
+            "items": [
+              {
+                "before": "",
+                "content": "<p>KITT</p><h3>Backrack+</h3><span data-de=\"Zwei Fahrradträger-Module und zwei Alu-Stauboxen.\" data-en=\"Two bike-carrier modules and two aluminium storage boxes.\">Zwei Fahrradträger-Module und zwei Alu-Stauboxen.</span>"
+              },
+              {
+                "before": "",
+                "content": "<p>Overland Equipment</p><h3 data-de=\"Heck & Stauraum\" data-en=\"Rear & storage\">Heck & Stauraum</h3><span data-de=\"Heckauszug für GCS ab 2024, Blinkerabdeckungen sowie Sitzkasten-Staufächer für Fahrer- und Beifahrerseite.\" data-en=\"Rear drawer for GCS from 2024, indicator covers and seat-base storage on both driver and passenger sides.\">Heckauszug für GCS ab 2024, Blinkerabdeckungen sowie Sitzkasten-Staufächer für Fahrer- und Beifahrerseite.</span>"
+              },
+              {
+                "before": "",
+                "content": "<p>H32 Design</p><h3 data-de=\"Fahrerhaus-Ablage\" data-en=\"Cab overhead shelf\">Fahrerhaus-Ablage</h3><span data-de=\"Dachablage für Mercedes Sprinter 907/910 — ohne Molle-System und ohne Airlineschiene.\" data-en=\"Overhead shelf for Mercedes Sprinter 907/910 — without Molle system and without airline rail.\">Dachablage für Mercedes Sprinter 907/910 — ohne Molle-System und ohne Airlineschiene.</span>"
+              },
+              {
+                "before": "",
+                "content": "<p>HYMER</p><h3 data-de=\"Wohnen\" data-en=\"Living\">Wohnen</h3><span data-de=\"Aufstelldach mit zusätzlichem Schlafplatz, Kompaktbad und Winterpaket.\" data-en=\"Pop-top roof with an additional berth, compact bathroom and winter package.\">Aufstelldach mit zusätzlichem Schlafplatz, Kompaktbad und Winterpaket.</span>"
+              }
+            ],
+            "trailing": ""
+          }
+        }
+      ],
+      "trailing": "\n      "
+    },
+    "closing_sections": {
+      "items": [],
+      "trailing": "\n    "
+    },
+    "hero": {
+      "eyebrow": {
+        "de": "VANVENTURE · FAHRZEUGPROFIL",
+        "en": "VANVENTURE · VEHICLE PROFILE",
+        "content": "VANVENTURE · FAHRZEUGPROFIL"
+      },
+      "title_html": "HYMER<br /><em>Grand Canyon S</em><br />CrossOver.",
+      "lead": {
+        "de": "Modelljahr 2025. Ein kompakter Allrad-Camper, konsequent auf lange, unabhängige Etappen aufgebaut.",
+        "en": "Model year 2025. A compact four-wheel-drive camper, purpose-built for long, self-sufficient stages.",
+        "content": "Modelljahr 2025. Ein kompakter Allrad-Camper, konsequent auf lange, unabhängige Etappen aufgebaut."
+      },
+      "stats": [
+        {
+          "label": {
+            "de": "LEISTUNG",
+            "en": "POWER",
+            "content": "LEISTUNG"
+          },
+          "value": "190 PS"
+        },
+        {
+          "label": {
+            "de": "ANTRIEB",
+            "en": "DRIVETRAIN",
+            "content": "ANTRIEB"
+          },
+          "value": "4 × 4"
+        },
+        {
+          "label": {
+            "de": "SCHLAFPLÄTZE",
+            "en": "SLEEPS",
+            "content": "SCHLAFPLÄTZE"
+          },
+          "value": "4"
+        }
+      ]
+    }
+  },
+  "scott-mountainbike.html": {
+    "type": "equipment",
+    "before_hero": "\n    ",
+    "hero": {
+      "image": {
+        "src": "assets/bikes/scott-genius-black-beauty-2020-v1.webp",
+        "label": "Foto des schwarzen Scott Genius im Wald vergrößern",
+        "alt": "Das schwarze Scott Genius 910 allein vor einem Wald und herbstlichen Bergen",
+        "zoom": "＋ Vergrößern"
+      },
+      "eyebrow": {
+        "de": "RÄDER · LANGZEITERFAHRUNG SEIT 2018",
+        "en": "BIKES · LONG-TERM EXPERIENCE SINCE 2018",
+        "content": "RÄDER · LANGZEITERFAHRUNG SEIT 2018"
+      },
+      "title_html": "Black <em>Beauty.</em>",
+      "intro": {
+        "de": "Mein Scott Genius 910 begleitet mich seit 2018. Nach vielen Kilometern, Trails und Reisen ist es eines jener Ausrüstungsteile, bei denen ich erstaunlich wenig vermisse.",
+        "en": "My Scott Genius 910 has been with me since 2018. After many kilometres, trails and trips, it remains one of those pieces of gear I find remarkably hard to fault.",
+        "content": "Mein Scott Genius 910 begleitet mich seit 2018. Nach vielen Kilometern, Trails und Reisen ist es eines jener Ausrüstungsteile, bei denen ich erstaunlich wenig vermisse."
+      },
+      "meta": {
+        "de": "Oktober 2020 · Black Beauty im Wald",
+        "en": "October 2020 · Black Beauty in the forest",
+        "content": "Oktober 2020 · Black Beauty im Wald"
+      }
+    },
+    "sections": {
+      "featured_section_index": 7,
+      "wide_crop_section_indices": [2, 6, 7],
+      "panorama_crop_section_indices": [2, 7],
+      "items": [
+        {
+          "before": "\n    ",
+          "attributes": [["class", "intro"]],
+          "content": "<div class=\"intro-label\"><p class=\"eyebrow\" data-de=\"SEIT 2018 AUF TOUR\" data-en=\"RIDING SINCE 2018\">SEIT 2018 AUF TOUR</p><h2 data-de=\"Ein Bike, das bleibt.\" data-en=\"A bike that stays.\">Ein Bike, das bleibt.</h2></div><div class=\"lead\"><p data-de=\"Vom ersten Test bis zu den heutigen Trails: Das Genius ist mein Begleiter bergauf und bergab. Es ist leicht, fährt sich überraschend agil und hat mich über viele Jahre kaum im Stich gelassen.\" data-en=\"From the first test ride to today's trails, the Genius has been my companion uphill and downhill. It is light, surprisingly agile and has rarely let me down over many years.\">Vom ersten Test bis zu den heutigen Trails: Das Genius ist mein Begleiter bergauf und bergab. Es ist leicht, fährt sich überraschend agil und hat mich über viele Jahre kaum im Stich gelassen.</p><a href=\"#scott-erfahrung\" data-de=\"Meine Erfahrung lesen ↓\" data-en=\"Read my experience ↓\">Meine Erfahrung lesen ↓</a></div>"
+        },
+        {
+          "before": "\n    ",
+          "attributes": [["id", "scott-vorteile"], ["class", "benefits"]],
+          "content": "<p class=\"eyebrow\" data-de=\"WARUM ES MITREIST\" data-en=\"WHY IT COMES ALONG\">WARUM ES MITREIST</p><h2 data-de=\"Drei Dinge, die zählen.\" data-en=\"Three things that matter.\">Drei Dinge, die zählen.</h2><!--section-card-group-->",
+          "card_group": {
+            "class": "cards",
+            "items": [
+              {"before": "", "content": "<span>01 / FAHRGEFÜHL</span><h3>Agil trotz<br>29 Zoll.</h3><p>Als ich das Genius zum ersten Mal fuhr, rechnete ich mit einem trägen 29er. Schon nach wenigen Metern war dieses Vorurteil erledigt. Wie es bergauf kontrolliert bleibt und bergab trotzdem richtig lebendig wird, hat mich seitdem auf vielen ganz unterschiedlichen Wegen begleitet.</p>"},
+              {"before": "", "content": "<span>02 / FAHRWERK</span><h3>Für den Trail.<br>Für den Anstieg.</h3><p>Ein langer Anstieg, danach ein ruppiger Trail: Genau in diesem Wechsel zeigt das Fahrwerk seine Stärke. TwinLoc und die absenkbare Sattelstütze bedienen sich direkt vom Lenker. Was das draußen wirklich verändert, merke ich besonders dann, wenn der Untergrund ständig neu überrascht.</p>"},
+              {"before": "", "content": "<span>03 / LANGZEITTEST</span><h3>Seit 2018<br>im Einsatz.</h3><p>Seit 2018 reist und fährt Black Beauty mit mir. Es bekommt jedes Jahr sein Full Service, doch grundlegende Umbauten waren nie nötig. Erst nach vielen Jahren kam der erste echte Defekt. Warum ich das Bike trotzdem sofort wieder wählen würde, erzählt die Erfahrung unter diesen Karten.</p>"}
+            ],
+            "trailing": ""
+          }
+        },
+        {
+          "before": "\n    <div class=\"equipment-main gear-profile\">\n    <article class=\"gear-story\">\n      ",
+          "attributes": [
+            ["id", "scott-erfahrung"],
+            [
+              "class",
+              "scott-story-pair"
+            ]
+          ],
+          "content": "<div class=\"scott-story-copy\"><p class=\"equipment-kicker\" data-de=\"WARUM GEKAUFT\" data-en=\"WHY I BOUGHT IT\">WARUM GEKAUFT</p><h2 data-de=\"Ein 29er, das sich nicht so anfühlt.\" data-en=\"A 29er that does not feel like one.\">Ein 29er, das sich nicht so anfühlt.</h2><p data-de=\"Bei der ersten Testfahrt konnte ich kaum glauben, dass ich auf einem 29er sitze. Ich hatte ein deutlich trägeres Fahrgefühl erwartet. Stattdessen war das Genius agil und verspielt - und genau das hat mich überzeugt.\" data-en=\"On my first test ride, I could hardly believe I was on a 29er. I expected a much more sluggish feel. Instead, the Genius was agile and playful - and that won me over.\">Bei der ersten Testfahrt konnte ich kaum glauben, dass ich auf einem 29er sitze. Ich hatte ein deutlich trägeres Fahrgefühl erwartet. Stattdessen war das Genius agil und verspielt - und genau das hat mich überzeugt.</p></div><figure class=\"scott-editorial-photo\"><a class=\"photo-link\" href=\"assets/bikes/scott-wiesenpause-2019-v1.webp\" aria-label=\"Black Beauty bei einer Wiesenpause vergrößern\"><img loading=\"lazy\" decoding=\"async\" src=\"assets/bikes/scott-wiesenpause-2019-v1.webp\" alt=\"Das schwarze Scott Genius 910 auf einer Bergwiese\" width=\"1800\" height=\"1350\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Unterwegs seit 2018 · Wiesenpause 2019</figcaption></figure>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "scott-story-pair"
+            ]
+          ],
+          "content": "<div class=\"scott-story-copy\"><p class=\"equipment-kicker\" data-de=\"WAS BEGEISTERT MICH\" data-en=\"WHAT I LOVE\">WAS BEGEISTERT MICH</p><h2 data-de=\"Leicht bergauf. Bereit für alles bergab.\" data-en=\"Light uphill. Ready for anything downhill.\">Leicht bergauf. Bereit für alles bergab.</h2><p data-de=\"Für ein vollgefedertes All-Mountain-Bike mit 150 mm Federweg sind rund 13,3 kg einfach stark. Die Geometrie ist für mich bis heute eine der größten Stärken: Selbst auf steilen Anstiegen bleibt das Vorderrad am Boden und das Bike lässt sich kontrolliert nach oben fahren.\" data-en=\"For a full-suspension all-mountain bike with 150 mm of travel, around 13.3 kg is simply impressive. To this day, its geometry is one of its greatest strengths for me: even on steep climbs, the front wheel stays down and the bike remains controlled on the way up.\">Für ein vollgefedertes All-Mountain-Bike mit 150 mm Federweg sind rund 13,3 kg einfach stark. Die Geometrie ist für mich bis heute eine der größten Stärken: Selbst auf steilen Anstiegen bleibt das Vorderrad am Boden und das Bike lässt sich kontrolliert nach oben fahren.</p><p data-de=\"Die 29-Zoll-Laufräder rollen über Wurzeln, Steine und ausgewaschene Passagen, ohne das Bike behäbig zu machen. Dazu kommt TwinLoc: Gabel und Dämpfer lassen sich direkt am Lenker von offen über Traction Control bis Lockout schalten. Gerade auf wechselndem Terrain ist diese Fahrwerkssperre für mich ein Traum.\" data-en=\"The 29-inch wheels roll over roots, rocks and rough sections without making the bike feel cumbersome. Then there is TwinLoc: fork and shock can be switched from open through Traction Control to lockout directly at the handlebar. On changing terrain, that suspension lockout is a dream for me.\">Die 29-Zoll-Laufräder rollen über Wurzeln, Steine und ausgewaschene Passagen, ohne das Bike behäbig zu machen. Dazu kommt TwinLoc: Gabel und Dämpfer lassen sich direkt am Lenker von offen über Traction Control bis Lockout schalten. Gerade auf wechselndem Terrain ist diese Fahrwerkssperre für mich ein Traum.</p><p data-de=\"Auch SRAM Eagle 1x12 hat meine damalige Skepsis sofort erledigt: Ein Kettenblatt vorne reicht absolut. Die FOX Transfer Dropper Post per Lenker war 2018 schon top und ist es bis heute - Sattel runter, Bewegungsfreiheit bergab, danach weiterfahren.\" data-en=\"SRAM Eagle 1x12 also put my initial scepticism to rest: one chainring up front is absolutely enough. The handlebar-controlled FOX Transfer dropper post was already excellent in 2018 and still is today - saddle down, freedom of movement downhill, then carry on.\">Auch SRAM Eagle 1x12 hat meine damalige Skepsis sofort erledigt: Ein Kettenblatt vorne reicht absolut. Die FOX Transfer Dropper Post per Lenker war 2018 schon top und ist es bis heute - Sattel runter, Bewegungsfreiheit bergab, danach weiterfahren.</p></div><figure class=\"scott-editorial-photo scott-detail-photo\"><a class=\"photo-link\" href=\"assets/bikes/scott-rahmen-detail-2020-v1.webp\" aria-label=\"Rahmen und Fahrwerk von Black Beauty vergrößern\"><img loading=\"lazy\" decoding=\"async\" src=\"assets/bikes/scott-rahmen-detail-2020-v1.webp\" alt=\"Nahaufnahme des schwarzen Scott Genius 910 mit Rahmen, Fahrwerk und 29-Zoll-Laufrädern\" width=\"1800\" height=\"1350\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Das schwarze Scott im Detail · 2020</figcaption></figure>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [],
+          "content": "<p class=\"equipment-kicker\" data-de=\"WAS NERVT\" data-en=\"WHAT ANNOYS ME\">WAS NERVT</p><h2 data-de=\"Ehrlich gesagt: nicht viel.\" data-en=\"Honestly: not much.\">Ehrlich gesagt: nicht viel.</h2><p data-de=\"Die Schaltung funktioniert für mich nach wie vor top. Wenn ich heute etwas wählen dürfte, wäre eine elektronische Schaltung eine reizvolle Option - aber kein Grund, etwas auszutauschen, das zuverlässig funktioniert.\" data-en=\"The drivetrain still works brilliantly for me. If I were choosing today, electronic shifting would be an appealing option - but not a reason to replace something that works reliably.\">Die Schaltung funktioniert für mich nach wie vor top. Wenn ich heute etwas wählen dürfte, wäre eine elektronische Schaltung eine reizvolle Option - aber kein Grund, etwas auszutauschen, das zuverlässig funktioniert.</p>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "scott-story-pair"
+            ]
+          ],
+          "content": "<div class=\"scott-story-copy\"><p class=\"equipment-kicker\" data-de=\"DEFEKTE UND VERSCHLEISS\" data-en=\"FAULTS AND WEAR\">DEFEKTE UND VERSCHLEISS</p><h2 data-de=\"Acht Jahre, eine Speiche.\" data-en=\"Eight years, one spoke.\">Acht Jahre, eine Speiche.</h2><p data-de=\"Black Beauty bekommt jedes Jahr ein Full Service - natürlich für das Bike und die Sicherheit auf schnellen, anspruchsvollen Downhills. Und auch, weil ich es danach immer blitzblank zurückbekomme. :) Bis 2026 hatte ich keinen echten Defekt; dann ist die erste Speiche gerissen. Nach all den Jahren harter Beanspruchung darf das durchaus einmal passieren.\" data-en=\"Black Beauty gets a full service every year - of course for the bike itself and for safety on fast, demanding downhills. And also because it always comes back spotlessly clean. :) Until 2026, I had no real fault; then the first spoke broke. After all those years of hard use, that is perfectly fair.\">Black Beauty bekommt jedes Jahr ein Full Service - natürlich für das Bike und die Sicherheit auf schnellen, anspruchsvollen Downhills. Und auch, weil ich es danach immer blitzblank zurückbekomme. :) Bis 2026 hatte ich keinen echten Defekt; dann ist die erste Speiche gerissen. Nach all den Jahren harter Beanspruchung darf das durchaus einmal passieren.</p><p data-de=\"Platten gehören natürlich dazu. Besonders in Erinnerung ist mir Sardinien 2019 geblieben: Der erste davon hat mich rund eine Stunde gekostet.\" data-en=\"Punctures are, of course, part of it. Sardinia in 2019 remains especially memorable: the first one cost me around an hour.\">Platten gehören natürlich dazu. Besonders in Erinnerung ist mir Sardinien 2019 geblieben: Der erste davon hat mich rund eine Stunde gekostet.</p></div><figure class=\"scott-editorial-photo scott-mud-photo\"><a class=\"photo-link\" href=\"assets/bikes/scott-schlammtour-2024-v1.webp\" aria-label=\"Black Beauty nach der Schlammtour vergrößern\"><img loading=\"lazy\" decoding=\"async\" src=\"assets/bikes/scott-schlammtour-2024-v1.webp\" alt=\"Schlammiges schwarzes Scott Genius 910 nach einer Tour\" width=\"1800\" height=\"1350\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Vor dem nächsten blitzblanken Full Service · 2024</figcaption></figure>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [
+            [
+              "class",
+              "scott-story-pair"
+            ]
+          ],
+          "content": "<div class=\"scott-story-copy\"><p class=\"equipment-kicker\" data-de=\"WAS HABE ICH VERÄNDERT\" data-en=\"WHAT I HAVE CHANGED\">WAS HABE ICH VERÄNDERT</p><h2 data-de=\"Nichts. Wirklich nichts.\" data-en=\"Nothing. Really nothing.\">Nichts. Wirklich nichts.</h2><p data-de=\"Seit dem Kauf 2018 habe ich keine grundlegende Änderung vorgenommen. Fahrwerk, Geometrie, Schaltung, Laufräder und Bedienung funktionieren für mich als Gesamtpaket einfach so gut, dass ich nie das Gefühl hatte, etwas ändern zu müssen.\" data-en=\"Since buying it in 2018, I have made no fundamental changes. The suspension, geometry, drivetrain, wheels and controls work so well together for me that I have never felt the need to alter anything.\">Seit dem Kauf 2018 habe ich keine grundlegende Änderung vorgenommen. Fahrwerk, Geometrie, Schaltung, Laufräder und Bedienung funktionieren für mich als Gesamtpaket einfach so gut, dass ich nie das Gefühl hatte, etwas ändern zu müssen.</p></div><figure class=\"scott-editorial-photo\"><a class=\"photo-link\" href=\"assets/bikes/scott-baumtour-2022-v1.webp\" aria-label=\"Black Beauty unter einem Baum vergrößern\"><img loading=\"lazy\" decoding=\"async\" src=\"assets/bikes/scott-baumtour-2022-v1.webp\" alt=\"Das schwarze Scott Genius 910 lehnt bei einer Tour unter einem großen Baum\" width=\"1800\" height=\"1350\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Black Beauty unterwegs · 2022</figcaption></figure>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [],
+          "content": "<figure class=\"scott-story-photo\"><a class=\"photo-link\" href=\"assets/bikes/scott-leogang-trail-2020-v1.webp\" aria-label=\"Black Beauty auf dem Trail in Leogang vergrößern\"><img loading=\"lazy\" decoding=\"async\" src=\"assets/bikes/scott-leogang-trail-2020-v1.webp\" alt=\"Fahrer auf dem schwarzen Scott Genius 910 auf einem schmalen Trail in Leogang\"><span class=\"photo-zoom\" aria-hidden=\"true\">＋ Vergrößern</span></a><figcaption>Mit Black Beauty auf dem Trail · Leogang 2020</figcaption></figure><p class=\"equipment-kicker\" data-de=\"WO WAR ES DABEI\" data-en=\"WHERE IT HAS BEEN\">WO WAR ES DABEI</p><h2 data-de=\"Nicht auf dem Prüfstand, sondern unterwegs.\" data-en=\"Not on a test bench, but out there.\">Nicht auf dem Prüfstand, sondern unterwegs.</h2><p data-de=\"Touren und Trails ergänze ich hier nach und nach. Bis dahin taucht Black Beauty immer wieder in den Mountainbike- und längeren Reisevideos auf. Die Reparaturpause auf Sardinien ist sogar im Film zu sehen.\" data-en=\"I will add rides and trails here step by step. Until then, Black Beauty appears again and again in the mountain-bike and longer travel videos. The repair stop in Sardinia can even be seen in the film.\">Touren und Trails ergänze ich hier nach und nach. Bis dahin taucht Black Beauty immer wieder in den Mountainbike- und längeren Reisevideos auf. Die Reparaturpause auf Sardinien ist sogar im Film zu sehen.</p><p class=\"gear-links\"><a href=\"sardinien-2019.html#kapitel-3\" data-de=\"Sardinien 2019 lesen ↗\" data-en=\"Read Sardinia 2019 ↗\">Sardinien 2019 lesen ↗</a><a href=\"https://www.youtube.com/watch?v=1tdn5NKrl4M\" target=\"_blank\" rel=\"noopener\" data-de=\"Sardinienfilm ansehen ↗\" data-en=\"Watch the Sardinia film ↗\">Sardinienfilm ansehen ↗</a></p>"
+        },
+        {
+          "before": "\n      ",
+          "attributes": [],
+          "content": "<p class=\"equipment-kicker\" data-de=\"WÜRDE ICH ES WIEDER KAUFEN\" data-en=\"WOULD I BUY IT AGAIN\">WÜRDE ICH ES WIEDER KAUFEN</p><h2 data-de=\"Ja. Ohne lange Liste an Umbauten.\" data-en=\"Yes. Without a long list of upgrades.\">Ja. Ohne lange Liste an Umbauten.</h2><p data-de=\"Leicht genug für lange Anstiege, agil trotz 29 Zoll, mit einem starken Fahrwerk und einer Geometrie, die bergauf wie bergab überzeugt: Black Beauty fehlt beim Fahren erstaunlich wenig. Dass ich bis heute nichts Grundlegendes verändert habe, ist für mich das größte Kompliment an dieses Bike.\" data-en=\"Light enough for long climbs, agile despite its 29-inch wheels, with strong suspension and geometry that convinces both uphill and downhill: Black Beauty is still missing remarkably little out on the ride. The fact that I have changed nothing fundamental to this day is the greatest compliment I can give this bike.\">Leicht genug für lange Anstiege, agil trotz 29 Zoll, mit einem starken Fahrwerk und einer Geometrie, die bergauf wie bergab überzeugt: Black Beauty fehlt beim Fahren erstaunlich wenig. Dass ich bis heute nichts Grundlegendes verändert habe, ist für mich das größte Kompliment an dieses Bike.</p>"
+        },
+        {
+          "before": "\n    </article>\n    ",
+          "attributes": [
+            [
+              "class",
+              "scott-specs"
+            ],
+            [
+              "aria-labelledby",
+              "scott-specs-title"
+            ]
+          ],
+          "content": "<div class=\"scott-specs-copy\"><p class=\"equipment-kicker\" data-de=\"SO IST MEIN BIKE AUSGESTATTET\" data-en=\"HOW MY BIKE IS EQUIPPED\">SO IST MEIN BIKE AUSGESTATTET</p><h2 id=\"scott-specs-title\" data-de=\"Black Beauty. Mein Setup.\" data-en=\"Black Beauty. My setup.\">Black Beauty. Mein Setup.</h2><p data-de=\"Seit 2018 passt mir das Gesamtpaket so gut, dass ich nichts Grundlegendes umgebaut habe. Die Zahlen erklären nur einen Teil davon – entscheidend ist, wie leicht und kontrolliert sich das Genius auf dem Trail fährt.\" data-en=\"The complete setup has suited me so well since 2018 that I have made no fundamental changes. The numbers tell only part of the story – what matters is how light and controlled the Genius feels on the trail.\">Seit 2018 passt mir das Gesamtpaket so gut, dass ich nichts Grundlegendes umgebaut habe. Die Zahlen erklären nur einen Teil davon – entscheidend ist, wie leicht und kontrolliert sich das Genius auf dem Trail fährt.</p></div><dl><div><dt data-de=\"Gewicht\" data-en=\"Weight\">Gewicht</dt><dd>ca. 13,3 kg</dd></div><div><dt data-de=\"Federweg\" data-en=\"Travel\">Federweg</dt><dd>150 mm</dd></div><div><dt data-de=\"Laufräder\" data-en=\"Wheels\">Laufräder</dt><dd>29 Zoll</dd></div><div><dt data-de=\"Antrieb\" data-en=\"Drivetrain\">Antrieb</dt><dd>SRAM Eagle<small> 1x12</small></dd></div><div><dt data-de=\"Fahrwerk\" data-en=\"Suspension\">Fahrwerk</dt><dd>FOX<small> mit TwinLoc</small></dd></div><div><dt data-de=\"Sattelstütze\" data-en=\"Dropper post\">Sattelstütze</dt><dd>FOX Transfer</dd></div></dl>"
+        }
+      ],
+      "trailing": "\n    "
+    },
+    "closing_sections": {
+      "items": [],
+      "trailing": "\n    <aside class=\"equipment-note gear-photo-note\"><p class=\"equipment-kicker\" data-de=\"TOUREN & TRAILS\" data-en=\"RIDES & TRAILS\">TOUREN & TRAILS</p><p data-de=\"Die konkreten Touren und Trails ergänze ich hier später. Schon jetzt ist das Bike in unseren Mountainbike- und Reisevideos zu sehen.\" data-en=\"I will add specific rides and trails here later. The bike already appears in our mountain-bike and travel videos.\">Die konkreten Touren und Trails ergänze ich hier später. Schon jetzt ist das Bike in unseren Mountainbike- und Reisevideos zu sehen.</p></aside>\n    </div>\n  "
+    }
+  }
+}

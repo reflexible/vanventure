@@ -1,0 +1,153 @@
+{
+  "scott-baumtour-2022-v1.webp": {
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_2211.JPG",
+    "sourceSha256": "a7532f2df3aa7922f199b7b6465c564fc342d788ae8f84e373fbe8a30a06fe00",
+    "web_image_sha256": "1bc7bcb6faf5197017b87761f6438c0a5b6b00f7ae9e3fc65d25a7461a0bbeb4",
+    "mappingEvidence": "Read-only motif comparison 0.9995 on 2026-09-24. Archive origin, transformation chain and publication approval remain unverified."
+  },
+  "scott-fahrwerk-detail-2022-v1.webp": {
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_2032.JPG",
+    "sourceSha256": "e478856f33ae57831bd4b79787093afb85d96fa561d10d51a48f3703a638eb28",
+    "web_image_sha256": "208f0af9e8029d053a89a2ee5dd4be75d279c8e7eff3a25a4ca17a23c0b4277b",
+    "mappingEvidence": "Read-only motif comparison 0.9993 on 2026-09-24. Archive origin, transformation chain and publication approval remain unverified."
+  },
+  "scott-italien-bergpause-2021-v1.webp": {
+    "source": "E:/_fotos_original/urlaubsSammlungen/italien_rundtrip_2021/handy_fotos_helmut/DSC_1712.JPG",
+    "sourceSha256": "2ef01cb3c121d0c117f2d190b2c8b3a9d2abefaece0673fdfdb9a122319b9758",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_1712-archive.JPG",
+    "web_image_sha256": "68c53731d9ff6fbce25dd2ed4025f5b2f316ed04ab5d24ec2caa9cd6b28e3414",
+    "mappingEvidence": "Motif comparison 0.9992 to prior project copy; prior DSC_1712.JPG project copy is visibly damaged at bottom and differs in SHA-256. Intact archive source staged without overwrite and source/copy hashes checked 2026-09-24. Web derivative must be checked for matching damage; publication approval open."
+  },
+  "scott-leogang-2020-v1.webp": {
+    "source": "E:/_fotos_original/_eigene_fotos/_olympus_M1/2020/2020-10-13/PA131105.JPG",
+    "sourceSha256": "3b4fd39b3fb2a8ffe32647bad948ac8cc111dba2f82b6f0209de084f4cde138d",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/PA131105.JPG",
+    "web_image_sha256": "9ce8f200d148fb490cc420aa9abda2c3065a09b76bc7ea50ffeb84fcf9beac7d",
+    "mappingEvidence": "Read-only motif comparison 1.0000 and archive/source/copy SHA-256 check on 2026-09-24. Transformation chain and publication approval open."
+  },
+  "scott-leogang-park-2020-v1.webp": {
+    "source": "E:/_fotos_original/_eigene_fotos/_olympus_M1/2020/2020-10-13/PA131111.JPG",
+    "sourceSha256": "77bb598e4988b9d1f85f70d66555ff3c92accc657a79925194282a3ad719fc02",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/PA131111.JPG",
+    "web_image_sha256": "ba48fada975752247889c97ba56881d24a8bd02cde657b259188b792e3aff330",
+    "mappingEvidence": "Read-only motif comparison 1.0000 and archive/source/copy SHA-256 check on 2026-09-24. Transformation chain and publication approval open."
+  },
+  "scott-leogang-trail-2020-v1.webp": {
+    "source": "E:/_fotos_original/_eigene_fotos/_olympus_M1/2020/2020-10-13/PA131104.JPG",
+    "sourceSha256": "8d02c439a2f86b796561ee1176ab107c5e9e6acb632073f1639230945939eba9",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/PA131104.JPG",
+    "web_image_sha256": "5f920d9883faf29bea2a1c219a77073fcbccc8e5b8481156170b75e9a5264c17",
+    "mappingEvidence": "Read-only motif comparison 0.9999 and archive/source/copy SHA-256 check on 2026-09-24. Transformation chain and publication approval open."
+  },
+  "scott-schlammtour-2024-v1.webp": {
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/20240505_132315.jpg",
+    "sourceSha256": "42d23314aab069fc74b9a81a13a6eb9fafe9b50b574be4c2af96cdb92ad1dec6",
+    "web_image_sha256": "f5a1c55f8422a3987dd2ad2041016241b42a80ed65d5bf80a69c8bcd64996772",
+    "mappingEvidence": "Read-only motif comparison 0.9999 on 2026-09-24. Archive origin, transformation chain and publication approval remain unverified."
+  },
+  "scott-tourenpause-2022-v1.webp": {
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_2199.JPG",
+    "sourceSha256": "b51d8c08c6dbcf3aa2c125907e36d64e7cc8f9ac89b6b531e54da91de2329468",
+    "web_image_sha256": "fdbb56cae501ebdb3504d3494dc895b730aa94da02e79132de2ea7d1e41ba6b3",
+    "mappingEvidence": "Visual inspection confirms identical photograph despite crop/tone difference (64x64 grayscale 0.8026) on 2026-09-24. Archive origin, transformation chain and publication approval remain unverified."
+  },
+  "scott-tourenpause-2022-editorial-v2.webp": {
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_2199.JPG",
+    "sourceSha256": "b51d8c08c6dbcf3aa2c125907e36d64e7cc8f9ac89b6b531e54da91de2329468",
+    "web_image_sha256": "5a898632608330dd509dc65c11e9e3cd6fba8aa83edb907832a814256d656586",
+    "mappingEvidence": "Same unchanged project copy as the published 2022 tour-break motif; source checked before/after local export. Exact archive origin still open.",
+    "edit_status": "Local-only V7 outdoor editorial grade accepted by the user as the visual direction on 2026-09-24; web export staged for full-site local review, not live or independently approved for publication.",
+    "export": "1800 x 1350 WebP quality 88 from source-checked project copy; in-place bike mid-shadow recovery, chromatic green depth; no scene elements changed"
+  },
+  "scott-anfang-2018-v1.webp": {
+    "source": "E:/_fotos_original/handy_fotos/2021-11-30/DSC_0055_1.JPG",
+    "sourceSha256": "abf545d7893d46e268258b9ddd69031354a11a5e6704022dde7d36fff2f18bc0",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0055_1.JPG",
+    "web_image_sha256": "f3890bd935f564f5282c6402b2c9e34633b1024f673e90ed6b2cfedf779bac2c",
+    "mappingEvidence": "Read-only 64x64 grayscale match 0.9999 to archive source; exact source/copy SHA-256 match on 2026-09-23. Derivative export parameters and individual publication approval still to verify."
+  },
+  "scott-rahmen-detail-2020-v1.webp": {
+    "source": "E:/_fotos_original/handy_fotos/2021-11-30/DSC_0887.JPG",
+    "sourceSha256": "089eed27d4b7a52ab49b651c810f6e544b6dc5871eb8b7719d32d0bb29774d22",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0887.JPG",
+    "web_image_sha256": "5f614c39ec36f22c25c4a9fd168b8ace473cb76298109189b10011057abf6cc6",
+    "mappingEvidence": "Read-only 64x64 grayscale match 1 to archive source; exact source/copy SHA-256 match on 2026-09-23. Derivative export parameters and individual publication approval still to verify."
+  },
+  "scott-seitenprofil-2019-v1.webp": {
+    "source": "E:/_fotos_original/handy_fotos/2021-11-30/DSC_0478.JPG",
+    "sourceSha256": "6dc9588e88b98ef916b488e65b77c2205f4fe4eb81e836718d1063b8140b0e7d",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0478.JPG",
+    "web_image_sha256": "81873b53d1056da0bf52983d1d4c3935f38285c2c36255b912f4aba1a77432cd",
+    "mappingEvidence": "Read-only 64x64 grayscale match 0.9999 to archive source; exact source/copy SHA-256 match on 2026-09-23. Derivative export parameters and individual publication approval still to verify."
+  },
+  "scott-wiesenpause-2019-v1.webp": {
+    "source": "E:/_fotos_original/handy_fotos/2021-11-30/DSC_0415.JPG",
+    "sourceSha256": "7c140d0c183b11027f7773c1418090b3a1981692a4e5986d54ad444b0fb377df",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0415.JPG",
+    "web_image_sha256": "c856f26fd55b7f5a3e31fb0bff5156cc4e45e9b1d44497f6f3c07d9bf69a2af9",
+    "mappingEvidence": "Read-only 64x64 grayscale match 0.9999 to archive source; exact source/copy SHA-256 match on 2026-09-23. Derivative export parameters and individual publication approval still to verify."
+  },
+  "scott-wintertour-2019-v1.webp": {
+    "source": "E:/_fotos_original/handy_fotos/2021-11-30/DSC_0085_1.JPG",
+    "sourceSha256": "1be0bb69956a0e472377375e7b88dc9f900930d127ed3e3cf3b472703627e0fa",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0085_1.JPG",
+    "web_image_sha256": "8d5b9fbc4a324fca0c48fb59012aa7b576cab08b482aab1f4e9935cd32cb889a",
+    "mappingEvidence": "Read-only 64x64 grayscale match 1 to archive source; exact source/copy SHA-256 match on 2026-09-23. Derivative export parameters and individual publication approval still to verify."
+  },
+  "scott-genius-black-beauty-2020-v1.webp": {
+    "source": "E:\\_fotos_original\\handy_fotos\\2021-11-30\\DSC_0888.JPG",
+    "sourceSha256": "47895f5a13d3965665e6451567cb8848a452808795a60b49dad926ee2d33c40b",
+    "unchangedProjectCopy": "review/selected-originals/scott-genius/DSC_0888.JPG",
+    "googlePhotosMatch": "https://photos.google.com/search/CgxTY290dCBHZW5pdXMiDgoMU2NvdHQgR2VuaXVzKM+ZivKMNDgD/top/photo/AF1QipOBVaxb8XeJuUw52WmYHyVkgYSPNkeudJUEzwaj",
+    "subject": "Schwarzes Scott Genius 910 im Wald, 12. Oktober 2020",
+    "derivative": "1920 × 1440 Pixel, WebP Qualität 82; keine Retusche"
+  },
+  "sardinien-bikepause-editorial-v2.jpg": {
+    "unchangedProjectCopy": "reisebilder-originale/sardinien-2019/DSC_0105_4.JPG",
+    "sourceSha256": "a280e72eb35a81c5fec5e7e4c4cca3ba06343c29bcaeae5f6957707888357608",
+    "web_image_sha256": "74f34aafa3a743e7932b3f63daa73a3b1e87f181663fb2594f4f0a0a2bb16a13",
+    "derivative": "1448 x 1086 JPEG Qualität 91, 4:4:4; motivspezifische pixelgetreue Farbkorrektur aus unveränderter Projektkopie; identische Bytes der vom Nutzer am 2026-09-24 bestätigten privaten Vorschau; nur lokal, nicht live"
+  },
+  "sardinien-mountainbikes-meer-v1.webp": {
+    "unchangedProjectSource": "assets/reisen/sardinien-2019/mountainbikes-am-meer-natur.png",
+    "sourceSha256": "ebcfd358398fdb1512b8b62c45e50e35b35f4340b878e76a58a64c5357ccb6d3",
+    "derivative": "WebP Qualität 78; keine Retusche"
+  },
+  "sardinien-bikes-am-camper-v1.webp": {
+    "unchangedProjectSource": "assets/reisen/sardinien-2019/gallery/dsc-0273.jpg",
+    "sourceSha256": "63e7295c4e2033189a56c4bb26fc15102f8697e859588f2139f44801a5f6c846",
+    "derivative": "WebP Qualität 78; Kennzeichenanonymisierung der bestehenden Quelle unverändert"
+  },
+  "scott-reise-2026-gallery-v2.webp": {
+    "web_image_sha256": "6f0586bbab9b87bbc3a12700bda622364a7a469b80868e563ad2776db50093e2",
+    "candidateGooglePhotosSources": [
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipNchu4FWb3Lzbm1VApeCzfPH1NY1oZE66teGX9t", "filename": "20260809_133853.jpg", "captured": "2026-08-09 13:38:53", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133853.jpg", "sha256": "ab755ad195bb68fa1c554c0b67fb67e4d784df48bf24a31059026a3fc2c40b9c"},
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipPAj7CYoXZgmVhc4rLl96UqnrnDRkchb_uzWxhD", "filename": "20260809_133850.jpg", "captured": "2026-08-09 13:38:50", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133850.jpg", "sha256": "78ed1026af307b511020b53f27d16d2e4b30c4bf012342e783c903e43ede65a6"},
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipN7MnvLuAh4KtAIhpPP7aiguuflfqDuXycu2_ui", "filename": "20260809_133824.jpg", "captured": "2026-08-09 13:38:24", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133824.jpg", "sha256": "87e6cdfeee874e8e83eea0cda9ab75fc219394c2e8ef0be4838c20cd141437ad"}
+    ],
+    "unchangedProjectCopy": null,
+    "candidateProjectCopies": ["review/selected-originals/google-photos-incoming/20260809_133853.jpg", "review/selected-originals/google-photos-incoming/20260809_133850.jpg", "review/selected-originals/google-photos-incoming/20260809_133824.jpg"],
+    "mappingStatus": "MOTIF_MATCHED_133850_BY_SLIDING_CROP_VISUAL_COMPARISON",
+    "selectedMappingSource": "20260809_133850.jpg",
+    "sourceCopyIntegrity": "VERIFIED_SOURCE_COPY",
+    "processingLineage": "USER_SUSPECTS_THIS_WEB_VARIANT_WAS_AI_EDITED; original-to-derivative comparison pending",
+    "publicationApproval": "NOT_RECONFIRMED",
+    "mappingEvidence": "All three normal Google Photos downloads are preserved unchanged in the private incoming folder with SHA-256 recorded on 2026-09-24. A read-only grayscale crop sweep against the published variant scored 0.8980 for 13:38:50 versus 0.8516 for 13:38:53; 13:38:50 is the strongest match. This is visual mapping evidence, not proof of the legacy processing chain. User suspects this output was AI-edited; that remains unconfirmed. Publication approval is not reconfirmed."
+  },
+  "scott-reise-2026-v1.webp": {
+    "web_image_sha256": "41c29af0853471bcd018661a2b8bf4c7dc2aa541313ad45dee1e3952ccf3b522",
+    "candidateGooglePhotosSources": [
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipNchu4FWb3Lzbm1VApeCzfPH1NY1oZE66teGX9t", "filename": "20260809_133853.jpg", "captured": "2026-08-09 13:38:53", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133853.jpg", "sha256": "ab755ad195bb68fa1c554c0b67fb67e4d784df48bf24a31059026a3fc2c40b9c"},
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipPAj7CYoXZgmVhc4rLl96UqnrnDRkchb_uzWxhD", "filename": "20260809_133850.jpg", "captured": "2026-08-09 13:38:50", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133850.jpg", "sha256": "78ed1026af307b511020b53f27d16d2e4b30c4bf012342e783c903e43ede65a6"},
+      {"url": "https://photos.google.com/search/CgtBdWd1c3QgMjAyNiIPEg0KCyIJCgcI6g8QCBgAKOK11pCNNDgD/photo/AF1QipN7MnvLuAh4KtAIhpPP7aiguuflfqDuXycu2_ui", "filename": "20260809_133824.jpg", "captured": "2026-08-09 13:38:24", "camera": "Samsung Galaxy S24", "dimensions": "1848x4000", "projectCopy": "review/selected-originals/google-photos-incoming/20260809_133824.jpg", "sha256": "87e6cdfeee874e8e83eea0cda9ab75fc219394c2e8ef0be4838c20cd141437ad"}
+    ],
+    "unchangedProjectCopy": null,
+    "candidateProjectCopies": ["review/selected-originals/google-photos-incoming/20260809_133853.jpg", "review/selected-originals/google-photos-incoming/20260809_133850.jpg", "review/selected-originals/google-photos-incoming/20260809_133824.jpg"],
+    "mappingStatus": "MOTIF_MATCHED_133853_BY_VISUAL_COMPARISON",
+    "selectedMappingSource": "20260809_133853.jpg",
+    "sourceCopyIntegrity": "VERIFIED_SOURCE_COPY",
+    "processingLineage": "The distant-van web composition appears to match the 13:38:24 candidate; exact crop/content comparison pending",
+    "publicationApproval": "NOT_RECONFIRMED",
+    "mappingEvidence": "All three normal Google Photos downloads are preserved unchanged in the private incoming folder with SHA-256 recorded on 2026-09-24. Read-only visual-signature comparison gives 0.9999 similarity between this web variant and 13:38:53; the other candidates score 0.3482 and 0.2706. The source-to-variant motif mapping is strongly supported; legacy processing lineage and publication approval remain unverified."
+  }
+}

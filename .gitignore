@@ -18,8 +18,10 @@ __pycache__/
 *.pyc
 *.log
 *.key
-# Generated and source media files are kept locally, outside of Git.
+# Source/review media stay local. Approved web files referenced by public pages
+# are added explicitly; the strict image audit rejects an incomplete Git tree.
 *.jpg
+!assets/reisen/italien-2021/alberobello-trulli-v11.jpg
 *.jpeg
 *.png
 *.gif

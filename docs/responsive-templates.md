@@ -6,6 +6,22 @@ Maßgeblicher Ablageort im Repository: `docs/responsive-templates.md`
 
 **Übergabestatus:** Diese Spezifikation führt die Anforderungen aus der Abstimmung zusammen. Ihre Übernahme in das Repository bedeutet noch keine technische Umsetzung und keine Veröffentlichung. Den tatsächlichen Umsetzungsstand führt der bestehende Ausbauplan.
 
+## Geltung, Freigaben und Nachweise
+
+Diese Datei ist die maßgebliche technische Spezifikation für zentrale
+Komponenten und Seitentemplates. Die übergreifenden Prüf-, technischen
+Originalschutz-, Bilddaten-, Freigabe- und Abnahmepflichten stehen verbindlich
+im [konsolidierten Gesamtauftrag](vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md).
+Freigegebene visuelle Regeln stehen ausschließlich im [Design Guide](design-guide.md).
+Der [Ausbauplan](ausbauplan.md) ist die einzige aktive Arbeitsliste.
+
+Neue Designregeln, Varianten oder Ausnahmen werden vor ihrer verbindlichen
+oder Live-Wirkung ausdrücklich freigegeben. Bereits freigegebene Regeln werden
+ohne erneute Rückfrage umgesetzt. Nach einer Freigabe sind Guide, zentrale
+Implementierung, Tests und Statusnachweis im selben Änderungsvorgang konsistent
+zu aktualisieren. Die Startseite behält ihr eigenes Layout, ist aber nicht von
+Bildschutz, Originalschutz oder Prüfung ausgenommen.
+
 ## 1. Ziel: Einmal ändern, überall übernehmen
 
 Überarbeite die technische Struktur der öffentlichen Website so, dass gemeinsame Elemente und Seitenlayouts zentral definiert und tatsächlich wiederverwendet werden. Es geht um einen strukturellen Umbau, nicht um ein Redesign.
@@ -67,6 +83,19 @@ Automatisch erzeugte Ausgabedateien sind zulässig. Entscheidend ist, dass ihre 
 
 ## 5. Gemeinsames Grundlayout und wiederverwendbare Seitentemplates
 
+### Gemeinsame Galerie-Komponente
+
+Alle öffentlichen Inhaltsgalerien einschließlich der Kajak-Referenz werden
+aus einer zentralen Galeriequelle erzeugt oder eingebunden. Ihre
+seitenspezifischen Inhalte sind Bildfolge, Alternativtexte,
+Bildunterschriften, Überschrift und Einleitung. Markup, Raster,
+responsive Styles und Interaktionen stammen aus derselben Komponente.
+Der gemeinsame `photo-viewer.js` zeigt in der Vollansicht das freigegebene,
+vollständige Webbild. Die Designwerte und die Pflicht zur Galerie beziehungsweise
+eine ausdrücklich genehmigte Ausnahme stehen im [Design Guide](design-guide.md);
+Bild- und Originalschutz sowie die vollständige Prüfmatrix in Abschnitt 6.1
+des [Gesamtauftrags](vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md).
+
 Das gemeinsame Website-Grundlayout und die inhaltlichen Seitentypen sind zu trennen. Das Grundlayout beziehungsweise seine Bausteine verwalten gemeinsame Gestaltung, Header, Navigation, Footer und die Einbindung gemeinsamer Styles und Funktionen. Die Ausnahme für das eigenständige Startseitenlayout bleibt dabei verbindlich.
 
 ### 5.1 Kajak-/Aktivitäts-/Themenseiten-Template
@@ -92,6 +121,27 @@ Texte, Bilder, Galerien und bereits vorhandene weitere Berichtselemente werden p
 Nicht jede Seite muss alle möglichen Abschnitte enthalten. Fehlende optionale Inhalte dürfen keine leeren Blöcke, unnötigen Überschriften oder falschen Abstände erzeugen.
 
 Weitere bestehende öffentliche Unterseiten, etwa Übersichtsseiten, werden sinnvoll in die gemeinsame Komponentenarchitektur eingeordnet. Keine Seite in ein inhaltlich unpassendes Detailseiten-Template zwingen. Die Startseite bleibt ausdrücklich ausgenommen.
+
+**Navigation ohne unnötige Zwischenseiten (Nutzerentscheidung 24. September
+2026):** Wenn konkrete Unterseiten bestehen, verlinkt der gemeinsame
+öffentliche Navigationsbaustein diese direkt. Eine zusätzliche
+Übersichtsseite wird nur bei ausdrücklichem Nutzerauftrag als Navigationsziel
+  geführt. Nach der ergänzenden Nutzerentscheidung vom 24. September 2026
+  werden die bisherigen Ausrüstungs- und Radübersichten nicht mehr als
+  Inhalte ausgeliefert und intern nicht mehr verlinkt. Die alten Adressen
+  leiten zur Startseite weiter; eine Weiterleitung ist keine Übersichtsseite.
+  Auch eine nicht vorhandene öffentliche `.html`-Seite leitet im lokalen
+  und produktiven Seitenrouter zur Startseite; fehlende Bilder, Skripte,
+  geschützte Bereiche und API-Routen bleiben erkennbare Fehler statt
+  scheinbarer Startseiten-Antworten.
+
+**Ausrüstungs-Detailseiten:** Das vollständige Scott-Radprofil verwendet
+die Kajak-/Aktivitäts-Hero- und Galerie-Bausteine und muss auch in Typografie,
+Abschnittsrhythmus, Bild-Text-Paaren und responsivem Verhalten gegen die
+Kajak-Referenz geprüft werden. Die vier unvollständigen Radprofile bleiben
+nach erneuter Nutzerentscheidung vom 24. September 2026 vorläufig bei der
+freigegebenen Poster-Ausnahme, bis Bilder und Erfahrungsinhalte vorliegen.
+Ein gemeinsamer Renderer allein ist kein Nachweis visueller Übereinstimmung.
 
 ## 6. Responsive Vereinheitlichung ist verbindlicher Bestandteil
 

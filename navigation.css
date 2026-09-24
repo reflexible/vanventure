@@ -123,13 +123,20 @@ body.nav-open { overflow: hidden; }
   gap: 18px;
   color: inherit;
   text-decoration: none;
-  font-size: 14px;
-  line-height: 1.25;
+  font: 500 14px/1.25 Arial, sans-serif;
+  letter-spacing: 0;
 }
 .magazine-header .trip-menu a:hover,
 .magazine-header .trip-menu a:focus-visible,
 .magazine-header .trip-menu a[aria-current="page"] { background: #e5ece4; }
 .magazine-header .trip-menu span { color: #65766e; font: 10px "DM Mono", monospace; letter-spacing: .08em; }
+.magazine-header .trip-submenu { border-top: 1px solid var(--line, rgba(16,25,23,.17)); }
+.magazine-header .trip-submenu > summary { min-height: 48px; padding: 11px 12px; display: flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; list-style: none; font: 500 14px/1.25 Arial,sans-serif; letter-spacing: 0; }
+.magazine-header .trip-submenu > summary::-webkit-details-marker { display: none; }
+.magazine-header .trip-submenu > summary::after { content: ""; width: 6px; height: 6px; margin-left: 4px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); }
+.magazine-header .trip-submenu[open] > summary::after { transform: translateY(3px) rotate(225deg); }
+.magazine-header .trip-submenu > summary:hover,.magazine-header .trip-submenu > summary:focus-visible { background: #e5ece4; }
+.magazine-header .trip-submenu-links { display: grid; margin: 0 12px 12px; padding-left: 10px; border-left: 1px solid var(--line, rgba(16,25,23,.28)); }
 
 .magazine-header .header-actions {
   justify-self: end;
@@ -236,21 +243,18 @@ body.nav-open { overflow: hidden; }
     z-index: 1000;
     height: calc(100dvh - 68px);
     padding: 24px 22px 40px;
-    display: block;
+    display: none;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
     background: #fbfaf7;
-    transform: translateX(100%);
     visibility: hidden;
     pointer-events: none;
-    transition: transform .25s ease, visibility 0s linear .25s;
   }
   .magazine-header .main-navigation.is-open {
-    transform: translateX(0);
+    display: block;
     visibility: visible;
     pointer-events: auto;
-    transition: transform .25s ease;
   }
   .magazine-header .main-navigation::-webkit-scrollbar { display: none; }
   .magazine-header .main-navigation > a,
@@ -278,6 +282,8 @@ body.nav-open { overflow: hidden; }
     padding: 9px 10px;
     font-size: 15px;
   }
+  .magazine-header .trip-submenu > summary { min-height: 46px; padding: 9px 10px; }
+  .magazine-header .trip-submenu-links { margin: 0 10px 10px; }
   .magazine-header .language { width: 38px; height: 38px; min-height: 38px; flex-basis: 38px; }
   .magazine-header .private-menu > summary { min-height:38px;font-size:10px; }
   .magazine-header .private-flyout { position:fixed;top:68px;right:12px;left:12px;width:auto;max-width:420px;margin:auto; }

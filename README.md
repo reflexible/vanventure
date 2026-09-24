@@ -2,6 +2,12 @@
 
 Die zweisprachige Homepage und die Reiseberichte laufen produktiv auf dem Contabo-Server Marvin: https://vanventure.at/. Der frühere GitHub-Pages-Auftritt besteht als ältere Veröffentlichung. Der verbindliche Überblick für Prioritäten, Phasen und neue Ideen steht im [Ausbauplan](docs/ausbauplan.md); SEO und Live-Betrieb sind unter [docs/seo.md](docs/seo.md) dokumentiert.
 
+Für Website- und Bildänderungen gelten zusätzlich der [konsolidierte
+Gesamtauftrag](docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md),
+die [Template-Spezifikation](docs/responsive-templates.md) und der
+[Design Guide](docs/design-guide.md). Diese Dokumente unterscheiden
+Dokumentation, Prüfung, Freigabe und Live-Verifikation ausdrücklich.
+
 ## Noch offen – maßgeblich im Gesamtplan
 
 1. Aktuelle Fahrzeugdaten und Fotos

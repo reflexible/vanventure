@@ -3,7 +3,7 @@ export const siteUrl = 'https://vanventure.at/';
 export const pages = {
   'index.html': { title: 'VanVenture – Reisen mit Camper, Mountainbike und Kajak', description: 'Sabine und Helmut reisen mit Julie durch Europa: persönliche Reiseberichte aus Norwegen, Sardinien und Italien sowie unser HYMER Grand Canyon S CrossOver.', image: 'assets/hero-norway.jpg' },
   'vehicle.html': { title: 'HYMER Grand Canyon S CrossOver 2025: unser Van | VanVenture', description: 'Unser HYMER Grand Canyon S CrossOver, Modelljahr 2025: Fahrzeugprofil, Ausstattung und persönlicher Ausbau für Reisen mit Bike und Kajak.', image: 'assets/vehicle/vehicle-header-clean-v3.png' },
-  'bike.html': { title: 'Unsere Räder – in Vorbereitung | VanVenture', description: 'Unsere Räder für Reise, Trail und Alltag: Die einzelnen Profile entstehen nach und nach.', image: 'assets/reisen/sardinien-2019/mountainbikes-am-meer-natur.png' },
+  'scott-mountainbike.html': { title: 'Scott Genius 910 Black Beauty | VanVenture', description: 'Unser Scott Genius 910 Black Beauty im Langzeittest seit 2018: leicht, agil und auf vielen Trails bewährt.', image: 'assets/bikes/scott-genius-black-beauty-2020-v1.webp' },
   'kajak.html': { title: 'Grabner Riverstar: unser Kajak für unterwegs | VanVenture', description: 'Unser Grabner Riverstar begleitet uns im Van nach Norwegen und Sardinien: persönliche Erfahrungen, Ausstattung und Erinnerungen vom Wasser.', image: 'assets/riverstar/riverstar-fjord-gespiegelt.png' },
   'norwegen-2018.html': { title: 'Norwegen 2018 mit dem VW California | VanVenture' },
   'sardinien-2019.html': { title: 'Sardinien 2019: Camper, Mountainbike und Kajak | VanVenture' },
@@ -45,6 +45,7 @@ export function applySeo(html, file, story) {
 <!-- seo:end -->`;
   return html.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->\s*/g, '')
     .replace(/<meta name="robots" content="noindex,nofollow"\s*\/?>\s*/i, '')
+    .replace(/<link rel="canonical" href="[^"]*"\s*\/?>\s*/i, '')
     .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
     .replace(/<meta name="description" content="[^"]*"\s*\/?\s*>\s*/i, '')
     .replace('</head>', `${head}\n</head>`);

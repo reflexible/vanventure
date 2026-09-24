@@ -1,0 +1,11 @@
+/* One gallery contract for activity, vehicle, travel and equipment pages.
+   Page styles may place the section, but must not redefine the tile grid. */
+:root body :is([data-photo-gallery],.equipment-gallery) :is(.gallery-grid,.equipment-gallery-grid){display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;width:100%;max-width:none;margin-top:0}
+:root body [data-photo-gallery] .gallery-photo{position:relative;display:block;min-width:0;margin:0;padding:0;border:0;background:transparent;color:#52645c;text-align:left;cursor:zoom-in;overflow:hidden}
+:root body [data-photo-gallery] .gallery-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .25s ease}
+:root body [data-photo-gallery] .gallery-photo:hover img{transform:scale(1.035)}
+:root body [data-photo-gallery] .gallery-photo:focus-visible{outline:3px solid #536c26;outline-offset:4px}
+:root body [data-photo-gallery] .gallery-caption{display:block;padding:11px 2px 3px;background:transparent;font:400 13px/1.5 "DM Sans",Arial,sans-serif;letter-spacing:.01em;color:#52645c}
+:root body [data-photo-gallery] figure{background:transparent;color:#52645c}
+:root body [data-photo-gallery] figure figcaption{padding:11px 2px 3px;background:transparent;font:400 13px/1.5 "DM Sans",Arial,sans-serif;letter-spacing:.01em;color:#52645c}
+@media(max-width:760px){:root body :is([data-photo-gallery],.equipment-gallery) :is(.gallery-grid,.equipment-gallery-grid){grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}:root body [data-photo-gallery] :is(.gallery-caption,figure figcaption){padding:8px 2px 2px;font-size:12px}}

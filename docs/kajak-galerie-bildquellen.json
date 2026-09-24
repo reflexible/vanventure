@@ -5,6 +5,9 @@
     "source_path": "E:\\_fotos_original\\urlaubsSammlungen\\norwegen\\P7020146.jpg",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\p7020146.jpg",
     "sha256": "15c445bbc299f8c3917c29cc0b356a67137720683f32fa96dd68da8000c62390",
+    "web_image": "assets/riverstar/gallery/kajak-01.jpg",
+    "web_image_sha256": "dfddcead19b548168820512a41e4d71f1d1c829910d93678a087475a4a1fc46a",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; nur Webformat erzeugen. Auf sichtbare Kennzeichen prüfen."
   },
   {
@@ -13,6 +16,9 @@
     "source_path": "E:\\_fotos_original\\urlaubsSammlungen\\norwegen\\handy_sabine\\DSC_1546.jpg",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\dsc-1546.jpg",
     "sha256": "ca9a32a5b72e221762dd686aa53deba68a9a77d3ced212137fe4d09b6097a2ea",
+    "web_image": "assets/riverstar/gallery/kajak-02.jpg",
+    "web_image_sha256": "045787fc12fa6f972a9f1ae5d00aa30f824cb7c5c3100afaf848bd228d2e39a8",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; nur Webformat erzeugen. Auf sichtbare Kennzeichen prüfen."
   },
   {
@@ -21,94 +27,131 @@
     "source_path": "D:\\work\\IMG_4714.heic",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\img-4714.heic",
     "sha256": "da6c8ad5378876d2d5064845985acc527782c7c02c44f983d472a92b2167cf59",
+    "web_image": "assets/riverstar/gallery/kajak-03.jpg",
+    "web_image_sha256": "d0b818d8aa894a56c4fd1dbbb18e2c596422f983f861c3b236b601fe0edc053c",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; HEIC unverändert als Projektkopie bewahren, daraus Web-JPEG erzeugen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0003",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0003.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0003.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0003.JPG",
     "sha256": "b789089d32562da9c26f6ba012038e71f4dd40fac85d174bdbd555404dcf4e0f",
+    "web_image": "assets/riverstar/gallery/kajak-04.jpg",
+    "web_image_sha256": "5e8efb9a0efd17044ec2bc80c141c586015618776a929bdc98425d21ec8a8c88",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0028",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0028.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0028.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0028.JPG",
     "sha256": "ff09a83b7835c63b2356c3423a165e84939fd6dd23a84fcbd3d46a787a873920",
+    "web_image": "assets/riverstar/gallery/kajak-05.jpg",
+    "web_image_sha256": "ac43a0dad6df602fbe33f1fec58f123a8483dbdb8cf81ce3ef5192806b5abed1",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0035",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0035.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0035.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0035.JPG",
     "sha256": "3256c7fd8b2f47a7bd69bc406a40ea3ece10aaea89487a8f6b37bfe7b0096cac",
+    "web_image": "assets/riverstar/gallery/kajak-06.jpg",
+    "web_image_sha256": "149214d9c3ed2688c83d5a9402394dc3a9a1b3fa659b4011a55d61f545e035f3",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
+    "publication_status": "Nach ausdruecklicher Nutzeranweisung aus der Galerie entfernt; Dateibestand nur historisch.",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0059",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0059.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0059.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0059.JPG",
     "sha256": "7b31e92363187b3ce95b2b558b429104c9a205b9742022b3f3f3465192121a2b",
+    "web_image": "assets/riverstar/gallery/kajak-07.jpg",
+    "web_image_sha256": "20d0960a7c80d09addcd28e872521f940c997529b19e16d602000aed65fb1866",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0250",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0250.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0250.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0250.JPG",
     "sha256": "58485a0c080a5ec00e8dace241a1a492d0b75e62daf03ef4ec9439a18b9c0a40",
+    "web_image": "assets/riverstar/gallery/kajak-08.jpg",
+    "web_image_sha256": "d242c4766e9c4e2420d0a6ab4921ba6528f30c94f1ddbae41b400247b5a7cd0d",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: DSC_0643",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::DSC_0643.JPG",
+    "source_path": "D:\\work\\Photos-1-001.zip::DSC_0643.JPG",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\DSC_0643.JPG",
     "sha256": "2ad1bcdb64c02588854678e0b4aa6a2adc488cd40701f3623ac5207acc720a56",
+    "web_image": "assets/riverstar/gallery/kajak-09.jpg",
+    "web_image_sha256": "d56585836153e5dc80fe52d1cd8c04232f716c6c91cc061d5d732ee7584d4c83",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: IMG_4497",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::IMG_4497.HEIC",
+    "source_path": "D:\\work\\Photos-1-001.zip::IMG_4497.HEIC",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\IMG_4497.HEIC",
     "sha256": "518b0a5e31ef2325b560faa1e80a66ebe850ed92ceaa7dcd400c25131b8b0bc7",
+    "web_image": "assets/riverstar/gallery/kajak-10.jpg",
+    "web_image_sha256": "bf7b2f63dfb48735015ba5310df0c4756470654a322e6f6755f5f278d0e1121b",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: IMG_4710",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::IMG_4710.HEIC",
+    "source_path": "D:\\work\\Photos-1-001.zip::IMG_4710.HEIC",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\IMG_4710.HEIC",
     "sha256": "aface927544d49599f219266e85f60a24284decf41d785b9bec063ff9377fd80",
+    "web_image": "assets/riverstar/gallery/kajak-11.jpg",
+    "web_image_sha256": "27fff305f97ab7a05ed246635cc662a3463e4179705313612f994cc337a0ddd6",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: IMG-20180531-WA0019",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::IMG-20180531-WA0019.jpg",
+    "source_path": "D:\\work\\Photos-1-001.zip::IMG-20180531-WA0019.jpg",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\IMG-20180531-WA0019.jpg",
     "sha256": "3cb5e357ea931dbc35624d97b630c900ea8f1232a1b9e9850e8deb2e3036da5a",
+    "web_image": "assets/riverstar/gallery/kajak-12.jpg",
+    "web_image_sha256": "14947f82d91b3e867c3cbfc6afdeb56b9f97b674f771ee08826f3ec5089f719b",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: IMG-20180601-WA0007",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::IMG-20180601-WA0007.jpeg",
+    "source_path": "D:\\work\\Photos-1-001.zip::IMG-20180601-WA0007.jpeg",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\IMG-20180601-WA0007.jpeg",
     "sha256": "2a807f9b13a68678a958918e29f00d73fc4aaaf74d90b240bb91067426c70290",
+    "web_image": "assets/riverstar/gallery/kajak-13.jpg",
+    "web_image_sha256": "292db093f0eedaed64e927058da256ace34b5dcf2e37dd9392b13deab20bd69d",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   },
   {
     "collection": "kajak-gallery",
     "title": "Archivfoto: P7020098",
-    "source_path": "D:\\\\work\\\\Photos-1-001.zip::P7020098.jpg",
+    "source_path": "D:\\work\\Photos-1-001.zip::P7020098.jpg",
     "unchanged_project_copy": "D:\\work\\_venventure\\review\\selected-originals\\kajak\\photos-1-001\\P7020098.jpg",
     "sha256": "cca1eca1f4caee9be86950a7a1a88711c329e4cfdbb89644116ab9651df699e4",
+    "web_image": "assets/riverstar/gallery/kajak-14.jpg",
+    "web_image_sha256": "b75d067971c94f0e559708968437c07fe64b4a2db1dadb67126462a6817f1333",
+    "mapping_evidence": "Deterministische Quellreihenfolge in tools/build-kayak-gallery-images.py; Webdatei-Pruefsumme lokal am 23.09.2026 ermittelt",
     "editing_brief": "Dokumentarisch; unveränderte entpackte Projektkopie aus dem gelieferten Archiv. Auf sichtbare Kennzeichen prüfen."
   }
 ]

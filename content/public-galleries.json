@@ -1,0 +1,942 @@
+{
+  "kajak.html": {
+    "section": {
+      "class": "kayak-gallery story-gallery",
+      "data-photo-gallery": null,
+      "aria-label": "Fotogalerie"
+    },
+    "header_wrap": false,
+    "header": [
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow",
+          "data-de": "FOTOGALERIE",
+          "data-en": "PHOTO GALLERY"
+        },
+        "text": "FOTOGALERIE"
+      },
+      {
+        "tag": "h2",
+        "attrs": {
+          "data-de": "Mit dem Riverstar unterwegs.",
+          "data-en": "On the road with the Riverstar."
+        },
+        "text": "Mit dem Riverstar unterwegs."
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "gallery-intro",
+          "data-de": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten.",
+          "data-en": "Select an image to enlarge it. Use the arrows to browse the gallery or start the slideshow."
+        },
+        "text": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten."
+      }
+    ],
+    "grid": {
+      "class": "gallery-grid"
+    },
+    "items": [
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-01.jpg",
+          "alt": "Riverstar und Julie am Fuß eines Wasserfalls.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Mit Julie am Wasserfall."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-02.jpg",
+          "alt": "Riverstar am Ufer eines norwegischen Fjords.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Bereit für den Fjord."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-03.jpg",
+          "alt": "Kind mit orangefarbener Schwimmweste und Sonnenhut im Riverstar auf einem See.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Gemeinsam auf dem See."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-04.jpg",
+          "alt": "Der rote Riverstar auf einem Kiesufer vor Bergen.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Riverstar am Bergsee."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-05.jpg",
+          "alt": "Riverstar am Ufer mit Julie an Bord.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Pause am Ufer."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-07.jpg",
+          "alt": "Blick von oben in den Riverstar am Wasser.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Alles an Bord."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-08.jpg",
+          "alt": "Blick vom Riverstar über einen See zu bewaldeten Bergen.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Ein anderer Blick aufs Land."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-09.jpg",
+          "alt": "Riverstar auf einem Kiesufer zwischen Felsen und Bäumen.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Ankommen am Fluss."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-10.jpg",
+          "alt": "Riverstar an einem stillen Bergsee.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Still am Bergsee."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-11.jpg",
+          "alt": "Riverstar und Julie auf einer Wiese am Campingplatz; Kennzeichen im Hintergrund anonymisiert.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Pause am Campingplatz."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-12.jpg",
+          "alt": "Kind von hinten mit orangefarbener Schwimmweste im Riverstar auf einem See.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Vom Wasser aus."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-13.jpg",
+          "alt": "Kind von hinten im Riverstar auf einem Fluss.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Unterwegs auf dem Fluss."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/riverstar/gallery/kajak-14.jpg",
+          "alt": "Person und Julie neben dem Riverstar am Aurlandsfjord.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Am Aurlandsfjord."
+        }
+      }
+    ]
+  },
+  "vehicle.html": {
+    "section": {
+      "class": "profile-section vehicle-gallery",
+      "data-photo-gallery": null,
+      "aria-label": "Fahrzeuggallerie"
+    },
+    "header_wrap": false,
+    "header": [
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "eyebrow",
+          "data-de": "FOTOGALERIE",
+          "data-en": "PHOTO GALLERY"
+        },
+        "text": "FOTOGALERIE"
+      },
+      {
+        "tag": "h2",
+        "attrs": {
+          "data-de": "Unser Van im Alltag.",
+          "data-en": "Our van in everyday life."
+        },
+        "text": "Unser Van im Alltag."
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "gallery-intro",
+          "data-de": "Bilder anklicken, um sie groß anzusehen.",
+          "data-en": "Select an image to enlarge it."
+        },
+        "text": "Bilder anklicken, um sie groß anzusehen."
+      }
+    ],
+    "grid": {
+      "class": "gallery-grid"
+    },
+    "items": [
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/vehicle/vehicle-front-camp.png",
+          "alt": "Der HYMER Grand Canyon S CrossOver im Camp; Kennzeichen anonymisiert.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Unser Basislager im Camp."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/vehicle/vehicle-side-camp-v3.png",
+          "alt": "Der HYMER Grand Canyon S CrossOver von der Seite mit geöffneter Schiebetür.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Bereit für den nächsten Weg."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "src": "assets/vehicle/vehicle-side-dog.png",
+          "alt": "Der HYMER Grand Canyon S CrossOver mit Julie vor der geöffneten Schiebetür.",
+          "loading": "lazy"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Julie gehört immer dazu."
+        }
+      }
+    ]
+  },
+  "bike.html": {
+    "section": {
+      "class": "equipment-gallery bike-gallery",
+      "data-photo-gallery": null,
+      "aria-labelledby": "bike-gallery-title"
+    },
+    "header_wrap": true,
+    "header": [
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "equipment-kicker",
+          "data-de": "FOTOGALERIE",
+          "data-en": "PHOTO GALLERY"
+        },
+        "text": "FOTOGALERIE"
+      },
+      {
+        "tag": "h2",
+        "attrs": {
+          "id": "bike-gallery-title",
+          "data-de": "Radmomente.",
+          "data-en": "Bike moments."
+        },
+        "text": "Radmomente."
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "data-de": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten.",
+          "data-en": "Select an image to enlarge it. Use the arrows to browse the gallery or start the slideshow."
+        },
+        "text": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten."
+      }
+    ],
+    "grid": {
+      "class": "equipment-gallery-grid"
+    },
+    "items": [
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/bikes/sardinien-bikepause-editorial-v2.jpg",
+          "alt": "Mountainbikes bei einer Pause im Grünen"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Pause im Grünen."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/bikes/sardinien-mountainbikes-meer-v1.webp",
+          "alt": "Zwei Mountainbikes unter einem Baum am Meer"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Die Räder am Meer."
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/bikes/sardinien-bikes-am-camper-v1.webp",
+          "alt": "Mountainbikes neben dem Camper auf Sardinien"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Wieder am Camper."
+        }
+      }
+    ]
+  },
+  "scott-mountainbike.html": {
+    "section": {
+      "class": "equipment-gallery bike-gallery",
+      "data-photo-gallery": null,
+      "aria-labelledby": "scott-gallery-title"
+    },
+    "header_wrap": true,
+    "header": [
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "equipment-kicker",
+          "data-de": "FOTOGALERIE",
+          "data-en": "PHOTO GALLERY"
+        },
+        "text": "FOTOGALERIE"
+      },
+      {
+        "tag": "h2",
+        "attrs": {
+          "id": "scott-gallery-title",
+          "data-de": "Mit Black Beauty unterwegs.",
+          "data-en": "Out with Black Beauty."
+        },
+        "text": "Mit Black Beauty unterwegs."
+      },
+      {
+        "tag": "p",
+        "attrs": {
+          "data-de": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten.",
+          "data-en": "Select an image to enlarge it. Use the arrows to browse the gallery or start the slideshow."
+        },
+        "text": "Bilder anklicken, um sie groß anzusehen. Mit den Pfeilen kannst du durch die Galerie blättern oder die Slideshow starten."
+      }
+    ],
+    "grid": {
+      "class": "equipment-gallery-grid"
+    },
+    "items": [
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-anfang-2018-v1.webp",
+          "alt": "Das schwarze Scott Genius 910 im Kaufjahr 2018 im Fahrradraum"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Die ersten Monate · 2018"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-wintertour-2019-v1.webp",
+          "alt": "Fahrer und schwarzes Scott Genius auf einer winterlichen Tour"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Wintertour · 2019"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-wiesenpause-2019-v1.webp",
+          "alt": "Schwarzes Scott Genius bei einer Pause auf einer Wiese"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Wiesenpause · 2019"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-seitenprofil-2019-v1.webp",
+          "alt": "Schwarzes Scott Genius 910 im Seitenprofil"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Black Beauty im Profil · 2019"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-genius-black-beauty-2020-v1.webp",
+          "alt": "Schwarzes Scott Genius vor dem Wald"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Im Wald · 2020"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-leogang-2020-v1.webp",
+          "alt": "Fahrer mit dem schwarzen Scott Genius in Leogang"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Leogang · 2020"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-leogang-trail-2020-v1.webp",
+          "alt": "Das schwarze Scott Genius 910 in Fahrt auf einem schmalen Trail"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Auf dem Trail · Leogang 2020"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-leogang-park-2020-v1.webp",
+          "alt": "Fahrer auf dem schwarzen Scott Genius im Bikepark Leogang"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Bikepark · Leogang 2020"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-italien-bergpause-2021-v1.webp",
+          "alt": "Schwarzes Scott Genius auf einer Bergtour in Italien"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Bergpause · Italien 2021"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-rahmen-detail-2020-v1.webp",
+          "alt": "Schwarzer Scott Genius 910 Rahmen mit Fahrwerk und Laufrädern"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Rahmen & Fahrwerk · 2020"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-fahrwerk-detail-2022-v1.webp",
+          "alt": "Detail des Rahmens und des FOX-Dämpfers am schwarzen Scott Genius"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Ein Blick aufs Fahrwerk · 2022"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-tourenpause-2022-editorial-v2.webp",
+          "alt": "Das schwarze Scott Genius mit Helm bei einer Pause am Wegesrand"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Pause am Wegesrand · 2022"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-schlammtour-2024-v1.webp",
+          "alt": "Das schwarze Scott Genius 910 nach einer schlammigen Mountainbiketour"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Nach der Schlammtour · 2024"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-baumtour-2022-v1.webp",
+          "alt": "Das schwarze Scott Genius 910 unter einem großen Baum während einer Tour"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Unter dem Baum · 2022"
+        }
+      },
+      {
+        "kind": "button",
+        "control": {
+          "class": "gallery-photo",
+          "type": "button"
+        },
+        "image": {
+          "loading": "lazy",
+          "decoding": "async",
+          "src": "assets/bikes/scott-reise-2026-gallery-v2.webp",
+          "data-full-src": "assets/bikes/scott-reise-2026-v1.webp",
+          "alt": "Zwei Räder am Reisefahrzeug 2026; das Kennzeichen im Hintergrund ist anonymisiert"
+        },
+        "caption": {
+          "tag": "span",
+          "attrs": {
+            "class": "gallery-caption"
+          },
+          "text": "Mit den Rädern unterwegs · 2026"
+        }
+      }
+    ]
+  },
+  "ausruestung.html": {
+    "section": {
+      "class": "equipment-gallery",
+      "aria-labelledby": "equipment-gallery-title"
+    },
+    "header_wrap": true,
+    "header": [
+      {
+        "tag": "p",
+        "attrs": {
+          "class": "equipment-kicker"
+        },
+        "text": "UNTERWEGS DABEI"
+      },
+      {
+        "tag": "h2",
+        "attrs": {
+          "id": "equipment-gallery-title"
+        },
+        "text": "Wasser, Wege, Zwischenstopps."
+      },
+      {
+        "tag": "p",
+        "attrs": {},
+        "text": "Ein kleiner Blick auf das, was mit uns mitreist."
+      }
+    ],
+    "grid": {
+      "class": "equipment-gallery-grid"
+    },
+    "items": [
+      {
+        "kind": "figure-link",
+        "figure": {},
+        "control": {
+          "class": "photo-link",
+          "href": "assets/riverstar/riverstar-am-ufer.jpg",
+          "aria-label": "Kajakfoto vergrößern"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/riverstar/riverstar-am-ufer.jpg",
+          "alt": "Grabner Riverstar am Ufer"
+        },
+        "zoom": {
+          "tag": "span",
+          "attrs": {
+            "class": "photo-zoom",
+            "aria-hidden": "true"
+          },
+          "text": "＋ Vergrößern"
+        },
+        "caption": {
+          "tag": "figcaption",
+          "attrs": {},
+          "text": "Der Riverstar am Wasser."
+        }
+      },
+      {
+        "kind": "figure-link",
+        "figure": {},
+        "control": {
+          "class": "photo-link",
+          "href": "assets/reisen/sardinien-2019/mountainbikes-am-meer-natur.png",
+          "aria-label": "Radfoto vergrößern"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/reisen/sardinien-2019/mountainbikes-am-meer-natur.png",
+          "alt": "Zwei Mountainbikes am Meer"
+        },
+        "zoom": {
+          "tag": "span",
+          "attrs": {
+            "class": "photo-zoom",
+            "aria-hidden": "true"
+          },
+          "text": "＋ Vergrößern"
+        },
+        "caption": {
+          "tag": "figcaption",
+          "attrs": {},
+          "text": "Räder für eine Pause am Meer."
+        }
+      },
+      {
+        "kind": "figure-link",
+        "figure": {},
+        "control": {
+          "class": "photo-link",
+          "href": "assets/riverstar/california-camping-anonymisiert.png",
+          "aria-label": "Ausrüstungsfoto vergrößern"
+        },
+        "image": {
+          "loading": "lazy",
+          "src": "assets/riverstar/california-camping-anonymisiert.png",
+          "alt": "Van mit Kajak-Ausrüstung auf einem Campingplatz"
+        },
+        "zoom": {
+          "tag": "span",
+          "attrs": {
+            "class": "photo-zoom",
+            "aria-hidden": "true"
+          },
+          "text": "＋ Vergrößern"
+        },
+        "caption": {
+          "tag": "figcaption",
+          "attrs": {},
+          "text": "Alles bereit für den nächsten Abschnitt."
+        }
+      }
+    ]
+  }
+}

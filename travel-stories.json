@@ -277,7 +277,7 @@
         ],
         "photos": [
           {
-            "src": "assets/reisen/sardinien-2019/bikepause-im-gruenen-natur.png",
+            "src": "assets/reisen/sardinien-2019/bikepause-im-gruenen-editorial-v2.jpg",
             "caption": [
               "Eine Bikepause im Grünen.",
               "A bike stop in green surroundings."
@@ -344,7 +344,7 @@
         ],
         "photos": [
           {
-            "src": "assets/reisen/sardinien-2019/sardinien-kueste-natur.png",
+            "src": "assets/reisen/sardinien-2019/sardinien-kueste-editorial-v2.jpg",
             "caption": [
               "Sardiniens Küste zwischen Berghang und Meer.",
               "Sardinia’s coastline between mountainside and sea."
@@ -385,7 +385,7 @@
   {
     "hero": {
       "alt": "Santa Maria dell’Isola auf dem Felsen vor Tropea, umgeben vom blauen Meer.",
-      "src": "assets/heroes/italien-2021-tropea.jpg"
+      "src": "assets/heroes/italien-2021-tropea-editorial-v2.jpg"
     },
     "gallery": [
       {"src": "assets/reisen/italien-2021/gallery/dsc-0003-5.jpg", "caption": ["Lago di Ledro.", "Lake Ledro."]},
@@ -542,7 +542,7 @@
             ]
           },
           {
-            "src": "assets/reisen/italien-2021/alberobello-trulli-natur.png",
+            "src": "assets/reisen/italien-2021/alberobello-trulli-v11.jpg",
             "caption": [
               "Die Trulli von Alberobello.",
               "The trulli of Alberobello."

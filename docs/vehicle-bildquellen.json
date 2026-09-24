@@ -1,0 +1,54 @@
+[
+  {
+    "image_id": "vehicle-google-20250611-174618-front",
+    "web_image": "assets/vehicle/vehicle-front-camp.png",
+    "used_on": ["vehicle.html"],
+    "source": "Google Fotos, 2025-06-11 17:46:18, photo/AF1QipPuaNq4pLobpYaxhKBxgkwsceEiT9iH0tnlEwCH",
+    "source_match": "visuell mit Google Fotos und unveraenderter Projektkopie verglichen; keine Google-Fotos-Dateipruefsumme verfuegbar",
+    "unchanged_copy": "review/selected-originals/vehicle/20250611_174618.jpg",
+    "sourceSha256": "bc054d2b26fd9781ab0088fa26d436e485fdcbb0014563c3a2c5435a90338692",
+    "web_image_sha256": "b091e9c5da848560f27e245f9bd0042a3a9e59e9b124d321e9114a5f055c53d8",
+    "review_skills": ["photo-archive-safety", "outdoor-editorial-photo"],
+    "existing_edit": "KI-bereinigte Webfassung; Hintergrundelemente entfernt, Kennzeichen anonymisiert; genaue Exportparameter und Bearbeitungsschritte nicht nachgewiesen",
+    "approval_status": "Nutzerentscheidung 2026-09-24: bestehende KI-bereinigte Webfassung darf unverändert bleiben; eng begrenzte Ausnahme, keine Freigabe neuer KI-Bearbeitung; separate visuelle und Datenschutz-Abnahme vor Release bleibt erforderlich"
+  },
+  {
+    "image_id": "vehicle-google-20250610-124826-header",
+    "web_image": "assets/vehicle/vehicle-header-clean-v3.png",
+    "used_on": ["vehicle.html", "vehicle-profile.css"],
+    "source": "Google Fotos, 2025-06-10 12:48:26, photo/AF1QipPZmvq3HuEC_PbVP7dNkeU5rf935MZLdF-Mw_wH",
+    "source_match": "visuell mit Google Fotos und unveraenderter Projektkopie verglichen; keine Google-Fotos-Dateipruefsumme verfuegbar",
+    "unchanged_copy": "review/selected-originals/vehicle/20250610_124826.jpg",
+    "sourceSha256": "6c612c1bd3c076448db2c40d31585c7ea4a68f54bcf50c2df76498c9e8b4b606",
+    "web_image_sha256": "67de5fb2b3320c6e863cfa2cdeab3ccdd7830cf268c5ebff8f1111fcd9a563af",
+    "review_skills": ["photo-archive-safety", "outdoor-editorial-photo"],
+    "existing_edit": "KI-bereinigte Headerfassung; Wohnwagen, Stuehle und Absperrband entfernt; Fahrzeugdetails gegenueber Original veraendert; genaue Exportparameter nicht nachgewiesen",
+    "approval_status": "Nutzerentscheidung 2026-09-24: bestehende KI-bereinigte Webfassung darf unverändert bleiben; eng begrenzte Ausnahme, keine Freigabe neuer KI-Bearbeitung; separate visuelle und Datenschutz-Abnahme vor Release bleibt erforderlich"
+  },
+  {
+    "image_id": "vehicle-google-20250610-124826-side",
+    "web_image": "assets/vehicle/vehicle-side-camp-v3.png",
+    "used_on": ["vehicle.html"],
+    "source": "Google Fotos, 2025-06-10 12:48:26, photo/AF1QipPZmvq3HuEC_PbVP7dNkeU5rf935MZLdF-Mw_wH",
+    "source_match": "visuell mit Google Fotos und unveraenderter Projektkopie verglichen; keine Google-Fotos-Dateipruefsumme verfuegbar",
+    "unchanged_copy": "review/selected-originals/vehicle/20250610_124826.jpg",
+    "sourceSha256": "6c612c1bd3c076448db2c40d31585c7ea4a68f54bcf50c2df76498c9e8b4b606",
+    "web_image_sha256": "ac7fb742d097d287c0bc3f64436a765cd73315e8d2f2e3bd19751d25b0e2098f",
+    "review_skills": ["photo-archive-safety", "outdoor-editorial-photo"],
+    "existing_edit": "KI-bereinigte Webfassung V2; Stuehle, Wohnwagen und Absperrband entfernt, hinterer Fahrzeugbereich gegenueber Original veraendert; genaue Exportparameter nicht nachgewiesen. V3 ist eine neue, nicht destruktive KI-Reviewableitung aus V2: Nach Nutzerbeanstandung vom 2026-09-24 wurde nur die räumlich unplausible Überlagerung von geöffneter Schiebetür und Hinterrad an der offen dargestellten Tür korrigiert. Die Konstruktion wurde gegen vehicle-side-dog.png visuell abgeglichen.",
+    "approval_status": "Nutzerentscheidung 2026-09-24: Die bestehende KI-bereinigte Webfassung darf unverändert bleiben; V2 bleibt daher erhalten. Die Korrektur der unplausiblen Tür-/Hinterradgeometrie als neue V3 wurde ausdrücklich beauftragt und anschließend für die Website freigegeben. V3 ist lokal eingebunden und visuell geprüft. Vor Veröffentlichung bleiben Release-Prüfung, Commit/Push und Live-Verifikation erforderlich."
+  },
+  {
+    "image_id": "vehicle-google-20250610-121212-dog",
+    "web_image": "assets/vehicle/vehicle-side-dog.png",
+    "used_on": ["vehicle.html"],
+    "source": "Google Fotos, 2025-06-10 12:12:12, photo/AF1QipPxt2sWdr-4fl17WdS7nNl7uiErlMxlNhO90gpa",
+    "source_match": "visuell mit Google Fotos und unveraenderter Projektkopie verglichen; keine Google-Fotos-Dateipruefsumme verfuegbar",
+    "unchanged_copy": "review/selected-originals/vehicle/20250610_121212.jpg",
+    "sourceSha256": "0404ad1b0a47ea75a996a73b5eebcb23bc1accc6552cad0e20f312a7e452d0da",
+    "web_image_sha256": "b4f585db6ad018e4666c2b8c342b8fcad1b0cc1b1db457f96ef85b8652012141",
+    "review_skills": ["photo-archive-safety", "outdoor-editorial-photo"],
+    "existing_edit": "KI-bereinigte Webfassung; Wohnwagen und Absperrband entfernt; genaue Exportparameter und Bearbeitungsschritte nicht nachgewiesen",
+    "approval_status": "Nutzerentscheidung 2026-09-24: bestehende KI-bereinigte Webfassung darf unverändert bleiben; eng begrenzte Ausnahme, keine Freigabe neuer KI-Bearbeitung; separate visuelle und Datenschutz-Abnahme vor Release bleibt erforderlich"
+  }
+]

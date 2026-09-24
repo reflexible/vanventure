@@ -1,5 +1,6 @@
-const langButton = document.getElementById('language');
+let langButton = document.getElementById('language');
 let language = 'de';
+let languageButtonInitialized = false;
 try { language = localStorage.getItem('vanventure-language') === 'en' ? 'en' : 'de'; } catch {}
 
 // Exact editorial titles work in both static and editor-generated pages.
@@ -42,8 +43,10 @@ function setLanguage(next) {
   document.querySelectorAll('[data-de][data-en]').forEach((element) => { element.textContent = element.dataset[language]; });
   window.applyEditorialTranslations?.(language);
   styleHeroTitles();
-  langButton.textContent = language === 'de' ? 'EN' : 'DE';
-  langButton.setAttribute('aria-label', language === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
+  if (langButton) {
+    langButton.textContent = language === 'de' ? 'EN' : 'DE';
+    langButton.setAttribute('aria-label', language === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
+  }
 }
 
 const editorialPage = location.pathname.split('/').pop() || 'index.html';
@@ -54,10 +57,20 @@ if (['bike.html', 'ausruestung.html', 'kajak.html'].includes(editorialPage)) {
   document.head.append(translations);
 }
 
-if (langButton) {
+function initializeLanguageButton() {
+  const nextButton = document.getElementById('language');
+  if (!nextButton) return;
+  if (nextButton === langButton && languageButtonInitialized) {
+    setLanguage(language);
+    return;
+  }
+  langButton = nextButton;
+  languageButtonInitialized = true;
   langButton.addEventListener('click', () => setLanguage(language === 'de' ? 'en' : 'de'));
   setLanguage(language);
 }
+initializeLanguageButton();
+document.addEventListener('vanventure:public-header-ready', initializeLanguageButton);
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 styleHeroTitles();
