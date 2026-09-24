@@ -1,9 +1,13 @@
 # Gesamtauftrag: Bestandsprüfung und lokaler Korrekturstand
 
-Stand: 24. September 2026. Branch: `codex/rework-with-project-skills`,
+Stand: 25. September 2026. Branch: `codex/rework-with-project-skills`,
 Ausgangspunkt von `main`: `500421e70029881f0d7360fed9f9075adc98d7b8`.
-**Status: dokumentiert, teilweise umgesetzt und lokal geprüft; nicht
-freigegeben, nicht ausgerollt und nicht als neuer Stand live nachgewiesen.**
+**Aktueller Status: dokumentiert, umgesetzt, lokal geprüft, vom Nutzer
+sichtabgenommen und mit Commit `6efef25449e26df5a178b2c450a6382ed3555655`
+auf `vanventure.at` veröffentlicht und live geprüft.** Ältere datierte
+Abschnitte dieses fortlaufenden Berichts halten Zwischenstände fest; ihre
+damaligen „nicht live“-Aussagen sind durch den Abschlussnachweis unten
+abgelöst.
 Am 24.09.2026 hat der Nutzer für die laufende Gesamtüberarbeitung zusätzlich
 festgelegt: alle Änderungen zuerst gemeinsam lokal zeigen und abnehmen lassen;
 vorher kein Live-Rollout. Die Trulli-V11-Freigabe ist nur eine Bildentscheidung.
@@ -1421,8 +1425,8 @@ Design-Guide inhaltlich unverändert; keine neue Gestaltungsregel.
 
 | Anforderung | Umsetzung | Lokale Prüfung | Status |
 | --- | --- | --- | --- |
-| Kajak in „Unser Setup“ als dritte Karte | `index.html`: Riverstar-Karte mit direktem Link zu `kajak.html`, deutsche und englische Beschriftung | `deploy/public-content.test.mjs` 9/9; Browser 5/5 Startseitenbreiten mit genau drei Karten | lokal umgesetzt und geprüft; Sichtabnahme erteilt, Live-Nachweis offen |
-| Abstand nach Fahrzeugprofil reduzieren | `styles.css`: nur `vehicle-data.section` unten und `field-kit.section` oben auf `clamp(50px,6vw,90px)` reduziert | Browserlücke Desktop 173 px, Tablet 100–123 px, Mobil 100–101 px; kein horizontaler Überlauf; gesamter Responsive-Lauf 55/55 | lokal umgesetzt und geprüft; nicht live |
+| Kajak in „Unser Setup“ als dritte Karte | `index.html`: Riverstar-Karte mit direktem Link zu `kajak.html`, deutsche und englische Beschriftung | Browser 5/5 Startseitenbreiten mit genau drei Karten | lokal und live geprüft; Sichtabnahme erteilt |
+| Abstand nach Fahrzeugprofil reduzieren | `styles.css`: nur `vehicle-data.section` unten und `field-kit.section` oben auf `clamp(50px,6vw,90px)` reduziert | Browserlücke Desktop 173 px, Tablet 100–123 px, Mobil 100–101 px; kein horizontaler Überlauf; gesamter Responsive-Lauf 55/55 | lokal und live geprüft |
 | Bild- und Originalschutz erhalten | Keine neue oder geänderte Bilddatei; vorhandene referenzierte Webvarianten unverändert | strenger Bildlauf 80/80 Referenzen, 0 fehlende Dateien/Quellprüfungen/Hashabweichungen | geprüft; Originalarchive nicht beschrieben |
 
 Die erneute lokale Vorschau liegt unter `review/responsive-2026-09-24/`
@@ -1437,4 +1441,52 @@ Setup-Karten anschließt. `styles.css` setzt dafür ausschließlich den
 unteren Innenabstand der Startseiten-Setup-Sektion auf null. Der
 responsive Browserlauf prüft, dass der Abstand zwischen Kartenraster
 und `#riverstar` exakt 0 px beträgt. Lokale Sichtabnahme des
-Feinschliffs ist ausdrücklich erteilt; der Live-Nachweis steht noch aus.
+Feinschliffs ist ausdrücklich erteilt; der Live-Nachweis ist erbracht.
+
+### Abschlussnachweis: öffentlicher Website-Rollout am 25. September 2026
+
+| Öffentliche Seite | Status nach Live-Browserlauf |
+| --- | --- |
+| `/` (Startseite) | 5/5 Breiten bestanden; drei Setup-Karten, Lückenregel und bündiger Riverstar-Übergang geprüft |
+| `/vehicle.html` | 5/5 bestanden |
+| `/kajak.html` | 5/5 bestanden; gemeinsame Galerie-Lupe und Viewer geprüft |
+| `/scott-mountainbike.html` | 5/5 bestanden; gemeinsame Galerie-Lupe und Viewer geprüft |
+| `/cube.html` | 5/5 bestanden; freigegebene vorläufige Poster-Ausnahme bleibt |
+| `/trek-gravelbike.html` | 5/5 bestanden; freigegebene vorläufige Poster-Ausnahme bleibt |
+| `/diamant-stadtraeder.html` | 5/5 bestanden; freigegebene vorläufige Poster-Ausnahme bleibt |
+| `/woom-2.html` | 5/5 bestanden; freigegebene vorläufige Poster-Ausnahme bleibt |
+| `/norwegen-2018.html` | 5/5 bestanden |
+| `/sardinien-2019.html` | 5/5 bestanden |
+| `/italien-2021.html` | 5/5 bestanden |
+
+Prüflauf: `VANVENTURE_PREVIEW_ORIGIN=https://vanventure.at` und
+`VANVENTURE_AUDIT_OUTPUT=review/responsive-live-2026-09-25` mit
+`node tools/audit-responsive-preview.mjs`; 55/55 Ansichten ohne
+Seitenfehler, defekte Bilder, Überlauf oder CSP-Fehler. Derselbe Lauf war
+zuvor lokal 55/55 erfolgreich. 31/31 Node-Tests und 9/9 Generator-Tests
+bestanden. Der strenge Bildlauf prüfte 80/80 referenzierte Webvarianten,
+0 fehlende Nachweise, 0 abweichende dokumentierte Web-/Projektkopie-Hashes
+und 53 übereinstimmende Archivquell-Hashes. Originalarchive wurden nicht
+beschrieben; für diesen Nachlauf wurde nur ein neues SVG-Icon erstellt,
+keine Fotodatei verändert. Die vorherigen Bildfreigaben bleiben maßgeblich.
+
+Der erste Umschaltversuch mit `0a1160d` fiel wegen einer im Docker-Image
+fehlenden Routendatei aus; der alte Webstand wurde sofort wiederhergestellt
+und `/healthz` erneut mit 200 geprüft. `08be9be` behob den Image-Build,
+lieferte aber die gemeinsame Lupe aufgrund der produktiven CSP noch nicht
+sichtbar aus. Die Lupe liegt deshalb nun als gleichursprüngliche SVG-Datei
+unter `assets/icons/zoom.svg`; CSS, Regressionstest und Live-Browserlauf
+prüfen diesen Fall. Für den erfolgreichen Endstand wurde ein Archiv von
+`6efef25449e26df5a178b2c450a6382ed3555655` mit SHA-256
+`daec73a7b645a50c2e5d169f776e7b40cb795a327d221dd2d64a436ee2f8814a`
+übertragen und nur daraus das Web-Image gebaut. Produktions-Vorcheck,
+geschützter Datenbankdump vor dem erneuten Gesamtrelease, `/healthz` 200,
+SVG 200 mit `image/svg+xml` und gesunder Web-Container sind nachgewiesen.
+Nur der Webdienst musste wegen des Image-Rebuilds neu starten; PostgreSQL
+und Caddy blieben in Betrieb. Die Sitzungen wurden jeweils geschlossen.
+
+`/index.html`, `/bike.html` und `/ausruestung.html` leiten mit 301 auf `/`;
+ein unbekannter HTML-Pfad leitet mit 302 auf `/`. Die verbliebenen vier
+Poster-Profile warten weiterhin auf freigegebene Fotos und vollständige
+Berichte, ohne dass ihr vorläufiger öffentlicher Status verschleiert wird.
+Weitere neue Gestaltungsentscheidungen sind für diesen Release nicht offen.

@@ -22,7 +22,9 @@ Quell-/Kopie-Prüfsummen. Webableitungen entstehen nur im Projekt.
 2. Den geprüften exakten Stand committen und pushen. Erst dann diesen Commit
    in einer kurzen Remote-Sitzung übertragen, ohne `.env`, Dumps oder
    Originalfotos zu kopieren. Keine direkte Produktionsreparatur als Ersatz
-   für diesen Weg.
+   für diesen Weg. Aktive Web-Releases liegen als entpacktes Archiv des
+   geprüften Commit unter `/opt/vanventure/releases/<commit>/source`;
+   Compose erhält die bestehende private `/opt/vanventure/.env` separat.
 3. Auf dem Produktionshost `sh deploy/release-check.sh` ausführen. Der Host
    hat bewusst keine Node-Installation; der Ablauf prüft Compose und den
    laufenden Healthcheck. Bei Migrationen oder anderen nicht leicht reversiblen
@@ -30,9 +32,14 @@ Quell-/Kopie-Prüfsummen. Webableitungen entstehen nur im Projekt.
    Für einen rein zustandslosen Präsentations-/CSS-/JavaScript-Release darf
    `sh deploy/release-check.sh --stateless` ohne Datenbankdump verwendet
    werden. Bei einem fehlgeschlagenen Pflichtcheck darf kein Release erfolgen.
-4. Erst danach den betroffenen Webdienst aktualisieren. Anschließend `/healthz`,
+4. Vor dem Umschalten das Web-Image aus genau diesem Archiv bauen und
+   erforderliche importierte Dateien und zentrale UI-Assets im fertigen Image
+   prüfen. Dies verhindert den am 24. September beobachteten fehlenden
+   `public-page-routes.mjs`-Import. Dann nur den betroffenen Webdienst
+   aktualisieren. Anschließend `/healthz`,
    die betroffenen öffentlichen oder privaten Routen und das sichtbare Ergebnis
-   live prüfen. PostgreSQL, Caddy und öffentliche Dateien bleiben aktiv; nur
+   einschließlich CSP-konformer Icons im echten Browser live prüfen.
+   PostgreSQL, Caddy und öffentliche Dateien bleiben aktiv; nur
    der Webdienst startet bei erforderlichem Image-Rebuild neu. Remote-Sitzung
    unmittelbar nach der Prüfung schließen.
 

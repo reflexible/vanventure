@@ -1,9 +1,19 @@
 # VanVenture – verbindlicher Gesamtplan
 
-Stand: 24. September 2026
+Stand: 25. September 2026
 Dies ist die **einzige aktive Arbeitsliste** für VanVenture. Erledigte Punkte
 sind durchgestrichen. Die übrigen Dateien unter `docs/` sind Quellen,
 Rolloutnachweise oder technische Referenzen – keine konkurrierenden Pläne.
+
+**Aktueller öffentlicher Website-Stand:** Der vom Nutzer sichtabgenommene
+Gesamtumbau einschließlich der dritten Riverstar-Setup-Karte, des bündigen
+Startseitenübergangs und der gemeinsamen Galerie-Lupe ist mit
+`6efef25449e26df5a178b2c450a6382ed3555655` auf `vanventure.at`
+veröffentlicht und am 25. September live geprüft (11 Seiten × 5 Breiten,
+55/55 ohne Fehler). Frühere datierte Nachlauf-Notizen mit „lokal“ oder
+„nicht live“ beschreiben ihre damaligen Zwischenstände; für den aktuellen
+Website-Rollout gilt ausschließlich dieser neueste Nachweis im
+[Abnahmebericht](abnahmeberichte/rework-bestandspruefung-2026-09-23.md).
 
 ## Plan-Sicherung
 
@@ -970,14 +980,15 @@ und keine neue Bildableitung. Lokal sind 55/55 Responsive-Ansichten und
 Browser 100–173 px statt des früheren großen Doppelabstands. Diese letzte
 Änderung wurde einschließlich des bündigen Übergangs zum Riverstar-Block
 vom Nutzer am 24. September ausdrücklich zur Veröffentlichung freigegeben.
-Der Live-Nachweis steht noch aus.
+Der Live-Nachweis wurde am 25. September für den freigegebenen Endstand
+erbracht; die zwischenzeitlich fehlende Lupe ist behoben.
 **Letzter Startseiten-Feinschliff:** Auf ausdrücklichen Nutzerhinweis endet
 die weiße Setup-Fläche nun direkt am unteren Rand der Kartenlinien;
 `#riverstar` beginnt ohne zusätzliche weiße Leerzone. Nur der untere
 Innenabstand von `.field-kit.section` wurde auf null gesetzt. Diese
 Anpassung wurde vor dem Rollout erneut lokal auf fünf Breiten geprüft und
 als Vorschau gezeigt; der Nutzer hat auch diesen Feinschliff ausdrücklich
-freigegeben. Umsetzung und Prüfung sind lokal, nicht live.
+freigegeben. Umsetzung, lokale Prüfung und Live-Prüfung sind abgeschlossen.
 
 ## Referenzen – keine aktiven Pläne
 

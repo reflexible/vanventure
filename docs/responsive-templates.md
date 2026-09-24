@@ -95,6 +95,10 @@ vollständige Webbild. Die Designwerte und die Pflicht zur Galerie beziehungswei
 eine ausdrücklich genehmigte Ausnahme stehen im [Design Guide](design-guide.md);
 Bild- und Originalschutz sowie die vollständige Prüfmatrix in Abschnitt 6.1
 des [Gesamtauftrags](vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md).
+Gemeinsame Symbolgrafiken müssen auch unter der produktiven Content-Security-
+Policy sichtbar sein. Die Lupe wird deshalb als gleichursprüngliche Datei
+ausgeliefert; ein rein lokal funktionierendes `data:`-Bild gilt nicht als
+abgenommen. Der Live-Browserlauf prüft CSP-Fehler und Galerieansichten.
 
 Das gemeinsame Website-Grundlayout und die inhaltlichen Seitentypen sind zu trennen. Das Grundlayout beziehungsweise seine Bausteine verwalten gemeinsame Gestaltung, Header, Navigation, Footer und die Einbindung gemeinsamer Styles und Funktionen. Die Ausnahme für das eigenständige Startseitenlayout bleibt dabei verbindlich.
 
