@@ -990,6 +990,25 @@ Anpassung wurde vor dem Rollout erneut lokal auf fünf Breiten geprüft und
 als Vorschau gezeigt; der Nutzer hat auch diesen Feinschliff ausdrücklich
 freigegeben. Umsetzung, lokale Prüfung und Live-Prüfung sind abgeschlossen.
 
+### Scott-Textredaktion (25. September 2026)
+
+Der Nutzer hat die inhaltlichen Dopplungen auf der Scott-Seite beanstandet und
+konkrete Erlebnisse ergänzt: Leogang 2020 bei der MTB-WM mit Schnee an der
+Bergstation und einer Fahrt auf der WM-Strecke, Petzen Flow Trail,
+Massa Marittima 2021 mit Canyon Trail und rund 50 km durch die Toskana sowie
+die wiederholte Hausrunde zur Ochsenburger Hütte. Die drei Einstiegskarten
+erzählen nun Petzen, Ochsenburger Hütte und die anhaltende Freude am Rad;
+der Erfahrungsabschnitt erzählt die erste Probefahrt, Leogang, Massa
+Marittima und den Verschleiß ohne erneute Wartungsbehauptung in der Karte.
+Die doppelte Ankündigung späterer Touren entfällt. Deutsch und Englisch
+wurden in der zentralen Inhaltsquelle angepasst und die Scott-Seite daraus
+neu erzeugt. Layout, Bilder, Galerie und Design Guide bleiben unverändert.
+**Status:** lokal vorbereitet; der konkrete Prüf-, Commit-, Push- und
+Live-Stand steht im
+[Abnahmebericht](abnahmeberichte/scott-textredaktion-2026-09-25.md).
+Die historischen Scott-Zwischenstände oben beschreiben frühere Schritte,
+nicht den Status dieser Textredaktion.
+
 ## Referenzen – keine aktiven Pläne
 
 - [Channel Audit V1](channel-audit-v1.md): Daten, Methodik und Grenzen der ersten Analyse.

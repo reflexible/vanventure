@@ -119,6 +119,11 @@
       "requiredCanonicalPhrases": []
     },
     {
+      "path": "docs/abnahmeberichte/scott-textredaktion-2026-09-25.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
       "path": "docs/vanventure-responsive-templates-auftrag.md",
       "role": "technical-reference",
       "requiredCanonicalPhrases": [
