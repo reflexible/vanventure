@@ -107,7 +107,7 @@ const server=http.createServer(async (req,res)=>{
     }
     if(path==='/healthz'&&req.method==='GET'){await db.health();return send(200,{status:'ok'});}
     if(req.method==='GET'||req.method==='HEAD'){
-      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','equipment-pages.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','kajak-hero.css','cube.html','scott-mountainbike.html','trek-gravelbike.html','woom-2.html','diamant-stadtraeder.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html']);
+      const publicFiles=new Set(['index.html','styles.css','script.js','navigation.css','navigation.js','equipment-cards.css','equipment-pages.css','photo-viewer.css','photo-viewer.js','travel-stories.css','riverstar.css','riverstar-entwurf.css','kajak-hero.css','cube.html','scott-mountainbike.html','trek-gravelbike.html','woom-2.html','diamant-stadtraeder.html','kajak.html','vehicle.html','vehicle-review.html','vehicle-review.css','vehicle-review.js','vehicle-profile.css','norwegen-2018.html','sardinien-2019.html','italien-2021.html','favicon.ico','favicon-96x96.png','favicon-192x192.png','favicon-512x512.png','apple-touch-icon.png','site.webmanifest']);
       let relative;try{relative=decodeURIComponent(path).replace(/^\//,'')||'index.html';}catch{fail(400,'Ungültiger Pfad.');}
       if(/^assets\/(?:heroes\/originals|review|hero-selection)\//i.test(relative))fail(404,'Nicht gefunden.');
       const asset=/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_.-]+\.(png|jpe?g|webp|svg|gif|woff2)$/i.test(relative);
@@ -119,7 +119,7 @@ const server=http.createServer(async (req,res)=>{
         const file=resolve(root,relative);
         if(!existsSync(file)||!realpathSync(file).startsWith(realpathSync(root)+ (process.platform==='win32'?'\\':'/')))fail(404,'Nicht gefunden.');
         const ext=relative.split('.').pop().toLowerCase();
-        const types={html:'text/html; charset=utf-8',css:'text/css',js:'text/javascript',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',svg:'image/svg+xml',gif:'image/gif',woff2:'font/woff2'};
+        const types={html:'text/html; charset=utf-8',css:'text/css',js:'text/javascript',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',svg:'image/svg+xml',gif:'image/gif',woff2:'font/woff2',ico:'image/x-icon',webmanifest:'application/manifest+json'};
         res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-src https://www.youtube-nocookie.com https://www.youtube.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
         let content=relative==='index.html'?renderHomepage(readFileSync(file,'utf8'),await db.allPublished()):readFileSync(file);
         if(ext==='html')content=String(content).replaceAll('href="riverstar-entwurf.html"','href="kajak.html"');

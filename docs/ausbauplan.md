@@ -19,6 +19,13 @@ Zwischenstände. Aktuelle Belege stehen in den
 [Scott-Abnahmen](abnahmeberichte/scott-textredaktion-2026-09-25.md) und
 [Gesamtumbau-Abnahmen](abnahmeberichte/rework-bestandspruefung-2026-09-23.md).
 
+**Website-Symbol, Auftrag vom 25. September 2026:** Das bestehende Patchlogo
+als Favicons für Browser, Lesezeichen, mobile Verknüpfungen und als für
+Suchmaschinen auffindbares Startseiten-Icon bereitstellen. Die lokale und
+produktive Abnahme steht im
+[Favicon-Bericht](abnahmeberichte/favicon-2026-09-25.md); die Anzeige in
+externen Suchergebnissen bleibt von deren erneutem Crawling abhängig.
+
 ## Plan-Sicherung
 
 Jede neue oder geänderte Aufgabe wird zuerst hier ergänzt. Die registrierten

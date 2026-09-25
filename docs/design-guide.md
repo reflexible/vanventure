@@ -39,6 +39,15 @@ Farbe geben ihnen einen ruhigen, gut lesbaren Rahmen.
 
 ## Öffentliche Navigation
 
+### Website-Symbol
+
+- **Nutzerauftrag vom 25. September 2026:** Browser, Lesezeichen und mobile
+  Startbildschirm-Symbole verwenden das bestehende runde VanVenture-Patchlogo.
+  Die Favicon-Datei wird als quadratische, öffentlich erreichbare Logo-Ableitung
+  auch auf der Startseite für Suchmaschinen ausgezeichnet. Das Logo wird nicht
+  neu gestaltet; die Lesbarkeit der sehr kleinen Darstellung wird anhand der
+  tatsächlichen Icon-Größen geprüft.
+
 - Die Kopfzeile ist auf allen öffentlichen Seiten identisch: Marke,
   Hauptnavigation, **Login**, Sprachwechsel und Menü.
 - Login steht direkt neben der Sprachwahl. Das Flyout bietet zuerst

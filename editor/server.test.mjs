@@ -37,6 +37,12 @@ test('HTTP login, CSRF, persistent drafts, conflict and private-file protection'
     assert.match(await (await fetch(origin+'/editor/cockpit.js')).text(),/responseJson/);
     assert.match(await (await fetch(origin+'/editor/private.js')).text(),/api\/profile/);assert.match(await (await fetch(origin+'/editor/private-account.css')).text(),/account-facts/);const privateNavigation=await (await fetch(origin+'/editor/private-nav.js')).text();assert.match(privateNavigation,/private-app-shell/);assert.match(privateNavigation,/Benutzerverwaltung/);assert.match(privateNavigation,/benutzerverwaltung/);assert.match(await (await fetch(origin+'/redaktion')).text(),/private-nav\.js/);assert.match(await (await fetch(origin+'/benutzerverwaltung')).text(),/Benutzerverwaltung/);assert.match(await (await fetch(origin+'/editor/users.js')).text(),/async function users/);
     assert.equal((await fetch(origin+'/assets/vanventure-logo-transparent.png')).status,200);
+    for(const [path,type] of [['/favicon.ico','image/x-icon'],['/favicon-96x96.png','image/png'],['/favicon-192x192.png','image/png'],['/favicon-512x512.png','image/png'],['/apple-touch-icon.png','image/png'],['/site.webmanifest','application/manifest+json']]){
+      const icon=await fetch(origin+path);
+      assert.equal(icon.status,200,path);
+      assert.match(icon.headers.get('content-type'),new RegExp(type.replace('+','\\+')));
+      assert.ok((await icon.arrayBuffer()).byteLength>0,path);
+    }
     assert.equal((await fetch(origin+'/assets/review/vehicle-front-camp-clean.png')).status,404);
     assert.equal((await fetch(origin+'/assets/hero-selection/vehicle.jpg')).status,404);
     assert.equal((await fetch(origin+'/assets/heroes/originals/italien-2021/P9200258.JPG')).status,404);

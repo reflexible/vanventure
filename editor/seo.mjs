@@ -32,6 +32,10 @@ export function applySeo(html, file, story) {
   const head = `<!-- seo:start -->
 <title>${escape(page.title)}</title>
 <meta name="description" content="${escape(description)}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="canonical" href="${escape(url)}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VanVenture">
