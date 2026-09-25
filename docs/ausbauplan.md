@@ -5,7 +5,12 @@ Dies ist die **einzige aktive Arbeitsliste** für VanVenture. Erledigte Punkte
 sind durchgestrichen. Die übrigen Dateien unter `docs/` sind Quellen,
 Rolloutnachweise oder technische Referenzen – keine konkurrierenden Pläne.
 
-**Aktueller öffentlicher Website-Stand:** Die Scott-Textredaktion ist mit
+**Aktueller öffentlicher Website-Stand:** Das VanVenture-Patchlogo ist mit
+`01de847ea8150716e10c51976ffb922793a8bc50` als Favicon,
+Touch-Icon und Suchmaschinen-Icon auf `vanventure.at` veröffentlicht.
+Startseite, betroffene Unterseiten und Icon-Routen wurden am 25. September
+live geprüft. Die tatsächliche Übernahme in externe Suchergebnisse hängt
+vom erneuten Crawling ab. Die Scott-Textredaktion wurde zuvor mit
 `1fd1636a5f327b8beafcab8f1cfc4a374b3e0fe1` auf `vanventure.at`
 veröffentlicht und am 25. September auf der Scott-Seite in drei Breiten,
 Deutsch und Englisch live geprüft. Der zuvor freigegebene Gesamtumbau
@@ -21,8 +26,8 @@ Zwischenstände. Aktuelle Belege stehen in den
 
 **Website-Symbol, Auftrag vom 25. September 2026:** Das bestehende Patchlogo
 als Favicons für Browser, Lesezeichen, mobile Verknüpfungen und als für
-Suchmaschinen auffindbares Startseiten-Icon bereitstellen. Die lokale und
-produktive Abnahme steht im
+Suchmaschinen auffindbares Startseiten-Icon ist live bereitgestellt. Die lokale
+und produktive Abnahme steht im
 [Favicon-Bericht](abnahmeberichte/favicon-2026-09-25.md); die Anzeige in
 externen Suchergebnissen bleibt von deren erneutem Crawling abhängig.
 
