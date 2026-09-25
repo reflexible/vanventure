@@ -80,6 +80,102 @@ September 2026; Tageswerte bis einschließlich 19. September.
 
 ## Nächste verbindliche Schritte
 
+### CMS 1–6. Bestehende Website schrittweise um eine Seitenverwaltung erweitern
+
+**Auftrag vom 25. September 2026; Status: geplant, nicht implementiert.**
+Die bestehende Node.js-/PostgreSQL-Architektur mit Redaktion, Cockpit,
+Google-Login, Design Guide und responsiven Templates wird erweitert. Es gibt
+kein paralleles CMS und keinen Framework-Wechsel. Inhalte sind datengetrieben;
+Layout und Gestaltung bleiben in den freigegebenen Templates und Komponenten.
+Diese Gruppe ergänzt die offenen Template-Arbeiten unter 1C, den Content
+Planner und Master Context unter 2 sowie Website/SEO unter 5; deren bisherige
+Abnahmen und Freigaben werden nicht durch CMS-Häkchen ersetzt.
+
+**Fortschrittsregel:** Jede nummerierte Checkbox wird erst nach lokaler Prüfung
+und dokumentiertem Ergebnis abgehakt. Für produktive Funktionen werden Commit,
+Push und Live-Prüfung gesondert ausgewiesen. Ein abgeschlossenes Teilpaket ist
+keine Freigabe für die Migration weiterer Seiten. Unveröffentlichte Inhalte
+werden niemals allein durch Speichern öffentlich. Bilder und neue Designregeln
+unterliegen weiterhin den bestehenden Prüf- und Freigaberegeln.
+
+**CMS 1 – Architektur und verbindlicher Umsetzungsplan**
+
+- [ ] **CMS 1.1** Ist-Zustand von Datenbank, `redaction.mjs`, Cockpit/Planner,
+  Seitengeneratoren, Routen, Navigation, SEO, Medienablage und Berechtigungen
+  gegen die geltenden Projektregeln aufnehmen.
+- [ ] **CMS 1.2** Konkreten Plan für Schema, Seitentypen und Templates,
+  Revisionen, öffentliche/private Routen, Inline-Bearbeitung, Medien,
+  Codex-Redaktion, SEO, Tests und Migration erstellen; Überschneidungen mit
+  1C, 2 und 5 sowie Entscheidungen vor Implementierung benennen.
+- [ ] **CMS 1.3** Jeden Planbereich als `bestanden`, `fehlgeschlagen`,
+  `nicht geprüft` oder `blockiert` gegen die Projektregeln ausweisen.
+  **Gate:** Erst danach CMS 2 beginnen.
+
+**CMS 2 – Seitenregister und sichere Revisionen**
+
+- [ ] **CMS 2.1** Allgemeines Page-Modell mit kanonischem Pfad, Seitentyp,
+  Pillar, Template, Status (`planned`, `draft`, `ready_for_editorial`,
+  `review`, `scheduled`, `published`, `archived`), Veröffentlichungsdatum,
+  SEO-/Video-Feldern und Änderungsnachweis einführen; bestehende Planner-
+  Einträge eindeutig zuordnen statt sie zu duplizieren.
+- [ ] **CMS 2.2** Unveränderliche Revisionshistorie mit getrennter Working und
+  Published Revision einführen. Rohmaterial bleibt neben redigierten Inhalten
+  erhalten; Hero, Lead, Text, Bild/Text, Galerie, Video, Fakten, Route, Gear,
+  CTA und Related Content leiten sich aus den vorhandenen Templates ab.
+- [ ] **CMS 2.3** Speichern, Review, geplante Veröffentlichung,
+  Veröffentlichung, Archivierung, Rollen, CSRF, Audit und Versionskonflikte
+  mit der bestehenden Redaktion verbinden. Nur eine berechtigte Person darf
+  die veröffentlichte Revision ausdrücklich wechseln.
+
+**CMS 3 – Öffentliche Auslieferung und private Vorschau**
+
+- [ ] **CMS 3.1** Für Besucher ausschließlich die freigegebene Published
+  Revision ausliefern; unveröffentlichte Pfade wie nicht vorhandene Seiten
+  behandeln. Angemeldete Redakteure sehen die Working Revision in einer
+  geschützten Vorschau ohne öffentliche Draft-Daten oder Editor-Code.
+- [ ] **CMS 3.2** Zentrale Navigation, Sitemap, Canonicals, Metadaten und
+  JSON-LD ausschließlich aus öffentlich freigegebenen Seiten ableiten;
+  intern pflegbare SEO-Felder geplanter Seiten bleiben privat.
+- [ ] **CMS 3.3** Sicherheits- und Regressionstests für anonyme Aufrufe,
+  private Vorschau, alte Published Revision, `noindex`/Sitemap und bestehende
+  statische Routen ausführen. Die Startseite behält ihr eigenes Layout.
+
+**CMS 4 – Redaktioneller Arbeitsablauf auf der Seite**
+
+- [ ] **CMS 4.1** Texte und Bilder in einer gültigen Redaktionssitzung direkt
+  an ihrer Position bearbeiten beziehungsweise auswählen; Speichern ändert
+  nur die Working Revision und erkennt konkurrierende Änderungen.
+- [ ] **CMS 4.2** Den reiseberichtsspezifischen Codex-Ablauf für Seitentypen
+  verallgemeinern: Rohtext, Fassung, Struktur, Bildnotizen, SEO-Ziele,
+  verknüpftes Video, Master Context und Revision lesen; Ergebnis als neue
+  Review-Revision schreiben, Rohmaterial erhalten und niemals automatisch
+  veröffentlichen.
+
+**CMS 5 – Medien und YouTube ohne Doppelverwaltung**
+
+- [ ] **CMS 5.1** Medienidentität, Prüfsumme, Herkunft, Maße, Alt-Text,
+  Caption, Fokuspunkt, Notizen, Status, Varianten und Seitenverwendung in
+  PostgreSQL verwalten; Original- und Webdateien liegen im kontrollierten
+  Asset Storage. Derivate entstehen nur aus geschützten Projektkopien.
+- [ ] **CMS 5.2** Eine Seite mit vorhandenen `yt_videos` verknüpfen und je
+  geeignetem Seitentyp Video-CTA/Embed sowie `VideoObject` erzeugen, ohne
+  eine zweite YouTube-Verwaltung anzulegen.
+
+**CMS 6 – Zwei Referenzfälle abnehmen, danach Migration planen**
+
+- [ ] **CMS 6.1** Eine bestehende veröffentlichte Seite, vorzugsweise
+  `vehicle.html`, kontrolliert übernehmen. Vorher/nachher Funktion, Inhalt,
+  Bildfreigaben, Darstellung in Desktop/Tablet/Mobil, Sprachen und SEO prüfen.
+- [ ] **CMS 6.2** Eine noch unveröffentlichte Seite, vorzugsweise den
+  HYMER-GCS-Langzeitbericht aus dem bestehenden Planner-Brief, als privaten
+  Entwurf vollständig durch Redaktion, Review und Vorschau führen; öffentliche
+  Nicht-Sichtbarkeit einschließlich Sitemap und Suche prüfen.
+- [ ] **CMS 6.3** Für beide Fälle Evidenzmatrix und Abnahmebericht mit
+  Quellstand, Ergebnis, offenen Punkten und getrenntem Lokal-/Live-Status
+  erstellen. Erst nach bestandener funktionaler, visueller, responsiver,
+  sicherheitstechnischer und SEO-Prüfung einen Migrationsplan für die übrigen
+  Seiten festlegen. Deren Inhalte und Migration sind nicht Teil von CMS 1–6.
+
 ### 1. Gemeinsamen Google-Login vor dem Umschalten sauber umsetzen
 
 Der bestehende Passwort-Login bleibt aktiv, bis diese Phase vollständig
