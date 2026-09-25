@@ -5,15 +5,19 @@ Dies ist die **einzige aktive Arbeitsliste** für VanVenture. Erledigte Punkte
 sind durchgestrichen. Die übrigen Dateien unter `docs/` sind Quellen,
 Rolloutnachweise oder technische Referenzen – keine konkurrierenden Pläne.
 
-**Aktueller öffentlicher Website-Stand:** Der vom Nutzer sichtabgenommene
-Gesamtumbau einschließlich der dritten Riverstar-Setup-Karte, des bündigen
-Startseitenübergangs und der gemeinsamen Galerie-Lupe ist mit
-`6efef25449e26df5a178b2c450a6382ed3555655` auf `vanventure.at`
-veröffentlicht und am 25. September live geprüft (11 Seiten × 5 Breiten,
-55/55 ohne Fehler). Frühere datierte Nachlauf-Notizen mit „lokal“ oder
-„nicht live“ beschreiben ihre damaligen Zwischenstände; für den aktuellen
-Website-Rollout gilt ausschließlich dieser neueste Nachweis im
-[Abnahmebericht](abnahmeberichte/rework-bestandspruefung-2026-09-23.md).
+**Aktueller öffentlicher Website-Stand:** Die Scott-Textredaktion ist mit
+`1fd1636a5f327b8beafcab8f1cfc4a374b3e0fe1` auf `vanventure.at`
+veröffentlicht und am 25. September auf der Scott-Seite in drei Breiten,
+Deutsch und Englisch live geprüft. Der zuvor freigegebene Gesamtumbau
+einschließlich Riverstar-Setup-Karte, bündigem Startseitenübergang und
+Galerie-Lupe wurde mit
+`6efef25449e26df5a178b2c450a6382ed3555655` in 55/55 Ansichten
+live geprüft; diese vorherige Gesamtprüfung wird nicht als neuer
+Gesamtdurchlauf für den Scott-Textcommit ausgegeben. Frühere datierte
+Nachlauf-Notizen mit „lokal“ oder „nicht live“ beschreiben ihre damaligen
+Zwischenstände. Aktuelle Belege stehen in den
+[Scott-Abnahmen](abnahmeberichte/scott-textredaktion-2026-09-25.md) und
+[Gesamtumbau-Abnahmen](abnahmeberichte/rework-bestandspruefung-2026-09-23.md).
 
 ## Plan-Sicherung
 
@@ -1003,8 +1007,9 @@ Marittima und den Verschleiß ohne erneute Wartungsbehauptung in der Karte.
 Die doppelte Ankündigung späterer Touren entfällt. Deutsch und Englisch
 wurden in der zentralen Inhaltsquelle angepasst und die Scott-Seite daraus
 neu erzeugt. Layout, Bilder, Galerie und Design Guide bleiben unverändert.
-**Status:** lokal vorbereitet; der konkrete Prüf-, Commit-, Push- und
-Live-Stand steht im
+**Status:** lokal geprüft, als Commit `1fd1636` nach `origin/main`
+gepusht und auf `vanventure.at/scott-mountainbike.html` live verifiziert.
+Der konkrete Prüf- und Rolloutstand steht im
 [Abnahmebericht](abnahmeberichte/scott-textredaktion-2026-09-25.md).
 Die historischen Scott-Zwischenstände oben beschreiben frühere Schritte,
 nicht den Status dieser Textredaktion.
