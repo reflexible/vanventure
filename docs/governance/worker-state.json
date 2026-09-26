@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 84,
+  "revision": 89,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -2246,6 +2246,170 @@
           }
         ]
       }
+    },
+    "WI-SOT-19-05": {
+      "work_item_id": "WI-SOT-19-05",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:00:45.781Z",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+        "tools/sot/wsjf-job-size.mjs",
+        "tools/sot/wsjf-job-size.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Job Size proposals verify repository scope and require large-story decomposition evidence.",
+        "files": [
+          "tools/sot/wsjf-job-size.mjs",
+          "tools/sot/wsjf-job-size.test.mjs",
+          "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+          "EXECUTION_STATE.md"
+        ],
+        "tests": [
+          "293/293 regression tests PASS",
+          "Golden baseline diff PASS"
+        ],
+        "limitations": [
+          "No persistence or queue activation."
+        ],
+        "follow_up": [
+          "Integrate validated component proposals into a shared workflow."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:04:50.489Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+        "self_review_reason": "Controller verified scope and checks.",
+        "at": "2026-09-26T17:04:50.502Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T17:04:50.688Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+        "scope": "WI-SOT-19-05",
+        "verified_at": "2026-09-26T17:04:50.688Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-19-05",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-19-05",
+          "reason": "Local proposal component only.",
+          "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "fast-check-and-regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-19-05",
+          "audit_output": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Bounded FAST CHECK."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Bounded FAST CHECK."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Bounded FAST CHECK."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Bounded FAST CHECK."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Bounded FAST CHECK."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-19-05",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-19-05"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -3034,6 +3198,52 @@
       "work_item_id": "WI-SOT-19-04",
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/wsjf-risk-opportunity-fast-check-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "e085edff-c719-4751-80b1-c56e33b7fb2d",
+      "at": "2026-09-26T17:00:45.782Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-19-05",
+      "actor": "/root",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
+        "tools/sot/wsjf-job-size.mjs",
+        "tools/sot/wsjf-job-size.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "0cafade6-fb6f-4edb-832e-07654c619061",
+      "at": "2026-09-26T17:00:45.794Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-19-05",
+      "actor": "/root"
+    },
+    {
+      "event_id": "54b7cba7-63ec-4e33-82f0-52756718b9c9",
+      "at": "2026-09-26T17:04:50.489Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-19-05",
+      "actor": "/root",
+      "summary": "Job Size proposals verify repository scope and require large-story decomposition evidence."
+    },
+    {
+      "event_id": "be56a94e-60b7-4c2f-97f0-dc6266298243",
+      "at": "2026-09-26T17:04:50.502Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-19-05",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md"
+    },
+    {
+      "event_id": "e55ac5b0-2e36-4595-b90c-5c80c11f7363",
+      "at": "2026-09-26T17:04:50.688Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-19-05",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
     }
   ]
