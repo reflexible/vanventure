@@ -82,19 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`, `WI-SOT-04-10`, `WI-SOT-21-01`. **Active Workers:** 3.
-Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
-ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
-[worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
+**Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
+Die geprüften lokalen Integrationsslices sind abgeschlossen. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
+[worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-07-10`: vorhandene reale Projektprüfungen über
-gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
+**NEXT RECOMMENDATION:** `WI-SOT-08-09`: die jetzt vorhandenen projektgebundenen Prüfer als begrenzten FULL-Check-Host für konkrete Fachmodule abnehmen.
 **Parallel Candidates:**
-`WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
-Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
-**Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 143 · In Progress 4 · Ready 0 · Blocked 1 ·
-Open 62 (einschließlich Ready und Blocked) · Progress 69,8 %.
+`WI-SOT-08-09` und `WI-SOT-11-07` können in getrennten Orchestrator-/Auditdateien fortgeführt werden, sofern ihre aktuellen Scopes vor dem Claim geprüft sind.
+**Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
+**Counter:** Total 205 · Done 146 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 59 (einschließlich Ready und Blocked) · Progress 71,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -183,10 +180,8 @@ Besonders prüfen:
 - [x] ~~WI-SOT-04-07 · Contract-Versionierung definieren~~
 - [x] ~~WI-SOT-04-08 · Contract-Break-Erkennung implementieren~~
 - [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
-- [ ] IN_PROGRESS – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
-  Drei Übergänge besitzen zusätzlich reine Invariantenprüfer für übergebene
-  Datensätze; die atomare Worker-Durchsetzung und die realen CMS-/Analytics-
-  Pfade sind noch nicht angebunden. Der Punkt bleibt offen.
+- [ ] BLOCKED – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
+  Der Vertrag ist lokal gesichert und die Aktivierung ausdrücklich gesperrt. Die atomare Worker-Durchsetzung und die realen CMS-/Analytics-Pfade sind auf die spätere Runtime-Integration verschoben; dieser Punkt bleibt bis dahin blockiert. [Aktivierungsnachweis](../sot-optimization/reviews/analytics-activation-gate-2026-09-26.md).
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
 - [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~
 - [x] ~~WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen~~
@@ -229,11 +224,8 @@ FAST CHECK ist der Default für normale Änderungen.
 - [x] ~~WI-SOT-07-07 · Referenzen prüfen~~
 - [x] ~~WI-SOT-07-08 · git diff --check~~
 - [x] ~~WI-SOT-07-09 · Ergebnis dokumentieren~~
-- [ ] IN_PROGRESS – WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben
-  Gepflegte lokale Prüfprofile sind an FAST und den Auditpfad angeschlossen.
-  Elf Adapter-/Integrationstests bestanden; fehlende Analytics-Abdeckung bleibt
-  BLOCKED. Quellengebundene Trace-Zuordnung und semantische FULL-Prüfer folgen.
-  [Prüfprofil-Nachweis](../sot-optimization/reviews/project-check-profiles-2026-09-26.md).
+- [x] ~~WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben~~
+  Projektgebundene Prüfprofile, Traceability und Driftbindung sind im gemeinsamen Auditpfad integriert. Host-eigene Fachprüfer bleiben für spätere Semantikabnahmen erforderlich. [Integrationsabnahme](../sot-optimization/reviews/integration-acceptance-2026-09-26.md).
 Ergebnis:
 FAST_CHECK_PASS
 oder
@@ -368,7 +360,8 @@ Change
   [Evidenzadapter](../sot-optimization/reviews/user-decision-evidence-2026-09-26.md).
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [x] ~~WI-SOT-16-01 · autoritative Quelle aktualisieren~~
-- [ ] IN_PROGRESS – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
+- [x] ~~WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren~~
+  Authentisierte EXTEND-/SUPERSEDE-Reviews erzwingen den zugehörigen FAST-/FULL-Modus; der Nachweis ist an den Projekt-Auditpfad gebunden.
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
@@ -444,7 +437,8 @@ Technisch verhindern:
   Claims, Übergabe und Done-Gates sind lokal transaktional geprüft; Queue,
   Dependency-Freigabe und reale Cross-Chat-Nutzung bleiben offen.
 #### ST-SOT-21 – PHASE 21: PARALLEL EXECUTION ENGINE
-- [ ] IN_PROGRESS – WI-SOT-21-01 · parallelisierbare Work Items erkennen
+- [x] ~~WI-SOT-21-01 · parallelisierbare Work Items erkennen~~
+  Der reine Execution Planner leitet geprüfte, disjunkte Kandidaten ab und erzeugt keine alternativen Claims. [Nachweis](../sot-optimization/reviews/execution-planner-2026-09-26.md).
 - [ ] TODO – WI-SOT-21-02 · Dateikonflikte erkennen
 - [ ] TODO – WI-SOT-21-03 · Dependency-Konflikte erkennen
 - [ ] TODO – WI-SOT-21-04 · Worker-Scope definieren

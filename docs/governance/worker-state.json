@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 42,
+  "revision": 53,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -747,7 +747,7 @@
     },
     "WI-SOT-07-10": {
       "work_item_id": "WI-SOT-07-10",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root/coverage_path",
       "claimed_at": "2026-09-26T15:25:10.366Z",
       "write_scope": [
@@ -756,14 +756,159 @@
         "tools/sot/project-check-profiles.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "Project-bound audit and maintained test/trace orchestration completed.",
+        "files": [
+          "tools/sot/project-audit.mjs",
+          "tools/sot/post-validation.mjs",
+          "docs/sot-optimization/reviews/project-audit-adapter-2026-09-26.md"
+        ],
+        "tests": [
+          "project-audit and post-validation targeted regressions PASS"
+        ],
+        "limitations": [
+          "Host-owned semantic validators remain mandatory."
+        ],
+        "follow_up": [
+          "Use the maintained project audit for later module slices."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T16:04:10.164Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T16:04:10.174Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T16:04:10.226Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-07-10",
+        "verified_at": "2026-09-26T16:04:10.226Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-07-10",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-07-10",
+          "reason": "No authoritative source update required for this completed infrastructure slice.",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "targeted_regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-07-10",
+          "audit_output": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Targeted local infrastructure acceptance."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Existing contract bindings preserved."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Existing dependency graph preserved."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Golden Core unchanged."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Work item and source links recorded."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-07-10",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-07-10"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     },
     "WI-SOT-16-02": {
       "work_item_id": "WI-SOT-16-02",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root/write_boundary",
       "claimed_at": "2026-09-26T15:27:25.712Z",
       "write_scope": [
@@ -772,14 +917,158 @@
         "tools/sot/sot-update-plan.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "Reviewed rule extension and supersession enforcement completed.",
+        "files": [
+          "tools/sot/governance-workflow.mjs",
+          "docs/sot-optimization/reviews/source-rule-update-2026-09-26.md"
+        ],
+        "tests": [
+          "governance workflow targeted regressions PASS"
+        ],
+        "limitations": [
+          "Every later semantic rule update needs authenticated review."
+        ],
+        "follow_up": [
+          "Apply the existing update workflow only with bounded scope evidence."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T16:04:10.235Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T16:04:10.243Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T16:04:10.292Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-16-02",
+        "verified_at": "2026-09-26T16:04:10.292Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-16-02",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-16-02",
+          "reason": "No authoritative source update required for this completed infrastructure slice.",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "targeted_regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-16-02",
+          "audit_output": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Targeted local infrastructure acceptance."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Existing contract bindings preserved."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Existing dependency graph preserved."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Golden Core unchanged."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Work item and source links recorded."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-16-02",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-16-02"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     },
     "WI-SOT-04-10": {
       "work_item_id": "WI-SOT-04-10",
-      "execution_state": "Review",
+      "execution_state": "Blocked",
       "assigned_agent": "/root/wsjf_safety",
       "claimed_at": "2026-09-26T15:44:39.115Z",
       "write_scope": [
@@ -810,13 +1099,24 @@
         ],
         "at": "2026-09-26T15:50:33.153Z"
       },
-      "review": null,
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/analytics-activation-gate-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T16:04:10.371Z"
+      },
       "integration": null,
-      "blocked_by": null
+      "blocked_by": {
+        "cause": "Deferred actual Analytics runtime boundary",
+        "question": "Keep activation blocked until CMS/Worker/Analytics runtime transitions and pinned integration evidence exist.",
+        "at": "2026-09-26T16:04:10.380Z"
+      },
+      "resume_state": "Integration"
     },
     "WI-SOT-21-01": {
       "work_item_id": "WI-SOT-21-01",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root/wsjf_safety",
       "claimed_at": "2026-09-26T15:50:33.164Z",
       "write_scope": [
@@ -825,10 +1125,154 @@
         "tools/sot/execution-planner.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "Safe parallel work projection completed without an alternate claim path.",
+        "files": [
+          "tools/sot/execution-planner.mjs",
+          "docs/sot-optimization/reviews/execution-planner-2026-09-26.md"
+        ],
+        "tests": [
+          "execution planner, worker runtime and progress tests PASS"
+        ],
+        "limitations": [
+          "Derived candidates are not claims."
+        ],
+        "follow_up": [
+          "Supply current reviewed scope analyses before a later claim."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T16:04:10.302Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T16:04:10.312Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T16:04:10.362Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-21-01",
+        "verified_at": "2026-09-26T16:04:10.362Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-21-01",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-21-01",
+          "reason": "No authoritative source update required for this completed infrastructure slice.",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "targeted_regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-21-01",
+          "audit_output": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Targeted local infrastructure acceptance."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Existing contract bindings preserved."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Existing dependency graph preserved."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Golden Core unchanged."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Work item and source links recorded."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-21-01",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-21-01"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -1237,6 +1681,98 @@
       "event": "START",
       "work_item_id": "WI-SOT-21-01",
       "actor": "/root/wsjf_safety"
+    },
+    {
+      "event_id": "cfc625d4-70d0-491e-b197-f6f66e5991fb",
+      "at": "2026-09-26T16:04:10.164Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-07-10",
+      "actor": "/root/coverage_path",
+      "summary": "Project-bound audit and maintained test/trace orchestration completed."
+    },
+    {
+      "event_id": "1bb8a752-27c3-4691-8ab3-0e3f3e8240e0",
+      "at": "2026-09-26T16:04:10.174Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-07-10",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "05573b4d-d16a-4683-9a51-c8b3843b9d13",
+      "at": "2026-09-26T16:04:10.226Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-07-10",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "12af4f10-ba29-4182-b363-a8701d0d86a3",
+      "at": "2026-09-26T16:04:10.235Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-16-02",
+      "actor": "/root/write_boundary",
+      "summary": "Reviewed rule extension and supersession enforcement completed."
+    },
+    {
+      "event_id": "a6ea98b6-1d84-425b-b6b2-edbefd33d5aa",
+      "at": "2026-09-26T16:04:10.243Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-16-02",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "0120a9c8-2d51-4d50-83d0-cb4310b5f1ce",
+      "at": "2026-09-26T16:04:10.292Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-16-02",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "d3495ec3-c52f-4a9e-a8a6-71775c85900f",
+      "at": "2026-09-26T16:04:10.302Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-21-01",
+      "actor": "/root/wsjf_safety",
+      "summary": "Safe parallel work projection completed without an alternate claim path."
+    },
+    {
+      "event_id": "59d7738d-d120-4ade-ade6-59b6a1ba5e2d",
+      "at": "2026-09-26T16:04:10.312Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-21-01",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "6056f21a-b4ec-404b-a18d-53b07b1e0679",
+      "at": "2026-09-26T16:04:10.362Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-21-01",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/integration-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "73f3f712-482c-462f-b5c5-8fc2e996816f",
+      "at": "2026-09-26T16:04:10.371Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-04-10",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/analytics-activation-gate-2026-09-26.md"
+    },
+    {
+      "event_id": "2e85b6c9-5486-4fec-9fdf-e338e302ef88",
+      "at": "2026-09-26T16:04:10.380Z",
+      "event": "BLOCK",
+      "work_item_id": "WI-SOT-04-10",
+      "actor": "/root/wsjf_safety",
+      "cause": "Deferred actual Analytics runtime boundary",
+      "question": "Keep activation blocked until CMS/Worker/Analytics runtime transitions and pinned integration evidence exist."
     }
   ]
 }
