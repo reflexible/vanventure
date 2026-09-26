@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und abgegrenzte Git-Slices lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und prüfbare Git-Slices lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-04` · kleine Commits gegen den deklarierten Slice prüfbar machen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-05` · die Work-Item-ID vor dem Commit verbindlich prüfen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 187 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 18 (einschließlich Ready und Blocked) · Progress 91,2 %.
+**Counter:** Total 205 · Done 188 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 17 (einschließlich Ready und Blocked) · Progress 91,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -624,7 +624,10 @@ wenn sinnvoll.
   Jeder lokale Git-Slice benötigt eine gültige Work-Item-ID und einen
   expliziten, deduplizierten Schreibbereich; der Fremdänderungs-Guard ist
   Teil der Startprüfung. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-slice-scope-2026-09-26.md).
-- [ ] TODO – WI-SOT-30-04 · kleine nachvollziehbare Commits
+- [x] ~~WI-SOT-30-04 · kleine nachvollziehbare Commits~~
+  Der lesende Pre-Commit-Snapshot zeigt die exakten gestagten Pfade und den
+  Diff-Umfang; leere Staging-Areas bleiben sichtbar und Whitespace-Fehler
+  blockieren vor dem Commit. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-commit-snapshot-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-05 · Work-Item-ID im Commit
 - [ ] TODO – WI-SOT-30-06 · keine Misch-Commits
 - [ ] TODO – WI-SOT-30-07 · parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien
