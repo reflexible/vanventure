@@ -93,8 +93,8 @@ Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung u
 **NEXT RECOMMENDATION:** `WI-SOT-04-10` erst mit einem eng begrenzten
 Laufzeit-Integrationsnachweis für CMS, Worker und Analytics wieder aufnehmen;
 vorher die Scope-/Freigabe- und gepinnten Evidenzvoraussetzungen klären. Der
-vorliegende 348/349-Suitebefund ist keine Freigabe für eine Nebenarbeit und
-bleibt bis zur eigenen Einordnung sichtbar.
+Regelkatalogtest zählt inzwischen nur die neun aktiven Autoritäten; die zwei
+Core-gebundenen Referenzen bleiben bewusst außerhalb der Regel-Coverage.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
@@ -344,6 +344,10 @@ Change
   Im realen Projektpilot wurden alle 281 Struktureinheiten dispositioniert und
   die fünf betroffenen Regeln vollständig geprüft. Vorschlagsbezogene Unknowns
   sind geschlossen; acht globale Lücken bleiben ausdrücklich erhalten.
+  Der Regressionstest leitet die erwartete partielle Coverage aus genau den
+  `active_reference`-Modulen ab; `board-architecture` und `video-production`
+  sind `scoped_reference` ohne Regelautorität und daher keine fehlenden
+  Katalogmodule. [Reparaturnachweis](../abnahmeberichte/sot-rule-catalogue-scoped-reference-repair-2026-09-26.md).
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
 - [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~

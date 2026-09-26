@@ -13,7 +13,8 @@ test('catalogues cited rules across every registered module with honest partial 
   assert.equal(result.valid, true, result.errors.join('; '));
   assert.equal(result.mapped_rules, 21);
   assert.deepEqual(result.verified_sections, ['DEC-REL-002']);
-  assert.equal(result.partial_modules.length, registry.modules.length);
+  assert.deepEqual(result.partial_modules,
+    registry.modules.filter(module => module.status === 'active_reference').map(module => module.module_id).sort());
   assert.ok(catalogue.coverage.every(entry => entry.scope === 'partial' && entry.remaining));
 });
 

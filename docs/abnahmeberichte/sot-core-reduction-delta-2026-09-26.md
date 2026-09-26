@@ -49,12 +49,13 @@ Planabgleich (63 Quellen) bestanden. Die gezielte Testgruppe für Baseline,
 Registry, Contracts, Preservation, Traceability, Fortschrittszähler und
 Planabgleich bestand mit **37/37**.
 
-Die breite Suite `node --test tools/sot/*.test.mjs` hat **348/349** bestanden.
-Der einzige Fehlschlag ist `rule-catalogue.test.mjs`: Sie erwartet 11
-Katalogmodule, während der vorhandene Regelkatalog nur 9 liefert. Registry,
-Katalog und dieser Test wurden in diesem Slice nicht verändert; der Fehler
-liegt daher außerhalb des engen Core-Reduktionsumfangs und ist als nächster
-lokaler Reparaturkandidat sichtbar, nicht als PASS ausgegeben.
+Zum Prüfzeitpunkt hatte die breite Suite `node --test tools/sot/*.test.mjs`
+**348/349** bestanden. Der damalige einzelne Fehlschlag in
+`rule-catalogue.test.mjs` ist anschließend separat korrigiert worden: Der Test
+leitet die erwartete Coverage jetzt aus den aktiven Autoritäten statt aus allen
+Registry-Einträgen ab. Der separate
+[Reparaturnachweis](sot-rule-catalogue-scoped-reference-repair-2026-09-26.md)
+hält den vollständigen Nachlauf fest.
 
 Dieser Bericht ist kein Produkt-, Release- oder Live-Nachweis: Es wurden keine
 Website-, Bild-, CMS- oder Betriebsdaten geändert. Wegen des genannten
