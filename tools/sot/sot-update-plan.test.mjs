@@ -82,35 +82,58 @@ test('requires traceability to the same proposal and authoritative file', () => 
   assert.ok(result.errors.includes('PROPOSAL_TO_SOURCE_TRACEABILITY_REQUIRED'));
 });
 
-async function applyFixture(t) {
+async function applyFixture(t, ruleKind = null, domainOnly = false) {
   const projectRoot = await mkdtemp(join(tmpdir(), 'sot-update-'));
   t.after(() => rm(projectRoot, { recursive: true, force: true }));
   const sourcePath = join(projectRoot, 'module.md');
   await writeFile(sourcePath, source);
   await mkdir(join(projectRoot, 'docs/governance'), { recursive: true });
-  const localModule = { ...module, source: 'module.md' };
-  const localRegistry = { schema_version: '1.0.0', modules: [{ ...registry.modules[0], source: 'module.md' }] };
+  const localModule = { ...module, source: 'module.md', ...(domainOnly ? { module_id: 'fixture-domain', authority: 'fixture.domain' } : {}) };
+  const localRegistry = { schema_version: '1.0.0', modules: [{ ...registry.modules[0], ...localModule }] };
   await writeFile(join(projectRoot, 'docs/governance/module-registry.json'), JSON.stringify(localRegistry));
-  const localProposal = { ...proposal, status: 'PROPOSED', integration: 'NOT_STARTED', approval: null,
-    conflict_check: 'PENDING', owner: { ...proposal.owner, source: 'module.md' } };
-  const localImpact = { ...impact, owner: { ...impact.owner, source: 'module.md' } };
+  const localProposal = { ...proposal, authority: localModule.authority, status: 'PROPOSED', integration: 'NOT_STARTED', approval: null,
+    conflict_check: 'PENDING', owner: { module_id: localModule.module_id, authority: localModule.authority, source: 'module.md' } };
+  if (ruleKind) {
+    const oldText = 'Existing binding rule.';
+    const replacement = ruleKind === 'EXTEND' ? oldText + ' Additional retained detail.' : 'Replacement binding rule.';
+    localProposal.content = replacement;
+    localProposal.rule_update = { kind: ruleKind, rule_id: 'RULE-1', old_text: oldText, replacement_text: replacement,
+      semantic_review: { rule_id: 'RULE-1', kind: ruleKind, source: 'module.md', target_heading: '## Rules',
+        source_baseline_sha256: hash(source), old_sha256: hash(oldText), replacement_sha256: hash(replacement),
+        complete_target: true, other_rules_preserved: true, gate_changes: false, no_duplicate: true,
+        required_check: domainOnly ? 'FAST_CHECK' : 'FULL_CHECK', reviewer: 'fixture-rule-reviewer', evidence_ref: 'review.md#RULE-1',
+        rationale: 'Synthetic local rule only; unchanged independent rules and all gates remain preserved.' } };
+  }
+  const acceptedRuleReview = structuredClone(localProposal.rule_update?.semantic_review ?? null);
+  const verifyRuleReview = request => JSON.stringify(request.review) === JSON.stringify(acceptedRuleReview);
+  const localImpact = { ...impact, owner: { module_id: localModule.module_id, authority: localModule.authority, source: 'module.md' } };
   const decisionStatePath = join(projectRoot, 'decision-events.jsonl');
   const verifyUserDecision = () => true;
   const store = createDecisionStore(decisionStatePath, { verifyUserDecision });
   const localCandidateImpact = { proposal_id: localProposal.id, owner: localImpact.owner,
-    candidates: [], unknowns: [], conflict_check: 'PENDING' };
+    candidates: ruleKind ? [{ id: 'RULE-1', module_id: localModule.module_id, source: 'module.md', anchor: '## Rules' }] : [], unknowns: [], conflict_check: 'PENDING' };
   await store.register({ proposal: localProposal, impact: localCandidateImpact, expectedRevision: 0, idempotencyKey: 'register' });
-  await store.recordReview({ proposalId: localProposal.id, reviews: [], expectedRevision: 1, idempotencyKey: 'review' });
+  await store.recordReview({ proposalId: localProposal.id, reviews: ruleKind ? [{ candidate_id: 'RULE-1',
+    relation: ruleKind === 'EXTEND' ? 'EXTENSION' : 'SUPERSEDES', reviewer: 'fixture-rule-reviewer',
+    evidence_ref: 'review.md#RULE-1', evidence_scope: { proposal_id: localProposal.id, candidate_id: 'RULE-1' },
+    rationale: 'Exact synthetic target and unchanged independent rules reviewed.' }] : [], expectedRevision: 1, idempotencyKey: 'review' });
   const evidence = { reference: 'approval.md#P-1', scope: 'P-1', wording: 'Approve proposal P-1 for specialist source integration.', decided_at: '2026-09-26T12:00:00Z' };
   await store.decide({ proposalId: localProposal.id, action: 'APPROVE', actor: { role: 'USER', id: 'user-1' }, evidence,
     expectedRevision: 2, idempotencyKey: 'approve' });
   const decisionState = await store.read();
   const persistedProposal = decisionState.proposals.get(localProposal.id).proposal;
-  const result = buildSotUpdatePlan(input({ module: localModule, proposal: persistedProposal,
+  const baseSection = '## Rules\nExisting binding rule.\n\n```md\n## Example heading\n```';
+  const ruleReplacement = ruleKind === 'SUPERSEDE'
+    ? '**SUPERSEDED by P-1: RULE-1 (historical, inactive)**\n\nExisting binding rule.\n\n**Active replacement for RULE-1: P-1**\n\nReplacement binding rule.'
+    : localProposal.content;
+  const ruleOptions = ruleKind ? { proposedSection: baseSection.replace('Existing binding rule.', ruleReplacement),
+    conflict: decisionState.proposals.get(localProposal.id).conflict } : {};
+  const buildRequest = input({ ...ruleOptions, verifyRuleReview, module: localModule, proposal: persistedProposal,
     approvedProposal: persistedProposal, impact: localImpact, decisionState, verifyUserDecision,
-    registry: localRegistry, traceability: [{ ...traceability[0], target_ref: 'module.md' }] }));
+    registry: localRegistry, traceability: [{ ...traceability[0], target_ref: 'module.md' }] });
+  const result = buildSotUpdatePlan(buildRequest);
   assert.equal(result.status, 'PREPARED_NOT_APPLIED');
-  return { projectRoot, sourcePath, decisionStatePath: 'decision-events.jsonl', verifyUserDecision, plan: result.plan };
+  return { projectRoot, sourcePath, decisionStatePath: 'decision-events.jsonl', verifyUserDecision, verifyRuleReview, plan: result.plan, persistedProposal, decisionState, buildRequest };
 }
 
 test('applies only after a passing post-validation callback', async t => {
@@ -258,7 +281,7 @@ function crashDuringValidation(fixture) {
   const child = spawnSync(process.execPath, ['--input-type=module', '-e', `
     import { applySotUpdatePlan } from ${JSON.stringify(moduleUrl)};
     const fixture = JSON.parse(process.argv[1]);
-    await applySotUpdatePlan({ ...fixture, verifyUserDecision: () => true,
+    await applySotUpdatePlan({ ...fixture, verifyUserDecision: () => true, verifyRuleReview: () => true,
       validateAfter: async () => process.exit(77) });
     process.exit(78);
   `, JSON.stringify(fixture)], { encoding: 'utf8' });
@@ -266,7 +289,7 @@ function crashDuringValidation(fixture) {
 }
 
 const recoveryArgs = fixture => ({ projectRoot: fixture.projectRoot, source: 'module.md',
-  decisionStatePath: fixture.decisionStatePath, verifyUserDecision: fixture.verifyUserDecision });
+  decisionStatePath: fixture.decisionStatePath, verifyUserDecision: fixture.verifyUserDecision, verifyRuleReview: fixture.verifyRuleReview });
 
 test('durable journal recovers exact bytes after an actual writer process exits before validation', async t => {
   const fixture = await applyFixture(t);
@@ -314,4 +337,106 @@ test('recovery refuses an active writer and unauthenticated approval', async t =
   } });
   assert.equal(result.status, 'ROLLED_BACK');
   await assert.rejects(readFile(`${fixture.sourcePath}.sot-recovery.json`), { code: 'ENOENT' });
+});
+
+
+const fullPostPass = async () => ({ status: 'POST_VALIDATION_PASS', mode: 'FULL_CHECK',
+  audit_output: 'fixture-full-audit.json', checks: [{ name: 'required_check', status: 'PASS' }] });
+
+test('extends exactly one existing rule in place and preserves all unrelated bytes', async t => {
+  const fixture = await applyFixture(t, 'EXTEND');
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: fullPostPass });
+  assert.equal(result.status, 'APPLIED', JSON.stringify(result));
+  const actual = await readFile(fixture.sourcePath, 'utf8');
+  assert.equal(actual, source.replace('Existing binding rule.', 'Existing binding rule. Additional retained detail.'));
+  assert.equal(actual.split('Existing binding rule.').length - 1, 1);
+  assert.equal(fixture.plan.operation, 'EXTEND_EXISTING_RULE');
+});
+
+test('superseding retains exact old rule with visible inactive marker and approved active replacement', async t => {
+  const fixture = await applyFixture(t, 'SUPERSEDE');
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: fullPostPass });
+  assert.equal(result.status, 'APPLIED', JSON.stringify(result));
+  const actual = await readFile(fixture.sourcePath, 'utf8');
+  assert.ok(actual.includes('**SUPERSEDED by P-1: RULE-1 (historical, inactive)**\r\n\r\nExisting binding rule.'));
+  assert.ok(actual.includes('**Active replacement for RULE-1: P-1**\r\n\r\nReplacement binding rule.'));
+  assert.equal(actual.split('Existing binding rule.').length - 1, 1);
+  assert.ok(actual.endsWith('## Other\r\nKeep me.\r\n'));
+  assert.equal(fixture.plan.operation, 'MARK_SUPERSEDED_RULE');
+});
+
+test('rule plan tampering and missing authenticated semantic review block before writing', async t => {
+  for (const kind of ['EXTEND', 'SUPERSEDE']) {
+    const fixture = await applyFixture(t, kind);
+    const missing = await applySotUpdatePlan({ ...fixture, verifyRuleReview: undefined, validateAfter: fullPostPass });
+    assert.equal(missing.reason, 'AUTHENTICATED_RULE_REVIEW_REQUIRED');
+    fixture.plan.rule_update.old_text = 'A different target';
+    const tampered = await applySotUpdatePlan({ ...fixture, validateAfter: fullPostPass });
+    assert.equal(tampered.reason, 'RULE_UPDATE_PLAN_CHANGED');
+    assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+  }
+});
+
+test('governance semantic rule changes cannot pass a FAST-only postcheck', async t => {
+  const fixture = await applyFixture(t, 'EXTEND');
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => ({
+    status: 'POST_VALIDATION_PASS', mode: 'FAST_CHECK', audit_output: 'fast.json', checks: [{ name: 'required_check', status: 'PASS' }] }) });
+  assert.equal(result.status, 'ROLLED_BACK');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+});
+
+test('failed semantic postcheck rolls superseding back to exact original bytes', async t => {
+  const fixture = await applyFixture(t, 'SUPERSEDE');
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => ({ status: 'POST_VALIDATION_BLOCKED',
+    mode: 'FULL_CHECK', audit_output: 'full.json', checks: [{ name: 'required_check', status: 'BLOCKED' }] }) });
+  assert.equal(result.status, 'ROLLED_BACK');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+});
+
+test('superseding crash recovery authenticates bound review and restores the old source exactly', async t => {
+  const fixture = await applyFixture(t, 'SUPERSEDE');
+  crashDuringValidation(fixture);
+  const result = await recoverSotUpdate(recoveryArgs(fixture));
+  assert.equal(result.status, 'RECOVERED', JSON.stringify(result));
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+});
+
+
+test('semantic review cannot authorize gate changes, discard an extension prefix or choose an ambiguous target', async t => {
+  const cases = [
+    { mutate: p => { p.rule_update.semantic_review.gate_changes = true; }, error: 'BOUND_SEMANTIC_RULE_REVIEW_REQUIRED' },
+    { mutate: p => { p.rule_update.semantic_review.required_check = 'FAST_CHECK'; }, error: 'GOVERNANCE_SEMANTIC_FULL_CHECK_REQUIRED' },
+    { mutate: p => { p.content = p.rule_update.replacement_text = 'Different rule.';
+      p.rule_update.semantic_review.replacement_sha256 = hash(p.content); }, error: 'EXTENSION_MUST_PRESERVE_EXISTING_RULE_PREFIX' },
+    { mutate: p => { p.rule_update.old_text = 'binding rule.'; p.rule_update.semantic_review.old_sha256 = hash('binding rule.'); }, error: 'COMPLETE_RULE_LINES_REQUIRED' },
+  ];
+  for (const entry of cases) {
+    const fixture = await applyFixture(t, 'EXTEND');
+    const request = fixture.buildRequest;
+    const edited = structuredClone(request.proposal); entry.mutate(edited);
+    const state = structuredClone(request.decisionState);
+    state.events.at(-1).transition.proposal = edited;
+    const result = buildSotUpdatePlan({ ...request, proposal: edited, approvedProposal: edited,
+      decisionState: state, verifyRuleReview: () => true });
+    assert.equal(result.status, 'UPDATE_BLOCKED');
+    assert.ok(result.errors.some(error => error.includes(entry.error)), JSON.stringify(result));
+  }
+});
+
+test('superseding requires persisted target conflict review rather than only a user approval', async t => {
+  const fixture = await applyFixture(t, 'SUPERSEDE');
+  const request = fixture.buildRequest;
+  const missing = { ...request.decisionState, events: request.decisionState.events.filter(event => event.type !== 'REVIEW') };
+  const result = buildSotUpdatePlan({ ...request, decisionState: missing });
+  assert.equal(result.status, 'UPDATE_BLOCKED');
+  assert.ok(result.errors.includes('PERSISTED_TARGET_CONFLICT_REVIEW_REQUIRED'));
+});
+
+
+test('bounded domain rule extension keeps FAST when its reviewed impact requires no escalation', async t => {
+  const fixture = await applyFixture(t, 'EXTEND', true);
+  assert.equal(fixture.plan.required_check, 'FAST_CHECK');
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => ({
+    status: 'POST_VALIDATION_PASS', mode: 'FAST_CHECK', audit_output: 'fixture-fast.json', checks: [{ name: 'required_check', status: 'PASS' }] }) });
+  assert.equal(result.status, 'APPLIED', JSON.stringify(result));
 });

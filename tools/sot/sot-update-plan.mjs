@@ -66,6 +66,72 @@ function appendApprovedContent(source, heading, content) {
     nextSection: (body + insertion).replace(/\r\n/g, '\n') };
 }
 
+const ruleOperation = proposal => proposal.rule_update?.kind === 'EXTEND' ? 'EXTEND_EXISTING_RULE'
+  : proposal.rule_update?.kind === 'SUPERSEDE' ? 'MARK_SUPERSEDED_RULE' : 'APPEND_ONLY_SECTION_EXTENSION';
+
+function checkedRuleReview(proposal, verifyRuleReview) {
+  const update = proposal.rule_update;
+  if (update == null) return null;
+  const review = update.semantic_review;
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(proposal.id ?? '') || !['EXTEND', 'SUPERSEDE'].includes(update.kind) || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(update.rule_id ?? '')
+      || !text(update.old_text) || !text(update.replacement_text) || update.old_text === update.replacement_text
+      || update.replacement_text !== proposal.content || update.old_text !== update.old_text.trimEnd()
+      || update.replacement_text !== update.replacement_text.trimEnd()) throw new Error('EXACT_RULE_UPDATE_BINDING_REQUIRED');
+  if (review?.rule_id !== update.rule_id || review.kind !== update.kind || review.source !== proposal.owner.source
+      || review.target_heading !== proposal.target_heading || review.source_baseline_sha256 !== proposal.source_baseline_sha256
+      || review.old_sha256 !== sha256(update.old_text) || review.replacement_sha256 !== sha256(update.replacement_text)
+      || review.complete_target !== true || review.other_rules_preserved !== true || review.gate_changes !== false
+      || review.no_duplicate !== true || !['FAST_CHECK', 'FULL_CHECK'].includes(review.required_check)
+      || !text(review.reviewer) || !text(review.evidence_ref) || !text(review.rationale)) throw new Error('BOUND_SEMANTIC_RULE_REVIEW_REQUIRED');
+  if (['sot-architecture', 'consolidated-mandate'].includes(proposal.owner.module_id)
+      && review.required_check !== 'FULL_CHECK') throw new Error('GOVERNANCE_SEMANTIC_FULL_CHECK_REQUIRED');
+  if (typeof verifyRuleReview !== 'function' || verifyRuleReview({ proposal_id: proposal.id,
+    proposal_sha256: decisionProposalHash(proposal), review: structuredClone(review) }) !== true) throw new Error('AUTHENTICATED_RULE_REVIEW_REQUIRED');
+  return review;
+}
+
+function persistedRuleConflict(decisionState, approvalEvent, proposal) {
+  if (proposal.rule_update == null) return null;
+  const event = decisionState.events.filter(item => item.type === 'REVIEW' && item.proposal_id === proposal.id
+    && item.revision < approvalEvent.revision).at(-1);
+  const conflict = event?.conflict;
+  const target = conflict?.relationships?.filter(item => item.candidate_id === proposal.rule_update.rule_id) ?? [];
+  const expected = proposal.rule_update.kind === 'SUPERSEDE' ? 'SUPERSEDES' : 'EXTENSION';
+  if (conflict?.status !== 'CLASSIFIED' || conflict.user_decision_required !== false
+      || conflict.unresolved_candidate_ids?.length !== 0 || conflict.unknown_coverage?.length !== 0
+      || target.length !== 1 || target[0].relation !== expected
+      || conflict.relationships.some(item => item.candidate_id !== proposal.rule_update.rule_id
+        && !['EXTENSION', 'UNRELATED'].includes(item.relation))) throw new Error('PERSISTED_TARGET_CONFLICT_REVIEW_REQUIRED');
+  return conflict;
+}
+
+function rebuildApprovedUpdate(source, proposal) {
+  if (proposal.rule_update == null) return { ...appendApprovedContent(source, proposal.target_heading, proposal.content),
+    operation: 'APPEND_ONLY_SECTION_EXTENSION', required_check: null };
+  const { old_text: oldText, replacement_text: replacement, rule_id: ruleId, kind, semantic_review: review } = proposal.rule_update;
+  const range = locateSection(source, proposal.target_heading);
+  const section = source.slice(range.start, range.end);
+  const localIndex = section.indexOf(oldText);
+  if (localIndex < 0 || source.indexOf(oldText) !== source.lastIndexOf(oldText)) throw new Error('RULE_TARGET_MISSING_OR_AMBIGUOUS');
+  const absoluteIndex = range.start + localIndex;
+  if (/\*\*SUPERSEDED by [^\r\n]+ \(historical, inactive\)\*\*\r?\n\r?\n$/.test(source.slice(0, absoluteIndex))) throw new Error('CANNOT_UPDATE_INACTIVE_HISTORICAL_RULE');
+  const preceding = source[absoluteIndex - 1];
+  const following = source[absoluteIndex + oldText.length];
+  if ((preceding && preceding !== '\n') || (following && following !== '\n' && following !== '\r')) throw new Error('COMPLETE_RULE_LINES_REQUIRED');
+  if (/^(?:#{1,6}\s|`{3,}|~{3,}|<!--|<\/?details)/m.test(oldText)
+      || /^(?:#{1,6}\s|`{3,}|~{3,}|<!--|<\/?details)/m.test(replacement)) throw new Error('RULE_UPDATE_CANNOT_RESTRUCTURE_MARKDOWN');
+  if (source.includes(replacement)) throw new Error('REPLACEMENT_ALREADY_PRESENT');
+  if (kind === 'EXTEND' && !replacement.startsWith(oldText)) throw new Error('EXTENSION_MUST_PRESERVE_EXISTING_RULE_PREFIX');
+  if (!['EXTEND', 'SUPERSEDE'].includes(kind)) throw new Error('UNSUPPORTED_RULE_UPDATE');
+  const eol = section.match(/\r?\n/)?.[0] ?? '\n';
+  const replacementBlock = kind === 'EXTEND' ? replacement
+    : `**SUPERSEDED by ${proposal.id}: ${ruleId} (historical, inactive)**${eol}${eol}${oldText}${eol}${eol}**Active replacement for ${ruleId}: ${proposal.id}**${eol}${eol}${replacement}`;
+  const updated = source.slice(0, absoluteIndex) + replacementBlock + source.slice(absoluteIndex + oldText.length);
+  const nextSection = section.slice(0, localIndex) + replacementBlock + section.slice(localIndex + oldText.length);
+  return { updated, section: section.replace(/\r\n/g, '\n').trimEnd(), nextSection: nextSection.replace(/\r\n/g, '\n').trimEnd(),
+    operation: ruleOperation(proposal), required_check: review.required_check };
+}
+
 const contained = (root, path) => {
   const rel = relative(root, path);
   return !!rel && rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
@@ -91,10 +157,10 @@ async function physicalPaths(projectRoot, path, decisionPath) {
   return { root, source, decision };
 }
 
-/** Build a non-writing, append-only source update preview for a specialist module. */
+/** Build a non-writing exact approved append or reviewed rule-update preview. */
 export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflict,
   coverage, module, currentSource, baselineSha256, targetHeading, proposedSection,
-  traceability, decisionState, verifyUserDecision, registry }) {
+  traceability, decisionState, verifyUserDecision, verifyRuleReview, registry }) {
   const errors = [];
   if (!proposal || proposal.status !== 'APPROVED' || proposal.integration !== 'NOT_STARTED'
       || !text(proposal.id) || !text(proposal.content)) errors.push('APPROVED_NON_INTEGRATED_PROPOSAL_REQUIRED');
@@ -123,8 +189,18 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       || !Array.isArray(conflict?.unresolved_candidate_ids) || conflict.unresolved_candidate_ids.length
       || !Array.isArray(conflict?.unknown_coverage) || conflict.unknown_coverage.length
       || !Array.isArray(conflict?.relationships)
-      || conflict.relationships.some(item => !['EXTENSION', 'UNRELATED'].includes(item?.relation))) {
+      || conflict.relationships.some(item => !['EXTENSION', 'UNRELATED'].includes(item?.relation)
+        && !(proposal?.rule_update?.kind === 'SUPERSEDE' && item?.candidate_id === proposal.rule_update.rule_id && item.relation === 'SUPERSEDES'))) {
     errors.push('CONFLICT_REVIEW_NOT_CLOSED_OR_UNSUPPORTED_RELATION');
+  }
+  if (proposal?.rule_update != null) {
+    try {
+      checkedRuleReview(proposal, verifyRuleReview);
+      if (!isDeepStrictEqual(conflict, persistedRuleConflict(decisionState, approvalEvent, proposal))) throw new Error('PERSISTED_RULE_CONFLICT_MISMATCH');
+    } catch (error) { errors.push(error.message); }
+    const targetReviews = conflict?.relationships?.filter(item => item.candidate_id === proposal.rule_update.rule_id) ?? [];
+    const expectedRelation = proposal.rule_update.kind === 'SUPERSEDE' ? 'SUPERSEDES' : 'EXTENSION';
+    if (targetReviews.length !== 1 || targetReviews[0].relation !== expectedRelation) errors.push('EXACT_TARGET_CONFLICT_REVIEW_REQUIRED');
   }
   if (!coverage || coverage.proposal_id !== proposal?.id || !Array.isArray(coverage.unknowns)
       || coverage.unknowns.length || !Array.isArray(coverage.cross_module_unknowns)
@@ -139,11 +215,11 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
   }
   if (errors.length) return { status: 'UPDATE_BLOCKED', errors, plan: null };
 
-  let section, nextSection, updated;
+  let section, nextSection, updated, operation, required_check;
   try {
     // The section resolver also rejects ambiguous headings.
     extractHeadingSection(currentSource, targetHeading);
-    ({ section, nextSection, updated } = appendApprovedContent(currentSource, targetHeading, proposal.content));
+    ({ section, nextSection, updated, operation, required_check } = rebuildApprovedUpdate(currentSource, proposal));
   } catch (error) {
     return { status: 'UPDATE_BLOCKED', errors: [`SECTION_RESOLUTION_FAILED:${error.message}`], plan: null };
   }
@@ -158,7 +234,7 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       authority: module.authority,
       source: module.source,
       target_heading: targetHeading,
-      operation: 'APPEND_ONLY_SECTION_EXTENSION',
+      operation, required_check, alert: required_check === 'FULL_CHECK' ? '\u26a0 FULL CHECK REQUIRED' : null, rule_update: structuredClone(proposal.rule_update ?? null),
       before_sha256: sha256(currentSource),
       after_sha256: sha256(updated),
       before_section: section,
@@ -188,12 +264,12 @@ async function writeAtomic(path, bytes) {
   }
 }
 
-/** Apply only a fresh prepared specialist-module preview, then rollback on failed validation. */
+/** Apply a fresh approved specialist preview with required review/check gates and exact rollback. */
 export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
-  verifyUserDecision, validateAfter }) {
+  verifyUserDecision, verifyRuleReview, validateAfter }) {
   try { plan = structuredClone(plan); }
   catch { return { status: 'APPLY_BLOCKED', reason: 'INVALID_UPDATE_PLAN' }; }
-  if (!plan || plan.operation !== 'APPEND_ONLY_SECTION_EXTENSION'
+  if (!plan || !['APPEND_ONLY_SECTION_EXTENSION', 'EXTEND_EXISTING_RULE', 'MARK_SUPERSEDED_RULE'].includes(plan.operation)
       || plan.write_performed !== false || plan.module_id === 'scrum-core'
       || plan.source === 'docs/scrum-plan.md') {
     return { status: 'APPLY_BLOCKED', reason: 'INVALID_OR_PROTECTED_UPDATE_PLAN' };
@@ -250,7 +326,12 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
     if (sha256(before) !== plan.before_sha256) return { status: 'APPLY_BLOCKED', reason: 'SOURCE_CHANGED_AFTER_PREVIEW' };
     if (!Buffer.from(before.toString('utf8'), 'utf8').equals(before)) throw new Error('SOURCE_NOT_VALID_UTF8');
     extractHeadingSection(before.toString('utf8'), plan.target_heading);
-    const rebuilt = appendApprovedContent(before.toString('utf8'), plan.target_heading, approvalEvent.transition.proposal.content);
+    const approved = approvalEvent.transition.proposal;
+    checkedRuleReview(approved, verifyRuleReview);
+    persistedRuleConflict(decisionState, approvalEvent, approved);
+    const rebuilt = rebuildApprovedUpdate(before.toString('utf8'), approved);
+    if (rebuilt.operation !== plan.operation || rebuilt.required_check !== (plan.required_check ?? null)
+        || !isDeepStrictEqual(approved.rule_update ?? null, plan.rule_update ?? null)) throw new Error('RULE_UPDATE_PLAN_CHANGED');
     if (rebuilt.updated !== plan.updated_source || rebuilt.section !== plan.before_section
         || rebuilt.nextSection !== plan.after_section) throw new Error('PREVIEW_NOT_EXACT_APPROVED_APPEND');
     await physicalPaths(projectRoot, path, decisionPath);
@@ -275,7 +356,11 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
     let validation;
     try { validation = await validateAfter({ plan: structuredClone(plan), source: current.toString('utf8'), source_path: path }); }
     catch (error) { validation = { status: 'POST_VALIDATION_BLOCKED', reason: error instanceof Error ? error.message : String(error) }; }
-    if (validation?.status === 'POST_VALIDATION_PASS'
+    const requiredModePassed = !rebuilt.required_check
+      || (validation?.mode === 'FULL_CHECK')
+      || (rebuilt.required_check === 'FAST_CHECK' && validation?.mode === 'FAST_CHECK');
+    const boundRuleCheckPassed = !rebuilt.required_check || validation?.checks?.some(check => check.name === 'required_check' && check.status === 'PASS');
+    if (requiredModePassed && boundRuleCheckPassed && validation?.status === 'POST_VALIDATION_PASS'
         && text(validation.audit_output) && Array.isArray(validation.checks)
         && validation.checks.length > 0 && validation.checks.every(check => check?.status === 'PASS')) {
       const validatedBytes = await readFile(path);
@@ -330,7 +415,7 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
 
 
 /** Recover an interrupted local write. A concurrent/unknown state is never overwritten. */
-export async function recoverSotUpdate({ projectRoot, source, decisionStatePath, verifyUserDecision }) {
+export async function recoverSotUpdate({ projectRoot, source, decisionStatePath, verifyUserDecision, verifyRuleReview }) {
   let lock;
   let lockPath;
   try {
@@ -359,7 +444,8 @@ export async function recoverSotUpdate({ projectRoot, source, decisionStatePath,
     if (sha256(before) !== proposal.source_baseline_sha256
         || !Buffer.from(before.toString('utf8'), 'utf8').equals(before)) throw new Error('RECOVERY_BASELINE_INVALID');
     extractHeadingSection(before.toString('utf8'), proposal.target_heading);
-    const after = appendApprovedContent(before.toString('utf8'), proposal.target_heading, proposal.content).updated;
+    checkedRuleReview(proposal, verifyRuleReview);
+    const after = rebuildApprovedUpdate(before.toString('utf8'), proposal).updated;
     if (sha256(after) !== journal.after_sha256) throw new Error('RECOVERY_AFTER_HASH_INVALID');
     lockPath = `${path}.sot-update.lock`;
     try { lock = await open(lockPath, 'wx'); }
