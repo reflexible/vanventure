@@ -90,8 +90,8 @@ Impact-Suche ohne belegte Bestandsregeln unvollständig bleibt.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 195 · Done 112 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 83 (einschließlich Ready und Blocked) · Progress 57,4 %.
+**Counter:** Total 196 · Done 117 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 79 (einschließlich Ready und Blocked) · Progress 59,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -316,11 +316,14 @@ Change
 - [ ] TODO – WI-SOT-13-05 · neue vs. bestehende Regel vergleichen
 - [ ] READY – WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
-- [ ] TODO – WI-SOT-14-01 · Duplikate erkennen
-- [ ] TODO – WI-SOT-14-02 · widersprüchliche Regeln erkennen
-- [ ] TODO – WI-SOT-14-03 · Superseding erkennen
-- [ ] TODO – WI-SOT-14-04 · Erweiterung erkennen
-- [ ] TODO – WI-SOT-14-05 · Nutzerentscheidung nur bei echtem Konflikt erzeugen
+- [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
+- [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~
+- [x] ~~WI-SOT-14-03 · Superseding erkennen~~
+- [x] ~~WI-SOT-14-04 · Erweiterung erkennen~~
+- [x] ~~WI-SOT-14-05 · Nutzerentscheidung nur bei echtem Konflikt erzeugen~~
+- [ ] TODO – WI-SOT-14-06 · Review-Evidenz und Konfliktentscheidung im gemeinsamen Governance-Ablauf verbindlich speichern und mit Intake-/Regelkatalog-Abdeckung verbinden
+  Texttreffer allein werden nicht als fachliche Beziehung gewertet; die
+  lokale Engine benötigt explizite Review-Eingaben und ändert keine Regel.
 #### ST-SOT-15 – PHASE 15: APPROVAL FLOW
 - [ ] TODO – WI-SOT-15-01 · IDEA
 - [ ] TODO – WI-SOT-15-02 · PROPOSED
