@@ -1,7 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { buildSotUpdatePlan } from './sot-update-plan.mjs';
+import { mkdtemp, readFile, writeFile, rm, open } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { applySotUpdatePlan, buildSotUpdatePlan } from './sot-update-plan.mjs';
 
 const hash = source => createHash('sha256').update(source).digest('hex');
 const source = '# Module\r\n\r\n## Rules\r\nExisting binding rule.\r\n\r\n```md\r\n## Example heading\r\n```\r\n\r\n## Other\r\nKeep me.\r\n';
@@ -60,4 +63,54 @@ test('requires traceability to the same proposal and authoritative file', () => 
   const result = buildSotUpdatePlan(input({ traceability: [{ ...traceability[0], proposal_id: 'P-2' }] }));
   assert.equal(result.status, 'UPDATE_BLOCKED');
   assert.ok(result.errors.includes('PROPOSAL_TO_SOURCE_TRACEABILITY_REQUIRED'));
+});
+
+async function applyFixture(t) {
+  const projectRoot = await mkdtemp(join(tmpdir(), 'sot-update-'));
+  t.after(() => rm(projectRoot, { recursive: true, force: true }));
+  const sourcePath = join(projectRoot, 'module.md');
+  await writeFile(sourcePath, source);
+  const localModule = { ...module, source: 'module.md' };
+  const localProposal = { ...proposal, owner: { ...proposal.owner, source: 'module.md' } };
+  const localApproval = { ...approvedProposal, owner: { ...approvedProposal.owner, source: 'module.md' } };
+  const localImpact = { ...impact, owner: { ...impact.owner, source: 'module.md' } };
+  const result = buildSotUpdatePlan(input({ module: localModule, proposal: localProposal,
+    approvedProposal: localApproval, impact: localImpact,
+    traceability: [{ ...traceability[0], target_ref: 'module.md' }] }));
+  assert.equal(result.status, 'PREPARED_NOT_APPLIED');
+  return { projectRoot, sourcePath, plan: result.plan };
+}
+
+test('applies only after a passing post-validation callback', async t => {
+  const { projectRoot, sourcePath, plan } = await applyFixture(t);
+  const result = await applySotUpdatePlan({ plan, projectRoot,
+    validateAfter: async ({ source: updated }) => {
+      assert.equal(hash(updated), plan.after_sha256);
+      return { status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] };
+    } });
+  assert.equal(result.status, 'APPLIED');
+  assert.equal(hash(await readFile(sourcePath)), plan.after_sha256);
+});
+
+test('restores exact original bytes when post-validation fails', async t => {
+  const { projectRoot, sourcePath, plan } = await applyFixture(t);
+  const result = await applySotUpdatePlan({ plan, projectRoot,
+    validateAfter: async () => ({ status: 'POST_VALIDATION_BLOCKED', reason: 'Contract failure', checks: [{ status: 'BLOCKED' }] }) });
+  assert.equal(result.status, 'ROLLED_BACK');
+  assert.equal(result.restored_sha256, plan.before_sha256);
+  assert.equal(hash(await readFile(sourcePath)), plan.before_sha256);
+});
+
+test('stale source and active update lock block before any write', async t => {
+  const { projectRoot, sourcePath, plan } = await applyFixture(t);
+  await writeFile(sourcePath, 'concurrent change');
+  const stale = await applySotUpdatePlan({ plan, projectRoot, validateAfter: async () => ({ status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] }) });
+  assert.equal(stale.reason, 'SOURCE_CHANGED_AFTER_PREVIEW');
+  await writeFile(sourcePath, source);
+  const lock = await open(`${sourcePath}.sot-update.lock`, 'wx');
+  try {
+    const locked = await applySotUpdatePlan({ plan, projectRoot, validateAfter: async () => ({ status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] }) });
+    assert.equal(locked.reason, 'UPDATE_LOCK_EXISTS');
+  } finally { await lock.close(); await rm(`${sourcePath}.sot-update.lock`, { force: true }); }
+  assert.equal(hash(await readFile(sourcePath)), plan.before_sha256);
 });

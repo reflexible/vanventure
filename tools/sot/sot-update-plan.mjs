@@ -1,4 +1,7 @@
 import { createHash } from 'node:crypto';
+import { open, readFile, rename, unlink } from 'node:fs/promises';
+import { randomUUID } from 'node:crypto';
+import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { extractHeadingSection } from './rule-catalogue.mjs';
 
 const text = value => typeof value === 'string' && value.trim().length > 0;
@@ -103,4 +106,98 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       write_performed: false,
     },
   };
+}
+
+async function writeAtomic(path, bytes) {
+  const temp = `${path}.${randomUUID()}.tmp`;
+  let handle;
+  try {
+    handle = await open(temp, 'wx');
+    await handle.writeFile(bytes);
+    await handle.sync();
+    await handle.close();
+    handle = null;
+    await rename(temp, path);
+  } finally {
+    if (handle) await handle.close().catch(() => {});
+    await unlink(temp).catch(error => { if (error.code !== 'ENOENT') throw error; });
+  }
+}
+
+/** Apply only a fresh prepared specialist-module preview, then rollback on failed validation. */
+export async function applySotUpdatePlan({ plan, projectRoot, validateAfter }) {
+  if (!plan || plan.operation !== 'APPEND_ONLY_SECTION_EXTENSION'
+      || plan.write_performed !== false || plan.module_id === 'scrum-core'
+      || plan.source === 'docs/scrum-plan.md') {
+    return { status: 'APPLY_BLOCKED', reason: 'INVALID_OR_PROTECTED_UPDATE_PLAN' };
+  }
+  if (!projectRoot || !isAbsolute(projectRoot) || typeof validateAfter !== 'function') {
+    return { status: 'APPLY_BLOCKED', reason: 'ABSOLUTE_ROOT_AND_POST_VALIDATOR_REQUIRED' };
+  }
+  const path = resolve(projectRoot, plan.source);
+  const rel = relative(projectRoot, path);
+  if (!plan.source || isAbsolute(plan.source) || plan.source.includes('\\')
+      || !rel || rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
+    return { status: 'APPLY_BLOCKED', reason: 'UNSAFE_SOURCE_PATH' };
+  }
+  const lockPath = `${path}.sot-update.lock`;
+  let lock;
+  try { lock = await open(lockPath, 'wx'); }
+  catch (error) { return { status: 'APPLY_BLOCKED', reason: error.code === 'EEXIST' ? 'UPDATE_LOCK_EXISTS' : error.message }; }
+  let before;
+  let after;
+  let wrote = false;
+  try {
+    before = await readFile(path);
+    if (sha256(before) !== plan.before_sha256) return { status: 'APPLY_BLOCKED', reason: 'SOURCE_CHANGED_AFTER_PREVIEW' };
+    after = Buffer.from(plan.updated_source, 'utf8');
+    if (sha256(after) !== plan.after_sha256) return { status: 'APPLY_BLOCKED', reason: 'PREVIEW_HASH_MISMATCH' };
+    await writeAtomic(path, after);
+    wrote = true;
+    const current = await readFile(path);
+    if (sha256(current) !== plan.after_sha256) throw new Error('WRITTEN_SOURCE_HASH_MISMATCH');
+    let validation;
+    try { validation = await validateAfter({ plan, source: current.toString('utf8'), source_path: path }); }
+    catch (error) { validation = { status: 'POST_VALIDATION_BLOCKED', reason: error instanceof Error ? error.message : String(error) }; }
+    if (validation?.status === 'POST_VALIDATION_PASS'
+        && text(validation.audit_output) && Array.isArray(validation.checks)
+        && validation.checks.length > 0 && validation.checks.every(check => check?.status === 'PASS')) {
+      return { status: 'APPLIED', proposal_id: plan.proposal_id, source: plan.source,
+        before_sha256: plan.before_sha256, after_sha256: plan.after_sha256,
+        post_validation: validation };
+    }
+    const live = await readFile(path);
+    if (sha256(live) !== plan.after_sha256) {
+      return { status: 'ROLLBACK_BLOCKED', reason: 'SOURCE_CHANGED_AFTER_FAILED_VALIDATION',
+        expected_sha256: plan.after_sha256, actual_sha256: sha256(live), post_validation: validation };
+    }
+    await writeAtomic(path, before);
+    const restored = await readFile(path);
+    if (sha256(restored) !== plan.before_sha256) {
+      return { status: 'ROLLBACK_FAILED', reason: 'RESTORED_SOURCE_HASH_MISMATCH', post_validation: validation };
+    }
+    wrote = false;
+    return { status: 'ROLLED_BACK', reason: validation?.reason ?? 'POST_VALIDATION_FAILED',
+      source: plan.source, restored_sha256: sha256(restored), post_validation: validation };
+  } catch (error) {
+    if (wrote && before) {
+      try {
+        const live = await readFile(path);
+        if (sha256(live) === plan.after_sha256) {
+          await writeAtomic(path, before);
+          const restored = await readFile(path);
+          if (sha256(restored) === plan.before_sha256) wrote = false;
+          else return { status: 'ROLLBACK_FAILED', reason: 'RESTORED_SOURCE_HASH_MISMATCH', error: error.message };
+        } else {
+          return { status: 'ROLLBACK_BLOCKED', reason: 'SOURCE_CHANGED_DURING_APPLY', error: error.message };
+        }
+      } catch (rollbackError) {
+        return { status: 'ROLLBACK_FAILED', reason: rollbackError.message, error: error.message };
+      }
+    }
+    return { status: 'APPLY_BLOCKED', reason: error instanceof Error ? error.message : String(error) };
+  } finally {
+    await lock.close().catch(() => {});
+    await unlink(lockPath).catch(() => {});
+  }
 }

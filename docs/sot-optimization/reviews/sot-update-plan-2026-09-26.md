@@ -1,23 +1,28 @@
-# Prüfgrenze: SoT-Update-Vorschau
+# Prüfgrenze: kontrollierter SoT-Update-Slice
 
-Stand: 26.09.2026 · vorbereitender Teil von `ST-SOT-16`.
+Stand: 26.09.2026 · Teil von `ST-SOT-16`.
 
-`tools/sot/sot-update-plan.mjs` erstellt ausschließlich eine nicht schreibende
-Vorschau. Sie verlangt eine APPROVED-Vorschlagskopie, die im Modulregister
-benannte Quelle, passende Impact-/Conflict-/Coverage-Prüfungen, einen aktuellen
-SHA-256-Stand, Traceability und den exakten Zielabschnitt. Fehlende Freigabe,
-Unknowns, ungelöste Konflikte oder ein veralteter Quellenhash blockieren.
+`tools/sot/sot-update-plan.mjs` erstellt eine nicht schreibende Vorschau. Sie
+verlangt eine APPROVED-Vorschlagskopie, die im Modulregister benannte Quelle,
+passende Impact-/Conflict-/Coverage-Prüfungen, den aktuellen SHA-256-Stand,
+Traceability und den exakten Zielabschnitt. Fehlende Freigabe, Unknowns,
+ungelöste Konflikte oder ein veralteter Quellenhash blockieren.
 
-Die Vorschau erlaubt vorerst nur eine additive Abschnittserweiterung und erhält
-den vorhandenen Abschnittsinhalt exakt. Den Scrum-Core weist dieser Pfad mit
-einem eigenen Fehler zurück. Die Datei wird nicht geschrieben; eine erfolgreiche
-Vorschau meldet `PREPARED_NOT_APPLIED`.
+`applySotUpdatePlan` schreibt ausschließlich einen unveränderten, vorbereiteten
+append-only Abschnitt in ein Fachmodul. Es prüft unmittelbar vorher den
+Quellenhash, sperrt parallele lokale Updates, erhält CRLF/LF und verlangt einen
+bestandenen Post-Validation-Bericht mit Ergebnisdatei. Scheitert die Prüfung,
+stellt die Funktion die Originalbytes wieder her. Wenn sich die Datei während
+des fehlgeschlagenen Checks geändert hat, überschreibt der Rollback diese
+Änderung nicht, sondern meldet `ROLLBACK_BLOCKED`. Der Scrum-Core wird gesperrt.
 
-Verifikation: `node --test tools/sot/sot-update-plan.test.mjs` — 5/5 bestanden.
-Abgedeckt sind fehlende/ungültige Freigabe, Unknowns, Konflikte, veralteter Hash,
-Core-Sperre, Regelbewahrung, Traceability und CRLF-Erhalt.
+Verifikation: `node --test tools/sot/sot-update-plan.test.mjs` — 8/8 bestanden.
+Die Tests decken Freigabe-/Unknown-/Konflikt-/Hash-Gates, Core-Sperre,
+Regelbewahrung, Traceability, CRLF, erfolgreiche Anwendung, exakten Rollback,
+veraltete Quelle und aktive Sperre ab.
 
-**Offen:** authentifizierte Freigabe beim Lesen erneut prüfen, tatsächlichen
-atomaren Schreibvorgang und Rollback integrieren, Erweiterung/Superseding
-semantisch modellieren und danach `WI-SOT-17` Post-Validation ausführen. Das
-SoT-Update ist damit noch nicht anwendbar und kein Item von ST-SOT-16 erledigt.
+**Offen:** Die Authentizität der gespeicherten Nutzerentscheidung muss am
+Anwendungspunkt erneut verifiziert werden. Semantische Erweiterung und
+Superseding, Dependency-/Traceability-Updates und fachliche Post-Validation
+bleiben vom konkreten Aufrufer abhängig. In diesem Slice wurde keine
+Projektquelle geändert. `ST-SOT-16` bleibt offen.
