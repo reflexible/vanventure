@@ -82,7 +82,7 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-18-03`, `WI-SOT-07-10`. **Active Workers:** 1.
+**Current Work Items:** `WI-SOT-18-03`, `WI-SOT-07-10`, `WI-SOT-16-02`. **Active Workers:** 3.
 Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
@@ -93,7 +93,7 @@ gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 133 · In Progress 2 · Ready 0 · Blocked 1 ·
+**Counter:** Total 198 · Done 133 · In Progress 3 · Ready 0 · Blocked 1 ·
 Open 65 (einschließlich Ready und Blocked) · Progress 67,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -230,6 +230,10 @@ FAST CHECK ist der Default für normale Änderungen.
 - [x] ~~WI-SOT-07-08 · git diff --check~~
 - [x] ~~WI-SOT-07-09 · Ergebnis dokumentieren~~
 - [ ] IN_PROGRESS – WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben
+  Gepflegte lokale Prüfprofile sind an FAST und den Auditpfad angeschlossen.
+  Elf Adapter-/Integrationstests bestanden; fehlende Analytics-Abdeckung bleibt
+  BLOCKED. Quellengebundene Trace-Zuordnung und semantische FULL-Prüfer folgen.
+  [Prüfprofil-Nachweis](../sot-optimization/reviews/project-check-profiles-2026-09-26.md).
 Ergebnis:
 FAST_CHECK_PASS
 oder
@@ -364,7 +368,7 @@ Change
   [Evidenzadapter](../sot-optimization/reviews/user-decision-evidence-2026-09-26.md).
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [x] ~~WI-SOT-16-01 · autoritative Quelle aktualisieren~~
-- [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
+- [ ] IN_PROGRESS – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren

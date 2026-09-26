@@ -88,3 +88,23 @@ test('untracked or missing path cannot be certified by git diff --check', async 
   assert.equal(result.result, 'FAST_CHECK_BLOCKED');
   assert.ok(result.failures.some(error => error.startsWith('git_diff_check:')));
 });
+
+test('maintained profiles execute real scoped project checks and retain missing analytics coverage', async () => {
+  const input = await fixture('cms-content');
+  const result = await runFastCheck({ ...input, test_profiles: 'maintained' });
+  const checks = result.checks.find(check => check.name === 'relevant_tests');
+  assert.match(checks.detail, /cms-persistence-local/);
+  assert.match(checks.detail, /LOCAL_PROFILE_PASS/);
+  const missing = await runFastCheck({ ...await fixture('analytics'), test_profiles: 'maintained' });
+  assert.equal(missing.result, 'FAST_CHECK_BLOCKED');
+  assert.match(missing.checks.find(check => check.name === 'maintained_test_profiles').detail, /runtime checker/);
+});
+
+test('maintained profile coverage cannot be replaced by caller-supplied successful commands', async () => {
+  const result = await runFastCheck({ ...await fixture(), test_profiles: 'maintained', test_commands: [
+    { id: 'fake', covers: ['analytics'], ref: 'tools/sot/contracts.test.mjs', command: process.execPath,
+      args: ['-e', 'process.exit(0)', 'tools/sot/contracts.test.mjs'] },
+  ] });
+  assert.equal(result.result, 'FAST_CHECK_BLOCKED');
+  assert.match(result.failures.join('\n'), /without caller-supplied/);
+});

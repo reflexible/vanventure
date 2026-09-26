@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 32,
+  "revision": 34,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -614,6 +614,22 @@
       "review": null,
       "integration": null,
       "blocked_by": null
+    },
+    "WI-SOT-16-02": {
+      "work_item_id": "WI-SOT-16-02",
+      "execution_state": "In Progress",
+      "assigned_agent": "/root/write_boundary",
+      "claimed_at": "2026-09-26T15:27:25.712Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/source-rule-update-2026-09-26.md",
+        "tools/sot/sot-update-plan.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": null,
+      "review": null,
+      "integration": null,
+      "blocked_by": null
     }
   },
   "history": [
@@ -929,6 +945,26 @@
       "event": "START",
       "work_item_id": "WI-SOT-07-10",
       "actor": "/root/coverage_path"
+    },
+    {
+      "event_id": "5a07992a-70c6-420b-ae7d-921b0d9ec46c",
+      "at": "2026-09-26T15:27:25.712Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-16-02",
+      "actor": "/root/write_boundary",
+      "write_scope": [
+        "docs/sot-optimization/reviews/source-rule-update-2026-09-26.md",
+        "tools/sot/sot-update-plan.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "d30c6808-9711-4bf9-9495-3768e27f7ff6",
+      "at": "2026-09-26T15:27:25.720Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-16-02",
+      "actor": "/root/write_boundary"
     }
   ]
 }

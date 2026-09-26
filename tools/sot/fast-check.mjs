@@ -6,6 +6,7 @@ import { validateRegistry } from './module-registry.mjs';
 import { validateContracts } from './contracts.mjs';
 import { validateDependencyGraph } from './dependency-graph.mjs';
 import { assessImpact } from './impact.mjs';
+import { localCheckEnvironment, projectFastCheckCommands } from './project-check-profiles.mjs';
 
 const sorted = values => [...new Set(values)].sort();
 const text = value => typeof value === 'string' && value.trim().length > 0;
@@ -23,7 +24,8 @@ async function fileExists(root, path) {
 }
 
 function run(command, args, root, timeoutMs) {
-  const result = spawnSync(command, args, { cwd: root, encoding: 'utf8', timeout: timeoutMs, maxBuffer: 2 * 1024 * 1024 });
+  const result = spawnSync(command, args, { cwd: root, encoding: 'utf8', timeout: timeoutMs, maxBuffer: 2 * 1024 * 1024,
+    shell: false, windowsHide: true, env: localCheckEnvironment() });
   return {
     command: [command, ...args],
     exit_code: result.status,
@@ -71,6 +73,7 @@ export async function runFastCheck({
   change, delta, impact, registry, contracts, graph, projectRoot,
   traceability_records: traceRecords = [], test_commands: testCommands = [],
   changed_paths: changedPaths = [], timeout_ms: timeoutMs = 30000,
+  test_profiles: testProfiles,
 }) {
   const failures = [];
   const checks = [];
@@ -146,6 +149,18 @@ export async function runFastCheck({
   record('traceability', traceErrors.length === 0, workItems.length ? `work_items=${workItems.join(',')}; errors=${traceErrors.join('; ')}` : 'No work items in impact scope.');
   const testResults = [];
   const covered = new Set();
+  if (testProfiles !== undefined) {
+    if (testProfiles !== 'maintained' || testCommands.length) {
+      record('maintained_test_profiles', false, 'Use maintained profiles without caller-supplied test commands.');
+      testCommands = [];
+    } else {
+      const selection = projectFastCheckCommands(affected);
+      record('maintained_test_profiles', selection.unresolved.length === 0,
+        JSON.stringify({ profiles: selection.profiles.map(profile => ({ id: profile.id, scope: profile.scope,
+          remaining: profile.remaining })), unresolved: selection.unresolved, complete_semantic_coverage: false }));
+      testCommands = selection.test_commands;
+    }
+  }
   for (const test of testCommands) {
     if (!text(test?.id) || !text(test?.command) || !Array.isArray(test.args)
       || !Array.isArray(test.covers) || test.args.some(arg => typeof arg !== 'string')
