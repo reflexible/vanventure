@@ -88,8 +88,8 @@ und spätere Produktprüfung bleiben offen.
 impact-begrenzte FULL-CHECK-Engine. **Parallel Candidates:** FAST und FULL
 können auf der geprüften Impact-Schnittstelle in disjunkten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 190 · Done 71 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 119 (einschließlich Ready und Blocked) · Progress 37,4 %.
+**Counter:** Total 191 · Done 79 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 112 (einschließlich Ready und Blocked) · Progress 41,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -248,14 +248,15 @@ Eskalationsmengen gelten kumulativ; deckungsgleiche Fälle werden dedupliziert.
 - neuem Major Feature oder globaler Regel
 - Konflikt mit bereits aktiver Arbeit
 - SoT-Restrukturierung oder sonstiger Änderung mit hohem Impact
-- [ ] TODO – WI-SOT-08-01 · automatische Eskalationsregeln implementieren
-- [ ] TODO – WI-SOT-08-02 · ⚠ FULL CHECK REQUIRED Status implementieren
-- [ ] TODO – WI-SOT-08-03 · Grund ausgeben
-- [ ] TODO – WI-SOT-08-04 · betroffene Module ausgeben
-- [ ] TODO – WI-SOT-08-05 · Work Items ausgeben
-- [ ] TODO – WI-SOT-08-06 · laufende Worker ausgeben
-- [ ] TODO – WI-SOT-08-07 · Prüfungsumfang automatisch begrenzen
-- [ ] TODO – WI-SOT-08-08 · impact-basierten Full Check implementieren
+- [x] ~~WI-SOT-08-01 · automatische Eskalationsregeln implementieren~~
+- [x] ~~WI-SOT-08-02 · ⚠ FULL CHECK REQUIRED Status implementieren~~
+- [x] ~~WI-SOT-08-03 · Grund ausgeben~~
+- [x] ~~WI-SOT-08-04 · betroffene Module ausgeben~~
+- [x] ~~WI-SOT-08-05 · Work Items ausgeben~~
+- [x] ~~WI-SOT-08-06 · laufende Worker ausgeben~~
+- [x] ~~WI-SOT-08-07 · Prüfungsumfang automatisch begrenzen~~
+- [x] ~~WI-SOT-08-08 · impact-basierten Full Check implementieren~~
+- [ ] TODO – WI-SOT-08-09 · konkrete Projektprüfer und ihre Evidenz an den Orchestrator anbinden; die Engine blockiert bei fehlenden Prüfern
 Auch ein FULL CHECK darf nicht automatisch die alte komplette Scrum-Migration wiederholen.
 #### ST-SOT-09 – PHASE 9: BASELINE SYSTEM
 Für relevante Module:
