@@ -5,13 +5,13 @@ Operational checkpoint only. The authoritative backlog is
 
 Current: `WI-SOT-21-06`
 State: `TODO`
-Last Done: `WI-SOT-21-05`
-Last Commit: `9032d1e`
+Last Done: `WI-SOT-21-06`
+Last Commit: `0c13a91`
 
 Progress:
-- Done: 158
+- Done: 159
 - Total: 205
-- Open: 47
+- Open: 46
 - Blocked: 2
 - Recovery: none
 

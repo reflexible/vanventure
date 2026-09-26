@@ -90,8 +90,8 @@ Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung u
 **Parallel Candidates:**
 `WI-SOT-21-04` und `WI-SOT-20-10` können mit getrennten Scopes vorbereitet werden; Worker-Scopes haben Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 158 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 47 (einschließlich Ready und Blocked) · Progress 77,1 %.
+**Counter:** Total 205 · Done 159 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 46 (einschließlich Ready und Blocked) · Progress 77,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -457,7 +457,7 @@ Technisch verhindern:
   Harte transitive Abhängigkeiten zwischen parallelen Work Items werden als erforderliche Reihenfolge abgeleitet. [FAST-CHECK](../sot-optimization/reviews/dependency-conflicts-fast-check-2026-09-26.md).
 - [x] ~~WI-SOT-21-04 · Worker-Scope definieren~~
 - [x] ~~WI-SOT-21-05 · erlaubte Dateien definieren~~
-- [ ] TODO – WI-SOT-21-06 · verbotene Dateien definieren
+- [x] ~~WI-SOT-21-06 · verbotene Dateien definieren~~
 - [ ] TODO – WI-SOT-21-07 · Merge-Reihenfolge definieren
 #### ST-SOT-22 – PHASE 22: CROSS-CHAT / HANDOVER
 - [ ] TODO – WI-SOT-22-01 · Chat-Handover-Modell
