@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und lesender Git-Preflight lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und geschützter Git-Preflight lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-02` · fremde Änderungen gegen den Preflight-Snapshot abgrenzen und schützen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-03` · Work-Item-Schreibbereiche vor dem Slice explizit trennen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 185 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 20 (einschließlich Ready und Blocked) · Progress 90,2 %.
+**Counter:** Total 205 · Done 186 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 19 (einschließlich Ready und Blocked) · Progress 90,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -616,7 +616,10 @@ wenn sinnvoll.
   Der lesende Snapshot erfasst Branch, HEAD sowie gestagte, lokale und
   untracked Einträge ohne Arbeitsbaumänderung; die vollständige Pfadliste ist
   nur über `--json` abrufbar. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-preflight-2026-09-26.md).
-- [ ] TODO – WI-SOT-30-02 · fremde Änderungen respektieren
+- [x] ~~WI-SOT-30-02 · fremde Änderungen respektieren~~
+  Der Guard schützt jeden beim Preflight vorhandenen Eintrag: Überlappende
+  Schreibbereiche, verschwundene oder im Status veränderte Fremdarbeit
+  blockieren ohne automatische Bereinigung oder Übernahme. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-foreign-change-guard-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-03 · Work Items sauber trennen
 - [ ] TODO – WI-SOT-30-04 · kleine nachvollziehbare Commits
 - [ ] TODO – WI-SOT-30-05 · Work-Item-ID im Commit
