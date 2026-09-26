@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf und exakte Recovery verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery und sichtbare SUPERSEDE-Markierung verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-16-03` · ersetzte Regel im bestehenden SUPERSEDE-Pfad sichtbar markieren.
+**NEXT RECOMMENDATION:** `WI-SOT-16-04` · Dependencies im etablierten Updatepfad aktualisieren.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 199 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 6 (einschließlich Ready und Blocked) · Progress 97,1 %.
+**Counter:** Total 205 · Done 200 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 5 (einschließlich Ready und Blocked) · Progress 97,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -374,7 +374,10 @@ Change
 - [x] ~~WI-SOT-16-01 · autoritative Quelle aktualisieren~~
 - [x] ~~WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren~~
   Authentisierte EXTEND-/SUPERSEDE-Reviews erzwingen den zugehörigen FAST-/FULL-Modus; der Nachweis ist an den Projekt-Auditpfad gebunden.
-- [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
+- [x] ~~WI-SOT-16-03 · ersetzte Regel markieren~~
+  Der SUPERSEDE-Pfad erhält den bisherigen Regeltext sichtbar als historisch
+  und inaktiv und kennzeichnet die authentifiziert geprüfte Ersatzregel aktiv.
+  [Lokaler Abnahmebericht](../abnahmeberichte/sot-superseded-rule-marker-2026-09-26.md).
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
   **Nachweisstand vor dem Projektpilot:** Eine freigabe- und hashgeprüfte
