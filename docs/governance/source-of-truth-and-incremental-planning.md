@@ -82,7 +82,7 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`, `WI-SOT-04-10`. **Active Workers:** 3.
+**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`, `WI-SOT-04-10`, `WI-SOT-21-01`. **Active Workers:** 3.
 Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
@@ -93,8 +93,8 @@ gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 139 · In Progress 3 · Ready 0 · Blocked 1 ·
-Open 66 (einschließlich Ready und Blocked) · Progress 67,8 %.
+**Counter:** Total 205 · Done 143 · In Progress 4 · Ready 0 · Blocked 1 ·
+Open 62 (einschließlich Ready und Blocked) · Progress 69,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -444,7 +444,7 @@ Technisch verhindern:
   Claims, Übergabe und Done-Gates sind lokal transaktional geprüft; Queue,
   Dependency-Freigabe und reale Cross-Chat-Nutzung bleiben offen.
 #### ST-SOT-21 – PHASE 21: PARALLEL EXECUTION ENGINE
-- [ ] TODO – WI-SOT-21-01 · parallelisierbare Work Items erkennen
+- [ ] IN_PROGRESS – WI-SOT-21-01 · parallelisierbare Work Items erkennen
 - [ ] TODO – WI-SOT-21-02 · Dateikonflikte erkennen
 - [ ] TODO – WI-SOT-21-03 · Dependency-Konflikte erkennen
 - [ ] TODO – WI-SOT-21-04 · Worker-Scope definieren
@@ -460,21 +460,27 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-22-06 · keine konkurrierenden Wahrheiten zwischen Chats
 ### WS-SOT-W4 – MODULARISIERUNG
 #### ST-SOT-23 – PHASE 23: LEAN SCRUM CORE
-- [ ] TODO – WI-SOT-23-01 · prüfen, welche Regeln wirklich in docs/scrum-plan.md bleiben müssen
-- [ ] TODO – WI-SOT-23-02 · Fachdetails identifizieren
+- [x] ~~WI-SOT-23-01 · prüfen, welche Regeln wirklich in docs/scrum-plan.md bleiben müssen~~
+- [x] ~~WI-SOT-23-02 · Fachdetails identifizieren~~
 - [ ] TODO – WI-SOT-23-03 · Fachmodule definieren
 - [ ] TODO – WI-SOT-23-04 · Contracts herstellen
 - [ ] TODO – WI-SOT-23-05 · Module zuerst aufbauen
 - [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
+Die Core-Regeln und Fachdetails wurden gezielt inventarisiert. Das ist keine
+Freigabe zur Entfernung auditierter Inhalte.
+[Modulinventar und Grenzen](../sot-optimization/reviews/module-preparation-2026-09-26.md).
 #### ST-SOT-24 – PHASE 24: FACHMODULE
 Mindestens vorbereiten:
-- [ ] TODO – WI-SOT-24-01 · Source of Truth
+- [x] ~~WI-SOT-24-01 · Source of Truth~~
 - [ ] TODO – WI-SOT-24-02 · WSJF
 - [ ] TODO – WI-SOT-24-03 · Cards / Board
-- [ ] TODO – WI-SOT-24-04 · Analytics
+- [x] ~~WI-SOT-24-04 · Analytics~~
 - [ ] TODO – WI-SOT-24-05 · CMS
 - [ ] TODO – WI-SOT-24-06 · Video Production
+SoT und Analytics besitzen bereits zugeordnete autoritative Fachdateien. Ihre
+Vorbereitung ist belegt; die jeweilige operative Umsetzung bleibt separat im
+Backlog nachvollziehbar.
 Nur vorhandene Anforderungen übernehmen.
 Keine unnötige Modulbildung nur um der Modularisierung willen.
 #### ST-SOT-25 – PHASE 25: GENERIERTE GESAMTSICHT
