@@ -93,8 +93,8 @@ die 19 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 126 · In Progress 3 · Ready 0 · Blocked 1 ·
-Open 72 (einschließlich Ready und Blocked) · Progress 63,6 %.
+**Counter:** Total 198 · Done 128 · In Progress 3 · Ready 0 · Blocked 1 ·
+Open 70 (einschließlich Ready und Blocked) · Progress 64,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -397,15 +397,18 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-03 · Time Criticality
 - [ ] TODO – WI-SOT-19-04 · Risk Reduction / Opportunity Enablement
 - [ ] TODO – WI-SOT-19-05 · Job Size
-- [ ] TODO – WI-SOT-19-06 · Confidence
-- [ ] TODO – WI-SOT-19-07 · bestehende relative Skala erhalten
+- [x] ~~WI-SOT-19-06 · Confidence~~
+- [x] ~~WI-SOT-19-07 · bestehende relative Skala erhalten~~
 - [ ] IN_PROGRESS – WI-SOT-19-08 · Priorisierungsworkflow integrieren
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
   geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
   Hard Dependencies und explizite Vergleichsräume ab.
   Vollständige 67-Abschnitts-Traceability, Audit-Neubewertung und
   Governance-End-to-End-Aktivierung bleiben offen; siehe
-  [Prüfbericht](../sot-optimization/reviews/wsjf-scoring-2026-09-26.md).
+  [ursprünglichen Prüfbericht](../sot-optimization/reviews/wsjf-scoring-2026-09-26.md).
+  Confidence und Skala sind nach unabhängigem Review lokal abgeschlossen
+  (22/22 Tests; [aktueller Nachweis](../sot-optimization/reviews/wsjf-safety-2026-09-26.md)).
+  Die übrige Projektbewertung, gemeinsame Persistenz und Aktivierung bleiben offen.
 #### ST-SOT-20 – PHASE 20: WORKER / MULTI-AGENT
 - [x] ~~WI-SOT-20-01 · Work-Item-Claiming~~
 - [x] ~~WI-SOT-20-02 · Worker Ownership~~

@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { evaluateWsjf, rankReadyQueue, reevaluateWsjf, WSJF_SCALE } from './wsjf.mjs';
 
 const component = (score, confidence = 'High') => ({ score, confidence, rationale: 'Evidence grounded in project context.' });
-const example = () => ({ user_business_value: component(13), value_status: 'Proposed',
+const reviewed = () => ({ outcome: 'RETAIN_VERTICAL_VALUE', reviewed_at: '2026-09-26T11:00:00Z', rationale: 'Further split destroys independent user value.' });
+const example = () => ({ evaluated_at: '2026-09-26T11:00:00Z', user_business_value: component(13), value_status: 'Proposed',
   time_criticality: component(5), risk_reduction_opportunity_enablement: component(3), job_size: component(5) });
 
 test('uses the specified scales, calculates Cost of Delay and WSJF without authorizing execution', () => {
@@ -36,24 +37,24 @@ test('large stories require explicit decomposition rationale', () => {
   const result = evaluateWsjf({ ...example(), job_size: component(13) });
   assert.equal(result.valid, false);
   assert.equal(result.decomposition_review.required, true);
-  const justified = evaluateWsjf({ ...example(), job_size: component(20), large_story_rationale: 'Further split destroys independent user value.' });
+  const justified = evaluateWsjf({ ...example(), job_size: component(20), decomposition_review: reviewed() });
   assert.equal(justified.valid, true);
 });
 
 test('manual priority changes queue order without changing score; unready work is excluded', () => {
   const queue = rankReadyQueue([
-    { id: 'A', ready: true, wsjf: 7 },
-    { id: 'B', ready: true, wsjf: 2, manual_priority_override: { enabled: true, reason: 'Fixed deadline.' } },
+    { ...example(), id: 'A', ready: true },
+    { ...example(), job_size: component(8), id: 'B', ready: true, manual_priority_override: { enabled: true, reason: 'Fixed deadline.' } },
     { id: 'C', ready: true, wsjf: 99, blocked: true },
     { id: 'D', ready: false, wsjf: 100 },
   ]);
   assert.deepEqual(queue.map(item => item.id), ['B', 'A']);
-  assert.equal(queue[0].wsjf, 2);
+  assert.equal(queue[0].wsjf, 2.63);
   assert.equal(queue[0].reason, 'Fixed deadline.');
 });
 
 test('prioritizes WSJF only within executable work and requires override explanation', () => {
-  assert.throws(() => rankReadyQueue([{ id: 'A', ready: true, wsjf: 2,
+  assert.throws(() => rankReadyQueue([{ ...example(), id: 'A', ready: true,
     manual_priority_override: { enabled: true } }]), /needs a reason/);
   const result = rankReadyQueue([{ id: 'A', ready: true, wsjf: 9, claimed: true },
     { id: 'B', ready: true, wsjf: 4, conflict: true }]);
@@ -63,13 +64,13 @@ test('prioritizes WSJF only within executable work and requires override explana
 test('does not rank blocked hard dependencies and requires an explicit comparison room', () => {
   const queue = rankReadyQueue([
     { id: 'A', ready: true, wsjf: 20, hard_dependencies: [{ id: 'WI-1', status: 'BLOCKED' }] },
-    { id: 'B', ready: true, wsjf: 4, hard_dependencies: [{ id: 'WI-2', status: 'SATISFIED' }] },
+    { ...example(), id: 'B', ready: true, hard_dependencies: [{ id: 'WI-2', status: 'SATISFIED' }] },
     { id: 'C', ready: true, wsjf: 99, hard_dependencies: 'unknown' },
   ]);
   assert.deepEqual(queue.map(item => item.id), ['B']);
   const projects = [
-    { id: 'P1', ready: true, wsjf: 9, comparison_group: 'product-A' },
-    { id: 'P2', ready: true, wsjf: 30, comparison_group: 'product-B' },
+    { ...example(), id: 'P1', ready: true, comparison_group: 'product-A' },
+    { ...example(), id: 'P2', ready: true, comparison_group: 'product-B' },
   ];
   assert.throws(() => rankReadyQueue(projects), /comparison_group/);
   assert.deepEqual(rankReadyQueue(projects, { comparisonGroup: 'product-A' }).map(item => item.id), ['P1']);
@@ -108,4 +109,131 @@ test('automatic re-evaluation cannot change value status or manual priority deci
     manual_priority_override: { enabled: false } }, reason: 'Fact', changed_facts: ['Fact changed.'],
     evaluated_at: '2026-09-26T12:00:00Z' });
   assert.match(overrideChange.errors.join(' '), /manual priority override/);
+});
+
+test('queue rejects caller scores without components and mismatched cached totals', () => {
+  assert.throws(() => rankReadyQueue([{ id: 'X', ready: true, wsjf: 999 }]), /valid calculated WSJF/);
+  assert.throws(() => rankReadyQueue([{ ...example(), id: 'X', ready: true, wsjf: 999 }]), /differs from its components/);
+  assert.throws(() => rankReadyQueue([{ ...example(), id: 'X', ready: true, cost_of_delay: 999 }]), /differs from its components/);
+});
+
+test('queue uses exact fractions when display scores tie and refuses duplicate IDs', () => {
+  const common = { ready: true, decomposition_review: reviewed(),
+    risk_reduction_opportunity_enablement: component(1) };
+  const lower = { ...example(), ...common, id: 'A', user_business_value: component(5), time_criticality: component(5), job_size: component(13) };
+  const higher = { ...example(), ...common, id: 'Z', user_business_value: component(13), time_criticality: component(3), job_size: component(20) };
+  const ranked = rankReadyQueue([lower, higher]);
+  assert.deepEqual(ranked.map(item => item.wsjf), [0.85, 0.85]);
+  assert.deepEqual(ranked.map(item => item.id), ['Z', 'A']);
+  assert.throws(() => rankReadyQueue([lower, lower]), /Duplicate/);
+});
+
+const reevaluation = (current, proposed) => reevaluateWsjf({ current, proposed, reason: 'Changed evidence.',
+  changed_facts: ['Usage evidence changed.'], evaluated_at: '2026-09-26T12:00:00Z' });
+
+test('re-evaluation rejects corrupt current calculations and invalid protected suggestions', () => {
+  const current = evaluateWsjf({ ...example(), value_status: 'Confirmed' });
+  assert.equal(reevaluation({ ...current, wsjf: 99 }, { ...example(), value_status: 'Confirmed' }).valid, false);
+  assert.equal(reevaluation({ ...current, time_criticality: component(4) }, example()).valid, false);
+  const invalidSuggestion = reevaluation(current, { ...example(), value_status: 'Confirmed', user_business_value: component(4) });
+  assert.equal(invalidSuggestion.valid, false);
+  assert.match(invalidSuggestion.errors.join(' '), /relative scale/);
+  assert.equal(reevaluation(current, undefined).valid, false);
+});
+
+test('status changes cannot bypass a protected previous business value', () => {
+  for (const value_status of ['Proposed', 'Overridden']) {
+    const result = evaluateWsjf({ ...example(), value_status, prior_value_status: 'Confirmed', prior_user_business_value: 8 });
+    assert.equal(result.valid, false);
+  }
+  assert.equal(evaluateWsjf({ ...example(), manual_priority_override: { enabled: 'false' } }).valid, false);
+});
+
+test('history snapshots are detached from inputs, suggestions and returned live assessment', () => {
+  const current = evaluateWsjf({ ...example(), value_status: 'Confirmed' });
+  const proposed = { ...example(), value_status: 'Confirmed', user_business_value: component(20) };
+  const result = reevaluation(current, proposed).result;
+  current.user_business_value.score = 1;
+  proposed.user_business_value.score = 2;
+  result.time_criticality.score = 3;
+  result.suggested_user_business_value.score = 5;
+  assert.equal(result.history[0].previous.user_business_value.score, 13);
+  assert.equal(result.history[0].next.time_criticality.score, 5);
+  assert.equal(result.history[0].next.suggested_user_business_value.score, 20);
+});
+
+const dimensions = ['user_business_value', 'time_criticality', 'risk_reduction_opportunity_enablement', 'job_size'];
+
+test('every dimension accepts exactly the seven relative scores', () => {
+  for (const dimension of dimensions) {
+    for (const score of WSJF_SCALE) {
+      const result = evaluateWsjf({ ...example(), [dimension]: component(score), decomposition_review: reviewed() });
+      assert.equal(result.valid, true, `${dimension}=${score}: ${result.errors}`);
+    }
+    for (const score of [-1, 0, 4, 6, 7, 9, 12, 14, 19, 21, 1.5, '5', NaN, Infinity]) {
+      assert.equal(evaluateWsjf({ ...example(), [dimension]: component(score), decomposition_review: reviewed() }).valid, false,
+        `${dimension}=${score}`);
+    }
+  }
+});
+
+test('each dimension requires its own rationale and confidence', () => {
+  for (const dimension of dimensions) {
+    assert.equal(evaluateWsjf({ ...example(), [dimension]: { score: 5, confidence: 'High' } }).valid, false);
+    assert.equal(evaluateWsjf({ ...example(), [dimension]: { score: 5, rationale: 'Evidence' } }).valid, false);
+    assert.equal(evaluateWsjf({ ...example(), [dimension]: component(5, 'Medium') }).valid, true);
+  }
+});
+
+test('Low confidence calculates normally while retaining all three uncertainty details', () => {
+  const uncertainty = { missing_information: 'Current visitor frequency missing.',
+    uncertain_assumption: 'Assumed recurring weekly use.', unanalyzed_area: 'Visitor analytics adapter.' };
+  for (const dimension of dimensions) {
+    const assessment = { ...component(5, 'Low'), uncertainty };
+    const result = evaluateWsjf({ ...example(), [dimension]: assessment });
+    assert.equal(result.valid, true);
+    assert.deepEqual(result[dimension].uncertainty, uncertainty);
+    for (const field of Object.keys(uncertainty)) {
+      assert.equal(evaluateWsjf({ ...example(), [dimension]: { ...assessment, uncertainty: { ...uncertainty, [field]: '' } } }).valid, false);
+    }
+  }
+});
+
+test('initial assessment carries an explicit timestamp and unconfirmed Proposed values remain usable', () => {
+  const input = example();
+  delete input.value_status;
+  const result = evaluateWsjf(input);
+  assert.equal(result.valid, true);
+  assert.equal(result.value_status, 'Proposed');
+  assert.equal(result.evaluated_at, input.evaluated_at);
+  assert.deepEqual(rankReadyQueue([{ ...input, id: 'PROPOSED', ready: true }]).map(item => item.id), ['PROPOSED']);
+  for (const evaluated_at of [undefined, '', '2026-09-26', '2026-09-26T12:00:00']) {
+    assert.equal(evaluateWsjf({ ...example(), evaluated_at }).valid, false);
+  }
+});
+
+test('sizes 13 and 20 cannot retain a story with an unresolved split or merely a free-text excuse', () => {
+  for (const size of [13, 20]) {
+    const input = { ...example(), job_size: component(size) };
+    assert.equal(evaluateWsjf({ ...input, large_story_rationale: 'A review happened.' }).valid, false);
+    assert.equal(evaluateWsjf({ ...input, decomposition_review: { ...reviewed(), outcome: 'SPLIT_REQUIRED' } }).valid, false);
+    assert.equal(evaluateWsjf({ ...input, decomposition_review: { ...reviewed(), reviewed_at: null } }).valid, false);
+    const result = evaluateWsjf({ ...input, decomposition_review: reviewed() });
+    assert.equal(result.valid, true);
+    assert.equal(result.decomposition_review.outcome, 'RETAIN_VERTICAL_VALUE');
+  }
+});
+
+test('reevaluation stamps the new assessment and preserves the prior assessment timestamp', () => {
+  const current = evaluateWsjf(example());
+  const result = reevaluation(current, example()).result;
+  assert.equal(result.evaluated_at, '2026-09-26T12:00:00Z');
+  assert.equal(result.history[0].previous.evaluated_at, current.evaluated_at);
+  assert.equal(result.history[0].next.evaluated_at, result.evaluated_at);
+});
+
+test('parallel agent availability has no effect on scores or job size', () => {
+  const baseline = evaluateWsjf(example());
+  const parallel = evaluateWsjf({ ...example(), available_workers: 20, parallelization_potential: 'High' });
+  assert.deepEqual(parallel, baseline);
 });

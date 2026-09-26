@@ -1,5 +1,8 @@
 # Prüfgrenze: WSJF-Rechen- und Queue-Prototyp
 
+Historischer Teilstand; aktueller Testumfang und Abschlussgrenzen stehen im
+[ergänzenden Sicherheitsnachweis](wsjf-safety-2026-09-26.md).
+
 Stand: 26.09.2026 · lokaler Teil von `ST-SOT-19`.
 
 | Bereich | Ergebnis |
