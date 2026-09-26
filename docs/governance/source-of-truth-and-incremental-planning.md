@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Übergang zu Modularisierung.
+**Phase:** Modularisierung: Modulgrenzen definiert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-03` · Fachmodule definieren.
+**NEXT RECOMMENDATION:** `WI-SOT-23-04` · Contracts herstellen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 170 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 35 (einschließlich Ready und Blocked) · Progress 82,9 %.
+**Counter:** Total 205 · Done 171 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 34 (einschließlich Ready und Blocked) · Progress 83,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -493,7 +493,11 @@ Technisch verhindern:
 #### ST-SOT-23 – PHASE 23: LEAN SCRUM CORE
 - [x] ~~WI-SOT-23-01 · prüfen, welche Regeln wirklich in docs/scrum-plan.md bleiben müssen~~
 - [x] ~~WI-SOT-23-02 · Fachdetails identifizieren~~
-- [ ] TODO – WI-SOT-23-03 · Fachmodule definieren
+- [x] ~~WI-SOT-23-03 · Fachmodule definieren~~
+  SoT, WSJF, Analytics und CMS sind vorhandenen aktiven Autoritäten
+  zugeordnet; Board bleibt Core-gebunden, Video referenzgebunden. Dadurch
+  entsteht keine zweite Regelquelle. [Moduldefinition](../sot-optimization/reviews/module-definition-2026-09-26.md)
+  und [Abnahmebericht](../abnahmeberichte/sot-module-definition-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-04 · Contracts herstellen
 - [ ] TODO – WI-SOT-23-05 · Module zuerst aufbauen
 - [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
