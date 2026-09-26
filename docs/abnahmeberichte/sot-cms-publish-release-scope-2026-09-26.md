@@ -2,7 +2,7 @@
 
 Stand: 26. September 2026.
 
-Getesteter Quellstand: `14a7146e5c2f4e4b0f5e5e9c3b4b1c4b74601626`
+Getesteter Quellstand: `14a71466a9869611c20cb48a71dbf0c9152b1dbc`
 (`WI-SOT-04-10 enforce CMS release scope`); der Bericht selbst ist eine
 nachgelagerte Evidenzergänzung ohne Laufzeitänderung.
 
