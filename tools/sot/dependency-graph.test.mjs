@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildDependencyGraph, computeImpact, loadDependencyGraph, validateDependencyGraph } from './dependency-graph.mjs';
+import { analyzeDependencyConflicts, buildDependencyGraph, computeImpact, loadDependencyGraph, validateDependencyGraph } from './dependency-graph.mjs';
 
 test('checked-in sources produce module, contract, story and work-item links', async () => {
   const graph = await loadDependencyGraph();
@@ -46,4 +46,10 @@ test('runtime workers are only added from explicit input', () => {
   const graph = buildDependencyGraph({ registry, contracts, epicText, runtime: { workers: [{ id: 'agent-a', claims: ['WI-SOT-05-01'] }] } });
   assert.equal(validateDependencyGraph(graph).valid, true);
   assert.ok(graph.edges.some(edge => edge.from === 'work_item:WI-SOT-05-01' && edge.to === 'worker:agent-a'));
+});
+
+
+test('reports hard story dependency conflicts among parallel work items', () => {
+  const graph = buildDependencyGraph({ registry: { modules: [{ module_id: 'sot-architecture', source: 'p', dependencies: [] }] }, contracts: { contracts: [] }, epicText: '| ST-SOT-01 | A | | P1 |\n| ST-SOT-02 | B | ST-SOT-01 | P1 |\n#### ST-SOT-01\n- [ ] TODO – WI-SOT-01-01 · A\n#### ST-SOT-02\n- [ ] TODO – WI-SOT-02-01 · B' });
+  assert.deepEqual(analyzeDependencyConflicts(graph, ['WI-SOT-01-01', 'WI-SOT-02-01']).conflicts, [{ predecessor: 'WI-SOT-01-01', dependent: 'WI-SOT-02-01', reason: 'HARD_DEPENDENCY' }]);
 });

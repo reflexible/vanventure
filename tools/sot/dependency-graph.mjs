@@ -132,6 +132,19 @@ export function validateDependencyGraph(graph) {
   return { valid: errors.length === 0, errors, cycles };
 }
 
+/** Detect hard dependency ordering conflicts among proposed parallel work items. */
+export function analyzeDependencyConflicts(graph, workItemIds) {
+  const check = validateDependencyGraph(graph); if (!check.valid) throw new Error(`Invalid dependency graph: ${check.errors.join('; ')}`);
+  if (!Array.isArray(workItemIds) || new Set(workItemIds).size !== workItemIds.length) throw new Error('workItemIds must be unique.');
+  const ids = new Set(graph.nodes.map(node => node.id));
+  const itemStory = new Map(graph.edges.filter(edge => edge.relation === 'belongs_to' && edge.from.startsWith('story:') && edge.to.startsWith('work_item:')).map(edge => [edge.to.slice(10), edge.from]));
+  for (const item of workItemIds) if (!itemStory.has(item) || !ids.has(`work_item:${item}`)) throw new Error(`Unknown work item: ${item}.`);
+  const hard = new Map([...ids].map(id => [id, []])); for (const edge of graph.edges) if (edge.relation === 'depends_on' && edge.strength === 'hard') hard.get(edge.from).push(edge.to);
+  const reaches = (from, to) => { const seen=new Set(), queue=[from]; while(queue.length){const n=queue.shift();if(n===to)return true;if(seen.has(n))continue;seen.add(n);queue.push(...(hard.get(n)??[]));}return false; };
+  const conflicts=[]; for(let i=0;i<workItemIds.length;i++)for(let j=i+1;j<workItemIds.length;j++){const [a,b]=[workItemIds[i],workItemIds[j]], [sa,sb]=[itemStory.get(a),itemStory.get(b)]; if(reaches(sa,sb))conflicts.push({predecessor:a,dependent:b,reason:'HARD_DEPENDENCY'}); else if(reaches(sb,sa))conflicts.push({predecessor:b,dependent:a,reason:'HARD_DEPENDENCY'});}
+  return { status: conflicts.length ? 'SEQUENTIAL_REQUIRED' : 'NO_DEPENDENCY_CONFLICTS', conflicts };
+}
+
 /** Downstream change impact; direct and transitive results exclude the seed. */
 export function computeImpact(graph, sourceId, { includeSoft = true } = {}) {
   const ids = new Set(graph.nodes.map(node => node.id));
