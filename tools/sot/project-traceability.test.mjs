@@ -39,6 +39,17 @@ test('exact story ancestry produces FAST records without asserting individual cl
   assert.equal(Object.keys(result.sourcehashes).length, 7);
 });
 
+test('WI-SOT-16-05 retains its exact original Phase-16 ancestry', async t => {
+  const { root, check } = await fixture(t);
+  const path = resolve(root, 'docs/governance/source-of-truth-and-incremental-planning.md');
+  await writeFile(path, (await readFile(path, 'utf8'))
+    + '#### ST-SOT-16 - Update\n- [ ] TODO - WI-SOT-16-05 Traceability\n');
+  const result = await check(['WI-SOT-16-05']);
+  assert.equal(result.status, 'PROJECT_TRACEABILITY_PASS', result.errors.join(';'));
+  assert.equal(result.traceability_records[0].source_anchor, 'PHASE 16 – SOT UPDATE');
+  assert.equal(result.traceability_records[0].story_id, 'ST-SOT-16');
+});
+
 test('missing actual IDs and unmapped stories block instead of fabricating ancestry', async t => {
   const { check } = await fixture(t);
   assert.match((await check(['WI-SOT-19-99'])).errors.join(';'), /MISSING_OR_WRONG/);
