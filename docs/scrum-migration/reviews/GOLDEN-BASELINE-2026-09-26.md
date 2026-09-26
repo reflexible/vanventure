@@ -51,9 +51,12 @@ vollständigen Quellanforderungen und die Traceability-Dateien nicht.
 | Aktueller Git-Status der Plandatei | Sauber; keine Änderung an `docs/scrum-plan.md`. Andere untracked Arbeitsdateien blieben unberührt. |
 | Lokaler/Remote-Ausgangsstand | `HEAD`, `origin/main` und frisch geholter `FETCH_HEAD` zeigten denselben Audit-Commit. |
 | Byte- und Zeilenendenvergleich | Arbeitsdatei und Commit-Blob stimmen nach der dokumentierten CRLF-/LF-Umwandlung exakt überein. |
+| Recovery-Probe | Aus dem Tag gelesener Plan ergibt nach LF→CRLF exakt den SHA-256 der Arbeitsdatei; Bytevergleich `True`. |
+| Remote-Referenzen | Audit-Tag auf `origin` veröffentlicht; der erste Nachweis-Commit `0aedf1006eccba1567a9b4ce69de19c71e35779a` ist in der Historie von `origin/codex/rework-with-project-skills` veröffentlicht. |
+| Plan-Diff und Patchprüfung | Kein Diff des Scrum-Plans zwischen Audit-Commit und Nachweis-Commit; `git diff --check` bestanden. |
 | Final-Audit-Provenienz | R5 meldet `FINAL_AUDIT_PASS` und die erfolgreiche Promotion; technische Implementierung, Release und Live-Stand waren nicht Gegenstand dieses Audit-PASS. |
 | Nicht geprüft | Keine neue Gesamtprüfung der semantischen Migration, keine Produkt-, Live- oder Veröffentlichungsprüfung. |
 
-**Schutzstatus:** `GOLDEN_BASELINE_PROTECTED = PASS`, sobald die genannte
-Git-Tag-Referenz lokal und auf `origin` nachgewiesen ist. Dieser Nachweis
-autorisiert keine Änderung am Scrum-Core und keine SoT-Optimierungsimplementierung.
+**Schutzstatus: `GOLDEN_BASELINE_PROTECTED = PASS`.** Die Git-Tag-Referenz ist
+lokal und auf `origin` nachgewiesen. Dieser Nachweis autorisiert keine
+Änderung am Scrum-Core und keine SoT-Optimierungsimplementierung.
