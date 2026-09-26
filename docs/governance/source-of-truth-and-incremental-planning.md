@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: Modulgrenzen definiert.
+**Phase:** Modularisierung: Contracts abgeglichen, CMS-Modulreferenz ergänzt.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-04` · Contracts herstellen.
+**NEXT RECOMMENDATION:** `WI-SOT-23-05` · Module zuerst aufbauen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 171 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 34 (einschließlich Ready und Blocked) · Progress 83,4 %.
+**Counter:** Total 205 · Done 174 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 31 (einschließlich Ready und Blocked) · Progress 84,9 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -498,7 +498,10 @@ Technisch verhindern:
   zugeordnet; Board bleibt Core-gebunden, Video referenzgebunden. Dadurch
   entsteht keine zweite Regelquelle. [Moduldefinition](../sot-optimization/reviews/module-definition-2026-09-26.md)
   und [Abnahmebericht](../abnahmeberichte/sot-module-definition-2026-09-26.md).
-- [ ] TODO – WI-SOT-23-04 · Contracts herstellen
+- [x] ~~WI-SOT-23-04 · Contracts herstellen~~
+  Fünf bestehende bilaterale Contracts sind mit Version, Pflichtfeldern,
+  Invarianten und Registry-Rückverweis geprüft. Das ist Schnittstellen-
+  Metadatenvalidierung, keine Laufzeitfreigabe. [Contract-Nachweis](../sot-optimization/reviews/contract-system-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-05 · Module zuerst aufbauen
 - [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
@@ -508,10 +511,14 @@ Freigabe zur Entfernung auditierter Inhalte.
 #### ST-SOT-24 – PHASE 24: FACHMODULE
 Mindestens vorbereiten:
 - [x] ~~WI-SOT-24-01 · Source of Truth~~
-- [ ] TODO – WI-SOT-24-02 · WSJF
+- [x] ~~WI-SOT-24-02 · WSJF~~
+  `docs/governance/wsjf.md` ist als begrenzte Bewertungsautorität registriert;
+  der erforderliche lokale FULL CHECK ist bestanden. [Nachweis](../sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-24-03 · Cards / Board
 - [x] ~~WI-SOT-24-04 · Analytics~~
-- [ ] TODO – WI-SOT-24-05 · CMS
+- [x] ~~WI-SOT-24-05 · CMS~~
+  Die bestehende CMS-Betriebsautorität ist im Core direkt referenziert; Core-
+  Acceptance Criteria und Release-Gates behalten Vorrang. [Abnahmebericht](../abnahmeberichte/sot-cms-module-reference-2026-09-26.md).
 - [ ] TODO – WI-SOT-24-06 · Video Production
 SoT und Analytics besitzen bereits zugeordnete autoritative Fachdateien. Ihre
 Vorbereitung ist belegt; die jeweilige operative Umsetzung bleibt separat im

@@ -1751,6 +1751,11 @@ Als freigegebene Person kann ich mich sicher bei Redaktion und Cockpit anmelden,
 ### EPIC-CMS – Redakteure verwalten Working und Published Revisionen ohne ungewollte Veröffentlichung.
 
 **Epic-Grenze:** Private Working-/Review-/Published-Revisionen und kontrollierte Auslieferung. Veröffentlichung bleibt von gesonderter redaktioneller und Release-Freigabe abhängig.
+**Modulreferenz und Vorrang:** Die bestehende Bedienung und technische Betriebsgrenze
+steht in [`editor/README.md`](../editor/README.md) als `website.cms-content`.
+Sie ersetzt weder die Acceptance Criteria dieses Epics noch die verbindlichen
+[Release-Entscheidungen](scrum-migration/release-decisions.md); bei Konflikt
+haben deren konkrete Scope-, Datenschutz- und Freigabegates Vorrang.
 **Priorisierte Stories:** ST-CMS-01, ST-CMS-02, ST-CMS-03, ST-CMS-06, ST-CMS-08, ST-CMS-09, ST-CMS-04, ST-CMS-05, ST-CMS-07
 **Abschlussbedingung:** Alle Stories dieses Epics sind einzeln anhand ihrer Acceptance Criteria geprüft; Abhängigkeiten, offene Evidence-/Publication-Holds und konkrete Freigaben sind dokumentiert. Das Epic gilt erst abgeschlossen, wenn alle verpflichtenden Stories abgenommen sind; ein einzelner historischer oder bestehender Nachweis schließt Folgearbeit nicht.
 
