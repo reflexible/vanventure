@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: Contracts abgeglichen, CMS- und Video-Referenzen ergänzt.
+**Phase:** Modularisierung: Contracts sowie CMS-, Video- und Board-Referenzen ergänzt.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-24-03` · Cards / Board abgrenzen.
+**NEXT RECOMMENDATION:** `WI-SOT-23-05` · Module zuerst aufbauen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 176 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 29 (einschließlich Ready und Blocked) · Progress 85,9 %.
+**Counter:** Total 205 · Done 177 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 28 (einschließlich Ready und Blocked) · Progress 86,3 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -515,7 +515,10 @@ Mindestens vorbereiten:
 - [x] ~~WI-SOT-24-02 · WSJF~~
   `docs/governance/wsjf.md` ist als begrenzte Bewertungsautorität registriert;
   der erforderliche lokale FULL CHECK ist bestanden. [Nachweis](../sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-24-03 · Cards / Board
+- [x] ~~WI-SOT-24-03 · Cards / Board~~
+  Der Core verweist direkt auf die historische Board-Architektur, deren
+  Referenzstatus und die Vorrangigkeit von Story-, Phase-0- und Release-Gates
+  sind ausdrücklich festgehalten. [Abnahmebericht](../abnahmeberichte/sot-board-module-reference-2026-09-26.md).
 - [x] ~~WI-SOT-24-04 · Analytics~~
 - [x] ~~WI-SOT-24-05 · CMS~~
   Die bestehende CMS-Betriebsautorität ist im Core direkt referenziert; Core-

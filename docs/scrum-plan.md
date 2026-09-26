@@ -1862,6 +1862,11 @@ Als Redakteurin führe ich einen neuen Reisebericht vollständig privat bis zum 
 ### EPIC-BOARD – Familie und Marvin nutzen ein geschütztes Board mit kontrollierten Warnungen.
 
 **Epic-Grenze:** Privates Familien-Backlog, Workflow, Tablet, Warnungs-Inbox und begrenzte Marvin-Aktionen. Content Planner und öffentliche Website bleiben getrennt; Gates gelten je Slice.
+**Modulreferenz und Vorrang:** Die historische Architekturreferenz steht in
+[`docs/VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md`](VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md).
+Sie ist keine zweite aktive Planung und keine Ausführungsfreigabe: Die
+Stories, Phase-0-Entscheidungen und Release-Gates dieses Epics haben Vorrang.
+Marvin darf daraus keine autonome Priorisierung oder Board-Änderung ableiten.
 **Priorisierte Stories:** ST-BRD-01, ST-BRD-02, ST-BRD-03, ST-BRD-05, ST-BRD-04
 **Abschlussbedingung:** Alle Stories dieses Epics sind einzeln anhand ihrer Acceptance Criteria geprüft; Abhängigkeiten, offene Evidence-/Publication-Holds und konkrete Freigaben sind dokumentiert. Das Epic gilt erst abgeschlossen, wenn alle verpflichtenden Stories abgenommen sind; ein einzelner historischer oder bestehender Nachweis schließt Folgearbeit nicht.
 
