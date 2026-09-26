@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und geschützter Git-Preflight lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und abgegrenzte Git-Slices lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-03` · Work-Item-Schreibbereiche vor dem Slice explizit trennen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-04` · kleine Commits gegen den deklarierten Slice prüfbar machen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 186 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 19 (einschließlich Ready und Blocked) · Progress 90,7 %.
+**Counter:** Total 205 · Done 187 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 18 (einschließlich Ready und Blocked) · Progress 91,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -620,7 +620,10 @@ wenn sinnvoll.
   Der Guard schützt jeden beim Preflight vorhandenen Eintrag: Überlappende
   Schreibbereiche, verschwundene oder im Status veränderte Fremdarbeit
   blockieren ohne automatische Bereinigung oder Übernahme. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-foreign-change-guard-2026-09-26.md).
-- [ ] TODO – WI-SOT-30-03 · Work Items sauber trennen
+- [x] ~~WI-SOT-30-03 · Work Items sauber trennen~~
+  Jeder lokale Git-Slice benötigt eine gültige Work-Item-ID und einen
+  expliziten, deduplizierten Schreibbereich; der Fremdänderungs-Guard ist
+  Teil der Startprüfung. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-slice-scope-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-04 · kleine nachvollziehbare Commits
 - [ ] TODO – WI-SOT-30-05 · Work-Item-ID im Commit
 - [ ] TODO – WI-SOT-30-06 · keine Misch-Commits
