@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "status": "derived_index_only",
+  "sources": {
+    "module_registry": "docs/governance/module-registry.json",
+    "contracts": "docs/governance/contracts.json",
+    "work_items": "docs/governance/source-of-truth-and-incremental-planning.md"
+  },
+  "nodes": [],
+  "edges": []
+}

@@ -81,17 +81,17 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, Graph vorbereiten. **Current Work Items:**
-Contract-Katalog lokal integriert; `WI-SOT-05-01` ist bereit.
-**Active Workers:** 0. **Status:** `PLAN_STATUS: APPROVED`;
-`IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-05-01` (Modulabhängigkeiten), weil der Graph
-Impact-Auswahl, sichere Parallelität und die Check-Engines freischaltet.
-**Parallel Candidates:** Delta Detection kann nach der Graph-Schnittstelle
-in disjunkten Dateien vorbereitet werden; noch kein zweiter Claim.
+**Phase:** Performance Enablement, Delta-Integration. **Current Work Item:**
+`WI-SOT-10-01` in Integrationsprüfung. **Active Workers:** `/root` prüft und
+integriert; Graph- und Delta-Worker haben ihren Schreib-Claim abgegeben.
+**Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
+**NEXT RECOMMENDATION:** `WI-SOT-10-01` abschließen, dann `WI-SOT-06-01`
+(Impact Engine), weil Graph und Delta ihre Eingaben bereitstellen.
+**Parallel Candidates:** nach dem Delta-Commit können Impact Engine und
+Worker-State-Anbindung in disjunkten Dateien starten.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 188 · Done 49 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 139 (einschließlich Ready und Blocked) · Progress 26,1 %.
+**Counter:** Total 188 · Done 56 · In Progress 1 · Ready 0 · Blocked 1 ·
+Open 132 (einschließlich In Progress und Blocked) · Progress 29,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -182,14 +182,17 @@ Besonders prüfen:
 - [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
 - [ ] TODO – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
-- [ ] READY – WI-SOT-05-01 · Modulabhängigkeiten erfassen
-- [ ] TODO – WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen
-- [ ] TODO – WI-SOT-05-03 · Contract-Abhängigkeiten erfassen
+- [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~
+- [x] ~~WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen~~
+- [x] ~~WI-SOT-05-03 · Contract-Abhängigkeiten erfassen~~
 - [ ] TODO – WI-SOT-05-04 · laufende Worker berücksichtigen
-- [ ] TODO – WI-SOT-05-05 · betroffene Module automatisch ableiten
-- [ ] TODO – WI-SOT-05-06 · Impact-Ausbreitung bestimmen
-- [ ] TODO – WI-SOT-05-07 · Dependency-Zyklen erkennen
-- [ ] TODO – WI-SOT-05-08 · Dependency Graph validieren
+- [x] ~~WI-SOT-05-05 · betroffene Module automatisch ableiten~~
+- [x] ~~WI-SOT-05-06 · Impact-Ausbreitung bestimmen~~
+- [x] ~~WI-SOT-05-07 · Dependency-Zyklen erkennen~~
+- [x] ~~WI-SOT-05-08 · Dependency Graph validieren~~
+  Work-Item-Kanten werden nur aus dokumentierten Story-Vorgängern erzeugt;
+  keine harte Reihenfolge wird aus Phasennummern erfunden. Laufende Worker
+  erfordern einen noch anzubindenden gemeinsamen Runtime-State.
 #### ST-SOT-06 – PHASE 6: IMPACT ENGINE
 - [ ] TODO – WI-SOT-06-01 · Änderung klassifizieren
 - [ ] TODO – WI-SOT-06-02 · betroffenes Modul bestimmen
@@ -264,7 +267,7 @@ Für relevante Module:
   Freitextänderungen werden ohne gepflegtes aktuelles Manifest nicht als
   semantisch gleich behauptet.
 #### ST-SOT-10 – PHASE 10: CHANGE / DELTA DETECTION
-- [ ] TODO – WI-SOT-10-01 · Dateiänderungen erkennen
+- [ ] IN_PROGRESS – WI-SOT-10-01 · Dateiänderungen erkennen
 - [ ] TODO – WI-SOT-10-02 · semantische Änderungen erkennen
 - [ ] TODO – WI-SOT-10-03 · Format-only Änderungen erkennen
 - [ ] TODO – WI-SOT-10-04 · Contract-Änderungen erkennen
