@@ -15,3 +15,12 @@ export function buildChatHandover({ record, planStatus, decisionRefs = [], sourc
     decision_refs: Object.freeze([...new Set(decisionRefs)].sort()), source_ref: sourceRef,
     remote_execution_authorized: false, competing_backlog_authorized: false });
 }
+
+/** Carry only explicit context for the already identified work item. */
+export function attachWorkItemContext(handover, { title, acceptanceCriteria, dependencies = [] }) {
+  if (!handover || handover.kind !== 'local_chat_handover' || !text(title) || !Array.isArray(acceptanceCriteria)
+      || !acceptanceCriteria.length || acceptanceCriteria.some(item => !text(item))
+      || !Array.isArray(dependencies) || dependencies.some(item => !text(item))) throw new Error('HANDOVER_WORK_ITEM_CONTEXT_INVALID');
+  return Object.freeze({ ...handover, title, acceptance_criteria: Object.freeze([...acceptanceCriteria]),
+    dependencies: Object.freeze([...new Set(dependencies)].sort()), execution_authorized: false });
+}
