@@ -82,15 +82,15 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Item:** `WI-SOT-12-01` ist bereit. **Active Workers:** 0.
+**Current Work Item:** `WI-SOT-13-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-12-01` (SoT Intake), weil das inkrementelle
-Audit als Prüfgrundlage integriert ist. **Parallel Candidates:**
+**NEXT RECOMMENDATION:** `WI-SOT-13-01` (SoT Impact Check), weil der Intake
+Vorschläge dauerhaft und ohne Vorabfreigabe erfasst. **Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 194 · Done 104 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 90 (einschließlich Ready und Blocked) · Progress 53,6 %.
+**Counter:** Total 194 · Done 108 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 86 (einschließlich Ready und Blocked) · Progress 55,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -300,15 +300,15 @@ Change
 - [ ] TODO – WI-SOT-11-07 · den Auditpfad mit gepflegten Manifesten, Test-/Trace-Zuordnungen und Projektprüfern im gemeinsamen Ablauf aufrufen
 ### WS-SOT-W2 – SOURCE OF TRUTH GOVERNANCE
 #### ST-SOT-12 – PHASE 12: SOT INTAKE
-- [ ] READY – WI-SOT-12-01 · neue Idee erfassen
-- [ ] TODO – WI-SOT-12-02 · neuen Plan erfassen
-- [ ] TODO – WI-SOT-12-03 · neue Entscheidung erfassen
-- [ ] TODO – WI-SOT-12-04 · neue Regel erfassen
+- [x] ~~WI-SOT-12-01 · neue Idee erfassen~~
+- [x] ~~WI-SOT-12-02 · neuen Plan erfassen~~
+- [x] ~~WI-SOT-12-03 · neue Entscheidung erfassen~~
+- [x] ~~WI-SOT-12-04 · neue Regel erfassen~~
 - [x] ~~WI-SOT-12-05 · Intake klassifizieren~~
   Die vier Intake-Typen werden als nicht bindende Vorschläge klassifiziert;
   ihre dauerhafte Erfassung folgt in `WI-SOT-12-01`–`04`.
 #### ST-SOT-13 – PHASE 13: SOT IMPACT CHECK
-- [ ] TODO – WI-SOT-13-01 · zuständiges Modul bestimmen
+- [ ] READY – WI-SOT-13-01 · zuständiges Modul bestimmen
 - [ ] TODO – WI-SOT-13-02 · autoritative Source bestimmen
 - [ ] TODO – WI-SOT-13-03 · Dependencies bestimmen
 - [ ] TODO – WI-SOT-13-04 · bestehende Regel suchen
