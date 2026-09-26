@@ -81,16 +81,15 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, Impact Engine. **Current Work Item:**
-`WI-SOT-06-01` ist bereit. **Active Workers:** 0.
+**Phase:** Performance Enablement, FAST-/FULL-CHECK-Integration.
+**Current Work Item:** `WI-SOT-07-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-06-01` (Impact Engine), weil Graph und Delta
-ihre Eingaben bereitstellen.
-**Parallel Candidates:** Worker-State-Anbindung nach dem gemeinsamen
-operativen State; eigenständige Audit-Checks auf Basis der Impact Engine.
+**NEXT RECOMMENDATION:** `WI-SOT-07-01` (FAST CHECK), danach die
+impact-begrenzte FULL-CHECK-Engine. **Parallel Candidates:** FAST und FULL
+können auf der geprüften Impact-Schnittstelle in disjunkten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 188 · Done 62 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 126 (einschließlich Ready und Blocked) · Progress 33,0 %.
+**Counter:** Total 189 · Done 70 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 119 (einschließlich Ready und Blocked) · Progress 37,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -193,14 +192,15 @@ Besonders prüfen:
   keine harte Reihenfolge wird aus Phasennummern erfunden. Laufende Worker
   erfordern einen noch anzubindenden gemeinsamen Runtime-State.
 #### ST-SOT-06 – PHASE 6: IMPACT ENGINE
-- [ ] READY – WI-SOT-06-01 · Änderung klassifizieren
-- [ ] TODO – WI-SOT-06-02 · betroffenes Modul bestimmen
-- [ ] TODO – WI-SOT-06-03 · direkte Dependencies bestimmen
-- [ ] TODO – WI-SOT-06-04 · indirekte relevante Dependencies bestimmen
-- [ ] TODO – WI-SOT-06-05 · betroffene Contracts bestimmen
-- [ ] TODO – WI-SOT-06-06 · betroffene Work Items bestimmen
-- [ ] TODO – WI-SOT-06-07 · laufende Prozesse berücksichtigen
-- [ ] TODO – WI-SOT-06-08 · erforderlichen Prüfmodus automatisch bestimmen
+- [x] ~~WI-SOT-06-01 · Änderung klassifizieren~~
+- [x] ~~WI-SOT-06-02 · betroffenes Modul bestimmen~~
+- [x] ~~WI-SOT-06-03 · direkte Dependencies bestimmen~~
+- [x] ~~WI-SOT-06-04 · indirekte relevante Dependencies bestimmen~~
+- [x] ~~WI-SOT-06-05 · betroffene Contracts bestimmen~~
+- [x] ~~WI-SOT-06-06 · betroffene Work Items bestimmen~~
+- [x] ~~WI-SOT-06-07 · laufende Prozesse berücksichtigen~~
+- [x] ~~WI-SOT-06-08 · erforderlichen Prüfmodus automatisch bestimmen~~
+- [ ] TODO – WI-SOT-06-09 · gemeinsame Laufzeitquelle für aktive Prozesse anbinden; die Engine wertet bisher nur ausdrücklich übergebene Prozessdaten aus
 Ergebnis:
 NO_CHECK
 oder
@@ -209,7 +209,7 @@ oder
 FULL_CHECK
 #### ST-SOT-07 – PHASE 7: FAST CHECK
 FAST CHECK ist der Default für normale Änderungen.
-- [ ] TODO – WI-SOT-07-01 · Delta bestimmen
+- [ ] READY – WI-SOT-07-01 · Delta bestimmen
 - [ ] TODO – WI-SOT-07-02 · nur betroffene Module prüfen
 - [ ] TODO – WI-SOT-07-03 · relevante Contracts prüfen
 - [ ] TODO – WI-SOT-07-04 · direkte Dependencies prüfen
