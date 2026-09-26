@@ -82,15 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Item:** `WI-SOT-13-01` ist bereit. **Active Workers:** 0.
+**Current Work Item:** `WI-SOT-13-06` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-13-01` (SoT Impact Check), weil der Intake
-Vorschläge dauerhaft und ohne Vorabfreigabe erfasst. **Parallel Candidates:**
+**NEXT RECOMMENDATION:** `WI-SOT-13-06` (Regelkatalog-Abdeckung), weil die
+Impact-Suche ohne belegte Bestandsregeln unvollständig bleibt.
+**Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 194 · Done 108 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 86 (einschließlich Ready und Blocked) · Progress 55,7 %.
+**Counter:** Total 195 · Done 112 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 83 (einschließlich Ready und Blocked) · Progress 57,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -308,11 +309,12 @@ Change
   Die vier Intake-Typen werden als nicht bindende Vorschläge klassifiziert;
   ihre dauerhafte Erfassung folgt in `WI-SOT-12-01`–`04`.
 #### ST-SOT-13 – PHASE 13: SOT IMPACT CHECK
-- [ ] READY – WI-SOT-13-01 · zuständiges Modul bestimmen
-- [ ] TODO – WI-SOT-13-02 · autoritative Source bestimmen
-- [ ] TODO – WI-SOT-13-03 · Dependencies bestimmen
-- [ ] TODO – WI-SOT-13-04 · bestehende Regel suchen
+- [x] ~~WI-SOT-13-01 · zuständiges Modul bestimmen~~
+- [x] ~~WI-SOT-13-02 · autoritative Source bestimmen~~
+- [x] ~~WI-SOT-13-03 · Dependencies bestimmen~~
+- [x] ~~WI-SOT-13-04 · bestehende Regel suchen~~
 - [ ] TODO – WI-SOT-13-05 · neue vs. bestehende Regel vergleichen
+- [ ] READY – WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [ ] TODO – WI-SOT-14-01 · Duplikate erkennen
 - [ ] TODO – WI-SOT-14-02 · widersprüchliche Regeln erkennen
