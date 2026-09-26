@@ -82,16 +82,15 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Item:** `WI-SOT-12-01` ist bereit. **Active Workers:**
-ein Worker-State-Slice in Integrationsprüfung.
+**Current Work Item:** `WI-SOT-12-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
 **NEXT RECOMMENDATION:** `WI-SOT-12-01` (SoT Intake), weil das inkrementelle
-Audit als Prüfgrundlage integriert ist. **Parallel Candidates:** der lokale
-Worker-State-Slice kann unabhängig von Intake geprüft werden; die Runtime-
-Anbindungen `WI-SOT-04-10`, `05-04`, `06-09`, `07-10` und `08-09` folgen.
+Audit als Prüfgrundlage integriert ist. **Parallel Candidates:** die Runtime-
+Anbindungen `WI-SOT-04-10`, `05-04`, `06-09`, `07-10` und `08-09` können nach
+State- und Orchestrator-Anschluss in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 193 · Done 94 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 99 (einschließlich Ready und Blocked) · Progress 48,7 %.
+**Counter:** Total 194 · Done 101 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 93 (einschließlich Ready und Blocked) · Progress 52,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -353,15 +352,19 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-07 · bestehende relative Skala erhalten
 - [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
 #### ST-SOT-20 – PHASE 20: WORKER / MULTI-AGENT
-- [ ] TODO – WI-SOT-20-01 · Work-Item-Claiming
-- [ ] TODO – WI-SOT-20-02 · Worker Ownership
-- [ ] TODO – WI-SOT-20-03 · Locking
+- [x] ~~WI-SOT-20-01 · Work-Item-Claiming~~
+- [x] ~~WI-SOT-20-02 · Worker Ownership~~
+- [x] ~~WI-SOT-20-03 · Locking~~
 - [ ] TODO – WI-SOT-20-04 · parallele Slices
 - [ ] TODO – WI-SOT-20-05 · Dependency Awareness
-- [ ] TODO – WI-SOT-20-06 · Handover
-- [ ] TODO – WI-SOT-20-07 · Konflikterkennung
-- [ ] TODO – WI-SOT-20-08 · Worker-Status
-- [ ] TODO – WI-SOT-20-09 · Ergebnisintegration
+- [x] ~~WI-SOT-20-06 · Handover~~
+- [x] ~~WI-SOT-20-07 · Konflikterkennung~~
+- [x] ~~WI-SOT-20-08 · Worker-Status~~
+- [x] ~~WI-SOT-20-09 · Ergebnisintegration~~
+- [ ] TODO – WI-SOT-20-10 · lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren; keine standortübergreifende Freigabe aus dem Dateiprototyp ableiten
+  Der Dateistand ist ausschließlich operativ und enthält keinen zweiten Backlog.
+  Claims, Übergabe und Done-Gates sind lokal transaktional geprüft; Queue,
+  Dependency-Freigabe und reale Cross-Chat-Nutzung bleiben offen.
 #### ST-SOT-21 – PHASE 21: PARALLEL EXECUTION ENGINE
 - [ ] TODO – WI-SOT-21-01 · parallelisierbare Work Items erkennen
 - [ ] TODO – WI-SOT-21-02 · Dateikonflikte erkennen
