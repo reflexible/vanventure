@@ -1,0 +1,17 @@
+const text = value => typeof value === 'string' && value.trim() === value && value.length > 0;
+const terminal = new Set(['Done', 'Backlog']);
+
+/** Build a local, immutable handover packet from durable shared state only. */
+export function buildChatHandover({ record, planStatus, decisionRefs = [], sourceRef }) {
+  if (!record || !text(record.work_item_id) || !text(record.assigned_agent) || !Array.isArray(record.write_scope) || !text(planStatus) || !text(sourceRef)) {
+    throw new Error('HANDOVER_RECORD_PLAN_AND_SOURCE_REQUIRED');
+  }
+  if (terminal.has(record.execution_state)) throw new Error('HANDOVER_REQUIRES_ACTIVE_OR_REVIEWABLE_WORK');
+  if (!['READY', 'IN_PROGRESS', 'BLOCKED'].includes(planStatus)) throw new Error('HANDOVER_PLAN_STATUS_NOT_TRANSFERABLE');
+  if (!Array.isArray(decisionRefs) || decisionRefs.some(ref => !text(ref))) throw new Error('HANDOVER_DECISION_REFERENCES_INVALID');
+  return Object.freeze({ schema_version: '1.0.0', kind: 'local_chat_handover', work_item_id: record.work_item_id,
+    plan_status: planStatus, execution_state: record.execution_state, assigned_agent: record.assigned_agent,
+    write_scope: Object.freeze([...record.write_scope]), blocked_by: record.blocked_by ?? null,
+    decision_refs: Object.freeze([...new Set(decisionRefs)].sort()), source_ref: sourceRef,
+    remote_execution_authorized: false, competing_backlog_authorized: false });
+}

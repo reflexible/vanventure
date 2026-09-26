@@ -4,7 +4,7 @@ Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
 Current: `WI-SOT-22-01`
-State: `TODO`
+State: `IN_PROGRESS`
 Last Done: `WI-SOT-20-10`
 Last Commit: `981f833`
 

@@ -82,15 +82,15 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-22-01` · Chat-Handover-Modell. **Active Workers:** 1.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-22-01`: Chat-Handover-Modell als lokale, nicht autorisierende Übergabe vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-22-01` wird bearbeitet; anschließend `WI-SOT-22-02` für den Work-Item-Kontext vorbereiten.
 **Parallel Candidates:**
-`WI-SOT-22-01` kann mit einem getrennten Übergabe-Scope vorbereitet werden; Worker-Scopes haben Vorrang.
+Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 161 · In Progress 0 · Ready 0 · Blocked 2 ·
+**Counter:** Total 205 · Done 161 · In Progress 1 · Ready 0 · Blocked 2 ·
 Open 44 (einschließlich Ready und Blocked) · Progress 78,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -462,7 +462,7 @@ Technisch verhindern:
 - [x] ~~WI-SOT-21-07 · Merge-Reihenfolge definieren~~
   Harte Abhängigkeiten und kollidierende Write Scopes ergeben rein ableitende, nicht autorisierende Integrationsgruppen. [FAST-CHECK](../sot-optimization/reviews/merge-order-fast-check-2026-09-26.md).
 #### ST-SOT-22 – PHASE 22: CROSS-CHAT / HANDOVER
-- [ ] TODO – WI-SOT-22-01 · Chat-Handover-Modell
+- [ ] IN_PROGRESS – WI-SOT-22-01 · Chat-Handover-Modell
 - [ ] TODO – WI-SOT-22-02 · Work-Item-Kontext
 - [ ] TODO – WI-SOT-22-03 · Statusübergabe
 - [ ] TODO – WI-SOT-22-04 · Decision-Handover
