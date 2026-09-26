@@ -1,10 +1,11 @@
 # VanVenture Analytics – fachliche und technische Vorgaben
 
-Stand: 25. September 2026. **Status: beauftragt und dokumentiert;
-Bestandsanalyse, technische Umsetzung und Live-Abnahme offen.** Der
-[Ausbauplan](ausbauplan.md) ist die einzige aktive Arbeitsliste mit den
-Kennungen `ANALYTICS 0–8`. Dieses Dokument hält den vom Nutzer gelieferten
-Detailplan als fachliche Referenz fest. Konkrete Dateipfade und
+**Historischer Nachweisstand vom 25. September 2026:** **Status: beauftragt und dokumentiert;
+Bestandsanalyse, technische Umsetzung und Live-Abnahme offen.** Die frühere
+[Ausbauplan](ausbauplan.md)-Liste mit den Kennungen `ANALYTICS 0–8` bleibt ein
+historischer Detailnachweis. Der zentrale Scrum-Plan und das verknüpfte
+Execution Backlog steuern die aktive Umsetzung. Dieses Dokument hält den vom
+Nutzer gelieferten Detailplan als fachliche Referenz fest. Konkrete Dateipfade und
 Betriebsentscheidungen werden erst nach ANALYTICS 0 festgelegt.
 
 ## Ziel und Architekturgrenze
@@ -119,3 +120,29 @@ Rohdatenplattform und Machine-Learning-Auswertung gehören nicht dazu.
 Analytics ändert weder Design noch Templates, Publishing, Authentifizierung,
 Rollen, Bilder oder Originalschutz. Bestehende Freigaben und der reguläre
 Release-Prozess gelten weiter.
+
+## Governance-Integration und Aktivierungssperre (26.09.2026)
+
+Der Nutzer hat für den SoT-Umbau ausdrücklich entschieden: **Vertrag absichern;
+spätere Aktivierung sperren.** Dieser Umsetzungsslice ergänzt keine Website-
+Analytics-Funktion. Der oben dokumentierte fachliche Produktauftrag bleibt erhalten.
+
+`ANALYTICS-CONTENT-ID` bleibt als bestehender versionierter Contract verbindlich.
+Sein aufgeschobener Integrationszustand heißt `DEFERRED_INACTIVE`; das ist keine
+Laufzeitabnahme. Solange der tatsächliche Analytics-Adapter und die erforderlichen
+Integrationsprüfungen fehlen, gilt `ACTIVATION_BLOCKED`. Lokale Contract- oder
+Metadatentests, ein manuell gesetzter PASS-Wert und synthetische Beispieldaten
+ersetzen diese Prüfungen nicht. Die spätere Implementierung muss die oben
+beschriebenen Policy-, Content-ID-, Datenschutz-, Provider- und Netzwerktests
+gegen ihre tatsächliche Laufzeitgrenze nachweisen, bevor das Gate geöffnet wird.
+
+Die lokale Sperre wird durch
+[`assessAnalyticsActivation`](../tools/sot/analytics-activation-gate.mjs) geprüft.
+Der [zentrale Scrum-Plan](scrum-plan.md) bleibt die zentrale Planquelle; dieser
+SoT-Slice wird unter WI-SOT-04-10 im zugeordneten
+[Execution Backlog](governance/source-of-truth-and-incremental-planning.md) geführt.
+Die historische Liste ANALYTICS0–8 oben dokumentiert den früheren Produktauftrag;
+sie ist kein neuer paralleler Gesamtplan für diesen Umbau. Das historische
+Planwechsel-Gate wird durch diese Fachergänzung nicht vorweggenommen.
+
+[Entscheidungsnachweis](sot-optimization/sources/analytics-scope-decision-2026-09-26.json).

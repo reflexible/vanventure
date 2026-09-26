@@ -1,9 +1,13 @@
 import { spawnSync } from 'node:child_process';
 import { isAbsolute, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { assessAnalyticsActivation } from './analytics-activation-gate.mjs';
 
 // Maintained executable test scopes, not a declaration of complete module coverage.
 const profiles = {
+  'analytics-inactive-contract': { modules: ['analytics'], refs: ['tools/sot/analytics-activation-gate.test.mjs'],
+    scope: 'Pinned inactive analytics contract, authority and actual defer/activate denial checks.',
+    remaining: 'Analytics development is deferred. No runtime implementation, tracking verification or activation approval.' },
   'governance-local': { modules: ['scrum-core', 'sot-architecture'],
     refs: ['tools/sot/baselines.test.mjs', 'tools/sot/contracts.test.mjs', 'tools/sot/dependency-graph.test.mjs',
       'tools/sot/governance-workflow.test.mjs', 'tools/sot/worker-state.test.mjs'],
@@ -20,7 +24,6 @@ const profiles = {
     remaining: 'No new approval and no general semantic equivalence proof.' },
 };
 const unresolved = {
-  analytics: 'No maintained analytics runtime checker exists; adapter, privacy and event invariants remain unresolved.',
   'release-governance': 'Explicit release authorization and live verification are not inferred from local tests; release/deployment commands are excluded.',
 };
 const environmentKeys = new Set(['PATH', 'SYSTEMROOT', 'WINDIR', 'COMSPEC', 'PATHEXT', 'TEMP', 'TMP', 'HOME', 'USERPROFILE', 'APPDATA', 'LOCALAPPDATA']);
@@ -67,16 +70,49 @@ export function projectFastCheckCommands(moduleIds) {
 export function runProjectCheckProfile(profileId, projectRoot) {
   const invocation = projectCheckInvocation(profileId, projectRoot);
   const result = spawnSync(invocation.command, invocation.args, invocation.options);
-  return { profile_id: profileId, status: result.status === 0 && !result.error ? 'LOCAL_PROFILE_PASS' : 'LOCAL_PROFILE_BLOCKED',
+  const output = { profile_id: profileId, status: result.status === 0 && !result.error ? 'LOCAL_PROFILE_PASS' : 'LOCAL_PROFILE_BLOCKED',
     scope: profiles[profileId].scope, remaining: profiles[profileId].remaining,
     command: [invocation.command, ...invocation.args], exit_code: result.status,
     stdout: (result.stdout ?? '').slice(-20000), stderr: (result.stderr ?? '').slice(-4000), error: result.error?.message ?? null,
     complete_semantic_coverage: false, product_release: false, live_verified: false };
+  if (profileId === 'analytics-inactive-contract') {
+    const args = [fileURLToPath(import.meta.url), '--assess-analytics-inactive', projectRoot];
+    const gate = spawnSync(process.execPath, args, invocation.options);
+    let proof = null;
+    try { proof = JSON.parse(gate.stdout); } catch { /* Missing or malformed evidence blocks. */ }
+    const passed = gate.status === 0 && !gate.error && proof?.status === 'DEFERRED_INACTIVE'
+      && proof.runtime_verified === false && proof.activation_allowed === false;
+    Object.assign(output, { analytics_status: passed ? 'DEFERRED_INACTIVE' : 'ACTIVATION_BLOCKED',
+      runtime_verified: false, activation_allowed: false, gate_evidence: proof,
+      gate_command: [process.execPath, ...args], gate_exit_code: gate.status,
+      gate_error: gate.error?.message ?? (gate.stderr || null) });
+    if (!passed) output.status = 'LOCAL_PROFILE_BLOCKED';
+  }
+  return output;
+}
+
+// The synchronous host API delegates async disk checks to this fixed, sanitized child.
+async function assessInactiveProfile(projectRoot) {
+  const deferred = await assessAnalyticsActivation({ projectRoot, action: 'defer' });
+  const activation = await assessAnalyticsActivation({ projectRoot, action: 'activate' });
+  const passed = deferred.status === 'DEFERRED_INACTIVE' && deferred.errors.length === 0
+    && activation.status === 'ACTIVATION_BLOCKED'
+    && JSON.stringify(activation.errors) === JSON.stringify(['ACTUAL_ANALYTICS_RUNTIME_BOUNDARY_AND_PINNED_TEST_EVIDENCE_MISSING'])
+    && [deferred, activation].every(value => value.runtime_verified === false && value.activation_allowed === false)
+    && JSON.stringify(deferred.evidence) === JSON.stringify(activation.evidence);
+  return { status: passed ? 'DEFERRED_INACTIVE' : 'ACTIVATION_BLOCKED', runtime_verified: false,
+    activation_allowed: false, deferred, activation };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  if (process.argv[2] !== '--run-profile' || process.argv.length !== 4) throw new Error('Use --run-profile <maintained-profile-id>.');
-  const result = runProjectCheckProfile(process.argv[3], process.cwd());
-  console.log(JSON.stringify(result, null, 2));
-  if (result.status !== 'LOCAL_PROFILE_PASS') process.exitCode = 1;
+  if (process.argv[2] === '--assess-analytics-inactive' && process.argv.length === 4) {
+    const result = await assessInactiveProfile(process.argv[3]);
+    console.log(JSON.stringify(result));
+    if (result.status !== 'DEFERRED_INACTIVE') process.exitCode = 1;
+  } else {
+    if (process.argv[2] !== '--run-profile' || process.argv.length !== 4) throw new Error('Use --run-profile <maintained-profile-id>.');
+    const result = runProjectCheckProfile(process.argv[3], process.cwd());
+    console.log(JSON.stringify(result, null, 2));
+    if (result.status !== 'LOCAL_PROFILE_PASS') process.exitCode = 1;
+  }
 }

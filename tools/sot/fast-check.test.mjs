@@ -89,15 +89,23 @@ test('untracked or missing path cannot be certified by git diff --check', async 
   assert.ok(result.failures.some(error => error.startsWith('git_diff_check:')));
 });
 
-test('maintained profiles execute real scoped project checks and retain missing analytics coverage', async () => {
+test('maintained profiles execute real scoped project checks and verify inactive analytics contract without activation', async () => {
   const input = await fixture('cms-content');
   const result = await runFastCheck({ ...input, test_profiles: 'maintained' });
   const checks = result.checks.find(check => check.name === 'relevant_tests');
   assert.match(checks.detail, /cms-persistence-local/);
   assert.match(checks.detail, /LOCAL_PROFILE_PASS/);
-  const missing = await runFastCheck({ ...await fixture('analytics'), test_profiles: 'maintained' });
+  const inactive = await runFastCheck({ ...await fixture('analytics'), test_profiles: 'maintained' });
+  assert.equal(inactive.result, 'FAST_CHECK_PASS', JSON.stringify(inactive.failures));
+  const analytics = inactive.checks.find(check => check.name === 'relevant_tests').detail;
+  assert.match(analytics, /DEFERRED_INACTIVE/);
+  const executions = JSON.parse(analytics.slice(analytics.indexOf('results=') + 'results='.length));
+  const proof = JSON.parse(executions.find(item => item.id === 'analytics-inactive-contract').stdout);
+  assert.equal(proof.runtime_verified, false);
+  assert.equal(proof.activation_allowed, false);
+  const missing = await runFastCheck({ ...await fixture('release-governance'), test_profiles: 'maintained' });
   assert.equal(missing.result, 'FAST_CHECK_BLOCKED');
-  assert.match(missing.checks.find(check => check.name === 'maintained_test_profiles').detail, /runtime checker/);
+  assert.match(missing.checks.find(check => check.name === 'maintained_test_profiles').detail, /release authorization/);
 });
 
 test('maintained profile coverage cannot be replaced by caller-supplied successful commands', async () => {

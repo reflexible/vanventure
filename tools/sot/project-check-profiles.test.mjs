@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { localCheckEnvironment, selectProjectCheckProfiles, projectCheckInvocation, projectFastCheckCommands } from './project-check-profiles.mjs';
+import { localCheckEnvironment, selectProjectCheckProfiles, projectCheckInvocation, projectFastCheckCommands, runProjectCheckProfile } from './project-check-profiles.mjs';
 
 test('CMS cannot inherit external database or Node preload settings, including Windows case variants', () => {
   const source = { PATH: 'test-path', SystemRoot: 'test-system', TEST_DATABASE_URL: 'postgres://remote',
@@ -18,10 +20,10 @@ test('CMS cannot inherit external database or Node preload settings, including W
 });
 test('module scope selects explicit maintained tests, deduplicates shared profiles and preserves gaps', () => {
   const selected = selectProjectCheckProfiles(['design-guide', 'analytics', 'responsive-templates', 'design-guide', 'unregistered']);
-  assert.deepEqual(selected.profiles.map(p => p.id), ['public-structure-local']);
-  assert.deepEqual(selected.profiles[0].requested_modules, ['responsive-templates', 'design-guide']);
-  assert.deepEqual(selected.unresolved.map(p => p.module_id), ['analytics', 'unregistered']);
-  assert.match(selected.unresolved[0].reason, /runtime checker/);
+  assert.deepEqual(selected.profiles.map(p => p.id), ['analytics-inactive-contract', 'public-structure-local']);
+  assert.deepEqual(selected.profiles[1].requested_modules, ['responsive-templates', 'design-guide']);
+  assert.deepEqual(selected.unresolved.map(p => p.module_id), ['unregistered']);
+  assert.match(selected.unresolved[0].reason, /No maintained local test profile/);
   assert.equal(selected.complete_semantic_coverage, false);
 });
 test('FAST commands route through env-sanitizing adapter and never select rollout or backup', () => {
@@ -46,4 +48,33 @@ test('input cannot supply arbitrary shell commands, paths, flags or mutate maint
   assert.throws(() => selectProjectCheckProfiles([]), /Explicit/);
   const first = selectProjectCheckProfiles(['cms-content']); first.profiles[0].refs.push('malicious.mjs');
   assert.ok(!projectCheckInvocation('cms-persistence-local', resolve('.')).args.includes('malicious.mjs'));
+});
+
+test('analytics profile executes real disk gate and fixed regression tests without activation', () => {
+  const result = runProjectCheckProfile('analytics-inactive-contract', resolve('.'));
+  assert.equal(result.status, 'LOCAL_PROFILE_PASS', JSON.stringify(result));
+  assert.equal(result.analytics_status, 'DEFERRED_INACTIVE');
+  assert.equal(result.runtime_verified, false);
+  assert.equal(result.activation_allowed, false);
+  assert.equal(result.gate_evidence.deferred.status, 'DEFERRED_INACTIVE');
+  assert.equal(result.gate_evidence.activation.status, 'ACTIVATION_BLOCKED');
+  assert.ok(result.gate_evidence.deferred.evidence.contract_sha256);
+  assert.match(result.stdout, /tests 4/);
+  assert.deepEqual(projectCheckInvocation('analytics-inactive-contract', resolve('.')).args,
+    ['--test', 'tools/sot/analytics-activation-gate.test.mjs']);
+});
+
+test('passing fixture test process cannot hide missing actual analytics contract', async t => {
+  const root = await mkdtemp(resolve(tmpdir(), 'profile-negative-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await mkdir(resolve(root, 'tools/sot'), { recursive: true });
+  // Intentionally trivial fixture suite: actual project input checks must still fail.
+  await writeFile(resolve(root, 'tools/sot/analytics-activation-gate.test.mjs'), "import test from 'node:test'; test('fixture only', () => {});");
+  const result = runProjectCheckProfile('analytics-inactive-contract', root);
+  assert.equal(result.exit_code, 0);
+  assert.equal(result.status, 'LOCAL_PROFILE_BLOCKED');
+  assert.equal(result.analytics_status, 'ACTIVATION_BLOCKED');
+  assert.equal(result.gate_evidence.deferred.status, 'ACTIVATION_BLOCKED');
+  assert.equal(result.runtime_verified, false);
+  assert.equal(result.activation_allowed, false);
 });

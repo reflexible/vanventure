@@ -1,0 +1,15 @@
+{
+  "source": "User reply in current conversation to request_user_input_async call_MbZIhGJ06kPknKsVHfpriVH9, question 0",
+  "actor_role": "USER",
+  "decision_date": "2026-09-26",
+  "date_precision": "date",
+  "question": "Für den Website-Analytics-Vertrag fehlt die Anwendung selbst: Laut Repository ist Website-Tracking noch nicht implementiert. Eine tatsächliche Laufzeitintegration würde daher zusätzliche Produktentwicklung außerhalb des SoT-Umbaus erfordern. Soll ich den Vertrag jetzt verbindlich absichern und eine spätere Analytics-Aktivierung bis zur Integrationsprüfung sperren, oder die Website-Analytics-Funktion zusätzlich umsetzen? Die übrigen Arbeiten laufen weiter.",
+  "answer": "Vertrag absichern; spätere Aktivierung sperren (empfohlen)",
+  "scope": "Current SoT integration: contract and activation gate, no additional analytics product implementation.",
+  "source_update": {
+    "path": "docs/analytics.md",
+    "before_sha256": "fde98233984a2e08c7d9739e3027b6fed43345d72279bf34ade5d17dd7cef5d4",
+    "after_sha256": "2af3c968a8e9ec6967ec17c5bcf5466d86f47426669c197e14dafea2ed19f132"
+  },
+  "product_release": false
+}
