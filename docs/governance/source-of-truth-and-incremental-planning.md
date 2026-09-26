@@ -81,23 +81,22 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement. **Current Work Items:** `WI-SOT-04-01`
-und `WI-SOT-09-01`. **Active Workers:**
+**Phase:** Performance Enablement. **Current Work Item:** `WI-SOT-04-01`.
+**Active Workers:**
 `/root/contract_system_worker` mit
 exklusivem Claim auf `docs/governance/contracts.json`,
 `docs/governance/module-registry.json` und `tools/sot/contracts.*`;
-`/root/baseline_worker` mit exklusivem Claim auf
-`docs/governance/baselines.json` und `tools/sot/baselines.*`;
-`/root` koordiniert Plan/Integration; die Fortschrittsprüfung ist abgeschlossen.
+`/root` koordiniert Plan/Integration; Baseline-System und
+Fortschrittsprüfung sind lokal abgeschlossen.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_IN_PROGRESS`.
 **NEXT RECOMMENDATION:** `WI-SOT-04-02` nach dem Contract-Modell, weil die
 konkreten Schnittstellen Registry-Verknüpfung und Graph freischalten.
-**PARALLEL RECOMMENDATION:** Contract-System und Baseline-System in den
-genannten disjunkten Dateien; ihre Integration erfolgt nacheinander.
+**Parallel Candidates:** nach dem Contract-Katalog können Dependency Graph
+und Delta Detection in disjunkten Dateien bearbeitet werden.
 **Blocked:** `WI-SOT-03-07` bis zum Contract-Katalog und `WI-SOT-27-02` bis
 zum historischen Planwechsel-Gate.
-**Counter:** Total 187 · Done 33 · In Progress 2 · Ready 0 · Blocked 2 ·
-Open 154 (einschließlich In Progress und Blocked) · Progress 17,6 %.
+**Counter:** Total 187 · Done 39 · In Progress 1 · Ready 0 · Blocked 2 ·
+Open 148 (einschließlich In Progress und Blocked) · Progress 20,9 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -259,12 +258,15 @@ Eskalationsmengen gelten kumulativ; deckungsgleiche Fälle werden dedupliziert.
 Auch ein FULL CHECK darf nicht automatisch die alte komplette Scrum-Migration wiederholen.
 #### ST-SOT-09 – PHASE 9: BASELINE SYSTEM
 Für relevante Module:
-- [ ] IN_PROGRESS – WI-SOT-09-01 · Byte-Baseline
-- [ ] TODO – WI-SOT-09-02 · normalisierte Text-Baseline
-- [ ] TODO – WI-SOT-09-03 · semantische Requirements-/Manifest-Baseline
-- [ ] TODO – WI-SOT-09-04 · Baseline-Versionierung
-- [ ] TODO – WI-SOT-09-05 · Baseline-Provenienz
-- [ ] TODO – WI-SOT-09-06 · Recovery-Referenz
+- [x] ~~WI-SOT-09-01 · Byte-Baseline~~
+- [x] ~~WI-SOT-09-02 · normalisierte Text-Baseline~~
+- [x] ~~WI-SOT-09-03 · semantische Requirements-/Manifest-Baseline~~
+- [x] ~~WI-SOT-09-04 · Baseline-Versionierung~~
+- [x] ~~WI-SOT-09-05 · Baseline-Provenienz~~
+- [x] ~~WI-SOT-09-06 · Recovery-Referenz~~
+  Das geprüfte Golden-Manifest bleibt eine explizite semantische Baseline;
+  Freitextänderungen werden ohne gepflegtes aktuelles Manifest nicht als
+  semantisch gleich behauptet.
 #### ST-SOT-10 – PHASE 10: CHANGE / DELTA DETECTION
 - [ ] TODO – WI-SOT-10-01 · Dateiänderungen erkennen
 - [ ] TODO – WI-SOT-10-02 · semantische Änderungen erkennen

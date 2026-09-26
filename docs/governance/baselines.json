@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "baselines": [
+    {
+      "id": "scrum-final-audit-pass-2026-09-26",
+      "version": "1.0.0",
+      "source": "docs/scrum-plan.md",
+      "byte_sha256": "40c89899ffa776d8cfafc773eac0bd1998dce5ce596cf300fa78a69064862ba5",
+      "normalized_text_sha256": "40c89899ffa776d8cfafc773eac0bd1998dce5ce596cf300fa78a69064862ba5",
+      "checkout": {
+        "line_endings": "CRLF",
+        "byte_sha256": "9ec3dbc2b1c09208580c267b683693285ee5dca609bc736243ba6a0bbe52eab2"
+      },
+      "semantic_manifest": {
+        "basis": "docs/scrum-migration/reviews/GOLDEN-BASELINE-2026-09-26.md",
+        "structure": {
+          "goals": 3,
+          "epics": 11,
+          "stories": 75
+        },
+        "requirements": [
+          { "id": "CORE-STRUCTURE", "rule": "Goal → Epic → Story → Task; vertical slices, INVEST and acceptance criteria before Ready." },
+          { "id": "CORE-STATUS", "rule": "Separate Scrum and historical source status; private board has Backlog plus Fast Track and Scrum Board lanes, with Offen → Bereit → In Arbeit → Review → Done and conscious Done confirmation." },
+          { "id": "CORE-DOD", "rule": "Done requires acceptance criteria, source requirements, protection and approval gates, reproducible checks, traceability and consistent documentation; local, approved, pushed and live statuses stay distinct." },
+          { "id": "CORE-APPROVAL", "rule": "Phase-0 acceptance, specific release approval, review and publication decisions are distinct gates; earlier checks do not replace current acceptance." },
+          { "id": "CORE-FAST-TRACK", "rule": "Fast Track applies only to eligible high or critical board items under documented criteria and explicit approval; no autonomous prioritization." },
+          { "id": "CORE-WORKER", "rule": "MVP worker creates backlog items only on clear instruction and plans permitted items to Offen only when expressly commissioned; restricted rights, audit and negative cases; no autonomous move, prioritization or Done." },
+          { "id": "CORE-DEPENDENCY", "rule": "Unavoidable story dependencies and enabling follow-on stories are documented; tasks belong to stories and epic completion requires accepted stories." },
+          { "id": "CORE-GOVERNANCE", "rule": "One authoritative subject source per requirement, no competing backlog, and coverage and traceability gate before replacing a plan; existing design, privacy, security, image and release rules remain effective." },
+          { "id": "CORE-TRACEABILITY", "rule": "Source inventory, story tasks, traceability matrix and constraint register remain binding references." }
+        ]
+      },
+      "semantic_manifest_sha256": "e12271865712ad7b4146617e5f62974969ecc2637234719957e6beac76a4d23a",
+      "provenance": {
+        "audit_result": "FINAL_AUDIT_PASS",
+        "audit_report": "docs/scrum-migration/reviews/FINAL-AUDIT-RETRY-R5-2026-09-26.md",
+        "audit_commit": "4a0708e46a2c2b604ee08255328dabfb9e4832d7",
+        "git_blob_oid": "c3565b64e6b0249b0ad54e3d5ab13d63e5cfef6f"
+      },
+      "recovery": {
+        "ref": "refs/tags/golden-scrum-final-audit-pass-2026-09-26",
+        "commit": "4a0708e46a2c2b604ee08255328dabfb9e4832d7",
+        "path": "docs/scrum-plan.md"
+      }
+    }
+  ]
+}
