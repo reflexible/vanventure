@@ -82,16 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Item:** `WI-SOT-13-06` ist bereit. **Active Workers:** 0.
+**Current Work Item:** `WI-SOT-13-07` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-13-06` (Regelkatalog-Abdeckung), weil die
-Impact-Suche ohne belegte Bestandsregeln unvollständig bleibt.
+**NEXT RECOMMENDATION:** `WI-SOT-13-07` (regelgenaue Scope-Abdeckung), weil
+die 18 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 **Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 196 · Done 117 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 79 (einschließlich Ready und Blocked) · Progress 59,7 %.
+**Counter:** Total 197 · Done 119 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 78 (einschließlich Ready und Blocked) · Progress 60,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -313,8 +313,11 @@ Change
 - [x] ~~WI-SOT-13-02 · autoritative Source bestimmen~~
 - [x] ~~WI-SOT-13-03 · Dependencies bestimmen~~
 - [x] ~~WI-SOT-13-04 · bestehende Regel suchen~~
-- [ ] TODO – WI-SOT-13-05 · neue vs. bestehende Regel vergleichen
-- [ ] READY – WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown
+- [x] ~~WI-SOT-13-05 · neue vs. bestehende Regel vergleichen~~
+- [x] ~~WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown~~
+- [ ] READY – WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird
+  Bisher sind 18 genaue Auszüge aus acht autoritativen Quellen geprüft;
+  sämtliche acht Modulabdeckungen bleiben ausdrücklich `partial`.
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
 - [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~
