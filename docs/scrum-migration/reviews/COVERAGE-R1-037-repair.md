@@ -1,0 +1,7 @@
+**COVERAGE-R1-037 ist im begrenzten Umfang planerisch repariert.** Die Originalquellen für SRC-1433 und SRC-1435–1443 wurden mit den aktuellen Zielstellen abgeglichen. Sieben konkrete AC und vier Prüftasks decken 33 fachliche Klauseln; zwei weitere Klauseln bleiben als Kontext beziehungsweise Verweis erhalten. Der Fortschrittsstand ist in den zentralen Migrationsunterlagen aktualisiert, unter anderem im [Scrum-Entwurf](D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:8) und im [Coverage-Bericht](D:/work/_venventure/docs/scrum-migration/coverage-report.md:38).
+
+- **Verbleibende konkrete Nutzerfragen in diesem Umfang:** keine. Bei einem tatsächlich betroffenen Motiv bleiben Fragen zu unklarem Alter, fehlender Freigabe oder einer gewünschten Ablenkungsentfernung einzeln zu stellen.
+- **Verbleibende Planning-Coverage-Lücken in diesem Umfang:** keine.
+- **Strukturprüfung:** bestanden — 1.105 Quellblöcke, 2.908/2.908 ursprüngliche Kandidaten, 356 Nachfolger und 57 Stories. `git diff --check` bestand ebenfalls.
+
+Der tatsächliche Bildbestandsaudit, Implementation Verification, motivweise Freigaben, Release und Live-Prüfung sind weiterhin offen. Der globale Migrationscheck ist nicht bestanden; der aktive Ausbauplan bleibt maßgeblich.

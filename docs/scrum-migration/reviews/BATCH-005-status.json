@@ -1,0 +1,47 @@
+[
+  {
+    "PackageID": "PKG-050",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "Soll der Küchen-Tablet-Kiosk nur lesend mit bestehender Sitzung betrieben werden, oder ist eine lokale PIN als alternative Schreibberechtigung vorgesehen? Falls PIN: Wer verwaltet sie und welche Aktionen erlaubt sie?",
+    "CandidateCount": 56
+  },
+  {
+    "PackageID": "PKG-051",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "Sollen nach mehreren Wochen tatsächlicher Nutzung zusätzliche bestätigte Marvin-Aktionen und eine Verlaufs-/Monitoringansicht eingeführt werden? Welche optionalen Ausbauten werden danach beauftragt?",
+    "CandidateCount": 43
+  },
+  {
+    "PackageID": "PKG-052",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "Gilt Helmuts aufgabenspezifische Freigabe nach SRC-1800 als Ausnahme vom Eingriffsverbot für Website, Cockpit und Deployment in SRC-1799?",
+    "CandidateCount": 44
+  },
+  {
+    "PackageID": "PKG-053",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "Gilt die dokumentierte 5-fps-Kontaktbogensichtung samt ausgewählten Einzelbildern für v18 als geforderte visuelle Endkontrolle der vollständigen öffentlichen Fassung?",
+    "CandidateCount": 63
+  },
+  {
+    "PackageID": "PKG-054",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "Gilt die dokumentierte 5-fps-Kontaktbogensichtung samt ausgewählten Einzelbildern für v18 als geforderte visuelle Endkontrolle der vollständigen öffentlichen Fassung?",
+    "CandidateCount": 58
+  }
+]

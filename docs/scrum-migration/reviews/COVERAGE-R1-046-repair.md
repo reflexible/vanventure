@@ -1,0 +1,5 @@
+**COVERAGE-R1-046 ist lokal planerisch repariert.** Die zehn Originalklauseln `SRC-1835–SRC-1844` wurden mit den aktuellen Zielstellen verglichen und im [Scrum-Entwurf](D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md) durch konkrete, künftig anzuwendende AC und Prüfschritte gedeckt. Die zentralen Migrationsunterlagen und der Fortschritt sind aktualisiert. Die Strukturprüfung bestand: 2.908/2.908 ursprüngliche Kandidaten, 58 Stories.
+
+**Verbleibende Frage:** Gilt Helmuts aufgabenspezifische Freigabe nach `SRC-1800` auch als Ausnahme vom Eingriffsverbot für Website, Cockpit und Deployment in `SRC-1799`? Bis zur Entscheidung ist keine solche Ausnahme eingeplant.
+
+**Deckungslücken in SRC-1835–1844:** keine. Der globale Migrationscheck bleibt offen; die Fortschrittsübersicht weist außerhalb dieses Teilumfangs weiterhin 97 offene Deckungsbefunde aus. Implementation Verification, Originalschutzprüfung, Privacy- und Veröffentlichungsfreigaben sowie Live-Verifikation wurden durch diese Planungsreparatur nicht erbracht.

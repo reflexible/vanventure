@@ -80,6 +80,159 @@ September 2026; Tageswerte bis einschließlich 19. September.
 
 ## Nächste verbindliche Schritte
 
+### ANALYTICS 0–8. Providerunabhängige Website-Analytics
+
+**Auftrag vom 25. September 2026; Status: geplant, keine Analytics-Implementierung.**
+Die fachlichen Regeln stehen in [Analytics](analytics.md). Diese Gruppe ist die
+einzige aktive Analytics-Arbeitsliste. VanVenture definiert API, Policy, Events,
+Properties und Content-IDs; Umami ist nur der erste austauschbare Adapter.
+YouTube-Analytics im Cockpit, Search Console und mögliches Cloudflare-Monitoring
+bleiben getrennt. CMS 3 liefert später veröffentlichte dynamische Seiten;
+ANALYTICS 0–5 können mit den bestehenden öffentlichen Seiten beginnen.
+
+**Fortschrittsregel:** Jede `ANALYTICS n.m`-Kennung bezeichnet eine einzeln
+abnehmbare Story. Erst nach Umsetzung und reproduzierbarer Prüfung wird sie
+als erledigt markiert und ihr Text durchgestrichen; bei produktiven Änderungen zusätzlich nach Commit,
+Push, Live-Prüfung und Abnahmebericht. Ein Epic gilt erst als erledigt, wenn
+alle seine Stories erledigt sind. Die letzte Story einer Stufe nennt das
+sichtbare Ergebnis. Offene Entscheidungen und externe Abhängigkeiten bleiben
+ausdrücklich offen; spätere optionale Ausbauten werden nicht vorweggenommen.
+
+**ANALYTICS 0 – Ist-Zustand und Integrationsentscheidung (ohne flächendeckenden Codeumbau)**
+
+- [ ] **ANALYTICS 0.1 – Bestand aufnehmen.** Routen, Generatoren, CMS-Status,
+  Auth/Rollen, Preview/Publishing, bestehendes Tracking, Umgebungen, Docker,
+  PostgreSQL, CSP, Datenschutzlogik, Tests und Projektregeln prüfen. **Abnahme:**
+  Ist-Zustand und wiederverwendbare Integrationspunkte sind mit Quellen belegt.
+- [ ] **ANALYTICS 0.2 – Konflikte und Betriebsentscheidungen klären.** Konkrete
+  Dateistruktur, Hosting und Zugang für Umami, Datenaufbewahrung, nötige
+  Datenschutz-/Consent-Entscheidungen und Berührungspunkte mit CMS 1–3 sowie
+  Cockpit dokumentieren. Konflikte mit geltenden Regeln vor betroffenem Code
+  entscheiden. **Abnahme:** Ein umsetzbarer, begrenzter erster Release ist
+  beschrieben; keine bestehende Funktion wird stillschweigend ersetzt.
+
+**ANALYTICS 1 – VanVenture-Messvertrag als technische Referenz**
+
+- [ ] **ANALYTICS 1.1 – Zentrale Spezifikation vervollständigen.**
+  `docs/analytics.md` anhand ANALYTICS 0 mit API, Policy, Events,
+  Schema-Version, Properties, Content-IDs, Provider-Mapping, Umgebungen,
+  Sicherheit, Datenschutz, Performance und Testfällen konkretisieren.
+  **Abnahme:** Projektregeln verweisen darauf; es gibt keine zweite aktive
+  Analytics-Spezifikation.
+- [ ] **ANALYTICS 1.2 – IDs und Eventschema v1 festlegen.** Bestehende stabile
+  Content-IDs wiederverwenden; englische `snake_case`-Eventnamen, erlaubte
+  Properties, Typen, Längen und Versionierung für `page_view` sowie die
+  priorisierten Content-Ereignisse festhalten. **Abnahme:** Umbenannte URLs
+  ändern die Content-Identität nicht; keine freien Eingabestrings als Events.
+
+**ANALYTICS 2 – Zentraler Core und sichere Tracking-Policy**
+
+- [ ] **ANALYTICS 2.1 – Policy und Null-Provider.** `pageView`/`track` zentral
+  anbieten; nur anonyme Aufrufe veröffentlichter öffentlicher Inhalte in
+  Production zulassen. Login, Admin/Editor, CMS, Draft, Planned, Preview,
+  localhost, Development, Tests und standardmäßig Staging wählen den
+  Null-Provider. **Abnahme:** In diesen Fällen lädt kein externes Script und
+  es entsteht keine Analytics-Anfrage, auch auf öffentlichen Seiten bei Login.
+- [ ] **ANALYTICS 2.2 – Daten vor Versand begrenzen.** Eventnamen und
+  Properties validieren, Unbekanntes verwerfen, Längen begrenzen, sensible
+  Daten entfernen, Routen ohne unbekannte Query-Parameter normalisieren und
+  UTM-Werte kontrolliert behandeln. **Abnahme:** Namen, E-Mail, IDs von
+  Benutzern, Formulareingaben, Freitext und Auth-Daten gelangen nicht in Events.
+- [ ] **ANALYTICS 2.3 – Provider-Vertrag absichern.** Provider zentral per
+  Konfiguration wählen, Umami-/Null-Adapter isolieren und einen Architekturtest
+  gegen direkte Provider-Aufrufe außerhalb des Adapterbereichs einführen.
+  **Abnahme:** Der Core funktioniert mit Null-Provider ohne Netzwerkzugriff;
+  Content-Komponenten kennen keinen Anbieter.
+
+**ANALYTICS 3 – Umami und erste echte Seitenaufrufe**
+
+- [ ] **ANALYTICS 3.1 – Umami betriebsbereit anbinden.** Hosting,
+  Konfiguration, minimale CSP-Freigaben, asynchrones Laden und fehlerfestes
+  Mapping über den Adapter umsetzen; Umami Identify bleibt aus. Automatische
+  Pageviews so einstellen, dass VanVenture allein `page_view` auslöst.
+  **Abnahme:** Provider-Ausfall blockiert weder Rendering noch Navigation.
+- [ ] **ANALYTICS 3.2 – Referenzseite live messen.** Eine veröffentlichte
+  öffentliche Seite über die zentrale API anbinden und nach regulärem Rollout
+  echten Aufruf sowie Ausschluss eines eingeloggten Admins prüfen. **Wert:**
+  Der erste nutzbare, unverfälschte Seitenaufrufbericht ist verfügbar.
+- [ ] **ANALYTICS 3.3 – Öffentliche Seiten vollständig anbinden.** Startseite,
+  Sprachversionen und vorhandene Seitentypen über gemeinsame Einbindestellen
+  und Generatoren erfassen; pro Page View höchstens ein Event. Private Routen
+  bleiben ausgeschlossen. **Wert:** Traffic je veröffentlichter Seite ist
+  vergleichbar, ohne Analytics-Code in einzelnen Inhalten.
+- [ ] **ANALYTICS 3.4 – Künftige CMS-Seiten anschließen.** Nach CMS 3 nur die
+  Published Revision über denselben Einstieg messen; Working Revision und
+  geschützte Vorschau bleiben ohne Script und Netzwerkanfrage. **Abnahme:**
+  Eine neue öffentliche CMS-Seite braucht keinen Tracking-Code im Inhalt.
+  Diese Story hängt von CMS 3 ab und blockiert ANALYTICS 4–8 nicht.
+
+**ANALYTICS 4 – Wenige wertvolle Content-Ereignisse**
+
+- [ ] **ANALYTICS 4.1 – Ausgehende Content-Klicks.** `youtube_click`,
+  `instagram_click`, `facebook_click` und `gear_click` an gemeinsamen
+  Link-/CTA-Stellen mit erlaubtem `destination_type` erfassen. **Wert:**
+  Sichtbar wird, welche Inhalte Besucher zu Videos, Social oder Ausrüstung
+  führen; Klick und Navigation funktionieren auch bei Provider-Ausfall.
+- [ ] **ANALYTICS 4.2 – Interne Orientierung.** `gallery_open`,
+  `related_content_click`, `cta_click`, `language_switch` und
+  `error_404_view` nur an passenden zentralen Komponenten/Routen ergänzen.
+  **Abnahme:** Jede Aktion erzeugt höchstens ein Ereignis, auch per Tastatur
+  oder Mobilbedienung; Galeriedesign und Foto-Viewer bleiben unverändert.
+- [ ] **ANALYTICS 4.3 – Lesetiefe und Video.** `article_50_percent` und
+  `article_90_percent` nur auf geeigneten Artikeln je Page View einmal
+  senden; `video_start` nur bei tatsächlich messbarem Start ergänzen und
+  Embed-/Consent-Verhalten gesondert prüfen. `gallery_image_view` nur bei
+  belegtem Nutzen und vertretbarem Volumen aktivieren. **Wert:** Leseinteresse
+  wird ohne Ereignisflut auswertbar.
+
+**ANALYTICS 5 – Kampagnen und redaktionelle Auswertung**
+
+- [ ] **ANALYTICS 5.1 – UTM-Standard und Helper.** `utm_source`,
+  `utm_medium`, `utm_campaign`, `utm_content` zentral erzeugen und
+  normalisieren; nur kurze, stabile, kleingeschriebene Werte ohne
+  personenbezogene Daten zulassen. **Abnahme:** Instagram-, Facebook-,
+  YouTube- und QR-Links für dieselbe Kampagne verwenden dieselbe Kampagnen-ID.
+- [ ] **ANALYTICS 5.2 – Wenige Goals und Berichte.** Umami-Goals für
+  ausgewählte Ereignisse wie YouTube-Klick und 90-Prozent-Lesetiefe sowie
+  Berichte zu Seiten, Sprachen, Quellen, Kampagnen und Content-Bereichen
+  konfigurieren; Funnels nur bei konkreter redaktioneller Frage.
+  **Wert:** Ein 28-Tage-Review kann den nächsten Content-Schritt anhand
+  dokumentierter Zahlen und Datenqualitätsgrenzen begründen.
+
+**ANALYTICS 6 – Test- und Abnahmesicherung**
+
+- [ ] **ANALYTICS 6.1 – Core und Adapter automatisiert prüfen.** Policy,
+  Event-/Property-Validierung, Kontext, Content-IDs, URL/UTM, Providerwahl,
+  Null-Provider, Umami-Mapping, Fehlerfall und Verbot direkter Provider-APIs
+  mit aussagekräftigen Unit-/Integrationstests abdecken.
+- [ ] **ANALYTICS 6.2 – Netzwerkverhalten durchgängig prüfen.** E2E für
+  anonymous/published gegenüber Login, CMS, Draft, Planned, Preview,
+  localhost, Development, Tests und Staging: Unerlaubte Fälle laden weder
+  Script noch Analytics-Anfrage. Betroffene Live-Routen, `/healthz`, sichtbare
+  Berichte, Performance und Datenschutzdokumentation im Abnahmebericht prüfen.
+  **Wert:** Die Tracking-Grenzen sind reproduzierbar nachgewiesen.
+
+**ANALYTICS 7 – Providerwechsel ohne Content-Umbau vorbereiten**
+
+- [ ] **ANALYTICS 7.1 – Wechseltest.** Umami lokal durch einen Testadapter
+  ersetzen und dieselben Pageviews, Events und Properties ohne Änderung an
+  Seiten, Templates, Generatoren, Galerie oder CMS-Komponenten nachweisen.
+  **Abnahme:** Konfiguration und Adapter genügen für einen Wechsel.
+- [ ] **ANALYTICS 7.2 – Migrationsweg dokumentieren.** Zeitlich begrenzten,
+  optionalen Parallelbetrieb mit Vergleich von Aufrufen, Events, Quellen,
+  Kampagnen und Goals beschreiben; Mapping und Abschaltung des alten Providers
+  festhalten. **Ergebnis:** Ein späterer Matomo-/GA4-Wechsel ist planbar;
+  ein zweiter Live-Provider wird hier nicht eingeführt.
+
+**ANALYTICS 8 – Optionale eigene Tagesaggregate entscheiden**
+
+- [ ] **ANALYTICS 8.1 – Nutzen und Aufwand bewerten.** Nach belastbaren
+  Berichten entscheiden, ob anonyme Tagesaggregate wie `analytics_daily` in
+  PostgreSQL sinnvoll sind. Nur Datum, Event, Content-ID, Content-Typ, Quelle,
+  Medium, Kampagne, Sprache und Anzahl vorsehen; keine IP, User-ID, Profile
+  oder Rohereignisplattform. **Ergebnis:** begründete Ja-/Nein-Entscheidung;
+  eine Implementierung erfordert einen eigenen späteren Auftrag.
+
 ### CMS 1–6. Bestehende Website schrittweise um eine Seitenverwaltung erweitern
 
 **Auftrag vom 25. September 2026; Status: geplant, nicht implementiert.**

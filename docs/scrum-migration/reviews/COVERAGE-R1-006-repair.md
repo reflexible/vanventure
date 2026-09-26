@@ -1,0 +1,5 @@
+Die gezielte Planungsreparatur für **COVERAGE-R1-006** ist abgeschlossen. Ich habe die zehn Originalblöcke im Input direkt mit den aktuellen Zielstellen verglichen und 18 zuvor nur teilweise gedeckte Klauseln durch konkrete AC und Constraints im bestehenden [Scrum-Entwurf](D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md) planerisch gedeckt. SRC-0871 gehörte nicht zum Paketinput.
+
+**Verbleibende Fragen und Deckungslücken in diesem Quellumfang:** keine. Die Fortschrittsunterlagen sind aktualisiert; der fokussierte Quell- und Zielabgleich sowie die Strukturprüfung bestanden.
+
+**Separat offen** bleiben die Prüfung der tatsächlichen Implementierung, die Sicht- und Browserprüfung sowie gegebenenfalls erforderliche Design-, Bild- und Release-Freigaben und die Live-Verifikation. Dafür wurde keine Freigabe behauptet. Geändert wurden nur zentrale Migrationsunterlagen, weder Originalquellen noch Reviews oder `controller-state.json`.

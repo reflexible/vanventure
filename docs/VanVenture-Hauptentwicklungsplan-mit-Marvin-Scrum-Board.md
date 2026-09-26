@@ -73,15 +73,21 @@ Eine Karte hat genau einen Typ:
 | Typ | Zweck | Kann aufs Board? |
 | --- | --- | --- |
 | `epic` | größeres privates Projekt oder Vorhaben | nein, dient als Klammer |
-| `story` | abgrenzbarer Teil eines Epics | bei Bedarf, bevorzugt als Planungsebene |
-| `task` | konkrete Arbeit mit Ergebnis | ja |
-| `todo` | kleine, direkt erledigbare Aufgabe | ja |
-| `alert_task` | aus einer VanVenture-Warnung entstandene Aufgabe | ja, zunächst Fast Track |
+| `story` | abgrenzbarer, abnehmbarer Teil eines Epics | Planungsebene, keine Board-Task |
+| `task` | konkrete Arbeit innerhalb einer Story | ja |
+| `todo` | kleine, eigenständige Familienaufgabe oder Arbeit innerhalb einer Story | ja |
+| `alert_task` | aus einer VanVenture-Warnung entstandene operative Aufgabe | ja, zunächst Fast Track |
 
-Ein Epic kann Stories enthalten; Stories können Tasks und To-dos enthalten. Eine Karte
-darf zusätzlich direkt einem Epic zugeordnet sein, falls eine Story keinen Mehrwert
-bringt. Gelöschte Eltern löschen nie automatisch ihre Kinder; sie können nur archiviert
-werden und benötigen vorher eine klare Zuordnungsentscheidung.
+Für geplante Projektarbeit gilt verbindlich
+**Goal / Initiative → Epic → User Story → Task / Subtask** gemäß der
+[Scrum-Planungsregel](project-rules/scrum-planning.md). Ein Epic enthält Stories;
+ein `task` gehört immer zu einer Story. Tasks und Subtasks dürfen nie direkt
+einem Epic zugeordnet werden. Ein projektbezogenes `todo` gehört ebenfalls zu
+einer Story. Eigenständige private Familien-To-dos und operative `alert_task`-Karten
+können ohne Projekt-Hierarchie im Backlog beziehungsweise Fast Track stehen;
+sie dürfen keinem Epic direkt untergeordnet werden. Gelöschte Eltern löschen
+nie automatisch ihre Kinder; sie können nur archiviert werden und benötigen
+vorher eine klare Zuordnungsentscheidung.
 
 ### 3.2 Pflicht- und Zusatzdaten einer Karte
 
@@ -96,7 +102,7 @@ Jede Karte enthält:
 | Fälligkeitsdatum | optional; bei Systemwarnungen aus der Warnung übernehmbar |
 | Board-Zeile und Spalte | nur bei eingeplanten Task-/To-do-Karten |
 | „In Arbeit von“ | leer bis zur Übernahme; beim Eintritt in `In Arbeit` gesetzt |
-| Epic-/Story-Bezug | optional bzw. bei Unterelementen empfohlen |
+| Elternbezug | Story → Epic; Projekt-Task/-To-do → Story zwingend. Eigenständige Familien-To-dos und Warnungs-Tasks ohne Epic-Elternkarte. |
 | Beschreibung | optional; bei Warnungen inklusive verständlicher Handlungsempfehlung |
 | Aktivitätsverlauf | automatisch: Erstellung, Änderungen, Verschiebungen, Übernahme, Abschluss |
 
@@ -141,8 +147,9 @@ gewünscht ist.
    `Fast Track → Offen` gewählt werden.
 4. Vor dem Bestätigen zeigt das Tablet Priorität und Fälligkeit; fehlende Angaben
    dürfen ergänzt werden, bleiben aber außer Priorität optional.
-5. Das Item erhält seine Board-Position, bleibt mit Story/Epic verknüpft und wird
-   aus der Standard-Backlog-Liste ausgeblendet.
+5. Das Item erhält seine Board-Position. Projekt-Tasks und projektbezogene To-dos
+   behalten ihren Story-Bezug; eigenständige Familien-To-dos bleiben ohne
+   Projekt-Elternkarte. Das Item wird aus der Standard-Backlog-Liste ausgeblendet.
 
 Das System verschiebt normale Backlog-Items niemals selbstständig aufs Board. Marvin
 darf dies nur mit ausdrücklichem Auftrag tun, zum Beispiel: „Marvin, nimm Gasflasche
@@ -224,9 +231,10 @@ Auslöser `marvin` und – soweit vorhanden – die Person, in deren Auftrag geh
 
 Marvin darf:
 
-- Epics, Stories, Tasks und To-dos im Backlog anlegen;
-- Titel, Beschreibung, Priorität, Fälligkeit und Epic-/Story-Bezug aus einer klaren
-  Anweisung übernehmen;
+- Epics, Stories, Tasks und To-dos im Backlog anlegen; Projekt-Tasks und
+  projektbezogene To-dos nur mit bestehender oder zugleich angelegter Story;
+- Titel, Beschreibung, Priorität, Fälligkeit und den nach Kartentyp
+  erforderlichen Elternbezug aus einer klaren Anweisung übernehmen;
 - nach einem expliziten Befehl ein Backlog-Item nach `Offen` verschieben;
 - auf Nachfrage offene, überfällige und Fast-Track-Karten zusammenfassen.
 
@@ -252,7 +260,7 @@ Board kommen Tabellen mit Präfix `scrum_` hinzu:
 
 | Tabelle | Kernfelder | Zweck |
 | --- | --- | --- |
-| `scrum_items` | `id`, `type`, `title`, `description`, `priority`, `parent_id`, `created_at`, `due_date`, `archived_at` | Epics, Stories, Tasks und To-dos |
+| `scrum_items` | `id`, `type`, `title`, `description`, `priority`, `parent_id`, `created_at`, `due_date`, `archived_at` | Epics, Stories, Tasks und To-dos; bei Projekt-Tasks und projektbezogenen To-dos auf Story-Elternkarte prüfen, direkte Epic-Elternschaft ablehnen |
 | `scrum_board_positions` | `item_id`, `lane`, `column`, `sort_order`, `moved_at`, `moved_by` | aktuelle Board-Position; `lane=fast_track|scrum` |
 | `scrum_work_assignments` | `item_id`, `assignee_user_id`, `claimed_at`, `released_at`, `claimed_by` | aktuelle und historische Übernahmen |
 | `scrum_item_events` | `id`, `item_id`, `actor_type`, `actor_id`, `action`, `before_safe`, `after_safe`, `created_at` | fachlicher, für Nutzer sichtbarer Verlauf |
@@ -392,6 +400,9 @@ manuell geprüft:
 - unbefugter Zugriff auf Board-, Warnungs- und Marvin-Endpunkte wird abgewiesen;
 - ein deaktiviertes Konto verliert auch den Boardzugriff sofort;
 - Backlog-Elemente erscheinen erst nach bewusster Planung im Board;
+- Projekt-Tasks und projektbezogene To-dos werden ohne Story-Elternkarte oder
+  mit direkter Epic-Elternkarte bei Anlage und Änderung abgewiesen; eigenständige
+  Familien-To-dos und Warnungs-Tasks bleiben ohne Epic-Elternkarte möglich;
 - jede Spalte ist in beiden Zeilen erreichbar; unzulässige Bewegungen werden blockiert;
 - nur eine übernehmende Person kann eine Karte gleichzeitig aktiv halten, sofern keine
   spätere Mehrfachübernahme bewusst eingeführt wird;

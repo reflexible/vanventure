@@ -1,0 +1,6 @@
+Die gezielte Planungsreparatur für die zehn Originalblöcke im Input ist abgeschlossen. Ich habe 14 fachliche Klauseln mit konkreten AC beziehungsweise Constraints im bestehenden Scrum-Entwurf gedeckt. Sechs Klauseln bleiben als Listenmarker oder historischer Status Kontext. Die Fortschrittsaktualisierung lief; die Strukturprüfung meldete **PASS** (1.105 Quellblöcke, 2.908/2.908 ursprüngliche Kandidaten, 356 Nachfolger, 57 Stories). Das ist keine Implementierungs- oder Live-Verifikation.
+
+- **Offene Nutzerfrage – SRC-1053.b:** Soll das Verbot, Google-Verbindungswerte in Git, Chat oder auf der öffentlichen Website abzulegen, nur Geheimnisse erfassen? Dürfen Callback-URL und Information zum kanalverwaltenden Konto nach gesonderter Freigabe dokumentiert werden?
+- **Verbleibende Planning-Coverage-Lücke:** Allein die Reichweite dieses Verbots ist ungeklärt. Im übrigen geprüften Quellumfang bleibt keine identifizierte Planungslücke.
+
+Der Stand ist in [Entwurf](D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md), [Coverage-Bericht](D:/work/_venventure/docs/scrum-migration/coverage-report.md) und [Ausführungsstand](D:/work/_venventure/docs/scrum-migration/execution-state.md) festgehalten. Originalquellen, Reviews, `controller-state.json` und Produkt wurden nicht geändert.

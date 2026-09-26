@@ -1,0 +1,47 @@
+[
+  {
+    "PackageID": "PKG-040",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "SRC-1205.c: Welcher Benachrichtigungskanal, welche verantwortliche Person und welches Aktivierungskriterium gelten? SRC-1224.a: Gilt das Produktentscheidungs- und Datenschutz-Gate auch für automatische KI-Entscheidungen, oder bleiben sie in diesem Plan ausgeschlossen?",
+    "CandidateCount": 64
+  },
+  {
+    "PackageID": "PKG-041",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 64
+  },
+  {
+    "PackageID": "PKG-042",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 64
+  },
+  {
+    "PackageID": "PKG-043",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 63
+  },
+  {
+    "PackageID": "PKG-044",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 63
+  }
+]

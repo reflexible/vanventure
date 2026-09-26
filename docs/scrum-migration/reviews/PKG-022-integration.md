@@ -1,0 +1,11 @@
+**PKG-022 ist integriert, aber nicht coveragefähig.** Ich habe alle 16 Originalblöcke und 63 ursprünglichen Kandidaten gegen die aktuellen Zielstellen geprüft, `ReviewPackage=PKG-022` gesetzt und 65 einzeln rückverfolgbare Nachfolger für zusammengesetzte Klauseln erfasst.
+
+Die Korrekturen stehen in [atomic-requirements.csv](/D:/work/_venventure/docs/scrum-migration/atomic-requirements.csv), [traceability-matrix.csv](/D:/work/_venventure/docs/scrum-migration/traceability-matrix.csv), [scrum-plan-draft.md](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md) und [constraint-register.md](/D:/work/_venventure/docs/scrum-migration/constraint-register.md):
+
+- `SRC-0540` ist ST-WEB-05 zugeordnet. Der Scott-Textrelease bleibt ein datierter Inhalts- und Live-Nachweis, keine aktuelle Template- oder Sichtabnahme.
+- `SRC-0550` ist zusätzlich ST-PHOTO-01 zugeordnet; `SRC-0555` liegt bei ST-AUTH-01. Release- und Monitorpflichten sind bei ST-OPS-01 konkretisiert. Die Freigabe verlangt gemäß DEC-REL-001/002 den **konkreten Release-Umfang**.
+- `SRC-0562` trennt Monitorbetrieb, geplante Inbox und Cockpit-Board-Übernahme. Abgeschnittene Datums- und Listenfragmente wurden nicht als eigenständige Anforderungen gezählt.
+
+**Restentscheidung:** Nach welcher gemeinsam festgelegten Regel werden `SYNC_FAILED`, `OAUTH_REAUTH_REQUIRED`, `SYNC_STALE`, `SYNC_MISSING` und `CONNECTION_MISSING` jeweils Backlog oder Fast Track zugeordnet? `SRC-0562` bleibt **Unresolved**; die Übernahme bleibt ausgeschaltet. Der Stand ist im [Coverage-Bericht](/D:/work/_venventure/docs/scrum-migration/coverage-report.md) und [Fortschrittsbericht](/D:/work/_venventure/docs/scrum-migration/atomic-coverage-report.md) aktualisiert.
+
+`update-scrum-review-progress.py` und `verify-scrum-review-progress.py` liefen erfolgreich: **230 geprüfte Blöcke, 834/2908 ursprüngliche Kandidaten, 196 Nachfolger; struktureller Check PASS.** Das ist Planning Coverage, keine Prüfung von Produktcode oder aktuellem Live-Stand. Originalquellen, Produktion und die ausgeschlossenen Paket- und Controllerdateien blieben unverändert.

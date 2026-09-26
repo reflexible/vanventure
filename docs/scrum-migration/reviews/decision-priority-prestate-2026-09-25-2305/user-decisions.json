@@ -1,0 +1,293 @@
+[
+  {
+    "decision_key": "written phase 0 acceptance has not been supplied",
+    "question": "Written Phase-0 acceptance has not been supplied.",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0482"
+    ]
+  },
+  {
+    "decision_key": "all galleries need finer captions smaller magnifiers and centred arrows preview design still awaits explicit user acceptance",
+    "question": "All galleries need finer captions, smaller magnifiers and centred arrows; preview design still awaits explicit user acceptance.",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0504"
+    ]
+  },
+  {
+    "decision_key": "wie sind alter nötige anonymisierung und ausdrückliche veröffentlichungsentscheidung jeweils für nr 63 und 69",
+    "question": "Wie sind Alter, nötige Anonymisierung und ausdrückliche Veröffentlichungsentscheidung jeweils für Nr. 63 und 69?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0522",
+      "SRC-0528"
+    ]
+  },
+  {
+    "decision_key": "welche genau drei kinderbilder waren am 22 09 2026 für welche kajak fassung freigegeben und welche sollen nach entfernung von kajak 06 jpg in der heutigen 13er galerie bleiben",
+    "question": "Welche genau drei Kinderbilder waren am 22.09.2026 für welche Kajak-Fassung freigegeben, und welche sollen nach Entfernung von kajak-06.jpg in der heutigen 13er-Galerie bleiben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0658"
+    ]
+  },
+  {
+    "decision_key": "soll die abgestimmte riverstar en fassung auf die zweisprachige startseite oder ausschliesslich auf kajak html",
+    "question": "Soll die abgestimmte Riverstar-EN-Fassung auf die zweisprachige Startseite oder ausschließlich auf kajak.html?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+    "source_ids": [
+      "SRC-0922"
+    ]
+  },
+  {
+    "decision_key": "ist julie auf dsc 1547 jpg zum aufnahmezeitpunkt ein erkennbares kind und wird genau dieses bild für die veröffentlichung ausgewählt",
+    "question": "Ist Julie auf DSC_1547.jpg zum Aufnahmezeitpunkt ein erkennbares Kind, und wird genau dieses Bild für die Veröffentlichung ausgewählt?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+    "source_ids": [
+      "SRC-0925"
+    ]
+  },
+  {
+    "decision_key": "was genau war an den grabner schwimmwesten weniger überzeugend und soll diese kritik so in den öffentlichen bericht",
+    "question": "Was genau war an den Grabner-Schwimmwesten weniger überzeugend, und soll diese Kritik so in den öffentlichen Bericht?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Konkrete Ursache und öffentliche Übernahme sind fachliche Nutzerentscheidungen; die Quelle lässt die Ursache ausdrücklich offen.",
+    "source_ids": [
+      "SRC-0940",
+      "SRC-0950"
+    ]
+  },
+  {
+    "decision_key": "soll das verbot für git chat und öffentliche website nur geheimnisse erfassen während callback url und kanal kontoinformation nach gesonderter freigabe dokumentierbar sind",
+    "question": "Soll das Verbot für Git, Chat und öffentliche Website nur Geheimnisse erfassen, während Callback-URL und Kanal-Kontoinformation nach gesonderter Freigabe dokumentierbar sind?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Die Originalquelle lässt offen, ob der Sammelbegriff diese Werte auch Callback-URL und Kanal-Kontoinformation unter das absolute Dokumentationsverbot stellt; nur der Nutzer kann diese Regel abgrenzen.",
+    "source_ids": [
+      "SRC-1053"
+    ]
+  },
+  {
+    "decision_key": "src 1084 current github pages hosting authority",
+    "question": "Soll GitHub Pages aus SRC-1084 für die heutige öffentliche Website weiterhin eine bindende Hosting-Vorgabe sein, oder ist es ausschließlich der damalige Hosting-Stand?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Aktuelle Verbindlichkeit der historischen Hosting-Vorgabe ist aus den Quellen nicht eindeutig zu entscheiden.",
+    "source_ids": [
+      "SRC-1084"
+    ]
+  },
+  {
+    "decision_key": "soll das alte google anmeldeverbot durch die spätere allowlist gebundene google anmeldung ausdrücklich ersetzt sein bei fortgeltendem verbot öffentlicher registrierung und einladungs urls",
+    "question": "Soll das alte Google-Anmeldeverbot durch die spätere allowlist-gebundene Google-Anmeldung ausdrücklich ersetzt sein, bei fortgeltendem Verbot öffentlicher Registrierung und Einladungs-URLs?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1094"
+    ]
+  },
+  {
+    "decision_key": "ist die einschränkung des token widerrufs auf anbieterunterstützung in st ins 03 als nachfolgeregel freigegeben",
+    "question": "Ist die Einschränkung des Token-Widerrufs auf Anbieterunterstützung in ST-INS-03 als Nachfolgeregel freigegeben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1107"
+    ]
+  },
+  {
+    "decision_key": "gilt yt ausschliesslich für youtube tabellen während content master und scrum eigene namensräume behalten",
+    "question": "Gilt der Präfix `yt_` nur für YouTube-Tabellen, während `content_*`, `master_*` und `scrum_*` eigene Namensräume behalten?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Der allgemeine Präfixsatz widerspricht den unmittelbar folgenden Tabellenbeispielen; die fachlich verbindliche Reichweite kann nicht aus dem Quelltext abgeleitet werden.",
+    "source_ids": [
+      "SRC-1128"
+    ]
+  },
+  {
+    "decision_key": "welcher benachrichtigungskanal welche verantwortliche person und welches aktivierungskriterium gelten",
+    "question": "Welcher Benachrichtigungskanal, welche verantwortliche Person und welches Aktivierungskriterium gelten?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1205"
+    ]
+  },
+  {
+    "decision_key": "gilt das freigabe und datenschutz gate auch für automatische ki entscheidungen oder bleiben sie in diesem plan ausgeschlossen",
+    "question": "Gilt das Freigabe- und Datenschutz-Gate auch für automatische KI-Entscheidungen, oder bleiben sie in diesem Plan ausgeschlossen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1224"
+    ]
+  },
+  {
+    "decision_key": "sollen hoch kritisch priorisierte epics und stories als fast track karten zulässig sein oder ausschliesslich im backlog bleiben",
+    "question": "Sollen hoch/kritisch priorisierte Epics und Stories als Fast-Track-Karten zulässig sein oder ausschließlich im Backlog bleiben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1521"
+    ]
+  },
+  {
+    "decision_key": "welche aufbewahrungsfrist soll phase 0 für archivierte karten festlegen",
+    "question": "Welche Aufbewahrungsfrist soll Phase 0 für archivierte Karten festlegen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1559"
+    ]
+  },
+  {
+    "decision_key": "darf eine aufgelöste warnung nach menschlicher bestätigung bereits in review abgeschlossen werden oder ist eine ausdrückliche done bestätigung zwingend",
+    "question": "Darf eine aufgelöste Warnung nach menschlicher Bestätigung bereits in Review abgeschlossen werden oder ist eine ausdrückliche Done-Bestätigung zwingend?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1577"
+    ]
+  },
+  {
+    "decision_key": "soll der küchen tablet kiosk nur lesend mit bestehender sitzung betrieben werden oder ist eine lokale pin als alternative schreibberechtigung vorgesehen falls pin wer verwaltet sie und welche aktionen erlaubt sie",
+    "question": "Soll der Küchen-Tablet-Kiosk nur lesend mit bestehender Sitzung betrieben werden oder ist eine lokale PIN als alternative Schreibberechtigung vorgesehen? Falls PIN: Wer verwaltet sie und welche Aktionen erlaubt sie?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1622"
+    ]
+  },
+  {
+    "decision_key": "sollen nach mehreren wochen tatsächlicher nutzung zusätzliche jeweils bestätigte marvin aktionen und eine kompakte verlaufs monitoringansicht eingeführt werden",
+    "question": "Sollen nach mehreren Wochen tatsächlicher Nutzung zusätzliche, jeweils bestätigte Marvin-Aktionen und eine kompakte Verlaufs-/Monitoringansicht eingeführt werden?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ]
+  },
+  {
+    "decision_key": "welche der drei optionalen ausbauten erinnerungen wiederkehrende wartung und druckübersicht werden nach pilotnutzung beauftragt",
+    "question": "Welche der drei optionalen Ausbauten Erinnerungen, wiederkehrende Wartung und Druckübersicht werden nach Pilotnutzung beauftragt?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ]
+  },
+  {
+    "decision_key": "welche datenschutz und bedienentscheidung gilt jeweils für einen später beauftragten ausbau",
+    "question": "Welche Datenschutz- und Bedienentscheidung gilt jeweils für einen später beauftragten Ausbau?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ]
+  },
+  {
+    "decision_key": "riverstar uferfotos ort und bildunterschrift schwelle src 0948",
+    "question": "Welches Gewässer oder welcher Campingplatz gehört zu den Uferfotos DSC_1545.jpg und DSC_1547.jpg vom 13. Juli 2018? Soll für eine genauere Bildunterschrift Ihre Bestätigung von Gewässer oder Campingplatz genügen, oder müssen Gewässer und Ort vor Veröffentlichung beide feststehen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Original erlaubt Gewässer oder Campingplatz; ST-CON-04 verlangt Gewässer und Ort. Ort und Abnahmeschwelle kann nur der Nutzer klären.",
+    "source_ids": [
+      "SRC-0948",
+      "SRC-0949"
+    ]
+  },
+  {
+    "decision_key": "marvin board verschiebungsumfang nach phase 0",
+    "question": "Soll Marvin nach schriftlicher Phase-0-Abnahme nur Backlog-Items anlegen und ausdrücklich nach Offen einplanen dürfen, oder auch weitere ausdrücklich beauftragte Board-Verschiebungen ausführen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Der bestehende Scrum-Entwurf begrenzt den MVP auf Einplanen nach Offen; der Story-Katalog erlaubt breitere beauftragte Verschiebungen. Die Erweiterung verlangt eine ausdrückliche Nutzerentscheidung.",
+    "source_ids": [
+      "SRC-1154"
+    ]
+  },
+  {
+    "decision_key": "coverage-r1-025-board-phase0",
+    "question": "Welche konkreten Review-Regeln, Familien-/Tablet-Zugriffe und Beispiel-Epics/Stories werden für Phase 0 schriftlich abgenommen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+    "source_ids": [
+      "SRC-1167"
+    ]
+  },
+  {
+    "decision_key": "coverage-r1-025-alert-gate",
+    "question": "Welchen Ereignisvertrag, welche Dienstidentität und welche Prioritätsregeln für high/critical-Warnungen nehmen wir vor dem Einschalten der automatischen Kartenanlage schriftlich ab?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+    "source_ids": [
+      "SRC-1168"
+    ]
+  },
+  {
+    "decision_key": "coverage-r1-025-ai-gate",
+    "question": "Soll eine spätere KI-Zusammenfassung überhaupt eingeführt werden, und für welchen genau abgegrenzten Umfang wird sie ausdrücklich freigegeben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+    "source_ids": [
+      "SRC-1169"
+    ]
+  },
+  {
+    "decision_key": "wer ist die verantwortliche google kanalinhaberin f r phase 0",
+    "question": "Wer ist die verantwortliche Google-Kanalinhaberin für Phase 0?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-Festlegung; nicht aus dem historischen Planstatus ableitbar.",
+    "source_ids": [
+      "SRC-1187"
+    ]
+  },
+  {
+    "decision_key": "welche kennzahlen sollen im cockpit verbindlich ausgewertet werden",
+    "question": "Welche Kennzahlen sollen im Cockpit verbindlich ausgewertet werden?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-Festlegung; nicht aus dem historischen Planstatus ableitbar.",
+    "source_ids": [
+      "SRC-1187"
+    ]
+  },
+  {
+    "decision_key": "welche aufbewahrungsfrist und welcher geltungsbereich gelten vor go live f r rohmetriken",
+    "question": "Welche Aufbewahrungsfrist und welcher Geltungsbereich gelten vor Go-live für Rohmetriken?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+    "source_ids": [
+      "SRC-1181"
+    ]
+  },
+  {
+    "decision_key": "welche aufbewahrungsfrist und welcher geltungsbereich gelten vor go live f r audit logs",
+    "question": "Welche Aufbewahrungsfrist und welcher Geltungsbereich gelten vor Go-live für Audit-Logs?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+    "source_ids": [
+      "SRC-1181"
+    ]
+  },
+  {
+    "decision_key": "welche regionen gelten f r die cockpit auswertung",
+    "question": "Welche Regionen gelten für die Cockpit-Auswertung?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+    "source_ids": [
+      "SRC-1187"
+    ]
+  },
+  {
+    "decision_key": "welche w hrung gilt f r die cockpit auswertung",
+    "question": "Welche Währung gilt für die Cockpit-Auswertung?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+    "source_ids": [
+      "SRC-1187"
+    ]
+  }
+]

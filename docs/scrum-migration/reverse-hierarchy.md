@@ -1,0 +1,100 @@
+# Reverse Traceability der Goals und Epics
+
+Diese Prüfung belegt die Herkunft über fachlich verknüpfte Stories und Original-IDs.
+Eine vorhandene ID allein beweist keine vollständige semantische Deckung; hierfür gelten Matrix,
+Constraint-Register und die weiterhin offenen Coverage-Prüfungen.
+
+## GOAL-PUBLIC
+
+Besucher finden und nutzen vertrauenswürdige, zugängliche VanVenture-Inhalte mit dokumentarisch korrekten Bildern.
+
+- Fachliche Herkunft: SRC-0008, SRC-0027, SRC-0028, SRC-0029, SRC-0030, SRC-0031, SRC-0032, SRC-0033, SRC-0034, SRC-0035, SRC-0036, SRC-0037, SRC-0038, SRC-0039, SRC-0042, SRC-0043, SRC-0044, SRC-0045, SRC-0050, SRC-0382, SRC-0447, SRC-0448, SRC-0449, SRC-0450, SRC-0458, SRC-0459, SRC-0461, SRC-0464, SRC-0465, SRC-0468, SRC-0469, SRC-0506, SRC-0507, SRC-0508, SRC-0509, SRC-0510, SRC-0511, SRC-0512, SRC-0514, SRC-0516, SRC-0517, SRC-0522, SRC-0523, SRC-0525, SRC-0527, SRC-0528, SRC-0962, SRC-0967, SRC-0969, SRC-0976, SRC-0977
+
+### EPIC-WEB
+
+Gemeinsame responsive Seiten und Galerien funktionieren über alle Seitentypen.
+
+- Stories: ST-WEB-01, ST-WEB-02, ST-WEB-03, ST-WEB-04, ST-WEB-05, ST-WEB-06, ST-WEB-07, ST-WEB-08
+- Original-IDs: SRC-0008, SRC-0028, SRC-0029, SRC-0030, SRC-0044, SRC-0045, SRC-0050, SRC-0382, SRC-0447, SRC-0448, SRC-0449, SRC-0450, SRC-0458, SRC-0459, SRC-0461, SRC-0469, SRC-0508, SRC-0509, SRC-0511
+
+### EPIC-PHOTO
+
+Webbilder sind herkunftsgesichert, datenschutzkonform und einzeln freigegeben.
+
+- Stories: ST-PHOTO-01, ST-PHOTO-02, ST-PHOTO-03, ST-PHOTO-04, ST-PHOTO-05, ST-PHOTO-06, ST-PHOTO-07
+- Original-IDs: SRC-0027, SRC-0031, SRC-0032, SRC-0033, SRC-0034, SRC-0035, SRC-0036, SRC-0037, SRC-0038, SRC-0039, SRC-0042, SRC-0450, SRC-0464, SRC-0465, SRC-0468, SRC-0506, SRC-0507, SRC-0510, SRC-0512, SRC-0514, SRC-0522, SRC-0523, SRC-0525, SRC-0527, SRC-0528
+
+### EPIC-SEO
+
+Öffentliche Inhalte sind korrekt auffindbar und passend verlinkt.
+
+- Stories: ST-SEO-01, ST-SEO-02, ST-SEO-03, ST-SEO-04, ST-SEO-05, ST-SEO-06, ST-SEO-07
+- Original-IDs: SRC-0042, SRC-0043, SRC-0382, SRC-0516, SRC-0517, SRC-0962, SRC-0967, SRC-0969, SRC-0976, SRC-0977
+
+## GOAL-EDITORIAL
+
+Das Team plant, veröffentlicht und bewertet Inhalte mit überprüfbarem Nutzen und vertretbarem Aufwand.
+
+- Fachliche Herkunft: SRC-0002, SRC-0049, SRC-0349, SRC-0350, SRC-0351, SRC-0352, SRC-0353, SRC-0354, SRC-0355, SRC-0356, SRC-0357, SRC-0358, SRC-0359, SRC-0360, SRC-0374, SRC-0375, SRC-0376, SRC-0377, SRC-0378, SRC-0379, SRC-0380, SRC-0386, SRC-0387, SRC-0389, SRC-0390, SRC-0392, SRC-0393, SRC-0394, SRC-0396, SRC-0397, SRC-0398, SRC-0399, SRC-0401, SRC-0402, SRC-0403, SRC-0405, SRC-0406, SRC-0408, SRC-0409, SRC-0411, SRC-0412, SRC-0414, SRC-0470, SRC-0471, SRC-0472, SRC-0473, SRC-0474, SRC-0475, SRC-0476, SRC-0492, SRC-0493, SRC-0494, SRC-0495, SRC-0496, SRC-0497, SRC-0498, SRC-0499, SRC-0515, SRC-1069, SRC-1220, SRC-2247
+
+### EPIC-CONTENT
+
+VAN, EXPLORE, MOVE und Riverstar haben belegte Inhalte und auswertbare Ergebnisse.
+
+- Stories: ST-CON-01, ST-CON-02, ST-CON-03, ST-CON-04
+- Original-IDs: SRC-0049, SRC-0379, SRC-0380, SRC-0470, SRC-0471, SRC-0472, SRC-0473, SRC-0474, SRC-0475, SRC-0515
+
+### EPIC-VIDEO
+
+Videofassungen werden mit Privacy-Prüfung und expliziter Freigabe veröffentlicht.
+
+- Stories: ST-VID-01
+- Original-IDs: SRC-2247
+
+### EPIC-ANALYTICS
+
+Anonyme öffentliche Nutzung wird sparsam, austauschbar und auswertbar gemessen.
+
+- Stories: ST-AN-01, ST-AN-02, ST-AN-03, ST-AN-04, ST-AN-05, ST-AN-06, ST-AN-07, ST-AN-08, ST-AN-09
+- Original-IDs: SRC-0002, SRC-0349, SRC-0350, SRC-0351, SRC-0352, SRC-0353, SRC-0354, SRC-0355, SRC-0356, SRC-0357, SRC-0358, SRC-0359, SRC-0360, SRC-0386, SRC-0387, SRC-0389, SRC-0390, SRC-0392, SRC-0393, SRC-0394, SRC-0396, SRC-0397, SRC-0398, SRC-0399, SRC-0401, SRC-0402, SRC-0403, SRC-0405, SRC-0406, SRC-0408, SRC-0409, SRC-0411, SRC-0412, SRC-0414
+
+### EPIC-INSIGHTS
+
+Cockpit und Planner zeigen belastbare Video- und Produktionsdaten.
+
+- Stories: ST-INS-01, ST-INS-02, ST-INS-03, ST-INS-04, ST-INS-05, ST-INS-06, ST-INS-07, ST-INS-08, ST-INS-09
+- Original-IDs: SRC-0374, SRC-0375, SRC-0376, SRC-0377, SRC-0378, SRC-0380, SRC-0476, SRC-0492, SRC-0493, SRC-0494, SRC-0495, SRC-0496, SRC-0497, SRC-0498, SRC-0499, SRC-1069, SRC-1220
+
+## GOAL-PRIVATE
+
+Redaktion und Familie nutzen geschützte Werkzeuge für sichere, nachvollziehbare Arbeit.
+
+- Fachliche Herkunft: SRC-0046, SRC-0047, SRC-0048, SRC-0054, SRC-0373, SRC-0381, SRC-0418, SRC-0419, SRC-0420, SRC-0422, SRC-0423, SRC-0424, SRC-0426, SRC-0427, SRC-0428, SRC-0430, SRC-0431, SRC-0433, SRC-0434, SRC-0436, SRC-0437, SRC-0438, SRC-0439, SRC-0440, SRC-0441, SRC-0442, SRC-0443, SRC-0444, SRC-0445, SRC-0446, SRC-0447, SRC-0479, SRC-0480, SRC-0481, SRC-0482, SRC-0484, SRC-0485, SRC-0486, SRC-0487, SRC-0488, SRC-0489, SRC-0490, SRC-0491, SRC-0500, SRC-0501, SRC-0502, SRC-0503, SRC-0518, SRC-0519, SRC-0520
+
+### EPIC-ACCESS
+
+Berechtigte Personen erreichen Redaktion und Cockpit sicher.
+
+- Stories: ST-AUTH-01
+- Original-IDs: SRC-0048, SRC-0373, SRC-0439, SRC-0440, SRC-0441, SRC-0442, SRC-0443, SRC-0444, SRC-0445, SRC-0446, SRC-0447
+
+### EPIC-CMS
+
+Redakteure verwalten Working und Published Revisionen ohne ungewollte Veröffentlichung.
+
+- Stories: ST-CMS-01, ST-CMS-02, ST-CMS-03, ST-CMS-04, ST-CMS-05, ST-CMS-06, ST-CMS-07, ST-CMS-08, ST-CMS-09
+- Original-IDs: SRC-0418, SRC-0419, SRC-0420, SRC-0422, SRC-0423, SRC-0424, SRC-0426, SRC-0427, SRC-0428, SRC-0430, SRC-0431, SRC-0433, SRC-0434, SRC-0436, SRC-0437, SRC-0438
+
+### EPIC-BOARD
+
+Familie und Marvin nutzen ein geschütztes Board mit kontrollierten Warnungen.
+
+- Stories: ST-BRD-01, ST-BRD-02, ST-BRD-03, ST-BRD-04
+- Original-IDs: SRC-0047, SRC-0479, SRC-0480, SRC-0481, SRC-0482, SRC-0484, SRC-0485, SRC-0486, SRC-0487, SRC-0488, SRC-0489, SRC-0490, SRC-0491, SRC-0519
+
+### EPIC-OPS
+
+Releases, Daten und Google-Produktion bleiben überprüfbar und geschützt.
+
+- Stories: ST-OPS-01, ST-OPS-02
+- Original-IDs: SRC-0046, SRC-0054, SRC-0381, SRC-0500, SRC-0501, SRC-0502, SRC-0503, SRC-0518, SRC-0520

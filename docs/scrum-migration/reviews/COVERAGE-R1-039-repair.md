@@ -1,0 +1,7 @@
+**COVERAGE-R1-039 ist im beauftragten Umfang planerisch repariert.** Ich habe die zehn Originalblöcke SRC-1454–SRC-1458 und SRC-1461–SRC-1465 direkt mit den aktuellen Zielstellen verglichen. Sechs belegte AC im [Scrum-Entwurf](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:8) und drei Prüftasks decken 22 fachliche Klauseln; SRC-1455.c bleibt die grammatische Fortsetzung von SRC-1455.b. Fortschritt und Zuordnungen sind in den zentralen Migrationsunterlagen aktualisiert.
+
+- **Verbleibende Nutzerfragen in diesem Umfang:** keine aktuell entscheidbare. Falls bei einem späteren konkreten Gestaltungsvorschlag dessen Reichweite unklar ist, lautet die Frage: Soll die Änderung nur für diese Seite, als dokumentierte Variante oder als neue globale Regel gelten?
+- **Verbleibende Planning-Coverage-Lücken für diese Quellen:** keine.
+- **Prüfung:** Fortschrittsaktualisierung ausgeführt; Strukturprüfung bestanden (1.105 Quellblöcke, 2.908/2.908 ursprüngliche Kandidaten, 356 Nachfolger, 57 Stories). `git diff --check` bestand.
+
+Die [Coverage-Zusammenfassung](/D:/work/_venventure/docs/scrum-migration/coverage-report.md:237) hält den begrenzten Befund fest. **Implementation Verification, tatsächliche Freigaben und Live-Verifikation bleiben offen.** Der globale Migrationscheck ist nicht bestanden; `docs/ausbauplan.md` bleibt der aktive Plan.

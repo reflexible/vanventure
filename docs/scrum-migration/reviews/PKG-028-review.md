@@ -1,0 +1,84 @@
+## PKG-028 – lesender Review
+
+**Umfang:** SRC-0792 bis SRC-0818 vollständig geprüft: **27 Originalblöcke, 65 Klauselkandidaten, 27 Matrix-Zuordnungen**. Die Originalstellen in [scrum-planning.md](/D:/work/_venventure/docs/project-rules/scrum-planning.md:40) und [responsive-templates.md](/D:/work/_venventure/docs/responsive-templates.md:3) stimmen inhaltlich mit den Paketblöcken überein. Es fehlt kein Text aus diesen 27 Blöcken. Die Kandidatenzerlegung enthält aber bedeutungslose Fragmente.
+
+**Gesamtbefund:** Das [Constraint-Register](/D:/work/_venventure/docs/scrum-migration/constraint-register.md:1432) bewahrt für alle 27 IDs den Originalwortlaut. Das ist Quellenerhalt, **kein Nachweis vollständiger Planning Coverage**. Der [Planentwurf](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:19) formuliert nur einen Teil der projektweiten Prüf-, Priorisierungs- und Migrationspflichten konkret. Die pauschalen Matrixwerte `Rule / Constraint` und `Existing / Verify` sollten deshalb für diese Klauseln nicht als bestandene Umsetzung oder geprüfte Anwendung gelesen werden. Besonders `SRC-0804 = Blocked` beschreibt keinen Status der dauerhaft geltenden Regel; der konkrete blockierte Prüfumfang muss gesondert benannt werden.
+
+In der Tabelle bedeutet **R** die jeweilige Registerstelle, **P** den Planentwurf. **Simple/Complex** bewertet die semantische Prüfung, nicht die Länge des Textes. „Offen“ bedeutet: Wortlaut erhalten, aber Planning Coverage oder korrekte Einordnung noch nicht belegt.
+
+| Kandidat · Originalzeile | Klasse | Einzelbefund und konkrete Korrektur |
+| --- | --- | --- |
+| **0792.a · 40–45** | Simple | Kleine, funktionierende Epic-Inkremente sind eine eigenständige Regel. R1432–1436 erhält sie; P635 nennt nur Template-Slices. **Offen:** bei jedem Epic überprüfbare Inkremente und Abschlussbedingung ausweisen. |
+| **0792.b · 40–43** | Complex | „Kann“ macht das Walking Skeleton optional; falls gewählt, sind echte Eingabe, Verarbeitung, Ausgabe sowie Schutz und Prüfung erforderlich. P645–647 und ST-AN-01 konkretisieren einen Fall, keine projektweite Prüfung. Diese Bedingtheit im Register und bei gewählten ersten Slices erhalten. |
+| **0792.c · 43** | Simple | Demonstrierbarkeit bezieht sich auf ein gewähltes Walking Skeleton, nicht auf jedes erste Inkrement. Mit **0792.b** verknüpfen; Demonstrationsnachweis bei ST-AN-01 ergänzen. |
+| **0792.d · 44** | Simple | Platzhalter allein dürfen beim Skeleton keinen Done-Status begründen. P645–647 zeigt den geplanten echten Aufruf, aber noch keinen Nachweis. Als dessen Abnahmekriterium und allgemeine Bedingung führen. |
+| **0792.e · 44–45** | Simple | Spätere Stories müssen schrittweise Nutzen liefern. P635 und P645–647 zeigen Beispiele; eine Prüfung aller Epics fehlt. In Epic-/Story-Abschlussprüfung aufnehmen. |
+| **0793.a · 47–49** | Complex | Enabler nur bei technischer, rechtlicher oder betrieblicher Voraussetzung, die nicht sinnvoll in einer Value Story liegt. P57–59 begründet ST-WEB-03 teilweise; für jeden Enabler diese Ausnahme konkret nachweisen. R1438–1442 allein genügt nicht. |
+| **0793.b · 49–50** | Complex | Freigeschaltete Folgestories, notwendiger Umfang **und** prüfbares Ergebnis sind drei notwendige Angaben. ST-WEB-03 nennt Abhängigkeiten, aber die Freischaltung und minimale Grenze sollten ausdrücklich verbunden werden. |
+| **0793.c · 50–51** | Simple | Reine Vorarbeit ohne begründete Abhängigkeit darf keine Story sein. P41/51 und P645–647 behandeln Technik als Tasks in Beispielen; alle Enabler darauf prüfen. |
+| **0794.a · 55** | Complex | INVEST-Prüfung gilt **vor Einplanung jeder Story**. R1444–1448 erhält den Satz; P enthält keinen dokumentierten storyweisen INVEST-Check. Prüfung mit Ergebnis je Story vor „umsetzungsbereit“ vorsehen. |
+| **0795.a · 57** | Simple | „Möglichst“ unabhängig ist eine qualifizierte, keine absolute Pflicht. Story-Abhängigkeiten im Plan sichtbar prüfen; keine Unabhängigkeit behaupten, wenn Dependencies bestehen. |
+| **0795.b · 57–58** | Simple | Unvermeidbare Abhängigkeiten müssen sichtbar sein. P nutzt Dependencies-Felder; ihre Vollständigkeit ist für jede Story nachzuweisen. |
+| **0796.a · 59–60** | Simple | Story soll das Ergebnis beschreiben, ohne unnötige Implementierungsvorgaben. Die langen technischen Acceptance Criteria, etwa P49, auf notwendige Bindungen gegen diese Regel prüfen; keine pauschale Freigabe ableiten. |
+| **0796.b · 60** | Simple | Fach- und Designregeln bleiben trotz Verhandelbarkeit bindend. P21–24 trägt den Grundsatz; Quellverweise je betroffener Story konkret zuordnen. |
+| **0797.a · 61–62** | Complex | Konkreter User/Business Value **und** betroffene Menschen beziehungsweise betrieblicher Nutzen sind nötig. P hat Value-Typen und Storysätze; die bloße Typangabe reicht nicht. Je Story prüfen. |
+| **0798.a · 63–64** | Simple | Umfang und Unsicherheit müssen Aufwand und Reihenfolge einschätzbar machen. P hat keine durchgängige Schätzbarkeitsprüfung. Je Story Unsicherheiten/Abhängigkeiten prüfen. |
+| **0799.a · 65** | Simple | Story muss in ein kurzes, prüfbares Inkrement passen. Besonders umfangreiche Sammel-Acceptance-Criteria in P auf Schnittgröße prüfen. |
+| **0799.b · 65–66** | Simple | Zu große Stories werden nach Nutzen geteilt. P635 nennt eine solche Teilung; bei weiteren großen Stories Slice-Entscheidung dokumentieren. |
+| **0800.a · 67** | Simple | Acceptance Criteria müssen beobachtbar und eindeutig sein. P enthält Kriterien, aber keine Einzelprüfung ihrer Testbarkeit. Storyweise prüfen. |
+| **0801.a · 69–70** | Complex | Bei einem fehlenden INVEST-Merkmal vor Umsetzungsbereitschaft schärfen, teilen **oder** Abhängigkeit begründen. P unterscheidet keinen entsprechend geprüften Ready-Status. Ergebnis und Korrektur je Story dokumentieren. |
+| **0802.a · 74–75** | Simple | Pro Story konkrete, von außen prüfbare Ergebnisse **und** relevante Grenzfälle. P21 ist zu allgemein für deren Vollständigkeit; Kriterien je Story prüfen. |
+| **0802.b · 75–76** | Complex | Rollen, Geräte, Sprachen, Datenschutz, Barrierefreiheit, Fehler und Datenzustände sind **bei Bedarf** zu nennen. Relevanz je Story prüfen; nicht alle Kategorien mechanisch erzwingen. |
+| **0802.c · 77** | Simple | Acceptance Criteria dürfen bindende Spezifikationen nicht still abschwächen. P6/21–24 stützt das; Quellabgleich je Story als Nachweis ergänzen. |
+| **0803.a · 79–80** | Simple | DoD gilt für **jedes als abgeschlossen gemeldete Inkrement**. P19–26 nennt eine gemeinsame DoD, aber keine Prüfung jedes Teilstands. Geltungsbereich ausdrücklich übernehmen. |
+| **0803.b · 80** | Simple | „Erforderlich sind:“ ist ein Einleitungssatz ohne selbstständige Klausel. Mit 0803.a und 0804–0808 verbinden; Kandidaten nicht separat als Covered zählen. |
+| **0804.a · 82** | Simple | `1.` ist nur Listenziffer. Mit 0804.b/c verbinden; kein eigenständiger Requirement- oder Coverage-Eintrag. |
+| **0804.b · 82–83** | Complex | **Alle** Kriterien müssen mit geeigneten, reproduzierbaren Prüfungen erfüllt sein. P21 nennt Erfüllung, aber weder Eignung noch Reproduzierbarkeit ausdrücklich. P19–26 präzisieren; konkreten Blocker statt pauschalem `Blocked` ausweisen. |
+| **0804.c · 83** | Simple | Bekannte Grenzen und ungeprüfte Fälle müssen benannt werden. P19–26 lässt dies aus; DoD ergänzen. |
+| **0805.a · 84** | Simple | `2.` ist nur Listenziffer. Mit 0805.b verbinden. |
+| **0805.b · 84–85** | Complex | Fachliche, Architektur- und Designregeln sowie nötige Freigaben müssen **eingehalten und rückverfolgbar** sein. P21–24 erwähnt Gates, aber keine vollständige Zuordnung/Nachweismethode. DEC-REL-001/002 beachten: Prüfung allein ist keine Release-Freigabe. |
+| **0806.a · 86** | Simple | `3.` ist nur Listenziffer. Mit 0806.b/c verbinden. |
+| **0806.b · 86–87** | Complex | Code, Inhalt, Tests und betroffene Dokumentation müssen konsistent sein. P19–26 nennt Dokumentation nicht ausdrücklich; DoD dort ergänzen. |
+| **0806.c · 87** | Simple | Status und Nachweise dürfen nicht widersprechen. P25–26 unterscheidet Zustände, verlangt aber keinen ausdrücklichen Widerspruchsabgleich. Ergänzen. |
+| **0807.a · 88** | Simple | `4.` ist nur Listenziffer. Mit 0807.b/c verbinden. |
+| **0807.b · 88–90** | Complex | Geplant, lokal vorbereitet, geprüft, freigegeben, gepusht und live verifiziert sind getrennte Zustände. P10–13/25–26 erfasst einen Teil, P60 den konkreten Release. Vollständige Statusfolge je Inkrement ausweisen; historische Belege nicht hochstufen. |
+| **0807.c · 90–91** | Complex | Nur **produktive Änderungen** verlangen zusätzlich Release-Prozess und Live-Prüfung. P21–25/60 passt im Grundsatz; DEC-REL-001–003 als Freigabe- und Local-first-Gates ausdrücklich zuordnen. |
+| **0808.a · 92** | Simple | `5.` ist nur Listenziffer. Mit 0808.b/c verbinden. |
+| **0808.b · 92–93** | Complex | Offene Folgearbeit braucht eigene Story **oder Task**, Bezug und Priorität. P19–26 fehlt diese DoD-Bedingung; dort und in Story-/Task-Daten aufnehmen. |
+| **0808.c · 93** | Simple | Teilstand darf nicht als vollständiges Epic gelten. P643 warnt für Sammel-Stories, nicht projektweit. Epic-Abschlussregel ergänzen. |
+| **0809.a · 95–96** | Complex | Schutz-, Bild-, Sicherheits- und Abnahmevorgaben gelten zusätzlich. P21–24 nennt einige, Sicherheit nicht ausdrücklich. Mit 0809.b als eine Vorrang-/Ergänzungsregel führen. |
+| **0809.b · 96** | Simple | Scrum-Regel ersetzt diese projektspezifischen Vorgaben nicht. Inhaltlich mit 0809.a verbunden; P23–24 entsprechend klarstellen. |
+| **0810.a · 100–102** | Complex | Zuerst User/Business Value, danach Dringlichkeit, Risiko, Abhängigkeit und Aufwand. P649–653 ordnet P0–P3 grob, zeigt diese Reihenfolge je Ergebnis nicht. Prioritätsbegründung je Story ergänzen. |
+| **0810.b · 102** | Simple | Grund der Reihenfolge muss am geplanten Ergebnis erkennbar sein. P651–653 liefert Kategorien, keine individuelle Begründung. Je Priorisierung erfassen. |
+| **0810.c · 102–104** | Complex | Sicherheit, Rechtspflichten, konkrete Störungen und **ausdrücklich freigegebene** Fast-Track-Fälle dürfen Vorrang haben. Das ist eine Ausnahme, kein automatischer P0-Status. Entscheidungsfeld im Plan vorsehen. |
+| **0810.d · 104** | Simple | Für jeden Vorrang sind Entscheidung **und Grund** festzuhalten. Mit 0810.c verknüpfen; P649–653 enthält keine Einzelentscheidungen. |
+| **0810.e · 105–106** | Simple | Technische Leichtigkeit allein rechtfertigt kein Vorziehen. P645–647 ordnet Technik einem Slice zu; bei allen Prioritäten gegenprüfen. |
+| **0810.f · 106–107** | Complex | Automatische Priorisierung betrifft nur das **private Board** und bleibt dessen gesonderten Regeln/Freigaben unterworfen. P653 erwähnt offene Phase 0, die konkrete Schranke sollte dort stehen; nicht auf allgemeine manuelle Priorisierung ausdehnen. |
+| **0811.a · 109–111** | Complex | Neue Anforderungen gehören in die zuständige Fachquelle und mit Ziel, Nutzen, Slice, Kriterien und Quellverweis in den **maßgeblichen aktiven Plan**. P3 erklärt derzeit `ausbauplan.md` zur aktiven Liste; der Entwurf darf diese Rolle bis zum bestandenen Wechsel nicht beanspruchen. Aufnahmeprozess konkret ausweisen. |
+| **0811.b · 111–112** | Simple | Referenz- und Statusdateien dürfen keine konkurrierenden Backlogs werden. P3–6 stützt die Rollentrennung; Register als Constraint-Referenz kennzeichnen, nicht als zweite Arbeitsliste. |
+| **0811.c · 112–113** | Simple | Planwechsel darf offene oder erledigte Anforderungen nicht verbergen. P654–655 sperrt Wechsel bis zum Check; Vollständigkeitsnachweis bleibt erforderlich. |
+| **0812.a · 117–118** | Complex | Nachprüfbarer Abgleich muss **vor** Ersetzen, Archivieren **oder Löschen** stattfinden. P654–655 nennt Ersetzen/Archivieren, nicht Löschen; Trigger vollständig übernehmen. |
+| **0812.b · 118–120** | Complex | Abgleich umfasst **alle** Ziele, Anforderungen, offene/erledigte Einträge, Entscheidungen, Abhängigkeiten, Prioritäten, Ausnahmen und Statusnachweise. P654 sagt nur „atomarer Coverage-Check“; dessen Umfang ausdrücklich belegen. |
+| **0812.c · 120** | Simple | „Für jeden Eintrag wird festgehalten:“ ist eine Einleitung zum Schema 0813/0814. Kein isolierter Coverage-Erfolg; mit Schema verbinden. |
+| **0813.a · 122** | Complex | Tabellenkopf definiert fünf Nachweisfelder. Kein eigenständiges Produkt-Constraint und keine ST-Zuordnung; als verbindliches **Migrationsabgleich-Schema** bei P649–655 führen. |
+| **0814.a · 124** | Complex | Tabellenzeile erläutert dieselben fünf Felder und ist keine zweite, duplizierte Anforderung. Mit 0813.a zusammenführen; insbesondere Pfad/Kennung, historischer Status und Widerspruchsprüfung erhalten. |
+| **0815.a · 126–130** | Complex | Bestanden nur bei eindeutiger Zuordnung oder begründetem Nichtübernehmen, vollständiger Fach-/Arbeitsabdeckung, keinem Statusanstieg und keinen widersprüchlichen aktiven Plänen. P654 nennt keinen vollständigen Bestehensmaßstab. Dort explizit aufnehmen. |
+| **0815.b · 130–131** | Simple | Offene Lücken sperren Ersetzen **oder Entfernen**. P654–655 deckt Ersetzen/Archivieren teilweise; Entfernen ergänzen. |
+| **0815.c · 131–132** | Complex | Verweise und Planregister werden **erst nach dokumentiert bestandenem** Check geändert. Diese Reihenfolge bei P649–655 ausdrücklich festhalten. |
+| **0815.d · 132** | Simple | Historische Nachweise bleiben auffindbar. P25–26 unterscheidet historische Belege, garantiert deren Auffindbarkeit bei Migration aber nicht. Ergänzen. |
+| **0816.a · 134–135** | Simple | Einführung der Scrum-Regel ist weder Migration noch Abnahme. P3–4/654–655 entspricht dem Grundsatz; als historisch geltende Schranke erhalten. |
+| **0816.b · 135–136** | Complex | Inhalte **und Status** alter Pläne bleiben bis zu gesondertem, vollständig geprüftem Migrationsschritt unverändert. P3/654–655 schützt den aktiven Plan grundsätzlich; „Status unverändert“ ausdrücklich absichern. |
+| **0817.a · responsive-templates.md:3** | Simple | „Stand: 23.“ ist ein fehlerhaft getrenntes Datumsfragment, keine Klausel. Mit 0817.b zum Metadatum **23. September 2026** zusammenführen. |
+| **0817.b · responsive-templates.md:3–5** | Complex | Datum, Zielprojekt und maßgeblicher Ablageort sind Quellenmetadaten, keine Acceptance Criteria für ST-WEB-02. R1582–1586 darf sie als Herkunft bewahren; Matrixzuordnung zu ST-WEB-02 und `Rule / Constraint` durch Quellen-/Referenzzuordnung ersetzen. |
+| **0818.a · responsive-templates.md:7** | Simple | Der Satz beschreibt die Zusammenführung der Abstimmung. Er ist Kontext, keine umzusetzende Story-Klausel. R1588–1592 als historischen Übergabestatus führen. |
+| **0818.b · responsive-templates.md:7** | Complex | Repository-Übernahme beweist weder technische Umsetzung noch Veröffentlichung. P3–4/10–13/25–26 stützt die Statusgrenze. Nicht als `Existing / Verify` für ST-WEB-02 ausgeben; gilt für die gesamte Spezifikation. |
+| **0818.c · responsive-templates.md:7** | Complex | „Bestehender Ausbauplan“ bezeichnet den damaligen und laut P3 derzeit noch aktiven Statusführer. Nach einem **bestandenen** Planwechsel braucht die Nachfolge-Zuordnung eine dokumentierte Entscheidung; bis dahin keine Änderung oder widersprüchliche zweite Statusquelle. Keine alleinige ST-WEB-02-Zuordnung. |
+
+### Übergreifende Korrekturen
+
+1. **Kandidaten bereinigen:** 0803.b, 0804.a, 0805.a, 0806.a, 0807.a, 0808.a und 0812.c sind Einleitungen oder Listenziffern; 0817.a/b trennt ein Datum falsch. 0813/0814 bilden gemeinsam ein Schema; 0809.a/b eine zusammenhängende Vorrangregel. Die 65 Rohkandidaten dürfen deshalb nicht als 65 selbstständige erfüllte Anforderungen gezählt werden.
+2. **Register und Matrix trennen:** R1432–1592 ist vollständiger Wortlauterhalt. Für 0792–0816 ist die Anwendung `projektweit` korrekt, aber zu grob als Beleg einzelner Story-Prüfungen. Für 0817/0818 ist die alleinige Zuordnung `ST-WEB-02` sachlich zu eng beziehungsweise bei 0817 falsch.
+3. **Planstellen konkretisieren:** P19–26 braucht die vollständige DoD aus 0803–0809; P649–655 die Prioritäts- und Migrationsbedingungen aus 0810–0816. Der INVEST-Check aus 0794–0801 benötigt einen nachvollziehbaren Eintrag **je Story**.
+4. **Statuskonflikt auflösen:** `Existing / Verify` bei dauerhaft geltenden Projektregeln und Quellenmetadaten sagt nichts über aktuelle Anwendung. `Blocked` bei 0804 darf nur einen konkret benannten Prüfgegenstand beschreiben. DEC-REL-001–003 bestätigen für 0805/0807/0818: Test und Audit ersetzen keine Freigabe des konkreten Release-Umfangs.
+
+**Nutzerentscheidung:** Für diese 27 Originalblöcke ist keine neue fachliche Entscheidung erforderlich. **Reviewstatus: Unresolved**, bis Segmentierung, Zielzuordnungen und die genannten Planning-Coverage-Nachweise korrigiert und erneut geprüft sind. Es wurden keine Dateien geändert.

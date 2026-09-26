@@ -1,0 +1,12 @@
+﻿Route,Type,PlanningMapping,ImplementationVerification
+index.html,Homepage,Independent layout; ST-WEB-03 verification,Existing / Verify; route-level visual and live acceptance pending
+vehicle.html,Vehicle,"ST-WEB-02,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+kajak.html,Activity,"ST-WEB-02,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+norwegen-2018.html,Travel,"ST-WEB-04,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+sardinien-2019.html,Travel,"ST-WEB-04,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+italien-2021.html,Travel,"ST-WEB-04,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+scott-mountainbike.html,Bike,"ST-WEB-05,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+cube.html,Pending bike,"ST-WEB-05,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+trek-gravelbike.html,Pending bike,"ST-WEB-05,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+diamant-stadtraeder.html,Pending bike,"ST-WEB-05,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending
+woom-2.html,Pending bike,"ST-WEB-05,ST-WEB-03",Existing / Verify; route-level visual and live acceptance pending

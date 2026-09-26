@@ -1,0 +1,10 @@
+**PKG-028 ist lokal integriert und geprüft.** Alle 27 Originalblöcke und 65 ursprünglichen Kandidaten (SRC-0792–SRC-0818) wurden gegen die Originalquellen und aktuellen Zielstellen abgeglichen. Jeder Kandidat trägt jetzt `ReviewPackage=PKG-028` und eine individuelle Begründung.
+
+- In [atomic-requirements.csv](/D:/work/_venventure/docs/scrum-migration/atomic-requirements.csv) sind 45 Kandidaten **Partially Covered**, 12 Kontext, 5 in der Planung gedeckt und 3 mit einer zugehörigen Klausel zusammengeführt. Listenziffern, Einleitungen und das getrennte Datum zählen nicht als eigenständige Anforderungen.
+- [scrum-plan-draft.md](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md) enthält nun die projektweiten Gates für Inkremente, Enabler, INVEST, DoD, Priorisierung und Planmigration. [constraint-register.md](/D:/work/_venventure/docs/scrum-migration/constraint-register.md) hält die geprüfte Lesart fest.
+- In [traceability-matrix.csv](/D:/work/_venventure/docs/scrum-migration/traceability-matrix.csv) sind SRC-0817/0818 als Quellenkontext statt als ST-WEB-02-Abnahmekriterien eingeordnet. Der pauschale `Blocked`-Status von SRC-0804 wurde entfernt: Offen ist der **reproduzierbare AC-Nachweis je abgeschlossenem Inkrement**, nicht die Geltung der Regel.
+- [coverage-report.md](/D:/work/_venventure/docs/scrum-migration/coverage-report.md) und [atomic-coverage-report.md](/D:/work/_venventure/docs/scrum-migration/atomic-coverage-report.md) enthalten die aktualisierten Zähler und den Paketbefund.
+
+**Restlücken:** Einzelprüfungen für Stories und Epics, individuelle Prioritätsbegründungen, DoD-Nachweise je abgeschlossenem Inkrement und der vollständige Abgleich vor einem Planwechsel fehlen weiterhin. Sie bleiben *Partially Covered*. Für PKG-028 entstand keine neue fachliche Entscheidungsfrage. `docs/ausbauplan.md` bleibt der aktive Plan; Implementierung, Freigabe und Live-Stand wurden durch diese Planungsprüfung nicht verifiziert.
+
+`update-scrum-review-progress.py` lief erfolgreich; `verify-scrum-review-progress.py` meldet **PASS** (402 geprüfte Blöcke, 1394/2908 ursprüngliche Kandidaten). `git diff --check` bestand.

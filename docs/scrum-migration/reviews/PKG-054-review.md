@@ -1,0 +1,72 @@
+## PKG-054 – lesender Reviewbefund
+
+**Prüfumfang:** alle 21 gelieferten Quell-IDs (`SRC-2252`, `SRC-2253`, `SRC-2350`–`SRC-2368`) und **alle 58 Klauselkandidaten**. Die Originalstellen in [Sardinien-README](</D:/work/_venventure/video-production/sardinia-2019/README.md:342>) und [Outdoor-Editorial-Skill](</D:/work/_venventure/.codex/skills/outdoor-editorial-photo/SKILL.md:8>) sowie die konkreten Ziele in [Scrum-Entwurf](</D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:115>) und [Constraint-Register](</D:/work/_venventure/docs/scrum-migration/constraint-register.md:5572>) wurden direkt gelesen. Maßstab waren auch `AGENTS.md`, die [Scrum-Planungsregel](</D:/work/_venventure/docs/project-rules/scrum-planning.md:115>) und die [Release-Entscheidungen](</D:/work/_venventure/docs/scrum-migration/release-decisions.md:7>). Keine Datei wurde geändert. „Abgedeckt“ in der bestehenden Matrix ist **für SRC-2252/2253 nicht vollständig belegt**; „Rule / Constraint“ für die Bildregeln belegt deren Aufbewahrung, aber allein noch keine Zuordnung zu den betroffenen Stories.
+
+**Legende:** S = semantisch einfache Klausel; C = Bedingungen, Ausnahmen, mehrere prüfbare Aussagen oder Statusbezug. „Teil“ bedeutet: Inhalt ist im Ziel teilweise erkennbar, aber Nachweis, Präzision oder Rückverweis fehlen. Die Einstufung ist eine Prüfung des *Plans*, keine erneute Prüfung des Videos oder einzelner Bilder.
+
+| Kandidat | Typ · Befund | Zeilenbezogene Begründung und Korrektur |
+| --- | --- | --- |
+| 2252.a | S · Teil | Upload-ID steht im Original `README:342`, fehlt in `ST-VID-01` (`scrum-plan-draft:318–323`). Als datierten Ergebnisnachweis mit Quellverweis ergänzen. |
+| 2252.b | C · Teil | Zwei Studio-Anzeigen sind in einem Kandidaten verbunden; `ST-VID-01:322` nennt nur allgemein den Link. Anzeigen einzeln als historischen Plattformnachweis erfassen. |
+| 2252.c | S · Teil | Der öffentlich sichtbare Link **und der erfolgreiche Klick** sind spezifischer als `ST-VID-01:322`. Film-ID und Klickziel aufnehmen. |
+| 2252.d | C · Lücke | Kontaktbögen über den ganzen Export und 720×1280-Einzelbilder in relevanten Bereichen sind zwei Prüfmethoden. Beides als datierten Privacy-Nachweis zu `ST-VID-01` aufnehmen, nicht als Einzelkontrolle aller Frames umdeuten. |
+| 2252.e | C · Lücke | Das negative Prüfergebnis nennt fremde Personen, Kinder **und** Kennzeichen. `ST-VID-01:321–322` erwähnt nur „Privacy-Prüfung“. Die drei geprüften Kategorien explizit erhalten; „nicht erkannt“ nicht zu einer absoluten Abwesenheitsgarantie erhöhen. |
+| 2252.f | C · fehlerhaft segmentiert | Der Kandidat verbindet den Vorbehalt „keine Einzelkontrolle aller 666 Frames“ mit `PRIVACY_APPROVED` für **v18**. In zwei Nachfolger trennen und beide mit den Methoden aus 2252.d verknüpfen. `ST-VID-01:322` enthält weder Vorbehalt noch fassungsgebundenen Status. |
+| 2252.g | S · Teil | `ST-VID-01:322` sagt öffentlich/geprüft, lässt die getrennte Live-Prüfung von Short **und Link** offen. Beide Ergebnisse als historische Abnahme eintragen. |
+| 2253.a | C · Teil | `README:344` sagt Veröffentlichung **nach Helmuts Verifizierung**; `README:333` dokumentiert zusätzlich die explizite Publikationsanweisung. `ST-VID-01:321` behauptet erfüllte Freigabe ohne diese Belegkette. Mit datiertem Nachweis ergänzen; Prüfung allein nicht als Freigabe behandeln (`DEC-REL-001/002`). |
+| 2253.b | S · Lücke | Der YouTube-Upload-Check meldete damals keine Copyright-Probleme. Dieses begrenzte Plattformergebnis fehlt in `ST-VID-01`; nicht als umfassende Rechtefreigabe formulieren. |
+| 2253.c | S · Teil | Öffentliche Abrufbarkeit mit URL und Zeitpunkt fehlt in `ST-VID-01:322`. Historischen Zeitpunkt **24.09.2026 ca. 22:03 MESZ** bewahren; keine heutige Live-Verfügbarkeit daraus ableiten. |
+| 2253.d | S · Teil | Der konkrete Ziel-URL-Test fehlt. In `ST-VID-01` den damals geprüften Related-Video-Klick auf `watch?v=1tdn5NKrl4M` nennen. Inhaltlich Duplikat zu 2252.c, als zweiten Evidenzsatz verweisen statt zweite Anforderung anlegen. |
+| 2253.e | C · Lücke | „Nur YouTube“, kein Web-Service-Rollout und kein Neustart sind zusammengefasst; `ST-VID-01` lässt diese Scope-Abgrenzung aus. Als **historischen Release-Befund**, nicht als generelle Ausnahme vom heutigen Release-Prozess, eintragen. |
+| 2350.a | S · Teil | `constraint-register:5572–5576` bewahrt den Skill; `ST-PHOTO-01:121/123` verweist nur auf den anderen, in `AGENTS.md` verbindlich genannten Bild-Skill. Geltung von *outdoor-editorial-photo* für VanVenture-Fotobearbeitung ausdrücklich den betroffenen Foto-Stories zuordnen; keine Gleichsetzung beider Skills unterstellen. |
+| 2351.a | S · Teil | „Vorhandenes Foto bearbeiten“ ist in `ST-PHOTO-02:133` nur indirekt über Dokumentartreue erfasst. Als Eingangsbedingung ergänzen. |
+| 2351.b | S · Teil | Keine Szenenregeneration ist durch `ST-PHOTO-02:133` sinngemäß gestützt, aber `SRC-2351` fehlt unter Ursprung `:134`. Expliziten Rückverweis ergänzen. |
+| 2352.a | C · Teil | `ST-PHOTO-02:133` schützt viele Merkmale, nennt aber **Fahrzeuge und Landschaft** nicht ausdrücklich; „exakt“ muss zusammen mit den erlaubten Ausnahmen aus `SRC-2353` gelesen werden. Merkmalsliste und Ausnahmebezug ergänzen. |
+| 2353.a | C · Teil | Ein Kandidat bündelt sechs Eingriffsverbote und zwei Ausnahmen. `ST-PHOTO-02:133` nennt nicht **crop** und **reshape** vollständig; Privacy-Ausnahme liegt getrennt in `ST-PHOTO-01:121`. Für jede Eingriffsart prüfbare Kriterien setzen und beide Ausnahmen eng auf genehmigte Privacy-Arbeit bzw. ausdrücklich genehmigte Störungsentfernung begrenzen. |
+| 2354.a | S · abgedeckter Inhalt, Trace fehlt | KI-Ergebnis bleibt Prüffassung in `ST-PHOTO-02:133`. `SRC-2354` unter `:134` ergänzen; keine neue Story nötig. |
+| 2354.b | S · abgedeckter Inhalt, Trace fehlt | Vergleich mit unveränderter Projektkopie steht in `ST-PHOTO-02:133`; Rückverweis ergänzen. |
+| 2354.c | S · abgedeckter Inhalt, Trace fehlt | „Nie einzige erhaltene Fassung“ steht in `ST-PHOTO-02:133`; Rückverweis ergänzen. |
+| 2355.a | S · Teil | Lesendes Archiv und unveränderte ACL stehen in `ST-PHOTO-01:121–122`; `SRC-2355` fehlt im Ursprung `:123`. Archiv-Scope und Quellverweis ergänzen. |
+| 2355.b | C · Teil | Projektkopie/Pfad/Hash sind in `ST-PHOTO-01:121`; die Bedingung **wenn ein Archivoriginal benutzt wird** und die Reihenfolge „zuerst“ sollten erhalten bleiben. Quellverweis ergänzen. |
+| 2356.a | S · abgedeckter Inhalt, Trace fehlt | Kinderanonymisierung in `ST-PHOTO-01:121`; `SRC-2356` im Ursprung `:123` ergänzen. |
+| 2356.b | C · abgedeckter Inhalt, Trace fehlt | Motivweise ausdrücklicher Wunsch für Erwachsenengesichter steht in `:121`; Rückverweis ergänzen. |
+| 2356.c | S · abgedeckter Inhalt, Trace fehlt | Verbot vorsorglicher Erwachsenenmaskierung steht in `:121`; Rückverweis ergänzen. |
+| 2356.d | S · abgedeckter Inhalt, Trace fehlt | Helmut und Sabine dürfen sichtbar bleiben (`:121`); Rückverweis ergänzen. |
+| 2356.e | C · abgedeckter Inhalt, Trace fehlt | Bei unklarem Alter **oder** fehlender Publikationsentscheidung zurückstellen **und** Nutzer fragen steht in `:121`. Die beiden Auslöser und Handlungen als prüfbare Bedingung behalten; Rückverweis ergänzen. |
+| 2356.f | S · Teil | Projektlokaler Scope steht in `SKILL:20`, fehlt an `constraint-register:5608–5612` als Anwendungsgrenze („projektweit“ ist zu unbestimmt). Auf VanVenture begrenzen, nicht globalisieren. |
+| 2356.g | C · abgedeckter Inhalt, Trace fehlt | Veröffentlichungsverbot ohne ausdrückliche **Fotoauswahl** steht in `ST-PHOTO-01:121`. Nicht mit bloßer allgemeiner Release-Freigabe gleichsetzen; Rückverweis ergänzen. |
+| 2357.a | S · abgedeckter Inhalt, Trace fehlt | Alle sichtbaren Fahrzeugkennzeichen in `ST-PHOTO-01:121`; Ursprung `SRC-2357` fehlt. |
+| 2357.b | C · Teil | Enger Gesichtsmaskenbereich, kleiner Rand und weiche Kanten stehen in `:121`. Die Bedingung **nur bei spezifisch autorisierter Gesichtsmaskierung** explizit an dieses Kriterium binden; Rückverweis ergänzen. |
+| 2357.c | S · Lücke | Bevorzugter lokaler Gaussian Blur gegenüber groben Blöcken fehlt in `ST-PHOTO-01:121`. Als Präferenz aufnehmen, ohne daraus eine ausnahmslose Technikpflicht zu machen. |
+| 2357.d | S · abgedeckter Inhalt, Trace fehlt | Kein unnötiger Überlauf auf Haar, Kleidung, Körper, Hintergrund steht in `:121`; Rückverweis ergänzen. |
+| 2357.e | C · abgedeckter Inhalt, Trace fehlt | Unlesbarkeit bei 100 % und jeder Webgröße steht in `:121`; beide Maßstäbe erhalten und rückverweisen. |
+| 2357.f | C · abgedeckter Inhalt, Trace fehlt | Ausnahme für nicht identifizierende Rückansichten steht in `:121`; nicht auf identifizierende Seitenansichten erweitern. |
+| 2358.a | C · Duplikat | Wortgleiche Veröffentlichungsregel zu 2356.g (`SKILL:20/22`). Beide Quellen tracebar halten, aber nur **eine** aktive Fotoauswahl-Bedingung in `ST-PHOTO-01:121`; kein zweites Gate erzeugen. |
+| 2359.a | S · Lücke | Identifizierung menschengemachter Störungen mit Beispielen steht in `SKILL:26`, fehlt als vorbereitender Prüfschritt in `ST-PHOTO-02:133`. Dort bzw. in einem zugehörigen Task verankern; Identifizierung ist noch keine Entfernungsfreigabe. |
+| 2360.a | C · Teil | `ST-PHOTO-02:133` verweist auf bestätigte Störelemente, verlangt aber die Bestätigung der **genauen Elemente** nicht selbst. Im Kriterium konkretisieren; Rückverweis ergänzen. |
+| 2360.b | S · Lücke | „Erster Grading-Durchlauf unverändert“ fehlt in `ST-PHOTO-02:133`. Als Ablaufkriterium aufnehmen. |
+| 2361.a | C · Teil | `ST-PHOTO-02:133` enthält die Ausnahme, nicht ausdrücklich **nur benannte Elemente** und **lokales Projektderivat** nach Bestätigung. Beides ergänzen. |
+| 2361.b | C · Lücke | 100 %-Prüfung wird in `:133` allgemein für Ableitungen genannt; Nahtstellen, Wiederholungsmuster und benachbarte Szenenänderungen der **reparierten Pixel** fehlen. Spezifisches Reparaturkriterium ergänzen. |
+| 2361.c | C · Lücke | Benachbarte Strukturen/Objekte ohne gesonderte Zustimmung erhalten ist nicht ausdrücklich in `:133`. Ergänzen; keine Zustimmung für Nachbarobjekte aus der ursprünglichen Bestätigung ableiten. |
+| 2362.a | S · Teil | `ST-PHOTO-02:133` sagt natürlich, aber nicht **erdige** Farbgebung. Stilziel aufnehmen oder präzise bestehende gleichwertige Formulierung nachweisen. |
+| 2362.b | S · abgedeckter Inhalt, Trace fehlt | Gedämpfte, plausible Grüntöne in `:133`; `SRC-2362` unter `:134` ergänzen. |
+| 2362.c | S · abgedeckter Inhalt, Trace fehlt | Leicht reduzierte Himmel-/Wasserblautöne in `:133`; Rückverweis ergänzen. |
+| 2362.d | S · abgedeckter Inhalt, Trace fehlt | Subtile warme Braun-/Orangetöne sind als „subtile warme Töne“ verkürzt. Braun/Orange bei `:133` präzisieren und rückverweisen. |
+| 2363.a | C · abgedeckter Inhalt, Trace fehlt | Kontrollierter filmischer Kontrast und sanft angehobenes Schwarz in `:133`; matte Wirkung und `SRC-2363` nachvollziehbar ergänzen. |
+| 2363.b | S · abgedeckter Inhalt, Trace fehlt | Plausible Lichter/Schatten in `:133`; Rückverweis ergänzen. |
+| 2364.a | C · Teil | Hautstruktur und Tageslicht stehen in `:133`; das Original nennt auch **Mittagslicht**, sofern im Motiv vorhanden. Nicht in erfundenes anderes Licht umdeuten; rückverweisen. |
+| 2364.b | C · Teil | Verbotsliste ist mehrfach prüfbar. `ST-PHOTO-02:133` enthält Beauty, HDR, Bokeh, Übersättigung, Golden Hour, aber **dramatische Neubeleuchtung** nicht ausdrücklich. Ergänzen; einzelne Verbote bei der Variantenabnahme prüfbar halten. |
+| 2365.a | S · abgedeckter Inhalt, Trace fehlt | Motivweises Grading in `ST-PHOTO-02:133`; Rückverweis ergänzen. |
+| 2365.b | S · abgedeckter Inhalt, Trace fehlt | Keine pauschalen festen Werte in `:133`; Rückverweis ergänzen. |
+| 2365.c | C · Duplikat mit Zusatz | Wiederholt 2362.b–d und ergänzt den Erhalt des natürlichen Tageslichtcharakters, der in `:133` steht. Ein gemeinsames Kriterium mit beiden Quellen führen; keine konkurrierenden Farbregeln. |
+| 2366.a | C · Teil | Nichtüberschreiben der unveränderten Kopie steht in `ST-PHOTO-01:122`; **Ablage neben relevanten Projektassets** fehlt. Diesen Speicherort zu einem Task/AC der Bildableitung zuordnen; `SRC-2366` rückverweisen. |
+| 2367.a | C · Teil | Originaltreue in `ST-PHOTO-02:133` und Kennzeichen in `ST-PHOTO-01:121`, aber das gemeinsame **Vor-Veröffentlichung-Gate** fehlt. Beide Prüfbelege vor Freigabe derselben Variante verknüpfen. |
+| 2368.a | C · Teil | Vorher/Nachher und 100 % in `ST-PHOTO-02:133`, doch **Privacy-Masken und jede Störungsreparatur** gegen die unveränderte Projektkopie bei voller Auflösung fehlen als spezifischer Vergleich. Ergänzen. |
+| 2368.b | C · Teil | Quell-/Webhashes in `ST-PHOTO-01:121`; **Derivathash, genaue Operationen und Reviewstatus gemeinsam je Ableitung** fehlen. In Bildregister/Task-Nachweis konkretisieren und `SRC-2368` rückverweisen. |
+| 2368.c | C · Duplikat | Inhaltlich bereits 2354.a und `ST-PHOTO-02:133`: KI-Ableitung bleibt bis ausdrücklicher Freigabe Prüffassung. Beide Quellen derselben Bedingung zuordnen; keine Freigabe aus bloßer visueller Prüfung ableiten. |
+
+### Übergreifende Korrekturen
+
+1. **Video-Ziel:** [ST-VID-01, Zeilen 316–324](</D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:316>) braucht `SRC-2252` und `SRC-2253` im Ursprung und einen kompakten, datierten Abnahmenachweis. `Done` darf den dokumentierten Stand vom 24.09.2026 bezeichnen; eine heutige erneute Live-Prüfung wurde hier nicht durchgeführt. Die Matrixwerte „Covered“ sind bis zur präzisen Übernahme und Traceability nur **teilweise gedeckt**.
+2. **Bild-Ziel:** Das [Constraint-Register, Zeilen 5572–5684](</D:/work/_venventure/docs/scrum-migration/constraint-register.md:5572>) kopiert die Originale korrekt, setzt für alle aber pauschal „Anwendung: projektweit“. Für echte Planning Coverage müssen die zutreffenden Klauseln an **ST-PHOTO-01** (Herkunft, Privacy, Freigabegates), **ST-PHOTO-02** (Dokumentartreue, Bearbeitung, Farbe, KI, Störungsreparatur) und gegebenenfalls **ST-PHOTO-03** (Fahrzeugbilder/Kennzeichen) sowie zugehörige Tasks gebunden werden. Die Ursprunglisten `:123`, `:134` und `:145` enthalten `SRC-2350`–`SRC-2368` derzeit nicht.
+3. **Keine zusätzliche Nutzerentscheidung erforderlich:** Die scheinbare Spannung zwischen Dokumentartreue und Privacy- bzw. bestätigter Störungsbearbeitung ist durch die ausdrücklichen Ausnahmen in `SKILL:14` auflösbar. Veröffentlichung bleibt nach `DEC-REL-001/002` eine eigene, umfangsbezogene Freigabe. Aus diesem lesenden Review folgt keine neue Freigabe und kein Rollout.

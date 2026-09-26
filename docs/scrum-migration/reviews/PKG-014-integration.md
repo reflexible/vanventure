@@ -1,0 +1,12 @@
+**PKG-014 ist integriert, aber nicht bestanden.** Ich habe die zehn Originalblöcke SRC-0460 bis SRC-0469 und ihre aktuellen Zielstellen erneut geprüft: 126 ursprüngliche Kandidaten sind einzeln mit Zielstelle und Begründung markiert. SRC-0460.e ist in datierten Teilstatus und ein eigenes Vorbeginn-Kriterium geteilt.
+
+Geändert wurden nur Dateien unter [docs/scrum-migration](/D:/work/_venventure/docs/scrum-migration) und die zwei lokalen Prüfscripte:
+
+- [atomic-requirements.csv](/D:/work/_venventure/docs/scrum-migration/atomic-requirements.csv) und [traceability-matrix.csv](/D:/work/_venventure/docs/scrum-migration/traceability-matrix.csv): individuelle Klauselurteile statt pauschaler Blockdeckung; SRC-0464 und SRC-0466 bleiben *Partially Covered*.
+- [scrum-plan-draft.md](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md), [story-catalog.json](/D:/work/_venventure/docs/scrum-migration/story-catalog.json) und [story-tasks.csv](/D:/work/_venventure/docs/scrum-migration/story-tasks.csv): Vorbeginn-Referenzsicherung, Kajak-zuerst-Reihenfolge, konkrete Bild- und Variantenprüfungen sowie das separate Release-Gate als Planung erfasst.
+- [constraint-register.md](/D:/work/_venventure/docs/scrum-migration/constraint-register.md), [partial-clause-map.md](/D:/work/_venventure/docs/scrum-migration/partial-clause-map.md), [atomic-coverage-report.md](/D:/work/_venventure/docs/scrum-migration/atomic-coverage-report.md) und [execution-state.md](/D:/work/_venventure/docs/scrum-migration/execution-state.md): Quellenwortlaut, Teildeckung, Prüfnachweis und Status abgeglichen.
+- [update-scrum-review-progress.py](/D:/work/_venventure/tools/update-scrum-review-progress.py) und [verify-scrum-review-progress.py](/D:/work/_venventure/tools/verify-scrum-review-progress.py): PKG-014-Nachweis und Strukturprüfung ergänzt.
+
+**Offen bleiben acht Kandidaten:** SRC-0464.f/i/m/af/ah/am und SRC-0466.s/aa. Sie betreffen insbesondere die Kajak-Gruppenabnahme, Bildherkunft und Originalabgleiche, den genauen Scott-Frame, weitere Fahrzeug-Einzelfreigaben und die Entscheidung zu zwei Seitenbildern. Planung und historischer Prüfstand sind keine Implementierungs-, Bild- oder Live-Abnahme.
+
+Beide verlangten Python-Scripte liefen erfolgreich. Das gemeldete `PASS` bestätigt die **Struktur** der Reviewdaten, nicht die noch offene fachliche Deckung. Originalquellen, aktive Pläne, Produktcode, Bilder, Datenbanken, `controller-state.json` und Paketberichte wurden nicht geändert; es gab kein Deployment.

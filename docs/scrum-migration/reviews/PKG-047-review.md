@@ -1,0 +1,75 @@
+## Review PKG-047
+
+**Umfang:** Alle 30 Originalblöcke von SRC-1528 bis SRC-1560, die im Paket enthalten sind, und **alle 57 Klauselkandidaten** wurden einzeln geprüft. Es wurden keine Dateien geändert. Grundlage waren die [Originalquelle](/D:/work/_venventure/docs/VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md:49), die [Story-Zielstellen](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:581), das [Constraint-Register](/D:/work/_venventure/docs/scrum-migration/constraint-register.md:4396), [AGENTS.md](/D:/work/_venventure/AGENTS.md), die [Scrum-Planungsregel](/D:/work/_venventure/docs/project-rules/scrum-planning.md:115) und die [Release-Entscheidungen](/D:/work/_venventure/docs/scrum-migration/release-decisions.md).
+
+**Ergebnis:** Kein pauschales PASS. Die 30 Registereinträge geben den Originalwortlaut wieder, liefern aber allein keine prüfbare Planning Coverage. Die Matrix übernimmt durchgehend „Existing / Verify“ und eine thematische Story-Zuordnung. Insbesondere ist **ST-BRD-04 auf ausdrücklich beauftragte Marvin-Aktionen begrenzt**; Grundfunktionen des Boards gehören in ST-BRD-01, Tablet-Darstellung in ST-BRD-02 und Warnungsverarbeitung in ST-BRD-03. Die überladene ST-BRD-01 muss gemäß ihrem eigenen Planungsstatus vor Umsetzungsreife in abnehmbare Slices geteilt werden.
+
+**Leseschlüssel:** S = semantisch einfache Klausel, C = komplexe, bedingte oder nur im Zusammenhang verständliche Klausel. „Register“ meint den jeweiligen `src-*`-Abschnitt; die angegebene Story ist die konkrete Korrektur der Planning-Zuordnung. Jede Kennung unten bezeichnet genau einen geprüften Kandidaten.
+
+| Originalzeile | Kandidat | Befund und konkrete Korrektur |
+| --- | --- | --- |
+| 49–60 | **1528.a · C** | Das Diagramm enthält mehrere Beziehungen und ist nicht atomar. Signiertes Ereignis → private API → persistente Inbox → Karte/Fast Track nach **ST-BRD-03:611**; Marvin-Zugriff → Backlog/Board/Audit nach **ST-BRD-04:621**; Tablet-Client nach **ST-BRD-02:602** aufteilen. Der einzelne Registereintrag **4396–4400** und die alleinige Zuordnung ST-BRD-03 decken das Diagramm nicht vollständig ab. Pfeilrichtungen nicht über die lesbare Zeichnung hinaus interpretieren. |
+| 62–65 | **1529.a · S** | Zugehörigkeit des Kommunikationskanals zur Cockpit-Phase 4 ist eine Abhängigkeit, kein eigenes Lieferergebnis. In **ST-BRD-03:610–611** ausdrücklich als Phasenabhängigkeit nennen; Register **4402–4406** behält den Wortlaut. |
+| 62–65 | **1529.b · C** | Reihenfolge „Kanal vor automatischen Fast-Track-Karten“ ist bindend. **ST-BRD-03:611** sagt „vor Aktivierung“, sollte die konkrete Reihenfolge Kanal → automatische Erstellung prüfen. |
+| 62–65 | **1529.c · C** | „Dadurch“ ist nur eine Begründung, als isolierter Kandidat unvollständig. Mit **1529.b/d** als Architekturziel verbinden: Fahrzeuglogik funktioniert unabhängig von der Tablet-Oberfläche. |
+| 62–65 | **1529.d · C** | Nachlieferung bei Board-Ausfall ist ein eigenständiger Fehlerfall. **ST-BRD-03:611** nennt dauerhafte Inbox und Idempotenz, aber keinen reproduzierbaren Ausfall-/Wiederanlauf-Test; diesen ergänzen. |
+| 71 | **1530.a · S** | „Genau ein Typ je Karte“ ist atomar. Zu **ST-BRD-01:593**, nicht zu Marvin **ST-BRD-04**; die fünf zulässigen Typen aus den folgenden Tabellenzeilen als überprüfbare Domäne verknüpfen. Register **4408–4412** allein genügt nicht. |
+| 75 | **1532.a · C** | Typ `epic`, Zweck und Verbot einer Board-Position sind mehrere Aussagen. In **ST-BRD-01:593** Typ und „nur Struktur, keine Board-Karte“ getrennt prüfen; **ST-BRD-04** ist falsch. |
+| 76 | **1533.a · C** | Typ `story`, abnehmbarer Epic-Teil und keine Board-Task sind getrennte Regeln. In **ST-BRD-01:593** mit Hierarchie- und Board-Test aufnehmen; **ST-BRD-04** ist falsch. |
+| 77 | **1534.a · C** | `task` hat zwingenden Story-Bezug und darf aufs Board. **ST-BRD-01:593** enthält beides teilweise; für jede neue oder verschobene Task-Karte getrennt abnehmen. **ST-BRD-04** ist falsch. |
+| 78 | **1535.a · C** | `todo` umfasst eigenständige Familienaufgabe **oder** Story-Arbeit und darf aufs Board. **ST-BRD-01:593** nennt die Ausnahme, aber die beiden Elternschaftsfälle sollten eigene Kriterien erhalten. **ST-BRD-04** ist falsch. |
+| 79 | **1536.a · C** | `alert_task` entsteht aus Warnung, ist boardfähig und startet im Fast Track. **ST-BRD-03:611** deckt Entstehung nur für high/critical; Anfangsposition ausdrücklich prüfen. Register **4438–4442** ist korrekt thematisch zugeordnet. |
+| 81–90 | **1537.a · C** | Die Hierarchiekette gilt **für geplante Projektarbeit**. **ST-BRD-01:593** und die Scrum-Regel ab **:17** sind Ziel; **ST-BRD-03** verengt den Scope fälschlich auf Warnungen. |
+| 81–90 | **1537.b · S** | Epic enthält Stories. In **ST-BRD-01:593** als validierte Elternbeziehung ergänzen; im Paket bislang nur Register **4444–4448**. |
+| 81–90 | **1537.c · S** | Jeder Projekt-`task` gehört zu einer Story. **ST-BRD-01:593** enthält diese Regel; Zuordnung zu ST-BRD-03 korrigieren und ungültigen Elternbezug als Negativfall prüfen. |
+| 81–90 | **1537.d · S** | Direktes Anhängen von Task/Subtask an Epic ist verboten. **ST-BRD-01:593** und Scrum-Regel **:24–27** nennen es; in der Board-Datenvalidierung konkret prüfen. |
+| 81–90 | **1537.e · S** | Projektbezogenes `todo` benötigt ebenfalls Story. **ST-BRD-01:593** nennt nur private To-dos als Ausnahme; positive Projekt-`todo`-Pflicht ergänzen. |
+| 81–90 | **1537.f · C** | Private Familien-To-dos und operative `alert_task` dürfen ohne **Projekt-Hierarchie** im Backlog bzw. Fast Track stehen. Auf **ST-BRD-01:593** (Familie) und **ST-BRD-03:611** (Warnung) teilen. Das Fragment ist allein nicht vollständig, weil **1537.g** das Epic-Verbot ergänzt. |
+| 81–90 | **1537.g · C** | „Sie“ bezieht sich auf beide Kartengruppen aus **1537.f**; beide dürfen nicht direkt unter ein Epic. Je ein Negativkriterium in **ST-BRD-01:593** und **ST-BRD-03:611**. |
+| 81–90 | **1537.h · C** | Elternlöschung darf Kinder nie automatisch löschen. Zu **ST-BRD-01:593** als Lösch-/Archiv-Grenzfall; **ST-BRD-03** ist falsch. |
+| 81–90 | **1537.i · C · Unresolved** | „Sie können nur archiviert werden“ hat im Original einen unklaren Bezug (Eltern oder Kinder); die vorherige Zuordnungsentscheidung ist ebenfalls nicht operationalisiert. In **ST-BRD-01** bis zur Entscheidung als offene Hierarchie-/Archivregel führen, nicht als bestandene Coverage. Konkrete Frage unten. |
+| 94 | **1538.a · C** | „Jede Karte enthält:“ ist eine Tabellen-Einleitung, keine atomare Anforderung. Mit den Feldregeln **1540–1549** zusammenführen; nicht als selbstständig erfüllte Klausel werten. Register **4450–4454** und ST-BRD-04 erzeugen Scheincverage. |
+| 98 | **1540.a · S** | Kurzer, handlungsorientierter Pflichttitel für jede Karte. Zu **ST-BRD-01:593** mit leerem/ungültigem Titel als Prüffall; nicht ST-BRD-04. |
+| 100 | **1542.a · S** | Pflichtpriorität mit exakt vier Werten. **ST-BRD-01:592–593** nennt die Werte, benötigt Feldvalidierung je Kartentyp; nicht ST-BRD-04. |
+| 101 | **1543.a · C** | Erstelldatum ist automatisch **und** unveränderbar: Erzeugen und Änderungsversuch getrennt prüfen. Zu **ST-BRD-01:593**, nicht ST-BRD-04. |
+| 102 | **1544.a · S** | Fälligkeitsdatum ist allgemein optional. Zu **ST-BRD-01:593**; alleinige Zuordnung ST-BRD-03 verengt den Scope. |
+| 102 | **1544.b · C** | Bei Systemwarnung kann Fälligkeit aus der Warnung übernommen werden; „kann“ macht sie nicht zur Pflicht. Zu **ST-BRD-03:611**, mit Warnung ohne und mit Fälligkeitswert prüfen. |
+| 103 | **1545.a · C · Unresolved** | Board-Zeile/-Spalte „nur bei eingeplanten Task-/To-do-Karten“ kollidiert dem Wortlaut nach mit boardfähigen `alert_task` aus Zeile 79 und **ST-BRD-01:593**. Zu **ST-BRD-01:593** plus Warnungsfall **ST-BRD-03:611**; die Feldregel vor Coverage-Behauptung klären. Frage unten. |
+| 104 | **1546.a · S** | „In Arbeit von“ bleibt bis zur Übernahme leer. Zu **ST-BRD-01:593** und sichtbarer Tablet-Prüfung **ST-BRD-02:602**; nicht ST-BRD-04. |
+| 104 | **1546.b · S** | Feld wird beim Eintritt in „In Arbeit“ gesetzt. **ST-BRD-01:593** deckt atomaren Wechsel teilweise; Feldwert und Anzeige ausdrücklich prüfen. |
+| 105 | **1547.a · S** | Story → Epic ist eine Hierarchieregel. Zu **ST-BRD-01:593**; ST-BRD-03 ist falsch. |
+| 105 | **1547.b · S** | Projekt-Task **und** Projekt-To-do → Story zwingend. **ST-BRD-01:593** nennt Task, To-do ergänzen; negative Elternschaftsfälle prüfen. |
+| 105 | **1547.c · C** | Familien-To-do und Warnungs-Task haben keine Epic-Elternkarte. Auf **ST-BRD-01:593** und **ST-BRD-03:611** teilen; „ohne Epic“ heißt nicht automatisch, dass jeder andere Bezug verboten wäre. |
+| 106 | **1548.a · S** | Beschreibung ist allgemein optional. Zu **ST-BRD-01:593**, nicht ST-BRD-03. |
+| 106 | **1548.b · C** | Warnungsbeschreibung enthält verständliche Handlungsempfehlung. **ST-BRD-03:611** nennt empfohlenes Handeln im Katalog; dessen Übernahme und Verständlichkeit **auf der Karte** zusätzlich prüfen. |
+| 107 | **1549.a · C** | Automatischer Verlauf für Erstellung, Änderung, Verschiebung, Übernahme **und** Abschluss enthält fünf beobachtbare Ereignisklassen. Zu **ST-BRD-01:593**, mit je einem Ereignistest; Marvins erlaubte Aktionen zusätzlich in **ST-BRD-04:621** auditieren. |
+| 109–111 | **1550.a · S** | Übernahmename ist keine Leistungsanzeige. Zu **ST-BRD-01:593** als Darstellungsgrenze und **ST-BRD-02:602** auf Tablet; ST-BRD-04 allein reicht nicht. |
+| 109–111 | **1550.b · S** | Keine Startseite „Wer macht was?“: eigenständiges Verbot. **ST-BRD-02:602** verbietet Ranking, aber nicht die genannte Startseite; expliziten Negativcheck ergänzen. |
+| 109–111 | **1550.c · C** | Name erscheint ausschließlich auf Karte und im Verlauf; Zweck ist aktuelle Übernahme. Zu **ST-BRD-01:593** plus **ST-BRD-02:602**. Mit **1555.b** zeitlich unterscheiden: in Review/Done letzte Übernahme, keine aktuelle Zuweisung. |
+| 115 | **1551.a · C** | „Horizontal innerhalb der aktuellen Zeile“ ist ohne Statusfolge **1552.a** unvollständig. Beide gemeinsam zu **ST-BRD-01:593**; Board-Zeilenwechsel nach **1553.b** gesondert behandeln. |
+| 117 | **1552.a · C** | Die fünf Zustände und ihre Vorwärtsfolge erhalten Bedeutung erst mit **1551.a** und der erlaubten Rückbewegung **1553.a**. **ST-BRD-01:593** enthält die Spalten, braucht zulässige/unerlaubte Bewegungen als Prüffälle; nicht ST-BRD-04. |
+| 119–121 | **1553.a · C** | Rückbewegung ist erlaubt, Beispiel Review → In Arbeit bei Korrektur. Zu **ST-BRD-01:593**; nicht auf Warnungen in ST-BRD-03 beschränken. |
+| 119–121 | **1553.b · C** | Zeilenwechsel Scrum Board ↔ Fast Track ist **bei veränderter Priorität** möglich. Zu **ST-BRD-01:593**; dortige hoch/kritisch-Grenze mit Rückwechsel für niedrig/normal abgleichen. Warnungskarten in **ST-BRD-03** mitprüfen. |
+| 119–121 | **1553.c · C** | „Das“ bezieht sich auf den unmittelbar vorherigen Zeilenwechsel: immer im Verlauf festhalten. Zu **ST-BRD-01:593**; nicht als freie, unbedingte Einzelklausel werten. |
+| 123–124 | **1554.a · S** | Eintritt in „In Arbeit“ verlangt persönliche Übernahme. **ST-BRD-01:593** enthält atomaren Wechsel; **1556.a** ist inhaltlich dasselbe Verbot und sollte als Duplikat verknüpft werden. |
+| 123–124 | **1554.b · S** | Name wird im Feld `in_progress_by` gespeichert. In **ST-BRD-01:593** als Daten-/Anzeige-Kriterium ergänzen; nicht bloß „Übernahme“ sagen. |
+| 125–127 | **1555.a · S** | Beim Austritt aus „In Arbeit“ bleibt die letzte übernehmende Person im Verlauf. Zu **ST-BRD-01:593** als Persistenzprüfung. |
+| 125–127 | **1555.b · C** | Bei Review/Done bleibt die letzte Übernahme sichtbar, darf aber nicht als aktuelle Zuweisung gelten. Zu **ST-BRD-01:593** und Anzeigeprüfung **ST-BRD-02:602**; bedingten Status-Scope erhalten. |
+| 128 | **1556.a · S** | Wechsel nach „In Arbeit“ ohne Übernahme verboten. Inhaltliches Duplikat zu **1554.a**; eine gemeinsame AC in **ST-BRD-01:593** mit negativem Test, beide Quellenverweise erhalten. |
+| 129–130 | **1557.a · C** | Review bedeutet fertiggestellte Arbeit mit ausstehender Rückmeldung, Sicht- **oder** Systemprüfung. Zu **ST-BRD-01:593**; Phase-0-Review-Regeln ersetzen diese Statusbedeutung nicht. |
+| 131–132 | **1558.a · S** | Jede Done-Setzung erfordert bewusste Bestätigung. Zu **ST-BRD-01:593**; ST-BRD-03 allein ist zu eng. Bei Marvin bleibt das Verbot in **ST-BRD-04:621** zusätzlich bestehen. |
+| 131–132 | **1558.b · C** | Bei Fahrzeugwarnungen darf die Systemauflösung Hinweis sein, nie Bestätigungsersatz. **ST-BRD-03:611** nennt Bestätigung; den Hinweis-/Nicht-Automatik-Fall ausdrücklich prüfen. |
+| 133–134 | **1559.a · S** | Keine sofortige Kartenlöschung. Zu **ST-BRD-01:593** mit Löschversuch als Negativfall; ST-BRD-04 ist falsch. |
+| 133–134 | **1559.b · C · Unresolved** | Archivierung erfolgt **nach einer noch festzulegenden Frist**. **ST-BRD-01:592–593** hält die Phase-0-Frist offen; kein konkreter Zeitraum darf erfunden oder als erfüllt markiert werden. |
+| 133–134 | **1559.c · S** | Verlauf bleibt nach Archivierung nachvollziehbar. Zu **ST-BRD-01:593**, auch nach Wiederauffinden einer archivierten Karte prüfen. |
+| 138–140 | **1560.a · S** | Backlog ist alleinige Auffangstelle **für ungeplante Ideen**; dies sagt nichts über die separate Warnungs-Inbox. Zu **ST-BRD-01:593**, nicht ST-BRD-04. |
+| 138–140 | **1560.b · C** | Marvin legt bei beauftragter Anlage standardmäßig im Backlog an. Zu **ST-BRD-04:621**; „standardmäßig“ hebt die dortige Pflicht zum ausdrücklichen Auftrag nicht auf. Dies als Default-Ziel und nicht als autonome Anlage formulieren. |
+| 138–140 | **1560.c · C** | Manuelle Eingaben landen ohne **explizit gewünschte Einplanung** im Backlog. Zu **ST-BRD-01:593** mit beiden Eingabefällen; ST-BRD-04 ist falsch. |
+
+### Offene Entscheidungen
+
+1. **SRC-1545.a, Originalzeile 103:** Sollen `alert_task`-Karten eine Board-Zeile und -Spalte besitzen, sobald sie im Fast Track erscheinen? Das wäre mit Zeile 79 vereinbar, erfordert aber eine Korrektur des Wortlauts „nur … Task-/To-do-Karten“. **Status: Unresolved; Board-Positions-Coverage blockiert.**
+2. **SRC-1537.i, Originalzeilen 88–90:** Bezieht sich „sie können nur archiviert werden“ auf die Kinder oder auf die gelöschten Eltern? Welche Zuordnung muss vor dem Archivieren feststehen? **Status: Unresolved; Elternlöschung und Archivierung nicht als abgenommen markieren.**
+3. **SRC-1559.b, Originalzeile 133:** Welche Aufbewahrungsfrist soll Phase 0 festlegen? **Status: Unresolved; die bereits geplante Phase-0-Entscheidung bleibt offen.**
+
+**Übergreifende Korrektur:** Für jeden der 57 Kandidaten die thematische Matrix-Zuordnung durch die oben genannte Story-/AC- oder begründete Constraint-Zuordnung ersetzen; fragmentierte Kandidaten verbinden und Mehrfachregeln teilen. Beide Originaltexte bei Duplikaten rückverfolgbar halten. Danach Coverage und Status erneut prüfen. Bis dahin erfüllen Registerabschrift und „Existing / Verify“ den geforderten Coverage-/Traceability-Check nicht; ein Planersatz ist dadurch nicht freigegeben.

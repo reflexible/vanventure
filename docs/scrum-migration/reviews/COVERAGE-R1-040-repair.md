@@ -1,0 +1,7 @@
+Die Planungsreparatur für **COVERAGE-R1-040** ist lokal eingetragen: Die 17 Klauseln aus SRC-1466 und SRC-1468–1476 sind mit fünf übergreifenden AC im [Scrum-Entwurf](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:8), drei Prüftasks und den zentralen Zuordnungen verknüpft. Fortschrittsaktualisierung und Strukturprüfung liefen; die Strukturprüfung bestand mit 1.105 Quellblöcken und 2.908/2.908 ursprünglichen Kandidaten.
+
+- **Verbleibende Nutzerfragen in diesem Umfang:** keine.
+- **Verbleibende Planning-Coverage-Lücken für diese Klauseln:** keine.
+- **Zusätzliche Datenintegritätslücke:** Ein Schreibvorgang an der Traceability-Matrix brach nach SRC-1465 ab. Ich habe die folgenden Zeilen aus Quellinventar und atomaren Prüfdaten wiederhergestellt. Die Strukturprüfung besteht, aber frühere individuelle Freitextnotizen und einzelne Zuordnungen ab SRC-1477 sind damit **nicht wortgleich verifiziert**. Das ist im [Coverage-Bericht](/D:/work/_venventure/docs/scrum-migration/coverage-report.md) festgehalten und muss vor dem globalen Migrationsabschluss gesondert abgeglichen werden.
+
+Implementation Verification, tatsächliche Freigaben und Live-Verifikation bleiben offen. Es gab keine Produktentwicklung oder Veröffentlichung.

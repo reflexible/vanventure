@@ -2,6 +2,17 @@
 
 ## Plan status is part of every delivery
 
+- Alle neuen und bestehenden Projektpläne müssen der verbindlichen
+  [Scrum-Planungsregel](docs/project-rules/scrum-planning.md) entsprechen.
+  Bestehende Pläne dürfen erst nach vollständiger Migration und bestandenem
+  Coverage-/Traceability-Check ersetzt oder entfernt werden.
+
+- Before adding or changing a website analytics event, read
+  [`docs/analytics.md`](docs/analytics.md). Define event names and properties
+  there, never ad hoc in a page or component. Provider-specific analytics code
+  is allowed only inside the analytics provider adapter; the active task list
+  is in [`docs/ausbauplan.md`](docs/ausbauplan.md).
+
 - Every completed project task must update every affected plan, overview, and
   implementation-status document in the same turn. The status must distinguish
   local preparation from a verified live rollout and name remaining work plainly.

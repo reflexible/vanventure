@@ -1,0 +1,3385 @@
+{
+  "phase": "coverage_blocked",
+  "completed": [
+    "PKG-001",
+    "PKG-002",
+    "PKG-003",
+    "PKG-004",
+    "PKG-005",
+    "PKG-006",
+    "PKG-007",
+    "PKG-008",
+    "PKG-009",
+    "PKG-010",
+    "PKG-011",
+    "PKG-012",
+    "PKG-013",
+    "PKG-014",
+    "PKG-015",
+    "PKG-016",
+    "PKG-017",
+    "PKG-018",
+    "PKG-019",
+    "PKG-020",
+    "PKG-021",
+    "PKG-022",
+    "PKG-023",
+    "PKG-024",
+    "PKG-025",
+    "PKG-026",
+    "PKG-027",
+    "PKG-028",
+    "PKG-029",
+    "PKG-030",
+    "PKG-031",
+    "PKG-032",
+    "PKG-033",
+    "PKG-034",
+    "PKG-035",
+    "PKG-036",
+    "PKG-037",
+    "PKG-038",
+    "PKG-039",
+    "PKG-040",
+    "PKG-041",
+    "PKG-042",
+    "PKG-043",
+    "PKG-044",
+    "PKG-045",
+    "PKG-046",
+    "PKG-047",
+    "PKG-048",
+    "PKG-049",
+    "PKG-050",
+    "PKG-051",
+    "PKG-052",
+    "PKG-053",
+    "PKG-054"
+  ],
+  "failures": 0,
+  "started_utc": "2026-09-25T14:01:04+00:00",
+  "updated_utc": "2026-09-25T21:04:50+00:00",
+  "current": null,
+  "reviewed_blocks": 1105,
+  "reviewed_candidates": 2908,
+  "original_candidates": 2908,
+  "active_workers": {},
+  "integrating": null,
+  "queued_packages": 36,
+  "worker_limit": 4,
+  "completed_runs": [
+    {
+      "package": "PKG-019",
+      "candidates": 38,
+      "finished_utc": "2026-09-25T14:48:38+00:00"
+    },
+    {
+      "package": "PKG-022",
+      "candidates": 63,
+      "finished_utc": "2026-09-25T14:54:15+00:00"
+    },
+    {
+      "package": "PKG-021",
+      "candidates": 109,
+      "finished_utc": "2026-09-25T15:00:51+00:00"
+    },
+    {
+      "package": "PKG-023",
+      "candidates": 64,
+      "finished_utc": "2026-09-25T15:05:38+00:00"
+    },
+    {
+      "package": "PKG-020",
+      "candidates": 67,
+      "finished_utc": "2026-09-25T15:11:09+00:00"
+    },
+    {
+      "package": "PKG-024",
+      "candidates": 65,
+      "finished_utc": "2026-09-25T15:16:47+00:00"
+    },
+    {
+      "package": "PKG-025",
+      "candidates": 65,
+      "finished_utc": "2026-09-25T15:22:21+00:00"
+    },
+    {
+      "package": "PKG-027",
+      "candidates": 61,
+      "finished_utc": "2026-09-25T15:27:20+00:00"
+    },
+    {
+      "package": "PKG-026",
+      "candidates": 64,
+      "finished_utc": "2026-09-25T15:31:26+00:00"
+    },
+    {
+      "package": "PKG-028",
+      "candidates": 65,
+      "finished_utc": "2026-09-25T15:35:29+00:00"
+    },
+    {
+      "package": "PKG-029",
+      "candidates": 58,
+      "finished_utc": "2026-09-25T15:41:14+00:00"
+    }
+  ],
+  "remaining_candidates": 0,
+  "partially_covered": 241,
+  "unresolved": 34,
+  "decisions_needed": [
+    {
+      "decision_key": "confirm exact scope and current use of the two zip rear view images",
+      "question": "Confirm exact scope and current use of the two ZIP rear-view images.",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0452"
+      ]
+    },
+    {
+      "decision_key": "individual approvals for the remaining kajak gallery images are not evidenced by the zip chat",
+      "question": "Individual approvals for the remaining Kajak gallery images are not evidenced by the ZIP chat.",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-0452"
+      ]
+    },
+    {
+      "decision_key": "verify removal of gemeinsam am fluss in the current intended release and reassess remaining gallery variants",
+      "question": "Verify removal of Gemeinsam am Fluss in the current intended release and reassess remaining gallery variants.",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-0452"
+      ]
+    },
+    {
+      "decision_key": "gruppenabnahme der 13 verbleibenden kajak kacheln ist nicht belegt",
+      "question": "Gruppenabnahme der 13 verbleibenden Kajak-Kacheln ist nicht belegt.",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-0464"
+      ]
+    },
+    {
+      "decision_key": "historische exportparameter und finale einzelbildabnahmen fehlen für die übrigen varianten",
+      "question": "Historische Exportparameter und finale Einzelbildabnahmen fehlen für die übrigen Varianten.",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0466"
+      ]
+    },
+    {
+      "decision_key": "written phase 0 acceptance has not been supplied",
+      "question": "Written Phase-0 acceptance has not been supplied.",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-0482"
+      ]
+    },
+    {
+      "decision_key": "all galleries need finer captions smaller magnifiers and centred arrows preview design still awaits explicit user acceptance",
+      "question": "All galleries need finer captions, smaller magnifiers and centred arrows; preview design still awaits explicit user acceptance.",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-0504"
+      ]
+    },
+    {
+      "decision_key": "wie sind alter nötige anonymisierung und ausdrückliche veröffentlichungsentscheidung jeweils für nr 63 und 69",
+      "question": "Wie sind Alter, nötige Anonymisierung und ausdrückliche Veröffentlichungsentscheidung jeweils für Nr. 63 und 69?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-0522",
+        "SRC-0528"
+      ]
+    },
+    {
+      "decision_key": "welche konkreten aktuellen dateifassungen und sha 256 hashes waren sichtbar und freigegeben",
+      "question": "Welche konkreten aktuellen Dateifassungen und SHA-256-Hashes waren sichtbar und freigegeben?",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-0528"
+      ]
+    },
+    {
+      "decision_key": "nach welcher gemeinsam festgelegten regel wird jedes cockpit kennzeichen backlog oder fast track zugeordnet",
+      "question": "Nach welcher gemeinsam festgelegten Regel wird jedes Cockpit-Kennzeichen Backlog oder Fast Track zugeordnet?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0562"
+      ]
+    },
+    {
+      "decision_key": "welche genau drei kinderbilder waren am 22 09 2026 für welche kajak fassung freigegeben und welche sollen nach entfernung von kajak 06 jpg in der heutigen 13er galerie bleiben",
+      "question": "Welche genau drei Kinderbilder waren am 22.09.2026 für welche Kajak-Fassung freigegeben, und welche sollen nach Entfernung von kajak-06.jpg in der heutigen 13er-Galerie bleiben?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-0658"
+      ]
+    },
+    {
+      "decision_key": "galt der ältere readme wert von 24 stunden für denselben gcs produktionsumfang und wurde er durch 8 11 stunden ersetzt oder beschreibt er einen anderen umfang",
+      "question": "Galt der ältere README-Wert von 24 Stunden für denselben GCS-Produktionsumfang und wurde er durch 8–11 Stunden ersetzt, oder beschreibt er einen anderen Umfang?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0753"
+      ]
+    },
+    {
+      "decision_key": "bezieht sich erst nach der veröffentlichung auf das gcs longform video oder das gesamte paket einschliesslich beider shorts",
+      "question": "Bezieht sich „erst nach der Veröffentlichung“ auf das GCS-Longform-Video oder das gesamte Paket einschließlich beider Shorts?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0780"
+      ]
+    },
+    {
+      "decision_key": "projektweiten invest vertical slice check durchführen st con 01 auf kleine unabhängige inkremente prüfen",
+      "question": "Projektweiten INVEST-/Vertical-Slice-Check durchführen; ST-CON-01 auf kleine unabhängige Inkremente prüfen.",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-0788",
+        "SRC-0791"
+      ]
+    },
+    {
+      "decision_key": "soll die abgestimmte riverstar en fassung auf die zweisprachige startseite oder ausschliesslich auf kajak html",
+      "question": "Soll die abgestimmte Riverstar-EN-Fassung auf die zweisprachige Startseite oder ausschließlich auf kajak.html?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+      "source_ids": [
+        "SRC-0922"
+      ]
+    },
+    {
+      "decision_key": "ist julie auf dsc 1547 jpg zum aufnahmezeitpunkt ein erkennbares kind und wird genau dieses bild für die veröffentlichung ausgewählt",
+      "question": "Ist Julie auf DSC_1547.jpg zum Aufnahmezeitpunkt ein erkennbares Kind, und wird genau dieses Bild für die Veröffentlichung ausgewählt?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+      "source_ids": [
+        "SRC-0925"
+      ]
+    },
+    {
+      "decision_key": "was genau war an den grabner schwimmwesten weniger überzeugend und soll diese kritik so in den öffentlichen bericht",
+      "question": "Was genau war an den Grabner-Schwimmwesten weniger überzeugend, und soll diese Kritik so in den öffentlichen Bericht?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Konkrete Ursache und öffentliche Übernahme sind fachliche Nutzerentscheidungen; die Quelle lässt die Ursache ausdrücklich offen.",
+      "source_ids": [
+        "SRC-0940",
+        "SRC-0950"
+      ]
+    },
+    {
+      "decision_key": "soll das verbot für git chat und öffentliche website nur geheimnisse erfassen während callback url und kanal kontoinformation nach gesonderter freigabe dokumentierbar sind",
+      "question": "Soll das Verbot für Git, Chat und öffentliche Website nur Geheimnisse erfassen, während Callback-URL und Kanal-Kontoinformation nach gesonderter Freigabe dokumentierbar sind?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Die Originalquelle lässt offen, ob der Sammelbegriff diese Werte auch Callback-URL und Kanal-Kontoinformation unter das absolute Dokumentationsverbot stellt; nur der Nutzer kann diese Regel abgrenzen.",
+      "source_ids": [
+        "SRC-1053"
+      ]
+    },
+    {
+      "decision_key": "src 1084 current github pages hosting authority",
+      "question": "Soll GitHub Pages aus SRC-1084 für die heutige öffentliche Website weiterhin eine bindende Hosting-Vorgabe sein, oder ist es ausschließlich der damalige Hosting-Stand?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Aktuelle Verbindlichkeit der historischen Hosting-Vorgabe ist aus den Quellen nicht eindeutig zu entscheiden.",
+      "source_ids": [
+        "SRC-1084"
+      ]
+    },
+    {
+      "decision_key": "soll das alte google anmeldeverbot durch die spätere allowlist gebundene google anmeldung ausdrücklich ersetzt sein bei fortgeltendem verbot öffentlicher registrierung und einladungs urls",
+      "question": "Soll das alte Google-Anmeldeverbot durch die spätere allowlist-gebundene Google-Anmeldung ausdrücklich ersetzt sein, bei fortgeltendem Verbot öffentlicher Registrierung und Einladungs-URLs?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1094"
+      ]
+    },
+    {
+      "decision_key": "ist die einschränkung des token widerrufs auf anbieterunterstützung in st ins 03 als nachfolgeregel freigegeben",
+      "question": "Ist die Einschränkung des Token-Widerrufs auf Anbieterunterstützung in ST-INS-03 als Nachfolgeregel freigegeben?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1107"
+      ]
+    },
+    {
+      "decision_key": "gilt yt ausschliesslich für youtube tabellen während content master und scrum eigene namensräume behalten",
+      "question": "Gilt der Präfix `yt_` nur für YouTube-Tabellen, während `content_*`, `master_*` und `scrum_*` eigene Namensräume behalten?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Der allgemeine Präfixsatz widerspricht den unmittelbar folgenden Tabellenbeispielen; die fachlich verbindliche Reichweite kann nicht aus dem Quelltext abgeleitet werden.",
+      "source_ids": [
+        "SRC-1128"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1138 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1138.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1138"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1139 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1139.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1139"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1140 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1140.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1140"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1141 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1141.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1141"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1141 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1141.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1141"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1142 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1142.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1142"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1143 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1143.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1143"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1144 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1144.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1144"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1145 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1145.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1145"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1146 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1146.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1146"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1147 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1147.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1147"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1147 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1147.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1147"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1147 c mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1147.c mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1147"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1148 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1148.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1148"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1148 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1148.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1148"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1148 c mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1148.c mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1148"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1148 d mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1148.d mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1148"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1150 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1150.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1150"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1151 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1151.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1151"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1152 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1152.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1152"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1152 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1152.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1152"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1153 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1153.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1153"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1153 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1153.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1153"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1154 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1154.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1154"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1154 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1154.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1154"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1155 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1155.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1155"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1156 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1156.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1156"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1156 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1156.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1156"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1157 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1157.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1157"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1157 b mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1157.b mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1157"
+      ]
+    },
+    {
+      "decision_key": "welche konkrete ac task id und welcher prüfnachweis decken src 1159 a mit allen im review genannten bedingungen ab",
+      "question": "Welche konkrete AC-/Task-ID und welcher Prüfnachweis decken SRC-1159.a mit allen im Review genannten Bedingungen ab?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1159"
+      ]
+    },
+    {
+      "decision_key": "welcher benachrichtigungskanal welche verantwortliche person und welches aktivierungskriterium gelten",
+      "question": "Welcher Benachrichtigungskanal, welche verantwortliche Person und welches Aktivierungskriterium gelten?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1205"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1220 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1220.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1220"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1220 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1220.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1220"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1221 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1221.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1221"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1222 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1222.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1222"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1223 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1223.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1223"
+      ]
+    },
+    {
+      "decision_key": "gilt das freigabe und datenschutz gate auch für automatische ki entscheidungen oder bleiben sie in diesem plan ausgeschlossen",
+      "question": "Gilt das Freigabe- und Datenschutz-Gate auch für automatische KI-Entscheidungen, oder bleiben sie in diesem Plan ausgeschlossen?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1224"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1377 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1377.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1377"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1378 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1378.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1378"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1378 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1378.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1378"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1378 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1378.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1378"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1378 e",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1378.e?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1378"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1378 f",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1378.f?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1378"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1379 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1379.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1379"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1379 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1379.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1379"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1380 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1380.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1380"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1380 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1380.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1380"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1380 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1380.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1380"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1380 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1380.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1380"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1381 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1381.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1381"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1381 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1381.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1381"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1382 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1382.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1382"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1383 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1383.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1383"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1383 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1383.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1383"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1384 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1384.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1384"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1384 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1384.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1384"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1385 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1385.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1385"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1385 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1385.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1385"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1385 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1385.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1385"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1386 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1386.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1386"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1386 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1386.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1386"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1386 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1386.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1386"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1386 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1386.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1386"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1387 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1387.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1387"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1387 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1387.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1387"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1389 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1389.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1389"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1390 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1390.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1390"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1391 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1391.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1391"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1392 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1392.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1392"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1392 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1392.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1392"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1392 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1392.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1392"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1423 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1423.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1423"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1423 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1423.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1423"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1423 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1423.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1423"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1424 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1424.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1424"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1424 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1424.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1424"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1424 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1424.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1424"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1425 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1425.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1425"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1425 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1425.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1425"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1425 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1425.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1425"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1426 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1426.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1426"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1426 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1426.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1426"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1427 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1427.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1427"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1427 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1427.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1427"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1427 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1427.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1427"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1428 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1428.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1428"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1428 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1428.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1428"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1429 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1429.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1429"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1429 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1429.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1429"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1430 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1430.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1430"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1431 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1431.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1431"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1431 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1431.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1431"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1431 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1431.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1431"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1432 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1432.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1432"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1432 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1432.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1432"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1433 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1433.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1433"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1435 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1435.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1435"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1435 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1435.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1435"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1435 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1435.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1435"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1436 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1436.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1436"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1436 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1436.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1436"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1436 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1436.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1436"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1437 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1437.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1437"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1437 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1437.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1437"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1437 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1437.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1437"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 e",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.e?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 g",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.g?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1438 h",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1438.h?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1438"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1439 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1439.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1439"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1439 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1439.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1439"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1439 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1439.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1439"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1439 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1439.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1439"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1439 e",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1439.e?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1439"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1440 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1440.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1440"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1440 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1440.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1440"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1441 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1441.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1441"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1441 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1441.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1441"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1441 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1441.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1441"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1441 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1441.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1441"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1442 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1442.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1442"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1442 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1442.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1442"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1443 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1443.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1443"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1443 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1443.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1443"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1443 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1443.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1443"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1444 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1444.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1444"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1444 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1444.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1444"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1444 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1444.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1444"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1444 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1444.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1444"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1445 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1445.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1445"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1445 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1445.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1445"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1446 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1446.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1446"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1446 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1446.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1446"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1446 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1446.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1446"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1447 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1447.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1447"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1447 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1447.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1447"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1447 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1447.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1447"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1448 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1448.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1448"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1448 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1448.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1448"
+      ]
+    },
+    {
+      "decision_key": "welche sicheren arbeiten können trotz gesperrter bildautomatisierung fortgesetzt werden und wo ist die begrenzte sperre dokumentiert",
+      "question": "Welche sicheren Arbeiten können trotz gesperrter Bildautomatisierung fortgesetzt werden, und wo ist die begrenzte Sperre dokumentiert?",
+      "classification": "AUTO_RESOLVABLE",
+      "classification_rationale": "Bestehende Klausel beziehungsweise Freigaberegel beantwortet die Frage; Regel anwenden und als Coverage-Nachweis führen.",
+      "source_ids": [
+        "SRC-1448"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1449 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1449.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1449"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1449 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1449.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1449"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1449 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1449.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1449"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1450 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1450.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1450"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1450 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1450.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1450"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1450 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1450.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1450"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1451 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1451.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1451"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1451 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1451.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1451"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1451 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1451.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1451"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1452 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1452.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1452"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1452 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1452.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1452"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1452 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1452.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1452"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1453 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1453.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1453"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1453 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1453.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1453"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1453 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1453.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1453"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1454 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1454.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1454"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1455 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1455.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1455"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1455 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1455.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1455"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1456 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1456.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1456"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1456 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1456.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1456"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1457 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1457.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1457"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1457 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1457.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1457"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1458 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1458.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1458"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1458 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1458.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1458"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1461 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1461.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1461"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1461 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1461.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1461"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1461 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1461.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1461"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1461 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1461.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1461"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1462 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1462.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1462"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1462 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1462.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1462"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1463 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1463.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1463"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1463 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1463.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1463"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1464 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1464.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1464"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1464 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1464.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1464"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1464 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1464.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1464"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1465 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1465.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1465"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1465 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1465.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1465"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1466 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1466.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1466"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1466 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1466.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1466"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1466 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1466.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1466"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1468 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1468.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1468"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1469 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1469.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1469"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1470 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1470.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1470"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1471 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1471.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1471"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1472 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1472.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1472"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1473 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1473.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1473"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1474 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1474.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1474"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1474 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1474.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1474"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1475 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1475.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1475"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1475 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1475.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1475"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1475 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1475.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1475"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1475 d",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1475.d?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1475"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1476 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1476.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1476"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1476 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1476.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1476"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1477 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1477.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1477"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1477 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1477.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1477"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1478 a",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1478.a?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1478"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1478 b",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1478.b?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1478"
+      ]
+    },
+    {
+      "decision_key": "welche getrennten aktuellen ac und prüfnachweise erfüllen den geprüften befund zu src 1478 c",
+      "question": "Welche getrennten aktuellen AC- und Prüfnachweise erfüllen den geprüften Befund zu SRC-1478.c?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1478"
+      ]
+    },
+    {
+      "decision_key": "sollen hoch kritisch priorisierte epics und stories als fast track karten zulässig sein oder ausschliesslich im backlog bleiben",
+      "question": "Sollen hoch/kritisch priorisierte Epics und Stories als Fast-Track-Karten zulässig sein oder ausschließlich im Backlog bleiben?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1521"
+      ]
+    },
+    {
+      "decision_key": "bezieht sich sie können nur archiviert werden auf eltern oder kinder und welche zuordnung muss zuvor feststehen",
+      "question": "Bezieht sich „sie können nur archiviert werden“ auf Eltern oder Kinder, und welche Zuordnung muss zuvor feststehen?",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-1537"
+      ]
+    },
+    {
+      "decision_key": "erhalten alert task karten bei fast track einplanung board zeile und spalte trotz der formulierung nur task to do karten",
+      "question": "Erhalten alert_task-Karten bei Fast-Track-Einplanung Board-Zeile und -Spalte trotz der Formulierung „nur Task-/To-do-Karten“?",
+      "classification": "AUTO_RESOLVABLE",
+      "classification_rationale": "Bestehende Klausel beziehungsweise Freigaberegel beantwortet die Frage; Regel anwenden und als Coverage-Nachweis führen.",
+      "source_ids": [
+        "SRC-1545"
+      ]
+    },
+    {
+      "decision_key": "welche aufbewahrungsfrist soll phase 0 für archivierte karten festlegen",
+      "question": "Welche Aufbewahrungsfrist soll Phase 0 für archivierte Karten festlegen?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1559"
+      ]
+    },
+    {
+      "decision_key": "darf eine aufgelöste warnung nach menschlicher bestätigung bereits in review abgeschlossen werden oder ist eine ausdrückliche done bestätigung zwingend",
+      "question": "Darf eine aufgelöste Warnung nach menschlicher Bestätigung bereits in Review abgeschlossen werden oder ist eine ausdrückliche Done-Bestätigung zwingend?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1577"
+      ]
+    },
+    {
+      "decision_key": "soll der küchen tablet kiosk nur lesend mit bestehender sitzung betrieben werden oder ist eine lokale pin als alternative schreibberechtigung vorgesehen falls pin wer verwaltet sie und welche aktionen erlaubt sie",
+      "question": "Soll der Küchen-Tablet-Kiosk nur lesend mit bestehender Sitzung betrieben werden oder ist eine lokale PIN als alternative Schreibberechtigung vorgesehen? Falls PIN: Wer verwaltet sie und welche Aktionen erlaubt sie?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1622"
+      ]
+    },
+    {
+      "decision_key": "welcher bereits vorgesehene board warnungs slice aktiviert nach kanal und empfängerentscheidung den nachrichtentransport für fehlgeschlagene syncs und kritisch nicht zugestellte warnungen",
+      "question": "Welcher bereits vorgesehene Board-/Warnungs-Slice aktiviert nach Kanal- und Empfängerentscheidung den Nachrichtentransport für fehlgeschlagene Syncs und kritisch nicht zugestellte Warnungen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1648"
+      ]
+    },
+    {
+      "decision_key": "wann wird das bestehende st brd 04 acceptance criterion im story katalog auf backlog anlage und ausdrücklich beauftragtes einplanen nach offen begrenzt bevor die planung als widerspruchsfrei gilt",
+      "question": "Wann wird das bestehende ST-BRD-04-Acceptance-Criterion im Story-Katalog auf Backlog-Anlage und ausdrücklich beauftragtes Einplanen nach Offen begrenzt, bevor die Planung als widerspruchsfrei gilt?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1653",
+        "SRC-1675"
+      ],
+      "deduplicated_source_group": true,
+      "deduplication_note": "Ein kanonischer Queue-Eintrag deckt beide wiederholten Quellen ab; Source IDs bleiben gemeinsam erhalten."
+    },
+    {
+      "decision_key": "sollen nach mehreren wochen tatsächlicher nutzung zusätzliche jeweils bestätigte marvin aktionen und eine kompakte verlaufs monitoringansicht eingeführt werden",
+      "question": "Sollen nach mehreren Wochen tatsächlicher Nutzung zusätzliche, jeweils bestätigte Marvin-Aktionen und eine kompakte Verlaufs-/Monitoringansicht eingeführt werden?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1658"
+      ]
+    },
+    {
+      "decision_key": "welche der drei optionalen ausbauten erinnerungen wiederkehrende wartung und druckübersicht werden nach pilotnutzung beauftragt",
+      "question": "Welche der drei optionalen Ausbauten Erinnerungen, wiederkehrende Wartung und Druckübersicht werden nach Pilotnutzung beauftragt?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1658"
+      ]
+    },
+    {
+      "decision_key": "welche datenschutz und bedienentscheidung gilt jeweils für einen später beauftragten ausbau",
+      "question": "Welche Datenschutz- und Bedienentscheidung gilt jeweils für einen später beauftragten Ausbau?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+      "source_ids": [
+        "SRC-1658"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten konkreten video story wird diese video bereichs und aufgabenfreigaberegel mit einem prüfschritt vor arbeitsbeginn verankert",
+      "question": "Bei welcher nächsten konkreten Video-Story wird diese Video-Bereichs- und Aufgabenfreigaberegel mit einem Prüfschritt vor Arbeitsbeginn verankert?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1797",
+        "SRC-1798"
+      ],
+      "deduplicated_source_group": true,
+      "deduplication_note": "Ein kanonischer Queue-Eintrag deckt beide wiederholten Quellen ab; Source IDs bleiben gemeinsam erhalten."
+    },
+    {
+      "decision_key": "gilt helmuts aufgabenspezifische freigabe nach src 1800 als ausnahme vom eingriffsverbot für website cockpit und deployment in src 1799",
+      "question": "Gilt Helmuts aufgabenspezifische Freigabe nach SRC-1800 als Ausnahme vom Eingriffsverbot für Website, Cockpit und Deployment in SRC-1799?",
+      "classification": "AUTO_RESOLVABLE",
+      "classification_rationale": "Bestehende Klausel beziehungsweise Freigaberegel beantwortet die Frage; Regel anwenden und als Coverage-Nachweis führen.",
+      "source_ids": [
+        "SRC-1799"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird vor jeder änderung an website oder cockpit ist eine explizite freigabe von helmut einzuholen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Vor jeder Änderung an Website oder Cockpit ist eine explizite Freigabe von Helmut einzuholen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1800"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bestehende originalmedien sind read only als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Bestehende Originalmedien sind read-only. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1801"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird sie dürfen niemals verändert gelöscht verschoben umbenannt oder überschrieben werden als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Sie dürfen niemals verändert, gelöscht, verschoben, umbenannt oder überschrieben werden. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1801"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bestehende alte resolve projekte werden nicht verändert wenn daraus ein neuer film remaster oder short entstehen soll als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Bestehende alte Resolve-Projekte werden nicht verändert, wenn daraus ein neuer Film, Remaster oder Short entstehen soll. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1802"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird ein neues resolve projekt wird nicht automatisch für jede bearbeitung angelegt als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Ein neues Resolve-Projekt wird nicht automatisch für jede Bearbeitung angelegt. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1803"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird es wird nur angelegt wenn aus einem bestehenden altprojekt bewusst ein neues werk entwickelt wird oder eine technische trennung notwendig ist als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Es wird nur angelegt, wenn aus einem bestehenden Altprojekt bewusst ein neues Werk entwickelt wird oder eine technische Trennung notwendig ist. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1803"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird wenn bereits ein vanventure produktionsprojekt existiert wird darin weitergearbeitet als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Wenn bereits ein VanVenture-Produktionsprojekt existiert, wird darin weitergearbeitet; als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1804"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bei bedarf werden separate timelines verwendet als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird bei Bedarf werden separate Timelines verwendet. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1804"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird die anzahl der resolve projekte bleibt möglichst gering als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Die Anzahl der Resolve-Projekte bleibt möglichst gering. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1805"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird vor neuen schnitten sind vorhandene resolve projekte timelines originalmedien und master ausschliesslich lesend zu prüfen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Vor neuen Schnitten sind vorhandene Resolve-Projekte, Timelines, Originalmedien und Master ausschließlich lesend zu prüfen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1806"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird originalkamera dateien und vorhandene hochwertige master haben vorrang vor youtube material als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Originalkamera-Dateien und vorhandene hochwertige Master haben Vorrang vor YouTube-Material. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1807"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird youtube dient primär als referenz und analytics quelle als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird YouTube dient primär als Referenz und Analytics-Quelle. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1808"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird archive first vorhandenes gutes material wird bevorzugt wiederverwendet als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Archive-first: Vorhandenes, gutes Material wird bevorzugt wiederverwendet. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1809"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird es gibt keine automatische veröffentlichung auf youtube instagram oder anderen plattformen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Es gibt keine automatische Veröffentlichung auf YouTube, Instagram oder anderen Plattformen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1810"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird render upload und veröffentlichung sind getrennte schritte als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Render, Upload und Veröffentlichung sind getrennte Schritte. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1811"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird automatisierte analyse und tracking ersetzen niemals eine visuelle endkontrolle als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Automatisierte Analyse und Tracking ersetzen niemals eine visuelle Endkontrolle. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1812"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird wenn adrian in einer öffentlich bestimmten fassung identifizierbar wäre muss er sauber und möglichst unauffällig anonymisiert werden als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Wenn Adrian in einer öffentlich bestimmten Fassung identifizierbar wäre, muss er sauber und möglichst unauffällig anonymisiert werden. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1813"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bevorzugt werden enges weiches und bewegungsstabiles gesichtstracking statt grosser auffälliger pixel oder mosaikflächen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Bevorzugt werden enges, weiches und bewegungsstabiles Gesichtstracking statt großer, auffälliger Pixel- oder Mosaikflächen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1814"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird die maske ist nur so gross wie nötig aber gross genug dass keine identifikation möglich ist als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Die Maske ist nur so groß wie nötig, aber groß genug, dass keine Identifikation möglich ist. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1815"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird tracking ist bei kopfbewegung profil verdeckung kamerabewegung motion blur und schnittwechseln manuell zu prüfen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Tracking ist bei Kopfbewegung, Profil, Verdeckung, Kamerabewegung, Motion Blur und Schnittwechseln manuell zu prüfen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1816"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird automatisches tracking allein ist niemals eine privacy abnahme als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Automatisches Tracking allein ist niemals eine Privacy-Abnahme. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1817"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird schwierige stellen werden frameweise kontrolliert als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Schwierige Stellen werden frameweise kontrolliert. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1818"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird nach erstellung eines public masters wird die vollständige öffentliche fassung nochmals visuell auf unbeabsichtigt sichtbare frames geprüft als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Nach Erstellung eines Public Masters wird die vollständige öffentliche Fassung nochmals visuell auf unbeabsichtigt sichtbare Frames geprüft. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1819"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird wenn eine saubere anonymisierung einen shot visuell zerstört wird bevorzugt ein anderer shot verwendet als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Wenn eine saubere Anonymisierung einen Shot visuell zerstört, wird bevorzugt ein anderer Shot verwendet. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1820"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird relevante clips erhalten einen privacy status clear blur required review required oder not for public als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Relevante Clips erhalten einen Privacy-Status: `CLEAR`, `BLUR_REQUIRED`, `REVIEW_REQUIRED` oder `NOT_FOR_PUBLIC`. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1821"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird erst nach visueller prüfung darf eine fassung den status privacy approved erhalten als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Erst nach visueller Prüfung darf eine Fassung den Status `PRIVACY_APPROVED` erhalten. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1822"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird wenn helmut eine datei öffnen prüfen oder verwenden soll immer ihren vollständigen absoluten pfad angeben sodass er ihn direkt kopieren und einfügen kann als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Wenn Helmut eine Datei öffnen, prüfen oder verwenden soll, immer ihren vollständigen absoluten Pfad angeben, sodass er ihn direkt kopieren und einfügen kann. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1823"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bei mehreren dateien jeden pfad vollständig aufführen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Bei mehreren Dateien jeden Pfad vollständig aufführen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1823"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird nach jedem grösseren arbeitsblock standardmässig nur ausgeben als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Nach jedem größeren Arbeitsblock standardmäßig nur ausgeben: als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1824"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird was wurde gemacht als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Was wurde gemacht? als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1825"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird was wurde gefunden als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Was wurde gefunden? als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1826"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird wurden originale verändert als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Wurden Originale verändert? als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1827"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird privacy status als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Privacy-Status als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1828"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird aktueller produktionsstatus als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Aktueller Produktionsstatus als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1829"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird nächster sinnvoller schritt als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Nächster sinnvoller Schritt als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1830"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird nur tatsächliche entscheidungen von helmut als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Nur tatsächliche Entscheidungen von Helmut. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1831"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird keine langen technischen berichte ausgeben solange helmut sie nicht ausdrücklich anfordert als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird Keine langen technischen Berichte ausgeben, solange Helmut sie nicht ausdrücklich anfordert. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1832"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird das gemeinsame repository bleibt reflexible vanventure als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Das gemeinsame Repository bleibt `reflexible/vanventure`. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1833"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird videoarbeit findet grundsätzlich unter video production statt als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Videoarbeit findet grundsätzlich unter `video-production/` statt. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1834"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird website und cockpit werden nicht verändert als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Website und Cockpit werden nicht verändert. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1835"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird originalmedien werden niemals verändert als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Originalmedien werden niemals verändert. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1836"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird bestehende alte resolve projekte werden nicht verändert wenn daraus neu weitergearbeitet wird als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Bestehende alte Resolve-Projekte werden nicht verändert, wenn daraus neu weitergearbeitet wird. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1837"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird ein neues resolve projekt entsteht nur bewusst wenn aus einem altprojekt ein neues werk wird als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Ein neues Resolve-Projekt entsteht nur bewusst, wenn aus einem Altprojekt ein neues Werk wird. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1838"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird innerhalb eines aktiven produktionsprojekts werden bevorzugt timelines verwendet statt fortlaufend neue resolve projekte anzulegen als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Innerhalb eines aktiven Produktionsprojekts werden bevorzugt Timelines verwendet statt fortlaufend neue Resolve-Projekte anzulegen. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1839"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird originalmaterial hat vorrang vor youtube downloads als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Originalmaterial hat Vorrang vor YouTube-Downloads. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1840"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird es gilt archive first vorhandenes material wird zuerst geprüft und bevorzugt wiederverwendet als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Es gilt Archive-first: Vorhandenes Material wird zuerst geprüft und bevorzugt wiederverwendet. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1841"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird adrians privacy ist zwingend als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Adrians Privacy ist zwingend. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1842"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird es gibt keine automatische veröffentlichung als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Es gibt keine automatische Veröffentlichung. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1843"
+      ]
+    },
+    {
+      "decision_key": "bei welcher nächsten einschlägigen video story wird nach arbeitsblöcken werden helmut nur diese management summary und notwendige entscheidungen ausgegeben als konkretes acceptance criterion mit prüfschritt nachgewiesen",
+      "question": "Bei welcher nächsten einschlägigen Video-Story wird - Nach Arbeitsblöcken werden Helmut nur diese Management Summary und notwendige Entscheidungen ausgegeben. als konkretes Acceptance Criterion mit Prüfschritt nachgewiesen?",
+      "classification": "TECHNICAL",
+      "classification_rationale": "Offener Ziel-, AC-, Prüf- oder Traceability-Nachweis ist technische Planintegrationsarbeit und keine fachliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1844"
+      ]
+    },
+    {
+      "decision_key": "gilt die dokumentierte 5 fps kontaktbogensichtung samt sechs einzelbildern für v18 als geforderte visuelle endkontrolle der vollständigen öffentlichen fassung",
+      "question": "Gilt die dokumentierte 5-fps-Kontaktbogensichtung samt sechs Einzelbildern für v18 als geforderte visuelle Endkontrolle der vollständigen öffentlichen Fassung?",
+      "classification": "INSUFFICIENT_EVIDENCE",
+      "classification_rationale": "Benötigter Quell-, Fassungs-, Freigabe- oder Belegnachweis fehlt beziehungsweise der Geltungsbezug bleibt mehrdeutig; zunächst gezielt belegen/prüfen.",
+      "source_ids": [
+        "SRC-2042",
+        "SRC-2247"
+      ],
+      "deduplicated_source_group": true,
+      "deduplication_note": "Ein kanonischer Queue-Eintrag deckt beide wiederholten Quellen ab; Source IDs bleiben gemeinsam erhalten."
+    },
+    {
+      "decision_key": "riverstar uferfotos ort und bildunterschrift schwelle src 0948",
+      "question": "Welches Gewässer oder welcher Campingplatz gehört zu den Uferfotos DSC_1545.jpg und DSC_1547.jpg vom 13. Juli 2018? Soll für eine genauere Bildunterschrift Ihre Bestätigung von Gewässer oder Campingplatz genügen, oder müssen Gewässer und Ort vor Veröffentlichung beide feststehen?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Original erlaubt Gewässer oder Campingplatz; ST-CON-04 verlangt Gewässer und Ort. Ort und Abnahmeschwelle kann nur der Nutzer klären.",
+      "source_ids": [
+        "SRC-0948",
+        "SRC-0949"
+      ]
+    },
+    {
+      "decision_key": "marvin board verschiebungsumfang nach phase 0",
+      "question": "Soll Marvin nach schriftlicher Phase-0-Abnahme nur Backlog-Items anlegen und ausdrücklich nach Offen einplanen dürfen, oder auch weitere ausdrücklich beauftragte Board-Verschiebungen ausführen?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Der bestehende Scrum-Entwurf begrenzt den MVP auf Einplanen nach Offen; der Story-Katalog erlaubt breitere beauftragte Verschiebungen. Die Erweiterung verlangt eine ausdrückliche Nutzerentscheidung.",
+      "source_ids": [
+        "SRC-1154"
+      ]
+    },
+    {
+      "decision_key": "coverage-r1-025-board-phase0",
+      "question": "Welche konkreten Review-Regeln, Familien-/Tablet-Zugriffe und Beispiel-Epics/Stories werden für Phase 0 schriftlich abgenommen?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+      "source_ids": [
+        "SRC-1167"
+      ]
+    },
+    {
+      "decision_key": "coverage-r1-025-alert-gate",
+      "question": "Welchen Ereignisvertrag, welche Dienstidentität und welche Prioritätsregeln für high/critical-Warnungen nehmen wir vor dem Einschalten der automatischen Kartenanlage schriftlich ab?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+      "source_ids": [
+        "SRC-1168"
+      ]
+    },
+    {
+      "decision_key": "coverage-r1-025-ai-gate",
+      "question": "Soll eine spätere KI-Zusammenfassung überhaupt eingeführt werden, und für welchen genau abgegrenzten Umfang wird sie ausdrücklich freigegeben?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Ausdrückliche künftige Nutzerabnahme/Freigabe aus der Originalquelle; Planning Coverage ist davon getrennt.",
+      "source_ids": [
+        "SRC-1169"
+      ]
+    },
+    {
+      "decision_key": "wer ist die verantwortliche google kanalinhaberin f r phase 0",
+      "question": "Wer ist die verantwortliche Google-Kanalinhaberin für Phase 0?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-Festlegung; nicht aus dem historischen Planstatus ableitbar.",
+      "source_ids": [
+        "SRC-1187"
+      ]
+    },
+    {
+      "decision_key": "welche kennzahlen sollen im cockpit verbindlich ausgewertet werden",
+      "question": "Welche Kennzahlen sollen im Cockpit verbindlich ausgewertet werden?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-Festlegung; nicht aus dem historischen Planstatus ableitbar.",
+      "source_ids": [
+        "SRC-1187"
+      ]
+    },
+    {
+      "decision_key": "welche aufbewahrungsfrist und welcher geltungsbereich gelten vor go live f r rohmetriken",
+      "question": "Welche Aufbewahrungsfrist und welcher Geltungsbereich gelten vor Go-live für Rohmetriken?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+      "source_ids": [
+        "SRC-1181"
+      ]
+    },
+    {
+      "decision_key": "welche aufbewahrungsfrist und welcher geltungsbereich gelten vor go live f r audit logs",
+      "question": "Welche Aufbewahrungsfrist und welcher Geltungsbereich gelten vor Go-live für Audit-Logs?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+      "source_ids": [
+        "SRC-1181"
+      ]
+    },
+    {
+      "decision_key": "welche regionen gelten f r die cockpit auswertung",
+      "question": "Welche Regionen gelten für die Cockpit-Auswertung?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+      "source_ids": [
+        "SRC-1187"
+      ]
+    },
+    {
+      "decision_key": "welche w hrung gilt f r die cockpit auswertung",
+      "question": "Welche Währung gilt für die Cockpit-Auswertung?",
+      "classification": "USER_DECISION",
+      "classification_rationale": "Verbindliche fachliche Phase-0-/Aufbewahrungsentscheidung; bisher kein Beschlussbeleg.",
+      "source_ids": [
+        "SRC-1187"
+      ]
+    }
+  ],
+  "active_worker_count": 0,
+  "integration_batches": 5,
+  "decisions_required_from_user": 32,
+  "decision_queue_size": 299,
+  "package_status": {
+    "PKG-001": "INTEGRATED",
+    "PKG-002": "INTEGRATED",
+    "PKG-003": "INTEGRATED",
+    "PKG-004": "INTEGRATED",
+    "PKG-005": "INTEGRATED",
+    "PKG-006": "INTEGRATED",
+    "PKG-007": "INTEGRATED",
+    "PKG-008": "INTEGRATED",
+    "PKG-009": "INTEGRATED",
+    "PKG-010": "INTEGRATED",
+    "PKG-011": "INTEGRATED",
+    "PKG-012": "INTEGRATED",
+    "PKG-013": "INTEGRATED",
+    "PKG-014": "INTEGRATED",
+    "PKG-015": "INTEGRATED",
+    "PKG-016": "NEEDS_DECISION",
+    "PKG-017": "INTEGRATED",
+    "PKG-018": "NEEDS_DECISION",
+    "PKG-019": "INTEGRATED",
+    "PKG-020": "NEEDS_DECISION",
+    "PKG-021": "INTEGRATED",
+    "PKG-022": "INTEGRATED",
+    "PKG-023": "INTEGRATED",
+    "PKG-024": "INTEGRATED",
+    "PKG-025": "NEEDS_DECISION",
+    "PKG-026": "INTEGRATED",
+    "PKG-027": "INTEGRATED",
+    "PKG-028": "INTEGRATED",
+    "PKG-029": "INTEGRATED",
+    "PKG-030": "INTEGRATED",
+    "PKG-031": "INTEGRATED",
+    "PKG-032": "NEEDS_DECISION",
+    "PKG-033": "NEEDS_DECISION",
+    "PKG-034": "NEEDS_DECISION",
+    "PKG-035": "NEEDS_DECISION",
+    "PKG-036": "NEEDS_DECISION",
+    "PKG-037": "NEEDS_DECISION",
+    "PKG-038": "NEEDS_DECISION",
+    "PKG-039": "NEEDS_DECISION",
+    "PKG-040": "NEEDS_DECISION",
+    "PKG-041": "INTEGRATED",
+    "PKG-042": "INTEGRATED",
+    "PKG-043": "INTEGRATED",
+    "PKG-044": "INTEGRATED",
+    "PKG-045": "INTEGRATED",
+    "PKG-046": "NEEDS_DECISION",
+    "PKG-047": "NEEDS_DECISION",
+    "PKG-048": "NEEDS_DECISION",
+    "PKG-049": "INTEGRATED",
+    "PKG-050": "NEEDS_DECISION",
+    "PKG-051": "NEEDS_DECISION",
+    "PKG-052": "INTEGRATED",
+    "PKG-053": "INTEGRATED",
+    "PKG-054": "INTEGRATED"
+  },
+  "review_queue_size": 0,
+  "integration_queue_size": 0,
+  "integrated_packages": 54,
+  "current_integration_batch": [],
+  "reviewed_not_integrated_candidates": 0,
+  "integrated_candidates": 2908,
+  "review_worker_limit": 4,
+  "last_error": null,
+  "package_decision_status": {
+    "PKG-001": "INTEGRATED",
+    "PKG-002": "INTEGRATED",
+    "PKG-003": "INTEGRATED",
+    "PKG-004": "INTEGRATED",
+    "PKG-005": "INTEGRATED",
+    "PKG-006": "INTEGRATED",
+    "PKG-007": "INTEGRATED",
+    "PKG-008": "INTEGRATED",
+    "PKG-009": "INTEGRATED",
+    "PKG-010": "INTEGRATED",
+    "PKG-011": "INTEGRATED",
+    "PKG-012": "INTEGRATED",
+    "PKG-013": "INTEGRATED",
+    "PKG-014": "INTEGRATED",
+    "PKG-015": "INTEGRATED",
+    "PKG-016": "NEEDS_DECISION",
+    "PKG-017": "INTEGRATED",
+    "PKG-018": "NEEDS_DECISION",
+    "PKG-019": "INTEGRATED",
+    "PKG-020": "NEEDS_DECISION",
+    "PKG-021": "INTEGRATED",
+    "PKG-022": "INTEGRATED",
+    "PKG-023": "INTEGRATED",
+    "PKG-024": "INTEGRATED",
+    "PKG-025": "NEEDS_DECISION",
+    "PKG-026": "INTEGRATED",
+    "PKG-027": "INTEGRATED",
+    "PKG-028": "INTEGRATED",
+    "PKG-029": "INTEGRATED",
+    "PKG-030": "INTEGRATED",
+    "PKG-031": "INTEGRATED",
+    "PKG-032": "NEEDS_DECISION",
+    "PKG-033": "NEEDS_DECISION",
+    "PKG-034": "NEEDS_DECISION",
+    "PKG-035": "NEEDS_DECISION",
+    "PKG-036": "NEEDS_DECISION",
+    "PKG-037": "NEEDS_DECISION",
+    "PKG-038": "NEEDS_DECISION",
+    "PKG-039": "NEEDS_DECISION",
+    "PKG-040": "NEEDS_DECISION",
+    "PKG-041": "INTEGRATED",
+    "PKG-042": "INTEGRATED",
+    "PKG-043": "INTEGRATED",
+    "PKG-044": "INTEGRATED",
+    "PKG-045": "INTEGRATED",
+    "PKG-046": "NEEDS_DECISION",
+    "PKG-047": "NEEDS_DECISION",
+    "PKG-048": "NEEDS_DECISION",
+    "PKG-049": "INTEGRATED",
+    "PKG-050": "NEEDS_DECISION",
+    "PKG-051": "NEEDS_DECISION",
+    "PKG-052": "INTEGRATED",
+    "PKG-053": "INTEGRATED",
+    "PKG-054": "INTEGRATED"
+  },
+  "successor_partially_covered": 6,
+  "successor_unresolved": 4,
+  "decision_classification_counts": {
+    "AUTO_RESOLVABLE": 3,
+    "TECHNICAL": 258,
+    "DUPLICATE": 0,
+    "USER_DECISION": 32,
+    "INSUFFICIENT_EVIDENCE": 6
+  },
+  "recovered_errors": [
+    {
+      "batch": "BATCH-004",
+      "cause": "Malformed structured status used integer candidate count in Integrated; schema requires Boolean."
+    },
+    {
+      "batch": "BATCH-005",
+      "cause": "Post-write underflow used stale pre-integration baseline and counted already integrated candidates as pending."
+    }
+  ],
+  "recovery_utc": "2026-09-25T18:14:54+00:00",
+  "final_audit": "NOT_STARTED",
+  "next_integration_step": "NONE: all 2,908 original candidates are integrated; wait for classified decisions/evidence and then perform authorized coverage repair.",
+  "block_reason": "282 offene Coverage-Befunde; 32 USER_DECISION, 258 TECHNICAL, 6 INSUFFICIENT_EVIDENCE und 3 AUTO_RESOLVABLE.",
+  "last_repair": "COVERAGE-R1-035",
+  "open_coverage_count": 282,
+  "coverage_repair_reviewed_source_ids": [
+    "SRC-0452",
+    "SRC-0464",
+    "SRC-0466",
+    "SRC-0482",
+    "SRC-0491",
+    "SRC-0504",
+    "SRC-0508",
+    "SRC-0509",
+    "SRC-0514",
+    "SRC-0522",
+    "SRC-0528",
+    "SRC-0529",
+    "SRC-0530",
+    "SRC-0532",
+    "SRC-0562",
+    "SRC-0631",
+    "SRC-0635",
+    "SRC-0658",
+    "SRC-0753",
+    "SRC-0780",
+    "SRC-0788",
+    "SRC-0791",
+    "SRC-0792",
+    "SRC-0793",
+    "SRC-0794",
+    "SRC-0795",
+    "SRC-0796",
+    "SRC-0797",
+    "SRC-0798",
+    "SRC-0799",
+    "SRC-0800",
+    "SRC-0801",
+    "SRC-0802",
+    "SRC-0803",
+    "SRC-0804",
+    "SRC-0805",
+    "SRC-0806",
+    "SRC-0807",
+    "SRC-0808",
+    "SRC-0809",
+    "SRC-0810",
+    "SRC-0811",
+    "SRC-0812",
+    "SRC-0813",
+    "SRC-0815",
+    "SRC-0849",
+    "SRC-0850",
+    "SRC-0851",
+    "SRC-0852",
+    "SRC-0853",
+    "SRC-0854",
+    "SRC-0855",
+    "SRC-0856",
+    "SRC-0857",
+    "SRC-0858",
+    "SRC-0859",
+    "SRC-0860",
+    "SRC-0861",
+    "SRC-0862",
+    "SRC-0863",
+    "SRC-0865",
+    "SRC-0866",
+    "SRC-0867",
+    "SRC-0868",
+    "SRC-0869",
+    "SRC-0870",
+    "SRC-0872",
+    "SRC-0873",
+    "SRC-0874",
+    "SRC-0875",
+    "SRC-0876",
+    "SRC-0878",
+    "SRC-0879",
+    "SRC-0880",
+    "SRC-0881",
+    "SRC-0882",
+    "SRC-0883",
+    "SRC-0884",
+    "SRC-0885",
+    "SRC-0886",
+    "SRC-0888",
+    "SRC-0889",
+    "SRC-0890",
+    "SRC-0891",
+    "SRC-0892",
+    "SRC-0893",
+    "SRC-0894",
+    "SRC-0896",
+    "SRC-0897",
+    "SRC-0898",
+    "SRC-0899",
+    "SRC-0900",
+    "SRC-0901",
+    "SRC-0902",
+    "SRC-0903",
+    "SRC-0904",
+    "SRC-0905",
+    "SRC-0907",
+    "SRC-0908",
+    "SRC-0909",
+    "SRC-0910",
+    "SRC-0912",
+    "SRC-0913",
+    "SRC-0914",
+    "SRC-0915",
+    "SRC-0916",
+    "SRC-0917",
+    "SRC-0918",
+    "SRC-0919",
+    "SRC-0921",
+    "SRC-0922",
+    "SRC-0923",
+    "SRC-0924",
+    "SRC-0925",
+    "SRC-0926",
+    "SRC-0927",
+    "SRC-0928",
+    "SRC-0929",
+    "SRC-0931",
+    "SRC-0932",
+    "SRC-0933",
+    "SRC-0934",
+    "SRC-0935",
+    "SRC-0936",
+    "SRC-0937",
+    "SRC-0938",
+    "SRC-0939",
+    "SRC-0940",
+    "SRC-0941",
+    "SRC-0942",
+    "SRC-0943",
+    "SRC-0945",
+    "SRC-0946",
+    "SRC-0948",
+    "SRC-0950",
+    "SRC-0951",
+    "SRC-0952",
+    "SRC-0953",
+    "SRC-0954",
+    "SRC-0955",
+    "SRC-0956",
+    "SRC-0958",
+    "SRC-0959",
+    "SRC-0962",
+    "SRC-0963",
+    "SRC-0964",
+    "SRC-0965",
+    "SRC-0966",
+    "SRC-0967",
+    "SRC-0969",
+    "SRC-0974",
+    "SRC-0975",
+    "SRC-0976",
+    "SRC-0977",
+    "SRC-0978",
+    "SRC-1053",
+    "SRC-1054",
+    "SRC-1055",
+    "SRC-1056",
+    "SRC-1057",
+    "SRC-1058",
+    "SRC-1059",
+    "SRC-1060",
+    "SRC-1062",
+    "SRC-1063",
+    "SRC-1064",
+    "SRC-1065",
+    "SRC-1066",
+    "SRC-1067",
+    "SRC-1068",
+    "SRC-1069",
+    "SRC-1070",
+    "SRC-1071",
+    "SRC-1072",
+    "SRC-1073",
+    "SRC-1075",
+    "SRC-1076",
+    "SRC-1078",
+    "SRC-1079",
+    "SRC-1080",
+    "SRC-1081",
+    "SRC-1082",
+    "SRC-1084",
+    "SRC-1085",
+    "SRC-1086",
+    "SRC-1087",
+    "SRC-1088",
+    "SRC-1089",
+    "SRC-1090",
+    "SRC-1091",
+    "SRC-1092",
+    "SRC-1093",
+    "SRC-1094",
+    "SRC-1097",
+    "SRC-1098",
+    "SRC-1099",
+    "SRC-1100",
+    "SRC-1101",
+    "SRC-1102",
+    "SRC-1103",
+    "SRC-1104",
+    "SRC-1105",
+    "SRC-1106",
+    "SRC-1107",
+    "SRC-1108",
+    "SRC-1109",
+    "SRC-1110",
+    "SRC-1111",
+    "SRC-1112",
+    "SRC-1113",
+    "SRC-1114",
+    "SRC-1115",
+    "SRC-1116",
+    "SRC-1117",
+    "SRC-1118",
+    "SRC-1119",
+    "SRC-1120",
+    "SRC-1122",
+    "SRC-1123",
+    "SRC-1125",
+    "SRC-1127",
+    "SRC-1128",
+    "SRC-1130",
+    "SRC-1131",
+    "SRC-1132",
+    "SRC-1133",
+    "SRC-1134",
+    "SRC-1135",
+    "SRC-1136",
+    "SRC-1137",
+    "SRC-1138",
+    "SRC-1139",
+    "SRC-1140",
+    "SRC-1141",
+    "SRC-1142",
+    "SRC-1143",
+    "SRC-1144",
+    "SRC-1145",
+    "SRC-1146",
+    "SRC-1147",
+    "SRC-1148",
+    "SRC-1150",
+    "SRC-1151",
+    "SRC-1152",
+    "SRC-1153",
+    "SRC-1154",
+    "SRC-1155",
+    "SRC-1156",
+    "SRC-1157",
+    "SRC-1159",
+    "SRC-1160",
+    "SRC-1161",
+    "SRC-1162",
+    "SRC-1163",
+    "SRC-1164",
+    "SRC-1165",
+    "SRC-1166",
+    "SRC-1167",
+    "SRC-1168",
+    "SRC-1169",
+    "SRC-1170",
+    "SRC-1171",
+    "SRC-1172",
+    "SRC-1173",
+    "SRC-1174",
+    "SRC-1175",
+    "SRC-1176",
+    "SRC-1177",
+    "SRC-1178",
+    "SRC-1179",
+    "SRC-1180",
+    "SRC-1181",
+    "SRC-1182",
+    "SRC-1183",
+    "SRC-1184",
+    "SRC-1185",
+    "SRC-1186",
+    "SRC-1187",
+    "SRC-1188",
+    "SRC-1189",
+    "SRC-1190",
+    "SRC-1191",
+    "SRC-1192",
+    "SRC-1193",
+    "SRC-1194",
+    "SRC-1195",
+    "SRC-1196",
+    "SRC-1197",
+    "SRC-1198",
+    "SRC-1199",
+    "SRC-1200",
+    "SRC-1201",
+    "SRC-1202",
+    "SRC-1203",
+    "SRC-1204",
+    "SRC-1205",
+    "SRC-1206",
+    "SRC-1207",
+    "SRC-1208",
+    "SRC-1209",
+    "SRC-1210",
+    "SRC-1211",
+    "SRC-1212",
+    "SRC-1213",
+    "SRC-1214",
+    "SRC-1215",
+    "SRC-1216",
+    "SRC-1217",
+    "SRC-1218",
+    "SRC-1219",
+    "SRC-1220",
+    "SRC-1221",
+    "SRC-1222",
+    "SRC-1223",
+    "SRC-1224",
+    "SRC-1377",
+    "SRC-1378",
+    "SRC-1379",
+    "SRC-1380",
+    "SRC-1381",
+    "SRC-1382",
+    "SRC-1383",
+    "SRC-1384",
+    "SRC-1385",
+    "SRC-1386",
+    "SRC-1387",
+    "SRC-1389",
+    "SRC-1390",
+    "SRC-1391",
+    "SRC-1392",
+    "SRC-1393",
+    "SRC-1394",
+    "SRC-1395",
+    "SRC-1396",
+    "SRC-1397",
+    "SRC-1398",
+    "SRC-1399",
+    "SRC-1400",
+    "SRC-1401",
+    "SRC-1402",
+    "SRC-1403",
+    "SRC-1404",
+    "SRC-1405",
+    "SRC-1406",
+    "SRC-1407",
+    "SRC-1408",
+    "SRC-1409",
+    "SRC-1410",
+    "SRC-1411",
+    "SRC-1412",
+    "SRC-1413",
+    "SRC-1414",
+    "SRC-1415",
+    "SRC-1416",
+    "SRC-1417",
+    "SRC-1418",
+    "SRC-1419",
+    "SRC-1420",
+    "SRC-1421",
+    "SRC-1422"
+  ],
+  "coverage_repair_completed_batches": [
+    "COVERAGE-R1-001",
+    "COVERAGE-R1-002",
+    "COVERAGE-R1-003",
+    "COVERAGE-R1-004",
+    "COVERAGE-R1-005",
+    "COVERAGE-R1-006",
+    "COVERAGE-R1-007",
+    "COVERAGE-R1-008",
+    "COVERAGE-R1-009",
+    "COVERAGE-R1-010",
+    "COVERAGE-R1-011",
+    "COVERAGE-R1-012",
+    "COVERAGE-R1-013",
+    "COVERAGE-R1-014",
+    "COVERAGE-R1-015",
+    "COVERAGE-R1-016",
+    "COVERAGE-R1-017",
+    "COVERAGE-R1-018",
+    "COVERAGE-R1-019",
+    "COVERAGE-R1-020",
+    "COVERAGE-R1-021",
+    "COVERAGE-R1-022",
+    "COVERAGE-R1-023",
+    "COVERAGE-R1-024",
+    "COVERAGE-R1-025",
+    "COVERAGE-R1-026",
+    "COVERAGE-R1-027",
+    "COVERAGE-R1-028",
+    "COVERAGE-R1-029",
+    "COVERAGE-R1-030",
+    "COVERAGE-R1-031",
+    "COVERAGE-R1-032",
+    "COVERAGE-R1-033",
+    "COVERAGE-R1-034",
+    "COVERAGE-R1-035",
+    "COVERAGE-R2-001"
+  ]
+}

@@ -1,0 +1,8 @@
+**COVERAGE-R1-045 ist im beauftragten Umfang planerisch repariert.** Die Originalquellen für SRC-1825–SRC-1834 wurden direkt mit den aktuellen Zielstellen verglichen. Die Berichtsfelder sind im [Scrum-Entwurf](D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md:1010) einzeln auf das bestehende AC zurückgeführt; die README-Angaben zu Repository und Arbeitsbereich bestätigen das bereits geplante Video-Gate. Zehn eigenständige Klauseln sind gedeckt. `SRC-1827.b` ist Teil der Ja/Nein-Frage, keine zusätzliche Pflicht.
+
+Fortschrittsaktualisierung und Strukturprüfung liefen erfolgreich: **PASS** für 1.105 Blöcke, 2.908/2.908 ursprüngliche Kandidaten, 356 Nachfolger und 58 Stories. [Coverage-Bericht](D:/work/_venventure/docs/scrum-migration/coverage-report.md:1) und Status sind aktualisiert. `controller-state.json`, Reviews und Originalquellen blieben unverändert.
+
+- **Offene Nutzerfrage:** Kann Helmuts Freigabe für eine konkrete Aufgabe auch eine Ausnahme vom Eingriffsverbot für Website, Cockpit und Deployment bei Videoarbeit erlauben? Diese bereits unter `SRC-1799` geführte Frage bleibt offen; bis zur Entscheidung ist keine solche Ausnahme eingeplant.
+- **Verbleibende Planning-Coverage-Lücken für SRC-1825–SRC-1834:** keine. Eine künftige konkrete Video-Story muss die anwendbaren AC mit Prüfschritt und Beleg übernehmen.
+
+Implementation Verification, tatsächliche Berichte, Freigaben und Live-Zustand wurden nicht geprüft. Die Gesamtmigration bleibt offen.

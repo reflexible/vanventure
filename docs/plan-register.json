@@ -1,5 +1,5 @@
 {
-  "canonicalPlan": "docs/ausbauplan.md",
+  "canonicalPlan": "docs/scrum-plan.md",
   "sources": [
     {
       "path": "docs/vorhaben-uebersicht.md",
@@ -87,6 +87,13 @@
       ]
     },
     {
+      "path": "docs/analytics.md",
+      "role": "technical-reference",
+      "requiredCanonicalPhrases": [
+        "ANALYTICS 0–8"
+      ]
+    },
+    {
       "path": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
       "role": "technical-reference",
       "requiredCanonicalPhrases": [
@@ -125,6 +132,11 @@
     },
     {
       "path": "docs/abnahmeberichte/favicon-2026-09-25.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/analytics-planung-2026-09-25.md",
       "role": "audit-reference",
       "requiredCanonicalPhrases": []
     },
@@ -182,6 +194,39 @@
         "/api/cockpit/scrum/*",
         "persistente Warnungs-Inbox"
       ]
+    },
+    {
+      "path": "docs/project-rules/scrum-planning.md",
+      "role": "project-rule",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/abnahmeberichte/scrum-planungsregel-2026-09-25.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/scrum-migration/source-index.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/scrum-migration/coverage-report.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/scrum-plan.md",
+      "role": "canonical-plan",
+      "requiredCanonicalPhrases": []
     }
-  ]
+  ],
+  "scrumPlanLifecycle": {
+    "currentPath": "docs/scrum-plan.md",
+    "currentState": "CANONICAL",
+    "promotedFrom": "docs/scrum-migration/scrum-plan-draft.md",
+    "promotionTarget": "docs/scrum-plan.md",
+    "promotionCondition": "FINAL_AUDIT_PASS",
+    "promotionAudit": "docs/scrum-migration/reviews/FINAL-AUDIT-RETRY-R5-2026-09-26.md"
+  }
 }

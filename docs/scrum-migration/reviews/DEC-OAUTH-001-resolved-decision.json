@@ -1,0 +1,22 @@
+{
+  "decision_id": "DEC-OAUTH-001",
+  "source_ids": [
+    "SRC-1107"
+  ],
+  "previous_entry": {
+    "decision_key": "ist die einschränkung des token widerrufs auf anbieterunterstützung in st ins 03 als nachfolgeregel freigegeben",
+    "question": "Ist die Einschränkung des Token-Widerrufs auf Anbieterunterstützung in ST-INS-03 als Nachfolgeregel freigegeben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1107"
+    ],
+    "decision_group": "PRE_FINAL_AUDIT_DECISION",
+    "decision_package": "A1",
+    "blocks_final_audit": true,
+    "blocks_publication": false
+  },
+  "user_decision": "Variante A, mit verpflichtender Fehler-/Warnungsprotokollierung bei nicht unterstütztem oder fehlgeschlagenem Remote-Widerruf.",
+  "successor_rule": "Remote-Widerruf versuchen, sofern Anbieter unterstützt; bei Nichtunterstützung oder Fehler Fehler/Warnung protokollieren, ohne Tokens/Secrets. Verschlüsselte lokale Tokendaten immer löschen und Folge-Syncs immer deaktivieren.",
+  "scope": "Planning decision only; no implementation, publication, release, or deployment approval."
+}

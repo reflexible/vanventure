@@ -1,0 +1,47 @@
+[
+  {
+    "PackageID": "PKG-045",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 63
+  },
+  {
+    "PackageID": "PKG-046",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "SRC-1521.d: Sollen hoch/kritisch priorisierte Epics und Stories als Fast-Track-Karten zulässig sein oder ausschließlich im Backlog bleiben?",
+    "CandidateCount": 65
+  },
+  {
+    "PackageID": "PKG-047",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "SRC-1537.i: Gilt die Archivierungsregel für Eltern oder Kinder? SRC-1545.a: Erhalten alert_task-Karten bei Fast-Track-Einplanung Board-Zeile und -Spalte? SRC-1559.b: Welche Aufbewahrungsfrist soll Phase 0 festlegen?",
+    "CandidateCount": 57
+  },
+  {
+    "PackageID": "PKG-048",
+    "Integrated": true,
+    "Status": "NEEDS_DECISION",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": true,
+    "DecisionQuestion": "SRC-1577.c: Darf eine aufgelöste Warnung nach menschlicher Bestätigung bereits in Review abgeschlossen werden oder ist eine ausdrückliche Done-Bestätigung zwingend?",
+    "CandidateCount": 59
+  },
+  {
+    "PackageID": "PKG-049",
+    "Integrated": true,
+    "Status": "INTEGRATED",
+    "RecheckSourceIDs": [],
+    "DecisionRequired": false,
+    "DecisionQuestion": "",
+    "CandidateCount": 43
+  }
+]

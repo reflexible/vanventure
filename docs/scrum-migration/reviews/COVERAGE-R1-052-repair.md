@@ -1,0 +1,11 @@
+Die gezielte Nachprüfung **COVERAGE-R1-052** ist lokal abgeschlossen. Alle drei CandidateIDs sind im aktuellen Scrum-Entwurf planerisch gedeckt; die offenen Entscheidungen und Nachweise bleiben getrennt.
+
+| CandidateID | Ziel und Ergebnis | Verbleibender Befund |
+| --- | --- | --- |
+| `SRC-0470.a2` | `ST-CON-01` erfasst 8–11 Zielstunden und den älteren 24-Stunden-Wert getrennt. Zuordnung auf **Covered** korrigiert. | `SRC-0753.a`: Die Reichweite der Werte bleibt eine `PUBLICATION_DECISION`. GCS-Veröffentlichung bis zur Freigabe gesperrt. |
+| `SRC-0949.a1` | `ST-CON-04` und `src-0949` benennen nun ausdrücklich beide Uferfotos vom 13. Juli 2018. **Covered**. | Die Ortsbestätigung fehlt; die Beschriftungsschwelle bleibt unter `SRC-0948` eine `PUBLICATION_DECISION`. Bis dahin nur „Norwegen“; Veröffentlichung des Entwurfs gesperrt. |
+| `SRC-2252.f2` | `ST-VID-01` erfasst `PRIVACY_APPROVED` ausschließlich als historischen v18-Status. **Covered**. | `SRC-2042`/`SRC-2247`: Die Gleichwertigkeit der dokumentierten Sichtung bleibt ein `INSUFFICIENT_EVIDENCE`-Befund. Keine neue Privacy-Freigabe; erneute oder andere Veröffentlichung bis zu Nachweis und Freigabe gesperrt. |
+
+[Entwurf](/D:/work/_venventure/docs/scrum-migration/scrum-plan-draft.md), [Traceability-Matrix](/D:/work/_venventure/docs/scrum-migration/traceability-matrix.csv) und [Ausführungsstand](/D:/work/_venventure/docs/scrum-migration/execution-state.md) sind abgeglichen. Die Fortschrittsaktualisierung lief; die lokale Strukturprüfung bestand mit **1.106 Blöcken, 2.913/2.913 ursprünglichen Kandidaten, 356 Nachfolgern und 75 Stories**.
+
+Global bleiben **15 Coverage Findings** und **6 prüfbare Evidenzzeilen**: `SRC-0452.g/.h`, `SRC-0464.f`, `SRC-0466.s` sowie die beiden v18-Zeilen `SRC-2042.e` und `SRC-2247.d`. Technische und automatisch lösbare Entscheidungsgruppen: jeweils **0**. Die getrennten Holds stehen bei **0 PRE_FINAL_AUDIT_DECISION**, **10 PUBLICATION_DECISION** und **3 DEFERRED_POST_PILOT**; B und C blockieren den technischen Final Audit nicht. Der frühere Final Audit bleibt `FINAL_AUDIT_FAIL`. Umsetzung und Live-Zustand wurden in dieser Nachprüfung nicht verifiziert.

@@ -1,0 +1,173 @@
+[
+  {
+    "decision_key": "all galleries need finer captions smaller magnifiers and centred arrows preview design still awaits explicit user acceptance",
+    "question": "All galleries need finer captions, smaller magnifiers and centred arrows; preview design still awaits explicit user acceptance.",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0504"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "wie sind alter nötige anonymisierung und ausdrückliche veröffentlichungsentscheidung jeweils für nr 63 und 69",
+    "question": "Wie sind Alter, nötige Anonymisierung und ausdrückliche Veröffentlichungsentscheidung jeweils für Nr. 63 und 69?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0522",
+      "SRC-0528"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "welche konkreten aktuellen dateifassungen und sha 256 hashes waren sichtbar und freigegeben",
+    "question": "Welche konkreten aktuellen Dateifassungen und SHA-256-Hashes waren sichtbar und freigegeben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0528"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "welche genau drei kinderbilder waren am 22 09 2026 für welche kajak fassung freigegeben und welche sollen nach entfernung von kajak 06 jpg in der heutigen 13er galerie bleiben",
+    "question": "Welche genau drei Kinderbilder waren am 22.09.2026 für welche Kajak-Fassung freigegeben, und welche sollen nach Entfernung von kajak-06.jpg in der heutigen 13er-Galerie bleiben?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-0658"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "galt der ältere readme wert von 24 stunden für denselben gcs produktionsumfang und wurde er durch 8 11 stunden ersetzt oder beschreibt er einen anderen umfang",
+    "question": "Galt der ältere README-Wert von 24 Stunden für denselben GCS-Produktionsumfang und wurde er durch 8–11 Stunden ersetzt, oder beschreibt er einen anderen Umfang?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Der Geltungsbereich zweier widersprüchlicher Produktionsziele braucht eine fachliche Festlegung; bis dahin kein aktueller Sollwert.",
+    "source_ids": [
+      "SRC-0753"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "bezieht sich erst nach der veröffentlichung auf das gcs longform video oder das gesamte paket einschliesslich beider shorts",
+    "question": "Bezieht sich „erst nach der Veröffentlichung“ auf das GCS-Longform-Video oder das gesamte Paket einschließlich beider Shorts?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Das auslösende Veröffentlichungsereignis ist aus dem Brief nicht eindeutig; Website-Ergänzung bleibt bis zur Entscheidung gesperrt.",
+    "source_ids": [
+      "SRC-0780"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "soll die abgestimmte riverstar en fassung zusätzlich auf die zweisprachige startseite übernommen werden oder ausschliesslich auf kajak html stehen",
+    "question": "Soll die abgestimmte Riverstar-EN-Fassung zusätzlich auf die zweisprachige Startseite übernommen werden, oder ausschließlich auf kajak.html stehen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+    "source_ids": [
+      "SRC-0922"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "ist julie auf dsc 1547 jpg zum aufnahmezeitpunkt ein erkennbares kind und wählen sie genau dieses motiv für eine heutige veröffentlichung aus",
+    "question": "Ist Julie auf DSC_1547.jpg zum Aufnahmezeitpunkt ein erkennbares Kind, und wählen Sie genau dieses Motiv für eine heutige Veröffentlichung aus?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Aktuelle redaktionelle beziehungsweise motivweise Nutzerentscheidung; aus historischem Entwurf und Plan nicht ableitbar.",
+    "source_ids": [
+      "SRC-0925"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "was genau war an den grabner schwimmwesten weniger überzeugend und soll diese kritik so in den öffentlichen bericht",
+    "question": "Was genau war an den Grabner-Schwimmwesten weniger überzeugend, und soll diese Kritik so in den öffentlichen Bericht?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Konkrete Ursache und öffentliche Übernahme sind fachliche Nutzerentscheidungen; die Quelle lässt die Ursache ausdrücklich offen.",
+    "source_ids": [
+      "SRC-0940",
+      "SRC-0950"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "welches gewässer oder welcher campingplatz gehört zu den uferfotos dsc 1545 jpg und dsc 1547 jpg vom 13 juli 2018 soll für eine genauere bildunterschrift ihre bestätigung von gewässer oder campingplatz genügen oder müssen gewässer und ort vor veröffentlichung beide feststehen",
+    "question": "Welches Gewässer oder welcher Campingplatz gehört zu den Uferfotos DSC_1545.jpg und DSC_1547.jpg vom 13. Juli 2018? Soll für eine genauere Bildunterschrift Ihre Bestätigung von Gewässer oder Campingplatz genügen, oder müssen Gewässer und Ort vor Veröffentlichung beide feststehen?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Original erlaubt Gewässer oder Campingplatz; ST-CON-04 verlangt Gewässer und Ort. Ort und Abnahmeschwelle kann nur der Nutzer klären.",
+    "source_ids": [
+      "SRC-0948"
+    ],
+    "decision_group": "PUBLICATION_DECISION",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": true
+  },
+  {
+    "decision_key": "sollen nach mehreren wochen tatsächlicher nutzung zusätzliche jeweils bestätigte marvin aktionen und eine kompakte verlaufs monitoringansicht eingeführt werden",
+    "question": "Sollen nach mehreren Wochen tatsächlicher Nutzung zusätzliche, jeweils bestätigte Marvin-Aktionen und eine kompakte Verlaufs-/Monitoringansicht eingeführt werden?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ],
+    "decision_group": "DEFERRED_POST_PILOT",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": false
+  },
+  {
+    "decision_key": "welche der drei optionalen ausbauten erinnerungen wiederkehrende wartung und druckübersicht werden nach pilotnutzung beauftragt",
+    "question": "Welche der drei optionalen Ausbauten Erinnerungen, wiederkehrende Wartung und Druckübersicht werden nach Pilotnutzung beauftragt?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ],
+    "decision_group": "DEFERRED_POST_PILOT",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": false
+  },
+  {
+    "decision_key": "welche datenschutz und bedienentscheidung gilt jeweils für einen später beauftragten ausbau",
+    "question": "Welche Datenschutz- und Bedienentscheidung gilt jeweils für einen später beauftragten Ausbau?",
+    "classification": "USER_DECISION",
+    "classification_rationale": "Explizite fachliche Scope-, Freigabe-, Datenschutz-, Aufbewahrungs- oder Produktentscheidung; aus bestehenden Regeln/Evidenzen nicht eindeutig ableitbar.",
+    "source_ids": [
+      "SRC-1658"
+    ],
+    "decision_group": "DEFERRED_POST_PILOT",
+    "decision_package": null,
+    "blocks_final_audit": false,
+    "blocks_publication": false
+  }
+]
