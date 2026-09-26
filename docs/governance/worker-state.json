@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 126,
+  "revision": 129,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3513,7 +3513,7 @@
     },
     "WI-SOT-22-02": {
       "work_item_id": "WI-SOT-22-02",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root",
       "claimed_at": "2026-09-26T17:28:23.362Z",
       "write_scope": [
@@ -3524,10 +3524,151 @@
         "tools/sot/chat-handover.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "Attached immutable explicit work-item context to the local handover.",
+        "files": [
+          "tools/sot/chat-handover.mjs",
+          "tools/sot/chat-handover.test.mjs"
+        ],
+        "tests": [
+          "307/307 PASS"
+        ],
+        "limitations": [
+          "No remote chat provider connection."
+        ],
+        "follow_up": [
+          "Continue with status handover."
+        ],
+        "decision_refs": [
+          "tools/sot/chat-handover.test.mjs"
+        ],
+        "at": "2026-09-26T17:29:43.582Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "self_review_reason": "Bounded deterministic review after full suite.",
+        "at": "2026-09-26T17:29:43.595Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "tests_passed": true,
+        "at": "2026-09-26T17:29:43.606Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "scope": "WI-SOT-22-02",
+        "verified_at": "2026-09-26T17:29:43.606Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-22-02",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-22-02",
+          "reason": "Local context projection only.",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "suite",
+            "status": "PASS",
+            "evidence_ref": "tools/sot/chat-handover.test.mjs"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "scope": "WI-SOT-22-02",
+          "audit_output": "tools/sot/chat-handover.test.mjs",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-22-02",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-22-02"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -4711,6 +4852,31 @@
       "event": "START",
       "work_item_id": "WI-SOT-22-02",
       "actor": "/root"
+    },
+    {
+      "event_id": "70ada617-578e-4baa-bfba-8a4f212673c1",
+      "at": "2026-09-26T17:29:43.582Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-22-02",
+      "actor": "/root",
+      "summary": "Attached immutable explicit work-item context to the local handover."
+    },
+    {
+      "event_id": "7f14ebcd-09ea-440a-a538-92d4adb8ca69",
+      "at": "2026-09-26T17:29:43.595Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-22-02",
+      "actor": "/root",
+      "evidence_ref": "tools/sot/chat-handover.test.mjs"
+    },
+    {
+      "event_id": "6cd09e58-e02f-48c1-82ee-d6da46cc6d91",
+      "at": "2026-09-26T17:29:43.606Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-22-02",
+      "actor": "/root",
+      "evidence_ref": "tools/sot/chat-handover.test.mjs",
+      "done_guard": "DONE_ALLOWED"
     }
   ]
 }
