@@ -179,6 +179,9 @@ Besonders prüfen:
 - [x] ~~WI-SOT-04-08 · Contract-Break-Erkennung implementieren~~
 - [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
 - [ ] TODO – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
+  Drei Übergänge besitzen zusätzlich reine Invariantenprüfer für übergebene
+  Datensätze; die atomare Worker-Durchsetzung und die realen CMS-/Analytics-
+  Pfade sind noch nicht angebunden. Der Punkt bleibt offen.
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
 - [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~
 - [x] ~~WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen~~
