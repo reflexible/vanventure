@@ -81,16 +81,17 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, inkrementelles Audit.
-**Current Work Item:** `WI-SOT-11-01` ist bereit. **Active Workers:** 0.
+**Phase:** Übergang zu SoT Governance.
+**Current Work Item:** `WI-SOT-12-01` ist bereit. **Active Workers:**
+ein Worker-State-Slice in Integrationsprüfung.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-11-01` (inkrementelles Audit), um Delta,
-Impact und beide Prüfmodi mit gespeicherten Ergebnissen zu verbinden.
-**Parallel Candidates:** die Runtime-Anbindungen `WI-SOT-04-10`, `05-04`,
-`06-09`, `07-10` und `08-09` benötigen einen gemeinsamen State und Orchestrator.
+**NEXT RECOMMENDATION:** `WI-SOT-12-01` (SoT Intake), weil das inkrementelle
+Audit als Prüfgrundlage integriert ist. **Parallel Candidates:** der lokale
+Worker-State-Slice kann unabhängig von Intake geprüft werden; die Runtime-
+Anbindungen `WI-SOT-04-10`, `05-04`, `06-09`, `07-10` und `08-09` folgen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 192 · Done 88 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 104 (einschließlich Ready und Blocked) · Progress 45,8 %.
+**Counter:** Total 193 · Done 94 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 99 (einschließlich Ready und Blocked) · Progress 48,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -288,15 +289,16 @@ Change
 → Required Check Mode
 → Delta Validation
 → Audit Result
-- [ ] READY – WI-SOT-11-01 · lokales Delta-Audit
-- [ ] TODO – WI-SOT-11-02 · Modul-Audit
-- [ ] TODO – WI-SOT-11-03 · Contract-Audit
-- [ ] TODO – WI-SOT-11-04 · Dependency-Audit
-- [ ] TODO – WI-SOT-11-05 · Audit-Eskalation
-- [ ] TODO – WI-SOT-11-06 · Audit-Ergebnis speichern
+- [x] ~~WI-SOT-11-01 · lokales Delta-Audit~~
+- [x] ~~WI-SOT-11-02 · Modul-Audit~~
+- [x] ~~WI-SOT-11-03 · Contract-Audit~~
+- [x] ~~WI-SOT-11-04 · Dependency-Audit~~
+- [x] ~~WI-SOT-11-05 · Audit-Eskalation~~
+- [x] ~~WI-SOT-11-06 · Audit-Ergebnis speichern~~
+- [ ] TODO – WI-SOT-11-07 · den Auditpfad mit gepflegten Manifesten, Test-/Trace-Zuordnungen und Projektprüfern im gemeinsamen Ablauf aufrufen
 ### WS-SOT-W2 – SOURCE OF TRUTH GOVERNANCE
 #### ST-SOT-12 – PHASE 12: SOT INTAKE
-- [ ] TODO – WI-SOT-12-01 · neue Idee erfassen
+- [ ] READY – WI-SOT-12-01 · neue Idee erfassen
 - [ ] TODO – WI-SOT-12-02 · neuen Plan erfassen
 - [ ] TODO – WI-SOT-12-03 · neue Entscheidung erfassen
 - [ ] TODO – WI-SOT-12-04 · neue Regel erfassen
