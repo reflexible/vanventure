@@ -103,3 +103,25 @@ test('blocked claims retain their file reservation and a concrete blocker in tea
   assert.ok(!result.parallel_candidates.some(c => c.work_item_id === 'WI-SOT-04-01'));
   assert.match(result.exclusions.find(c => c.work_item_id === 'WI-SOT-04-01').reasons.join(';'), /COLLISION/);
 });
+
+
+const component = score => ({ score, confidence: 'High', rationale: 'Verified evidence.' });
+const assessment = (jobSize = 5) => ({ evaluated_at: '2026-09-26T17:00:00Z', user_business_value: component(13),
+  time_criticality: component(5), risk_reduction_opportunity_enablement: component(3), job_size: component(jobSize) });
+
+test('calculates a WSJF order only for gate-approved executable candidates without authorizing execution', () => {
+  const input = fixture();
+  input.wsjfAssessments = { 'WI-SOT-02-01': assessment(8), 'WI-SOT-04-01': assessment(5) };
+  const result = planExecution(input);
+  assert.equal(result.wsjf, 'CALCULATED_NOT_AUTHORIZED');
+  assert.deepEqual(result.wsjf_ready_order.map(item => item.id), ['WI-SOT-04-01', 'WI-SOT-02-01']);
+  assert.equal(result.execution_authorized, false);
+  assert.equal(result.next_recommended.work_item_id, 'WI-SOT-02-01');
+});
+
+test('rejects partial or non-executable WSJF assessments', () => {
+  const partial = fixture(); partial.wsjfAssessments = { 'WI-SOT-02-01': assessment() };
+  assert.equal(planExecution(partial).status, 'EXECUTION_PLAN_BLOCKED');
+  const blocked = fixture(); blocked.wsjfAssessments = { 'WI-SOT-02-01': assessment(), 'WI-SOT-04-01': assessment(), 'WI-SOT-03-01': assessment() };
+  assert.equal(planExecution(blocked).status, 'EXECUTION_PLAN_BLOCKED');
+});

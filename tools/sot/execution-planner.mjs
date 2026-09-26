@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { countWorkItems } from './progress.mjs';
 import { validateDependencyGraph } from './dependency-graph.mjs';
 import { runtimeWorkers, activeProcesses } from './worker-state.mjs';
+import { rankReadyQueue } from './wsjf.mjs';
 
 const text = value => typeof value === 'string' && value.trim() === value && value.length > 0;
 const digest = value => createHash('sha256').update(typeof value === 'string' ? value : JSON.stringify(value)).digest('hex');
@@ -15,7 +16,7 @@ const overlap = (a, b) => a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}
 /** Derived planning only. Analyses are explicit current scope-review inputs, never a second backlog.
  * No claims, Ready transitions, WSJF activation, assignments or file writes are performed.
  */
-export function planExecution({ backlog, graph, state, scopeAnalyses = {}, forbiddenScopes = ['docs/scrum-plan.md'] }) {
+export function planExecution({ backlog, graph, state, scopeAnalyses = {}, forbiddenScopes = ['docs/scrum-plan.md'], wsjfAssessments = {} }) {
   const errors = []; const exclusions = []; const current = []; const candidates = [];
   let counts; let workers = { workers: [] };
   const output = () => ({ status: errors.length ? 'EXECUTION_PLAN_BLOCKED' : 'EXECUTION_PLAN_DERIVED', errors,
@@ -23,7 +24,7 @@ export function planExecution({ backlog, graph, state, scopeAnalyses = {}, forbi
     current_work_items: current, active_workers: workers.workers, next_recommended: null, parallel_candidates: [],
     exclusions, source_bindings: { backlog_sha256: digest(backlog ?? ''), graph_sha256: digest(graph ?? {}),
       worker_state_sha256: digest(state ?? {}), scope_analyses_sha256: digest(scopeAnalyses),
-      forbidden_scopes_sha256: digest(forbiddenScopes) }, wsjf: 'NOT_ACTIVATED', execution_authorized: false });
+      forbidden_scopes_sha256: digest(forbiddenScopes), wsjf_assessments_sha256: digest(wsjfAssessments) }, wsjf: 'NOT_ACTIVATED', wsjf_ready_order: [], execution_authorized: false });
   try {
     counts = countWorkItems(backlog);
     const validGraph = validateDependencyGraph(graph);
@@ -138,6 +139,19 @@ export function planExecution({ backlog, graph, state, scopeAnalyses = {}, forbi
       result.parallel_candidates.push(candidate); reserved.push(...scopes);
     }
     result.recommendations = candidates;
+    const executable = candidates.filter(candidate => candidate.plan_status === 'READY');
+    const supplied = Object.keys(wsjfAssessments ?? {});
+    if (supplied.some(id => !executable.some(candidate => candidate.work_item_id === id))) {
+      throw new Error('WSJF_ASSESSMENT_FOR_NON_EXECUTABLE_ITEM');
+    }
+    const complete = executable.filter(candidate => Object.hasOwn(wsjfAssessments, candidate.work_item_id));
+    if (complete.length) {
+      if (complete.length !== executable.length) throw new Error('WSJF_ASSESSMENTS_INCOMPLETE_FOR_EXECUTABLE_ITEMS');
+      result.wsjf_ready_order = rankReadyQueue(complete.map(candidate => ({ ...wsjfAssessments[candidate.work_item_id],
+        id: candidate.work_item_id, ready: true, claimed: false, blocked: false, conflict: false,
+        user_decision_required: false, comparison_group: 'execution-ready' })), { comparisonGroup: 'execution-ready' });
+      result.wsjf = 'CALCULATED_NOT_AUTHORIZED';
+    }
     return result;
   } catch (error) { errors.push(error.message); return output(); }
 }
