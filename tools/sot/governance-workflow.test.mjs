@@ -160,6 +160,21 @@ test('untrusted conflict reviewer cannot be replaced with the imported user deci
   assert.equal(await readFile(join(f.projectRoot, f.module.source), 'utf8'), f.source);
 });
 
+test('a demonstrated genuine conflict stays blocked without a silent rule or decision-state change', async t => {
+  const f = await fixture(t);
+  const conflictReview = { ...f.input.conflictReviews[0], relation: 'CONTRADICTION', demonstrated: true,
+    rationale: 'Synthetic fixture demonstrates that the proposed text contradicts the anchored rule.' };
+  f.input.conflictReviews = [conflictReview];
+  f.input.verifyConflictReview = async ({ review }) => JSON.stringify(review) === JSON.stringify(conflictReview);
+  const result = await runGovernanceWorkflow(f.input);
+  assert.equal(result.status, 'WORKFLOW_BLOCKED');
+  assert.equal(result.stage, 'CONFLICT_REVIEW');
+  assert.equal(result.reason, 'UNRESOLVED_OR_UNSUPPORTED_CONFLICT');
+  assert.equal(await readFile(join(f.projectRoot, f.module.source), 'utf8'), f.source);
+  await assert.rejects(readFile(join(f.projectRoot, 'decision-events.jsonl')), { code: 'ENOENT' });
+  await assert.rejects(readFile(join(f.projectRoot, f.input.audit.outputPath)), { code: 'ENOENT' });
+});
+
 test('failed concrete post-check restores the original and preserves the failed audit', async t => {
   const f = await fixture(t);
   f.input.validators.traceability = async () => ({ status: 'BLOCKED', reason: 'Missing concrete fixture trace.' });
