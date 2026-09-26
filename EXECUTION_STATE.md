@@ -20,7 +20,6 @@ Prepare an evidence-bound, non-activating Risk-Reduction-/Opportunity-Enablement
 
 Relevant:
 - `tools/sot/wsjf.mjs`
-- `tools/sot/wsjf-time-criticality.mjs`
 - `docs/governance/wsjf.md`
 - `docs/governance/source-of-truth-and-incremental-planning.md#st-sot-19--phase-19-wsjf-integration`
 
