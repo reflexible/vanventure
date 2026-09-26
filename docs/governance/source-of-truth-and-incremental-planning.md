@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und isolierte Git-Commits lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und kollisionsfreie Git-Slices lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-07` · parallele Arbeit auf getrennte Worktrees, Branches oder disjunkte Dateien begrenzen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-08` · Integrationsreihenfolge für unabhängige fertige Slices kontrolliert ableiten.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 190 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 15 (einschließlich Ready und Blocked) · Progress 92,7 %.
+**Counter:** Total 205 · Done 191 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 14 (einschließlich Ready und Blocked) · Progress 93,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -636,7 +636,11 @@ wenn sinnvoll.
   Jeder gestagte Pfad muss in einem explizit deklarierten Schreibbereich
   liegen; außerhalb liegende oder leere Staging-Areas blockieren. [Lokaler
   Abnahmebericht](../abnahmeberichte/sot-git-commit-scope-2026-09-26.md).
-- [ ] TODO – WI-SOT-30-07 · parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien
+- [x] ~~WI-SOT-30-07 · parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien~~
+  Die bestehende lokale Koordination lässt nur gegenseitig disjunkte, exakt
+  geprüfte Schreibbereiche zu und sperrt Scope-Kollisionen; damit ist die
+  zulässige Variante disjunkter Dateien abgedeckt. [Lokaler
+  Abnahmebericht](../abnahmeberichte/sot-git-parallel-slices-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-08 · kontrollierte Integration
 #### ST-SOT-31 – PHASE 31: END-TO-END VALIDATION
 Die sieben bereits beauftragten Abschlussprüfungen erhalten eigene Work-Item-IDs,
