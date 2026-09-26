@@ -82,16 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-20-10` · lokalen Worker-State und Planstatus synchronisieren. **Active Workers:** 1.
+**Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-20-10` wird bearbeitet; anschließend `WI-SOT-22-01` als Übergabe-Modell vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-22-01`: Chat-Handover-Modell als lokale, nicht autorisierende Übergabe vorbereiten.
 **Parallel Candidates:**
-Keine nebenläufige Implementierung: der aktive Runtime- und Status-Scope hat Vorrang.
+`WI-SOT-22-01` kann mit einem getrennten Übergabe-Scope vorbereitet werden; Worker-Scopes haben Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 160 · In Progress 1 · Ready 0 · Blocked 2 ·
-Open 45 (einschließlich Ready und Blocked) · Progress 78,0 %.
+**Counter:** Total 205 · Done 161 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 44 (einschließlich Ready und Blocked) · Progress 78,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -444,7 +444,8 @@ Technisch verhindern:
 - [x] ~~WI-SOT-20-07 · Konflikterkennung~~
 - [x] ~~WI-SOT-20-08 · Worker-Status~~
 - [x] ~~WI-SOT-20-09 · Ergebnisintegration~~
-- [ ] IN_PROGRESS – WI-SOT-20-10 · lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren; keine standortübergreifende Freigabe aus dem Dateiprototyp ableiten
+- [x] ~~WI-SOT-20-10 · lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren; keine standortübergreifende Freigabe aus dem Dateiprototyp ableiten~~
+  Der lokale Controller-Snapshot zeigt Plan- und Worker-Status gemeinsam; unzugeordnete Scopes bleiben sichtbar und nicht autorisiert. [FAST-CHECK](../sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md).
   Der Dateistand ist ausschließlich operativ und enthält keinen zweiten Backlog.
   Claims, Übergabe und Done-Gates sind lokal transaktional geprüft; Queue,
   Dependency-Freigabe und reale Cross-Chat-Nutzung bleiben offen.

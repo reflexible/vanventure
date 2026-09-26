@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 118,
+  "revision": 119,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3185,7 +3185,7 @@
     },
     "WI-SOT-20-10": {
       "work_item_id": "WI-SOT-20-10",
-      "execution_state": "Integration",
+      "execution_state": "Done",
       "assigned_agent": "/root",
       "claimed_at": "2026-09-26T17:22:38.082Z",
       "write_scope": [
@@ -3227,8 +3227,129 @@
         "self_review_reason": "No separate active reviewer; bounded review uses deterministic runtime tests and the real local snapshot.",
         "at": "2026-09-26T17:25:15.944Z"
       },
-      "integration": null,
-      "blocked_by": null
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T17:25:49.701Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+        "scope": "WI-SOT-20-10",
+        "verified_at": "2026-09-26T17:25:49.701Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-20-10",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-20-10",
+          "reason": "Local operational projection only.",
+          "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "runtime-tests",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "sot-suite",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "scope": "WI-SOT-20-10",
+          "audit_output": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-20-10",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-20-10"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:2"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -4333,6 +4454,15 @@
       "work_item_id": "WI-SOT-20-10",
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+    },
+    {
+      "event_id": "ceaf22b8-c493-4c34-9a85-99f2ffbeccea",
+      "at": "2026-09-26T17:25:49.702Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-20-10",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
     }
   ]
 }

@@ -3,30 +3,30 @@
 Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
-Current: `WI-SOT-20-10`
-State: `IN_PROGRESS`
-Last Done: `WI-SOT-21-07`
-Last Commit: `871d794`
+Current: `WI-SOT-22-01`
+State: `TODO`
+Last Done: `WI-SOT-20-10`
+Last Commit: `981f833`
 
 Progress:
-- Done: 160
+- Done: 161
 - Total: 205
-- Open: 45
+- Open: 44
 - Blocked: 2
 - Recovery: none
 
 Current Goal:
-Derive a local controller snapshot from the authoritative plan and worker state without asserting cross-chat runtime control.
+Prepare a local, non-authorizing chat-handover model without creating a competing state.
 
 Relevant:
-- `tools/sot/worker-state.mjs`
 - `tools/sot/worker-runtime.mjs`
-- `docs/governance/source-of-truth-and-incremental-planning.md#st-sot-20--phase-20-worker-state`
+- `docs/governance/worker-state.json`
+- `docs/governance/source-of-truth-and-incremental-planning.md#st-sot-22--phase-22-cross-chat--handover`
 
 Verification:
-- Targeted worker-state/runtime tests
+- Targeted handover/runtime tests
 - Golden Baseline diff: `docs/scrum-plan.md` versus `dac0199`
 - FAST CHECK unless an escalation criterion applies
 
 Next:
-Implement and verify the local controller snapshot; then complete review and integration.
+Read the active Work Item and direct handover boundary before creating a claim.
