@@ -81,17 +81,16 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, Delta-Integration. **Current Work Item:**
-`WI-SOT-10-01` in Integrationsprüfung. **Active Workers:** `/root` prüft und
-integriert; Graph- und Delta-Worker haben ihren Schreib-Claim abgegeben.
+**Phase:** Performance Enablement, Impact Engine. **Current Work Item:**
+`WI-SOT-06-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-10-01` abschließen, dann `WI-SOT-06-01`
-(Impact Engine), weil Graph und Delta ihre Eingaben bereitstellen.
-**Parallel Candidates:** nach dem Delta-Commit können Impact Engine und
-Worker-State-Anbindung in disjunkten Dateien starten.
+**NEXT RECOMMENDATION:** `WI-SOT-06-01` (Impact Engine), weil Graph und Delta
+ihre Eingaben bereitstellen.
+**Parallel Candidates:** Worker-State-Anbindung nach dem gemeinsamen
+operativen State; eigenständige Audit-Checks auf Basis der Impact Engine.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 188 · Done 56 · In Progress 1 · Ready 0 · Blocked 1 ·
-Open 132 (einschließlich In Progress und Blocked) · Progress 29,8 %.
+**Counter:** Total 188 · Done 62 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 126 (einschließlich Ready und Blocked) · Progress 33,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -194,7 +193,7 @@ Besonders prüfen:
   keine harte Reihenfolge wird aus Phasennummern erfunden. Laufende Worker
   erfordern einen noch anzubindenden gemeinsamen Runtime-State.
 #### ST-SOT-06 – PHASE 6: IMPACT ENGINE
-- [ ] TODO – WI-SOT-06-01 · Änderung klassifizieren
+- [ ] READY – WI-SOT-06-01 · Änderung klassifizieren
 - [ ] TODO – WI-SOT-06-02 · betroffenes Modul bestimmen
 - [ ] TODO – WI-SOT-06-03 · direkte Dependencies bestimmen
 - [ ] TODO – WI-SOT-06-04 · indirekte relevante Dependencies bestimmen
@@ -267,12 +266,15 @@ Für relevante Module:
   Freitextänderungen werden ohne gepflegtes aktuelles Manifest nicht als
   semantisch gleich behauptet.
 #### ST-SOT-10 – PHASE 10: CHANGE / DELTA DETECTION
-- [ ] IN_PROGRESS – WI-SOT-10-01 · Dateiänderungen erkennen
-- [ ] TODO – WI-SOT-10-02 · semantische Änderungen erkennen
-- [ ] TODO – WI-SOT-10-03 · Format-only Änderungen erkennen
-- [ ] TODO – WI-SOT-10-04 · Contract-Änderungen erkennen
-- [ ] TODO – WI-SOT-10-05 · unveränderte Module automatisch ausschließen
-- [ ] TODO – WI-SOT-10-06 · prüfbares Delta erzeugen
+- [x] ~~WI-SOT-10-01 · Dateiänderungen erkennen~~
+- [x] ~~WI-SOT-10-02 · semantische Änderungen erkennen~~
+- [x] ~~WI-SOT-10-03 · Format-only Änderungen erkennen~~
+- [x] ~~WI-SOT-10-04 · Contract-Änderungen erkennen~~
+- [x] ~~WI-SOT-10-05 · unveränderte Module automatisch ausschließen~~
+- [x] ~~WI-SOT-10-06 · prüfbares Delta erzeugen~~
+  Vergleiche benötigen explizite vorherige Snapshots beziehungsweise
+  Baseline-Referenzen; semantische Gleichheit wird nur mit gepaarten
+  gepflegten Manifesten bestätigt.
 #### ST-SOT-11 – PHASE 11: INCREMENTAL AUDIT
 Implementieren:
 Change
