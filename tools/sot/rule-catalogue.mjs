@@ -12,11 +12,30 @@ export function extractHeadingSection(source, heading) {
   const lines = source.replace(/\r\n/g, '\n').split('\n');
   const level = heading.match(/^(#{1,6}) /)?.[1].length;
   if (!level) throw new Error('Section heading must be a Markdown heading.');
-  const matches = lines.flatMap((line, index) => line === heading ? [index] : []);
+  const headings = [];
+  let fence = null;
+  for (const [index, line] of lines.entries()) {
+    const marker = line.match(/^\s*(`{3,}|~{3,})/);
+    if (marker) {
+      if (!fence) fence = { char: marker[1][0], length: marker[1].length };
+      else if (marker[1][0] === fence.char && marker[1].length >= fence.length) fence = null;
+      continue;
+    }
+    if (!fence && line === heading) headings.push(index);
+  }
+  const matches = headings;
   if (matches.length !== 1) throw new Error('Section heading is missing or ambiguous.');
   const start = matches[0];
   let end = lines.length;
+  fence = null;
   for (let i = start + 1; i < lines.length; i++) {
+    const marker = lines[i].match(/^\s*(`{3,}|~{3,})/);
+    if (marker) {
+      if (!fence) fence = { char: marker[1][0], length: marker[1].length };
+      else if (marker[1][0] === fence.char && marker[1].length >= fence.length) fence = null;
+      continue;
+    }
+    if (fence) continue;
     const match = lines[i].match(/^(#{1,6}) /);
     if (match && match[1].length <= level) { end = i; break; }
   }

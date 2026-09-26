@@ -321,6 +321,11 @@ Change
   `DEC-REL-002` besitzt einen vollständig inventarisierten, gegen aktuelle
   Quellbytes geprüften Pilotabschnitt. Sämtliche acht Modulabdeckungen und
   modulübergreifende Suchlücken bleiben ausdrücklich `partial`/`Unknown`.
+  Generische Abschnittsfindung für die acht aktiven Quellen und
+  vorschlagsbezogene Mehrfachbereichsprüfung sind lokal implementiert und
+  getestet. Das Item bleibt READY, bis die fachlichen Regelbereiche eines
+  konkreten Vorschlags vollständig inventarisiert und alle relevanten Unknowns
+  geschlossen sind.
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
 - [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~
@@ -357,6 +362,10 @@ Change
 - [ ] TODO – WI-SOT-17-03 · Dependencies prüfen
 - [ ] TODO – WI-SOT-17-04 · Delta validieren
 - [ ] TODO – WI-SOT-17-05 · erforderlichen FAST/FULL CHECK ausführen
+  Ein fail-closed Orchestrator ist als lokaler Baustein vorhanden. Die
+  verbindlichen fachlichen SoT-/Traceability-Validatoren sowie konkrete
+  FULL-Checker für jedes betroffene Fachmodul fehlen; daher bleibt die
+  End-to-End-Post-Validation offen.
 #### ST-SOT-18 – PHASE 18: DEFINITION-OF-DONE GUARDS
 Technisch verhindern:
 - [ ] TODO – WI-SOT-18-01 · DONE bei fehlendem SoT-Update
