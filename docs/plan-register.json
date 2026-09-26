@@ -216,11 +216,26 @@
       "requiredCanonicalPhrases": []
     },
     {
+      "path": "docs/ausbauplan.md",
+      "role": "legacy-active-plan",
+      "requiredCanonicalPhrases": []
+    },
+    {
+      "path": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "role": "domain-authority",
+      "requiredCanonicalPhrases": []
+    },
+    {
       "path": "docs/scrum-plan.md",
       "role": "canonical-plan",
       "requiredCanonicalPhrases": []
     }
   ],
+  "legacyPlanMigration": {
+    "status": "OPEN",
+    "evidence": "docs/sot-optimization/reviews/legacy-ausbauplan-migration-2026-09-26.md",
+    "gate": "Each historical item has an explicit target or justified exclusion; no duplicate active plan remains."
+  },
   "scrumPlanLifecycle": {
     "currentPath": "docs/scrum-plan.md",
     "currentState": "CANONICAL",

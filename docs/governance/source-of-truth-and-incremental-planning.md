@@ -88,8 +88,8 @@ und spätere Produktprüfung bleiben offen.
 impact-begrenzte FULL-CHECK-Engine. **Parallel Candidates:** FAST und FULL
 können auf der geprüften Impact-Schnittstelle in disjunkten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 189 · Done 70 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 119 (einschließlich Ready und Blocked) · Progress 37,0 %.
+**Counter:** Total 190 · Done 71 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 119 (einschließlich Ready und Blocked) · Progress 37,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -409,6 +409,9 @@ Progress %
 #### ST-SOT-27 – PHASE 27: PLANPFLEGE
 - [x] ~~WI-SOT-27-01 · neue SoT-Implementierungsliste aus dem historischen Ausbauplan herauslösen, als einziges Fachmodul führen und additiv an den Golden Scrum Core anbinden~~
 - [ ] BLOCKED – WI-SOT-27-02 · Legacy Ausbauplan Reference Cleanup erst nach dem globalen eintragsweisen Planwechsel-Gate und Klärung der dokumentierten Holds ausführen; Altbestand bis dahin erhalten
+- [x] ~~WI-SOT-27-03 · Planregister und globalen Validator auf Core-/Fachmodulrollen umstellen und das offene historische Planwechsel-Gate explizit melden~~
+  Der globale Planabgleich bleibt `PENDING`; die alte Arbeitsliste wird bis
+  zum bestandenen Gate ausdrücklich als noch aktiv erkannt.
 Der Implementierungsplan wird laufend aktualisiert.
 Erledigte Punkte:
 Beispiel: `[x] ~~Work Item~~`.
@@ -420,7 +423,7 @@ Neue entdeckte notwendige Arbeit wird in denselben bestehenden Implementierungsp
 Keine parallelen Fortschrittspläne.
 #### ST-SOT-28 – PHASE 28: FORTSCHRITTSCOUNTER
 - [x] ~~WI-SOT-28-01 · Work-Item-Status eindeutig parsen, Counter automatisch berechnen und gespeicherte Anzeige gegen tatsächliche Items prüfen~~
-  `node tools/sot/progress.mjs --check` prüft 187 eindeutige Items und den
+  `node tools/sot/progress.mjs --check` prüft alle eindeutigen Items und den
   gespeicherten Counter; drei gezielte Tests decken veraltete Anzeigen,
   doppelte IDs und fehlende Status ab.
 Immer aus dem tatsächlichen Plan berechnen:
