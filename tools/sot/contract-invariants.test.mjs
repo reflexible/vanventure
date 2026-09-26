@@ -59,9 +59,12 @@ test('worker cannot mark own work Done without independent review and integratio
   assert.equal(check('WORKER-WORK-ASSIGNMENT', done, { activeClaims: [], review: { status: 'PASS', reviewer_id: 'B', ref: 'r1' }, integration: { status: 'PASS', ref: 'i1' } }).valid, true);
 });
 
-test('CMS and analytics runtime boundaries cannot be certified from synthetic records', () => {
+test('CMS publishing validates the server-side release scope at the actual runtime boundary', () => {
   const cms = { content_id: 'story-1', publication_state: 'published', scope_ref: 'release-1' };
   const analytics = { content_id: 'story-1', content_type: 'article', publication_state: 'published', source_ref: 'editor/slug' };
-  assert.match(check('CMS-PUBLISHING', cms, {}).errors.join(' '), /actual runtime boundary/);
+  const approval={scope_ref:'release-1',approval_ref:'approval-1',content_ids:['story-1'],revisions:[7],gates:{content:true,privacy:true,images:true}};
+  assert.equal(check('CMS-PUBLISHING',{...cms,approval_ref:'approval-1'},{contentId:'story-1',revision:7,releaseApproval:approval}).valid,true);
+  assert.match(check('CMS-PUBLISHING',{...cms,approval_ref:'approval-1'},{contentId:'story-1',revision:8,releaseApproval:approval}).errors.join(' '),/does not cover/);
+  assert.match(check('CMS-PUBLISHING',cms,{contentId:'story-1',revision:7}).errors.join(' '),/server-side approved/);
   assert.match(check('ANALYTICS-CONTENT-ID', analytics, {}).errors.join(' '), /actual runtime boundary/);
 });

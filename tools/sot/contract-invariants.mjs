@@ -91,7 +91,19 @@ export function validateContractInvariant(contract, payload, context = {}) {
       }
       break;
     }
-    case 'CMS-PUBLISHING':
+    case 'CMS-PUBLISHING': {
+      const approval = context.releaseApproval;
+      if (payload.content_id !== context.contentId) errors.push('content_id does not match the active CMS record.');
+      if (status(payload.publication_state) !== 'PUBLISHED') errors.push('CMS publish transition must target published state.');
+      if (!approval || approval.scope_ref !== payload.scope_ref || approval.approval_ref !== payload.approval_ref) {
+        errors.push('Release scope is not server-side approved.');
+      } else if (!approval.content_ids?.includes(payload.content_id) || !approval.revisions?.includes(context.revision)) {
+        errors.push('Release scope does not cover this content revision.');
+      } else if (approval.gates?.content !== true || approval.gates?.privacy !== true || approval.gates?.images !== true) {
+        errors.push('Required content, privacy, and image gates are not all evidenced.');
+      }
+      break;
+    }
     case 'ANALYTICS-CONTENT-ID':
       errors.push(`${contract.contract_id} needs its actual runtime boundary and cannot be certified by fixture state.`);
       break;

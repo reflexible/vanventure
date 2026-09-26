@@ -46,6 +46,16 @@ test('cockpit schema is additive and exposes an empty private overview',async()=
     assert.deepEqual((await db.pool.query('SELECT action,entity_type,entity_id,after_safe FROM cockpit_audit_log')).rows,[{action:'cockpit.overview.viewed',entity_type:'cockpit',entity_id:'phase-3',after_safe:{role:'editor'}}]);
   }finally{await db.close();await database.close();}
 });
+test('publication persists an evidenced release scope atomically',async()=>{
+  const database=await testDatabase(),db=await openPostgres({connectionString:database.url,max:1});
+  try{
+    await db.seed({slug:'test-trip',country:['Test','Test']});
+    await assert.rejects(db.publish('test-trip',0,'helmut'),/RELEASE_SCOPE_REQUIRED/);
+    assert.equal(await db.published('test-trip'),undefined);
+    await db.publish('test-trip',0,'helmut',{scope_ref:'REL-TEST-1',approval_ref:'USER-APPROVED-1'});
+    assert.deepEqual((await db.pool.query("SELECT release_scope_ref,release_approval_ref FROM published WHERE slug='test-trip'")).rows[0],{release_scope_ref:'REL-TEST-1',release_approval_ref:'USER-APPROVED-1'});
+  }finally{await db.close();await database.close();}
+});
 test('server-side sessions and Google allowlist are revoked by account change',async()=>{
   const database=await testDatabase(),first=await openPostgres({connectionString:database.url,max:1});
   try{

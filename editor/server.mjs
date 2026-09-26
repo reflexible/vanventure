@@ -11,9 +11,15 @@ import { sitemap, robots } from './seo.mjs';
 import { homepageRedirect, retiredOverviewPaths } from '../public-page-routes.mjs';
 import { authorizationUrl, exchange, inspect, ready as youtubeReady, seal, unseal, refresh, videos as youtubeVideos, dailyMetrics, videoDailyMetrics, reachMetrics, trafficSources, retention, snapshots as youtubeSnapshots } from './youtube.mjs';
 import { authorizationUrl as googleLoginAuthorizationUrl, exchange as googleLoginExchange, identity as googleLoginIdentity, ready as googleLoginReady, tokenHash as authTokenHash } from './google-login.mjs';
+import { loadReleaseApprovals, releaseApprovalFor, releaseScopesFor } from './release-approval.mjs';
+import { loadContracts } from '../tools/sot/contracts.mjs';
+import { validateContractInvariant } from '../tools/sot/contract-invariants.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (!process.env.DATABASE_URL && !process.env.PGHOST) throw new Error('PostgreSQL fehlt. Bitte Docker Compose starten oder PGHOST konfigurieren.');
 const db = await openPostgres();
+const releaseApprovals = loadReleaseApprovals();
+const cmsPublishingContract = (await loadContracts()).contracts.find(contract => contract.contract_id === 'CMS-PUBLISHING');
+if (!cmsPublishingContract) throw new Error('CMS-PUBLISHING_CONTRACT_MISSING');
 const seededStories=JSON.parse(readFileSync(resolve(root,'travel-stories.json'),'utf8'));
 for (const story of seededStories) {
   await db.seed(story);
@@ -276,7 +282,7 @@ const server=http.createServer(async (req,res)=>{
     if (path.startsWith('/api/jobs/')&&req.method==='GET') {
       const job=jobs.get(path.split('/')[3]);if (!job||job.author!==session.name) fail(404,'Entwurf nicht gefunden.');return send(200,job);
     }
-    const match=path.match(/^\/api\/stories\/([a-z0-9-]+)(?:\/(generate|export|preview|publish|route\.geojson))?$/);if (!match) fail(404,'Nicht gefunden.');
+    const match=path.match(/^\/api\/stories\/([a-z0-9-]+)(?:\/(generate|export|preview|publish|release-scopes|route\.geojson))?$/);if (!match) fail(404,'Nicht gefunden.');
     const [,slug,action]=match, current=await draft(slug);
     if (req.method==='GET'&&!action) return send(200,current);
     if (req.method==='GET'&&action==='export') return send(200,current.story,{'Content-Disposition':`attachment; filename="${slug}-entwurf.json"`});
@@ -287,7 +293,22 @@ const server=http.createServer(async (req,res)=>{
       return send(200,{type:'FeatureCollection',features},{'Content-Disposition':`attachment; filename="${slug}-route.geojson"`,'Content-Type':'application/geo+json; charset=utf-8'});
     }
     if(req.method==='GET'&&action==='preview'){res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; frame-ancestors 'none'; base-uri 'none'");res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});return res.end(renderStory(current.story,true));}
-    if(req.method==='POST'&&action==='publish'){if(activeUser.role!=='admin')fail(403,'Freigaben sind nur für Administratoren verfügbar.');const b=await body(req);await db.publish(slug,b.revision,activeUser.name);return send(200,{published:true});}
+    if(req.method==='GET'&&action==='release-scopes'){
+      if(activeUser.role!=='admin')fail(403,'Freigaben sind nur für Administratoren verfügbar.');
+      const revision=Number(new URL(req.url,origin).searchParams.get('revision'));
+      if(!Number.isInteger(revision)||revision!==current.revision)fail(409,'Der Entwurf wurde inzwischen geändert. Bitte neu laden.');
+      return send(200,{scopes:releaseScopesFor(releaseApprovals,slug,revision)});
+    }
+    if(req.method==='POST'&&action==='publish'){
+      if(activeUser.role!=='admin')fail(403,'Freigaben sind nur für Administratoren verfügbar.');
+      const b=await body(req), approval=releaseApprovalFor(releaseApprovals,slug,b.revision,b.scope_ref);
+      const payload={content_id:slug,publication_state:'published',scope_ref:b.scope_ref,approval_ref:approval?.approval_ref};
+      const invariant=validateContractInvariant(cmsPublishingContract,payload,{contentId:slug,revision:b.revision,releaseApproval:approval});
+      if(!invariant.valid)fail(403,`Veröffentlichung ist nicht freigegeben: ${invariant.errors.join(' ')}`);
+      await db.publish(slug,b.revision,activeUser.name,approval);
+      await db.cockpitAudit(activeUser.name,'story.published','story',slug,null,{release_scope_ref:approval.scope_ref,release_approval_ref:approval.approval_ref,revision:b.revision});
+      return send(200,{published:true,scope_ref:approval.scope_ref,approval_ref:approval.approval_ref});
+    }
     if (req.method==='PUT'&&!action) {
       const b=await body(req);validate(b,current);
       const revision=await db.save(slug,{story:b.story,notes:b.notes},b.revision,session.name);return send(200,{revision});

@@ -86,20 +86,23 @@ Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
 **Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert; historische Traceability und der begrenzte Core-Delta sind preservation-geprüft. Eine weitere Core-Reduktion braucht wieder einen einzeln nachweisbaren Entfernkandidaten.
-**Current Work Items:** `WI-SOT-04-10` (Worker-Runtime-Teilslice). **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-04-10` (Analytics-Runtime-Restslice). **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
 **NEXT RECOMMENDATION:** `WI-SOT-04-10` mit dem kleinsten verbleibenden
-CMS-Publishing-Übergang fortsetzen: den konkreten Release-Scope und dessen
-evidenzierbare Freigabe an der tatsächlichen Publish-Grenze modellieren,
-bevor ein Publish erlaubt wird. Die Analytics-Aktivierung bleibt bis zu einer
-separat genehmigten Runtime-Grenze gesperrt. Der Regelkatalogtest zählt die
-neun aktiven Autoritäten; die zwei Core-gebundenen Referenzen bleiben bewusst
-außerhalb der Regel-Coverage.
+Analytics-Runtime-Slice fortsetzen: zuerst die bestehende `docs/analytics.md`
+als konkrete Aktivierungs- und Freigabegrenze gegen den tatsächlichen
+öffentlichen Event-Endpunkt modellieren; ohne separat genehmigten Scope bleibt
+das Senden vollständig gesperrt. Der Regelkatalogtest zählt die neun aktiven
+Autoritäten; die zwei Core-gebundenen Referenzen bleiben bewusst außerhalb der
+Regel-Coverage.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
-**Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
+**Blocked:** `WI-SOT-04-10` bis die reale Analytics-Laufzeitgrenze und ihr
+gepinntes Integrationsbeleg vorliegen. CMS-Publishing und Worker-Claim sind
+lokal verifiziert; eine produktive CMS-Veröffentlichung bleibt zusätzlich an
+`DEC-REL-001` gebunden.
 **Counter:** Total 205 · Done 204 · In Progress 1 · Ready 0 · Blocked 0 ·
 Open 1 (einschließlich Ready und Blocked) · Progress 99,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
@@ -201,10 +204,15 @@ Besonders prüfen:
   `WORKER-WORK-ASSIGNMENT` aus dem geprüften Contract-Katalog und speichert
   Contract-ID, Version und Prüfzeitpunkt im Claim. Positiv- sowie
   Negativfälle für Doppelclaim und koordinierte Scope-Kollisionen sind gegen
-  den echten Store geprüft. CMS-Publishing hat noch keinen modellierten
-  evidenzierbaren Release-Scope; Web-Analytics besitzt weiterhin keine
-  freigegebene Runtime-Grenze und bleibt aktivierungsblockiert. Daher ist das
-  Item **nicht Done**. [Worker-Teilslice](../abnahmeberichte/sot-worker-runtime-contract-2026-09-26.md)
+  den echten Store geprüft. Der CMS-Publish-Endpunkt erzwingt nun einen
+  serverseitig hinterlegten, exakt zu Inhalt und Revision passenden
+  Release-Scope; Scope- und Freigabereferenz werden atomar mit dem
+  Veröffentlichungsstand gespeichert und auditiert. Ein fehlender oder
+  unpassender Scope wird vor dem Publish abgewiesen. Web-Analytics besitzt
+  weiterhin keine freigegebene Runtime-Grenze und bleibt
+  aktivierungsblockiert. Daher ist das Item **nicht Done**.
+  [Worker-Teilslice](../abnahmeberichte/sot-worker-runtime-contract-2026-09-26.md),
+  [CMS-Teilslice](../abnahmeberichte/sot-cms-publish-release-scope-2026-09-26.md)
   und [Aktivierungsnachweis](../sot-optimization/reviews/analytics-activation-gate-2026-09-26.md).
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
 - [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~

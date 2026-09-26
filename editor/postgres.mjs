@@ -27,7 +27,8 @@ export async function openPostgres(config = {}) {
       expires_at TIMESTAMPTZ NOT NULL, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW());
     CREATE INDEX IF NOT EXISTS auth_sessions_expiry_idx ON auth_sessions(expires_at);
     CREATE INDEX IF NOT EXISTS google_login_states_expiry_idx ON google_login_states(expires_at);`);
-  await pool.query('CREATE TABLE IF NOT EXISTS published(slug TEXT PRIMARY KEY, story JSONB NOT NULL, author TEXT NOT NULL, saved TIMESTAMPTZ NOT NULL DEFAULT NOW())');
+  await pool.query('CREATE TABLE IF NOT EXISTS published(slug TEXT PRIMARY KEY, story JSONB NOT NULL, author TEXT NOT NULL, saved TIMESTAMPTZ NOT NULL DEFAULT NOW(), release_scope_ref TEXT, release_approval_ref TEXT)');
+  await pool.query('ALTER TABLE published ADD COLUMN IF NOT EXISTS release_scope_ref TEXT; ALTER TABLE published ADD COLUMN IF NOT EXISTS release_approval_ref TEXT;');
   // Cockpit tables are deliberately additive. They never change editorial or public-site data.
   await pool.query(`CREATE TABLE IF NOT EXISTS yt_connections(
       id BIGSERIAL PRIMARY KEY, channel_id TEXT NOT NULL UNIQUE, channel_title TEXT NOT NULL,
@@ -105,10 +106,11 @@ export async function openPostgres(config = {}) {
     pool,
     async published(slug){return (await pool.query('SELECT story FROM published WHERE slug=$1',[slug])).rows[0]?.story;},
     async allPublished(){return (await pool.query('SELECT story FROM published ORDER BY slug')).rows.map(r=>r.story);},
-    async publish(slug,revision,author){const client=await pool.connect();try{
+    async publish(slug,revision,author,releaseScope){const client=await pool.connect();try{
       await client.query('BEGIN');const row=(await client.query('SELECT data,revision FROM drafts WHERE slug=$1 FOR UPDATE',[slug])).rows[0];
       if(!row||row.revision!==revision)throw new Error('CONFLICT');
-      await client.query('INSERT INTO published(slug,story,author) VALUES($1,$2,$3) ON CONFLICT(slug) DO UPDATE SET story=excluded.story,author=excluded.author,saved=NOW()',[slug,JSON.stringify(row.data.story),author]);await client.query('COMMIT');
+      if(!releaseScope?.scope_ref||!releaseScope?.approval_ref)throw new Error('RELEASE_SCOPE_REQUIRED');
+      await client.query('INSERT INTO published(slug,story,author,release_scope_ref,release_approval_ref) VALUES($1,$2,$3,$4,$5) ON CONFLICT(slug) DO UPDATE SET story=excluded.story,author=excluded.author,release_scope_ref=excluded.release_scope_ref,release_approval_ref=excluded.release_approval_ref,saved=NOW()',[slug,JSON.stringify(row.data.story),author,releaseScope.scope_ref,releaseScope.approval_ref]);await client.query('COMMIT');
     }catch(e){await client.query('ROLLBACK');throw e;}finally{client.release();}},
     async hasUsers(){return (await pool.query('SELECT 1 FROM users LIMIT 1')).rowCount>0;},
     async users(){return (await pool.query('SELECT name,display_name,role,enabled,google_email,google_linked_at FROM users ORDER BY name')).rows;},

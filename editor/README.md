@@ -12,13 +12,17 @@ Nach dem Login gibt es:
 - Chronologische Etappenliste mit Datum, Ort, kurzer Beschreibung und optionalen Koordinaten. Etappen lassen sich nach oben und unten verschieben. „Kartendaten“ exportiert vorhandene Koordinaten als GeoJSON mit Punkten und Reiseroute.
 - „Texte und Wünsche speichern“: gemeinsame Texte und Notizen in PostgreSQL ablegen. Danach im Codex-Chat die Überarbeitung und Aktualisierung der Homepage beauftragen. Es erfolgt keine API-Anfrage.
 - Vorschau des gespeicherten Entwurfs im Seitenlayout.
-- „Für Website freigeben“ für Administratoren: Der gespeicherte Stand wird sofort auf der Website sichtbar; Startseitenübersicht und Reisebericht verwenden denselben freigegebenen Inhalt.
+- „Für Website freigeben“ für Administratoren: Der gespeicherte Stand wird nur dann auf der Website sichtbar, wenn der Dienst für genau diesen Bericht und dessen Version einen konkreten, serverseitig hinterlegten Release-Umfang mit Freigabereferenz kennt. Startseitenübersicht und Reisebericht verwenden denselben freigegebenen Inhalt.
 - „Benutzerverwaltung“ steht Administratoren als eigener Eintrag in der linken privaten Navigation zur Verfügung. Dort lassen sich neue Konten anlegen, Rollen vergeben, Anzeigenamen ändern, Passwörter zurücksetzen und Konten deaktivieren. Optional wird dort die vorab freigegebene Google-Adresse hinterlegt; erst die bestätigte Google-Anmeldung bindet deren stabile Google-Kennung. Der letzte aktive Administrator kann nicht entfernt oder herabgestuft werden.
 - Eigenes Passwort ändern. Neue Passwörter brauchen mindestens zwölf Zeichen. Änderungen an Konten beenden deren bestehende Sitzungen.
 
 Die Rollen sind „Redaktion“ (Texte und Notizen) und „Administrator“ (zusätzlich Benutzer und Freigaben). Die Überarbeitung erfolgt im Codex-Chat im Rahmen des vorhandenen Abos; der Website-Knopf nutzt keine kostenpflichtige API. Gespeicherte frühere KI-Einstellungen bleiben ungenutzt erhalten.
 
 Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewiesen. Gespeicherte Texte, Freigaben und die serverseitig geprüften Sitzungen bleiben bei einem regulären Web-Neustart erhalten; Abmeldung, Sperrung, Rollen- oder Passwortänderung machen Sitzungen sofort ungültig.
+
+## Veröffentlichungsfreigabe
+
+Der Dienst startet ohne Freigabe-Einträge und verweigert dann jede Veröffentlichung. Für einen ausdrücklich freigegebenen konkreten Umfang wird beim Deployment `EDITOR_RELEASE_APPROVALS` als JSON-Array gesetzt. Jeder Eintrag enthält `scope_ref`, `approval_ref`, die exakten `content_ids` und `revisions` sowie die drei bestätigten Gates `content`, `privacy` und `images`. Der Browser kann keinen Eintrag erzeugen oder erweitern; er darf nur einen exakt passenden, bereits serverseitig hinterlegten Umfang auswählen. Beim Publish werden Scope- und Freigabereferenz atomar mit dem veröffentlichten Stand gespeichert und im Cockpit-Audit protokolliert. Eine lokale Prüfung, ein Build oder diese Konfiguration selbst ersetzt nicht die ausdrückliche Nutzerfreigabe für den konkreten Live-Release.
 
 ## Gemeinsame Google-Anmeldung
 
