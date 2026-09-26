@@ -23,7 +23,8 @@ Claims noch externe Agent-Ausführung werden durch die Koordination ausgelöst.
 
 Geändert werden nur die lokale, rein ableitende Koordinationsfunktion,
 Zieltests und die zugehörigen Governance-/Statusnachweise. Der geprüfte
-Quellstand ist `origin/main` bei `1441ce4` vor dieser lokalen Änderung.
+Ausgangsstand war `origin/main` bei `1441ce4`; die geprüfte Implementierung
+wurde als `b3aabc0` nach `origin/main` gepusht.
 Es gibt keine Remote-Chat-Steuerung, keine automatische Claim-Erteilung, keine
 Worker- oder Planmutation durch das neue Modul und keinen Website-Rollout.
 Eine reale parallele Ausführung benötigt weiterhin einen separaten,

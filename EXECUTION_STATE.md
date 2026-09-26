@@ -6,7 +6,7 @@ Operational checkpoint only. The authoritative backlog is
 Current: none
 State: `DONE_LOCAL_VERIFIED`
 Last Done: `WI-SOT-20-04`
-Last Commit: pending
+Implementation Commit: `b3aabc0` (pushed to `origin/main`)
 
 Progress:
 - Done: 168
