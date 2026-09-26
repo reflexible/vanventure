@@ -90,8 +90,8 @@ die 18 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 125 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 73 (einschließlich Ready und Blocked) · Progress 63,1 %.
+**Counter:** Total 198 · Done 126 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 72 (einschließlich Ready und Blocked) · Progress 63,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -327,9 +327,11 @@ Change
 - [x] ~~WI-SOT-14-03 · Superseding erkennen~~
 - [x] ~~WI-SOT-14-04 · Erweiterung erkennen~~
 - [x] ~~WI-SOT-14-05 · Nutzerentscheidung nur bei echtem Konflikt erzeugen~~
-- [ ] TODO – WI-SOT-14-06 · Review-Evidenz und Konfliktentscheidung im gemeinsamen Governance-Ablauf verbindlich speichern und mit Intake-/Regelkatalog-Abdeckung verbinden
+- [x] ~~WI-SOT-14-06 · Review-Evidenz und Konfliktentscheidung im gemeinsamen Governance-Ablauf verbindlich speichern und mit Intake-/Regelkatalog-Abdeckung verbinden~~
   Texttreffer allein werden nicht als fachliche Beziehung gewertet; die
   lokale Engine benötigt explizite Review-Eingaben und ändert keine Regel.
+  Das lokale Eventlog speichert Vorschlag, Impact, Review und Konfliktergebnis
+  mit Revisions-/Hash-Prüfung; externe Evidenzauthentizität bleibt Folgearbeit.
 #### ST-SOT-15 – PHASE 15: APPROVAL FLOW
 - [x] ~~WI-SOT-15-01 · IDEA~~
 - [x] ~~WI-SOT-15-02 · PROPOSED~~
@@ -339,7 +341,10 @@ Change
 - [x] ~~WI-SOT-15-06 · Approval-Gates implementieren~~
 - [ ] TODO – WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen
   Die lokale Übergangsfunktion erteilt weder Design- noch Release- oder
-  Live-Freigabe und ändert keine autoritative Quelle.
+  Live-Freigabe und ändert keine autoritative Quelle. Das Eventlog nimmt
+  Entscheidungen nur über einen vom vertrauenswürdigen Aufrufer gestellten
+  Authentifizierungsprüfer an; die reale Anbindung und Revalidierung vor dem
+  Schreibvorgang bleiben offen.
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [ ] TODO – WI-SOT-16-01 · autoritative Quelle aktualisieren
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
