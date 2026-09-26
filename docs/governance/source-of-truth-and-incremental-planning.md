@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und rückverfolgbare Git-Commits lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und isolierte Git-Commits lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-06` · gestagte Pfade gegen den deklarierten Slice abgleichen und Misch-Commits sperren.
+**NEXT RECOMMENDATION:** `WI-SOT-30-07` · parallele Arbeit auf getrennte Worktrees, Branches oder disjunkte Dateien begrenzen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 189 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 16 (einschließlich Ready und Blocked) · Progress 92,2 %.
+**Counter:** Total 205 · Done 190 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 15 (einschließlich Ready und Blocked) · Progress 92,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -632,7 +632,10 @@ wenn sinnvoll.
   Der Commit-Titel muss mit der Kennung des gestarteten Work Items beginnen;
   fehlende, abweichende oder nur im Titeltext verborgene IDs blockieren.
   [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-commit-identity-2026-09-26.md).
-- [ ] TODO – WI-SOT-30-06 · keine Misch-Commits
+- [x] ~~WI-SOT-30-06 · keine Misch-Commits~~
+  Jeder gestagte Pfad muss in einem explizit deklarierten Schreibbereich
+  liegen; außerhalb liegende oder leere Staging-Areas blockieren. [Lokaler
+  Abnahmebericht](../abnahmeberichte/sot-git-commit-scope-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-07 · parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien
 - [ ] TODO – WI-SOT-30-08 · kontrollierte Integration
 #### ST-SOT-31 – PHASE 31: END-TO-END VALIDATION
