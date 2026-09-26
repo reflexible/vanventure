@@ -86,12 +86,12 @@ und spätere Produktprüfung bleiben offen.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-19-08`: die validierten WSJF-Komponenten ohne Umgehung der bestehenden Ready-/Claim-Gates in den Priorisierungsworkflow integrieren.
+**NEXT RECOMMENDATION:** `WI-SOT-21-02`: Dateikonflikte für parallele Arbeit aus den bestehenden Write Scopes ableiten.
 **Parallel Candidates:**
-`WI-SOT-19-08` und `WI-SOT-21-02` benötigen vor dem Claim aktuelle Scopeanalysen; die Workflow-Integration hat Vorrang.
+`WI-SOT-21-02` und `WI-SOT-20-10` können mit getrennten Scopes vorbereitet werden; die Konfliktprüfung hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 153 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 52 (einschließlich Ready und Blocked) · Progress 74,6 %.
+**Counter:** Total 205 · Done 154 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 51 (einschließlich Ready und Blocked) · Progress 75,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -423,7 +423,8 @@ Technisch verhindern:
   Repositorygebundene relative Vorschläge schließen manuelle Score-Injektion aus und erzwingen bei 13/20 eine Zerlegungsprüfung. [FAST-CHECK](../sot-optimization/reviews/wsjf-job-size-fast-check-2026-09-26.md).
 - [x] ~~WI-SOT-19-06 · Confidence~~
 - [x] ~~WI-SOT-19-07 · bestehende relative Skala erhalten~~
-- [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
+- [x] ~~WI-SOT-19-08 · Priorisierungsworkflow integrieren~~
+  WSJF sortiert ausschließlich vollständig bewertete, bereits ausführbare Kandidaten und autorisiert keine Zustandsänderung. [FAST-CHECK](../sot-optimization/reviews/wsjf-workflow-fast-check-2026-09-26.md).
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
   geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
   Hard Dependencies und explizite Vergleichsräume ab.
