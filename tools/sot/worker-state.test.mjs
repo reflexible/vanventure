@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { analyzeWriteScopeConflicts, createWorkerStateStore, runtimeWorkers, activeProcesses } from './worker-state.mjs';
+import { analyzeWriteScopeConflicts, describeWorkerScope, createWorkerStateStore, runtimeWorkers, activeProcesses } from './worker-state.mjs';
 
 const exec = promisify(execFile);
 const moduleUrl = new URL('./worker-state.mjs', import.meta.url).href;
@@ -35,7 +35,7 @@ const claim = (item, worker, scope, coordination_ref) => ({ work_item_id: item, 
 
 test('same work item has only one cross-process claim and a durable event', async t => {
   const { path, planPath, store } = await fixture(t);
-  const code = `import { analyzeWriteScopeConflicts, createWorkerStateStore } from ${JSON.stringify(moduleUrl)};\n`
+  const code = `import { analyzeWriteScopeConflicts, describeWorkerScope, createWorkerStateStore } from ${JSON.stringify(moduleUrl)};\n`
     + `const s=createWorkerStateStore({path:process.argv[1],planPath:process.argv[2]});\n`
     + `try { await s.claim({work_item_id:'WI-SOT-20-01',worker_id:process.argv[3],write_scope:['src/a']}); process.stdout.write('CLAIMED'); }\n`
     + `catch (e) { process.stdout.write('REJECTED'); }`;
@@ -50,7 +50,7 @@ test('same work item has only one cross-process claim and a durable event', asyn
 
 test('two processes cannot assign two active implementations to one worker', async t => {
   const { path, planPath, store } = await fixture(t);
-  const code = `import { analyzeWriteScopeConflicts, createWorkerStateStore } from ${JSON.stringify(moduleUrl)};\n`
+  const code = `import { analyzeWriteScopeConflicts, describeWorkerScope, createWorkerStateStore } from ${JSON.stringify(moduleUrl)};\n`
     + `const s=createWorkerStateStore({path:process.argv[1],planPath:process.argv[2]});\n`
     + `try { await s.claim({work_item_id:process.argv[3],worker_id:'A',write_scope:[process.argv[3]]}); process.stdout.write('CLAIMED'); }\n`
     + `catch (e) { process.stdout.write('REJECTED'); }`;
@@ -289,4 +289,11 @@ test('reports file collisions without changing worker state', () => {
   const records = { A: { work_item_id: 'A', execution_state: 'In Progress', write_scope: ['src/a'], coordination_ref: null }, B: { work_item_id: 'B', execution_state: 'Review', write_scope: ['src/a/child'], coordination_ref: null } };
   const before = structuredClone(records); const result = analyzeWriteScopeConflicts(records);
   assert.equal(result.status, 'COORDINATION_REQUIRED'); assert.deepEqual(result.conflicts[0].work_item_ids, ['A', 'B']); assert.deepEqual(records, before);
+});
+
+
+test('projects an explicit worker scope and excludes protected Core paths', () => {
+  const scope = describeWorkerScope({ work_item_id: 'WI-SOT-21-04', assigned_agent: 'A', write_scope: ['tools/sot'] });
+  assert.deepEqual(scope.allowed_write_scope, ['tools/sot']); assert.equal(scope.execution_authorized, false);
+  assert.throws(() => describeWorkerScope({ work_item_id: 'WI-SOT-21-04', assigned_agent: 'A', write_scope: ['docs/scrum-plan.md'] }), /protected/);
 });

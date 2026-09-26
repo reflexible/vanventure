@@ -289,6 +289,15 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
 }
 
 
+/** Project an explicit worker scope; no claim or file authorization is mutated. */
+export function describeWorkerScope(record, { protected_scopes = ['docs/scrum-plan.md'] } = {}) {
+  if (!record || !text(record.work_item_id) || !text(record.assigned_agent) || !Array.isArray(record.write_scope) || !record.write_scope.length) throw new Error('A claimed worker record with write_scope is required.');
+  const allowed = normalizeScope(record.write_scope);
+  const protectedPaths = normalizeScope(protected_scopes);
+  if (allowed.some(path => protectedPaths.some(blocked => path === blocked || path.startsWith(`${blocked}/`) || blocked.startsWith(`${path}/`)))) throw new Error('Worker scope includes a protected path.');
+  return { work_item_id: record.work_item_id, assigned_agent: record.assigned_agent, allowed_write_scope: allowed, protected_scopes: protectedPaths, execution_authorized: false };
+}
+
 /** Analyze file-scope collisions without changing claims or assignments. */
 export function analyzeWriteScopeConflicts(records) {
   if (!records || typeof records !== 'object' || Array.isArray(records)) throw new Error('records must be an object.');
