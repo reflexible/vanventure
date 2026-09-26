@@ -49,7 +49,7 @@ Planbeschreibung `READY` oder `DONE`.
 | ST-SOT-06 | Eine Änderung liefert nachvollziehbar betroffene Module, Contracts, Work Items, Prozesse und `NO_CHECK`/FAST/FULL. | ST-SOT-05 | P1 |
 | ST-SOT-07 | Lokales Delta durchläuft relevante SoT-, Contract-, Dependency-, Traceability-, Test- und Git-Prüfung mit PASS/BLOCKED. | ST-SOT-06 | P1 |
 | ST-SOT-08 | Eskalation meldet Grund und betroffenen Scope vor dem Check; impact-begrenzter FULL CHECK besteht Positiv- und Negativfälle. | ST-SOT-06, Konfliktentscheidung | P1 |
-| ST-SOT-09 | Byte-, Text- und semantische Baselines besitzen Version, Provenienz und Recovery-Referenz. | ST-SOT-03 | P1 |
+| ST-SOT-09 | Byte-, Text- und semantische Baselines besitzen Version, Provenienz und Recovery-Referenz. | WI-SOT-03-01–06/08–10; Contract-Verknüpfung nicht erforderlich | P1 |
 | ST-SOT-10 | Datei-, Format-, Semantik- und Contract-Deltas sind unterscheidbar; unveränderte Module werden ausgeschlossen. | ST-SOT-04, ST-SOT-09 | P1 |
 | ST-SOT-11 | Relevante Delta-/Modul-/Contract-/Dependency-Audits speichern Ergebnis und eskalieren korrekt. | ST-SOT-05–10 | P1 |
 | ST-SOT-12 | Neue Idee, Plan, Entscheidung oder Regel wird sichtbar klassifiziert und der zuständigen Autorität zugeordnet. | ST-SOT-03, ST-SOT-11 | P1 |
@@ -81,18 +81,23 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, Contracts vorbereiten. **Current Work
-Items:** Registry-Kern lokal umgesetzt; `WI-SOT-04-01` ist bereit.
-**Active Workers:** 0 nach Registry-Handover; `/root` integriert und prüft.
-**Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-04-01` (Contract-Modell), weil erst definierte
-Contract-IDs die noch offene Registry-Verknüpfung erlauben und Graph/Impact
-freischalten. **Parallel Candidates:** nur disjunkte, lesende SoT-Prüfung;
-kein zweiter technischer Schreibslice vor festgelegten Contracts.
+**Phase:** Performance Enablement. **Current Work Items:** `WI-SOT-04-01`
+und `WI-SOT-09-01`. **Active Workers:**
+`/root/contract_system_worker` mit
+exklusivem Claim auf `docs/governance/contracts.json`,
+`docs/governance/module-registry.json` und `tools/sot/contracts.*`;
+`/root/baseline_worker` mit exklusivem Claim auf
+`docs/governance/baselines.json` und `tools/sot/baselines.*`;
+`/root` koordiniert Plan/Integration; die Fortschrittsprüfung ist abgeschlossen.
+**Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_IN_PROGRESS`.
+**NEXT RECOMMENDATION:** `WI-SOT-04-02` nach dem Contract-Modell, weil die
+konkreten Schnittstellen Registry-Verknüpfung und Graph freischalten.
+**PARALLEL RECOMMENDATION:** Contract-System und Baseline-System in den
+genannten disjunkten Dateien; ihre Integration erfolgt nacheinander.
 **Blocked:** `WI-SOT-03-07` bis zum Contract-Katalog und `WI-SOT-27-02` bis
 zum historischen Planwechsel-Gate.
-**Counter:** Total 186 · Done 32 · In Progress 0 · Ready 1 · Blocked 2 ·
-Open 154 (einschließlich Ready und Blocked) · Progress 17,2 %.
+**Counter:** Total 187 · Done 33 · In Progress 2 · Ready 0 · Blocked 2 ·
+Open 154 (einschließlich In Progress und Blocked) · Progress 17,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -172,7 +177,7 @@ Besonders prüfen:
 - [x] ~~WI-SOT-03-09 · letzten Auditstatus erfassen~~
 - [x] ~~WI-SOT-03-10 · Registry validieren~~
 #### ST-SOT-04 – PHASE 4: CONTRACT SYSTEM
-- [ ] READY – WI-SOT-04-01 · Contract-Modell definieren
+- [ ] IN_PROGRESS – WI-SOT-04-01 · Contract-Modell definieren
 - [ ] TODO – WI-SOT-04-02 · Scrum → Work-Item Contract
 - [ ] TODO – WI-SOT-04-03 · SoT → Decision/Change Contract
 - [ ] TODO – WI-SOT-04-04 · Worker → Work Assignment Contract
@@ -254,7 +259,7 @@ Eskalationsmengen gelten kumulativ; deckungsgleiche Fälle werden dedupliziert.
 Auch ein FULL CHECK darf nicht automatisch die alte komplette Scrum-Migration wiederholen.
 #### ST-SOT-09 – PHASE 9: BASELINE SYSTEM
 Für relevante Module:
-- [ ] TODO – WI-SOT-09-01 · Byte-Baseline
+- [ ] IN_PROGRESS – WI-SOT-09-01 · Byte-Baseline
 - [ ] TODO – WI-SOT-09-02 · normalisierte Text-Baseline
 - [ ] TODO – WI-SOT-09-03 · semantische Requirements-/Manifest-Baseline
 - [ ] TODO – WI-SOT-09-04 · Baseline-Versionierung
@@ -411,6 +416,10 @@ BLOCKED
 Neue entdeckte notwendige Arbeit wird in denselben bestehenden Implementierungsplan aufgenommen.
 Keine parallelen Fortschrittspläne.
 #### ST-SOT-28 – PHASE 28: FORTSCHRITTSCOUNTER
+- [x] ~~WI-SOT-28-01 · Work-Item-Status eindeutig parsen, Counter automatisch berechnen und gespeicherte Anzeige gegen tatsächliche Items prüfen~~
+  `node tools/sot/progress.mjs --check` prüft 187 eindeutige Items und den
+  gespeicherten Counter; drei gezielte Tests decken veraltete Anzeigen,
+  doppelte IDs und fehlende Status ab.
 Immer aus dem tatsächlichen Plan berechnen:
 Total
 Done
