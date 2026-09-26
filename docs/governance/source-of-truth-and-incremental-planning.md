@@ -78,20 +78,24 @@ vier notwendige Preservation-/Korrekturitems wurden ergänzt. Die historische
 Arbeitsliste ist exakt auf ihren vorherigen Git-Stand zurückgesetzt. Der
 Scrum-Core hat nur 25 additive Zeilen für `GOAL-SOT`/`EPIC-SOT`; der gezielte
 Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
-aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
-und spätere Produktprüfung bleiben offen.
+aus 67/67 Abschnitten sind planerisch zugeordnet. Die technische Preservation
+aller 45 SoT-Klauseln gegen die lokale spätere Implementierung ist bestanden;
+der prüfbare Detailnachweis steht im
+[Preservation-Audit](../sot-optimization/audits/sot-preservation-2026-09-26.json).
+Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
+offen.
 
-**Phase:** Übergang zu SoT Governance.
+**Phase:** Übergang zu Modularisierung.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-20-05` · Dependency Awareness.
+**NEXT RECOMMENDATION:** `WI-SOT-23-03` · Fachmodule definieren.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 168 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 37 (einschließlich Ready und Blocked) · Progress 82,0 %.
+**Counter:** Total 205 · Done 170 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 35 (einschließlich Ready und Blocked) · Progress 82,9 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -120,7 +124,13 @@ Diese Phase darf nicht erneut ausgeführt werden, solange die Baseline unveränd
   Planungsnachweis: 45/45 Klauseln mit Quellanker und Zielstory; technische
   Umsetzung und semantische Post-Validation bleiben getrennt offen.
 - [x] ~~WI-SOT-01-09 · alle 67 WSJF-/Multi-Agent-Abschnitte regelgenau klassifizieren und mit Ziel, Test und erhaltenen manuellen Entscheidungen verknüpfen~~
-- [ ] TODO – WI-SOT-01-10 · technische Preservation der 45 SoT-Klauseln gegen die spätere Implementierung verifizieren; Planungszuordnung allein genügt nicht
+- [x] ~~WI-SOT-01-10 · technische Preservation der 45 SoT-Klauseln gegen die spätere Implementierung verifizieren; Planungszuordnung allein genügt nicht~~
+  Lokal bestanden: 45/45 Klauseln haben einen expliziten Implementierungs- und
+  Verhaltenstestbezug; der Check fail-closed bei fehlender Klausel, unbekanntem
+  Ziel oder fehlendem Pfad. [Audit](../sot-optimization/audits/sot-preservation-2026-09-26.json)
+  und [Abnahmebericht](../abnahmeberichte/sot-preservation-2026-09-26.md).
+  Semantische Fachabnahme, Produktfreigabe und Live-Verifikation sind nicht Teil
+  dieses technischen Preservation-Slices.
 #### ST-SOT-02 – PHASE 2: FAST MERGE CHECK
 - [x] ~~WI-SOT-02-01 · SoT vs. Optimierungsarchitektur vergleichen~~
 - [x] ~~WI-SOT-02-02 · SoT vs. WSJF/Multi-Agent vergleichen~~
@@ -445,7 +455,7 @@ Technisch verhindern:
   exakt gleichem geprüftem Write Scope vorliegen; WSJF bleibt unverändert.
   Der Vorschlag kann weder Claim noch Ausführung auslösen. Siehe
   [FAST-CHECK](../sot-optimization/reviews/parallel-slices-fast-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-20-05 · Dependency Awareness
+- [x] ~~WI-SOT-20-05 · Dependency Awareness~~
 - [x] ~~WI-SOT-20-06 · Handover~~
 - [x] ~~WI-SOT-20-07 · Konflikterkennung~~
 - [x] ~~WI-SOT-20-08 · Worker-Status~~

@@ -2341,7 +2341,7 @@ Dieses Epic ersetzt keine bestehende Fach-, Freigabe- oder Scrum-Core-Regel.
 
 | Story-Slices | Prüfbares Ergebnis / Acceptance Criteria | Vorgänger | Status |
 | --- | --- | --- | --- |
-| `ST-SOT-00–02` · Schutz, Preservation, Merge | Golden Baseline ist wiederherstellbar; bestehende SoT- und WSJF-Anforderungen sind quellengetreu erfasst; Konflikte bleiben sichtbar. | `FINAL_AUDIT_PASS` | In Arbeit: Planung; Konfliktentscheidung offen |
+| `ST-SOT-00–02` · Schutz, Preservation, Merge | Golden Baseline ist wiederherstellbar; bestehende SoT- und WSJF-Anforderungen sind quellengetreu erfasst; Konflikte bleiben sichtbar. | `FINAL_AUDIT_PASS` | Lokal technisch verifiziert: 45/45 SoT-Klauseln; semantische Produktprüfung/Live offen |
 | `ST-SOT-03–11` · Performance Enablement | Registry, Contracts, Graph, Impact-Auswahl, FAST/FULL, Baselines und Delta Audit liefern reproduzierbare begrenzte Prüfergebnisse. | Preservation und Merge; nötige Freigaben | Geplant |
 | `ST-SOT-12–18` · SoT Governance | Intake, Klassifizierung, Conflict Check, Approval, autoritatives Update, Post Validation und DONE Guards bilden einen geprüften Ablauf. | Performance Enablement | Geplant |
 | `ST-SOT-19–22` · WSJF und Agent-Team | Die vorhandenen Regeln sind tracebar und getestet; Claims, Review, Integration und gemeinsame Zustände umgehen keine Core- oder Nutzerfreigaben. | Governance-Gate | Geplant |
