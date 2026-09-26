@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { attachDecisionHandover, attachSotHandover, attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
+import { attachDecisionHandover, attachSotHandover, attachStatusHandover, attachWorkItemContext, buildChatHandover, verifyChatHandoverTruth } from './chat-handover.mjs';
 import { loadRegistry } from './module-registry.mjs';
 const record = { work_item_id: 'WI-SOT-22-01', execution_state: 'In Progress', assigned_agent: 'agent-a', write_scope: ['tools/sot'], blocked_by: null };
 test('builds a local non-authorizing handover from durable work state', () => {
@@ -44,4 +44,29 @@ test('attaches a registered source locator without creating a writable SoT', asy
   assert.equal(result.competing_backlog_authorized, false); assert.equal(result.execution_authorized, false);
   assert.throws(() => attachSotHandover(handover, { module, sourceRef: 'other.md#handover' }), /CONTEXT/);
   assert.throws(() => attachSotHandover(handover, { module: { ...module, last_verified_baseline: { ref: 'tag', sha256_crlf: 'bad' } }, sourceRef }), /BASELINE/);
+});
+
+test('accepts only a packet that agrees with the authoritative plan, worker state and registered SoT', async () => {
+  const registry = await loadRegistry();
+  const module = registry.modules.find(item => item.module_id === 'sot-architecture');
+  const state = { records: { [record.work_item_id]: structuredClone(record) } };
+  let handover = buildChatHandover({ record, planStatus: 'IN_PROGRESS', sourceRef: 'state.json' });
+  handover = attachStatusHandover(handover, { planStatus: 'IN_PROGRESS', executionState: 'In Progress' });
+  handover = attachSotHandover(handover, { module, sourceRef: `${module.source}#st-sot-22--phase-22-cross-chat--handover` });
+  const result = verifyChatHandoverTruth(handover, { state, registry,
+    planText: '- [ ] IN_PROGRESS – WI-SOT-22-01 · Handover', stateSourceRef: 'state.json' });
+  assert.equal(result.truth_status, 'AUTHORITATIVE_SOURCES_ALIGNED');
+  assert.equal(result.execution_authorized, false);
+  assert.equal(result.competing_backlog_authorized, false);
+});
+
+test('rejects shadow fields and every authority disagreement between chats', async () => {
+  const registry = await loadRegistry();
+  const state = { records: { [record.work_item_id]: structuredClone(record) } };
+  const handover = buildChatHandover({ record, planStatus: 'IN_PROGRESS', sourceRef: 'state.json' });
+  const options = { state, registry, planText: '- [ ] IN_PROGRESS – WI-SOT-22-01 · Handover', stateSourceRef: 'state.json' };
+  assert.throws(() => verifyChatHandoverTruth(Object.freeze({ ...handover, plan_status: 'READY' }), options), /STATUS_TRUTH/);
+  assert.throws(() => verifyChatHandoverTruth(Object.freeze({ ...handover, assigned_agent: 'agent-b' }), options), /WORKER_TRUTH/);
+  assert.throws(() => verifyChatHandoverTruth(Object.freeze({ ...handover, competing_backlog: ['shadow'] }), options), /SHADOW_TRUTH/);
+  assert.throws(() => verifyChatHandoverTruth(Object.freeze({ ...handover, source_ref: 'other-state.json' }), options), /AUTHORITY_ESCALATION/);
 });

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 144,
+  "revision": 149,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -4152,6 +4152,174 @@
           }
         ]
       }
+    },
+    "WI-SOT-22-06": {
+      "work_item_id": "WI-SOT-22-06",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:54:01.333Z",
+      "write_scope": [
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Authoritative cross-chat truth guard added.",
+        "files": [
+          "tools/sot/chat-handover.mjs",
+          "tools/sot/chat-handover.test.mjs",
+          "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        ],
+        "tests": [
+          "chat-handover 8/8 PASS",
+          "tools/sot 312/312 PASS",
+          "progress check PASS",
+          "Golden baseline diff PASS"
+        ],
+        "limitations": [
+          "Local file-backed authority validation only; no remote chat provider or cross-host transaction."
+        ],
+        "follow_up": [
+          "Implement parallel slices in WI-SOT-20-04."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:56:21.831Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+        "self_review_reason": "Bounded deterministic guard and regression review; independent reviewer unavailable.",
+        "at": "2026-09-26T17:56:21.844Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T17:56:21.856Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+        "scope": "WI-SOT-22-06",
+        "verified_at": "2026-09-26T17:56:21.856Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-22-06",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-22-06",
+          "reason": "local additive chat-handover guard",
+          "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "chat_handover",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "sot_suite",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "scope": "WI-SOT-22-06",
+          "audit_output": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-22-06",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-22-06"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:2"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -5493,6 +5661,53 @@
       "work_item_id": "WI-SOT-22-05",
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/sot-handover-fast-check-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "2b0b8562-f208-4cf6-8487-5a84d5101e57",
+      "at": "2026-09-26T17:54:01.333Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-22-06",
+      "actor": "/root",
+      "write_scope": [
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "d864d332-9792-49bb-a18b-ae6b8d3d0a59",
+      "at": "2026-09-26T17:54:01.346Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-22-06",
+      "actor": "/root"
+    },
+    {
+      "event_id": "d2173ecc-00ed-4655-a9f1-0e022961b5cf",
+      "at": "2026-09-26T17:56:21.831Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-22-06",
+      "actor": "/root",
+      "summary": "Authoritative cross-chat truth guard added."
+    },
+    {
+      "event_id": "3e27cfbe-640c-464d-b2c7-75b2db4eb696",
+      "at": "2026-09-26T17:56:21.844Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-22-06",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md"
+    },
+    {
+      "event_id": "7fff5436-3aca-4a12-9c73-be139068ca71",
+      "at": "2026-09-26T17:56:21.856Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-22-06",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/cross-chat-truth-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
     }
   ]

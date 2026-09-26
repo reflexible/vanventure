@@ -1,5 +1,62 @@
 const text = value => typeof value === 'string' && value.trim() === value && value.length > 0;
 const terminal = new Set(['Done', 'Backlog']);
+const packetKeys = new Set(['schema_version', 'kind', 'work_item_id', 'plan_status', 'execution_state',
+  'assigned_agent', 'write_scope', 'blocked_by', 'decision_refs', 'source_ref',
+  'remote_execution_authorized', 'competing_backlog_authorized', 'title', 'acceptance_criteria',
+  'dependencies', 'execution_authorized', 'status_handover', 'status_authority', 'decision_handover',
+  'decision_authorized', 'decision_write_authorized', 'sot_handover', 'sot_authority',
+  'sot_update_authorized']);
+
+function planStatusFor(planText, workItemId) {
+  if (typeof planText !== 'string') throw new Error('HANDOVER_AUTHORITATIVE_PLAN_REQUIRED');
+  const matches = planText.split(/\r?\n/).flatMap(line => {
+    const done = new RegExp(`^- \\[x\\] ~~(${workItemId}) · .+~~$`).exec(line);
+    const open = new RegExp(`^- \\[ \\] (TODO|READY|IN_PROGRESS|BLOCKED) – (${workItemId}) · .+$`).exec(line);
+    return done ? ['DONE'] : open ? [open[1]] : [];
+  });
+  if (matches.length !== 1) throw new Error('HANDOVER_AUTHORITATIVE_PLAN_ITEM_INVALID');
+  return matches[0];
+}
+
+/**
+ * Fail closed unless a received chat packet exactly agrees with the durable plan,
+ * worker record and (where present) registered SoT locator. The result is still
+ * read-only context: it does not claim, update, approve or execute anything.
+ */
+export function verifyChatHandoverTruth(handover, { state, registry, planText, stateSourceRef }) {
+  if (!handover || handover.kind !== 'local_chat_handover' || !Object.isFrozen(handover)
+      || !text(stateSourceRef) || !state?.records || !Array.isArray(registry?.modules)) {
+    throw new Error('HANDOVER_AUTHORITATIVE_INPUT_REQUIRED');
+  }
+  if (Object.keys(handover).some(key => !packetKeys.has(key))) throw new Error('HANDOVER_SHADOW_TRUTH_REJECTED');
+  if (handover.source_ref !== stateSourceRef || handover.remote_execution_authorized !== false
+      || handover.competing_backlog_authorized !== false || handover.execution_authorized === true
+      || handover.decision_authorized === true || handover.decision_write_authorized === true
+      || handover.sot_update_authorized === true) throw new Error('HANDOVER_AUTHORITY_ESCALATION_REJECTED');
+  const record = state.records[handover.work_item_id];
+  if (!record || record.work_item_id !== handover.work_item_id || record.execution_state !== handover.execution_state
+      || record.assigned_agent !== handover.assigned_agent
+      || JSON.stringify(record.write_scope) !== JSON.stringify(handover.write_scope)
+      || (record.blocked_by ?? null) !== (handover.blocked_by ?? null)) {
+    throw new Error('HANDOVER_WORKER_TRUTH_MISMATCH');
+  }
+  const planStatus = planStatusFor(planText, handover.work_item_id);
+  if (handover.plan_status !== planStatus
+      || (handover.status_handover && (handover.status_handover.plan_status !== planStatus
+        || handover.status_handover.execution_state !== record.execution_state))) {
+    throw new Error('HANDOVER_STATUS_TRUTH_MISMATCH');
+  }
+  if (handover.sot_handover) {
+    const module = registry.modules.find(item => item.module_id === handover.sot_handover.module_id);
+    if (!module || module.status !== 'active_reference' || handover.sot_handover.writable !== false
+        || module.authority !== handover.sot_handover.authority || module.source !== handover.sot_handover.source
+        || !handover.sot_handover.source_ref.startsWith(`${module.source}#`)) {
+      throw new Error('HANDOVER_SOT_TRUTH_MISMATCH');
+    }
+  }
+  return Object.freeze({ ...handover, truth_status: 'AUTHORITATIVE_SOURCES_ALIGNED',
+    execution_authorized: false, competing_backlog_authorized: false });
+}
 
 /** Build a local, immutable handover packet from durable shared state only. */
 export function buildChatHandover({ record, planStatus, decisionRefs = [], sourceRef }) {
