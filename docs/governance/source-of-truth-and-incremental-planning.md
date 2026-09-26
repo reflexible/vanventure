@@ -90,7 +90,7 @@ offen.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** Den historischen Coverage-/Traceability-Abgleich für die 20 offenen Zuordnungen abschließen und den fremden Core-Delta separat sichern; erst danach `WI-SOT-23-06` erneut bewerten.
+**NEXT RECOMMENDATION:** Den historischen Coverage-/Traceability-Abgleich für die 20 offenen Zuordnungen abschließen und den bestehenden Core-Delta separat preservation-prüfen; erst danach `WI-SOT-23-06` erneut bewerten.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
@@ -528,8 +528,9 @@ Technisch verhindern:
 - [ ] BLOCKED – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
   Blockiert: Für keine Entfernklausel liegt eine vollständige abschnittsgenaue
   Preservation-/Contract-/Referenzzuordnung vor; zudem ist der historische
-  Planabgleich mit 20 Punkten `PENDING` und der Core-Quellstand enthält einen
-  fremden ungesicherten Delta. [Bereitschaftsbericht](../abnahmeberichte/sot-core-reduction-readiness-2026-09-26.md).
+  Planabgleich mit 20 Punkten `PENDING` und der bestehende Core-Delta gegen
+  die Golden Baseline ist noch nicht separat preservation-geprüft.
+  [Bereitschaftsbericht](../abnahmeberichte/sot-core-reduction-readiness-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
 Die Core-Regeln und Fachdetails wurden gezielt inventarisiert. Das ist keine
 Freigabe zur Entfernung auditierter Inhalte.
