@@ -2329,6 +2329,31 @@ Als Betreiber erhalte ich nach fachlich entschiedener Kanalwahl eine tatsächlic
 - **Acceptance Criteria:** Ein authentifiziertes kritisches Ereignis wird idempotent in der verpflichtenden internen Inbox sichtbar und verknüpft. Fehler- und Zustellstatus bleiben intern nachvollziehbar; Betriebsverantwortung liegt beim VanVenture-Admin. Externer Nachrichtentransport bleibt aus, bis Kanal, Empfänger und Aktivierung separat freigegeben sind.
 - **Tasks:** `TASK-COVR1-041-03` prüft nach den Entscheidungen beide Auslöser, Nachrichtenzustellung, Fehlerfall und Zustellstatus mit Quellstand; ein lokaler Prüflauf ist keine Live-Verifikation.
 
+## GOAL-SOT – Dauerhafte Anforderungen und Planänderungen bleiben eindeutig, rückverfolgbar und effizient prüfbar.
+
+### EPIC-SOT – Source-of-Truth & Incremental Planning Architecture
+
+**Ziel und Grenze:** Ein gemeinsamer Scrum-Zustand steuert kleine, sichere
+Änderungen mit eindeutiger Fachautorität und impact-gerechter Prüfung. Die
+vollständige Implementierungsliste, Status, Counter und technischen Details
+stehen ausschließlich im [autoritativen Fachmodul](governance/source-of-truth-and-incremental-planning.md).
+Dieses Epic ersetzt keine bestehende Fach-, Freigabe- oder Scrum-Core-Regel.
+
+| Story-Slices | Prüfbares Ergebnis / Acceptance Criteria | Vorgänger | Status |
+| --- | --- | --- | --- |
+| `ST-SOT-00–02` · Schutz, Preservation, Merge | Golden Baseline ist wiederherstellbar; bestehende SoT- und WSJF-Anforderungen sind quellengetreu erfasst; Konflikte bleiben sichtbar. | `FINAL_AUDIT_PASS` | In Arbeit: Planung; Konfliktentscheidung offen |
+| `ST-SOT-03–11` · Performance Enablement | Registry, Contracts, Graph, Impact-Auswahl, FAST/FULL, Baselines und Delta Audit liefern reproduzierbare begrenzte Prüfergebnisse. | Preservation und Merge; nötige Freigaben | Geplant |
+| `ST-SOT-12–18` · SoT Governance | Intake, Klassifizierung, Conflict Check, Approval, autoritatives Update, Post Validation und DONE Guards bilden einen geprüften Ablauf. | Performance Enablement | Geplant |
+| `ST-SOT-19–22` · WSJF und Agent-Team | Die vorhandenen Regeln sind tracebar und getestet; Claims, Review, Integration und gemeinsame Zustände umgehen keine Core- oder Nutzerfreigaben. | Governance-Gate | Geplant |
+| `ST-SOT-23–25` · Fachmodule | Core bleibt geschützt; Fachautoritäten und eine nur generierte Gesamtsicht sind eindeutig. | Registry, Governance | Geplant |
+| `ST-SOT-26–31` · Betrieb und End-to-End | Status, Counter, Next Work, Git Hygiene und ein realistischer Ablauf einschließlich Konflikt und Rollback sind nachgewiesen. | betroffene Slices | Geplant |
+
+**Epic-Abschluss:** Alle genannten Stories und Work Items sind nach ihren
+jeweiligen Acceptance Criteria, erforderlichen Freigaben und Prüfmodi
+abgeschlossen. Planung, technische Prüfung und Live-Wirkung bleiben getrennte
+Nachweise. Die historische Ablösung von `docs/ausbauplan.md` ist ein eigenes
+Planwechsel-Gate und kein stiller Bestandteil dieses Epics.
+
 ## Offene Slice- und Statusgrenzen
 
 ST-WEB-01 und ST-INS-01 bewahren historische Implementierungen. `Existing / Verify`
