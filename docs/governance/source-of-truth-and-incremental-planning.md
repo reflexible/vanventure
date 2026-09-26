@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: elf prüfbare Module aufgebaut; abgeleitete Gesamtansicht lokal verifiziert.
+**Phase:** Modularisierung und strukturelle SoT-Post-Validation lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-17-01` · gezielte SoT-Konsistenzprüfung als nächste Schutzschicht ergänzen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-01` · vor jedem Slice einen lesenden Git-Status-Snapshot erfassen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 181 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 24 (einschließlich Ready und Blocked) · Progress 88,3 %.
+**Counter:** Total 205 · Done 184 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 21 (einschließlich Ready und Blocked) · Progress 89,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -393,9 +393,16 @@ Der Projektpilot ist lokal abgenommen; WI-SOT-16-01 wurde nach unabhängigem
 Review über gehashte Originalartefakte tatsächlich in den Workerzustand `Done`
 integriert. [Abnahme und Grenzen](../sot-optimization/reviews/project-governance-pilot-2026-09-26.md).
 #### ST-SOT-17 – PHASE 17: SOT POST VALIDATION
-- [ ] TODO – WI-SOT-17-01 · SoT-Konsistenz prüfen
-- [ ] TODO – WI-SOT-17-02 · Contracts prüfen
-- [ ] TODO – WI-SOT-17-03 · Dependencies prüfen
+- [x] ~~WI-SOT-17-01 · SoT-Konsistenz prüfen~~
+  Der lesende Check bindet Registry, kanonischen Plan, Quellenrollen und die
+  abgeleitete Modulansicht zusammen und lehnt Schattenpläne oder abgehängte
+  SoT-Quellen ab.
+- [x] ~~WI-SOT-17-02 · Contracts prüfen~~
+  Die Post-Validation erzwingt die bestehende bilaterale Contract-Validierung;
+  fehlende oder nicht teilnehmende Referenzen blockieren.
+- [x] ~~WI-SOT-17-03 · Dependencies prüfen~~
+  Die Post-Validation erzwingt den Dependency-Graph mit Zyklus-, unbekannten
+  Knoten- und harten Abhängigkeitsprüfungen. [Lokaler Abnahmebericht](../abnahmeberichte/sot-post-validation-2026-09-26.md).
 - [x] ~~WI-SOT-17-04 · Delta validieren~~
 - [x] ~~WI-SOT-17-05 · erforderlichen FAST/FULL CHECK ausführen~~
   Der reale Metadatenpilot hat Delta, FAST CHECK und acht Post-Validation-

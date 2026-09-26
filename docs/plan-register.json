@@ -241,6 +241,11 @@
       "requiredCanonicalPhrases": []
     },
     {
+      "path": "docs/abnahmeberichte/sot-post-validation-2026-09-26.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
       "path": "docs/scrum-migration/source-index.md",
       "role": "audit-reference",
       "requiredCanonicalPhrases": []
