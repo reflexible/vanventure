@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "status": "interface_metadata_only",
+  "contracts": [
+    {
+      "contract_id": "SCRUM-WORK-ITEM",
+      "version": "1.0.0",
+      "provider_module": "scrum-core",
+      "consumer_module": "sot-architecture",
+      "authoritative_rule": "docs/scrum-plan.md",
+      "purpose": "Links an operational work item to exactly one existing Scrum story without creating a second plan.",
+      "fields": {
+        "work_item_id": { "type": "string", "required": true },
+        "story_id": { "type": "string", "required": true },
+        "status": { "type": "string", "required": true },
+        "source_ref": { "type": "string", "required": true }
+      },
+      "invariants": [
+        "story_id resolves to the central Scrum plan; source_ref preserves the exact authoritative location.",
+        "A work item does not replace its story, acceptance criteria, approval gates or historical baseline."
+      ]
+    },
+    {
+      "contract_id": "SOT-DECISION-CHANGE",
+      "version": "1.0.0",
+      "provider_module": "sot-architecture",
+      "consumer_module": "scrum-core",
+      "authoritative_rule": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "purpose": "Carries a traceable proposed change and its decision boundary to the owning authority.",
+      "fields": {
+        "change_id": { "type": "string", "required": true },
+        "target_module_id": { "type": "string", "required": true },
+        "source_ref": { "type": "string", "required": true },
+        "decision_status": { "type": "string", "required": true },
+        "decision_ref": { "type": "string", "required": false }
+      },
+      "invariants": [
+        "A proposed change is not an approval; required user decisions retain their existing gate.",
+        "The owning module is updated only after conflict, impact and approval checks; no silent overwrite."
+      ]
+    },
+    {
+      "contract_id": "WORKER-WORK-ASSIGNMENT",
+      "version": "1.0.0",
+      "provider_module": "sot-architecture",
+      "consumer_module": "scrum-core",
+      "authoritative_rule": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "purpose": "Transfers a visible claim and write scope for one executable work item.",
+      "fields": {
+        "work_item_id": { "type": "string", "required": true },
+        "worker_id": { "type": "string", "required": true },
+        "claim_status": { "type": "string", "required": true },
+        "claimed_at": { "type": "string", "required": true },
+        "write_scope": { "type": "array", "required": true },
+        "handoff_ref": { "type": "string", "required": false }
+      },
+      "invariants": [
+        "One active claim per work item; ownership changes are explicit and traceable.",
+        "Overlapping critical write scopes require coordination; a worker cannot mark its own implementation Done without review and integration."
+      ]
+    },
+    {
+      "contract_id": "CMS-PUBLISHING",
+      "version": "1.0.0",
+      "provider_module": "cms-content",
+      "consumer_module": "release-governance",
+      "authoritative_rule": "docs/scrum-migration/release-decisions.md",
+      "purpose": "Carries the existing CMS content and publication state to the separate release approval gate, without granting publication approval.",
+      "fields": {
+        "content_id": { "type": "string", "required": true },
+        "publication_state": { "type": "string", "required": true },
+        "scope_ref": { "type": "string", "required": true },
+        "approval_ref": { "type": "string", "required": false }
+      },
+      "invariants": [
+        "A review result, local build or contract validation is not publication or release approval.",
+        "Publishing remains subject to the explicit approval for its concrete release scope and applicable content, image and privacy gates."
+      ]
+    },
+    {
+      "contract_id": "ANALYTICS-CONTENT-ID",
+      "version": "1.0.0",
+      "provider_module": "cms-content",
+      "consumer_module": "analytics",
+      "authoritative_rule": "docs/analytics.md",
+      "purpose": "Maps existing published content identity into permitted analytics context.",
+      "fields": {
+        "content_id": { "type": "string", "required": true },
+        "content_type": { "type": "string", "required": true },
+        "publication_state": { "type": "string", "required": true },
+        "source_ref": { "type": "string", "required": true }
+      },
+      "invariants": [
+        "content_id comes from the existing content or CMS structure and remains stable across URL changes; no parallel ID store.",
+        "Only the centrally defined event names, properties and tracking policy in docs/analytics.md govern actual analytics emission."
+      ]
+    }
+  ]
+}

@@ -44,7 +44,7 @@ Planbeschreibung `READY` oder `DONE`.
 | ST-SOT-01 | Vollständige SoT-/WSJF-Quellen sind erfasst; jede bestehende Anforderung ist mit Ziel und Behandlung tracebar, keine Regel verschwindet. | ST-SOT-00 | P0 |
 | ST-SOT-02 | Drei Quellenpaare sind gezielt klassifiziert; echte Konflikte und Entscheidungen sind dedupliziert, Zielarchitektur begründet. | ST-SOT-01 | P0 |
 | ST-SOT-03 | Registry beantwortet Autorität je Modul deterministisch und validiert eindeutige IDs/Quellen; schaltet ST-SOT-04–06/12 frei. | ST-SOT-02, Planfreigabe | P1 |
-| ST-SOT-04 | Versionierte Contracts und Brucherkennung funktionieren an den fünf benannten Schnittstellen; schaltet ST-SOT-05–08 frei. | WI-SOT-03-01–06/08–10; Registry-Contract-Verknüpfung WI-SOT-03-07 folgt nach Contract-Definition | P1 |
+| ST-SOT-04 | Versionierte Contracts und Brucherkennung funktionieren an den fünf benannten Schnittstellen; Laufzeit-Invarianten bleiben vor aktiver Nutzung zu prüfen. | WI-SOT-03-01–06/08–10 | P1 · Infrastruktur lokal; Laufzeit offen |
 | ST-SOT-05 | Graph löst Modul-, Work-Item- und Contract-Abhängigkeiten auf und erkennt Zyklen; schaltet Impact und Parallelprüfung frei. | ST-SOT-03–04 | P1 |
 | ST-SOT-06 | Eine Änderung liefert nachvollziehbar betroffene Module, Contracts, Work Items, Prozesse und `NO_CHECK`/FAST/FULL. | ST-SOT-05 | P1 |
 | ST-SOT-07 | Lokales Delta durchläuft relevante SoT-, Contract-, Dependency-, Traceability-, Test- und Git-Prüfung mit PASS/BLOCKED. | ST-SOT-06 | P1 |
@@ -81,22 +81,17 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement. **Current Work Item:** `WI-SOT-04-01`.
-**Active Workers:**
-`/root/contract_system_worker` mit
-exklusivem Claim auf `docs/governance/contracts.json`,
-`docs/governance/module-registry.json` und `tools/sot/contracts.*`;
-`/root` koordiniert Plan/Integration; Baseline-System und
-Fortschrittsprüfung sind lokal abgeschlossen.
-**Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_IN_PROGRESS`.
-**NEXT RECOMMENDATION:** `WI-SOT-04-02` nach dem Contract-Modell, weil die
-konkreten Schnittstellen Registry-Verknüpfung und Graph freischalten.
-**Parallel Candidates:** nach dem Contract-Katalog können Dependency Graph
-und Delta Detection in disjunkten Dateien bearbeitet werden.
-**Blocked:** `WI-SOT-03-07` bis zum Contract-Katalog und `WI-SOT-27-02` bis
-zum historischen Planwechsel-Gate.
-**Counter:** Total 187 · Done 39 · In Progress 1 · Ready 0 · Blocked 2 ·
-Open 148 (einschließlich In Progress und Blocked) · Progress 20,9 %.
+**Phase:** Performance Enablement, Graph vorbereiten. **Current Work Items:**
+Contract-Katalog lokal integriert; `WI-SOT-05-01` ist bereit.
+**Active Workers:** 0. **Status:** `PLAN_STATUS: APPROVED`;
+`IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
+**NEXT RECOMMENDATION:** `WI-SOT-05-01` (Modulabhängigkeiten), weil der Graph
+Impact-Auswahl, sichere Parallelität und die Check-Engines freischaltet.
+**Parallel Candidates:** Delta Detection kann nach der Graph-Schnittstelle
+in disjunkten Dateien vorbereitet werden; noch kein zweiter Claim.
+**Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
+**Counter:** Total 188 · Done 49 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 139 (einschließlich Ready und Blocked) · Progress 26,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -171,22 +166,23 @@ Besonders prüfen:
 - [x] ~~WI-SOT-03-04 · Modulstatus definieren~~
 - [x] ~~WI-SOT-03-05 · Modulversion definieren~~
 - [x] ~~WI-SOT-03-06 · Dependencies erfassen~~
-- [ ] BLOCKED – WI-SOT-03-07 · Contracts erfassen; Contract-Katalog wird in ST-SOT-04 definiert
+- [x] ~~WI-SOT-03-07 · Contracts erfassen~~
 - [x] ~~WI-SOT-03-08 · letzte validierte Baseline erfassen~~
 - [x] ~~WI-SOT-03-09 · letzten Auditstatus erfassen~~
 - [x] ~~WI-SOT-03-10 · Registry validieren~~
 #### ST-SOT-04 – PHASE 4: CONTRACT SYSTEM
-- [ ] IN_PROGRESS – WI-SOT-04-01 · Contract-Modell definieren
-- [ ] TODO – WI-SOT-04-02 · Scrum → Work-Item Contract
-- [ ] TODO – WI-SOT-04-03 · SoT → Decision/Change Contract
-- [ ] TODO – WI-SOT-04-04 · Worker → Work Assignment Contract
-- [ ] TODO – WI-SOT-04-05 · CMS → Publishing Contract
-- [ ] TODO – WI-SOT-04-06 · Analytics → Content-ID Contract
-- [ ] TODO – WI-SOT-04-07 · Contract-Versionierung definieren
-- [ ] TODO – WI-SOT-04-08 · Contract-Break-Erkennung implementieren
-- [ ] TODO – WI-SOT-04-09 · Contract-Validierung implementieren
+- [x] ~~WI-SOT-04-01 · Contract-Modell definieren~~
+- [x] ~~WI-SOT-04-02 · Scrum → Work-Item Contract~~
+- [x] ~~WI-SOT-04-03 · SoT → Decision/Change Contract~~
+- [x] ~~WI-SOT-04-04 · Worker → Work Assignment Contract~~
+- [x] ~~WI-SOT-04-05 · CMS → Publishing Contract~~
+- [x] ~~WI-SOT-04-06 · Analytics → Content-ID Contract~~
+- [x] ~~WI-SOT-04-07 · Contract-Versionierung definieren~~
+- [x] ~~WI-SOT-04-08 · Contract-Break-Erkennung implementieren~~
+- [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
+- [ ] TODO – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
-- [ ] TODO – WI-SOT-05-01 · Modulabhängigkeiten erfassen
+- [ ] READY – WI-SOT-05-01 · Modulabhängigkeiten erfassen
 - [ ] TODO – WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen
 - [ ] TODO – WI-SOT-05-03 · Contract-Abhängigkeiten erfassen
 - [ ] TODO – WI-SOT-05-04 · laufende Worker berücksichtigen

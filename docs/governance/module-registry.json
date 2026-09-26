@@ -9,7 +9,7 @@
       "status": "active_reference",
       "version": null,
       "dependencies": [],
-      "contracts": [],
+      "contracts": ["SCRUM-WORK-ITEM", "SOT-DECISION-CHANGE", "WORKER-WORK-ASSIGNMENT"],
       "last_verified_baseline": {
         "ref": "refs/tags/golden-scrum-final-audit-pass-2026-09-26",
         "sha256_crlf": "9ec3dbc2b1c09208580c267b683693285ee5dca609bc736243ba6a0bbe52eab2"
@@ -25,7 +25,7 @@
       "status": "active_reference",
       "version": null,
       "dependencies": ["scrum-core"],
-      "contracts": [],
+      "contracts": ["SCRUM-WORK-ITEM", "SOT-DECISION-CHANGE", "WORKER-WORK-ASSIGNMENT"],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
@@ -38,7 +38,7 @@
       "status": "active_reference",
       "version": null,
       "dependencies": [],
-      "contracts": [],
+      "contracts": ["ANALYTICS-CONTENT-ID"],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
@@ -78,6 +78,32 @@
       "version": null,
       "dependencies": ["design-guide"],
       "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "cms-content",
+      "name": "Bestehende Redaktion und Content-Identität",
+      "authority": "website.cms-content",
+      "source": "editor/README.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": ["release-governance"],
+      "contracts": ["CMS-PUBLISHING", "ANALYTICS-CONTENT-ID"],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "release-governance",
+      "name": "Verbindliche Veröffentlichungsentscheidungen",
+      "authority": "governance.release-approval",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": [],
+      "contracts": ["CMS-PUBLISHING"],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
