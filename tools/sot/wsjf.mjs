@@ -55,6 +55,57 @@ export function evaluateWsjf(input) {
   };
 }
 
+/** Re-evaluate from changed facts while preserving manual decisions and an audit trail. */
+export function reevaluateWsjf({ current, proposed, reason, changed_facts, evaluated_at }) {
+  const errors = [];
+  if (!current || !Number.isFinite(current.wsjf) || !Number.isInteger(current.cost_of_delay)) {
+    errors.push('A previously calculated WSJF record is required.');
+  }
+  if (!isText(reason) || !Array.isArray(changed_facts) || !changed_facts.length
+      || !changed_facts.every(isText)) errors.push('Re-evaluation needs changed facts and a reason.');
+  if (!isText(evaluated_at) || !Number.isFinite(Date.parse(evaluated_at))
+      || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(evaluated_at)) {
+    errors.push('evaluated_at must be an ISO timestamp with timezone.');
+  }
+  if (!proposed || !current || errors.length) return { valid: false, errors, result: null };
+
+  const lockedValue = ['Confirmed', 'Overridden'].includes(current.value_status);
+  if (proposed.value_status !== current.value_status) errors.push('Automatic re-evaluation cannot change the User / Business Value status.');
+  const normalizedOverride = value => value?.enabled === true
+    ? { enabled: true, reason: value.reason ?? null } : { enabled: false, reason: null };
+  if (JSON.stringify(normalizedOverride(proposed.manual_priority_override))
+      !== JSON.stringify(normalizedOverride(current.manual_priority_override))) {
+    errors.push('Automatic re-evaluation cannot change a manual priority override.');
+  }
+  if (errors.length) return { valid: false, errors, result: null };
+
+  const suggestedValue = proposed.user_business_value;
+  const nextInput = {
+    ...proposed,
+    user_business_value: lockedValue ? current.user_business_value : proposed.user_business_value,
+    value_status: current.value_status,
+    prior_value_status: lockedValue ? current.value_status : undefined,
+    prior_user_business_value: lockedValue ? current.user_business_value?.score : undefined,
+    manual_priority_override: current.manual_priority_override ?? { enabled: false },
+  };
+  if (lockedValue && suggestedValue?.score !== current.user_business_value?.score) {
+    nextInput.suggested_user_business_value = suggestedValue;
+  }
+  const evaluated = evaluateWsjf(nextInput);
+  if (!evaluated.valid) return { valid: false, errors: evaluated.errors, result: null };
+  const history = Array.isArray(current.history) ? structuredClone(current.history) : [];
+  history.push({ at: evaluated_at, reason: reason.trim(), changed_facts: changed_facts.map(item => item.trim()),
+    previous: { user_business_value: current.user_business_value, value_status: current.value_status,
+      time_criticality: current.time_criticality, risk_reduction_opportunity_enablement: current.risk_reduction_opportunity_enablement,
+      job_size: current.job_size, cost_of_delay: current.cost_of_delay, wsjf: current.wsjf },
+    next: { user_business_value: evaluated.user_business_value, suggested_user_business_value: evaluated.suggested_user_business_value,
+      value_status: evaluated.value_status, time_criticality: evaluated.time_criticality,
+      risk_reduction_opportunity_enablement: evaluated.risk_reduction_opportunity_enablement,
+      job_size: evaluated.job_size, cost_of_delay: evaluated.cost_of_delay, wsjf: evaluated.wsjf },
+  });
+  return { valid: true, errors: [], result: { ...evaluated, history } };
+}
+
 /** Rank only currently executable work; WSJF never overrides readiness or safety gates. */
 export function rankReadyQueue(items, { comparisonGroup = null } = {}) {
   if (!Array.isArray(items)) throw new Error('Ready queue items must be an array.');

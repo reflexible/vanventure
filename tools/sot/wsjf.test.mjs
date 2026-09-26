@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateWsjf, rankReadyQueue, WSJF_SCALE } from './wsjf.mjs';
+import { evaluateWsjf, rankReadyQueue, reevaluateWsjf, WSJF_SCALE } from './wsjf.mjs';
 
 const component = (score, confidence = 'High') => ({ score, confidence, rationale: 'Evidence grounded in project context.' });
 const example = () => ({ user_business_value: component(13), value_status: 'Proposed',
@@ -9,7 +9,7 @@ const example = () => ({ user_business_value: component(13), value_status: 'Prop
 test('uses the specified scales, calculates Cost of Delay and WSJF without authorizing execution', () => {
   const result = evaluateWsjf(example());
   assert.deepEqual(WSJF_SCALE, [1, 2, 3, 5, 8, 13, 20]);
-  assert.equal(result.valid, true);
+  assert.equal(result.valid, true, JSON.stringify(result.errors));
   assert.equal(result.cost_of_delay, 21);
   assert.equal(result.wsjf, 4.2);
   assert.equal(result.execution_decision, 'NOT_AUTHORIZED');
@@ -73,4 +73,39 @@ test('does not rank blocked hard dependencies and requires an explicit compariso
   ];
   assert.throws(() => rankReadyQueue(projects), /comparison_group/);
   assert.deepEqual(rankReadyQueue(projects, { comparisonGroup: 'product-A' }).map(item => item.id), ['P1']);
+});
+
+test('re-evaluation logs the fact-driven before/after score', () => {
+  const current = evaluateWsjf(example());
+  const proposed = { ...example(), time_criticality: component(8), risk_reduction_opportunity_enablement: component(5) };
+  const result = reevaluateWsjf({ current, proposed, reason: 'Release date moved closer.',
+    changed_facts: ['Release date moved from Q4 to Q3.'], evaluated_at: '2026-09-26T12:00:00Z' });
+  assert.equal(result.valid, true, JSON.stringify(result.errors));
+  assert.equal(result.result.wsjf, 5.2);
+  assert.equal(result.result.history.length, 1);
+  assert.equal(result.result.history[0].previous.wsjf, current.wsjf);
+  assert.equal(result.result.history[0].next.wsjf, result.result.wsjf);
+});
+
+test('re-evaluation preserves confirmed business values and records a new suggestion', () => {
+  const current = evaluateWsjf({ ...example(), user_business_value: component(8), value_status: 'Confirmed' });
+  const proposed = { ...example(), user_business_value: component(20), value_status: 'Confirmed' };
+  const result = reevaluateWsjf({ current, proposed, reason: 'New usage evidence.', changed_facts: ['Usage doubled.'],
+    evaluated_at: '2026-09-26T12:00:00Z' });
+  assert.equal(result.valid, true);
+  assert.equal(result.result.user_business_value.score, 8);
+  assert.equal(result.result.suggested_user_business_value.score, 20);
+});
+
+test('automatic re-evaluation cannot change value status or manual priority decisions', () => {
+  const current = evaluateWsjf({ ...example(), value_status: 'Overridden',
+    manual_priority_override: { enabled: true, reason: 'Hard deadline.' } });
+  const statusChange = reevaluateWsjf({ current, proposed: { ...example(), value_status: 'Proposed',
+    manual_priority_override: current.manual_priority_override }, reason: 'Fact', changed_facts: ['Fact changed.'],
+    evaluated_at: '2026-09-26T12:00:00Z' });
+  assert.match(statusChange.errors.join(' '), /cannot change the User \/ Business Value status/);
+  const overrideChange = reevaluateWsjf({ current, proposed: { ...example(), value_status: 'Overridden',
+    manual_priority_override: { enabled: false } }, reason: 'Fact', changed_facts: ['Fact changed.'],
+    evaluated_at: '2026-09-26T12:00:00Z' });
+  assert.match(overrideChange.errors.join(' '), /manual priority override/);
 });
