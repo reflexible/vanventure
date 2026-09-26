@@ -89,8 +89,8 @@ Audit als Prüfgrundlage integriert ist. **Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 194 · Done 103 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 91 (einschließlich Ready und Blocked) · Progress 53,1 %.
+**Counter:** Total 194 · Done 104 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 90 (einschließlich Ready und Blocked) · Progress 53,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -304,7 +304,9 @@ Change
 - [ ] TODO – WI-SOT-12-02 · neuen Plan erfassen
 - [ ] TODO – WI-SOT-12-03 · neue Entscheidung erfassen
 - [ ] TODO – WI-SOT-12-04 · neue Regel erfassen
-- [ ] TODO – WI-SOT-12-05 · Intake klassifizieren
+- [x] ~~WI-SOT-12-05 · Intake klassifizieren~~
+  Die vier Intake-Typen werden als nicht bindende Vorschläge klassifiziert;
+  ihre dauerhafte Erfassung folgt in `WI-SOT-12-01`–`04`.
 #### ST-SOT-13 – PHASE 13: SOT IMPACT CHECK
 - [ ] TODO – WI-SOT-13-01 · zuständiges Modul bestimmen
 - [ ] TODO – WI-SOT-13-02 · autoritative Source bestimmen
