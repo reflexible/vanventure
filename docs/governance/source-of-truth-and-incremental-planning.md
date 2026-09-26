@@ -90,7 +90,7 @@ Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung u
 **Parallel Candidates:**
 `WI-SOT-21-04` und `WI-SOT-20-10` können mit getrennten Scopes vorbereitet werden; Worker-Scopes haben Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 156 · In Progress 0 · Ready 0 · Blocked 2 ·
+**Counter:** Total 205 · Done 156 · In Progress 0 · Ready 1 · Blocked 2 ·
 Open 49 (einschließlich Ready und Blocked) · Progress 76,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -455,7 +455,7 @@ Technisch verhindern:
   Aktive Write Scopes werden rein lesend auf Überschneidungen und fehlende Koordinierung geprüft. [FAST-CHECK](../sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md).
 - [x] ~~WI-SOT-21-03 · Dependency-Konflikte erkennen~~
   Harte transitive Abhängigkeiten zwischen parallelen Work Items werden als erforderliche Reihenfolge abgeleitet. [FAST-CHECK](../sot-optimization/reviews/dependency-conflicts-fast-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-21-04 · Worker-Scope definieren
+- [ ] READY – WI-SOT-21-04 · Worker-Scope definieren
 - [ ] TODO – WI-SOT-21-05 · erlaubte Dateien definieren
 - [ ] TODO – WI-SOT-21-06 · verbotene Dateien definieren
 - [ ] TODO – WI-SOT-21-07 · Merge-Reihenfolge definieren
