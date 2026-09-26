@@ -85,12 +85,12 @@ und spätere Produktprüfung bleiben offen.
 **Current Work Item:** `WI-SOT-12-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
 **NEXT RECOMMENDATION:** `WI-SOT-12-01` (SoT Intake), weil das inkrementelle
-Audit als Prüfgrundlage integriert ist. **Parallel Candidates:** die Runtime-
-Anbindungen `WI-SOT-04-10`, `05-04`, `06-09`, `07-10` und `08-09` können nach
-State- und Orchestrator-Anschluss in getrennten Dateien entstehen.
+Audit als Prüfgrundlage integriert ist. **Parallel Candidates:**
+`WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
+Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 194 · Done 101 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 93 (einschließlich Ready und Blocked) · Progress 52,1 %.
+**Counter:** Total 194 · Done 103 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 91 (einschließlich Ready und Blocked) · Progress 53,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -187,7 +187,7 @@ Besonders prüfen:
 - [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~
 - [x] ~~WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen~~
 - [x] ~~WI-SOT-05-03 · Contract-Abhängigkeiten erfassen~~
-- [ ] TODO – WI-SOT-05-04 · laufende Worker berücksichtigen
+- [x] ~~WI-SOT-05-04 · laufende Worker berücksichtigen~~
 - [x] ~~WI-SOT-05-05 · betroffene Module automatisch ableiten~~
 - [x] ~~WI-SOT-05-06 · Impact-Ausbreitung bestimmen~~
 - [x] ~~WI-SOT-05-07 · Dependency-Zyklen erkennen~~
@@ -204,7 +204,10 @@ Besonders prüfen:
 - [x] ~~WI-SOT-06-06 · betroffene Work Items bestimmen~~
 - [x] ~~WI-SOT-06-07 · laufende Prozesse berücksichtigen~~
 - [x] ~~WI-SOT-06-08 · erforderlichen Prüfmodus automatisch bestimmen~~
-- [ ] TODO – WI-SOT-06-09 · gemeinsame Laufzeitquelle für aktive Prozesse anbinden; die Engine wertet bisher nur ausdrücklich übergebene Prozessdaten aus
+- [x] ~~WI-SOT-06-09 · gemeinsame Laufzeitquelle für aktive Prozesse anbinden; die Engine wertet nur ausdrücklich übergebene Prozessdaten aus~~
+  Der Bridge-Adapter liest den lokalen Worker-State und liefert die Eingaben
+  für Graph und Impact. Unbekannte Scopes blockieren; die automatische
+  Orchestrator-Nutzung bleibt in `WI-SOT-11-07` offen.
 Ergebnis:
 NO_CHECK
 oder
