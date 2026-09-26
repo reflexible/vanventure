@@ -29,7 +29,14 @@ tools/sot/contracts.test.mjs` bestand mit 11/11 Fällen.
 
 ## Restgrenzen
 
-`WI-SOT-23-04` prüft als Nächstes die Modul-Contracts gegen diese Grenzen.
+`WI-SOT-23-04` ist lokal abgeschlossen: Die fünf bestehenden bilateralen
+Contracts sind gegen die registrierten Modulgrenzen geprüft; Version,
+Pflichtfelder, Invarianten und beidseitige Registry-Verweise werden
+maschinell validiert. Der Nachweis steht im
+[`Contract-System`](contract-system-2026-09-26.md) und im
+[`Abnahmebericht`](../../abnahmeberichte/sot-cms-module-reference-2026-09-26.md).
+Dies ist keine Laufzeit-, Release- oder Live-Freigabe.
+
 `WI-SOT-23-05` betrifft nur bereits vorhandene, belegbare Modulquellen.
 Vor einer Core-Entfernung sind pro betroffenem Abschnitt eine vollständige
 Übernahme, eine Contract-/Referenzprüfung und das Golden-Baseline-Delta

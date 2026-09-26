@@ -501,7 +501,8 @@ Technisch verhindern:
 - [x] ~~WI-SOT-23-04 · Contracts herstellen~~
   Fünf bestehende bilaterale Contracts sind mit Version, Pflichtfeldern,
   Invarianten und Registry-Rückverweis geprüft. Das ist Schnittstellen-
-  Metadatenvalidierung, keine Laufzeitfreigabe. [Contract-Nachweis](../sot-optimization/reviews/contract-system-2026-09-26.md).
+  Metadatenvalidierung, keine Laufzeitfreigabe. [Contract-Nachweis](../sot-optimization/reviews/contract-system-2026-09-26.md)
+  und [lokaler Abnahmebericht](../abnahmeberichte/sot-cms-module-reference-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-05 · Module zuerst aufbauen
 - [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
