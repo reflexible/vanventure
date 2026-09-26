@@ -397,7 +397,8 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-07 · bestehende relative Skala erhalten
 - [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
-  geschützten Business Value, große Stories und Prioritäts-Override ab.
+  geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
+  Hard Dependencies und explizite Vergleichsräume ab.
   Vollständige 67-Abschnitts-Traceability, Audit-Neubewertung und
   Governance-End-to-End-Aktivierung bleiben offen; siehe
   [Prüfbericht](../sot-optimization/reviews/wsjf-scoring-2026-09-26.md).
