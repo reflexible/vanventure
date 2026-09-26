@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung und strukturelle SoT-Post-Validation lokal verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und lesender Git-Preflight lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-30-01` · vor jedem Slice einen lesenden Git-Status-Snapshot erfassen.
+**NEXT RECOMMENDATION:** `WI-SOT-30-02` · fremde Änderungen gegen den Preflight-Snapshot abgrenzen und schützen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 184 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 21 (einschließlich Ready und Blocked) · Progress 89,8 %.
+**Counter:** Total 205 · Done 185 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 20 (einschließlich Ready und Blocked) · Progress 90,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -612,7 +612,10 @@ Zusätzlich:
 PARALLEL RECOMMENDATION
 wenn sinnvoll.
 #### ST-SOT-30 – PHASE 30: GIT HYGIENE
-- [ ] TODO – WI-SOT-30-01 · vor Slice git status
+- [x] ~~WI-SOT-30-01 · vor Slice git status~~
+  Der lesende Snapshot erfasst Branch, HEAD sowie gestagte, lokale und
+  untracked Einträge ohne Arbeitsbaumänderung; die vollständige Pfadliste ist
+  nur über `--json` abrufbar. [Lokaler Abnahmebericht](../abnahmeberichte/sot-git-preflight-2026-09-26.md).
 - [ ] TODO – WI-SOT-30-02 · fremde Änderungen respektieren
 - [ ] TODO – WI-SOT-30-03 · Work Items sauber trennen
 - [ ] TODO – WI-SOT-30-04 · kleine nachvollziehbare Commits
