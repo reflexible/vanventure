@@ -371,6 +371,27 @@
     "evidence": "docs/sot-optimization/reviews/legacy-ausbauplan-migration-2026-09-26.md",
     "gate": "PASS: each historical item has an explicit target or justified exclusion; no duplicate active plan remains."
   },
+  "historicalPhraseMappingEvidence": "docs/scrum-migration/reviews/historical-phrase-reconciliation-2026-09-26.md",
+  "historicalPhraseMappings": [
+    { "id": "HPM-01", "source": "docs/content-plan-90-tage.md", "phrase": "Langzeiterfahrung), EXPLORE", "canonicalTargets": ["ST-CON-09/10"] },
+    { "id": "HPM-02", "source": "docs/vanventure-cockpit-mvp.md", "phrase": "Automatisiert prüfen: gültige Anmeldung", "canonicalTargets": ["ST-AUTH-01"] },
+    { "id": "HPM-03", "source": "docs/vanventure-cockpit-plan.md", "phrase": "Administrator-Aktion „YouTube", "canonicalTargets": ["ST-INS-03"] },
+    { "id": "HPM-04", "source": "docs/vanventure-cockpit-plan.md", "phrase": "Traffic Sources sowie verfügbare Retention", "canonicalTargets": ["ST-INS-04"] },
+    { "id": "HPM-05", "source": "docs/channel-audit-v1.md", "phrase": "Flow Trail: 986", "canonicalTargets": ["ST-INS-04"] },
+    { "id": "HPM-06", "source": "docs/channel-audit-v1.md", "phrase": "Norwegen: 108", "canonicalTargets": ["ST-CON-12/16"] },
+    { "id": "HPM-07", "source": "docs/channel-audit-v1.md", "phrase": "Trolltunga: 149", "canonicalTargets": ["ST-CON-09/10"] },
+    { "id": "HPM-08", "source": "docs/channel-audit-v1.md", "phrase": "Traffic Sources für 19 Videos", "canonicalTargets": ["ST-INS-04"] },
+    { "id": "HPM-09", "source": "docs/creator-system.md", "phrase": "Low-Effort-Creator-System", "canonicalTargets": ["ST-CON-12/16"] },
+    { "id": "HPM-10", "source": "docs/seo.md", "phrase": "ausgewählten Reisevideos passende Website-Links", "canonicalTargets": ["ST-CON-11/15"] },
+    { "id": "HPM-11", "source": "docs/riverstar/entwurf.md", "phrase": "Gewässer/Ort der Uferbilder", "canonicalTargets": ["ST-PHOTO-01"] },
+    { "id": "HPM-12", "source": "docs/design-guide.md", "phrase": "Einheitlichen Design Guide und Hero-Standard", "canonicalTargets": ["ST-WEB-01"] },
+    { "id": "HPM-13", "source": "docs/responsive-templates.md", "phrase": "Zentrale responsive Unterseiten-Templates", "canonicalTargets": ["ST-WEB-02"] },
+    { "id": "HPM-14", "source": "docs/analytics.md", "phrase": "ANALYTICS 0–8", "canonicalTargets": ["ST-INS-04"] },
+    { "id": "HPM-15", "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md", "phrase": "Dokumentiert und im Projekt verankert am 23. September 2026", "canonicalTargets": ["ST-WEB-03"] },
+    { "id": "HPM-16", "source": "docs/vanventure-responsive-templates-auftrag.md", "phrase": "Zentrale responsive Unterseiten-Templates", "canonicalTargets": ["ST-WEB-02"] },
+    { "id": "HPM-17", "source": "docs/betrieb.md", "phrase": "Backup/Restore inklusive Cockpit-Tabellen", "canonicalTargets": ["ST-OPS-01"] },
+    { "id": "HPM-18", "source": "docs/betrieb.md", "phrase": "Bei jedem Web-Release", "canonicalTargets": ["ST-WEB-03"] }
+  ],
   "scrumPlanLifecycle": {
     "currentPath": "docs/scrum-plan.md",
     "currentState": "CANONICAL",

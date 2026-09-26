@@ -11,6 +11,12 @@ export function inspectPlanConsistency({ rootDir = projectRoot, register } = {})
   const planRegister = register ?? JSON.parse(read('docs/plan-register.json'));
   const canonicalPath = planRegister.canonicalPlan;
   const sources = planRegister.sources ?? [];
+  const phraseMappings = planRegister.historicalPhraseMappings ?? [];
+  let phraseMappingEvidence = '';
+  if (planRegister.historicalPhraseMappingEvidence) {
+    try { phraseMappingEvidence = read(planRegister.historicalPhraseMappingEvidence); }
+    catch { issues.push(`${planRegister.historicalPhraseMappingEvidence}: Nachweis für historische Formulierungszuordnungen fehlt.`); }
+  }
   const seen = new Set();
   let canonical = '';
 
@@ -44,14 +50,23 @@ export function inspectPlanConsistency({ rootDir = projectRoot, register } = {})
     }
     // Historical sources remain readable evidence. Their wording is not silently rewritten.
     for (const phrase of source.requiredCanonicalPhrases ?? []) {
-      if (!canonical.includes(phrase)) {
+      const mapping = phraseMappings.find(candidate => candidate.source === source.path && candidate.phrase === phrase);
+      if (mapping) {
+        const targets = mapping.canonicalTargets ?? [];
+        const mappingIsDocumented = phraseMappingEvidence.includes(mapping.id)
+          && phraseMappingEvidence.includes(source.path)
+          && phraseMappingEvidence.includes(phrase);
+        if (!mapping.id || !mappingIsDocumented || !targets.length || targets.some(target => !canonical.includes(target))) {
+          issues.push(`${source.path}: historische Formulierung hat keine auflösbare explizite Zuordnung: ${JSON.stringify(phrase)}.`);
+        }
+      } else if (!canonical.includes(phrase)) {
         issues.push(`${source.path}: bisherige Pflichtformulierung nicht wörtlich im Scrum-Plan gefunden (semantische Zuordnung offen): ${JSON.stringify(phrase)}.`);
       }
     }
   }
 
   const gate = planRegister.legacyPlanMigration;
-  if (!gate || gate.status !== 'PASSED') {
+  if (!gate || !['PASS', 'PASSED'].includes(gate.status)) {
     issues.push(`Historischer Planwechsel aus docs/ausbauplan.md ist ${gate?.status ?? 'UNDOCUMENTED'}; vollständiger Eintrag-für-Eintrag-Coverage-/Traceability-Nachweis fehlt.`);
   } else if (!gate.evidence || !fs.existsSync(path.join(rootDir, gate.evidence))) {
     issues.push('Historischer Planwechsel ist als PASSED markiert, aber der Nachweis fehlt.');

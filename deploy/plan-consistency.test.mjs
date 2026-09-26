@@ -30,13 +30,11 @@ function fixture(t, extraSources = []) {
   return { rootDir, register, write };
 }
 
-test('current project reports pending historical migration without claiming a global pass', () => {
+test('current project accepts documented historical mappings without requiring legacy wording verbatim', () => {
   const result = inspectPlanConsistency();
   assert.equal(result.canonicalPlan, 'docs/scrum-plan.md');
-  assert.equal(result.status, 'PENDING');
-  assert.ok(result.issues.some(issue => issue.includes('zweiter aktiver Plan') && issue.includes('docs/ausbauplan.md')));
-  assert.ok(result.issues.some(issue => issue.includes('Historischer Planwechsel') && issue.includes('OPEN')));
-  assert.throws(() => checkPlanConsistency(), /Planabgleich PENDING/);
+  assert.equal(result.status, 'PASS');
+  assert.doesNotThrow(() => checkPlanConsistency());
 });
 
 test('registered specialist module can pass without scanning unrelated Markdown', t => {

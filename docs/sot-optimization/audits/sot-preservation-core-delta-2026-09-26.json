@@ -1,0 +1,830 @@
+{
+  "schema_version": "1.0.0",
+  "status": "SOT_PRESERVATION_PASS",
+  "clause_count": 45,
+  "matrix": "docs/sot-optimization/sot-preservation-matrix.csv",
+  "source_sha256": {
+    "docs/sot-optimization/sot-preservation-matrix.csv": "5b4d57ed80fce4056a8a9a699db6420f1dfe385ee062dee4b4b9804b3a310f29",
+    "tools/sot/approval-flow.mjs": "fb7bf7e0dd2ae60f386bc4714be55f021e3ce4dc9ca5cc1fd995ccad4f270af6",
+    "tools/sot/approval-flow.test.mjs": "f2f757f0d68ed0a326feea508facf6c12c9e0551bbfc281e930371fd2c345426",
+    "tools/sot/conflict-check.mjs": "2a74f49c9cb2e9a4ec65b6ea5f0f70110314ddf9a85c3d486771e6a44fb20c42",
+    "tools/sot/conflict-check.test.mjs": "989f9c75ea5e7ec60f7afc8b7b26d80d6917210875876b4a46958da446a54e5d",
+    "tools/sot/decision-state.test.mjs": "10645c0dfbf194210b75b5cb6f38836b6f171441cb0157798f83375c68e7f9ee",
+    "tools/sot/done-guard.mjs": "880f82ec92cf0ab099d44433c3f0665add53ddc79dd427ebd056e6ce47a34323",
+    "tools/sot/done-guard.test.mjs": "b080a61a38cc0835b2a9eb8d394277f7e98c3b3242d3814683f06d585a2e7a9e",
+    "tools/sot/full-check.mjs": "ee45e02e261ac51a358d08b3fc847f0478bb31173f57ff8e2f3874c92b6588c7",
+    "tools/sot/full-check.test.mjs": "f33941560a6a4cc472f8774bf19f2c90940b68b93c9678cc141e3c6118e63bde",
+    "tools/sot/governance-workflow.test.mjs": "7aa9c4cc09bdf0f07da36d0a2ba4e1f66bef92cb045d88947ee5450a6c53a151",
+    "tools/sot/impact.mjs": "8eba8dea3df0f6fe8d3ed276a01dfef859501939313f78c24939737f844f6e14",
+    "tools/sot/impact.test.mjs": "40de39831215e598633109949fad28e0cf96a531bdbb1f1d6a4e2e6a4e3a35cf",
+    "tools/sot/incremental-audit.mjs": "8dee69038e11115affec94d0bb2671c761262e9396cbf3d9ee137f2f7d088abb",
+    "tools/sot/incremental-audit.test.mjs": "600207a5892e95569cd20410375fd44fe7206e6584e01e658bf8903dc195876f",
+    "tools/sot/intake-store.test.mjs": "11f8357abc7e871d41c19366d1de062bf4ee5c977e6230c6a3d7c9ee289bbfb4",
+    "tools/sot/intake.mjs": "4b9a38815504abde393043a2e8851ad95251da7329155650f7741ce5c79b231b",
+    "tools/sot/intake.test.mjs": "7bc7213c25e54bc8538ad000b1b5e0f49bffc65a84d17bc18dc433448e6c1fdc",
+    "tools/sot/post-validation.mjs": "fdd857740b464be59687989941d5433608534084f8c2d70b4fc69ed3c73df8b1",
+    "tools/sot/post-validation.test.mjs": "c7503d3bf44902563d59e8735510e5027133b0ba778d713518c63d52134ade95",
+    "tools/sot/project-audit.mjs": "78cd096fc8cc40108dafa13759228399a393a4aad3709bb3b6d37db9e997e4be",
+    "tools/sot/project-audit.test.mjs": "c9191c97e26f1adc793e6de26c17072b98774e5329050ddfaabd8762d1bb513e",
+    "tools/sot/scoped-coverage.test.mjs": "6e46ef815b4c27b402987cf97c19b681232275a08a077828f7f48d8e283721d5",
+    "tools/sot/sot-impact.mjs": "11cf47e359704a6c42da05346414229e6fef340071ffe933c80843410897ff94",
+    "tools/sot/sot-impact.test.mjs": "e4939a987c5ce281bd33e63e10b549aa308733de9c6e2cac08b1f221889b23e7",
+    "tools/sot/sot-update-plan.mjs": "f9ec466ea8b2845727506ed34ac6e1f821c63b584e7d098216cd94d1fb0af49e",
+    "tools/sot/sot-update-plan.test.mjs": "cfbe0861d308d36ab862db9df4e665e8e301cf11589e442e7d538158ef9a4475"
+  },
+  "missing_paths": [],
+  "test": {
+    "status": "PASS",
+    "command": "node --test tools/sot/approval-flow.test.mjs tools/sot/conflict-check.test.mjs tools/sot/decision-state.test.mjs tools/sot/done-guard.test.mjs tools/sot/full-check.test.mjs tools/sot/governance-workflow.test.mjs tools/sot/impact.test.mjs tools/sot/incremental-audit.test.mjs tools/sot/intake-store.test.mjs tools/sot/intake.test.mjs tools/sot/post-validation.test.mjs tools/sot/project-audit.test.mjs tools/sot/scoped-coverage.test.mjs tools/sot/sot-impact.test.mjs tools/sot/sot-update-plan.test.mjs",
+    "exit_code": 0
+  },
+  "clauses": [
+    {
+      "clause_id": "SOT-00.a",
+      "source_section": "SOT-00",
+      "source_lines": "16",
+      "requirement": "Neue Ideen, Pläne, Anforderungen und Entscheidungen erst nach Intake, Prüfung, Freigabe und SoT-Integration verbindlich",
+      "target_story": "ST-SOT-12..17",
+      "implementation": [
+        "tools/sot/approval-flow.mjs",
+        "tools/sot/conflict-check.mjs",
+        "tools/sot/impact.mjs",
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/intake.mjs",
+        "tools/sot/post-validation.mjs",
+        "tools/sot/sot-impact.mjs",
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/conflict-check.test.mjs",
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/governance-workflow.test.mjs",
+        "tools/sot/impact.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/intake-store.test.mjs",
+        "tools/sot/intake.test.mjs",
+        "tools/sot/post-validation.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-00.b",
+      "source_section": "SOT-00",
+      "source_lines": "18",
+      "requirement": "Chats, Notizen, Worker, Analysen und einzelne Dateien sind nicht automatisch verbindlich",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-01.a",
+      "source_section": "SOT-01",
+      "source_lines": "22-34",
+      "requirement": "Neue relevante Information aus allen neun genannten Herkunftsarten klassifizieren",
+      "target_story": "ST-SOT-12",
+      "implementation": [
+        "tools/sot/intake.mjs"
+      ],
+      "tests": [
+        "tools/sot/intake-store.test.mjs",
+        "tools/sot/intake.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-01.b",
+      "source_section": "SOT-01",
+      "source_lines": "36-47",
+      "requirement": "Intake-Klassen IDEA, Backlog, Requirement, Architektur, Design, Content, Sicherheit, Datenschutz, Prozess und Regeländerung erhalten",
+      "target_story": "ST-SOT-12",
+      "implementation": [
+        "tools/sot/intake.mjs"
+      ],
+      "tests": [
+        "tools/sot/intake-store.test.mjs",
+        "tools/sot/intake.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-02.a",
+      "source_section": "SOT-02",
+      "source_lines": "51-56",
+      "requirement": "Mindeststatus IDEA, PROPOSED, APPROVED, SUPERSEDED erhalten",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-02.b",
+      "source_section": "SOT-02",
+      "source_lines": "58-60",
+      "requirement": "REJECTED bleibt optional",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-02.c",
+      "source_section": "SOT-02",
+      "source_lines": "62",
+      "requirement": "Direktes APPROVED nur bei bereits ausdrücklicher Nutzerfreigabe",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.a",
+      "source_section": "SOT-03",
+      "source_lines": "68",
+      "requirement": "Zuständige bestehende SoT vor Übernahme bestimmen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.b",
+      "source_section": "SOT-03",
+      "source_lines": "69",
+      "requirement": "Identische bestehende Regel suchen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.c",
+      "source_section": "SOT-03",
+      "source_lines": "70",
+      "requirement": "Ähnliche oder teilweise überlappende Regel suchen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.d",
+      "source_section": "SOT-03",
+      "source_lines": "71",
+      "requirement": "Widerspruch gegen bestehende Regeln prüfen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.e",
+      "source_section": "SOT-03",
+      "source_lines": "72",
+      "requirement": "Erweiterung bestehender Regel prüfen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.f",
+      "source_section": "SOT-03",
+      "source_lines": "73",
+      "requirement": "Ersatz bestehender Regel prüfen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.g",
+      "source_section": "SOT-03",
+      "source_lines": "74",
+      "requirement": "Auswirkung auf andere Dokumente und Work Items prüfen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-03.h",
+      "source_section": "SOT-03",
+      "source_lines": "75",
+      "requirement": "Nötige Referenzanpassungen prüfen",
+      "target_story": "ST-SOT-13",
+      "implementation": [
+        "tools/sot/impact.mjs",
+        "tools/sot/sot-impact.mjs"
+      ],
+      "tests": [
+        "tools/sot/impact.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.a",
+      "source_section": "SOT-04",
+      "source_lines": "81",
+      "requirement": "Widersprüchliche aktive Regeln vor Freigabe erkennen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.b",
+      "source_section": "SOT-04",
+      "source_lines": "82",
+      "requirement": "Doppelte Regelführung vor Freigabe erkennen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.c",
+      "source_section": "SOT-04",
+      "source_lines": "83",
+      "requirement": "Mehrere SoTs für dasselbe Thema vor Freigabe erkennen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.d",
+      "source_section": "SOT-04",
+      "source_lines": "84",
+      "requirement": "Fälschlich gültige alte Regeln vor Freigabe erkennen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.e",
+      "source_section": "SOT-04",
+      "source_lines": "86",
+      "requirement": "Konflikte niemals still auflösen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-04.f",
+      "source_section": "SOT-04",
+      "source_lines": "88",
+      "requirement": "Erforderliche fachliche Entscheidung sichtbar als Nutzerentscheidung führen",
+      "target_story": "ST-SOT-14",
+      "implementation": [
+        "tools/sot/conflict-check.mjs"
+      ],
+      "tests": [
+        "tools/sot/conflict-check.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-05.a",
+      "source_section": "SOT-05",
+      "source_lines": "92-100",
+      "requirement": "Bis Freigabe IDEA oder PROPOSED beziehungsweise Backlog-Item",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-05.b",
+      "source_section": "SOT-05",
+      "source_lines": "102",
+      "requirement": "Vorbereitung und Dependency-Arbeit erlaubt, aber kein stiller Ersatz verbindlicher Regel",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-06.a",
+      "source_section": "SOT-06",
+      "source_lines": "106",
+      "requirement": "Erst ausdrückliche Freigabe macht Änderung verbindlich",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-06.b",
+      "source_section": "SOT-06",
+      "source_lines": "108-110",
+      "requirement": "Nach Freigabe Status APPROVED",
+      "target_story": "ST-SOT-15",
+      "implementation": [
+        "tools/sot/approval-flow.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.a",
+      "source_section": "SOT-07",
+      "source_lines": "114",
+      "requirement": "Nach Freigabe zuständige bestehende SoT aktualisieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.b",
+      "source_section": "SOT-07",
+      "source_lines": "118-131",
+      "requirement": "Genau eine Autorität je Thema, keine parallelen Dateien, bestehende Quelle weiterentwickeln",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.c",
+      "source_section": "SOT-07",
+      "source_lines": "135",
+      "requirement": "Bestehende Regeln erweitern oder ändern",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.d",
+      "source_section": "SOT-07",
+      "source_lines": "136,142-144",
+      "requirement": "Ersetzte Regeln entfernen oder nachvollziehbar SUPERSEDED markieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.e",
+      "source_section": "SOT-07",
+      "source_lines": "137",
+      "requirement": "Abhängigkeiten aktualisieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.f",
+      "source_section": "SOT-07",
+      "source_lines": "138",
+      "requirement": "Referenzen aktualisieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.g",
+      "source_section": "SOT-07",
+      "source_lines": "139",
+      "requirement": "Betroffene Dokumentation aktualisieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-07.h",
+      "source_section": "SOT-07",
+      "source_lines": "140",
+      "requirement": "ADR oder Änderungshistorie aktualisieren",
+      "target_story": "ST-SOT-16",
+      "implementation": [
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.a",
+      "source_section": "SOT-08",
+      "source_lines": "148",
+      "requirement": "Nach jedem SoT-Update validieren",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.b",
+      "source_section": "SOT-08",
+      "source_lines": "152",
+      "requirement": "Keine widersprüchlichen aktiven Regeln",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.c",
+      "source_section": "SOT-08",
+      "source_lines": "153",
+      "requirement": "Keine unbeabsichtigten Duplikate",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.d",
+      "source_section": "SOT-08",
+      "source_lines": "154",
+      "requirement": "Keine veralteten Referenzen",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.e",
+      "source_section": "SOT-08",
+      "source_lines": "155",
+      "requirement": "Keine zweite autoritative SoT je Thema",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.f",
+      "source_section": "SOT-08",
+      "source_lines": "156",
+      "requirement": "Keine aktive bereits ersetzte Regel",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-08.g",
+      "source_section": "SOT-08",
+      "source_lines": "157",
+      "requirement": "Abhängige Dokumente und Work Items konsistent",
+      "target_story": "ST-SOT-17",
+      "implementation": [
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/post-validation.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/post-validation.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-09.a",
+      "source_section": "SOT-09",
+      "source_lines": "161-173",
+      "requirement": "Workflow Classification, Impact, Conflict, Proposal, Approval, SoT/ADR-Update, Validation, DONE in Reihenfolge",
+      "target_story": "ST-SOT-12..18",
+      "implementation": [
+        "tools/sot/approval-flow.mjs",
+        "tools/sot/conflict-check.mjs",
+        "tools/sot/done-guard.mjs",
+        "tools/sot/impact.mjs",
+        "tools/sot/incremental-audit.mjs",
+        "tools/sot/intake.mjs",
+        "tools/sot/post-validation.mjs",
+        "tools/sot/sot-impact.mjs",
+        "tools/sot/sot-update-plan.mjs"
+      ],
+      "tests": [
+        "tools/sot/approval-flow.test.mjs",
+        "tools/sot/conflict-check.test.mjs",
+        "tools/sot/decision-state.test.mjs",
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/governance-workflow.test.mjs",
+        "tools/sot/impact.test.mjs",
+        "tools/sot/incremental-audit.test.mjs",
+        "tools/sot/intake-store.test.mjs",
+        "tools/sot/intake.test.mjs",
+        "tools/sot/post-validation.test.mjs",
+        "tools/sot/scoped-coverage.test.mjs",
+        "tools/sot/sot-impact.test.mjs",
+        "tools/sot/sot-update-plan.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-10.a",
+      "source_section": "SOT-10",
+      "source_lines": "177-179",
+      "requirement": "Bei dauerhaftem Projektwissen kein DONE vor zuständigem SoT-Update und Konsistenzprüfung",
+      "target_story": "ST-SOT-18",
+      "implementation": [
+        "tools/sot/done-guard.mjs"
+      ],
+      "tests": [
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-11.a",
+      "source_section": "SOT-11",
+      "source_lines": "183",
+      "requirement": "Kein DONE solange dauerhaftes Projektwissen nicht integriert ist",
+      "target_story": "ST-SOT-18",
+      "implementation": [
+        "tools/sot/done-guard.mjs"
+      ],
+      "tests": [
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-11.b",
+      "source_section": "SOT-11",
+      "source_lines": "185",
+      "requirement": "Worker-Ergebnisse, Chats und Reviews nie alleiniger Speicherort dauerhafter Entscheidung",
+      "target_story": "ST-SOT-18",
+      "implementation": [
+        "tools/sot/done-guard.mjs"
+      ],
+      "tests": [
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    },
+    {
+      "clause_id": "SOT-GOAL.a",
+      "source_section": "SOT-GOAL",
+      "source_lines": "189-199",
+      "requirement": "Widersprüche, veraltete Dokumente, parallele Wahrheiten, unklare Entscheidungen und verstreutes Wissen verhindern",
+      "target_story": "ST-SOT-31",
+      "implementation": [
+        "tools/sot/full-check.mjs",
+        "tools/sot/project-audit.mjs"
+      ],
+      "tests": [
+        "tools/sot/full-check.test.mjs",
+        "tools/sot/project-audit.test.mjs"
+      ],
+      "implementation_status": "TECHNICALLY_PRESERVED",
+      "semantic_verification": "PENDING_SEPARATE_REVIEW"
+    }
+  ],
+  "semantic_coverage": "PENDING_SEPARATE_REVIEW",
+  "product_release": false,
+  "live_verified": false,
+  "errors": []
+}
