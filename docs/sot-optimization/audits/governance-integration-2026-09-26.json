@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Local governance integration and Done safety; three named contracts only. No global semantic, CMS, Analytics or live certification.",
+  "created_at": "2026-09-26T15:25:40.304Z",
+  "source_sha256": {
+    "tools/sot/approval-flow.mjs": "fb7bf7e0dd2ae60f386bc4714be55f021e3ce4dc9ca5cc1fd995ccad4f270af6",
+    "tools/sot/approval-flow.test.mjs": "f2f757f0d68ed0a326feea508facf6c12c9e0551bbfc281e930371fd2c345426",
+    "tools/sot/baselines.mjs": "d65877a046a83e6de80c71dd550752d4b604075232c56408c394dfbc52ff9d77",
+    "tools/sot/baselines.test.mjs": "bfd4c2fe78a3f626c0a13035058390d97b2112c1c44ed8e2defae304dc7699eb",
+    "tools/sot/conflict-check.mjs": "2a74f49c9cb2e9a4ec65b6ea5f0f70110314ddf9a85c3d486771e6a44fb20c42",
+    "tools/sot/conflict-check.test.mjs": "989f9c75ea5e7ec60f7afc8b7b26d80d6917210875876b4a46958da446a54e5d",
+    "tools/sot/contract-invariants.mjs": "06f9ca3851acf1c6003c49ed926fa73729810515d1ce8df1d44167d5db419707",
+    "tools/sot/contract-invariants.test.mjs": "df5346716e957522272a139019224e650e05cee605815a3863a2937d613e9e6a",
+    "tools/sot/contracts.mjs": "ebac5dd65d39897ab2accc21ec9c91531246dd6ee16cd28a89c0c33b1328a1c3",
+    "tools/sot/contracts.test.mjs": "df8f91d9d9666a95155e9d2bf16a63663f3659d021a969f6f417b1a748383d7a",
+    "tools/sot/decision-state.mjs": "7566d53d5dc55f09cf6eccfefc919d027cc008cbaa483b8003bc4b39b7cc1efb",
+    "tools/sot/decision-state.test.mjs": "10645c0dfbf194210b75b5cb6f38836b6f171441cb0157798f83375c68e7f9ee",
+    "tools/sot/delta.mjs": "84bb6de313bdac6c8a4147a3b9d4bd38897f855faa1ae89ec2531cb635ca9453",
+    "tools/sot/delta.test.mjs": "6d72b1643c8466568f3685e7285b30a49029bb5d376763c9dd5c92b0d5fa812a",
+    "tools/sot/dependency-graph.mjs": "70a0ae804f23678ea7c560d55fa2ec9741b15699e78c2e249087e0184fee6ae1",
+    "tools/sot/dependency-graph.test.mjs": "5752acd9a3eabcff25fa019a6104a8a934c017f1b0f60eb399a0434594da7c57",
+    "tools/sot/done-guard.mjs": "880f82ec92cf0ab099d44433c3f0665add53ddc79dd427ebd056e6ce47a34323",
+    "tools/sot/done-guard.test.mjs": "b080a61a38cc0835b2a9eb8d394277f7e98c3b3242d3814683f06d585a2e7a9e",
+    "tools/sot/fast-check.mjs": "2137d76e2ba3d6c125c5468240d2873eb9e10c59433c0e9564bccb3c385f72cc",
+    "tools/sot/fast-check.test.mjs": "95bc7826820338e791b9460f1f650fce632bd60704cbcd583c3a3c454528abe0",
+    "tools/sot/full-check.mjs": "ee45e02e261ac51a358d08b3fc847f0478bb31173f57ff8e2f3874c92b6588c7",
+    "tools/sot/full-check.test.mjs": "0a4dc233ae17237c18ffd1b920146bba8a251443e51ddc7367e149df072937a4",
+    "tools/sot/governance-workflow.mjs": "f098d59f67ba0d573e4139a7fd3be3b1c7c51ef2a3d7369ed28e36d6a8fac0f0",
+    "tools/sot/governance-workflow.test.mjs": "225ba5634304ee16c75510906bde35ac1cc0b566bdd92c58b8d021a97d10b13f",
+    "tools/sot/impact.mjs": "8eba8dea3df0f6fe8d3ed276a01dfef859501939313f78c24939737f844f6e14",
+    "tools/sot/impact.test.mjs": "40de39831215e598633109949fad28e0cf96a531bdbb1f1d6a4e2e6a4e3a35cf",
+    "tools/sot/incremental-audit.mjs": "8dee69038e11115affec94d0bb2671c761262e9396cbf3d9ee137f2f7d088abb",
+    "tools/sot/incremental-audit.test.mjs": "600207a5892e95569cd20410375fd44fe7206e6584e01e658bf8903dc195876f",
+    "tools/sot/intake-store.mjs": "52f2afbe6c0808b1e8b056ee29a617910041be86fd74bf0102a06973b051fc00",
+    "tools/sot/intake-store.test.mjs": "11f8357abc7e871d41c19366d1de062bf4ee5c977e6230c6a3d7c9ee289bbfb4",
+    "tools/sot/intake.mjs": "4b9a38815504abde393043a2e8851ad95251da7329155650f7741ce5c79b231b",
+    "tools/sot/intake.test.mjs": "7bc7213c25e54bc8538ad000b1b5e0f49bffc65a84d17bc18dc433448e6c1fdc",
+    "tools/sot/module-registry.mjs": "ab7e000234b151616435a4816216f973e3c99485af898ffe80beef568ebc75b3",
+    "tools/sot/module-registry.test.mjs": "94637330b89e7c39b0ba0ae378f5303fe5aca433f895e1646ba4f86f43cd6a3d",
+    "tools/sot/post-validation.mjs": "b0acf97997466abf5e857d376fb7d60436535fc12b5d42db67c10dbd42cda1c6",
+    "tools/sot/post-validation.test.mjs": "1dd253508dae98ffb9161073d62d8c41c47ca26538f7762591b10e612236e508",
+    "tools/sot/progress.mjs": "4c08d458031dc4e28139b7fea91e0a98af0ed66a4356a93674caa49f2dd969e3",
+    "tools/sot/progress.test.mjs": "6bfe304dcf72f07f1323c218b99831097daac806564c8e3628221c09a7631fc4",
+    "tools/sot/project-governance-pilot.mjs": "0ad9fa6f909c16741473aeaa4208839b383c538f4692e201a9bd6a28b885099c",
+    "tools/sot/rule-catalogue.mjs": "b5b8482d10bd2784090eed393723d224cec22a134d658b843a506118b4b7070b",
+    "tools/sot/rule-catalogue.test.mjs": "c8265db2121f3bf19355dc899bdbce90158ef625e964f770a787ba30641a7f24",
+    "tools/sot/scope-review.mjs": "27e4111f862306a25a755e7f02122aad4500a86916ebafa5909c928713e4c1bf",
+    "tools/sot/scope-review.test.mjs": "e4ea3f210318f64bc2d5ea68053151dd8b7f3f0199d667622a45f8a63dc3afe1",
+    "tools/sot/scoped-coverage.mjs": "9ed014892f4927f59a25e93f558adebcd5d32dd75b7dffb4771fb0b2cfbd14af",
+    "tools/sot/scoped-coverage.test.mjs": "6e46ef815b4c27b402987cf97c19b681232275a08a077828f7f48d8e283721d5",
+    "tools/sot/sot-impact.mjs": "11cf47e359704a6c42da05346414229e6fef340071ffe933c80843410897ff94",
+    "tools/sot/sot-impact.test.mjs": "e4939a987c5ce281bd33e63e10b549aa308733de9c6e2cac08b1f221889b23e7",
+    "tools/sot/sot-update-plan.mjs": "436fe2089bd6c9da7cd9af66febd6d33056ce4f7bc35e7dab7c4b9856852d6a3",
+    "tools/sot/sot-update-plan.test.mjs": "19b3658cfa387ba530514f1485ef3f49a1e98d6c6604584c146952763f57df52",
+    "tools/sot/user-decision-evidence.mjs": "b698d5b2a680429985bbef84ab5c1f626b3095c8c40f6ea80b4242fc7778a553",
+    "tools/sot/user-decision-evidence.test.mjs": "818546af23799c91da003786f384a8562bb37aa9f81554ea711ba1680a3fb292",
+    "tools/sot/worker-runtime.mjs": "bbae2b19059682b5a5b1cc86b25f592dc02fc873e339a19ae6f01beaf6c8efa0",
+    "tools/sot/worker-runtime.test.mjs": "212188a48f08c23c7484080d6f5c2357ce30a44fb2e58106ba5ed50c6a57a0bc",
+    "tools/sot/worker-state.mjs": "47dac6f72890df4e1da85743c5fafa39a62b0a1aa08bca962e642f0808525b8d",
+    "tools/sot/worker-state.test.mjs": "0a3126db062eb703737374333d386dbb913458dece2ac05ab7f2f57d9dc069dd",
+    "tools/sot/wsjf.mjs": "39734044bfaf0241f07f7607eaf8b0d983d7752936c98934138a7ca7dacffcc6",
+    "tools/sot/wsjf.test.mjs": "4985c97fd9ed4881007f2705b4b25d7efd7be193f95ed41c052ca7d8f5822cac",
+    "docs/scrum-plan.md": "1871297946bc4084cb521de69a765164024092eb917c6f58851ce3f139ee1b84",
+    "docs/governance/source-of-truth-and-incremental-planning.md": "51af8e00d989aec71f81c2511c0e19df6620060c06523751ee93611dc882f455",
+    "docs/governance/module-registry.json": "9e2dd9ca4adce543ba0740cd3aa53595830b0fc5690343195356364b94d5e1b7",
+    "docs/governance/contracts.json": "6e106ec34934f84c08c40594dc9d0acb3eac17453d45f37fb1cd7f8779928154",
+    "docs/governance/dependency-graph.json": "d116e497aedd339e85ccca6431d8fad2eeb3d47d8f5d61cafe5acead832c5830"
+  },
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "tools/sot/governance-workflow.test.mjs",
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/worker-state.test.mjs",
+        "tools/sot/dependency-graph.test.mjs",
+        "tools/sot/contract-invariants.test.mjs"
+      ],
+      "exit_code": 0,
+      "stdout": "✔ work item resolves to exactly its recorded story and authoritative source reference (1.2748ms)\n✔ proposal is distinct from apply; apply needs source, owning module, approval and both checks (0.2754ms)\n✔ one active claim per work item and reassignment only after release with evidence (0.2376ms)\n✔ critical scope overlap requires coordination; independent scopes remain claimable (0.2072ms)\n✔ worker cannot mark own work Done without independent review and integration (0.1603ms)\n✔ CMS and analytics runtime boundaries cannot be certified from synthetic records (0.5741ms)\n✔ checked-in sources produce module, contract, story and work-item links (12.131ms)\n✔ impact expands through direct and transitive module and contract links (5.7272ms)\n✔ unknown nodes and dependency cycles invalidate the graph (0.5461ms)\n✔ runtime workers are only added from explicit input (0.1972ms)\n✔ allows DONE only with explicit SoT update and complete passing evidence (1.226ms)\n✔ allows an explicit scoped declaration that no SoT update is required (0.1545ms)\n✔ blocks absent update proof, even if the caller says no update was required without scope evidence (0.2943ms)\n✔ blocks unresolved conflicts and failed or missing required checks (0.3137ms)\n✔ blocks contract, dependency, consistency and post-validation failures independently (0.2916ms)\n✔ rejects duplicate check IDs and a not-required declaration for another scope (0.1791ms)\n✔ post-validation rejects duplicate names, hidden failures and unrelated scope (0.2969ms)\n✔ expected work item scope cannot be substituted by a self-consistent unrelated scope (0.1779ms)\n✔ disk-backed local pipeline persists exact approval, executes FAST checks and derives local DONE evidence (379.1504ms)\n✔ missing validators and mutated imported user evidence block before persistence or source writes (230.4733ms)\n✔ untrusted conflict reviewer cannot be replaced with the imported user decision (108.5094ms)\n✔ failed concrete post-check restores the original and preserves the failed audit (315.8927ms)\n✔ a nominal PASS with evidence for another source version is rejected and rolled back (323.0804ms)\n✔ changed source invalidates scoped review before any approval event is persisted (107.2858ms)\n✔ FULL escalation without required full validators blocks and rolls back (140.4492ms)\n✔ concurrent contract metadata edits cannot pass using old in-memory catalogues (311.3357ms)\n✔ whole-pipeline process interruption leaves durable recovery bound to original user evidence (406.3019ms)\n✔ the owner may also be the work-item source when exact approved bytes preserve its dependency graph (338.2758ms)\n✔ workflow scope must match the persisted proposal work-item binding (109.0445ms)\n✔ pinned on-disk evidence drives the actual reviewed worker state to Done (357.5758ms)\n✔ a different requested work item and non-Integration worker stage are rejected (334.2032ms)\n✔ changed result, failed post-check artifact, runtime binding and owner source cannot integrate (1372.0479ms)\n✔ legacy success gets a new pinned attestation without changing any original artifact (366.0739ms)\n✔ same work item has only one cross-process claim and a durable event (84.2177ms)\n✔ two processes cannot assign two active implementations to one worker (76.8214ms)\n✔ known IDs, one active implementation per worker and safe scope coordination (34.0361ms)\n✔ explicit coordination permits overlapping critical scopes (12.7802ms)\n✔ handover, review and integration are required before Done (42.6173ms)\n✔ reassignment is explicit, owner release is checked and Blocked is visible (46.2221ms)\n✔ scope extension unions new paths and preserves ownership, status and previous history (33.0436ms)\n✔ scope extension rejects wrong owner, missing reason and uncoordinated collision without writes (20.5265ms)\n✔ scope extension permits explicit shared coordination and refuses released work (34.5182ms)\n✔ integration rejects evidence belonging to another work item without changing durable state (30.5649ms)\n✔ integration captures detached evidence before waiting and snapshots reject substituted Done scope (44.831ms)\n✔ integration and persisted Done validation reject duplicate post-validation checks (47.6654ms)\nℹ tests 45\nℹ suites 0\nℹ pass 45\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5330.2192\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tools/sot/progress.mjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS {\"total\":198,\"done\":133,\"inProgress\":2,\"ready\":0,\"blocked\":1,\"open\":65,\"progress\":67.2}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "dac0199",
+        "--",
+        "docs/scrum-plan.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: LF will be replaced by CRLF in docs/governance/source-of-truth-and-incremental-planning.md.\nThe file will have its original line endings in your working directory\nwarning: LF will be replaced by CRLF in docs/governance/worker-state.json.\nThe file will have its original line endings in your working directory\nwarning: LF will be replaced by CRLF in tools/sot/done-guard.test.mjs.\nThe file will have its original line endings in your working directory\nwarning: LF will be replaced by CRLF in tools/sot/worker-state.mjs.\nThe file will have its original line endings in your working directory\nwarning: LF will be replaced by CRLF in tools/sot/worker-state.test.mjs.\nThe file will have its original line endings in your working directory\n"
+    }
+  ],
+  "impact": {
+    "schema_version": "1.0.0",
+    "change_kind": "SEMANTIC",
+    "mode": "FULL_CHECK",
+    "alert": "⚠ FULL CHECK REQUIRED",
+    "reasons": [
+      "FULL_TRIGGER:DEFINITION_OF_DONE",
+      "FULL_TRIGGER:APPROVAL_REVIEW_GATE",
+      "FULL_TRIGGER:SOT_GOVERNANCE"
+    ],
+    "scope": {
+      "changed_sections": [],
+      "changed_modules": [
+        "sot-architecture"
+      ],
+      "unresolved_modules": [],
+      "direct_nodes": [
+        "contract:SOT-DECISION-CHANGE",
+        "contract:WORKER-WORK-ASSIGNMENT",
+        "module:scrum-core",
+        "module:sot-architecture"
+      ],
+      "transitive_nodes": [
+        "contract:SCRUM-WORK-ITEM",
+        "contract:SOT-DECISION-CHANGE",
+        "contract:WORKER-WORK-ASSIGNMENT",
+        "module:scrum-core"
+      ],
+      "modules": [
+        "scrum-core",
+        "sot-architecture"
+      ],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
+      "work_items": [],
+      "stories": [],
+      "active_processes": []
+    }
+  },
+  "full_check": {
+    "schema_version": "1.0.0",
+    "alert": "⚠ FULL CHECK REQUIRED",
+    "status": "FULL_CHECK_PASS",
+    "reasons": [
+      "FULL_TRIGGER:APPROVAL_REVIEW_GATE",
+      "FULL_TRIGGER:DEFINITION_OF_DONE",
+      "FULL_TRIGGER:SOT_GOVERNANCE"
+    ],
+    "scope": {
+      "modules": [
+        "scrum-core",
+        "sot-architecture"
+      ],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
+      "work_items": [],
+      "active_processes": []
+    },
+    "checks": [
+      {
+        "type": "dependency_graph",
+        "id": "scoped-graph",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      },
+      {
+        "type": "module",
+        "id": "scrum-core",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      },
+      {
+        "type": "module",
+        "id": "sot-architecture",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "SCRUM-WORK-ITEM",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "SOT-DECISION-CHANGE",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "WORKER-WORK-ASSIGNMENT",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/governance-integration-2026-09-26.json"
+      }
+    ]
+  },
+  "project_pilot": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+}

@@ -1,0 +1,357 @@
+KORREKTUR – SOT-/OPTIMIERUNGSARCHITEKTUR SAUBER INTEGRIEREN UND AUSBAUPLAN.MD KORREKT BEHANDELN
+Der zentrale Scrum-Plan:
+docs/scrum-plan.md
+ist die erfolgreich auditierte und geschützte Golden Baseline.
+Der neue SoT-/Optimierungs-/spätere WSJF-/Multi-Agent-Umbau darf:
+- keinen konkurrierenden zweiten Gesamtplan erzeugen;
+- den Golden Scrum Plan nicht unnötig aufblasen;
+- bereits abgeschlossene Migrationen nicht erneut durchführen;
+- keine bestehenden Regeln stillschweigend verändern.
+Gleichzeitig muss die vollständige Implementierungsliste des neuen Umbaus dauerhaft sichtbar, aktuell und ausführbar bleiben.
+1. AUSBAUPLAN.MD ZUERST KORREKT EINORDNEN
+docs/ausbauplan.md existierte bereits vor dem neuen SoT-/Optimierungsauftrag.
+In dieser Datei wurden zuletzt ungefähr 494 neue, noch nicht commitete Zeilen zum SoT-/Optimierungsumbau ergänzt.
+Bevor irgendetwas mit dem alten ausbauplan.md geschieht:
+prüfe read-only, ob dessen historischer Altbestand bereits Bestandteil der erfolgreich abgeschlossenen Scrum-Migration war.
+Prüfe mindestens:
+- source-inventory.csv
+- Original-Candidate-Tabelle
+- Successors
+- Traceability-Matrix
+- Coverage-Berichte
+- Recovery-Berichte
+- Final-Audit-Berichte
+- docs/scrum-plan.md
+Beantworte intern eindeutig:
+1. War docs/ausbauplan.md eine Quelle der abgeschlossenen Migration?
+2. Welche Source-IDs stammen daraus?
+3. Sind diese vollständig durch Original-Candidates abgedeckt?
+4. Sind sie vollständig tracebar in den finalen Scrum-Plan bzw. andere vorgesehene Zielstellen?
+5. Gibt es tatsächlich noch historischen Altbestand, der nicht migriert wurde?
+Die ca. 494 zuletzt ergänzten SoT-/Optimierungszeilen dürfen nicht als historischer Altbestand gewertet werden.
+Wenn die historische Datei vollständig migriert wurde:
+Status:
+LEGACY_AUSBAUPLAN_MIGRATION = COMPLETE
+Dann keine zweite Migration starten.
+Wenn tatsächlich eine belegte Alt-Lücke existiert:
+nur diese konkrete Lücke dokumentieren und nicht automatisch eine Gesamtmigration starten.
+2. DIE NEUEN 494 ZEILEN AUS AUSBAUPLAN.MD WIEDER ENTFERNEN
+Die zuletzt für SoT/Optimierung ergänzten, noch nicht committeten Zeilen gehören nicht in docs/ausbauplan.md.
+Entferne ausschließlich diese neuen Ergänzungen.
+Dabei:
+- keinen historischen Altbestand verändern;
+- keine alten Aufgaben löschen;
+- keine bestehenden Statuswerte umschreiben;
+- keine historischen Referenzen verändern.
+Ziel:
+docs/ausbauplan.md entspricht danach wieder exakt seinem Zustand vor der neuen SoT-/Optimierungserweiterung.
+Prüfe dies über Git-Diff.
+3. KEINEN NEUEN MONOLITHISCHEN GESAMTPLAN ERZEUGEN
+Die kompletten SoT-/Optimierungsdetails dürfen weder:
+- in docs/ausbauplan.md
+- noch vollständig in docs/scrum-plan.md
+abgelegt werden.
+docs/scrum-plan.md bleibt der Lean Scrum Core.
+Er enthält für dieses Vorhaben nur:
+- Epic
+- Ziel
+- Stories / größere Slices
+- Dependencies
+- Status
+- Acceptance Criteria auf geeigneter Steuerungsebene
+- Verweis auf das autoritative Fachmodul
+Keine hunderten technischen Detailzeilen in den Scrum-Core kopieren.
+4. AUTORITATIVES FACHMODUL ANLEGEN
+Lege genau eine autoritative Detailquelle für diesen Umbau an:
+docs/governance/source-of-truth-and-incremental-planning.md
+Diese Datei ist:
+kein zweiter Scrum-Plan.
+Sie ist das autoritative Fachmodul für das Epic:
+Source-of-Truth & Incremental Planning Architecture
+Zuständigkeiten:
+docs/scrum-plan.md
+= Scrum-Steuerung und Core-Regeln
+docs/governance/source-of-truth-and-incremental-planning.md
+= detaillierte SoT-/Optimierungsarchitektur und vollständige Implementierungsliste
+Keine Varianten wie:
+- sot-plan-v2.md
+- optimization-final.md
+- source-of-truth-new.md
+- weitere parallele aktive Planfassungen
+erzeugen.
+5. VOLLSTÄNDIGE IMPLEMENTIERUNGSLISTE ÜBERNEHMEN
+Das Fachmodul muss die gesamte Implementierungsstruktur enthalten.
+Nicht nur aktuelle oder nächste Schritte.
+Mindestens enthalten:
+Golden Baseline / Schutz
+- Schutz des auditierten Scrum-Plans
+- Wiederherstellungsreferenz
+- Delta-Schutz
+- Rollback
+Requirements Preservation
+- bestehenden SoT-Plan vollständig erfassen
+- bestehenden WSJF-/Multi-Agent-Plan erfassen
+- Preservation Matrix
+FAST MERGE CHECK
+- SoT vs. Optimierung
+- SoT vs. WSJF/Multi-Agent
+- Optimierung vs. WSJF/Multi-Agent
+- COMPATIBLE
+- MERGE_REQUIRED
+- CONFLICT
+Performance Enablement
+- Module Registry
+- Contracts
+- Dependency Graph
+- Impact Engine
+- FAST CHECK
+- FULL CHECK
+- Baseline System
+- Delta Detection
+- Incremental Audit
+Source-of-Truth Governance
+- Intake
+- Klassifizierung
+- SoT Impact Check
+- Conflict Check
+- Approval
+- SoT Update
+- Post Validation
+- DoD Guards
+WSJF / Multi-Agent
+- WSJF
+- Worker/Subagents
+- parallele Arbeit
+- Ownership
+- Claiming/Locking
+- Dependencies
+- Handover
+- Cross-Chat
+Modularisierung
+- Lean Scrum Core
+- Fachmodule
+- generierte Gesamtsicht
+Betrieb
+- Monitoring
+- Planpflege
+- Fortschrittscounter
+- Next-Best-Work
+- Git Hygiene
+- End-to-End Validation
+Keine bereits definierte Anforderung verlieren.
+6. IMPLEMENTIERUNGSPLAN LAUFEND AKTUELL HALTEN
+Das Fachmodul ist während der gesamten Umsetzung das vollständige Execution Backlog dieses Epics.
+Jedes Work Item erhält einen Status:
+- TODO
+- READY
+- IN_PROGRESS
+- BLOCKED
+- DONE
+Erledigte Items bleiben sichtbar und werden durchgestrichen:
+- [x] ~~WI-xxx – Beschreibung~~
+Laufende Items:
+- [ ] IN_PROGRESS – WI-xxx – Beschreibung
+Blockierte Items:
+- [ ] BLOCKED – WI-xxx – Grund
+Keine erledigten Punkte löschen.
+Wenn neue notwendige Arbeit entsteht:
+- neues Work Item in denselben Plan aufnehmen;
+- Dependency angeben;
+- priorisieren;
+- Counter neu berechnen.
+Keine versteckte Arbeit außerhalb des Plans.
+7. FORTSCHRITTSCOUNTER
+Aus dem tatsächlichen Work-Item-Status automatisch berechnen:
+Total Work Items: X
+Done: X
+In Progress: X
+Ready: X
+Blocked: X
+Open: X
+Progress: XX %
+Keine Schätzwerte verwenden.
+Wenn neue notwendige Items hinzukommen, Total nachvollziehbar erhöhen.
+8. AKTUELLE ARBEIT + NÄCHSTE EMPFEHLUNG SICHTBAR MACHEN
+Regelmäßig kompakt ausgeben:
+Phase:
+Current Work Items:
+Active Workers:
+Status:
+Next Recommended:
+Parallel Candidates:
+Blocked:
+Done / Total:
+Progress:
+Nach jedem abgeschlossenen Item aktiv bestimmen:
+NEXT RECOMMENDATION: WI-xxx
+mit kurzer Begründung.
+Priorisierung für den schnellsten Gesamtabschluss:
+1. Critical-Path-Blocker
+2. Enabler für viele Nachfolger
+3. Dependency-Unblocker
+4. kleine High-Enablement-Arbeiten
+5. danach normale Priorisierung / WSJF
+Wenn sinnvoll:
+PARALLEL RECOMMENDATION: WI-xxx + WI-yyy
+9. PARALLELE WORKER AKTIV NUTZEN
+Unabhängige Work Items dürfen und sollen parallel bearbeitet werden, wenn dadurch die Gesamtdauer sinkt.
+Parallelisierung nur wenn:
+- keine gleichen Dateien gleichzeitig verändert werden;
+- keine konkurrierenden Planabschnitte verändert werden;
+- keine offenen gegenseitigen Dependencies bestehen;
+- keine konkurrierenden Architekturentscheidungen entstehen;
+- Contracts klar sind;
+- Merge-Reihenfolge bekannt ist.
+Vor Start:
+CLAIMED_BY: <worker>
+Jeder Worker erhält:
+- Work Item
+- Scope
+- erlaubte Dateien
+- verbotene Dateien
+- Dependencies
+- erwartetes Ergebnis
+- notwendige Checks
+Kein Worker arbeitet außerhalb seines Claims.
+10. FAST CHECK IST DER NORMALE PRÜFMODUS
+Nicht jedes Work Item benötigt einen Full Check.
+Der Impact-Mechanismus entscheidet zwischen:
+- NO_CHECK
+- FAST_CHECK
+- FULL_CHECK
+Normalfall
+FAST_CHECK
+prüft ausschließlich:
+- tatsächliches Delta
+- direkt betroffene Module
+- relevante Contracts
+- direkte Dependencies
+- relevante Traceability
+- relevante Tests
+- Referenzen
+- git diff --check
+Ergebnis:
+FAST_CHECK_PASS
+oder
+FAST_CHECK_BLOCKED
+Kein globaler Scrum-Audit.
+FULL CHECK
+Nur bei Eskalationskriterien:
+- Scrum-Core-Änderung
+- Definition of Done
+- Statusmodell
+- zentrale Governance
+- Security/Auth
+- Cross-Domain
+- Contract-Bruch
+- mehrere Kernmodule
+- unklarer Impact
+- erkannte Inkonsistenz
+Dann:
+⚠ FULL CHECK REQUIRED
+Auch dieser Check bleibt impact-basiert und wiederholt nicht automatisch die historische Scrum-Migration.
+11. MINIMALE INTEGRATION IN docs/scrum-plan.md
+Ergänze in docs/scrum-plan.md ausschließlich eine kleine additive Epic-/Story-Struktur für:
+Source-of-Truth & Incremental Planning Architecture
+mit Verweis auf:
+docs/governance/source-of-truth-and-incremental-planning.md
+Vor Änderung:
+- Golden-Baseline-Diff bestimmen;
+- Impact bestimmen.
+Wenn ausschließlich:
+- additive Epic-/Story-Struktur
+- Referenz auf das Fachmodul
+ergänzt wird und keine bestehende Core-Regel verändert wird:
+FAST_CHECK
+verwenden.
+Wenn bestehende auditierte Core-Regeln semantisch geändert werden müssten:
+⚠ FULL CHECK REQUIRED
+Vorher anhalten und konkreten Impact nennen.
+12. AUSBAUPLAN.MD NICHT ERNEUT MIGRIEREN
+Nach der Prüfung aus Punkt 1 gilt:
+Falls historische Migration vollständig
+LEGACY_AUSBAUPLAN_MIGRATION = COMPLETE
+Dann:
+keine erneute Migration durchführen.
+Prüfe lediglich:
+- warum die Datei weiterhin aktiv referenziert wird;
+- ob diese Referenzen historisch, operativ oder noch notwendig sind;
+- ob sie später kontrolliert auf die neuen autoritativen Zielstellen umgestellt werden können.
+Daraus gegebenenfalls ein kleines späteres Cleanup-Work-Item erzeugen:
+Legacy Ausbauplan Reference Cleanup
+Dieses darf die aktuelle SoT-/Optimierungsimplementierung nicht blockieren.
+Falls tatsächlich nicht migrierter Altinhalt gefunden wird
+Nur die konkret fehlenden Source-IDs/Inhalte dokumentieren.
+Keine neue Gesamtmigration beginnen.
+Zunächst als:
+LEGACY_AUSBAUPLAN_COVERAGE_GAP
+ausweisen und Impact bestimmen.
+13. GIT-HYGIENE
+Reihenfolge für diese Korrektur:
+1. Git-Status prüfen.
+2. Nur die zuletzt hinzugefügten ca. 494 SoT-/Optimierungszeilen aus ausbauplan.md entfernen.
+3. Historischen Altbestand unverändert lassen.
+4. Autoritatives Fachmodul anlegen.
+5. Vollständige Implementierungsliste dorthin übernehmen.
+6. Minimalen Epic-/Story-Verweis in docs/scrum-plan.md ergänzen.
+7. FAST CHECK durchführen, sofern keine Core-Regel semantisch verändert wird.
+8. Diff gegen Golden Baseline prüfen.
+9. git diff --check.
+10. Tests/Referenzen prüfen.
+11. Danach sauber committen.
+Commits:
+- klein
+- logisch
+- nachvollziehbar
+- möglichst Work-Item-bezogen
+Keine Misch-Commits.
+Parallele Worker bevorzugt:
+- getrennte Worktrees/Branches
+- oder garantiert disjunkte Dateien
+nutzen.
+14. DANACH AUTOMATISCH MIT DER EIGENTLICHEN UMSETZUNG FORTFAHREN
+Sobald:
+- ausbauplan.md sauber bereinigt ist;
+- das historische Migrationsverhältnis geklärt ist;
+- das autoritative Fachmodul existiert;
+- der minimale Scrum-Epic-Verweis integriert ist;
+- Golden Baseline weiterhin geschützt ist;
+- FAST CHECK bestanden ist;
+nicht auf eine weitere Nutzeranweisung warten.
+Beginne mit:
+Phase 1 – Requirements Preservation
+danach:
+FAST MERGE CHECK
+und anschließend, sofern kein echter Nutzerblocker besteht:
+Wave 1 – Performance Enablement
+Reihenfolge zunächst:
+1. Module Registry
+2. Contracts
+3. Dependency / Impact Graph
+4. FAST CHECK Engine
+5. FULL CHECK Escalation
+6. Baselines
+7. Delta Detection
+8. Incremental Audit
+Danach erst:
+Wave 2 – SoT Governance
+sodass die SoT-Implementierung bereits von der schnelleren Infrastruktur profitiert.
+Nach jedem Item:
+- Plan aktualisieren
+- DONE durchstreichen
+- Counter aktualisieren
+- Next Recommendation bestimmen
+- Parallel Candidates bestimmen
+- automatisch weiterarbeiten, solange kein echter Nutzerblocker besteht.
+ERFOLGSKRITERIUM
+Am Ende dieser Strukturkorrektur existiert:
+ein zentraler auditierter Scrum-Core
+docs/scrum-plan.md
+plus:
+ein autoritatives Fachmodul für den neuen Umbau
+docs/governance/source-of-truth-and-incremental-planning.md
+und:
+kein konkurrierender zweiter Gesamtplan.
+docs/ausbauplan.md wird nicht auf Verdacht erneut migriert.
+Sein historischer Migrationsstatus wird anhand der bereits abgeschlossenen Migration eindeutig bestimmt.
+Die vollständige neue Implementierungsliste bleibt trotzdem jederzeit sichtbar, aktuell und ausführbar.

@@ -1,71 +1,375 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 13,
+  "revision": 32,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root",
       "claimed_at": "2026-09-26T14:57:10.091Z",
       "write_scope": [
+        "docs/sot-optimization/audits/project-governance-pilot",
         "docs/sot-optimization/reviews/scope-review-2026-09-26.md",
+        "tools/sot/project-governance-pilot.mjs",
         "tools/sot/scope-review.mjs",
         "tools/sot/scope-review.test.mjs",
         "tools/sot/scoped-coverage.mjs",
         "tools/sot/scoped-coverage.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "Source-bound scope coverage for the actual proposal; all 281 units inventoried, five target rules included; eight global gaps preserved.",
+        "files": [
+          "docs/sot-optimization/audits/project-governance-pilot",
+          "docs/sot-optimization/reviews/scope-review-2026-09-26.md",
+          "tools/sot/project-governance-pilot.mjs",
+          "tools/sot/scope-review.mjs",
+          "tools/sot/scope-review.test.mjs",
+          "tools/sot/scoped-coverage.mjs",
+          "tools/sot/scoped-coverage.test.mjs"
+        ],
+        "tests": [
+          "213/213 governance regressions PASS",
+          "Independent actual project pilot review PASS"
+        ],
+        "limitations": [
+          "Acceptance restricted to the concrete pilot scope; global coverage remains partial."
+        ],
+        "follow_up": [
+          "Apply same evidence checks to each later proposal."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        ],
+        "at": "2026-09-26T15:23:16.654Z"
+      },
+      "review": {
+        "reviewer_id": "/root/coverage_path",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T15:23:16.662Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T15:23:16.669Z"
+      },
+      "blocked_by": null,
+      "completion_evidence": {
+        "scope": "WI-SOT-13-07",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-13-07",
+          "reason": "Component acceptance; the actual source update is separately integrated as WI-SOT-16-01.",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "component-and-project-pilot",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "alert": null,
+          "updated_modules": [
+            "sot-architecture"
+          ],
+          "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+          "checks": [
+            {
+              "name": "registry",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "current_sources",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "delta",
+              "status": "PASS",
+              "detail": "updated=sot-architecture; changed=sot-architecture"
+            },
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-13-07",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-13-07"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     },
     "WI-SOT-16-01": {
       "work_item_id": "WI-SOT-16-01",
-      "execution_state": "Review",
+      "execution_state": "Done",
       "assigned_agent": "/root/write_boundary",
-      "claimed_at": "2026-09-26T14:45:19.229Z",
+      "claimed_at": "2026-09-26T15:02:22.142Z",
       "write_scope": [
-        "docs/sot-optimization/reviews/sot-write-boundary-2026-09-26.md",
-        "tools/sot/sot-update-plan.mjs",
-        "tools/sot/sot-update-plan.test.mjs"
+        "docs/sot-optimization/reviews/governance-workflow-2026-09-26.md",
+        "tools/sot/governance-workflow.mjs",
+        "tools/sot/governance-workflow.test.mjs"
       ],
       "coordination_ref": null,
       "handoff": {
-        "summary": "Local safety slice ready for review; parent integration item remains incomplete.",
+        "summary": "Actual source update and immutable evidence integration verified.",
         "files": [
-          "tools/sot/sot-update-plan.mjs",
-          "tools/sot/sot-update-plan.test.mjs"
+          "tools/sot/governance-workflow.mjs",
+          "tools/sot/governance-workflow.test.mjs"
         ],
         "tests": [
-          "22 targeted tests PASS; crash recovery exercised"
+          "15/15 workflow regression tests PASS",
+          "Actual project pilot FAST_CHECK_PASS and POST_VALIDATION_PASS"
         ],
         "limitations": [
-          "Shared-state integration and end-to-end gates remain open."
+          "Local metadata scope only; no product release."
         ],
         "follow_up": [
-          "Complete parent integration after prerequisites."
+          "Maintain subsequent status as a new delta."
         ],
         "decision_refs": [
-          "docs/sot-optimization/reviews/sot-write-boundary-2026-09-26.md"
+          "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
         ],
-        "at": "2026-09-26T14:53:34.535Z"
+        "at": "2026-09-26T15:22:35.630Z"
       },
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T15:22:35.636Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T15:22:35.648Z"
+      },
+      "blocked_by": null,
+      "completion_evidence": {
+        "scope": "WI-SOT-16-01",
+        "sotUpdate": {
+          "required": true,
+          "updated_module_ids": [
+            "sot-architecture"
+          ],
+          "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.json"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "incremental-audit",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "alert": null,
+          "updated_modules": [
+            "sot-architecture"
+          ],
+          "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+          "checks": [
+            {
+              "name": "registry",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "current_sources",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "delta",
+              "status": "PASS",
+              "detail": "updated=sot-architecture; changed=sot-architecture"
+            },
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+            }
+          ],
+          "scope": "WI-SOT-16-01"
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-16-01",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-16-01"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "UPDATE_EVIDENCE_AND_POST_VALIDATION_PASS"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     },
     "WI-SOT-19-08": {
       "work_item_id": "WI-SOT-19-08",
-      "execution_state": "Review",
-      "assigned_agent": "/root/wsjf_safety",
-      "claimed_at": "2026-09-26T14:45:19.242Z",
-      "write_scope": [
-        "docs/sot-optimization/reviews/wsjf-safety-2026-09-26.md",
-        "tools/sot/wsjf.mjs",
-        "tools/sot/wsjf.test.mjs"
-      ],
+      "execution_state": "Backlog",
+      "assigned_agent": null,
+      "claimed_at": null,
+      "write_scope": [],
       "coordination_ref": null,
       "handoff": {
         "summary": "Local safety slice ready for review; parent integration item remains incomplete.",
@@ -87,13 +391,19 @@
         ],
         "at": "2026-09-26T14:53:34.543Z"
       },
-      "review": null,
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/wsjf-safety-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T15:02:22.121Z"
+      },
       "integration": null,
       "blocked_by": null
     },
     "WI-SOT-15-07": {
       "work_item_id": "WI-SOT-15-07",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root/coverage_path",
       "claimed_at": "2026-09-26T14:56:50.019Z",
       "write_scope": [
@@ -102,6 +412,202 @@
         "tools/sot/decision-state.mjs",
         "tools/sot/user-decision-evidence.mjs",
         "tools/sot/user-decision-evidence.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Actual original user evidence imported, persisted and reverified against exact proposal and source before applying.",
+        "files": [
+          "tools/sot/approval-flow.mjs",
+          "tools/sot/approval-flow.test.mjs",
+          "tools/sot/decision-state.mjs",
+          "tools/sot/user-decision-evidence.mjs",
+          "tools/sot/user-decision-evidence.test.mjs"
+        ],
+        "tests": [
+          "213/213 governance regressions PASS",
+          "Independent actual project pilot review PASS"
+        ],
+        "limitations": [
+          "Acceptance restricted to the concrete pilot scope; global coverage remains partial."
+        ],
+        "follow_up": [
+          "Apply same evidence checks to each later proposal."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        ],
+        "at": "2026-09-26T15:23:16.678Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T15:23:16.686Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T15:23:16.693Z"
+      },
+      "blocked_by": null,
+      "completion_evidence": {
+        "scope": "WI-SOT-15-07",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-15-07",
+          "reason": "Component acceptance; the actual source update is separately integrated as WI-SOT-16-01.",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "component-and-project-pilot",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "alert": null,
+          "updated_modules": [
+            "sot-architecture"
+          ],
+          "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+          "checks": [
+            {
+              "name": "registry",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "current_sources",
+              "status": "PASS",
+              "detail": ""
+            },
+            {
+              "name": "delta",
+              "status": "PASS",
+              "detail": "updated=sot-architecture; changed=sot-architecture"
+            },
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-15-07",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-15-07"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
+    },
+    "WI-SOT-18-03": {
+      "work_item_id": "WI-SOT-18-03",
+      "execution_state": "In Progress",
+      "assigned_agent": "/root/wsjf_safety",
+      "claimed_at": "2026-09-26T15:02:22.157Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/done-scope-binding-2026-09-26.md",
+        "tools/sot/done-guard.mjs",
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/worker-state.mjs",
+        "tools/sot/worker-state.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": null,
+      "review": null,
+      "integration": null,
+      "blocked_by": null
+    },
+    "WI-SOT-07-10": {
+      "work_item_id": "WI-SOT-07-10",
+      "execution_state": "In Progress",
+      "assigned_agent": "/root/coverage_path",
+      "claimed_at": "2026-09-26T15:25:10.366Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-check-profiles-2026-09-26.md",
+        "tools/sot/project-check-profiles.mjs",
+        "tools/sot/project-check-profiles.test.mjs"
       ],
       "coordination_ref": null,
       "handoff": null,
@@ -237,6 +743,192 @@
       "event": "START",
       "work_item_id": "WI-SOT-13-07",
       "actor": "/root"
+    },
+    {
+      "event_id": "765a750a-cd27-4640-8b3d-de78e3ff0956",
+      "at": "2026-09-26T15:02:22.121Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-19-08",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-safety-2026-09-26.md"
+    },
+    {
+      "event_id": "bbf7f7b5-0d8b-4b6c-a3c2-0382074d34c1",
+      "at": "2026-09-26T15:02:22.128Z",
+      "event": "RELEASE",
+      "work_item_id": "WI-SOT-19-08",
+      "actor": "/root/wsjf_safety",
+      "reason": "Reviewed scoring slice integrated in 7c25995; parent shared-state integration remains open."
+    },
+    {
+      "event_id": "ac1a2dc5-e619-464b-a7e4-be997b639eee",
+      "at": "2026-09-26T15:02:22.134Z",
+      "event": "RELEASE",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root/write_boundary",
+      "reason": "Expand scope from reviewed write boundary to orchestration walking skeleton."
+    },
+    {
+      "event_id": "088a4429-ff12-4456-b707-537908fc0b82",
+      "at": "2026-09-26T15:02:22.142Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root/write_boundary",
+      "write_scope": [
+        "docs/sot-optimization/reviews/governance-workflow-2026-09-26.md",
+        "tools/sot/governance-workflow.mjs",
+        "tools/sot/governance-workflow.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "a64c73bf-a7e6-4860-856e-287e2ad729de",
+      "at": "2026-09-26T15:02:22.149Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root/write_boundary"
+    },
+    {
+      "event_id": "12c53cc9-8a50-4df4-9fca-bf2a9c387d34",
+      "at": "2026-09-26T15:02:22.157Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-18-03",
+      "actor": "/root/wsjf_safety",
+      "write_scope": [
+        "docs/sot-optimization/reviews/done-scope-binding-2026-09-26.md",
+        "tools/sot/done-guard.mjs",
+        "tools/sot/done-guard.test.mjs",
+        "tools/sot/worker-state.mjs",
+        "tools/sot/worker-state.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "c06d46f9-df70-4af2-b773-3beca6b2e8ef",
+      "at": "2026-09-26T15:02:22.163Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-18-03",
+      "actor": "/root/wsjf_safety"
+    },
+    {
+      "event_id": "26e87b1e-59d2-4571-b31b-cd3da82e25ec",
+      "at": "2026-09-26T15:12:31.733Z",
+      "event": "EXTEND_SCOPE",
+      "work_item_id": "WI-SOT-13-07",
+      "actor": "/root",
+      "reason": "Controller records ownership of the concrete source-bound project pilot and its immutable evidence; other workers have disjoint files.",
+      "previous_scope": [
+        "docs/sot-optimization/reviews/scope-review-2026-09-26.md",
+        "tools/sot/scope-review.mjs",
+        "tools/sot/scope-review.test.mjs",
+        "tools/sot/scoped-coverage.mjs",
+        "tools/sot/scoped-coverage.test.mjs"
+      ],
+      "write_scope": [
+        "docs/sot-optimization/audits/project-governance-pilot",
+        "docs/sot-optimization/reviews/scope-review-2026-09-26.md",
+        "tools/sot/project-governance-pilot.mjs",
+        "tools/sot/scope-review.mjs",
+        "tools/sot/scope-review.test.mjs",
+        "tools/sot/scoped-coverage.mjs",
+        "tools/sot/scoped-coverage.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "6dcf010a-d115-4331-a94d-a8f50011cfe1",
+      "at": "2026-09-26T15:22:35.630Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root/write_boundary",
+      "summary": "Actual source update and immutable evidence integration verified."
+    },
+    {
+      "event_id": "9ae3896d-798d-4983-9a3c-f076498982fc",
+      "at": "2026-09-26T15:22:35.636Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    {
+      "event_id": "41d0ec68-b345-4697-87db-69d8cebf77c8",
+      "at": "2026-09-26T15:22:35.648Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-16-01",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "f41bc08c-307e-43a6-a954-2300fba08073",
+      "at": "2026-09-26T15:23:16.654Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-13-07",
+      "actor": "/root",
+      "summary": "Source-bound scope coverage for the actual proposal; all 281 units inventoried, five target rules included; eight global gaps preserved."
+    },
+    {
+      "event_id": "fffacffd-e2bf-4fba-a1f7-365353b06426",
+      "at": "2026-09-26T15:23:16.662Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-13-07",
+      "actor": "/root/coverage_path",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    {
+      "event_id": "cf9dbb38-935b-4442-a7c0-43395ca34bf4",
+      "at": "2026-09-26T15:23:16.669Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-13-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "8b548649-2257-4ea6-845b-f1a3b54211aa",
+      "at": "2026-09-26T15:23:16.678Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-15-07",
+      "actor": "/root/coverage_path",
+      "summary": "Actual original user evidence imported, persisted and reverified against exact proposal and source before applying."
+    },
+    {
+      "event_id": "4951719b-cfb7-48d3-b297-f37585aa7126",
+      "at": "2026-09-26T15:23:16.686Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-15-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    {
+      "event_id": "23ef890f-7ab6-43fd-aed6-088827d72f4a",
+      "at": "2026-09-26T15:23:16.693Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-15-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "bbfbd7fd-dfad-4564-aa78-0aa228f54f67",
+      "at": "2026-09-26T15:25:10.366Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-07-10",
+      "actor": "/root/coverage_path",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-check-profiles-2026-09-26.md",
+        "tools/sot/project-check-profiles.mjs",
+        "tools/sot/project-check-profiles.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "008d1a79-b170-49b2-b853-326cac59ab03",
+      "at": "2026-09-26T15:25:10.375Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-07-10",
+      "actor": "/root/coverage_path"
     }
   ]
 }

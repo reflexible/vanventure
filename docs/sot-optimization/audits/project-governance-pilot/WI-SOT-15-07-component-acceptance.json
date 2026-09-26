@@ -1,0 +1,85 @@
+{
+  "criterion": "Actual original user evidence imported, persisted and reverified against exact proposal and source before applying.",
+  "scope_limitation": "Component criterion witnessed in the same real project pilot; not an independent source mutation or global semantic certification.",
+  "completion_evidence": {
+    "scope": "WI-SOT-15-07",
+    "sotUpdate": {
+      "required": false,
+      "scope": "WI-SOT-15-07",
+      "reason": "Component acceptance; the actual source update is separately integrated as WI-SOT-16-01.",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    "unresolvedConflicts": [],
+    "requiredChecks": [
+      {
+        "id": "component-and-project-pilot",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+      }
+    ],
+    "contracts": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    "dependencies": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    "consistency": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/project-governance-pilot-2026-09-26.md"
+    },
+    "postValidation": {
+      "schema_version": "1.0.0",
+      "status": "POST_VALIDATION_PASS",
+      "mode": "FAST_CHECK",
+      "alert": null,
+      "updated_modules": [
+        "sot-architecture"
+      ],
+      "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+      "checks": [
+        {
+          "name": "registry",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "dependencies",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "current_sources",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "delta",
+          "status": "PASS",
+          "detail": "updated=sot-architecture; changed=sot-architecture"
+        },
+        {
+          "name": "required_check",
+          "status": "PASS",
+          "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+        },
+        {
+          "name": "sotConsistency",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+        },
+        {
+          "name": "traceability",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+        }
+      ]
+    }
+  }
+}

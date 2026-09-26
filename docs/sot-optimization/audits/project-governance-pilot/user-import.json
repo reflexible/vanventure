@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "captured_at": "2026-09-26T15:09:44.118Z",
+  "decision_time": {
+    "precision": "date",
+    "value": "2026-09-26"
+  },
+  "original": {
+    "path": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\original-user-correction.txt",
+    "sha256": "1a605999d0c69b474ce68e6b31d8559f87a5e12537c7ae97b3a33eb81d3acafa",
+    "reference": "codex-attachment:330ad5b3-ce6e-4e73-9252-18d31bee989b",
+    "author": {
+      "role": "USER",
+      "id": "project-user-observed-in-current-conversation"
+    }
+  },
+  "quote": {
+    "text": "6. IMPLEMENTIERUNGSPLAN LAUFEND AKTUELL HALTEN\nDas Fachmodul ist während der gesamten Umsetzung das vollständige Execution Backlog dieses Epics.\nJedes Work Item erhält einen Status:\n- TODO\n- READY\n- IN_PROGRESS\n- BLOCKED\n- DONE\nErledigte Items bleiben sichtbar und werden durchgestrichen:\n- [x] ~~WI-xxx – Beschreibung~~\nLaufende Items:\n- [ ] IN_PROGRESS – WI-xxx – Beschreibung\nBlockierte Items:\n- [ ] BLOCKED – WI-xxx – Grund\nKeine erledigten Punkte löschen.\nWenn neue notwendige Arbeit entsteht:\n- neues Work Item in denselben Plan aufnehmen;\n- Dependency angeben;\n- priorisieren;\n- Counter neu berechnen.\nKeine versteckte Arbeit außerhalb des Plans.",
+    "byte_offset": 4968
+  },
+  "binding": {
+    "proposalId": "SOT-PILOT-STATUS-2026-09-26",
+    "proposal_sha256": "d711065195764c4e57948bae4ef129c1fd3219cc7001a438e44a8d9d1d2e88ee",
+    "action": "APPROVE",
+    "actor": {
+      "role": "USER",
+      "id": "project-user-observed-in-current-conversation"
+    },
+    "decision": null,
+    "evidence": {
+      "reference": "codex-attachment:330ad5b3-ce6e-4e73-9252-18d31bee989b#section-6",
+      "scope": "SOT-PILOT-STATUS-2026-09-26",
+      "wording": "6. IMPLEMENTIERUNGSPLAN LAUFEND AKTUELL HALTEN\nDas Fachmodul ist während der gesamten Umsetzung das vollständige Execution Backlog dieses Epics.\nJedes Work Item erhält einen Status:\n- TODO\n- READY\n- IN_PROGRESS\n- BLOCKED\n- DONE\nErledigte Items bleiben sichtbar und werden durchgestrichen:\n- [x] ~~WI-xxx – Beschreibung~~\nLaufende Items:\n- [ ] IN_PROGRESS – WI-xxx – Beschreibung\nBlockierte Items:\n- [ ] BLOCKED – WI-xxx – Grund\nKeine erledigten Punkte löschen.\nWenn neue notwendige Arbeit entsteht:\n- neues Work Item in denselben Plan aufnehmen;\n- Dependency angeben;\n- priorisieren;\n- Counter neu berechnen.\nKeine versteckte Arbeit außerhalb des Plans.",
+      "decided_at": "2026-09-26",
+      "date_precision": "date"
+    }
+  },
+  "authority_mapping": "Previously observed user instruction section 6 mandates current factual plan status; section 14 authorizes automatic implementation. This is standing task authorization, not a newly invented approval of a policy, design or release."
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "mode": "FAST_CHECK",
+  "alert": null,
+  "reasons": [
+    "SCOPED_CHANGE"
+  ],
+  "scope": {
+    "changed_sections": [],
+    "changed_modules": [
+      "sot-architecture"
+    ],
+    "unresolved_modules": [],
+    "direct_nodes": [
+      "contract:SOT-DECISION-CHANGE",
+      "contract:WORKER-WORK-ASSIGNMENT",
+      "module:scrum-core",
+      "module:sot-architecture"
+    ],
+    "transitive_nodes": [
+      "contract:SCRUM-WORK-ITEM",
+      "contract:SOT-DECISION-CHANGE",
+      "contract:WORKER-WORK-ASSIGNMENT",
+      "module:scrum-core"
+    ],
+    "modules": [
+      "scrum-core",
+      "sot-architecture"
+    ],
+    "contracts": [
+      "SCRUM-WORK-ITEM",
+      "SOT-DECISION-CHANGE",
+      "WORKER-WORK-ASSIGNMENT"
+    ],
+    "work_items": [],
+    "stories": [],
+    "active_processes": []
+  },
+  "delta": {
+    "schema_version": "1.0.0",
+    "modules": [
+      {
+        "module_id": "sot-architecture",
+        "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+        "previous_sha256": "0e7a2557827caa9f2ce46ec7dfba5f21b145b7f123a739160622620646d14d25",
+        "current_sha256": "d9eaf3c395dd1794a0bdfd68088cf4cedc2dcb0898906d2c6972ed51952a9068",
+        "byte_match": false,
+        "normalized_text_match": false,
+        "semantic_manifest_match": true,
+        "classification": "TEXT_CHANGED_MANIFEST_UNCHANGED",
+        "changed_contracts": []
+      }
+    ],
+    "excluded_unchanged_modules": [
+      "analytics",
+      "cms-content",
+      "consolidated-mandate",
+      "design-guide",
+      "release-governance",
+      "responsive-templates",
+      "scrum-core"
+    ],
+    "contracts": [],
+    "contract_comparison_unknown": false,
+    "requires_semantic_review": false,
+    "has_contract_break": false
+  },
+  "check": {
+    "schema_version": "1.0.0",
+    "result": "FAST_CHECK_PASS",
+    "scope": {
+      "changed_modules": [
+        "sot-architecture"
+      ],
+      "affected_modules": [
+        "scrum-core",
+        "sot-architecture"
+      ],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
+      "work_items": [],
+      "direct_dependencies": [
+        "module:scrum-core"
+      ],
+      "checked_references": [
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/scrum-plan.md"
+      ],
+      "git_paths": [
+        "docs/governance/source-of-truth-and-incremental-planning.md"
+      ]
+    },
+    "checks": [
+      {
+        "name": "delta",
+        "status": "PASS",
+        "detail": "changed=sot-architecture; contract_changes=; comparison_unknown=false"
+      },
+      {
+        "name": "affected_modules",
+        "status": "PASS",
+        "detail": "affected=scrum-core,sot-architecture; registry_errors="
+      },
+      {
+        "name": "relevant_contracts",
+        "status": "PASS",
+        "detail": "contracts=SCRUM-WORK-ITEM,SOT-DECISION-CHANGE,WORKER-WORK-ASSIGNMENT; errors=; break=false"
+      },
+      {
+        "name": "direct_dependencies",
+        "status": "PASS",
+        "detail": "upstream=module:scrum-core; graph_errors="
+      },
+      {
+        "name": "traceability",
+        "status": "PASS",
+        "detail": "No work items in impact scope."
+      },
+      {
+        "name": "relevant_tests",
+        "status": "PASS",
+        "detail": "coverage=scrum-core,sot-architecture; required=sot-architecture; results=[{\"id\":\"project-status-and-core\",\"covers\":[\"sot-architecture\",\"scrum-core\"],\"command\":[\"C:\\\\Users\\\\helmu\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\",\"tools/sot/progress.mjs\",\"--check\"],\"exit_code\":0,\"stdout\":\"PASS {\\\"total\\\":198,\\\"done\\\":128,\\\"inProgress\\\":4,\\\"ready\\\":0,\\\"blocked\\\":1,\\\"open\\\":70,\\\"progress\\\":64.6}\",\"stderr\":\"\",\"error\":null},{\"id\":\"protected-core-recovery\",\"covers\":[\"sot-architecture\",\"scrum-core\"],\"command\":[\"C:\\\\Users\\\\helmu\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\",\"--test\",\"tools/sot/baselines.test.mjs\",\"tools/sot/governance-workflow.test.mjs\"],\"exit_code\":0,\"stdout\":\"✔ pinned FINAL_AUDIT_PASS ref restores the exact LF blob and audited CRLF bytes (203.003ms)\\n✔ CRLF and LF have different byte hashes but equal normalized-text hashes (0.5723ms)\\n✔ semantic result needs an explicit manifest; manifest content changes are detected (1.6284ms)\\n✔ invalid or missing provenance and recovery references fail closed (362.0004ms)\\n✔ checked-in store remains append-only in intent and references a Git audit, not the mutable checkout (1.7857ms)\\n✔ disk-backed local pipeline persists exact approval, executes FAST checks and derives local DONE evidence (396.8071ms)\\n✔ missing validators and mutated imported user evidence block before persistence or source writes (231.0862ms)\\n✔ untrusted conflict reviewer cannot be replaced with the imported user decision (118.4946ms)\\n✔ failed concrete post-check restores the original and preserves the failed audit (352.8011ms)\\n✔ a nominal PASS with evidence for another source version is rejected and rolled back (350.692ms)\\n✔ changed source invalidates scoped review before any approval event is persisted (125.5542ms)\\n✔ FULL escalation without required full validators blocks and rolls back (197.427ms)\\n✔ concurrent contract metadata edits cannot pass using old in-memory catalogues (351.0315ms)\\n✔ whole-pipeline process interruption leaves durable recovery bound to original user evidence (419.761ms)\\n✔ the owner may also be the work-item source when exact approved bytes preserve its dependency graph (327.8658ms)\\nℹ tests 15\\nℹ suites 0\\nℹ pass 15\\nℹ fail 0\\nℹ cancelled 0\\nℹ skipped 0\\nℹ todo 0\\nℹ duration_ms 2981.2538\",\"stderr\":\"\",\"error\":null}]"
+      },
+      {
+        "name": "references",
+        "status": "PASS",
+        "detail": "sources=docs/governance/source-of-truth-and-incremental-planning.md,docs/scrum-plan.md; missing="
+      },
+      {
+        "name": "git_diff_check",
+        "status": "PASS",
+        "detail": "paths=docs/governance/source-of-truth-and-incremental-planning.md; errors=; results=[{\"command\":[\"git\",\"ls-files\",\"--error-unmatch\",\"--\",\"docs/governance/source-of-truth-and-incremental-planning.md\"],\"exit_code\":0,\"stdout\":\"docs/governance/source-of-truth-and-incremental-planning.md\",\"stderr\":\"\",\"error\":null},{\"command\":[\"git\",\"diff\",\"--check\",\"--\",\"docs/governance/source-of-truth-and-incremental-planning.md\"],\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"warning: LF will be replaced by CRLF in docs/governance/source-of-truth-and-incremental-planning.md.\\nThe file will have its original line endings in your working directory\",\"error\":null},{\"command\":[\"git\",\"diff\",\"--cached\",\"--check\",\"--\",\"docs/governance/source-of-truth-and-incremental-planning.md\"],\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"\",\"error\":null}]"
+      }
+    ],
+    "failures": []
+  },
+  "historical_migration_audited": false
+}

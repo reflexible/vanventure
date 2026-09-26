@@ -1,0 +1,1 @@
+{"proposal_id":"SOT-PILOT-STATUS-2026-09-26","module_id":"sot-architecture","source_sha256":"d9eaf3c395dd1794a0bdfd68088cf4cedc2dcb0898906d2c6972ed51952a9068","check":"sotConsistency","status":"PASS","detail":"Exact approved factual metadata append; original rules and task states preserved. Original user mandate and target are pinned in the input/decision evidence."}

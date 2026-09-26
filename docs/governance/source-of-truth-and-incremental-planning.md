@@ -82,19 +82,19 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-15-07`, `WI-SOT-13-07`, `WI-SOT-16-01`, `WI-SOT-19-08`. **Active Workers:** 2.
-Die beiden späteren Items bearbeiten ausschließlich lokale Sicherheitsvoraussetzungen;
+**Current Work Items:** `WI-SOT-18-03`, `WI-SOT-07-10`. **Active Workers:** 1.
+Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-13-07` (regelgenaue Scope-Abdeckung), weil
-die 19 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
+**NEXT RECOMMENDATION:** `WI-SOT-07-10`: vorhandene reale Projektprüfungen über
+gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
 **Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 128 · In Progress 4 · Ready 0 · Blocked 1 ·
-Open 70 (einschließlich Ready und Blocked) · Progress 64,6 %.
+**Counter:** Total 198 · Done 133 · In Progress 2 · Ready 0 · Blocked 1 ·
+Open 65 (einschließlich Ready und Blocked) · Progress 67,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -229,7 +229,7 @@ FAST CHECK ist der Default für normale Änderungen.
 - [x] ~~WI-SOT-07-07 · Referenzen prüfen~~
 - [x] ~~WI-SOT-07-08 · git diff --check~~
 - [x] ~~WI-SOT-07-09 · Ergebnis dokumentieren~~
-- [ ] TODO – WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben
+- [ ] IN_PROGRESS – WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben
 Ergebnis:
 FAST_CHECK_PASS
 oder
@@ -319,7 +319,7 @@ Change
 - [x] ~~WI-SOT-13-04 · bestehende Regel suchen~~
 - [x] ~~WI-SOT-13-05 · neue vs. bestehende Regel vergleichen~~
 - [x] ~~WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown~~
-- [ ] IN_PROGRESS – WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird
+- [x] ~~WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird~~
   Bisher sind 19 genaue Auszüge aus acht autoritativen Quellen geprüft.
   `DEC-REL-002` besitzt einen vollständig inventarisierten, gegen aktuelle
   Quellbytes geprüften Pilotabschnitt. Sämtliche acht Modulabdeckungen und
@@ -329,9 +329,9 @@ Change
   getestet. Quellengebundene Reviewer-Dispositionen und ihre Disk-Prüfung sind
   implementiert; globale Kataloglücken bleiben sichtbar. Siehe
   [Scope-Nachweis](../sot-optimization/reviews/scope-review-2026-09-26.md).
-  Das Item bleibt offen, bis die fachlichen Regelbereiche eines
-  konkreten Vorschlags vollständig inventarisiert und alle relevanten Unknowns
-  geschlossen sind.
+  Im realen Projektpilot wurden alle 281 Struktureinheiten dispositioniert und
+  die fünf betroffenen Regeln vollständig geprüft. Vorschlagsbezogene Unknowns
+  sind geschlossen; acht globale Lücken bleiben ausdrücklich erhalten.
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
 - [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~
@@ -342,7 +342,7 @@ Change
   Texttreffer allein werden nicht als fachliche Beziehung gewertet; die
   lokale Engine benötigt explizite Review-Eingaben und ändert keine Regel.
   Das lokale Eventlog speichert Vorschlag, Impact, Review und Konfliktergebnis
-  mit Revisions-/Hash-Prüfung; externe Evidenzauthentizität bleibt Folgearbeit.
+  mit Revisions-/Hash-Prüfung. Der Originalimport wurde im Projektpilot geprüft.
 #### ST-SOT-15 – PHASE 15: APPROVAL FLOW
 - [x] ~~WI-SOT-15-01 · IDEA~~
 - [x] ~~WI-SOT-15-02 · PROPOSED~~
@@ -350,7 +350,7 @@ Change
 - [x] ~~WI-SOT-15-04 · SUPERSEDED~~
 - [x] ~~WI-SOT-15-05 · optional REJECTED~~
 - [x] ~~WI-SOT-15-06 · Approval-Gates implementieren~~
-- [ ] IN_PROGRESS – WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen
+- [x] ~~WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen~~
   Die lokale Übergangsfunktion erteilt weder Design- noch Release- oder
   Live-Freigabe und ändert keine autoritative Quelle. Das Eventlog nimmt
   Entscheidungen nur über einen vom vertrauenswürdigen Aufrufer gestellten
@@ -359,15 +359,17 @@ Change
   nochmals auf. Ein Importadapter bindet Originalnachweis und exakten
   Vorschlagsinhalt an extern vorgegebene Vertrauensanker; Datum und Importzeit
   bleiben getrennt. Die reale Übernahme vorhandener, passender Nutzernachweise
-  wird mit dem durchgängigen Workflow verbunden. Siehe
+  ist im realen Projektpilot durchgängig geprüft und im Decision Store rev3
+  gespeichert. Siehe
   [Evidenzadapter](../sot-optimization/reviews/user-decision-evidence-2026-09-26.md).
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
-- [ ] IN_PROGRESS – WI-SOT-16-01 · autoritative Quelle aktualisieren
+- [x] ~~WI-SOT-16-01 · autoritative Quelle aktualisieren~~
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
-  Eine freigabe- und hashgeprüfte additive Vorschau ist vorhanden. Ein
+  **Nachweisstand vor dem Projektpilot:** Eine freigabe- und hashgeprüfte
+  additive Vorschau ist vorhanden. Ein
   hashgebundener atomarer Fachmodul-Write mit
   aktueller Registry-/Approval-Revalidierung, Post-Validation-Pflicht und
   exaktem Rollback ist verfügbar; er wurde noch nicht auf eine Projektquelle
@@ -376,21 +378,25 @@ Change
   bleiben offen. Zielanker und Baseline sind jetzt an die persistierte Freigabe
   gebunden; ein dauerhaftes Journal ermöglicht geprüfte Crash-Recovery. Siehe
   [Schreibschutz-Nachweis](../sot-optimization/reviews/sot-write-boundary-2026-09-26.md).
+
+Der lokale Integrationspfad `tools/sot/governance-workflow.mjs` verbindet importierte Entscheidungsnachweise, Scope-/Konfliktprüfung, Fachmodul-Write und Post-Validation. Seine isolierten Integrationstests prüfen auch Rücknahme, Änderungen an abhängigen Quelldateien und Prozessabbruch.
+Der Projektpilot ist lokal abgenommen; WI-SOT-16-01 wurde nach unabhängigem
+Review über gehashte Originalartefakte tatsächlich in den Workerzustand `Done`
+integriert. [Abnahme und Grenzen](../sot-optimization/reviews/project-governance-pilot-2026-09-26.md).
 #### ST-SOT-17 – PHASE 17: SOT POST VALIDATION
 - [ ] TODO – WI-SOT-17-01 · SoT-Konsistenz prüfen
 - [ ] TODO – WI-SOT-17-02 · Contracts prüfen
 - [ ] TODO – WI-SOT-17-03 · Dependencies prüfen
-- [ ] TODO – WI-SOT-17-04 · Delta validieren
-- [ ] TODO – WI-SOT-17-05 · erforderlichen FAST/FULL CHECK ausführen
-  Ein fail-closed Orchestrator ist als lokaler Baustein vorhanden. Die
-  verbindlichen fachlichen SoT-/Traceability-Validatoren sowie konkrete
-  FULL-Checker für jedes betroffene Fachmodul fehlen; daher bleibt die
-  End-to-End-Post-Validation offen.
+- [x] ~~WI-SOT-17-04 · Delta validieren~~
+- [x] ~~WI-SOT-17-05 · erforderlichen FAST/FULL CHECK ausführen~~
+  Der reale Metadatenpilot hat Delta, FAST CHECK und acht Post-Validation-
+  Prüfungen bestanden. Fachliche SoT-/Traceability-Validatoren sowie konkrete
+  FULL-Checker für weitere Fachmodule bleiben offen. Keine globale Abnahme.
 #### ST-SOT-18 – PHASE 18: DEFINITION-OF-DONE GUARDS
 Technisch verhindern:
 - [ ] TODO – WI-SOT-18-01 · DONE bei fehlendem SoT-Update
 - [ ] TODO – WI-SOT-18-02 · DONE bei ungelöstem Conflict
-- [ ] TODO – WI-SOT-18-03 · DONE bei fehlgeschlagener erforderlicher Prüfung
+- [ ] IN_PROGRESS – WI-SOT-18-03 · DONE bei fehlgeschlagener erforderlicher Prüfung
 - [ ] TODO – WI-SOT-18-04 · DONE bei Contract-Bruch
 - [ ] TODO – WI-SOT-18-05 · DONE bei fehlender Dependency
 - [ ] TODO – WI-SOT-18-06 · DONE bei fehlgeschlagener Konsistenzprüfung
@@ -407,7 +413,7 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-05 · Job Size
 - [x] ~~WI-SOT-19-06 · Confidence~~
 - [x] ~~WI-SOT-19-07 · bestehende relative Skala erhalten~~
-- [ ] IN_PROGRESS – WI-SOT-19-08 · Priorisierungsworkflow integrieren
+- [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
   geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
   Hard Dependencies und explizite Vergleichsräume ab.

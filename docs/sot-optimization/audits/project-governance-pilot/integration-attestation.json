@@ -1,0 +1,395 @@
+{
+  "schema_version": "2.0.0",
+  "binding_kind": "LEGACY_RESULT_ATTESTATION",
+  "status": "LOCAL_WORKFLOW_VERIFIED",
+  "stage": "DONE_GUARD",
+  "work_item_id": "WI-SOT-16-01",
+  "proposal_id": "SOT-PILOT-STATUS-2026-09-26",
+  "proposal_sha256": "d711065195764c4e57948bae4ef129c1fd3219cc7001a438e44a8d9d1d2e88ee",
+  "decision_state_path": "docs/governance/decision-state.jsonl",
+  "approval_event": {
+    "revision": 3,
+    "event_hash": "17f78750e5d06498df9509d6301cf8dfd4c02869f68ee1d49dc1252d6285352c"
+  },
+  "module_id": "sot-architecture",
+  "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+  "result_output": "docs/sot-optimization/audits/project-governance-pilot/integration-attestation.json",
+  "post_validation_output": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json",
+  "update": {
+    "status": "APPLIED",
+    "proposal_id": "SOT-PILOT-STATUS-2026-09-26",
+    "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+    "before_sha256": "0e7a2557827caa9f2ce46ec7dfba5f21b145b7f123a739160622620646d14d25",
+    "after_sha256": "d9eaf3c395dd1794a0bdfd68088cf4cedc2dcb0898906d2c6972ed51952a9068",
+    "post_validation": {
+      "schema_version": "1.0.0",
+      "status": "POST_VALIDATION_PASS",
+      "mode": "FAST_CHECK",
+      "alert": null,
+      "updated_modules": [
+        "sot-architecture"
+      ],
+      "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+      "checks": [
+        {
+          "name": "registry",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "dependencies",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "current_sources",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "delta",
+          "status": "PASS",
+          "detail": "updated=sot-architecture; changed=sot-architecture"
+        },
+        {
+          "name": "required_check",
+          "status": "PASS",
+          "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+        },
+        {
+          "name": "sotConsistency",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+        },
+        {
+          "name": "traceability",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+        }
+      ]
+    }
+  },
+  "post_validation": {
+    "schema_version": "1.0.0",
+    "status": "POST_VALIDATION_PASS",
+    "mode": "FAST_CHECK",
+    "alert": null,
+    "updated_modules": [
+      "sot-architecture"
+    ],
+    "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+    "checks": [
+      {
+        "name": "registry",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "dependencies",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "current_sources",
+        "status": "PASS",
+        "detail": ""
+      },
+      {
+        "name": "delta",
+        "status": "PASS",
+        "detail": "updated=sot-architecture; changed=sot-architecture"
+      },
+      {
+        "name": "required_check",
+        "status": "PASS",
+        "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+      },
+      {
+        "name": "sotConsistency",
+        "status": "PASS",
+        "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+      },
+      {
+        "name": "traceability",
+        "status": "PASS",
+        "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+      }
+    ]
+  },
+  "done_guard": {
+    "schema_version": "1.0.0",
+    "status": "DONE_ALLOWED",
+    "scope": "WI-SOT-16-01",
+    "findings": [
+      {
+        "id": "scope",
+        "status": "PASS",
+        "detail": "WI-SOT-16-01"
+      },
+      {
+        "id": "sot_update",
+        "status": "PASS",
+        "detail": "UPDATE_EVIDENCE_AND_POST_VALIDATION_PASS"
+      },
+      {
+        "id": "unresolved_conflicts",
+        "status": "PASS",
+        "detail": "NONE"
+      },
+      {
+        "id": "required_checks",
+        "status": "PASS",
+        "detail": "PASS:1"
+      },
+      {
+        "id": "contracts",
+        "status": "PASS",
+        "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+      },
+      {
+        "id": "dependencies",
+        "status": "PASS",
+        "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+      },
+      {
+        "id": "consistency",
+        "status": "PASS",
+        "detail": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+      },
+      {
+        "id": "post_validation",
+        "status": "PASS",
+        "detail": "POST_VALIDATION_PASS"
+      }
+    ]
+  },
+  "completion_evidence": {
+    "scope": "WI-SOT-16-01",
+    "sotUpdate": {
+      "required": true,
+      "updated_module_ids": [
+        "sot-architecture"
+      ],
+      "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.json"
+    },
+    "unresolvedConflicts": [],
+    "requiredChecks": [
+      {
+        "id": "incremental-audit",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+      }
+    ],
+    "contracts": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+    },
+    "dependencies": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+    },
+    "consistency": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json"
+    },
+    "postValidation": {
+      "schema_version": "1.0.0",
+      "status": "POST_VALIDATION_PASS",
+      "mode": "FAST_CHECK",
+      "alert": null,
+      "updated_modules": [
+        "sot-architecture"
+      ],
+      "audit_output": "D:\\work\\_venventure\\docs\\sot-optimization\\audits\\project-governance-pilot\\audit.json",
+      "checks": [
+        {
+          "name": "registry",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "dependencies",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "current_sources",
+          "status": "PASS",
+          "detail": ""
+        },
+        {
+          "name": "delta",
+          "status": "PASS",
+          "detail": "updated=sot-architecture; changed=sot-architecture"
+        },
+        {
+          "name": "required_check",
+          "status": "PASS",
+          "detail": "audit=PASS; mode=FAST_CHECK; result=FAST_CHECK_PASS"
+        },
+        {
+          "name": "sotConsistency",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json"
+        },
+        {
+          "name": "traceability",
+          "status": "PASS",
+          "detail": "docs/sot-optimization/audits/project-governance-pilot/traceability.json"
+        }
+      ],
+      "scope": "WI-SOT-16-01"
+    }
+  },
+  "artifacts": {
+    "audit": {
+      "path": "docs/sot-optimization/audits/project-governance-pilot/audit.json",
+      "sha256": "95aa25d72c33cb166196d0810a586538b75f4c4b44f09311ee0214716dab4871"
+    },
+    "post_validation": {
+      "path": "docs/sot-optimization/audits/project-governance-pilot/audit.post-validation.json",
+      "sha256": "9236f738cdbb021d72c3cb8d8478e85b7c777879799e10610f3c9ab722149f54"
+    },
+    "validators": {
+      "sotConsistency": {
+        "path": "docs/sot-optimization/audits/project-governance-pilot/sotConsistency.json",
+        "sha256": "259a0b0185443de1c81e0923510b10c27dea00ddc661d85531408c629c3d369a"
+      },
+      "traceability": {
+        "path": "docs/sot-optimization/audits/project-governance-pilot/traceability.json",
+        "sha256": "a811e2890ed856accde778b82063c732fa2d9adcb83ece79b0383c9a8815ce4f"
+      }
+    },
+    "metadata": [
+      {
+        "path": "docs/governance/module-registry.json",
+        "sha256": "9e2dd9ca4adce543ba0740cd3aa53595830b0fc5690343195356364b94d5e1b7"
+      },
+      {
+        "path": "docs/governance/contracts.json",
+        "sha256": "6e106ec34934f84c08c40594dc9d0acb3eac17453d45f37fb1cd7f8779928154"
+      },
+      {
+        "path": "docs/governance/dependency-graph.json",
+        "sha256": "d116e497aedd339e85ccca6431d8fad2eeb3d47d8f5d61cafe5acead832c5830"
+      },
+      {
+        "path": "docs/governance/source-of-truth-and-incremental-planning.md",
+        "sha256": "d9eaf3c395dd1794a0bdfd68088cf4cedc2dcb0898906d2c6972ed51952a9068"
+      }
+    ],
+    "legacy_result": {
+      "path": "docs/sot-optimization/audits/project-governance-pilot/result.json",
+      "sha256": "98131b6c8cfb1a627a1bca2310b00ffcfdcec46111aad1371905696e5e11a4a8"
+    },
+    "source": {
+      "path": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "sha256": "d9eaf3c395dd1794a0bdfd68088cf4cedc2dcb0898906d2c6972ed51952a9068"
+    },
+    "runtime": [
+      {
+        "module": "governance-workflow",
+        "sha256": "f098d59f67ba0d573e4139a7fd3be3b1c7c51ef2a3d7369ed28e36d6a8fac0f0"
+      },
+      {
+        "module": "scope-review",
+        "sha256": "27e4111f862306a25a755e7f02122aad4500a86916ebafa5909c928713e4c1bf"
+      },
+      {
+        "module": "conflict-check",
+        "sha256": "2a74f49c9cb2e9a4ec65b6ea5f0f70110314ddf9a85c3d486771e6a44fb20c42"
+      },
+      {
+        "module": "decision-state",
+        "sha256": "7566d53d5dc55f09cf6eccfefc919d027cc008cbaa483b8003bc4b39b7cc1efb"
+      },
+      {
+        "module": "user-decision-evidence",
+        "sha256": "b698d5b2a680429985bbef84ab5c1f626b3095c8c40f6ea80b4242fc7778a553"
+      },
+      {
+        "module": "sot-update-plan",
+        "sha256": "436fe2089bd6c9da7cd9af66febd6d33056ce4f7bc35e7dab7c4b9856852d6a3"
+      },
+      {
+        "module": "post-validation",
+        "sha256": "b0acf97997466abf5e857d376fb7d60436535fc12b5d42db67c10dbd42cda1c6"
+      },
+      {
+        "module": "incremental-audit",
+        "sha256": "8dee69038e11115affec94d0bb2671c761262e9396cbf3d9ee137f2f7d088abb"
+      },
+      {
+        "module": "fast-check",
+        "sha256": "2137d76e2ba3d6c125c5468240d2873eb9e10c59433c0e9564bccb3c385f72cc"
+      },
+      {
+        "module": "full-check",
+        "sha256": "ee45e02e261ac51a358d08b3fc847f0478bb31173f57ff8e2f3874c92b6588c7"
+      },
+      {
+        "module": "done-guard",
+        "sha256": "880f82ec92cf0ab099d44433c3f0665add53ddc79dd427ebd056e6ce47a34323"
+      },
+      {
+        "module": "worker-state",
+        "sha256": "47dac6f72890df4e1da85743c5fafa39a62b0a1aa08bca962e642f0808525b8d"
+      },
+      {
+        "module": "module-registry",
+        "sha256": "ab7e000234b151616435a4816216f973e3c99485af898ffe80beef568ebc75b3"
+      },
+      {
+        "module": "contracts",
+        "sha256": "ebac5dd65d39897ab2accc21ec9c91531246dd6ee16cd28a89c0c33b1328a1c3"
+      },
+      {
+        "module": "dependency-graph",
+        "sha256": "70a0ae804f23678ea7c560d55fa2ec9741b15699e78c2e249087e0184fee6ae1"
+      },
+      {
+        "module": "delta",
+        "sha256": "84bb6de313bdac6c8a4147a3b9d4bd38897f855faa1ae89ec2531cb635ca9453"
+      },
+      {
+        "module": "impact",
+        "sha256": "8eba8dea3df0f6fe8d3ed276a01dfef859501939313f78c24939737f844f6e14"
+      },
+      {
+        "module": "rule-catalogue",
+        "sha256": "b5b8482d10bd2784090eed393723d224cec22a134d658b843a506118b4b7070b"
+      },
+      {
+        "module": "scoped-coverage",
+        "sha256": "9ed014892f4927f59a25e93f558adebcd5d32dd75b7dffb4771fb0b2cfbd14af"
+      },
+      {
+        "module": "sot-impact",
+        "sha256": "11cf47e359704a6c42da05346414229e6fef340071ffe933c80843410897ff94"
+      },
+      {
+        "module": "baselines",
+        "sha256": "d65877a046a83e6de80c71dd550752d4b604075232c56408c394dfbc52ff9d77"
+      }
+    ]
+  },
+  "historical_result_rewritten": false,
+  "product_release": false,
+  "work_item_done_written": false,
+  "live_rollout": false
+}
