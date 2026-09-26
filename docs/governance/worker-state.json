@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 114,
+  "revision": 118,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3182,6 +3182,53 @@
           }
         ]
       }
+    },
+    "WI-SOT-20-10": {
+      "work_item_id": "WI-SOT-20-10",
+      "execution_state": "Integration",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:22:38.082Z",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+        "tools/sot/worker-runtime.mjs",
+        "tools/sot/worker-runtime.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Local controller snapshot binds worker state to authoritative plan and retains unmapped scopes as unsafe.",
+        "files": [
+          "tools/sot/worker-runtime.mjs",
+          "tools/sot/worker-runtime.test.mjs",
+          "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        ],
+        "tests": [
+          "worker-runtime: 7/7 PASS",
+          "full SoT suite: 304/304 PASS",
+          "Golden Baseline diff PASS"
+        ],
+        "limitations": [
+          "Local visibility only; no remote chat or execution authorization."
+        ],
+        "follow_up": [
+          "Model explicit remote handover separately in ST-SOT-22."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:25:15.931Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+        "self_review_reason": "No separate active reviewer; bounded review uses deterministic runtime tests and the real local snapshot.",
+        "at": "2026-09-26T17:25:15.944Z"
+      },
+      "integration": null,
+      "blocked_by": null
     }
   },
   "history": [
@@ -4247,6 +4294,45 @@
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "66083acc-1eb6-451b-ab6d-02c041f88ecb",
+      "at": "2026-09-26T17:22:38.082Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-20-10",
+      "actor": "/root",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md",
+        "tools/sot/worker-runtime.mjs",
+        "tools/sot/worker-runtime.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "8b917f23-02ac-482f-af6b-cf5faae57672",
+      "at": "2026-09-26T17:22:38.096Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-20-10",
+      "actor": "/root"
+    },
+    {
+      "event_id": "287d4de5-667c-4d85-9b1e-cdf412c10f8b",
+      "at": "2026-09-26T17:25:15.932Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-20-10",
+      "actor": "/root",
+      "summary": "Local controller snapshot binds worker state to authoritative plan and retains unmapped scopes as unsafe."
+    },
+    {
+      "event_id": "94588c3d-dd3b-4e0f-8b48-b70f73b3a939",
+      "at": "2026-09-26T17:25:15.944Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-20-10",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/worker-runtime-fast-check-2026-09-26.md"
     }
   ]
 }

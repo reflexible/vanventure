@@ -1,5 +1,7 @@
-import { createWorkerStateStore, runtimeWorkers, activeProcesses } from './worker-state.mjs';
+import { readFile } from 'node:fs/promises';
+import { createWorkerStateStore, defaultPlanPath, runtimeWorkers, activeProcesses } from './worker-state.mjs';
 import { loadRegistry } from './module-registry.mjs';
+import { countWorkItems } from './progress.mjs';
 
 const validScope = value => typeof value === 'string' && value.trim() === value
   && value.length > 0 && !value.includes('\\') && !value.startsWith('/')
@@ -12,6 +14,21 @@ function normalizeScope(value) {
 
 function overlaps(left, right) {
   return left === right || left.startsWith(`${right}/`) || right.startsWith(`${left}/`);
+}
+
+function planStatuses(planText) {
+  if (typeof planText !== 'string') throw new Error('Authoritative plan text is required.');
+  countWorkItems(planText);
+  const statuses = new Map();
+  for (const line of planText.split(/\r?\n/)) {
+    const done = /^- \[x\] ~~(WI-SOT-\d{2}-\d{2}) · .+~~$/.exec(line);
+    const open = /^- \[ \] (TODO|READY|IN_PROGRESS|BLOCKED) – (WI-SOT-\d{2}-\d{2}) · .+$/.exec(line);
+    const id = done?.[1] ?? open?.[2];
+    if (!id) continue;
+    if (statuses.has(id)) throw new Error(`Duplicate plan Work Item ${id}.`);
+    statuses.set(id, done ? 'DONE' : open[1]);
+  }
+  return statuses;
 }
 
 /** Resolve paths against exact registry sources or explicitly declared owned scopes. */
@@ -57,9 +74,60 @@ export function buildWorkerRuntime({ state, registry, proposedWriteScope = [] })
   return { runtimeWorkers: workers, activeProcesses: active };
 }
 
+/**
+ * Bind the operational worker snapshot to the one authoritative plan.
+ * It is local controller visibility only; it neither connects to a chat
+ * provider nor authorizes remote execution, claims or plan mutation.
+ */
+export function buildControllerRuntime({ state, registry, planText, proposedWriteScope = [] }) {
+  const workers = runtimeWorkers(state);
+  const processes = activeProcesses(state);
+  if (!Array.isArray(proposedWriteScope)) throw new Error('proposedWriteScope must be an array.');
+  const proposed = proposedWriteScope.map(normalizeScope);
+  const controllerProcesses = processes.map(process => {
+    const record = state.records[process.work_item_ids[0]];
+    const scopes = record.write_scope.map(normalizeScope);
+    try {
+      const module_ids = modulesForWriteScope(scopes, registry);
+      return { ...process, module_ids, conflict: proposed.some(next => scopes.some(current => overlaps(next, current))),
+        scope_status: 'MAPPED' };
+    } catch (error) {
+      return { ...process, module_ids: [], conflict: true, scope_status: 'UNMAPPED', scope_error: error.message };
+    }
+  });
+  const runtime = { runtimeWorkers: workers, activeProcesses: controllerProcesses };
+  const statuses = planStatuses(planText);
+  for (const record of Object.values(state.records)) {
+    const planStatus = statuses.get(record.work_item_id);
+    if (!planStatus) throw new Error(`Worker item missing from authoritative plan: ${record.work_item_id}`);
+    if (record.execution_state === 'Done' && planStatus !== 'DONE') {
+      throw new Error(`Done worker item disagrees with plan: ${record.work_item_id}`);
+    }
+    if (record.execution_state !== 'Done' && record.execution_state !== 'Backlog' && !['READY', 'IN_PROGRESS', 'BLOCKED'].includes(planStatus)) {
+      throw new Error(`Active worker item disagrees with plan: ${record.work_item_id}`);
+    }
+  }
+  const current_work_items = runtime.activeProcesses.map(process => {
+    const record = state.records[process.work_item_ids[0]];
+    return { work_item_id: record.work_item_id, plan_status: statuses.get(record.work_item_id),
+      execution_state: record.execution_state, assigned_agent: record.assigned_agent,
+      write_scope: [...record.write_scope], blocked_by: record.blocked_by ?? null };
+  });
+  return { ...runtime, current_work_items, plan_counter: countWorkItems(planText),
+    chat_runtime: { status: 'LOCAL_ONLY_NOT_REMOTE_AUTHORIZED', active_agent_ids: runtime.runtimeWorkers.workers.map(worker => worker.id) },
+    execution_authorized: false };
+}
+
 /** Read the current durable snapshot without modifying worker state. */
 export async function loadWorkerRuntime({ statePath, registryPath, proposedWriteScope = [] } = {}) {
   const registry = await loadRegistry(registryPath);
   const state = await createWorkerStateStore(statePath ? { path: statePath } : {}).snapshot();
   return buildWorkerRuntime({ state, registry, proposedWriteScope });
+}
+
+export async function loadControllerRuntime({ statePath, registryPath, planPath = defaultPlanPath, proposedWriteScope = [] } = {}) {
+  const registry = await loadRegistry(registryPath);
+  const state = await createWorkerStateStore(statePath ? { path: statePath } : {}).snapshot();
+  const planText = await readFile(planPath, 'utf8');
+  return buildControllerRuntime({ state, registry, planText, proposedWriteScope });
 }

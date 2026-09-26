@@ -82,15 +82,15 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-20-10` · lokalen Worker-State und Planstatus synchronisieren. **Active Workers:** 1.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-20-10`: lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren.
+**NEXT RECOMMENDATION:** `WI-SOT-20-10` wird bearbeitet; anschließend `WI-SOT-22-01` als Übergabe-Modell vorbereiten.
 **Parallel Candidates:**
-`WI-SOT-22-01` kann nach der Prüfung von `WI-SOT-20-10` mit getrenntem Übergabe-Scope vorbereitet werden; Worker-Scopes haben Vorrang.
+Keine nebenläufige Implementierung: der aktive Runtime- und Status-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 160 · In Progress 0 · Ready 0 · Blocked 2 ·
+**Counter:** Total 205 · Done 160 · In Progress 1 · Ready 0 · Blocked 2 ·
 Open 45 (einschließlich Ready und Blocked) · Progress 78,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -444,7 +444,7 @@ Technisch verhindern:
 - [x] ~~WI-SOT-20-07 · Konflikterkennung~~
 - [x] ~~WI-SOT-20-08 · Worker-Status~~
 - [x] ~~WI-SOT-20-09 · Ergebnisintegration~~
-- [ ] TODO – WI-SOT-20-10 · lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren; keine standortübergreifende Freigabe aus dem Dateiprototyp ableiten
+- [ ] IN_PROGRESS – WI-SOT-20-10 · lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren; keine standortübergreifende Freigabe aus dem Dateiprototyp ableiten
   Der Dateistand ist ausschließlich operativ und enthält keinen zweiten Backlog.
   Claims, Übergabe und Done-Gates sind lokal transaktional geprüft; Queue,
   Dependency-Freigabe und reale Cross-Chat-Nutzung bleiben offen.

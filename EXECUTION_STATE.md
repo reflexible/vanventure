@@ -4,7 +4,7 @@ Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
 Current: `WI-SOT-20-10`
-State: `TODO`
+State: `IN_PROGRESS`
 Last Done: `WI-SOT-21-07`
 Last Commit: `871d794`
 
@@ -16,7 +16,7 @@ Progress:
 - Recovery: none
 
 Current Goal:
-Synchronize the local operational worker state with real chat/controller flows without creating a second backlog.
+Derive a local controller snapshot from the authoritative plan and worker state without asserting cross-chat runtime control.
 
 Relevant:
 - `tools/sot/worker-state.mjs`
@@ -29,4 +29,4 @@ Verification:
 - FAST CHECK unless an escalation criterion applies
 
 Next:
-Read the active Work Item and its direct runtime boundary before creating a claim.
+Implement and verify the local controller snapshot; then complete review and integration.

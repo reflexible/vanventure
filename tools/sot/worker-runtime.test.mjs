@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { assessImpact } from './impact.mjs';
 import { loadDependencyGraph } from './dependency-graph.mjs';
 import { loadRegistry } from './module-registry.mjs';
-import { buildWorkerRuntime, loadWorkerRuntime, modulesForWriteScope } from './worker-runtime.mjs';
+import { buildControllerRuntime, buildWorkerRuntime, loadWorkerRuntime, modulesForWriteScope } from './worker-runtime.mjs';
 
 const target = 'docs/governance/source-of-truth-and-incremental-planning.md';
 function state(scope = [target]) {
@@ -74,4 +74,31 @@ test('inactive records do not become graph workers or active processes', async (
   assert.deepEqual(buildWorkerRuntime({ state: snapshot, registry }), {
     runtimeWorkers: { workers: [] }, activeProcesses: [],
   });
+});
+
+test('local controller snapshot binds current workers to the authoritative plan without remote authorization', async () => {
+  const registry = await loadRegistry();
+  const planText = '- [ ] IN_PROGRESS – WI-SOT-06-01 · Runtime item';
+  const result = buildControllerRuntime({ state: state(), registry, planText });
+  assert.deepEqual(result.current_work_items.map(item => [item.work_item_id, item.plan_status, item.execution_state]),
+    [['WI-SOT-06-01', 'IN_PROGRESS', 'Claimed']]);
+  assert.equal(result.chat_runtime.status, 'LOCAL_ONLY_NOT_REMOTE_AUTHORIZED');
+  assert.equal(result.execution_authorized, false);
+});
+
+test('controller snapshot fails closed when worker and plan status disagree', async () => {
+  const registry = await loadRegistry();
+  assert.throws(() => buildControllerRuntime({ state: state(), registry,
+    planText: '- [ ] TODO – WI-SOT-06-01 · Runtime item' }), /Active worker item disagrees/);
+  assert.throws(() => buildControllerRuntime({ state: state(), registry,
+    planText: '- [ ] IN_PROGRESS – WI-SOT-06-02 · Other item' }), /missing from authoritative plan/);
+});
+
+test('controller snapshot keeps an unowned local write scope visible but unsafe', async () => {
+  const registry = await loadRegistry();
+  const result = buildControllerRuntime({ state: state(['unmapped/local-file']), registry,
+    planText: '- [ ] IN_PROGRESS – WI-SOT-06-01 · Runtime item' });
+  assert.equal(result.activeProcesses[0].scope_status, 'UNMAPPED');
+  assert.equal(result.activeProcesses[0].conflict, true);
+  assert.equal(result.execution_authorized, false);
 });
