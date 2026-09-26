@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
+import { attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
 const record = { work_item_id: 'WI-SOT-22-01', execution_state: 'In Progress', assigned_agent: 'agent-a', write_scope: ['tools/sot'], blocked_by: null };
 test('builds a local non-authorizing handover from durable work state', () => {
   const result = buildChatHandover({ record, planStatus: 'IN_PROGRESS', decisionRefs: ['DEC-2', 'DEC-1'], sourceRef: 'docs/governance/worker-state.json' });
@@ -18,3 +18,5 @@ test('attaches explicit work-item context without creating authority', () => {
   assert.deepEqual(result.dependencies, ['WI-SOT-20-10']); assert.equal(result.execution_authorized, false);
   assert.throws(() => attachWorkItemContext(handover, { title: 'Context', acceptanceCriteria: [] }), /CONTEXT/);
 });
+
+test('attaches read-only plan and execution status', () => { const h=buildChatHandover({record,planStatus:'IN_PROGRESS',sourceRef:'state'}); const r=attachStatusHandover(h,{planStatus:'IN_PROGRESS',executionState:'Review'}); assert.equal(r.status_authority,'AUTHORITATIVE_PLAN_AND_WORKER_STATE'); assert.equal(r.execution_authorized,false); });

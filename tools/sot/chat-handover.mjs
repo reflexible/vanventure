@@ -24,3 +24,9 @@ export function attachWorkItemContext(handover, { title, acceptanceCriteria, dep
   return Object.freeze({ ...handover, title, acceptance_criteria: Object.freeze([...acceptanceCriteria]),
     dependencies: Object.freeze([...new Set(dependencies)].sort()), execution_authorized: false });
 }
+
+/** Preserve the authoritative plan and operational status without making either writable. */
+export function attachStatusHandover(handover, { planStatus, executionState }) {
+  if (!handover || handover.kind !== 'local_chat_handover' || !text(planStatus) || !text(executionState)) throw new Error('HANDOVER_STATUS_INVALID');
+  return Object.freeze({ ...handover, status_handover: Object.freeze({ plan_status: planStatus, execution_state: executionState }), status_authority: 'AUTHORITATIVE_PLAN_AND_WORKER_STATE', execution_authorized: false });
+}
