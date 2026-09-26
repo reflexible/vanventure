@@ -359,8 +359,9 @@ Change
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
   Eine freigabe- und hashgeprüfte additive Vorschau ist vorhanden. Ein
   hashgebundener atomarer Fachmodul-Write mit
-  Post-Validation-Pflicht und exaktem Rollback ist verfügbar; er wurde noch
-  nicht auf eine Projektquelle angewendet. Dependency-/Traceability-Updates,
+  aktueller Registry-/Approval-Revalidierung, Post-Validation-Pflicht und
+  exaktem Rollback ist verfügbar; er wurde noch nicht auf eine Projektquelle
+  angewendet. Dependency-/Traceability-Updates,
   semantische Erweiterung/Superseding und der reale Nutzeridentitätsadapter
   fehlen. Siehe
   [Prüfbericht](../sot-optimization/reviews/sot-update-plan-2026-09-26.md).

@@ -5,6 +5,7 @@ import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { extractHeadingSection } from './rule-catalogue.mjs';
 import { createDecisionStore } from './decision-state.mjs';
+import { loadRegistry } from './module-registry.mjs';
 
 const text = value => typeof value === 'string' && value.trim().length > 0;
 const sha256 = value => createHash('sha256').update(value).digest('hex');
@@ -53,7 +54,7 @@ function locateSection(source, heading) {
 /** Build a non-writing, append-only source update preview for a specialist module. */
 export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflict,
   coverage, module, currentSource, baselineSha256, targetHeading, proposedSection,
-  traceability, decisionState, verifyUserDecision }) {
+  traceability, decisionState, verifyUserDecision, registry }) {
   const errors = [];
   if (!proposal || proposal.status !== 'APPROVED' || proposal.integration !== 'NOT_STARTED'
       || !text(proposal.id) || !text(proposal.content)) errors.push('APPROVED_NON_INTEGRATED_PROPOSAL_REQUIRED');
@@ -67,6 +68,12 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       || approvedProposal.approval.grants_live_rollout !== false) errors.push('PERSISTED_SCOPED_APPROVAL_REQUIRED');
   if (!module || module.status !== 'active_reference' || module.module_id !== proposal?.owner?.module_id
       || module.authority !== proposal?.authority || module.source !== proposal?.owner?.source) errors.push('REGISTERED_SOURCE_OWNER_MISMATCH');
+  const registryMatches = Array.isArray(registry?.modules)
+    ? registry.modules.filter(item => item.module_id === module?.module_id) : [];
+  if (registryMatches.length !== 1 || registryMatches[0]?.status !== 'active_reference'
+      || registryMatches[0]?.authority !== module?.authority || registryMatches[0]?.source !== module?.source) {
+    errors.push('VALIDATED_MODULE_REGISTRY_REQUIRED');
+  }
   if (module?.module_id === 'scrum-core' || module?.source === 'docs/scrum-plan.md') errors.push('SCRUM_CORE_REQUIRES_SEPARATE_GOLDEN_BASELINE_GATE');
   if (impact?.proposal_id !== proposal?.id || impact?.owner?.module_id !== module?.module_id
       || impact?.owner?.authority !== module?.authority || impact?.owner?.source !== module?.source
@@ -178,6 +185,14 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
   let after;
   let wrote = false;
   try {
+    let registry;
+    try { registry = await loadRegistry(resolve(projectRoot, 'docs/governance/module-registry.json'), { projectRoot }); }
+    catch (error) { return { status: 'APPLY_BLOCKED', reason: `MODULE_REGISTRY_INVALID:${error.message}` }; }
+    const registered = registry.modules.filter(module => module.module_id === plan.module_id);
+    if (registered.length !== 1 || registered[0].status !== 'active_reference'
+        || registered[0].authority !== plan.authority || registered[0].source !== plan.source) {
+      return { status: 'APPLY_BLOCKED', reason: 'REGISTERED_SOURCE_OWNER_CHANGED' };
+    }
     const decisionState = await createDecisionStore(decisionPath, { verifyUserDecision }).read();
     const approvalEvent = authenticatedApprovalEvent(decisionState, plan.proposal_id, verifyUserDecision);
     if (!approvalEvent || approvalEvent.event_hash !== plan.approval_event?.event_hash

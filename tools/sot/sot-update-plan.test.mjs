@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, readFile, writeFile, rm, open } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, rm, open } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { applySotUpdatePlan, buildSotUpdatePlan } from './sot-update-plan.mjs';
@@ -19,6 +19,8 @@ const approvalEvent = { type: 'DECISION', proposal_id: proposal.id, action: 'APP
   event_hash: 'a'.repeat(64), transition: { status: 'APPROVED', proposal: approvedProposal } };
 const module = { module_id: proposal.owner.module_id, authority: proposal.authority,
   source: proposal.owner.source, status: 'active_reference' };
+const registry = { schema_version: '1.0.0', modules: [{ ...module, name: 'SoT Architecture', version: null,
+  dependencies: [], contracts: [], last_verified_baseline: null, semantic_baseline: null, last_audit_status: null }] };
 const impact = { proposal_id: 'P-1', owner: { module_id: module.module_id,
   authority: module.authority, source: module.source }, unknowns: [] };
 const conflict = { proposal_id: 'P-1', status: 'CLASSIFIED', sot_update_allowed: false,
@@ -28,7 +30,7 @@ const traceability = [{ proposal_id: 'P-1', source_ref: 'request.md', source_anc
 const input = overrides => ({ proposal: approvedProposal, approvedProposal, impact, conflict, coverage, module,
   currentSource: source, baselineSha256: hash(source), targetHeading: '## Rules',
   proposedSection: '## Rules\nExisting binding rule.\n\n```md\n## Example heading\n```\n\nNew additive requirement.', traceability,
-  decisionState: { events: [approvalEvent] }, verifyUserDecision: () => true, ...overrides });
+  decisionState: { events: [approvalEvent] }, verifyUserDecision: () => true, registry, ...overrides });
 
 test('prepares an approved append-only preview without writing and preserves source line endings', () => {
   const result = buildSotUpdatePlan(input());
@@ -75,7 +77,10 @@ async function applyFixture(t) {
   t.after(() => rm(projectRoot, { recursive: true, force: true }));
   const sourcePath = join(projectRoot, 'module.md');
   await writeFile(sourcePath, source);
+  await mkdir(join(projectRoot, 'docs/governance'), { recursive: true });
   const localModule = { ...module, source: 'module.md' };
+  const localRegistry = { schema_version: '1.0.0', modules: [{ ...registry.modules[0], source: 'module.md' }] };
+  await writeFile(join(projectRoot, 'docs/governance/module-registry.json'), JSON.stringify(localRegistry));
   const localProposal = { ...proposal, status: 'PROPOSED', integration: 'NOT_STARTED', approval: null,
     conflict_check: 'PENDING', owner: { ...proposal.owner, source: 'module.md' } };
   const localImpact = { ...impact, owner: { ...impact.owner, source: 'module.md' } };
@@ -93,7 +98,7 @@ async function applyFixture(t) {
   const persistedProposal = decisionState.proposals.get(localProposal.id).proposal;
   const result = buildSotUpdatePlan(input({ module: localModule, proposal: persistedProposal,
     approvedProposal: persistedProposal, impact: localImpact, decisionState, verifyUserDecision,
-    traceability: [{ ...traceability[0], target_ref: 'module.md' }] }));
+    registry: localRegistry, traceability: [{ ...traceability[0], target_ref: 'module.md' }] }));
   assert.equal(result.status, 'PREPARED_NOT_APPLIED');
   return { projectRoot, sourcePath, decisionStatePath: 'decision-events.jsonl', verifyUserDecision, plan: result.plan };
 }
@@ -139,4 +144,16 @@ test('revalidates the persisted approval and blocks when user authentication no 
     validateAfter: async () => ({ status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] }) });
   assert.equal(result.status, 'APPLY_BLOCKED');
   assert.equal(result.reason, 'PERSISTED_APPROVAL_REVALIDATION_FAILED');
+});
+
+test('rechecks current registered ownership at apply time', async t => {
+  const { projectRoot, plan, decisionStatePath, verifyUserDecision } = await applyFixture(t);
+  const registryPath = join(projectRoot, 'docs/governance/module-registry.json');
+  const changedRegistry = JSON.parse(await readFile(registryPath, 'utf8'));
+  changedRegistry.modules[0].status = 'superseded';
+  await writeFile(registryPath, JSON.stringify(changedRegistry));
+  const result = await applySotUpdatePlan({ plan, projectRoot, decisionStatePath, verifyUserDecision,
+    validateAfter: async () => ({ status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] }) });
+  assert.equal(result.status, 'APPLY_BLOCKED');
+  assert.equal(result.reason, 'REGISTERED_SOURCE_OWNER_CHANGED');
 });

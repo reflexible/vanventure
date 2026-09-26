@@ -10,7 +10,8 @@ ungelöste Konflikte oder ein veralteter Quellenhash blockieren.
 
 `applySotUpdatePlan` liest die hashgeprüfte Decision-Event-Datei erneut und
 verlangt am Anwendungspunkt erneut einen erfolgreichen Authentifizierungsprüfer
-für die exakte Nutzerentscheidung. Es schreibt ausschließlich einen
+für die exakte Nutzerentscheidung. Es validiert außerdem das aktuelle
+Modulregister und bestätigt die aktive Eigentümerschaft. Es schreibt ausschließlich einen
 unveränderten, vorbereiteten append-only Abschnitt in ein Fachmodul. Es prüft
 unmittelbar vorher den Quellenhash, sperrt parallele lokale Updates, erhält
 CRLF/LF und verlangt einen bestandenen Post-Validation-Bericht mit Ergebnisdatei.
@@ -19,10 +20,11 @@ sich die Datei während des fehlgeschlagenen Checks geändert hat, überschreibt
 der Rollback diese Änderung nicht, sondern meldet `ROLLBACK_BLOCKED`. Der
 Scrum-Core wird gesperrt.
 
-Verifikation: `node --test tools/sot/sot-update-plan.test.mjs` — 9/9 bestanden.
+Verifikation: `node --test tools/sot/sot-update-plan.test.mjs` — 10/10 bestanden.
 Die Tests decken Freigabe-/Unknown-/Konflikt-/Hash-Gates, Core-Sperre,
 Regelbewahrung, Traceability, CRLF, erfolgreiche Anwendung, exakten Rollback,
-veraltete Quelle, aktive Sperre und abgelehnte erneute Authentifizierung ab.
+veraltete Quelle, aktive Sperre, geänderte Modulautorität und abgelehnte erneute
+Authentifizierung ab.
 
 **Offen:** Die Authentifizierungsfunktion muss an den echten Projekt- bzw.
 Nutzeridentitätsanbieter angeschlossen sein. Semantische Erweiterung und
