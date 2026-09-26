@@ -239,6 +239,7 @@ test('concurrent contract metadata edits cannot pass using old in-memory catalog
 
 test('whole-pipeline process interruption leaves durable recovery bound to original user evidence', async t => {
   const f = await fixture(t);
+  const goldenBaselineSha256 = hash(Buffer.from(f.source, 'utf8'));
   const moduleUrl = new URL('./governance-workflow.mjs', import.meta.url).href;
   const child = spawnSync(process.execPath, ['--input-type=module', '-e', `
     import { runGovernanceWorkflow } from ${JSON.stringify(moduleUrl)};
@@ -256,7 +257,9 @@ test('whole-pipeline process interruption leaves durable recovery bound to origi
   const recovered = await recoverGovernanceWorkflow({ projectRoot: f.projectRoot, source: f.module.source,
     decisionStatePath: f.input.decisionStatePath, trustedUserImports: f.input.trustedUserImports });
   assert.equal(recovered.status, 'RECOVERED', JSON.stringify(recovered));
-  assert.equal(await readFile(join(f.projectRoot, f.module.source), 'utf8'), f.source);
+  assert.equal(recovered.restored_sha256, goldenBaselineSha256);
+  assert.equal(hash(await readFile(join(f.projectRoot, f.module.source))), goldenBaselineSha256);
+  await assert.rejects(readFile(join(f.projectRoot, `${f.module.source}.sot-recovery.json`)), { code: 'ENOENT' });
 });
 
 
