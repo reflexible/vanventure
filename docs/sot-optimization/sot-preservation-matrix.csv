@@ -1,46 +1,46 @@
 source_section,clause_id,source_lines,requirement,target_story,proposed_treatment,implementation_status,semantic_verification
-SOT-00,SOT-00.a,15,"Neue Ideen, Pläne, Anforderungen und Entscheidungen erst nach Intake, Prüfung, Freigabe und SoT-Integration verbindlich",ST-SOT-12..17,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-00,SOT-00.b,17,"Chats, Notizen, Worker, Analysen und einzelne Dateien sind nicht automatisch verbindlich",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-01,SOT-01.a,21-33,Neue relevante Information aus allen neun genannten Herkunftsarten klassifizieren,ST-SOT-12,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-01,SOT-01.b,35-46,"Intake-Klassen IDEA, Backlog, Requirement, Architektur, Design, Content, Sicherheit, Datenschutz, Prozess und Regeländerung erhalten",ST-SOT-12,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-02,SOT-02.a,50-55,"Mindeststatus IDEA, PROPOSED, APPROVED, SUPERSEDED erhalten",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-02,SOT-02.b,57-59,REJECTED bleibt optional,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-02,SOT-02.c,61,Direktes APPROVED nur bei bereits ausdrücklicher Nutzerfreigabe,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.a,67,Zuständige bestehende SoT vor Übernahme bestimmen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.b,68,Identische bestehende Regel suchen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.c,69,Ähnliche oder teilweise überlappende Regel suchen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.d,70,Widerspruch gegen bestehende Regeln prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.e,71,Erweiterung bestehender Regel prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.f,72,Ersatz bestehender Regel prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.g,73,Auswirkung auf andere Dokumente und Work Items prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-03,SOT-03.h,74,Nötige Referenzanpassungen prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.a,80,Widersprüchliche aktive Regeln vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.b,81,Doppelte Regelführung vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.c,82,Mehrere SoTs für dasselbe Thema vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.d,83,Fälschlich gültige alte Regeln vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.e,85,Konflikte niemals still auflösen,ST-SOT-14,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-04,SOT-04.f,87,Erforderliche fachliche Entscheidung sichtbar als Nutzerentscheidung führen,ST-SOT-14,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-05,SOT-05.a,91-99,Bis Freigabe IDEA oder PROPOSED beziehungsweise Backlog-Item,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-05,SOT-05.b,101,"Vorbereitung und Dependency-Arbeit erlaubt, aber kein stiller Ersatz verbindlicher Regel",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-06,SOT-06.a,105,Erst ausdrückliche Freigabe macht Änderung verbindlich,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-06,SOT-06.b,107-109,Nach Freigabe Status APPROVED,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.a,113,Nach Freigabe zuständige bestehende SoT aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.b,117-130,"Genau eine Autorität je Thema, keine parallelen Dateien, bestehende Quelle weiterentwickeln",ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.c,134,Bestehende Regeln erweitern oder ändern,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.d,"135,141-143",Ersetzte Regeln entfernen oder nachvollziehbar SUPERSEDED markieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.e,136,Abhängigkeiten aktualisieren,ST-SOT-16,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.f,137,Referenzen aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.g,138,Betroffene Dokumentation aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-07,SOT-07.h,139,ADR oder Änderungshistorie aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.a,147,Nach jedem SoT-Update validieren,ST-SOT-17,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.b,151,Keine widersprüchlichen aktiven Regeln,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.c,152,Keine unbeabsichtigten Duplikate,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.d,153,Keine veralteten Referenzen,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.e,154,Keine zweite autoritative SoT je Thema,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.f,155,Keine aktive bereits ersetzte Regel,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-08,SOT-08.g,156,Abhängige Dokumente und Work Items konsistent,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-09,SOT-09.a,160-172,"Workflow Classification, Impact, Conflict, Proposal, Approval, SoT/ADR-Update, Validation, DONE in Reihenfolge",ST-SOT-12..18,EXTENDED,NOT_IMPLEMENTED,PENDING
-SOT-10,SOT-10.a,176-178,Bei dauerhaftem Projektwissen kein DONE vor zuständigem SoT-Update und Konsistenzprüfung,ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-11,SOT-11.a,182,Kein DONE solange dauerhaftes Projektwissen nicht integriert ist,ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-11,SOT-11.b,184,"Worker-Ergebnisse, Chats und Reviews nie alleiniger Speicherort dauerhafter Entscheidung",ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
-SOT-GOAL,SOT-GOAL.a,188-198,"Widersprüche, veraltete Dokumente, parallele Wahrheiten, unklare Entscheidungen und verstreutes Wissen verhindern",ST-SOT-31,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-00,SOT-00.a,16,"Neue Ideen, Pläne, Anforderungen und Entscheidungen erst nach Intake, Prüfung, Freigabe und SoT-Integration verbindlich",ST-SOT-12..17,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-00,SOT-00.b,18,"Chats, Notizen, Worker, Analysen und einzelne Dateien sind nicht automatisch verbindlich",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-01,SOT-01.a,22-34,Neue relevante Information aus allen neun genannten Herkunftsarten klassifizieren,ST-SOT-12,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-01,SOT-01.b,36-47,"Intake-Klassen IDEA, Backlog, Requirement, Architektur, Design, Content, Sicherheit, Datenschutz, Prozess und Regeländerung erhalten",ST-SOT-12,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-02,SOT-02.a,51-56,"Mindeststatus IDEA, PROPOSED, APPROVED, SUPERSEDED erhalten",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-02,SOT-02.b,58-60,REJECTED bleibt optional,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-02,SOT-02.c,62,Direktes APPROVED nur bei bereits ausdrücklicher Nutzerfreigabe,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.a,68,Zuständige bestehende SoT vor Übernahme bestimmen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.b,69,Identische bestehende Regel suchen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.c,70,Ähnliche oder teilweise überlappende Regel suchen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.d,71,Widerspruch gegen bestehende Regeln prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.e,72,Erweiterung bestehender Regel prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.f,73,Ersatz bestehender Regel prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.g,74,Auswirkung auf andere Dokumente und Work Items prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-03,SOT-03.h,75,Nötige Referenzanpassungen prüfen,ST-SOT-13,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.a,81,Widersprüchliche aktive Regeln vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.b,82,Doppelte Regelführung vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.c,83,Mehrere SoTs für dasselbe Thema vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.d,84,Fälschlich gültige alte Regeln vor Freigabe erkennen,ST-SOT-14,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.e,86,Konflikte niemals still auflösen,ST-SOT-14,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-04,SOT-04.f,88,Erforderliche fachliche Entscheidung sichtbar als Nutzerentscheidung führen,ST-SOT-14,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-05,SOT-05.a,92-100,Bis Freigabe IDEA oder PROPOSED beziehungsweise Backlog-Item,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-05,SOT-05.b,102,"Vorbereitung und Dependency-Arbeit erlaubt, aber kein stiller Ersatz verbindlicher Regel",ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-06,SOT-06.a,106,Erst ausdrückliche Freigabe macht Änderung verbindlich,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-06,SOT-06.b,108-110,Nach Freigabe Status APPROVED,ST-SOT-15,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.a,114,Nach Freigabe zuständige bestehende SoT aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.b,118-131,"Genau eine Autorität je Thema, keine parallelen Dateien, bestehende Quelle weiterentwickeln",ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.c,135,Bestehende Regeln erweitern oder ändern,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.d,"136,142-144",Ersetzte Regeln entfernen oder nachvollziehbar SUPERSEDED markieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.e,137,Abhängigkeiten aktualisieren,ST-SOT-16,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.f,138,Referenzen aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.g,139,Betroffene Dokumentation aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-07,SOT-07.h,140,ADR oder Änderungshistorie aktualisieren,ST-SOT-16,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.a,148,Nach jedem SoT-Update validieren,ST-SOT-17,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.b,152,Keine widersprüchlichen aktiven Regeln,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.c,153,Keine unbeabsichtigten Duplikate,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.d,154,Keine veralteten Referenzen,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.e,155,Keine zweite autoritative SoT je Thema,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.f,156,Keine aktive bereits ersetzte Regel,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-08,SOT-08.g,157,Abhängige Dokumente und Work Items konsistent,ST-SOT-17,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-09,SOT-09.a,161-173,"Workflow Classification, Impact, Conflict, Proposal, Approval, SoT/ADR-Update, Validation, DONE in Reihenfolge",ST-SOT-12..18,EXTENDED,NOT_IMPLEMENTED,PENDING
+SOT-10,SOT-10.a,177-179,Bei dauerhaftem Projektwissen kein DONE vor zuständigem SoT-Update und Konsistenzprüfung,ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-11,SOT-11.a,183,Kein DONE solange dauerhaftes Projektwissen nicht integriert ist,ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-11,SOT-11.b,185,"Worker-Ergebnisse, Chats und Reviews nie alleiniger Speicherort dauerhafter Entscheidung",ST-SOT-18,PRESERVED,NOT_IMPLEMENTED,PENDING
+SOT-GOAL,SOT-GOAL.a,189-199,"Widersprüche, veraltete Dokumente, parallele Wahrheiten, unklare Entscheidungen und verstreutes Wissen verhindern",ST-SOT-31,PRESERVED,NOT_IMPLEMENTED,PENDING

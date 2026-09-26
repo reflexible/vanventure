@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 37,
+  "revision": 39,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -776,6 +776,22 @@
       "review": null,
       "integration": null,
       "blocked_by": null
+    },
+    "WI-SOT-04-10": {
+      "work_item_id": "WI-SOT-04-10",
+      "execution_state": "In Progress",
+      "assigned_agent": "/root/wsjf_safety",
+      "claimed_at": "2026-09-26T15:44:39.115Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/analytics-activation-gate-2026-09-26.md",
+        "tools/sot/analytics-activation-gate.mjs",
+        "tools/sot/analytics-activation-gate.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": null,
+      "review": null,
+      "integration": null,
+      "blocked_by": null
     }
   },
   "history": [
@@ -1136,6 +1152,26 @@
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "e65cb73c-a8dd-484a-a130-82e901ade232",
+      "at": "2026-09-26T15:44:39.115Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-04-10",
+      "actor": "/root/wsjf_safety",
+      "write_scope": [
+        "docs/sot-optimization/reviews/analytics-activation-gate-2026-09-26.md",
+        "tools/sot/analytics-activation-gate.mjs",
+        "tools/sot/analytics-activation-gate.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "0f52c943-52aa-4201-b869-cb2cba0cf268",
+      "at": "2026-09-26T15:44:39.125Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-04-10",
+      "actor": "/root/wsjf_safety"
     }
   ]
 }

@@ -1,0 +1,419 @@
+VANVENTURE – SOT & INCREMENTAL PLANNING ARCHITECTURE
+VERBINDLICHE GESAMTE IMPLEMENTIERUNGSLISTE
+Der vollständige Implementierungsplan muss von Beginn an sichtbar sein und während der gesamten Umsetzung gepflegt werden.
+Keine verkürzte Liste nur der nächsten Schritte führen.
+Der Plan muss jederzeit zeigen:
+- alle geplanten Work Items
+- bereits erledigte Work Items
+- aktuell laufende Work Items
+- blockierte Work Items
+- nächste empfohlene Work Items
+- parallel ausführbare Work Items
+- Dependencies
+- Fortschrittscounter
+Erledigte Punkte bleiben sichtbar und werden durchgestrichen.
+PHASE 0 – GOLDEN BASELINE
+- [x] Auditierten docs/scrum-plan.md als Golden Baseline sichern
+- [x] Git-Wiederherstellungsreferenz herstellen
+- [x] SHA-/Byte-Recovery verifizieren
+- [x] Golden-Baseline-Nachweis dokumentieren
+Golden Baseline:
+PROTECTED
+Diese Phase darf nicht erneut ausgeführt werden, solange die Baseline unverändert gültig ist.
+PHASE 1 – REQUIREMENTS PRESERVATION
+- [ ] bestehenden Source-of-Truth-Plan vollständig einlesen
+- [ ] bestehenden WSJF-/Multi-Agent-Team-Plan vollständig einlesen
+- [ ] aktuellen docs/scrum-plan.md als Scrum-Core erfassen
+- [ ] vorhandene verwandte Plan-/Governance-Artefakte identifizieren
+- [ ] bestehende SoT-Anforderungen als Requirements-Baseline erfassen
+- [ ] Preservation Matrix erzeugen
+- [ ] jede bestehende SoT-Anforderung klassifizieren:
+  - PRESERVED
+  - EXTENDED
+  - TECHNICALLY_REIMPLEMENTED
+  - CONFLICT
+  - USER_DECISION_REQUIRED
+- [ ] sicherstellen, dass keine bestehende SoT-Regel verloren geht
+PHASE 2 – FAST MERGE CHECK
+- [ ] SoT vs. Optimierungsarchitektur vergleichen
+- [ ] SoT vs. WSJF/Multi-Agent vergleichen
+- [ ] Optimierungsarchitektur vs. WSJF/Multi-Agent vergleichen
+- [ ] Überschneidungen klassifizieren:
+  - COMPATIBLE
+  - MERGE_REQUIRED
+  - CONFLICT
+- [ ] kompatible Bereiche nicht unnötig weiter analysieren
+- [ ] Merge-Punkte konsolidieren
+- [ ] echte Konflikte identifizieren
+- [ ] echte Nutzerentscheidungen deduplizieren
+- [ ] gemeinsame Zielarchitektur bestätigen
+Besonders prüfen:
+- Work-Item-Lifecycle
+- Epic / Story / Task
+- Definition of Done
+- SoT Impact Check
+- Conflict Check
+- WSJF
+- Fast Track
+- Backlog
+- Board
+- Worker/Subagents
+- Parallelisierung
+- Ownership
+- Claiming / Locking
+- Dependencies
+- Reviews
+- Freigaben
+- Status
+- Monitoring
+- Cross-Chat-Handover
+- Audit
+- Traceability
+WAVE 1 – PERFORMANCE ENABLEMENT
+PHASE 3 – MODULE REGISTRY
+- [ ] Module-Registry-Schema definieren
+- [ ] Modul-ID definieren
+- [ ] autoritative Quelle je Modul erfassen
+- [ ] Modulstatus definieren
+- [ ] Modulversion definieren
+- [ ] Dependencies erfassen
+- [ ] Contracts erfassen
+- [ ] letzte validierte Baseline erfassen
+- [ ] letzten Auditstatus erfassen
+- [ ] Registry validieren
+PHASE 4 – CONTRACT SYSTEM
+- [ ] Contract-Modell definieren
+- [ ] Scrum → Work-Item Contract
+- [ ] SoT → Decision/Change Contract
+- [ ] Worker → Work Assignment Contract
+- [ ] CMS → Publishing Contract
+- [ ] Analytics → Content-ID Contract
+- [ ] Contract-Versionierung definieren
+- [ ] Contract-Break-Erkennung implementieren
+- [ ] Contract-Validierung implementieren
+PHASE 5 – DEPENDENCY GRAPH
+- [ ] Modulabhängigkeiten erfassen
+- [ ] Work-Item-Abhängigkeiten erfassen
+- [ ] Contract-Abhängigkeiten erfassen
+- [ ] laufende Worker berücksichtigen
+- [ ] betroffene Module automatisch ableiten
+- [ ] Impact-Ausbreitung bestimmen
+- [ ] Dependency-Zyklen erkennen
+- [ ] Dependency Graph validieren
+PHASE 6 – IMPACT ENGINE
+- [ ] Änderung klassifizieren
+- [ ] betroffenes Modul bestimmen
+- [ ] direkte Dependencies bestimmen
+- [ ] indirekte relevante Dependencies bestimmen
+- [ ] betroffene Contracts bestimmen
+- [ ] betroffene Work Items bestimmen
+- [ ] laufende Prozesse berücksichtigen
+- [ ] erforderlichen Prüfmodus automatisch bestimmen
+Ergebnis:
+NO_CHECK
+oder
+FAST_CHECK
+oder
+FULL_CHECK
+PHASE 7 – FAST CHECK
+FAST CHECK ist der Default für normale Änderungen.
+- [ ] Delta bestimmen
+- [ ] nur betroffene Module prüfen
+- [ ] relevante Contracts prüfen
+- [ ] direkte Dependencies prüfen
+- [ ] relevante Traceability prüfen
+- [ ] relevante Tests ausführen
+- [ ] Referenzen prüfen
+- [ ] git diff --check
+- [ ] Ergebnis dokumentieren
+Ergebnis:
+FAST_CHECK_PASS
+oder
+FAST_CHECK_BLOCKED
+Kein vollständiger Plan-Audit.
+PHASE 8 – FULL CHECK
+FULL CHECK ist nicht der Normalfall.
+Er wird nur ausgelöst bei:
+- Scrum-Core-Änderung
+- Definition-of-Done-Änderung
+- Statusmodell-Änderung
+- zentraler SoT-Governance-Änderung
+- Security/Auth
+- grundlegender Datenmodelländerung
+- Cross-Domain-Änderung
+- mehreren Kernmodulen
+- Contract-Bruch
+- unklarem Impact
+- erkannter Inkonsistenz
+- [ ] automatische Eskalationsregeln implementieren
+- [ ] ⚠ FULL CHECK REQUIRED Status implementieren
+- [ ] Grund ausgeben
+- [ ] betroffene Module ausgeben
+- [ ] Work Items ausgeben
+- [ ] laufende Worker ausgeben
+- [ ] Prüfungsumfang automatisch begrenzen
+- [ ] impact-basierten Full Check implementieren
+Auch ein FULL CHECK darf nicht automatisch die alte komplette Scrum-Migration wiederholen.
+PHASE 9 – BASELINE SYSTEM
+Für relevante Module:
+- [ ] Byte-Baseline
+- [ ] normalisierte Text-Baseline
+- [ ] semantische Requirements-/Manifest-Baseline
+- [ ] Baseline-Versionierung
+- [ ] Baseline-Provenienz
+- [ ] Recovery-Referenz
+PHASE 10 – CHANGE / DELTA DETECTION
+- [ ] Dateiänderungen erkennen
+- [ ] semantische Änderungen erkennen
+- [ ] Format-only Änderungen erkennen
+- [ ] Contract-Änderungen erkennen
+- [ ] unveränderte Module automatisch ausschließen
+- [ ] prüfbares Delta erzeugen
+PHASE 11 – INCREMENTAL AUDIT
+Implementieren:
+Change
+→ Impact Analysis
+→ Required Check Mode
+→ Delta Validation
+→ Audit Result
+- [ ] lokales Delta-Audit
+- [ ] Modul-Audit
+- [ ] Contract-Audit
+- [ ] Dependency-Audit
+- [ ] Audit-Eskalation
+- [ ] Audit-Ergebnis speichern
+WAVE 2 – SOURCE OF TRUTH GOVERNANCE
+PHASE 12 – SOT INTAKE
+- [ ] neue Idee erfassen
+- [ ] neuen Plan erfassen
+- [ ] neue Entscheidung erfassen
+- [ ] neue Regel erfassen
+- [ ] Intake klassifizieren
+PHASE 13 – SOT IMPACT CHECK
+- [ ] zuständiges Modul bestimmen
+- [ ] autoritative Source bestimmen
+- [ ] Dependencies bestimmen
+- [ ] bestehende Regel suchen
+- [ ] neue vs. bestehende Regel vergleichen
+PHASE 14 – CONFLICT CHECK
+- [ ] Duplikate erkennen
+- [ ] widersprüchliche Regeln erkennen
+- [ ] Superseding erkennen
+- [ ] Erweiterung erkennen
+- [ ] Nutzerentscheidung nur bei echtem Konflikt erzeugen
+PHASE 15 – APPROVAL FLOW
+- [ ] IDEA
+- [ ] PROPOSED
+- [ ] APPROVED
+- [ ] SUPERSEDED
+- [ ] optional REJECTED
+- [ ] Approval-Gates implementieren
+PHASE 16 – SOT UPDATE
+- [ ] autoritative Quelle aktualisieren
+- [ ] bestehende Regel erweitern statt duplizieren
+- [ ] ersetzte Regel markieren
+- [ ] Dependencies aktualisieren
+- [ ] Traceability aktualisieren
+PHASE 17 – SOT POST VALIDATION
+- [ ] SoT-Konsistenz prüfen
+- [ ] Contracts prüfen
+- [ ] Dependencies prüfen
+- [ ] Delta validieren
+- [ ] erforderlichen FAST/FULL CHECK ausführen
+PHASE 18 – DEFINITION-OF-DONE GUARDS
+Technisch verhindern:
+- [ ] DONE bei fehlendem SoT-Update
+- [ ] DONE bei ungelöstem Conflict
+- [ ] DONE bei fehlgeschlagener erforderlicher Prüfung
+- [ ] DONE bei Contract-Bruch
+- [ ] DONE bei fehlender Dependency
+- [ ] DONE bei fehlgeschlagener Konsistenzprüfung
+WAVE 3 – WSJF / MULTI-AGENT
+PHASE 19 – WSJF-INTEGRATION
+- [ ] bestehende WSJF-Regeln übernehmen
+- [ ] Business Value
+- [ ] Time Criticality
+- [ ] Risk Reduction / Opportunity Enablement
+- [ ] Job Size
+- [ ] Confidence
+- [ ] bestehende relative Skala erhalten
+- [ ] Priorisierungsworkflow integrieren
+PHASE 20 – WORKER / MULTI-AGENT
+- [ ] Work-Item-Claiming
+- [ ] Worker Ownership
+- [ ] Locking
+- [ ] parallele Slices
+- [ ] Dependency Awareness
+- [ ] Handover
+- [ ] Konflikterkennung
+- [ ] Worker-Status
+- [ ] Ergebnisintegration
+PHASE 21 – PARALLEL EXECUTION ENGINE
+- [ ] parallelisierbare Work Items erkennen
+- [ ] Dateikonflikte erkennen
+- [ ] Dependency-Konflikte erkennen
+- [ ] Worker-Scope definieren
+- [ ] erlaubte Dateien definieren
+- [ ] verbotene Dateien definieren
+- [ ] Merge-Reihenfolge definieren
+PHASE 22 – CROSS-CHAT / HANDOVER
+- [ ] Chat-Handover-Modell
+- [ ] Work-Item-Kontext
+- [ ] Statusübergabe
+- [ ] Decision-Handover
+- [ ] SoT-Handover
+- [ ] keine konkurrierenden Wahrheiten zwischen Chats
+WAVE 4 – MODULARISIERUNG
+PHASE 23 – LEAN SCRUM CORE
+- [ ] prüfen, welche Regeln wirklich in docs/scrum-plan.md bleiben müssen
+- [ ] Fachdetails identifizieren
+- [ ] Fachmodule definieren
+- [ ] Contracts herstellen
+- [ ] Module zuerst aufbauen
+- [ ] erst danach redundante Details aus dem Core entfernen
+- [ ] Golden-Baseline-Delta prüfen
+PHASE 24 – FACHMODULE
+Mindestens vorbereiten:
+- [ ] Source of Truth
+- [ ] WSJF
+- [ ] Cards / Board
+- [ ] Analytics
+- [ ] CMS
+- [ ] Video Production
+Nur vorhandene Anforderungen übernehmen.
+Keine unnötige Modulbildung nur um der Modularisierung willen.
+PHASE 25 – GENERIERTE GESAMTSICHT
+- [ ] Gesamtansicht aus Modulen erzeugen
+- [ ] klar als generiert kennzeichnen
+- [ ] keine zweite autoritative Quelle daraus erzeugen
+WAVE 5 – MONITORING & END-TO-END
+PHASE 26 – STATUS / MONITORING
+Implementieren:
+Phase
+Work Item
+Status
+Aktuell
+Nächster Schritt
+Blocker
+Active Workers
+Next Recommended
+Parallel Candidates
+Done / Total
+Progress %
+PHASE 27 – PLANPFLEGE
+Der Implementierungsplan wird laufend aktualisiert.
+Erledigte Punkte:
+- [x] ~~Work Item~~
+Aktive Punkte:
+IN_PROGRESS
+Blockierte Punkte:
+BLOCKED
+Neue entdeckte notwendige Arbeit wird in denselben bestehenden Implementierungsplan aufgenommen.
+Keine parallelen Fortschrittspläne.
+PHASE 28 – FORTSCHRITTSCOUNTER
+Immer aus dem tatsächlichen Plan berechnen:
+Total
+Done
+In Progress
+Ready
+Blocked
+Open
+Progress %
+PHASE 29 – NEXT-BEST-WORK
+Nach jedem abgeschlossenen Work Item automatisch bestimmen:
+NEXT RECOMMENDATION
+Priorität:
+1. Critical Path Blocker
+2. Enabler mit vielen Nachfolgern
+3. Dependency-Unblocker
+4. kleine High-Enablement-Arbeit
+5. danach normale Priorisierung / WSJF
+Zusätzlich:
+PARALLEL RECOMMENDATION
+wenn sinnvoll.
+PHASE 30 – GIT HYGIENE
+- [ ] vor Slice git status
+- [ ] fremde Änderungen respektieren
+- [ ] Work Items sauber trennen
+- [ ] kleine nachvollziehbare Commits
+- [ ] Work-Item-ID im Commit
+- [ ] keine Misch-Commits
+- [ ] parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien
+- [ ] kontrollierte Integration
+PHASE 31 – END-TO-END VALIDATION
+Vollständigen realistischen Workflow prüfen:
+Neue Idee
+→ Work Item
+→ SoT Intake
+→ Impact Graph
+→ FAST/FULL Entscheidung
+→ Worker Assignment
+→ Implementierung
+→ SoT Update
+→ Delta Audit
+→ DONE
+Zusätzlich testen:
+- lokale Änderung
+- Cross-Domain-Änderung
+- Contract-Bruch
+- parallele Worker
+- Konflikt
+- Rollback
+KORRIGIERTE DONE-REGEL
+NICHT jedes Work Item braucht einen FULL CHECK.
+Ein Work Item darf DONE werden, wenn:
+- die Implementierung bzw. geplante Arbeit abgeschlossen ist;
+- die für dieses Item relevanten Tests bestanden sind;
+- der vom Impact-System geforderte Prüfmodus bestanden ist;
+- Dependencies konsistent sind;
+- der Plan aktualisiert wurde;
+- notwendiges SoT-Update durchgeführt wurde;
+- Git sauber ist;
+- Golden Baseline nicht verletzt wurde.
+Konkret:
+Kein semantischer Impact
+NO_CHECK bzw. nur minimale Struktur-/Git-Prüfung.
+Lokaler normaler Impact
+FAST_CHECK_PASS
+reicht vollständig aus.
+Nur bei Eskalation
+FULL_CHECK_PASS
+erforderlich.
+FULL CHECK ist ausdrücklich die Ausnahme und darf nicht routinemäßig für jedes Work Item ausgeführt werden.
+AUTOMATISCHE WEITERARBEIT
+Nach jedem Work Item:
+1. Status aktualisieren
+2. erledigten Punkt durchstreichen
+3. Counter aktualisieren
+4. Dependencies neu bewerten
+5. nächsten sinnvollsten Schritt empfehlen
+6. parallele Kandidaten bestimmen
+7. sofern kein echter Nutzerblocker besteht, automatisch weiterarbeiten
+KOMPAKTE STATUSAUSGABE
+Während der Umsetzung regelmäßig:
+Phase:
+Current Work Items:
+Active Workers:
+Status:
+Next Recommended:
+Parallel Candidates:
+Blocked:
+Done / Total:
+Progress:
+ZIEL
+Am Ende soll das System nicht mehr:
+kleine Änderung
+→ riesigen Plan komplett lesen
+→ alles cross-checken
+→ Full Audit
+machen.
+Sondern normalerweise:
+Änderung
+→ Impact
+→ 2–3 betroffene Module
+→ FAST CHECK
+→ Delta Audit
+→ DONE
+und nur bei wirklich großer Auswirkung:
+⚠ FULL CHECK REQUIRED
+Halte diese vollständige Liste während der gesamten Umsetzung sichtbar und aktuell. Sie ist das zentrale Execution Backlog für diesen Umbau.

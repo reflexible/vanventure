@@ -12,7 +12,7 @@ Planung und keine Behauptung einer technisch validierten Preservation.
 | [WSJF-/Multi-Agent-Konzept](sources/wsjf-multi-agent-input-2026-09-26.md) | Vollständige Nutzerantwort vom 26.09.2026; SHA-256 der LF- und Rand-Leerraum-normalisierten UTF-8-Fassung mit korrigiertem Evidenzvorspann `09f4eb89ce2e31c0abb99b93d2b8b54c4b856e88aa34331f11d93fe78f8530ae` | 67 nummerierte Abschnitte und Ziel; Quellwortlaut unter der Trennlinie unverändert. |
 | [Scrum Core](../scrum-plan.md) | `FINAL_AUDIT_PASS` R5; Golden Tag `golden-scrum-final-audit-pass-2026-09-26` und [Recovery-Nachweis](../scrum-migration/reviews/GOLDEN-BASELINE-2026-09-26.md) | Kanonischer Plan und semantische Core-Anker eingelesen; später nur additiver `EPIC-SOT`-Verweis. |
 | Optimierungsauftrag | Nutzeranhang `C:\Users\helmu\.codex\attachments\f091c364-a356-4fee-a76c-26a0fe874165\Eingefügter Text.txt` | Abschnitte 0–62 als Planungs- und Architekturinput. Externer Anhang, kein Repository-SoT. |
-| Vollständige Implementierungsliste | Neuer Nutzeranhang vom 26.09.2026 | 32 Phasen (0–31), 4 Baseline-Nachweise erledigt, ursprünglich 178 offene Checklisten-Items; alle 182 Ursprungsitems im [autoritativen Fachmodul](../governance/source-of-truth-and-incremental-planning.md) sichtbar. |
+| [Vollständige Implementierungsliste](sources/full-implementation-input-2026-09-26.txt) | Bytegleiche Kopie des Nutzeranhangs `81218efe-64a2-4dd5-8cf2-aba4566a1078`; SHA-256 `00be5bfc1af9ad51cdcab2fab5475fb2df78c7342ce94769bb78bbe0d7f5d127` | 32 Phasen (0–31), 4 Baseline-Nachweise erledigt, ursprünglich 178 offene Checklisten-Items; alle 182 Ursprungsitems im [autoritativen Fachmodul](../governance/source-of-truth-and-incremental-planning.md) sichtbar. |
 
 Der Listenabgleich ergab 182/182 konkrete Checklisten-Texte aus dem
 Nutzeranhang im Fachmodul, 0 fehlend und 0 zusätzlich gegenüber der
@@ -58,3 +58,20 @@ Quellanker, Zielstory, Behandlungsentwurf und geplantem Prüfszenario;
 `atomic_mapping=PLANNING_MAPPED`, `verification=PENDING`. Die 11 SoT-Abschnitte
 bleiben in der getrennten 45-Klausel-Matrix abgebildet. Planungsabbildung
 ist keine technische Umsetzung oder semantische Abnahme.
+
+## Aktuelle Nutzung der Eingangsbelege
+
+Die Statusspalten der Preservation-Matrizen dokumentieren den ursprünglichen
+Mappingstand. Sie sind kein zweiter laufender Implementierungsstatus. Aktuelle
+Work-Item-Abnahmen, Zähler und verbleibende Arbeit stehen ausschließlich im
+verknüpften Execution Backlog; konkrete technische Nachweise in dessen Reviews.
+Die vollständige Implementierungsliste dient als zusätzlicher Originalbeleg für
+alle 32 Phasen. Eine Story-Zuordnung bescheinigt noch keine atomare Erfüllung
+jeder Klausel durch jedes untergeordnete Work Item.
+
+Der ursprüngliche 78-Zeilen-Index wurde um die bereits in der SoT-Matrix
+enthaltenen Einleitungs- und Zielanker ergänzt (jetzt 80 Zeilen). Sieben inkonsistente
+Initialhashes und 45 nullbasierte Zeilenbereiche wurden ausschließlich als
+Referenzmetadaten korrigiert. Unabhängiger Vergleich: Originale unverändert,
+80/80 Hashes und 45/45 Zeilenanker gültig.
+[Review](reviews/trace-anchor-repair-2026-09-26.md).

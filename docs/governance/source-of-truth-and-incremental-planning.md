@@ -82,7 +82,7 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`. **Active Workers:** 2.
+**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`, `WI-SOT-04-10`. **Active Workers:** 3.
 Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
@@ -93,8 +93,8 @@ gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 139 · In Progress 2 · Ready 0 · Blocked 1 ·
-Open 59 (einschließlich Ready und Blocked) · Progress 70,2 %.
+**Counter:** Total 205 · Done 139 · In Progress 3 · Ready 0 · Blocked 1 ·
+Open 66 (einschließlich Ready und Blocked) · Progress 67,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -183,7 +183,7 @@ Besonders prüfen:
 - [x] ~~WI-SOT-04-07 · Contract-Versionierung definieren~~
 - [x] ~~WI-SOT-04-08 · Contract-Break-Erkennung implementieren~~
 - [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
-- [ ] TODO – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
+- [ ] IN_PROGRESS – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
   Drei Übergänge besitzen zusätzlich reine Invariantenprüfer für übergebene
   Datensätze; die atomare Worker-Durchsetzung und die realen CMS-/Analytics-
   Pfade sind noch nicht angebunden. Der Punkt bleibt offen.
@@ -545,6 +545,15 @@ wenn sinnvoll.
 - [ ] TODO – WI-SOT-30-07 · parallele Worker bevorzugt über getrennte Worktrees/Branches oder disjunkte Dateien
 - [ ] TODO – WI-SOT-30-08 · kontrollierte Integration
 #### ST-SOT-31 – PHASE 31: END-TO-END VALIDATION
+Die sieben bereits beauftragten Abschlussprüfungen erhalten eigene Work-Item-IDs,
+weil ihr bisheriger Fließtext keine einzeln prüfbare Statuszuordnung ermöglichte.
+- [ ] TODO – WI-SOT-31-01 · vollständigen realistischen Workflow von Idee bis geprüftem DONE nachweisen
+- [ ] TODO – WI-SOT-31-02 · lokale Änderung im integrierten Ablauf prüfen
+- [ ] TODO – WI-SOT-31-03 · Cross-Domain-Änderung mit begrenztem FULL CHECK prüfen
+- [ ] TODO – WI-SOT-31-04 · Contract-Bruch im integrierten Ablauf sperren
+- [ ] TODO – WI-SOT-31-05 · parallele Worker mit Konflikt- und Integrationskontrolle prüfen
+- [ ] TODO – WI-SOT-31-06 · echten Konflikt ohne stille Regeländerung behandeln
+- [ ] TODO – WI-SOT-31-07 · Rollback und exakte Golden-Baseline-Recovery im integrierten Ablauf nachweisen
 Vollständigen realistischen Workflow prüfen:
 Neue Idee
 → Work Item

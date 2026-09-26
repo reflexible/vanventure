@@ -1,0 +1,287 @@
+{
+  "scope": "Reference metadata only; original requirement texts, treatments and targets retained.",
+  "baseline_commit": "55afeec",
+  "original_source_sha256": "93c09cd20e6782a2948dfab9b5d4cc5fa5da938a7ead4b8dbfa4da84c989230f",
+  "section_hash_changes": [
+    {
+      "section_id": "SOT-07",
+      "before": "05be7f074f6006b78864121a8022ed8e6bc2598dd6fb39e84d413ad73df17cd1",
+      "after": "856f9452ea90c40ad3adb06b78d58e035111be5e0ecb991bfc75eb164a25b536"
+    },
+    {
+      "section_id": "SOT-09",
+      "before": "16631fb83f87966915b8a5b99e900447f3f61d06c7ced808d54ab535304fdc9e",
+      "after": "f57babfe92cbfde4a5c052ecaf41758cda2fd91607d2a789f24e3cb88a0b5329"
+    },
+    {
+      "section_id": "WSJF-08",
+      "before": "fbafafade34d45b9cf3de5670650dc04be5774fdbc96e58466f6f77833f10140",
+      "after": "60912c7a6410ca1d9f1908c8c0c1ed9f78171afa6a8598dd3f8e6702b9f09e71"
+    },
+    {
+      "section_id": "WSJF-09",
+      "before": "88c3aa25c0b7c5212a9a451c3557512c41ed6422789eb208d4928a9df6a21f56",
+      "after": "ac650a27bddbc4db59f72fd4779decc84df16e9dc2116c3870787210b740f558"
+    },
+    {
+      "section_id": "WSJF-13",
+      "before": "40310febb055f8ff0875a7ccac682078557c689bb656cadf796522cdc50b7bcc",
+      "after": "3cdffb8ff1ee8e483b740fbe0d8794336ac05257425ce54b42205ea96d0e700e"
+    },
+    {
+      "section_id": "WSJF-44",
+      "before": "94d67bc75654f81aea4225adc8998a193c7cae30bd87bf1cc2a52aa6fdf3dc50",
+      "after": "3cdb0eb77a5746301de1d5f5591c62f408c12f3b0d7bf8f2eb784f76c695f0cb"
+    },
+    {
+      "section_id": "WSJF-67",
+      "before": "227bc29fdda648dd453a930f7ea9294199362cc2361edcde1b4a1a198622b320",
+      "after": "8428dfa8487d9d44495ba9c7cce6dddfd68237b4250b510596468e50f1bbb8b6"
+    }
+  ],
+  "line_changes": [
+    {
+      "clause_id": "SOT-00.a",
+      "before": "15",
+      "after": "16"
+    },
+    {
+      "clause_id": "SOT-00.b",
+      "before": "17",
+      "after": "18"
+    },
+    {
+      "clause_id": "SOT-01.a",
+      "before": "21-33",
+      "after": "22-34"
+    },
+    {
+      "clause_id": "SOT-01.b",
+      "before": "35-46",
+      "after": "36-47"
+    },
+    {
+      "clause_id": "SOT-02.a",
+      "before": "50-55",
+      "after": "51-56"
+    },
+    {
+      "clause_id": "SOT-02.b",
+      "before": "57-59",
+      "after": "58-60"
+    },
+    {
+      "clause_id": "SOT-02.c",
+      "before": "61",
+      "after": "62"
+    },
+    {
+      "clause_id": "SOT-03.a",
+      "before": "67",
+      "after": "68"
+    },
+    {
+      "clause_id": "SOT-03.b",
+      "before": "68",
+      "after": "69"
+    },
+    {
+      "clause_id": "SOT-03.c",
+      "before": "69",
+      "after": "70"
+    },
+    {
+      "clause_id": "SOT-03.d",
+      "before": "70",
+      "after": "71"
+    },
+    {
+      "clause_id": "SOT-03.e",
+      "before": "71",
+      "after": "72"
+    },
+    {
+      "clause_id": "SOT-03.f",
+      "before": "72",
+      "after": "73"
+    },
+    {
+      "clause_id": "SOT-03.g",
+      "before": "73",
+      "after": "74"
+    },
+    {
+      "clause_id": "SOT-03.h",
+      "before": "74",
+      "after": "75"
+    },
+    {
+      "clause_id": "SOT-04.a",
+      "before": "80",
+      "after": "81"
+    },
+    {
+      "clause_id": "SOT-04.b",
+      "before": "81",
+      "after": "82"
+    },
+    {
+      "clause_id": "SOT-04.c",
+      "before": "82",
+      "after": "83"
+    },
+    {
+      "clause_id": "SOT-04.d",
+      "before": "83",
+      "after": "84"
+    },
+    {
+      "clause_id": "SOT-04.e",
+      "before": "85",
+      "after": "86"
+    },
+    {
+      "clause_id": "SOT-04.f",
+      "before": "87",
+      "after": "88"
+    },
+    {
+      "clause_id": "SOT-05.a",
+      "before": "91-99",
+      "after": "92-100"
+    },
+    {
+      "clause_id": "SOT-05.b",
+      "before": "101",
+      "after": "102"
+    },
+    {
+      "clause_id": "SOT-06.a",
+      "before": "105",
+      "after": "106"
+    },
+    {
+      "clause_id": "SOT-06.b",
+      "before": "107-109",
+      "after": "108-110"
+    },
+    {
+      "clause_id": "SOT-07.a",
+      "before": "113",
+      "after": "114"
+    },
+    {
+      "clause_id": "SOT-07.b",
+      "before": "117-130",
+      "after": "118-131"
+    },
+    {
+      "clause_id": "SOT-07.c",
+      "before": "134",
+      "after": "135"
+    },
+    {
+      "clause_id": "SOT-07.d",
+      "before": "135,141-143",
+      "after": "136,142-144"
+    },
+    {
+      "clause_id": "SOT-07.e",
+      "before": "136",
+      "after": "137"
+    },
+    {
+      "clause_id": "SOT-07.f",
+      "before": "137",
+      "after": "138"
+    },
+    {
+      "clause_id": "SOT-07.g",
+      "before": "138",
+      "after": "139"
+    },
+    {
+      "clause_id": "SOT-07.h",
+      "before": "139",
+      "after": "140"
+    },
+    {
+      "clause_id": "SOT-08.a",
+      "before": "147",
+      "after": "148"
+    },
+    {
+      "clause_id": "SOT-08.b",
+      "before": "151",
+      "after": "152"
+    },
+    {
+      "clause_id": "SOT-08.c",
+      "before": "152",
+      "after": "153"
+    },
+    {
+      "clause_id": "SOT-08.d",
+      "before": "153",
+      "after": "154"
+    },
+    {
+      "clause_id": "SOT-08.e",
+      "before": "154",
+      "after": "155"
+    },
+    {
+      "clause_id": "SOT-08.f",
+      "before": "155",
+      "after": "156"
+    },
+    {
+      "clause_id": "SOT-08.g",
+      "before": "156",
+      "after": "157"
+    },
+    {
+      "clause_id": "SOT-09.a",
+      "before": "160-172",
+      "after": "161-173"
+    },
+    {
+      "clause_id": "SOT-10.a",
+      "before": "176-178",
+      "after": "177-179"
+    },
+    {
+      "clause_id": "SOT-11.a",
+      "before": "182",
+      "after": "183"
+    },
+    {
+      "clause_id": "SOT-11.b",
+      "before": "184",
+      "after": "185"
+    },
+    {
+      "clause_id": "SOT-GOAL.a",
+      "before": "188-198",
+      "after": "189-199"
+    }
+  ],
+  "new_index_sections": [
+    "SOT-00",
+    "SOT-GOAL"
+  ],
+  "before_sha256": {
+    "index": "8958479274e8473e54dbae9c66dd90ef8866160776e6256f83fcd3f807c324bc",
+    "matrix": "816f2b6aee5c57dd0bda5a95d0b8a1aa292657ae36ab28182161466a510c2e2b"
+  },
+  "after_sha256": {
+    "index": "c48604e00dad33d4d2442638c9ef5abd4e51892ad89ff32c9533524735c9a87d",
+    "matrix": "aab789f579e9ac72cc2759c0153c601f54df360f8ef4c85f2fdae08da3fcb7a3"
+  },
+  "review": "Controller compared every corrected line range with all 45 requirement summaries. Disjoint SOT-07.d remains disjoint. 7 initial section hashes disagree with unchanged original source; recomputed with documented numbered-boundary normalization. Historical SOT-11 scope including Ziel retained.",
+  "semantic_rule_change": false,
+  "new_section_targets": {
+    "SOT-00": "ST-SOT-12..17",
+    "SOT-GOAL": "ST-SOT-31"
+  }
+}

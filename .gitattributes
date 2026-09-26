@@ -3,3 +3,4 @@ deploy/*.sh text eol=lf
 # Preserve original user evidence and immutable hash-bound pilot artifacts byte for byte.
 docs/sot-optimization/audits/project-governance-pilot/** -text
 docs/governance/decision-state.jsonl -text
+docs/sot-optimization/sources/full-implementation-input-2026-09-26.txt -text
