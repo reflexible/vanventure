@@ -86,19 +86,21 @@ Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
 **Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert; historische Traceability und der begrenzte Core-Delta sind preservation-geprüft. Eine weitere Core-Reduktion braucht wieder einen einzeln nachweisbaren Entfernkandidaten.
-**Current Work Items:** keine. **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-04-10` (Worker-Runtime-Teilslice). **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-04-10` erst mit einem eng begrenzten
-Laufzeit-Integrationsnachweis für CMS, Worker und Analytics wieder aufnehmen;
-vorher die Scope-/Freigabe- und gepinnten Evidenzvoraussetzungen klären. Der
-Regelkatalogtest zählt inzwischen nur die neun aktiven Autoritäten; die zwei
-Core-gebundenen Referenzen bleiben bewusst außerhalb der Regel-Coverage.
+**NEXT RECOMMENDATION:** `WI-SOT-04-10` mit dem kleinsten verbleibenden
+CMS-Publishing-Übergang fortsetzen: den konkreten Release-Scope und dessen
+evidenzierbare Freigabe an der tatsächlichen Publish-Grenze modellieren,
+bevor ein Publish erlaubt wird. Die Analytics-Aktivierung bleibt bis zu einer
+separat genehmigten Runtime-Grenze gesperrt. Der Regelkatalogtest zählt die
+neun aktiven Autoritäten; die zwei Core-gebundenen Referenzen bleiben bewusst
+außerhalb der Regel-Coverage.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 204 · In Progress 0 · Ready 0 · Blocked 1 ·
+**Counter:** Total 205 · Done 204 · In Progress 1 · Ready 0 · Blocked 0 ·
 Open 1 (einschließlich Ready und Blocked) · Progress 99,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -194,8 +196,16 @@ Besonders prüfen:
 - [x] ~~WI-SOT-04-07 · Contract-Versionierung definieren~~
 - [x] ~~WI-SOT-04-08 · Contract-Break-Erkennung implementieren~~
 - [x] ~~WI-SOT-04-09 · Contract-Validierung implementieren~~
-- [ ] BLOCKED – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
-  Der Vertrag ist lokal gesichert und die Aktivierung ausdrücklich gesperrt. Die atomare Worker-Durchsetzung und die realen CMS-/Analytics-Pfade sind auf die spätere Runtime-Integration verschoben; dieser Punkt bleibt bis dahin blockiert. [Aktivierungsnachweis](../sot-optimization/reviews/analytics-activation-gate-2026-09-26.md).
+- [ ] IN_PROGRESS – WI-SOT-04-10 · fachliche Contract-Invarianten an den tatsächlichen CMS-/Worker-/Analytics-Übergängen durchsetzen und mit Positiv-/Negativfällen prüfen; Metadatenvalidierung allein ist keine Laufzeitfreigabe
+  Der reale transaktionale Worker-Claim-Pfad erzwingt nun vor dem Schreiben
+  `WORKER-WORK-ASSIGNMENT` aus dem geprüften Contract-Katalog und speichert
+  Contract-ID, Version und Prüfzeitpunkt im Claim. Positiv- sowie
+  Negativfälle für Doppelclaim und koordinierte Scope-Kollisionen sind gegen
+  den echten Store geprüft. CMS-Publishing hat noch keinen modellierten
+  evidenzierbaren Release-Scope; Web-Analytics besitzt weiterhin keine
+  freigegebene Runtime-Grenze und bleibt aktivierungsblockiert. Daher ist das
+  Item **nicht Done**. [Worker-Teilslice](../abnahmeberichte/sot-worker-runtime-contract-2026-09-26.md)
+  und [Aktivierungsnachweis](../sot-optimization/reviews/analytics-activation-gate-2026-09-26.md).
 #### ST-SOT-05 – PHASE 5: DEPENDENCY GRAPH
 - [x] ~~WI-SOT-05-01 · Modulabhängigkeiten erfassen~~
 - [x] ~~WI-SOT-05-02 · Work-Item-Abhängigkeiten erfassen~~

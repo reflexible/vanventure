@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
 import { evaluateDoneGuard } from './done-guard.mjs';
+import { loadContracts } from './contracts.mjs';
+import { validateContractInvariant } from './contract-invariants.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const defaultStatePath = resolve(root, 'docs/governance/worker-state.json');
@@ -96,6 +98,27 @@ async function saveState(path, state) {
   } finally { await unlink(temp).catch(error => { if (error.code !== 'ENOENT') throw error; }); }
 }
 
+/** Apply the checked-in Worker → Work Assignment contract at the actual claim write boundary. */
+async function validateWorkerClaimContract(state, { workItemId, workerId, claimedAt, writeScope, coordinationRef }) {
+  const catalogue = await loadContracts();
+  const contract = catalogue.contracts.find(item => item.contract_id === 'WORKER-WORK-ASSIGNMENT');
+  assert(contract, 'Worker contract is missing from the checked-in catalogue.');
+  const activeClaims = Object.values(state.records).map(record => ({
+    work_item_id: record.work_item_id,
+    worker_id: record.assigned_agent,
+    claim_status: record.execution_state,
+    claimed_at: record.claimed_at,
+    write_scope: record.write_scope,
+  }));
+  const coordination = Object.values(state.records).flatMap(record => (record.coordination_ref === coordinationRef
+    ? (record.write_scope ?? []).map(scope => ({ with_worker_id: record.assigned_agent, scope, ref: coordinationRef })) : []));
+  const result = validateContractInvariant(contract, {
+    work_item_id: workItemId, worker_id: workerId, claim_status: 'CLAIMED', claimed_at: claimedAt, write_scope: writeScope,
+  }, { activeClaims, criticalScopes: writeScope, coordination });
+  assert(result.valid, `Worker contract invariant blocked claim: ${result.errors.join('; ')}`);
+  return { contract_id: contract.contract_id, version: contract.version, validated_at: claimedAt };
+}
+
 /** Operational status only. The plan remains the sole source for backlog rules and item definitions.
  * verifyCompletionEvidence is a trusted host dependency, never a payload/record field.
  * New Done transitions require it; historical Done records remain structurally readable.
@@ -125,8 +148,12 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
     async claim({ work_item_id: item, worker_id: worker, write_scope: scope, coordination_ref: coordinationRef }) {
       assert(text(worker), 'worker_id is required.');
       const writeScope = normalizeScope(scope);
-      return transact(item, worker, (state, planStatus) => {
+      return transact(item, worker, async (state, planStatus) => {
         assert(planStatus === 'READY', `${item} is ${planStatus} in the authoritative plan; only READY work can be claimed.`);
+        const claimedAt = new Date().toISOString();
+        const contractInvariant = await validateWorkerClaimContract(state, {
+          workItemId: item, workerId: worker, claimedAt, writeScope, coordinationRef,
+        });
         const old = state.records[item];
         assert(!old || old.execution_state === 'Backlog', `${item} is already claimed or completed; use explicit reassignment or release.`);
         assert(!Object.values(state.records).some(record => record.assigned_agent === worker && IMPLEMENTING.has(record.execution_state)),
@@ -137,10 +164,9 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
               `Write scope conflicts with ${otherId}; shared explicit coordination_ref is required.`);
           }
         }
-        const claimedAt = new Date().toISOString();
         state.records[item] = { work_item_id: item, execution_state: 'Claimed', assigned_agent: worker,
           claimed_at: claimedAt, write_scope: writeScope, coordination_ref: coordinationRef ?? null,
-          handoff: null, review: null, integration: null, blocked_by: null };
+          contract_invariant: contractInvariant, handoff: null, review: null, integration: null, blocked_by: null };
         append(state, 'CLAIM', item, worker, { write_scope: writeScope, coordination_ref: coordinationRef ?? null });
         return state.records[item];
       });

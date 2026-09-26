@@ -65,6 +65,11 @@ test('known IDs, one active implementation per worker and safe scope coordinatio
   await assert.rejects(store.claim(claim('WI-SOT-99-99', 'A', 'src/a')), /Unknown Work Item/);
   await assert.rejects(store.claim(claim('WI-SOT-20-03', 'A', 'src/a')), /only READY work/);
   await store.claim(claim('WI-SOT-20-01', 'A', 'src/a'));
+  const first = (await store.snapshot()).records['WI-SOT-20-01'];
+  assert.deepEqual(Object.keys(first.contract_invariant).sort(), ['contract_id', 'validated_at', 'version']);
+  assert.equal(first.contract_invariant.contract_id, 'WORKER-WORK-ASSIGNMENT');
+  assert.equal(first.contract_invariant.version, '1.0.0');
+  await assert.rejects(store.claim(claim('WI-SOT-20-01', 'B', 'src/b')), /Worker contract invariant blocked claim.*active work item/);
   await assert.rejects(store.claim(claim('WI-SOT-20-02', 'A', 'src/b')), /active implementation/);
   await assert.rejects(store.claim(claim('WI-SOT-20-02', 'B', 'src/a/child')), /Write scope conflicts/);
   await store.claim(claim('WI-SOT-20-02', 'B', 'src/b'));

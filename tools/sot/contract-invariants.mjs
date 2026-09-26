@@ -75,7 +75,7 @@ export function validateContractInvariant(contract, payload, context = {}) {
             if (!critical.has(scope) || !claim.write_scope?.includes(scope)) continue;
             const coordinated = context.coordination?.some(item => item.with_worker_id === claim.worker_id
               && item.scope === scope && hasRef(item.ref));
-            if (!coordinated) errors.push(`Critical scope ${scope} overlaps without evidenced coordination.`);
+            if (!coordinated) errors.push(`Critical scope ${scope} overlaps without evidenced coordination_ref.`);
           }
         }
       }
