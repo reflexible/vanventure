@@ -15,6 +15,18 @@ test('checked-in registry resolves one exact authority deterministically', async
   assert.equal(lookupAuthority(registry, 'website.missing'), null);
 });
 
+test('checked-in scoped references remain owned by the Scrum core, not authorities', async () => {
+  const registry = await loadRegistry();
+  const board = registry.modules.find(module => module.module_id === 'board-architecture');
+  const video = registry.modules.find(module => module.module_id === 'video-production');
+  for (const module of [board, video]) {
+    assert.equal(module.status, 'scoped_reference');
+    assert.equal(module.authority, null);
+    assert.equal(module.owner_module, 'scrum-core');
+  }
+  assert.equal(lookupAuthority(registry, 'planning.board-architecture'), null);
+});
+
 test('rejects duplicate module IDs and authority keys', async () => {
   const registry = await fixture();
   registry.modules.push({ ...registry.modules[0], source: 'docs/analytics.md' });
@@ -30,6 +42,17 @@ test('rejects nonexistent and escaping source paths', async () => {
   assert.match((await validateRegistry(registry)).errors.join('\n'), /source is not an existing repository file/);
   registry.modules[0].source = '../outside.md';
   assert.match((await validateRegistry(registry)).errors.join('\n'), /source is not an existing repository file/);
+});
+
+test('rejects a scoped reference without core ownership or with an authority claim', async () => {
+  const registry = await fixture();
+  const board = registry.modules.find(module => module.module_id === 'board-architecture');
+  delete board.owner_module;
+  board.authority = 'planning.board-architecture';
+  const result = await validateRegistry(registry);
+  assert.equal(result.valid, false);
+  assert.match(result.errors.join('\n'), /authority must be null/);
+  assert.match(result.errors.join('\n'), /owner_module is required/);
 });
 
 test('rejects unknown and self-referential dependency IDs', async () => {

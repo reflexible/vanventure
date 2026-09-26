@@ -147,6 +147,40 @@
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
+    },
+    {
+      "module_id": "board-architecture",
+      "name": "Board-Architektur (technische Referenz)",
+      "authority": null,
+      "reference_key": "planning.board-architecture",
+      "owner_module": "scrum-core",
+      "source": "docs/VanVenture-Hauptentwicklungsplan-mit-Marvin-Scrum-Board.md",
+      "status": "scoped_reference",
+      "version": null,
+      "dependencies": [
+        "scrum-core"
+      ],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": "LOCAL_VERIFIED_REFERENCE_ONLY"
+    },
+    {
+      "module_id": "video-production",
+      "name": "Video-Produktion (Ablaufreferenz)",
+      "authority": null,
+      "reference_key": "editorial.video-production",
+      "owner_module": "scrum-core",
+      "source": "docs/creator-system.md",
+      "status": "scoped_reference",
+      "version": null,
+      "dependencies": [
+        "scrum-core"
+      ],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": "LOCAL_VERIFIED_REFERENCE_ONLY"
     }
   ]
 }

@@ -13,7 +13,7 @@ const requiredFields = [
 const idPattern = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const authorityPattern = /^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$/;
 const contractPattern = /^[A-Z][A-Z0-9]*(?:[-.][A-Z0-9]+)*$/;
-const statuses = new Set(['active_reference', 'proposed', 'superseded']);
+const statuses = new Set(['active_reference', 'scoped_reference', 'proposed', 'superseded']);
 
 function nonempty(value) {
   return typeof value === 'string' && value.trim() === value && value.length > 0;
@@ -61,9 +61,18 @@ export async function validateRegistry(registry, { projectRoot = repositoryRoot 
     if (ids.has(module.module_id)) errors.push(`${label}.module_id duplicates ${module.module_id}.`);
     ids.add(module.module_id);
     if (!nonempty(module.name)) errors.push(`${label}.name must be nonempty.`);
-    if (!authorityPattern.test(module.authority ?? '')) errors.push(`${label}.authority is invalid.`);
-    if (authorities.has(module.authority)) errors.push(`${label}.authority duplicates ${module.authority}.`);
-    authorities.add(module.authority);
+    if (module.status === 'scoped_reference') {
+      if (module.authority !== null) errors.push(`${label}.authority must be null for a scoped reference.`);
+      if (!authorityPattern.test(module.reference_key ?? '')) errors.push(`${label}.reference_key is required for a scoped reference.`);
+      if (!idPattern.test(module.owner_module ?? '')) errors.push(`${label}.owner_module is required for a scoped reference.`);
+    } else {
+      if (!authorityPattern.test(module.authority ?? '')) errors.push(`${label}.authority is invalid.`);
+      if (authorities.has(module.authority)) errors.push(`${label}.authority duplicates ${module.authority}.`);
+      authorities.add(module.authority);
+      if (Object.hasOwn(module, 'reference_key') || Object.hasOwn(module, 'owner_module')) {
+        errors.push(`${label} may only declare reference_key or owner_module when scoped.`);
+      }
+    }
     if (!statuses.has(module.status)) errors.push(`${label}.status is invalid.`);
     if (module.version !== null && !nonempty(module.version)) errors.push(`${label}.version must be null or nonempty.`);
     const path = sourcePath(projectRoot, module.source);
@@ -104,6 +113,10 @@ export async function validateRegistry(registry, { projectRoot = repositoryRoot 
       if (!ids.has(dependency)) errors.push(`modules[${index}] refers to unknown dependency ${dependency}.`);
       if (dependency === module.module_id) errors.push(`modules[${index}] depends on itself.`);
     }
+    if (module.status === 'scoped_reference') {
+      if (!ids.has(module.owner_module)) errors.push(`modules[${index}] refers to unknown owner ${module.owner_module}.`);
+      if (module.owner_module === module.module_id) errors.push(`modules[${index}] is its own owner.`);
+    }
   }
   return { valid: errors.length === 0, errors };
 }
@@ -118,6 +131,7 @@ export async function loadRegistry(path = defaultRegistryPath, options = {}) {
 
 /** Return the sole module for an exact authority key. Unknown keys return null. */
 export function lookupAuthority(registry, authority) {
+  if (!authorityPattern.test(authority ?? '')) return null;
   const matches = registry.modules.filter(module => module.authority === authority);
   if (matches.length > 1) throw new Error(`Duplicate authority: ${authority}`);
   return matches[0] ?? null;

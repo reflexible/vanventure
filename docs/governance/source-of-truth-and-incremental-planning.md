@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: Contracts sowie CMS-, Video- und Board-Referenzen ergänzt.
+**Phase:** Modularisierung: elf prüfbare Module aufgebaut; Board und Video bleiben Core-gebundene Referenzen.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-05` · Module zuerst aufbauen.
+**NEXT RECOMMENDATION:** `WI-SOT-25-01` · schreibgeschützte Gesamtansicht aus den elf Modulen erzeugen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 177 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 28 (einschließlich Ready und Blocked) · Progress 86,3 %.
+**Counter:** Total 205 · Done 178 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 27 (einschließlich Ready und Blocked) · Progress 86,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -503,7 +503,12 @@ Technisch verhindern:
   Invarianten und Registry-Rückverweis geprüft. Das ist Schnittstellen-
   Metadatenvalidierung, keine Laufzeitfreigabe. [Contract-Nachweis](../sot-optimization/reviews/contract-system-2026-09-26.md)
   und [lokaler Abnahmebericht](../abnahmeberichte/sot-cms-module-reference-2026-09-26.md).
-- [ ] TODO – WI-SOT-23-05 · Module zuerst aufbauen
+- [x] ~~WI-SOT-23-05 · Module zuerst aufbauen~~
+  Elf vorhandene Quellen sind als aktive Autoritäten oder als explizit
+  Core-gebundene Referenzen aufgebaut und gegen Schattenautorität geprüft.
+  Board und Video haben `authority: null` und können deshalb keine eigene
+  Regelquelle bilden. [Modulaufbau](../sot-optimization/reviews/module-build-2026-09-26.md)
+  und [lokaler Abnahmebericht](../abnahmeberichte/sot-module-build-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
 Die Core-Regeln und Fachdetails wurden gezielt inventarisiert. Das ist keine
