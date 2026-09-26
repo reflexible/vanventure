@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { buildDependencyGraph } from './dependency-graph.mjs';
-import { planExecution } from './execution-planner.mjs';
+import { deriveMergeOrder, planExecution } from './execution-planner.mjs';
 
 const hash = value => createHash('sha256').update(typeof value === 'string' ? value : JSON.stringify(value)).digest('hex');
 function fixture() {
@@ -124,4 +124,40 @@ test('rejects partial or non-executable WSJF assessments', () => {
   assert.equal(planExecution(partial).status, 'EXECUTION_PLAN_BLOCKED');
   const blocked = fixture(); blocked.wsjfAssessments = { 'WI-SOT-02-01': assessment(), 'WI-SOT-04-01': assessment(), 'WI-SOT-03-01': assessment() };
   assert.equal(planExecution(blocked).status, 'EXECUTION_PLAN_BLOCKED');
+});
+
+test('derives dependency-safe merge batches without authorizing a merge', () => {
+  const input = fixture();
+  const result = deriveMergeOrder({ graph: input.graph, workItems: [
+    { work_item_id: 'WI-SOT-02-01', write_scope: ['src/enabler'] },
+    { work_item_id: 'WI-SOT-03-01', write_scope: ['src/consumer'] },
+    { work_item_id: 'WI-SOT-04-01', write_scope: ['src/independent'] },
+  ] });
+  assert.equal(result.status, 'MERGE_ORDER_DERIVED');
+  assert.deepEqual(result.merge_groups, [
+    { sequence: 1, work_item_ids: ['WI-SOT-02-01', 'WI-SOT-04-01'] },
+    { sequence: 2, work_item_ids: ['WI-SOT-03-01'] },
+  ]);
+  assert.equal(result.dependency_conflicts.status, 'SEQUENTIAL_REQUIRED');
+  assert.equal(result.file_conflicts.status, 'NO_FILE_CONFLICTS');
+  assert.equal(result.merge_authorized, false);
+});
+
+test('serializes colliding merge scopes and rejects incomplete or protected merge input', () => {
+  const input = fixture();
+  const result = deriveMergeOrder({ graph: input.graph, workItems: [
+    { work_item_id: 'WI-SOT-02-01', write_scope: ['src/shared'] },
+    { work_item_id: 'WI-SOT-04-01', write_scope: ['src/shared/child'] },
+  ] });
+  assert.deepEqual(result.merge_groups, [
+    { sequence: 1, work_item_ids: ['WI-SOT-02-01'] },
+    { sequence: 2, work_item_ids: ['WI-SOT-04-01'] },
+  ]);
+  assert.equal(result.file_conflicts.status, 'COORDINATION_REQUIRED');
+  assert.throws(() => deriveMergeOrder({ graph: input.graph, workItems: [
+    { work_item_id: 'WI-SOT-02-01', write_scope: ['docs/scrum-plan.md'] },
+  ] }), /FORBIDDEN_MERGE_SCOPE/);
+  assert.throws(() => deriveMergeOrder({ graph: input.graph, workItems: [
+    { work_item_id: 'WI-SOT-02-01', write_scope: [] },
+  ] }), /MERGE_SCOPE_REQUIRED/);
 });

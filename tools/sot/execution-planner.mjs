@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { countWorkItems } from './progress.mjs';
-import { validateDependencyGraph } from './dependency-graph.mjs';
-import { runtimeWorkers, activeProcesses } from './worker-state.mjs';
+import { analyzeDependencyConflicts, validateDependencyGraph } from './dependency-graph.mjs';
+import { analyzeWriteScopeConflicts, runtimeWorkers, activeProcesses } from './worker-state.mjs';
 import { rankReadyQueue } from './wsjf.mjs';
 
 const text = value => typeof value === 'string' && value.trim() === value && value.length > 0;
@@ -12,6 +12,54 @@ const pathKey = value => {
   return value.toLowerCase(); // Windows project paths are case-insensitive.
 };
 const overlap = (a, b) => a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`);
+
+/**
+ * Derive deterministic integration batches from explicit candidate scopes.
+ * This is advisory only: it neither merges work nor changes claims, reviews,
+ * integration states or authoritative backlog status.
+ */
+export function deriveMergeOrder({ graph, workItems, forbiddenScopes = ['docs/scrum-plan.md'] }) {
+  const validation = validateDependencyGraph(graph);
+  if (!validation.valid) throw new Error(`INVALID_GRAPH:${validation.errors.join('; ')}`);
+  if (!Array.isArray(workItems) || !workItems.length) throw new Error('MERGE_WORK_ITEMS_REQUIRED');
+  const forbidden = forbiddenScopes.map(pathKey);
+  const known = new Set(graph.nodes.filter(node => node.type === 'work_item').map(node => node.id.slice(10)));
+  const items = workItems.map(item => {
+    if (!text(item?.work_item_id) || !known.has(item.work_item_id)) throw new Error(`UNKNOWN_WORK_ITEM:${item?.work_item_id ?? ''}`);
+    if (!Array.isArray(item.write_scope) || !item.write_scope.length) throw new Error(`MERGE_SCOPE_REQUIRED:${item.work_item_id}`);
+    const write_scope = item.write_scope.map(pathKey);
+    if (write_scope.some(path => forbidden.some(blocked => overlap(path, blocked)))) throw new Error(`FORBIDDEN_MERGE_SCOPE:${item.work_item_id}`);
+    return { work_item_id: item.work_item_id, write_scope };
+  });
+  if (new Set(items.map(item => item.work_item_id)).size !== items.length) throw new Error('DUPLICATE_MERGE_WORK_ITEM');
+
+  const ids = items.map(item => item.work_item_id);
+  const dependency_conflicts = analyzeDependencyConflicts(graph, ids);
+  const byId = new Map(items.map(item => [item.work_item_id, item]));
+  const file_conflicts = analyzeWriteScopeConflicts(Object.fromEntries(items.map(item => [item.work_item_id, {
+    work_item_id: item.work_item_id, execution_state: 'Integration', write_scope: item.write_scope, coordination_ref: null,
+  }])));
+  const predecessors = new Map(ids.map(id => [id, new Set()]));
+  for (const conflict of dependency_conflicts.conflicts) predecessors.get(conflict.dependent).add(conflict.predecessor);
+  const collides = (left, right) => left.write_scope.some(path => right.write_scope.some(other => overlap(path, other)));
+  const remaining = new Set(ids);
+  const merge_groups = [];
+  while (remaining.size) {
+    const group = [];
+    for (const id of [...remaining].sort()) {
+      const prerequisites = predecessors.get(id);
+      if ([...prerequisites].some(predecessor => remaining.has(predecessor))) continue;
+      const candidate = byId.get(id);
+      if (group.some(existing => collides(candidate, byId.get(existing)))) continue;
+      group.push(id);
+    }
+    if (!group.length) throw new Error('MERGE_ORDER_CANNOT_BE_DERIVED');
+    group.forEach(id => remaining.delete(id));
+    merge_groups.push({ sequence: merge_groups.length + 1, work_item_ids: group });
+  }
+  return { status: 'MERGE_ORDER_DERIVED', merge_groups, dependency_conflicts, file_conflicts,
+    merge_authorized: false };
+}
 
 /** Derived planning only. Analyses are explicit current scope-review inputs, never a second backlog.
  * No claims, Ready transitions, WSJF activation, assignments or file writes are performed.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 109,
+  "revision": 113,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3009,6 +3009,53 @@
           }
         ]
       }
+    },
+    "WI-SOT-21-07": {
+      "work_item_id": "WI-SOT-21-07",
+      "execution_state": "Integration",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:18:43.184Z",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md",
+        "tools/sot/execution-planner.mjs",
+        "tools/sot/execution-planner.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Derived deterministic dependency- and scope-safe merge groups without authorizing a merge.",
+        "files": [
+          "tools/sot/execution-planner.mjs",
+          "tools/sot/execution-planner.test.mjs",
+          "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md"
+        ],
+        "tests": [
+          "execution-planner: 11/11 PASS",
+          "full SoT suite: 301/301 PASS",
+          "Golden Baseline diff PASS"
+        ],
+        "limitations": [
+          "Only an advisory projection; readiness, review and actual integration remain governed by existing state."
+        ],
+        "follow_up": [
+          "Use only explicit current work-item scopes as input."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:21:04.433Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md",
+        "self_review_reason": "No separate active reviewer; deterministic tests, graph smoke test and Golden Baseline diff provide the bounded review evidence.",
+        "at": "2026-09-26T17:21:04.445Z"
+      },
+      "integration": null,
+      "blocked_by": null
     }
   },
   "history": [
@@ -4026,6 +4073,45 @@
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/worker-scopes-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "358950df-33f1-4ba3-841f-0f18b0c0cc76",
+      "at": "2026-09-26T17:18:43.184Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-21-07",
+      "actor": "/root",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/governance/source-of-truth-and-incremental-planning.md",
+        "docs/governance/worker-state.json",
+        "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md",
+        "tools/sot/execution-planner.mjs",
+        "tools/sot/execution-planner.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "733dec8c-4f1b-40a2-b27b-e1a7341f1c86",
+      "at": "2026-09-26T17:18:43.197Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-21-07",
+      "actor": "/root"
+    },
+    {
+      "event_id": "cd99bcc3-0fe0-4ec4-91b1-b7e6547b9600",
+      "at": "2026-09-26T17:21:04.433Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-21-07",
+      "actor": "/root",
+      "summary": "Derived deterministic dependency- and scope-safe merge groups without authorizing a merge."
+    },
+    {
+      "event_id": "3c26a6d0-9644-4570-816e-5711fd3666de",
+      "at": "2026-09-26T17:21:04.445Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-21-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/merge-order-fast-check-2026-09-26.md"
     }
   ]
 }
