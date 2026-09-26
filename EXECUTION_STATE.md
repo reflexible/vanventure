@@ -3,20 +3,20 @@
 Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
-Current: `WI-SOT-21-04`
+Current: `WI-SOT-21-05`
 State: `TODO`
-Last Done: `WI-SOT-21-03`
-Last Commit: `4c36305`
+Last Done: `WI-SOT-21-04`
+Last Commit: `8f1ba42`
 
 Progress:
-- Done: 156
+- Done: 157
 - Total: 205
-- Open: 49
+- Open: 48
 - Blocked: 2
 - Recovery: none
 
 Current Goal:
-Define explicit Worker Scopes from existing Write-Scope boundaries.
+Derive allowed files from explicit Worker Scopes.
 
 Relevant:
 - `tools/sot/wsjf.mjs`
