@@ -90,8 +90,8 @@ Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung u
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 162 · In Progress 1 · Ready 0 · Blocked 2 ·
-Open 43 (einschließlich Ready und Blocked) · Progress 79,0 %.
+**Counter:** Total 205 · Done 163 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 42 (einschließlich Ready und Blocked) · Progress 79,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -463,7 +463,7 @@ Technisch verhindern:
   Harte Abhängigkeiten und kollidierende Write Scopes ergeben rein ableitende, nicht autorisierende Integrationsgruppen. [FAST-CHECK](../sot-optimization/reviews/merge-order-fast-check-2026-09-26.md).
 #### ST-SOT-22 – PHASE 22: CROSS-CHAT / HANDOVER
 - [x] ~~WI-SOT-22-01 · Chat-Handover-Modell~~
-- [ ] IN_PROGRESS – WI-SOT-22-02 · Work-Item-Kontext
+- [x] ~~WI-SOT-22-02 · Work-Item-Kontext~~
 - [ ] TODO – WI-SOT-22-03 · Statusübergabe
 - [ ] TODO – WI-SOT-22-04 · Decision-Handover
 - [ ] TODO – WI-SOT-22-05 · SoT-Handover
