@@ -56,10 +56,20 @@ export function evaluateWsjf(input) {
 }
 
 /** Rank only currently executable work; WSJF never overrides readiness or safety gates. */
-export function rankReadyQueue(items) {
+export function rankReadyQueue(items, { comparisonGroup = null } = {}) {
   if (!Array.isArray(items)) throw new Error('Ready queue items must be an array.');
-  const eligible = items.filter(item => item?.ready === true && item?.claimed !== true
-    && item?.blocked !== true && item?.conflict !== true && item?.user_decision_required !== true);
+  const groups = [...new Set(items.map(item => item?.comparison_group ?? 'product-backlog'))];
+  if (groups.length > 1 && !isText(comparisonGroup)) {
+    throw new Error('A comparison_group must be selected before ranking incomparable backlogs.');
+  }
+  const selectedGroup = comparisonGroup ?? groups[0] ?? 'product-backlog';
+  const eligible = items.filter(item => (item?.comparison_group ?? 'product-backlog') === selectedGroup
+    && item?.ready === true && item?.claimed !== true && item?.blocked !== true
+    && item?.conflict !== true && item?.user_decision_required !== true
+    && (!Object.hasOwn(item ?? {}, 'hard_dependencies')
+      || Array.isArray(item.hard_dependencies)
+        && item.hard_dependencies.every(dependency => isText(dependency?.id)
+          && dependency.status === 'SATISFIED')));
   for (const item of eligible) {
     if (!isText(item.id) || !Number.isFinite(item.wsjf) || item.wsjf < 0) {
       throw new Error('Executable items need an ID and calculated WSJF.');
@@ -71,5 +81,6 @@ export function rankReadyQueue(items) {
   return eligible.sort((a, b) => Number(Boolean(b.manual_priority_override?.enabled))
     - Number(Boolean(a.manual_priority_override?.enabled))
     || b.wsjf - a.wsjf || a.id.localeCompare(b.id)).map(item => ({ id: item.id, wsjf: item.wsjf,
+      comparison_group: selectedGroup,
       manual_priority_override: Boolean(item.manual_priority_override?.enabled), reason: item.manual_priority_override?.reason ?? null }));
 }

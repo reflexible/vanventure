@@ -59,3 +59,18 @@ test('prioritizes WSJF only within executable work and requires override explana
     { id: 'B', ready: true, wsjf: 4, conflict: true }]);
   assert.deepEqual(result, []);
 });
+
+test('does not rank blocked hard dependencies and requires an explicit comparison room', () => {
+  const queue = rankReadyQueue([
+    { id: 'A', ready: true, wsjf: 20, hard_dependencies: [{ id: 'WI-1', status: 'BLOCKED' }] },
+    { id: 'B', ready: true, wsjf: 4, hard_dependencies: [{ id: 'WI-2', status: 'SATISFIED' }] },
+    { id: 'C', ready: true, wsjf: 99, hard_dependencies: 'unknown' },
+  ]);
+  assert.deepEqual(queue.map(item => item.id), ['B']);
+  const projects = [
+    { id: 'P1', ready: true, wsjf: 9, comparison_group: 'product-A' },
+    { id: 'P2', ready: true, wsjf: 30, comparison_group: 'product-B' },
+  ];
+  assert.throws(() => rankReadyQueue(projects), /comparison_group/);
+  assert.deepEqual(rankReadyQueue(projects, { comparisonGroup: 'product-A' }).map(item => item.id), ['P1']);
+});
