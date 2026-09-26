@@ -32,13 +32,16 @@ export async function runGovernanceWorkflow(input) {
   let applied = null;
   try {
     const { projectRoot, workItemId, proposal, catalogue, scopeReview, conflictReviews, verifyReviewer,
-      verifyConflictReview, trustedUserImports, userDecision, proposedSection, traceability,
+      verifyConflictReview, verifyRuleReview, trustedUserImports, userDecision, proposedSection, traceability,
       decisionStatePath, audit, validators } = input;
     if (!isAbsolute(projectRoot ?? '') || typeof verifyReviewer !== 'function'
         || typeof verifyConflictReview !== 'function' || typeof validators?.sotConsistency !== 'function'
         || typeof validators?.traceability !== 'function') throw new Error('REQUIRED_AUTHENTICATORS_AND_VALIDATORS_MISSING');
     if (!/^WI-SOT-\d{2}-\d{2}$/.test(workItemId ?? '') || proposal?.work_item_id !== workItemId || !text(proposal?.id) || proposal.status !== 'PROPOSED' || proposal.integration !== 'NOT_STARTED'
         || !Array.isArray(conflictReviews)) throw new Error('PENDING_PROPOSAL_AND_EXPLICIT_REVIEWS_REQUIRED');
+    if (proposal.rule_update != null && (typeof verifyRuleReview !== 'function'
+        || verifyRuleReview({ proposal_id: proposal.id, proposal_sha256: decisionProposalHash(proposal),
+          review: structuredClone(proposal.rule_update.semantic_review) }) !== true)) throw new Error('AUTHENTICATED_RULE_REVIEW_REQUIRED');
     const statePath = localPath(projectRoot, decisionStatePath);
     localPath(projectRoot, proposal.owner?.source);
     const outputPath = localPath(projectRoot, audit?.outputPath);
@@ -62,7 +65,8 @@ export async function runGovernanceWorkflow(input) {
     const conflict = assessConflict({ proposal, impact: scoped.impact, reviews: conflictReviews });
     if (conflict.status !== 'CLASSIFIED' || conflict.user_decision_required
         || conflict.unresolved_candidate_ids.length || conflict.unknown_coverage.length
-        || conflict.relationships.some(item => !['EXTENSION', 'UNRELATED'].includes(item.relation))) throw new Error('UNRESOLVED_OR_UNSUPPORTED_CONFLICT');
+        || conflict.relationships.some(item => !['EXTENSION', 'UNRELATED'].includes(item.relation)
+          && !(proposal.rule_update?.kind === 'SUPERSEDE' && item.candidate_id === proposal.rule_update.rule_id && item.relation === 'SUPERSEDES'))) throw new Error('UNRESOLVED_OR_UNSUPPORTED_CONFLICT');
     const registry = await loadRegistry(resolve(projectRoot, 'docs/governance/module-registry.json'), { projectRoot });
     const contracts = await loadContracts(resolve(projectRoot, 'docs/governance/contracts.json'), { registry, projectRoot });
     const graphPath = resolve(projectRoot, 'docs/governance/dependency-graph.json');
@@ -103,7 +107,7 @@ export async function runGovernanceWorkflow(input) {
     const preview = buildSotUpdatePlan({ proposal: approved, approvedProposal: approved,
       impact: scoped.impact, conflict, coverage: scoped.coverage, module: owner,
       currentSource: before[owner.module_id].toString('utf8'), baselineSha256: proposal.source_baseline_sha256,
-      targetHeading: proposal.target_heading, proposedSection, traceability, decisionState: state, verifyUserDecision, registry });
+      targetHeading: proposal.target_heading, proposedSection, traceability, decisionState: state, verifyUserDecision, verifyRuleReview, registry });
     if (preview.status !== 'PREPARED_NOT_APPLIED') return { status: 'WORKFLOW_BLOCKED', stage, details: preview };
     // Close the review-to-write gap for normal intervening edits before apply.
     const refreshed = await assessProjectReviewedScope({ proposal, catalogue, review: scopeReview, verifyReviewer, projectRoot });
@@ -124,7 +128,7 @@ export async function runGovernanceWorkflow(input) {
       validatorArtifacts[name] = { path: finding.evidence_ref, sha256: finding.evidence_sha256 };
       return finding;
     };
-    applied = await applySotUpdatePlan({ plan: preview.plan, projectRoot, decisionStatePath, verifyUserDecision,
+    applied = await applySotUpdatePlan({ plan: preview.plan, projectRoot, decisionStatePath, verifyUserDecision, verifyRuleReview,
       validateAfter: async () => {
         await assertMetadataUnchanged(preview.plan);
         const currentRegistry = await loadRegistry(resolve(projectRoot, 'docs/governance/module-registry.json'), { projectRoot });
@@ -149,6 +153,11 @@ export async function runGovernanceWorkflow(input) {
           postValidation = { ...postValidation, status: 'POST_VALIDATION_BLOCKED', checks: [...postValidation.checks,
             { name: 'stable_post_validation_inputs', status: 'BLOCKED', detail: error.message }] };
         }
+        if (preview.plan.required_check && !(postValidation.mode === 'FULL_CHECK'
+            || (preview.plan.required_check === 'FAST_CHECK' && postValidation.mode === 'FAST_CHECK'))) {
+          postValidation = { ...postValidation, status: 'POST_VALIDATION_BLOCKED', checks: [...postValidation.checks,
+            { name: 'rule_update_required_mode', status: 'BLOCKED', detail: `Expected ${preview.plan.required_check}; actual ${postValidation.mode}` }] };
+        }
         postValidation = { ...postValidation, scope: workItemId };
         const evidence = await open(postOutputPath, 'wx');
         try { await evidence.writeFile(JSON.stringify(postValidation, null, 2) + '\n'); await evidence.sync(); }
@@ -168,6 +177,8 @@ export async function runGovernanceWorkflow(input) {
       result_output: resultOutputRef, update: applied, post_validation: postValidation, done_guard: done,
       completion_evidence: completionEvidence,
       artifacts: { audit: await artifact(audit.outputPath), post_validation: await artifact(postOutputRef),
+        ...(postValidation.project_audit_output ? { project_audit: {
+          path: postValidation.project_audit_output, sha256: postValidation.project_audit_sha256 } } : {}),
         source: { path: owner.source, sha256: preview.plan.after_sha256 }, validators: validatorArtifacts,
         metadata: await Promise.all(metadataPaths.map(artifact)), runtime: await runtimeBinding() },
       product_release: false, work_item_done_written: false, live_rollout: false };
@@ -182,10 +193,10 @@ export async function runGovernanceWorkflow(input) {
 
 
 /** Explicit recovery uses the same externally pinned original-user evidence. */
-export async function recoverGovernanceWorkflow({ projectRoot, source, decisionStatePath, trustedUserImports }) {
+export async function recoverGovernanceWorkflow({ projectRoot, source, decisionStatePath, trustedUserImports, verifyRuleReview }) {
   try {
     return await recoverSotUpdate({ projectRoot, source, decisionStatePath,
-      verifyUserDecision: createUserDecisionVerifier({ trustedImports: trustedUserImports }) });
+      verifyUserDecision: createUserDecisionVerifier({ trustedImports: trustedUserImports }), verifyRuleReview });
   } catch (error) { return { status: 'RECOVERY_BLOCKED', reason: error.message }; }
 }
 
@@ -200,7 +211,8 @@ function completionFromPost({ workItemId, moduleId, auditRef, postRef, postValid
 
 const runtimeModules = ['governance-workflow', 'scope-review', 'conflict-check', 'decision-state', 'user-decision-evidence',
   'sot-update-plan', 'post-validation', 'incremental-audit', 'fast-check', 'full-check', 'done-guard', 'worker-state',
-  'module-registry', 'contracts', 'dependency-graph', 'delta', 'impact', 'rule-catalogue', 'scoped-coverage', 'sot-impact', 'baselines'];
+  'module-registry', 'contracts', 'dependency-graph', 'delta', 'impact', 'rule-catalogue', 'scoped-coverage', 'sot-impact', 'baselines',
+  'project-audit', 'project-traceability', 'project-check-profiles'];
 async function runtimeBinding() {
   return Promise.all(runtimeModules.map(async name => ({ module: name, sha256: hash(await readFile(new URL(`./${name}.mjs`, import.meta.url))) })));
 }
@@ -232,6 +244,22 @@ export async function verifyGovernanceResult({ resultPath, expectedResultSha256,
         || latest?.event_hash !== result.approval_event?.event_hash || latest?.revision !== result.approval_event?.revision) throw new Error('INTEGRATION_DECISION_BINDING_INVALID');
     const audit = JSON.parse((await checked(result.artifacts.audit)).toString('utf8'));
     const post = JSON.parse((await checked(result.artifacts.post_validation)).toString('utf8'));
+    if (post.project_audit_output || result.artifacts.project_audit) {
+      const pin = result.artifacts.project_audit;
+      if (pin?.path !== post.project_audit_output || pin?.sha256 !== post.project_audit_sha256) throw new Error('PROJECT_AUDIT_PIN_MISSING');
+      const project = JSON.parse((await checked(pin)).toString('utf8'));
+      if (project.status !== 'PROJECT_AUDIT_PASS' || project.source_drift?.length !== 0
+          || !isDeepStrictEqual(project.audit, audit)
+          || project.audit_output !== result.artifacts.audit.path
+          || project.source_sha256?.[result.source] !== result.update.after_sha256) throw new Error('PROJECT_AUDIT_BINDING_INVALID');
+      for (const [path, sha256] of Object.entries(project.source_sha256)) await checked({ path, sha256 });
+      if (!project.runtime_source_sha256 || !Object.keys(project.runtime_source_sha256).length) throw new Error('PROJECT_RUNTIME_BINDING_MISSING');
+      for (const [name, expected] of Object.entries(project.runtime_source_sha256)) {
+        if (!runtimeModules.includes(name) || hash(await readFile(new URL(`./${name}.mjs`, import.meta.url))) !== expected) {
+          throw new Error('PROJECT_AUDIT_RUNTIME_CHANGED');
+        }
+      }
+    }
     await checked(result.artifacts.source);
     for (const artifact of result.artifacts.metadata) await checked(artifact);
     const auditPassed = audit.status === 'PASS' && (audit.mode === 'FAST_CHECK' ? audit.check?.result === 'FAST_CHECK_PASS'

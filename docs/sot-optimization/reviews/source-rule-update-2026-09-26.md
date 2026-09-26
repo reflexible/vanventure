@@ -84,9 +84,9 @@ New cases verify:
 
 The two guarded local source transformations and their rollback paths are
 implemented and tested. This is a technical component result, not acceptance of
-any new or superseded real project rule. The higher-level governance workflow
-still needs explicit wiring of `verifyRuleReview` and the new operation types
-before using them for an actual proposal; this slice did not change that file.
+any new or superseded real project rule. The higher-level governance workflow now wires `verifyRuleReview` and both
+operation types explicitly; the follow-up integration evidence is recorded below.
+No actual project proposal was created or applied in these tests.
 Registry/dependency/traceability lifecycle updates and historical inventory
 classification remain separate work.
 
@@ -98,3 +98,41 @@ ambiguous rules and unresolved contradictions require their existing dedicated
 decision/review path and are blocked here. No automatic normative project choice
 was made. Existing crash-recovery trust and filesystem-race limitations continue
 to apply.
+
+
+## Follow-up: higher workflow integration
+
+The higher workflow now accepts `verifyRuleReview` as an explicit trusted input
+for bound rule proposals. It checks the reviewer in preflight and passes the same
+verifier to preview and apply, where the source-update primitive checks it again.
+Only the exact persisted target of a SUPERSEDE proposal may have the SUPERSEDES
+conflict relationship; unrelated unsupported relationships still block. Recovery
+also receives and reauthenticates this reviewer. All original user-decision,
+source-hash, scope, conflict and worker completion gates remain in place.
+
+The declared semantic check mode is compared with the actual audit mode. A
+mismatch is recorded as a failed check in the immutable post-validation result,
+and the exact source baseline is restored. It cannot be hidden behind a technically
+successful FAST result when the reviewed operation required FULL.
+
+`node --test tools/sot/governance-workflow.test.mjs`: **23 passed, 0 failed**.
+The additional complete temporary-repository cases demonstrate:
+
+- EXTEND and SUPERSEDE through actual source scope, persisted semantic reviewer
+  evidence, hashed synthetic original-user import, decision events and FAST audit;
+- both successful rule operations through independent worker review and the
+  unchanged host-pinned worker-store gate to persisted Done;
+- reviewer rejection independently at preflight, preview and apply;
+- required-mode mismatch recorded as BLOCKED and rolled back;
+- failing actual traceability result rolls superseding back;
+- required FULL succeeds only with executable scoped source/dependency validators;
+- actual pipeline process exit during superseding, followed by recovery that
+  blocks without the authentic semantic reviewer and succeeds with it.
+
+The tests use complete isolated repositories and durable evidence files. Their
+user decisions are expressly synthetic; they do not authorize a real VanVenture
+rule change. The local end-to-end implementation of the two transformations is
+verified. Substantive acceptance of any real extension or replacement still needs
+its exact original-user approval and authenticated semantic review. Existing
+store completion gates from commit 03c1b86 were preserved, and their negative
+regressions remain passing in the same workflow suite.

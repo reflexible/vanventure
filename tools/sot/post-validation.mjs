@@ -1,10 +1,11 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, realpath } from 'node:fs/promises';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { sha256 } from './baselines.mjs';
 import { validateRegistry } from './module-registry.mjs';
 import { validateContracts } from './contracts.mjs';
 import { validateDependencyGraph } from './dependency-graph.mjs';
 import { runIncrementalAudit } from './incremental-audit.mjs';
+import { createProjectAuditRunner } from './project-audit.mjs';
 
 const unique = items => [...new Set(items)].sort();
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
@@ -73,9 +74,24 @@ export async function runSotPostValidation({ auditInput, updatedModuleIds, valid
   // The audit writes an immutable result even when it blocks. No audit is run
   // until the supplied inputs describe actual source files and valid catalogues.
   let audit = null;
+  let projectAudit = null;
+  let projectEvidencePath = null;
+  let projectEvidenceSha256 = null;
   if (results.every(item => item.status === 'PASS')) {
     try {
-      audit = await runIncrementalAudit(auditInput);
+      if (auditInput.test_profiles === 'maintained') {
+        const outputPath = relative(auditInput.projectRoot, resolve(auditInput.projectRoot, auditInput.outputPath)).split(sep).join('/');
+        const projectInput = { outputPath };
+        for (const key of ['change', 'before', 'beforeContracts', 'beforeManifests', 'afterManifests', 'changed_paths']) {
+          if (Object.hasOwn(auditInput, key)) projectInput[key] = auditInput[key];
+        }
+        projectAudit = await createProjectAuditRunner({ projectRoot: auditInput.projectRoot,
+          fullValidators: auditInput.validators })(projectInput);
+        audit = projectAudit.audit;
+        projectEvidencePath = outputPath.replace(/\.json$/, '.project-evidence.json');
+        projectEvidenceSha256 = sha256(await readFile(checkedSource(auditInput.projectRoot, projectEvidencePath)));
+        record('project_audit', projectAudit.status === 'PROJECT_AUDIT_PASS', projectEvidencePath);
+      } else audit = await runIncrementalAudit(auditInput);
       const deltaIds = unique(audit.delta?.modules?.map(module => module.module_id) ?? []);
       record('delta', ids.every(id => deltaIds.includes(id)),
         `updated=${ids.join(',')}; changed=${deltaIds.join(',')}`);
@@ -84,7 +100,7 @@ export async function runSotPostValidation({ auditInput, updatedModuleIds, valid
         : audit.mode === 'FULL_CHECK'
           ? audit.check?.status === 'FULL_CHECK_PASS'
           : false;
-      record('required_check', audit.status === 'PASS' && checkPassed,
+      record('required_check', audit.status === 'PASS' && checkPassed && (!projectAudit || projectAudit.status === 'PROJECT_AUDIT_PASS'),
         `audit=${audit.status}; mode=${audit.mode}; result=${audit.check?.result ?? audit.check?.status ?? 'MISSING'}`);
     } catch (error) {
       record('audit_execution', false, error instanceof Error ? error.message : String(error));
@@ -98,7 +114,7 @@ export async function runSotPostValidation({ auditInput, updatedModuleIds, valid
       record(name, false, 'MISSING_CHECKER');
       continue;
     }
-    if (!audit || audit.status !== 'PASS') {
+    if (!audit || audit.status !== 'PASS' || (projectAudit && projectAudit.status !== 'PROJECT_AUDIT_PASS')) {
       record(name, false, 'AUDIT_NOT_PASSED');
       continue;
     }
@@ -110,6 +126,27 @@ export async function runSotPostValidation({ auditInput, updatedModuleIds, valid
       record(name, false, `CHECK_ERROR:${error instanceof Error ? error.message : String(error)}`);
     }
   }
+  if (projectAudit) {
+    const drift = [];
+    for (const [name, expected] of Object.entries(projectAudit.runtime_source_sha256 ?? {})) {
+      if (!/^[a-z][a-z-]+$/.test(name)) { drift.push(`runtime:${name}`); continue; }
+      try {
+        if (sha256(await readFile(new URL(`./${name}.mjs`, import.meta.url))) !== expected) drift.push(`runtime:${name}`);
+      } catch { drift.push(`runtime:${name}`); }
+    }
+    for (const [source, expected] of Object.entries(projectAudit.source_sha256)) {
+      try {
+        const path = checkedSource(auditInput.projectRoot, source);
+        if (await realpath(path) !== path || sha256(await readFile(path)) !== expected) drift.push(source);
+      }
+      catch { drift.push(source); }
+    }
+    try {
+      const path = checkedSource(auditInput.projectRoot, projectEvidencePath);
+      if (await realpath(path) !== path || sha256(await readFile(path)) !== projectEvidenceSha256) drift.push(projectEvidencePath);
+    } catch { drift.push(projectEvidencePath); }
+    record('project_sources_after_validators', drift.length === 0, drift.join('; '));
+  }
   return {
     schema_version: '1.0.0',
     status: results.every(item => item.status === 'PASS') ? 'POST_VALIDATION_PASS' : 'POST_VALIDATION_BLOCKED',
@@ -117,6 +154,7 @@ export async function runSotPostValidation({ auditInput, updatedModuleIds, valid
     alert: audit?.alert ?? null,
     updated_modules: ids,
     audit_output: audit ? auditInput.outputPath : null,
+    ...(projectAudit ? { project_audit_output: projectEvidencePath, project_audit_sha256: projectEvidenceSha256 } : {}),
     checks: results,
   };
 }
