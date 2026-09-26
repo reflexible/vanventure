@@ -11,13 +11,13 @@ const exec = promisify(execFile);
 const moduleUrl = new URL('./worker-state.mjs', import.meta.url).href;
 const passingProof = id => ({ status: 'PASS', evidence_ref: `test-evidence:${id}` });
 const completionEvidence = () => ({
-  scope: 'work_item:WI-SOT-20-01',
-  sotUpdate: { required: false, scope: 'work_item:WI-SOT-20-01',
+  scope: 'WI-SOT-20-01',
+  sotUpdate: { required: false, scope: 'WI-SOT-20-01',
     reason: 'This worker-state lifecycle test changes no authoritative SoT.', evidence_ref: 'test-scope:WI-SOT-20-01' },
   unresolvedConflicts: [],
   requiredChecks: [{ id: 'unit-tests', ...passingProof('unit-tests') }],
   contracts: passingProof('contracts'), dependencies: passingProof('dependencies'), consistency: passingProof('consistency'),
-  postValidation: { status: 'POST_VALIDATION_PASS', checks: [
+  postValidation: { status: 'POST_VALIDATION_PASS', audit_output: 'audits/test.json', scope: 'WI-SOT-20-01', checks: [
     'required_check', 'contracts', 'dependencies', 'sotConsistency', 'traceability',
   ].map(name => ({ name, status: 'PASS' })) },
 });
@@ -110,4 +110,95 @@ test('reassignment is explicit, owner release is checked and Blocked is visible'
   await store.release({ work_item_id: 'WI-SOT-20-01', actor_id: 'B', reason: 'cancelled' });
   assert.equal((await store.snapshot()).records['WI-SOT-20-01'].execution_state, 'Backlog');
   assert.deepEqual((await store.snapshot()).history.map(event => event.event), ['CLAIM', 'REASSIGN', 'START', 'BLOCK', 'UNBLOCK', 'RELEASE']);
+});
+
+async function readyForIntegration(store) {
+  await store.claim(claim('WI-SOT-20-01', 'A', 'src/a'));
+  await store.start({ work_item_id: 'WI-SOT-20-01', worker_id: 'A' });
+  await store.handover({ work_item_id: 'WI-SOT-20-01', worker_id: 'A', summary: 'Implemented', files: ['src/a'], tests: ['node --test'], limitations: [], follow_up: [] });
+  await store.review({ work_item_id: 'WI-SOT-20-01', reviewer_id: 'B', accepted: true, evidence_ref: 'review' });
+}
+const integrateInput = completion_evidence => ({ work_item_id: 'WI-SOT-20-01', integrator_id: 'C', evidence_ref: 'merge', tests_passed: true, completion_evidence });
+
+test('scope extension unions new paths and preserves ownership, status and previous history', async t => {
+  const { store } = await fixture(t);
+  await store.claim(claim('WI-SOT-20-01', 'A', 'src/a'));
+  await store.start({ work_item_id: 'WI-SOT-20-01', worker_id: 'A' });
+  const before = await store.snapshot();
+  const extended = await store.extendScope({ work_item_id: 'WI-SOT-20-01', worker_id: 'A', write_scope: ['src/b'], reason: 'Add scoped integration runner.' });
+  assert.deepEqual(extended.write_scope, ['src/a', 'src/b']);
+  assert.equal(extended.claimed_at, before.records['WI-SOT-20-01'].claimed_at);
+  assert.equal(extended.assigned_agent, 'A');
+  assert.equal(extended.execution_state, 'In Progress');
+  const after = await store.snapshot();
+  assert.deepEqual(after.history.slice(0, -1), before.history);
+  assert.equal(after.history.at(-1).event, 'EXTEND_SCOPE');
+  assert.deepEqual(after.history.at(-1).previous_scope, ['src/a']);
+  await store.extendScope({ work_item_id: 'WI-SOT-20-01', worker_id: 'A', write_scope: ['src/b'], reason: 'Subset cannot remove prior claim.' });
+  assert.deepEqual((await store.snapshot()).records['WI-SOT-20-01'].write_scope, ['src/a', 'src/b']);
+});
+
+test('scope extension rejects wrong owner, missing reason and uncoordinated collision without writes', async t => {
+  const { store, path } = await fixture(t);
+  await store.claim(claim('WI-SOT-20-01', 'A', 'src/a'));
+  await store.claim(claim('WI-SOT-20-02', 'B', 'src/b'));
+  const before = await readFile(path, 'utf8');
+  const request = { work_item_id: 'WI-SOT-20-01', worker_id: 'A', write_scope: ['src/c'], reason: 'Extend scope.' };
+  await assert.rejects(store.extendScope({ ...request, worker_id: 'B' }), /own active/);
+  await assert.rejects(store.extendScope({ ...request, reason: '' }), /explicit reason/);
+  await assert.rejects(store.extendScope({ ...request, write_scope: ['src/b/child'] }), /Write scope conflicts/);
+  await assert.rejects(store.extendScope({ ...request, write_scope: [] }), /write_scope/);
+  assert.equal(await readFile(path, 'utf8'), before);
+});
+
+test('scope extension permits explicit shared coordination and refuses released work', async t => {
+  const { store } = await fixture(t);
+  await store.claim(claim('WI-SOT-20-01', 'A', 'src/a'));
+  await store.claim(claim('WI-SOT-20-02', 'B', 'src/b', 'COORD-1'));
+  await store.extendScope({ work_item_id: 'WI-SOT-20-01', worker_id: 'A', write_scope: ['src/b/child'], reason: 'Reviewed shared scope.', coordination_ref: 'COORD-1' });
+  assert.equal((await store.snapshot()).records['WI-SOT-20-01'].coordination_ref, 'COORD-1');
+  await store.release({ work_item_id: 'WI-SOT-20-01', actor_id: 'A', reason: 'Finished preparation.' });
+  await assert.rejects(store.extendScope({ work_item_id: 'WI-SOT-20-01', worker_id: 'A', write_scope: ['src/c'], reason: 'Cannot revive a claim.' }), /own active/);
+});
+
+test('integration rejects evidence belonging to another work item without changing durable state', async t => {
+  const { store, path } = await fixture(t);
+  await readyForIntegration(store);
+  const before = await readFile(path, 'utf8');
+  const wrong = completionEvidence();
+  wrong.scope = wrong.sotUpdate.scope = wrong.postValidation.scope = 'WI-SOT-20-02';
+  await assert.rejects(store.integrate(integrateInput(wrong)), /WRONG_WORK_ITEM_SCOPE/);
+  assert.equal(await readFile(path, 'utf8'), before);
+});
+
+test('integration captures detached evidence before waiting and snapshots reject substituted Done scope', async t => {
+  const { store, path } = await fixture(t);
+  await readyForIntegration(store);
+  const proof = completionEvidence();
+  const pending = store.integrate(integrateInput(proof));
+  proof.scope = 'WI-SOT-20-02';
+  proof.requiredChecks[0].status = 'FAIL';
+  const returned = await pending;
+  returned.completion_evidence.contracts.status = 'FAIL';
+  const state = await store.snapshot();
+  assert.equal(state.records['WI-SOT-20-01'].completion_evidence.contracts.status, 'PASS');
+  assert.equal(state.records['WI-SOT-20-01'].completion_evidence.scope, 'WI-SOT-20-01');
+  const tampered = state.records['WI-SOT-20-01'];
+  tampered.completion_evidence.scope = tampered.completion_evidence.sotUpdate.scope
+    = tampered.completion_evidence.postValidation.scope = tampered.done_guard.scope = 'WI-SOT-20-02';
+  await writeFile(path, JSON.stringify(state));
+  await assert.rejects(store.snapshot(), /Definition-of-Done guard/);
+});
+
+test('integration and persisted Done validation reject duplicate post-validation checks', async t => {
+  const { store, path } = await fixture(t);
+  await readyForIntegration(store);
+  const proof = completionEvidence();
+  proof.postValidation.checks.unshift({ name: 'contracts', status: 'FAIL' });
+  await assert.rejects(store.integrate(integrateInput(proof)), /Definition-of-Done guard blocked/);
+  await store.integrate(integrateInput(completionEvidence()));
+  const state = await store.snapshot();
+  state.records['WI-SOT-20-01'].completion_evidence.postValidation.checks.push({ name: 'contracts', status: 'PASS' });
+  await writeFile(path, JSON.stringify(state));
+  await assert.rejects(store.snapshot(), /Definition-of-Done guard/);
 });

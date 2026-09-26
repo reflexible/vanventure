@@ -4,9 +4,13 @@ function passEvidence(value) {
   return value?.status === 'PASS' && isText(value.evidence_ref);
 }
 
-function auditPass(postValidation) {
+function auditPass(postValidation, scope) {
   if (postValidation?.status !== 'POST_VALIDATION_PASS'
-    || !Array.isArray(postValidation.checks)) return false;
+    || !isText(postValidation.audit_output)
+    || (postValidation.scope !== undefined && postValidation.scope !== scope)
+    || !Array.isArray(postValidation.checks)
+    || !postValidation.checks.every(item => isText(item?.name) && item.status === 'PASS')
+    || new Set(postValidation.checks.map(item => item.name)).size !== postValidation.checks.length) return false;
   const byName = new Map(postValidation.checks.map(item => [item?.name, item]));
   return ['required_check', 'contracts', 'dependencies', 'sotConsistency', 'traceability']
     .every(name => byName.get(name)?.status === 'PASS');
@@ -26,13 +30,14 @@ export function evaluateDoneGuard({
   dependencies,
   consistency,
   postValidation,
-}) {
+}, { expectedScope } = {}) {
   const findings = [];
   const record = (id, pass, detail) => findings.push({
     id, status: pass ? 'PASS' : 'BLOCKED', detail,
   });
 
-  record('scope', isText(scope), isText(scope) ? scope : 'MISSING_SCOPE');
+  record('scope', isText(scope) && (expectedScope === undefined || scope === expectedScope),
+    !isText(scope) ? 'MISSING_SCOPE' : expectedScope !== undefined && scope !== expectedScope ? 'WRONG_WORK_ITEM_SCOPE' : scope);
   const noUpdate = sotUpdate?.required === false
     && sotUpdate.scope === scope && isText(sotUpdate.reason)
     && isText(sotUpdate.evidence_ref);
@@ -41,8 +46,8 @@ export function evaluateDoneGuard({
     && sotUpdate.updated_module_ids.length > 0
     && sotUpdate.updated_module_ids.every(isText)
     && isText(sotUpdate.evidence_ref);
-  record('sot_update', noUpdate || (updated && auditPass(postValidation)),
-    noUpdate ? 'EXPLICITLY_NOT_REQUIRED' : updated && auditPass(postValidation)
+  record('sot_update', noUpdate || (updated && auditPass(postValidation, scope)),
+    noUpdate ? 'EXPLICITLY_NOT_REQUIRED' : updated && auditPass(postValidation, scope)
       ? 'UPDATE_EVIDENCE_AND_POST_VALIDATION_PASS' : 'MISSING_OR_INVALID_SOT_UPDATE_EVIDENCE');
 
   const conflictsValid = Array.isArray(unresolvedConflicts);
@@ -57,7 +62,7 @@ export function evaluateDoneGuard({
   for (const [id, proof] of Object.entries({ contracts, dependencies, consistency })) {
     record(id, passEvidence(proof), passEvidence(proof) ? proof.evidence_ref : 'MISSING_PASS_EVIDENCE');
   }
-  record('post_validation', auditPass(postValidation), auditPass(postValidation)
+  record('post_validation', auditPass(postValidation, scope), auditPass(postValidation, scope)
     ? 'POST_VALIDATION_PASS' : 'MISSING_OR_FAILED_POST_VALIDATION');
 
   const done = findings.every(item => item.status === 'PASS');

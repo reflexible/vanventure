@@ -11,7 +11,7 @@ function valid(overrides = {}) {
     requiredChecks: [{ id: 'unit', ...proof('unit') }, { id: 'security', ...proof('security') }],
     contracts: proof('contracts'), dependencies: proof('dependencies'), consistency: proof('consistency'),
     postValidation: {
-      status: 'POST_VALIDATION_PASS',
+      status: 'POST_VALIDATION_PASS', audit_output: 'audits/post-validation.json',
       checks: ['required_check', 'contracts', 'dependencies', 'sotConsistency', 'traceability']
         .map(name => ({ name, status: 'PASS' })),
     },
@@ -69,4 +69,22 @@ test('rejects duplicate check IDs and a not-required declaration for another sco
     required: false, scope: 'module:cms', reason: 'No source change.', evidence_ref: 'scope-review:8',
   } });
   assert.equal(evaluateDoneGuard(wrongScope).status, 'DONE_BLOCKED');
+});
+
+test('post-validation rejects duplicate names, hidden failures and unrelated scope', () => {
+  for (const mutate of [
+    x => x.postValidation.checks.unshift({ name: 'contracts', status: 'FAIL' }),
+    x => x.postValidation.checks.push({ name: 'contracts', status: 'PASS' }),
+    x => x.postValidation.checks.push({ name: 'extra-check', status: 'FAIL' }),
+    x => { x.postValidation.audit_output = ''; },
+    x => { x.postValidation.scope = 'another-scope'; },
+  ]) {
+    const input = valid(); mutate(input);
+    assert.equal(evaluateDoneGuard(input).status, 'DONE_BLOCKED');
+  }
+});
+
+test('expected work item scope cannot be substituted by a self-consistent unrelated scope', () => {
+  assert.equal(evaluateDoneGuard(valid(), { expectedScope: 'WI-SOT-18-01' }).status, 'DONE_BLOCKED');
+  assert.equal(evaluateDoneGuard(valid(), { expectedScope: 'module:analytics' }).status, 'DONE_ALLOWED');
 });

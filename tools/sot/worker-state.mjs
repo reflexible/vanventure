@@ -40,8 +40,8 @@ function validateState(state) {
     if (['Integration', 'Done'].includes(record.execution_state)) assert(record.review?.accepted === true, `${id} lacks accepted review.`);
     if (record.execution_state === 'Done') {
       assert(record.integration?.tests_passed === true, `${id} lacks verified integration.`);
-      const guard = evaluateDoneGuard(record.completion_evidence ?? {});
-      assert(guard.status === 'DONE_ALLOWED' && record.done_guard?.status === 'DONE_ALLOWED',
+      const guard = evaluateDoneGuard(record.completion_evidence ?? {}, { expectedScope: id });
+      assert(guard.status === 'DONE_ALLOWED' && record.done_guard?.status === 'DONE_ALLOWED' && record.done_guard.scope === id,
         `${id} lacks an accepted Definition-of-Done guard.`);
     }
     if (IMPLEMENTING.has(record.execution_state)) {
@@ -137,6 +137,30 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
         return state.records[item];
       });
     },
+    async extendScope({ work_item_id: item, worker_id: worker, write_scope: scope, reason, coordination_ref: coordinationRef }) {
+      assert(text(reason), 'Scope extension requires an explicit reason.');
+      const additionalScope = normalizeScope(scope);
+      return transact(item, worker, state => {
+        const record = state.records[item];
+        assert(record && ACTIVE.has(record.execution_state) && record.assigned_agent === worker,
+          'Scope extension requires own active work item.');
+        const expandedScope = normalizeScope([...record.write_scope, ...additionalScope]);
+        const effectiveCoordination = coordinationRef ?? record.coordination_ref;
+        assert(coordinationRef === undefined || text(coordinationRef), 'coordination_ref must be nonempty when supplied.');
+        for (const [otherId, other] of Object.entries(state.records)) {
+          if (otherId !== item && ACTIVE.has(other.execution_state) && overlaps(expandedScope, other.write_scope ?? [])) {
+            assert(text(effectiveCoordination) && text(other.coordination_ref) && effectiveCoordination === other.coordination_ref,
+              `Write scope conflicts with ${otherId}; shared explicit coordination_ref is required.`);
+          }
+        }
+        const previousScope = [...record.write_scope];
+        record.write_scope = expandedScope;
+        record.coordination_ref = effectiveCoordination ?? null;
+        append(state, 'EXTEND_SCOPE', item, worker, { reason, previous_scope: previousScope,
+          write_scope: [...expandedScope], coordination_ref: record.coordination_ref });
+        return structuredClone(record);
+      });
+    },
     async start({ work_item_id: item, worker_id: worker }) {
       return transact(item, worker, state => {
         const record = state.records[item];
@@ -173,14 +197,15 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
     async integrate({ work_item_id: item, integrator_id: integrator, evidence_ref: evidence,
       tests_passed: testsPassed, completion_evidence: completionEvidence }) {
       assert(text(evidence) && testsPassed === true, 'Integration needs passing checks and evidence_ref.');
+      const capturedEvidence = structuredClone(completionEvidence ?? {});
       return transact(item, integrator, state => {
         const record = state.records[item];
         assert(record?.execution_state === 'Integration' && record.review?.accepted, 'Integration requires accepted review.');
-        const doneGuard = evaluateDoneGuard(completionEvidence ?? {});
+        const doneGuard = evaluateDoneGuard(capturedEvidence, { expectedScope: item });
         assert(doneGuard.status === 'DONE_ALLOWED',
           `Definition-of-Done guard blocked completion: ${doneGuard.findings.filter(item => item.status !== 'PASS').map(item => `${item.id}:${item.detail}`).join('; ')}`);
         record.integration = { integrator_id: integrator, evidence_ref: evidence, tests_passed: true, at: new Date().toISOString() };
-        record.completion_evidence = structuredClone(completionEvidence);
+        record.completion_evidence = structuredClone(capturedEvidence);
         record.done_guard = doneGuard;
         record.execution_state = 'Done';
         append(state, 'INTEGRATE_DONE', item, integrator, { evidence_ref: evidence, done_guard: doneGuard.status });
