@@ -86,12 +86,12 @@ und spätere Produktprüfung bleiben offen.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-21-03`: Dependency-Konflikte für parallele Arbeit aus dem bestehenden Graphen ableiten.
+**NEXT RECOMMENDATION:** `WI-SOT-21-04`: verbindliche Worker-Scopes aus bestehenden Write-Scope-Grenzen definieren.
 **Parallel Candidates:**
-`WI-SOT-21-03` und `WI-SOT-20-10` können mit getrennten Scopes vorbereitet werden; die Dependency-Prüfung hat Vorrang.
+`WI-SOT-21-04` und `WI-SOT-20-10` können mit getrennten Scopes vorbereitet werden; Worker-Scopes haben Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 155 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 50 (einschließlich Ready und Blocked) · Progress 75,6 %.
+**Counter:** Total 205 · Done 156 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 49 (einschließlich Ready und Blocked) · Progress 76,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -453,7 +453,8 @@ Technisch verhindern:
   Der reine Execution Planner leitet geprüfte, disjunkte Kandidaten ab und erzeugt keine alternativen Claims. [Nachweis](../sot-optimization/reviews/execution-planner-2026-09-26.md).
 - [x] ~~WI-SOT-21-02 · Dateikonflikte erkennen~~
   Aktive Write Scopes werden rein lesend auf Überschneidungen und fehlende Koordinierung geprüft. [FAST-CHECK](../sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-21-03 · Dependency-Konflikte erkennen
+- [x] ~~WI-SOT-21-03 · Dependency-Konflikte erkennen~~
+  Harte transitive Abhängigkeiten zwischen parallelen Work Items werden als erforderliche Reihenfolge abgeleitet. [FAST-CHECK](../sot-optimization/reviews/dependency-conflicts-fast-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-21-04 · Worker-Scope definieren
 - [ ] TODO – WI-SOT-21-05 · erlaubte Dateien definieren
 - [ ] TODO – WI-SOT-21-06 · verbotene Dateien definieren
