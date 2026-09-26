@@ -63,6 +63,18 @@ test('rules preserve their type and do not silently enter the authority source',
   assert.equal(result.proposal.owner.source, 'docs/design-guide.md');
 });
 
+test('optional target section and rationale are recorded without claiming approval', async () => {
+  const result = await prepareProjectIntake({ ...base, kind: 'rule', classification: 'PROCESS_RULE',
+    authority: 'governance.release-approval', target_section_id: 'DEC-REL-002',
+    scope_rationale: 'Review the exact release gate section.' });
+  assert.equal(result.valid, true);
+  assert.equal(result.proposal.target_section_id, 'DEC-REL-002');
+  assert.equal(result.proposal.scope_rationale, 'Review the exact release gate section.');
+  assert.equal(result.proposal.approval, null);
+  const missingRationale = await prepareProjectIntake({ ...base, target_section_id: 'DEC-REL-002' });
+  assert.match(missingRationale.errors.join(' '), /requires scope_rationale/);
+});
+
 test('missing fields are named concretely', async () => {
   const registry = await loadRegistry();
   const result = prepareIntake({ kind: 'idea', provenance: { source_type: 'chat' } }, registry);

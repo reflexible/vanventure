@@ -1,11 +1,35 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import { loadRegistry } from './module-registry.mjs';
 import { validateRuleCatalogue } from './sot-impact.mjs';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const normalize = value => value.replace(/\s+/g, ' ').trim();
+
+export function extractHeadingSection(source, heading) {
+  const lines = source.replace(/\r\n/g, '\n').split('\n');
+  const level = heading.match(/^(#{1,6}) /)?.[1].length;
+  if (!level) throw new Error('Section heading must be a Markdown heading.');
+  const matches = lines.flatMap((line, index) => line === heading ? [index] : []);
+  if (matches.length !== 1) throw new Error('Section heading is missing or ambiguous.');
+  const start = matches[0];
+  let end = lines.length;
+  for (let i = start + 1; i < lines.length; i++) {
+    const match = lines[i].match(/^(#{1,6}) /);
+    if (match && match[1].length <= level) { end = i; break; }
+  }
+  return lines.slice(start, end).join('\n').trimEnd();
+}
+
+export function sectionSha256(section) {
+  return createHash('sha256').update(section.replace(/\r\n/g, '\n')).digest('hex');
+}
+
+export function sectionSentences(section) {
+  return normalize(section.split('\n').slice(1).join(' ')).split(/(?<=[.!?])\s+/).filter(Boolean);
+}
 
 export async function loadRuleCatalogue(path = resolve(projectRoot, 'docs/governance/rule-catalogue.json')) {
   return JSON.parse(await readFile(path, 'utf8'));
@@ -27,16 +51,33 @@ export async function validateRuleCatalogueSources(catalogue, registry, root = p
   for (const rule of catalogue.rules) {
     const source = sourceCache.get(rule.source);
     if (!source) continue;
-    const lines = source.replace(/\r\n/g, '\n').split('\n');
-    const anchorLines = lines.flatMap((line, index) => line === rule.anchor ? [index] : []);
-    if (anchorLines.length !== 1 || !/^#{1,6} /.test(rule.anchor)) {
+    try {
+      const section = extractHeadingSection(source, rule.anchor);
+      if (!normalize(section.split('\n').slice(1).join(' ')).includes(normalize(rule.text))) {
+        errors.push(`${rule.id}: cited source text is stale or outside its heading.`);
+      }
+    } catch {
       errors.push(`${rule.id}: source heading anchor is missing or ambiguous.`);
-      continue;
     }
-    const following = lines.slice(anchorLines[0] + 1);
-    const nextHeading = following.findIndex(line => /^#{1,6} /.test(line));
-    const section = normalize((nextHeading < 0 ? following : following.slice(0, nextHeading)).join(' '));
-    if (!section.includes(normalize(rule.text))) errors.push(`${rule.id}: cited source text is stale or outside its heading.`);
+  }
+  for (const item of catalogue.section_coverage ?? []) {
+    const source = sourceCache.get(item.source);
+    if (!source) continue;
+    try {
+      const section = extractHeadingSection(source, item.heading);
+      if (sectionSha256(section) !== item.section_sha256) errors.push(`${item.section_id}: section SHA-256 is stale.`);
+      const sentences = sectionSentences(section);
+      const listed = catalogue.rules.filter(rule => rule.section_id === item.section_id && rule.module_id === item.module_id);
+      const texts = listed.map(rule => normalize(rule.text));
+      if (JSON.stringify([...sentences].sort()) !== JSON.stringify([...texts].sort())) {
+        errors.push(`${item.section_id}: section rule inventory is incomplete or wrong.`);
+      }
+      if (listed.some(rule => rule.anchor !== item.heading || rule.source !== item.source)) {
+        errors.push(`${item.section_id}: rule is outside its declared section.`);
+      }
+    } catch {
+      errors.push(`${item.section_id}: section heading is missing or ambiguous.`);
+    }
   }
   const counts = new Map();
   for (const rule of catalogue.rules) counts.set(rule.module_id, (counts.get(rule.module_id) ?? 0) + 1);
@@ -53,6 +94,7 @@ export async function validateRuleCatalogueSources(catalogue, registry, root = p
     }
   }
   return { valid: errors.length === 0, errors, mapped_rules: catalogue.rules.length,
+    verified_sections: (catalogue.section_coverage ?? []).filter(item => item.scope === 'complete_section').map(item => item.section_id).sort(),
     partial_modules: catalogue.coverage.filter(item => item.scope === 'partial').map(item => item.module_id).sort() };
 }
 

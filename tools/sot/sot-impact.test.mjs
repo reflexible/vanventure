@@ -3,7 +3,8 @@ import test from 'node:test';
 import { loadRegistry } from './module-registry.mjs';
 import { loadDependencyGraph } from './dependency-graph.mjs';
 import { prepareIntake } from './intake.mjs';
-import { assessSotImpact, validateRuleCatalogue } from './sot-impact.mjs';
+import { assessSotImpact, assessProjectSotImpact, validateRuleCatalogue } from './sot-impact.mjs';
+import { loadRuleCatalogue } from './rule-catalogue.mjs';
 
 const input = {
   kind: 'rule', classification: 'DESIGN_RULE', title: 'Fokus sichtbar',
@@ -77,4 +78,21 @@ test('rejects forged owner and catalogue entries with mismatched authority or mi
   assert.throws(() => assessSotImpact({ proposal: f.proposal, registry: f.registry, graph: f.graph, catalogue }), /Invalid rule catalogue/);
   assert.throws(() => assessSotImpact({ proposal: { ...f.proposal, owner: { ...f.proposal.owner, source: 'docs/ausbauplan.md' } },
     registry: f.registry, graph: f.graph, catalogue: { schema_version: '1.0.0', coverage: [], rules: [] } }), /ownership differs/);
+});
+
+test('pilot owner section is verified while module and cross-module coverage remain partial', async () => {
+  const registry = await loadRegistry();
+  const catalogue = await loadRuleCatalogue();
+  const proposal = prepareIntake({ ...input, classification: 'PROCESS_RULE',
+    authority: 'governance.release-approval',
+    content: 'Ein erfolgreicher Test, Audit oder abgeschlossener Plan erteilt keine Veröffentlichungsfreigabe.',
+    target_section_id: 'DEC-REL-002', scope_rationale: 'Exact release gate under review.' }, registry).proposal;
+  const result = await assessProjectSotImpact(proposal, catalogue);
+  assert.equal(result.owner_section_search.status, 'VERIFIED_SECTION_INVENTORY_SEARCHED');
+  assert.deepEqual(result.owner_section_search.searched_rule_ids, ['RELEASE-002', 'RELEASE-004']);
+  assert.deepEqual(result.owner_section_search.candidate_ids, ['RELEASE-002']);
+  assert.equal(result.module_coverage, 'partial');
+  assert.ok(result.cross_module_unknowns.length > 0);
+  assert.equal(result.semantic_equivalence, 'UNDETERMINED');
+  assert.equal(result.approval, null);
 });

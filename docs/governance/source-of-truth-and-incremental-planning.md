@@ -317,8 +317,10 @@ Change
 - [x] ~~WI-SOT-13-05 · neue vs. bestehende Regel vergleichen~~
 - [x] ~~WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown~~
 - [ ] READY – WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird
-  Bisher sind 18 genaue Auszüge aus acht autoritativen Quellen geprüft;
-  sämtliche acht Modulabdeckungen bleiben ausdrücklich `partial`.
+  Bisher sind 19 genaue Auszüge aus acht autoritativen Quellen geprüft.
+  `DEC-REL-002` besitzt einen vollständig inventarisierten, gegen aktuelle
+  Quellbytes geprüften Pilotabschnitt. Sämtliche acht Modulabdeckungen und
+  modulübergreifende Suchlücken bleiben ausdrücklich `partial`/`Unknown`.
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
 - [x] ~~WI-SOT-14-01 · Duplikate erkennen~~
 - [x] ~~WI-SOT-14-02 · widersprüchliche Regeln erkennen~~

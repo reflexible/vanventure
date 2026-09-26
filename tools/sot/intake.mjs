@@ -71,6 +71,15 @@ export function prepareIntake(input, registry) {
   if (Object.hasOwn(input, 'target_source') && owner && input.target_source !== owner.source) {
     errors.push(`target_source must equal the registered source ${owner.source}; a second source is forbidden.`);
   }
+  if (Object.hasOwn(input, 'target_section_id') && !present(input.target_section_id)) {
+    errors.push('target_section_id must be a nonempty section ID.');
+  }
+  if (Object.hasOwn(input, 'scope_rationale') && !present(input.scope_rationale)) {
+    errors.push('scope_rationale must be nonempty.');
+  }
+  if (present(input.target_section_id) && !present(input.scope_rationale)) {
+    errors.push('target_section_id requires scope_rationale.');
+  }
   if (errors.length) return { valid: false, missing: [], errors, proposal: null };
 
   const fields = {
@@ -85,6 +94,8 @@ export function prepareIntake(input, registry) {
       captured_at: provenance.captured_at,
     },
   };
+  if (present(input.target_section_id)) fields.target_section_id = input.target_section_id.trim();
+  if (present(input.scope_rationale)) fields.scope_rationale = input.scope_rationale.trim();
   const id = createHash('sha256').update(JSON.stringify(fields)).digest('hex');
   return {
     valid: true,
