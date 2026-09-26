@@ -82,7 +82,7 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-18-03`, `WI-SOT-07-10`, `WI-SOT-16-02`. **Active Workers:** 3.
+**Current Work Items:** `WI-SOT-07-10`, `WI-SOT-16-02`. **Active Workers:** 2.
 Die aktuellen Items bearbeiten lokale Integrations- und Prüfvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
@@ -93,8 +93,8 @@ gepflegte Prüfprofile mit den inkrementellen Runnern verbinden.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 133 · In Progress 3 · Ready 0 · Blocked 1 ·
-Open 65 (einschließlich Ready und Blocked) · Progress 67,2 %.
+**Counter:** Total 198 · Done 139 · In Progress 2 · Ready 0 · Blocked 1 ·
+Open 59 (einschließlich Ready und Blocked) · Progress 70,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -398,16 +398,18 @@ integriert. [Abnahme und Grenzen](../sot-optimization/reviews/project-governance
   FULL-Checker für weitere Fachmodule bleiben offen. Keine globale Abnahme.
 #### ST-SOT-18 – PHASE 18: DEFINITION-OF-DONE GUARDS
 Technisch verhindern:
-- [ ] TODO – WI-SOT-18-01 · DONE bei fehlendem SoT-Update
-- [ ] TODO – WI-SOT-18-02 · DONE bei ungelöstem Conflict
-- [ ] IN_PROGRESS – WI-SOT-18-03 · DONE bei fehlgeschlagener erforderlicher Prüfung
-- [ ] TODO – WI-SOT-18-04 · DONE bei Contract-Bruch
-- [ ] TODO – WI-SOT-18-05 · DONE bei fehlender Dependency
-- [ ] TODO – WI-SOT-18-06 · DONE bei fehlgeschlagener Konsistenzprüfung
-  Der Guard ist an den lokalen Worker-State-Übergang zu `Done` angeschlossen
-  und speichert Evidence-Struktur sowie Gate-Ergebnis. Vertrauenswürdige
-  Prüf-Callbacks, Quellenauflösung und authentifizierte Evidenz bleiben offen;
-  deshalb sind die fachlichen Guard-Items noch nicht vollständig abgeschlossen.
+- [x] ~~WI-SOT-18-01 · DONE bei fehlendem SoT-Update~~
+- [x] ~~WI-SOT-18-02 · DONE bei ungelöstem Conflict~~
+- [x] ~~WI-SOT-18-03 · DONE bei fehlgeschlagener erforderlicher Prüfung~~
+- [x] ~~WI-SOT-18-04 · DONE bei Contract-Bruch~~
+- [x] ~~WI-SOT-18-05 · DONE bei fehlender Dependency~~
+- [x] ~~WI-SOT-18-06 · DONE bei fehlgeschlagener Konsistenzprüfung~~
+  Alle sechs negativen Schutzbedingungen sind lokal abgenommen. Der Worker-
+  Übergang verlangt einen vertrauenswürdigen Evidenzprüfer unter Schreibsperre;
+  der Governance-Adapter prüft gepinnte Artefakte, Quelle und Scope erneut.
+  Fehlende Fachprüfer blockieren korrekt. Positive Fachmodulabnahmen bleiben
+  bei WI-SOT-04-10 / 07-10 / 08-09 und ST-SOT-31 offen.
+  [Unabhängige Abnahme](../sot-optimization/reviews/done-guard-acceptance-2026-09-26.md).
 ### WS-SOT-W3 – WSJF / MULTI-AGENT
 #### ST-SOT-19 – PHASE 19: WSJF-INTEGRATION
 - [ ] TODO – WI-SOT-19-01 · bestehende WSJF-Regeln übernehmen

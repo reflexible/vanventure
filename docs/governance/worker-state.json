@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 34,
+  "revision": 37,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -583,7 +583,7 @@
     },
     "WI-SOT-18-03": {
       "work_item_id": "WI-SOT-18-03",
-      "execution_state": "In Progress",
+      "execution_state": "Done",
       "assigned_agent": "/root/wsjf_safety",
       "claimed_at": "2026-09-26T15:02:22.157Z",
       "write_scope": [
@@ -594,10 +594,156 @@
         "tools/sot/worker-state.test.mjs"
       ],
       "coordination_ref": null,
-      "handoff": null,
-      "review": null,
-      "integration": null,
-      "blocked_by": null
+      "handoff": {
+        "summary": "All six negative Done conditions enforce trusted evidence under the store lock; independent scoped acceptance PASS.",
+        "files": [
+          "tools/sot/worker-state.mjs",
+          "tools/sot/done-guard.mjs",
+          "tools/sot/governance-workflow.mjs"
+        ],
+        "tests": [
+          "42/42 root guard+workflow tests PASS",
+          "25/25 independent guard+worker tests PASS"
+        ],
+        "limitations": [
+          "Positive CMS/Analytics and domain semantic certification remain separate open items."
+        ],
+        "follow_up": [
+          "Integrate domain check profiles without weakening negative guards."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T15:39:13.970Z"
+      },
+      "review": {
+        "reviewer_id": "/root/coverage_path",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md",
+        "self_review_reason": null,
+        "at": "2026-09-26T15:39:13.980Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T15:39:13.992Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-18-03",
+        "verified_at": "2026-09-26T15:39:13.992Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-18-03",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-18-03",
+          "reason": "Implementation enforces existing negative Done rules; no new core or domain rule. Acceptance and plan integration recorded separately.",
+          "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "scoped-full-gate-regressions",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-18-03",
+          "audit_output": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-18-03",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-18-03"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     },
     "WI-SOT-07-10": {
       "work_item_id": "WI-SOT-07-10",
@@ -965,6 +1111,31 @@
       "event": "START",
       "work_item_id": "WI-SOT-16-02",
       "actor": "/root/write_boundary"
+    },
+    {
+      "event_id": "885570ea-1b9a-4d44-89b7-954e4a85447d",
+      "at": "2026-09-26T15:39:13.970Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-18-03",
+      "actor": "/root/wsjf_safety",
+      "summary": "All six negative Done conditions enforce trusted evidence under the store lock; independent scoped acceptance PASS."
+    },
+    {
+      "event_id": "b2d9a947-cbf4-4520-bc92-9572b2dff69e",
+      "at": "2026-09-26T15:39:13.980Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-18-03",
+      "actor": "/root/coverage_path",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "35f1c77b-2c62-4e6c-9979-0c45fa04336e",
+      "at": "2026-09-26T15:39:13.992Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-18-03",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
     }
   ]
 }

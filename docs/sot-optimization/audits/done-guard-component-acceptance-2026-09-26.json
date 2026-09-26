@@ -1,0 +1,78 @@
+{
+  "scope": "Six negative protection conditions; not positive domain certification",
+  "work_item_ids": [
+    "WI-SOT-18-01",
+    "WI-SOT-18-02",
+    "WI-SOT-18-03",
+    "WI-SOT-18-04",
+    "WI-SOT-18-05",
+    "WI-SOT-18-06"
+  ],
+  "pins": {
+    "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md": "7b1d018a10294463b5cacc672b57790dd7febfecbb068d9b4e628067a813fd36",
+    "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json": "9642bd85f40a382e2e05fcc510317126aea57903c7ae1a717cecf74f3e958716",
+    "tools/sot/worker-state.mjs": "af9e1dd7b1b79b571f31356efed209ce11a1d8c67fab0e45b0617b2e38b25b96",
+    "tools/sot/done-guard.mjs": "880f82ec92cf0ab099d44433c3f0665add53ddc79dd427ebd056e6ce47a34323"
+  },
+  "completion_evidence": {
+    "scope": "WI-SOT-18-03",
+    "sotUpdate": {
+      "required": false,
+      "scope": "WI-SOT-18-03",
+      "reason": "Implementation enforces existing negative Done rules; no new core or domain rule. Acceptance and plan integration recorded separately.",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+    },
+    "unresolvedConflicts": [],
+    "requiredChecks": [
+      {
+        "id": "scoped-full-gate-regressions",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      }
+    ],
+    "contracts": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+    },
+    "dependencies": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+    },
+    "consistency": {
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/done-guard-acceptance-2026-09-26.md"
+    },
+    "postValidation": {
+      "status": "POST_VALIDATION_PASS",
+      "scope": "WI-SOT-18-03",
+      "audit_output": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json",
+      "checks": [
+        {
+          "name": "required_check",
+          "status": "PASS",
+          "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+        },
+        {
+          "name": "dependencies",
+          "status": "PASS",
+          "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+        },
+        {
+          "name": "sotConsistency",
+          "status": "PASS",
+          "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+        },
+        {
+          "name": "traceability",
+          "status": "PASS",
+          "detail": "Reviewed negative guard implementation only; positive domain certification excluded."
+        }
+      ]
+    }
+  }
+}
