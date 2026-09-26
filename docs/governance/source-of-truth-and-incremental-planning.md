@@ -85,16 +85,16 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert; Core-Reduktion ist geschützt blockiert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-06` · eindeutig redundante Core-Details nach Delta- und Preservation-Prüfung entfernen.
+**NEXT RECOMMENDATION:** Den historischen Coverage-/Traceability-Abgleich für die 20 offenen Zuordnungen abschließen und den fremden Core-Delta separat sichern; erst danach `WI-SOT-23-06` erneut bewerten.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 202 · In Progress 0 · Ready 0 · Blocked 1 ·
+**Counter:** Total 205 · Done 202 · In Progress 0 · Ready 0 · Blocked 2 ·
 Open 3 (einschließlich Ready und Blocked) · Progress 98,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -525,7 +525,11 @@ Technisch verhindern:
   Board und Video haben `authority: null` und können deshalb keine eigene
   Regelquelle bilden. [Modulaufbau](../sot-optimization/reviews/module-build-2026-09-26.md)
   und [lokaler Abnahmebericht](../abnahmeberichte/sot-module-build-2026-09-26.md).
-- [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
+- [ ] BLOCKED – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
+  Blockiert: Für keine Entfernklausel liegt eine vollständige abschnittsgenaue
+  Preservation-/Contract-/Referenzzuordnung vor; zudem ist der historische
+  Planabgleich mit 20 Punkten `PENDING` und der Core-Quellstand enthält einen
+  fremden ungesicherten Delta. [Bereitschaftsbericht](../abnahmeberichte/sot-core-reduction-readiness-2026-09-26.md).
 - [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
 Die Core-Regeln und Fachdetails wurden gezielt inventarisiert. Das ist keine
 Freigabe zur Entfernung auditierter Inhalte.
