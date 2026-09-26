@@ -2,25 +2,176 @@
   "schema_version": "1.0.0",
   "method": "Explicit excerpts from registered authoritative sources. Every anchor and excerpt is checked against its source; partial coverage leaves all unlisted rules unknown.",
   "rules": [
-    { "id": "SCRUM-001", "module_id": "scrum-core", "authority": "planning.scrum-core", "source": "docs/scrum-plan.md", "anchor": "# Zentraler Scrum-Plan für VanVenture", "text": "Dieser Plan ersetzt keine Fachquelle und hebt keinen lokalen Teilstand auf Done an." },
-    { "id": "SCRUM-002", "module_id": "scrum-core", "authority": "planning.scrum-core", "source": "docs/scrum-plan.md", "anchor": "## Planning Coverage und Implementation Verification", "text": "`Covered` in der Matrix bedeutet ausschließlich, dass die ursprüngliche Anforderung im Planungsmodell zugeordnet ist. Es bedeutet weder Code-Umsetzung noch Bild-, Nutzer- oder Live-Freigabe." },
-    { "id": "SOT-001", "module_id": "sot-architecture", "authority": "governance.sot-architecture", "source": "docs/governance/source-of-truth-and-incremental-planning.md", "anchor": "# Source-of-Truth & Incremental Planning Architecture – autoritatives Fachmodul", "text": "Dieses Fachmodul ist die einzige autoritative Detailquelle und das vollständige Execution Backlog für `EPIC-SOT`." },
-    { "id": "SOT-002", "module_id": "sot-architecture", "authority": "governance.sot-architecture", "source": "docs/governance/source-of-truth-and-incremental-planning.md", "anchor": "# Source-of-Truth & Incremental Planning Architecture – autoritatives Fachmodul", "text": "Diese Ausführungsfreigabe ersetzt keine Design-, Fach-, Release- oder Live-Freigabe." },
-    { "id": "ANALYTICS-001", "module_id": "analytics", "authority": "website.analytics", "source": "docs/analytics.md", "anchor": "## Ziel und Architekturgrenze", "text": "Provider-spezifische Aufrufe, insbesondere `umami.track`, `_paq` und `gtag`, sind außerhalb der Provider-Adapter verboten." },
-    { "id": "ANALYTICS-002", "module_id": "analytics", "authority": "website.analytics", "source": "docs/analytics.md", "anchor": "## Tracking-Policy und Provider", "text": "Tracking ist nur zulässig, wenn **alle** Bedingungen erfüllt sind: Production, öffentliche Website, anonymer Besucher, veröffentlichter Inhalt, kein Preview/CMS/Admin-Bereich und Analytics aktiviert." },
-    { "id": "ANALYTICS-003", "module_id": "analytics", "authority": "website.analytics", "source": "docs/analytics.md", "anchor": "## Event Schema v1", "text": "VanVenture erlaubt nur zentral definierte Namen und Properties, keine frei übernommenen Strings aus Komponenten oder Benutzereingaben." },
-    { "id": "DESIGN-001", "module_id": "design-guide", "authority": "website.design", "source": "docs/design-guide.md", "anchor": "## Pflege des Guides", "text": "Eine neue Regel, globale Komponentenvariante oder Ausnahme wird erst nach ausdrücklicher Nutzerfreigabe verbindlich oder live." },
-    { "id": "DESIGN-002", "module_id": "design-guide", "authority": "website.design", "source": "docs/design-guide.md", "anchor": "## Pflege des Guides", "text": "Der Guide wird nie nachträglich geändert, um eine ungefragte oder fehlerhafte Umsetzung zu legitimieren." },
-    { "id": "TEMPLATE-001", "module_id": "responsive-templates", "authority": "website.responsive-templates", "source": "docs/responsive-templates.md", "anchor": "## 2. Ausdrückliche Ausnahme: Die Startseite bleibt eigenständig", "text": "Die Startseite ist von der Vereinheitlichung der Seitenlayouts und der Überführung in die Fahrzeug-, Kajak-/Aktivitäts- oder Reisebericht-Templates ausgenommen." },
-    { "id": "TEMPLATE-002", "module_id": "responsive-templates", "authority": "website.responsive-templates", "source": "docs/responsive-templates.md", "anchor": "## 4. Gemeinsame Komponenten statt kopierter Implementierungen", "text": "Für jeden gemeinsamen Baustein gibt es eine maßgebliche Implementierung. Nicht nur Markup, sondern auch CSS und JavaScript werden zentral gepflegt." },
-    { "id": "MANDATE-001", "module_id": "consolidated-mandate", "authority": "governance.delivery-and-approvals", "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md", "anchor": "## 2. Verbindliche Grundlagen tatsächlich lesen", "text": "Vor der Umsetzung den tatsächlichen aktuellen Arbeitsstand prüfen, nicht allein einen möglicherweise älteren GitHub- oder Live-Stand." },
-    { "id": "MANDATE-002", "module_id": "consolidated-mandate", "authority": "governance.delivery-and-approvals", "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md", "anchor": "## 4. Startseite: eigenes Layout, keine Ausnahme von Bildschutz und Prüfung", "text": "**Die Ausnahme betrifft ausschließlich die Vereinheitlichung der Seitenstruktur. Die Bildregeln, der Schutz der Originaldateien, die geltenden allgemeinen Designregeln und die Prüfpflicht gelten auch für die Startseite.**" },
-    { "id": "CMS-001", "module_id": "cms-content", "authority": "website.cms-content", "source": "editor/README.md", "anchor": "## Verwendung über die Homepage", "text": "Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewiesen." },
-    { "id": "CMS-002", "module_id": "cms-content", "authority": "website.cms-content", "source": "editor/README.md", "anchor": "## Verwendung über die Homepage", "text": "Gespeicherte Texte, Freigaben und die serverseitig geprüften Sitzungen bleiben bei einem regulären Web-Neustart erhalten; Abmeldung, Sperrung, Rollen- oder Passwortänderung machen Sitzungen sofort ungültig." },
-    { "id": "RELEASE-001", "module_id": "release-governance", "authority": "governance.release-approval", "source": "docs/scrum-migration/release-decisions.md", "anchor": "## DEC-REL-001 – ausdrückliche Freigabe je Release-Umfang", "text": "Jede Veröffentlichung und jedes Deployment benötigt die ausdrückliche Freigabe des Nutzers für den jeweiligen Release-Umfang." },
-    { "id": "RELEASE-002", "section_id": "DEC-REL-002", "module_id": "release-governance", "authority": "governance.release-approval", "source": "docs/scrum-migration/release-decisions.md", "anchor": "## DEC-REL-002 – Prüfung ist keine Veröffentlichungsfreigabe", "text": "Ein erfolgreicher Test, Audit oder abgeschlossener Plan erteilt keine Veröffentlichungsfreigabe." },
-    { "id": "RELEASE-004", "section_id": "DEC-REL-002", "module_id": "release-governance", "authority": "governance.release-approval", "source": "docs/scrum-migration/release-decisions.md", "anchor": "## DEC-REL-002 – Prüfung ist keine Veröffentlichungsfreigabe", "text": "Diese Entscheidung präzisiert das Gate aus `DEC-REL-001` und gilt für den Scrum-Entwurf und seinen Abschlussaudit." },
-    { "id": "RELEASE-003", "module_id": "release-governance", "authority": "governance.release-approval", "source": "docs/scrum-migration/release-decisions.md", "anchor": "## DEC-REL-003 – Local-first und keine direkte Live-Bearbeitung", "text": "Direkte Bearbeitung des Live-Systems ist unzulässig." }
+    {
+      "id": "SCRUM-001",
+      "module_id": "scrum-core",
+      "authority": "planning.scrum-core",
+      "source": "docs/scrum-plan.md",
+      "anchor": "# Zentraler Scrum-Plan für VanVenture",
+      "text": "Dieser Plan ersetzt keine Fachquelle und hebt keinen lokalen Teilstand auf Done an."
+    },
+    {
+      "id": "SCRUM-002",
+      "module_id": "scrum-core",
+      "authority": "planning.scrum-core",
+      "source": "docs/scrum-plan.md",
+      "anchor": "## Planning Coverage und Implementation Verification",
+      "text": "`Covered` in der Matrix bedeutet ausschließlich, dass die ursprüngliche Anforderung im Planungsmodell zugeordnet ist. Es bedeutet weder Code-Umsetzung noch Bild-, Nutzer- oder Live-Freigabe."
+    },
+    {
+      "id": "SOT-001",
+      "module_id": "sot-architecture",
+      "authority": "governance.sot-architecture",
+      "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "anchor": "# Source-of-Truth & Incremental Planning Architecture – autoritatives Fachmodul",
+      "text": "Dieses Fachmodul ist die einzige autoritative Detailquelle und das vollständige Execution Backlog für `EPIC-SOT`."
+    },
+    {
+      "id": "SOT-002",
+      "module_id": "sot-architecture",
+      "authority": "governance.sot-architecture",
+      "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "anchor": "# Source-of-Truth & Incremental Planning Architecture – autoritatives Fachmodul",
+      "text": "Diese Ausführungsfreigabe ersetzt keine Design-, Fach-, Release- oder Live-Freigabe."
+    },
+    {
+      "id": "ANALYTICS-001",
+      "module_id": "analytics",
+      "authority": "website.analytics",
+      "source": "docs/analytics.md",
+      "anchor": "## Ziel und Architekturgrenze",
+      "text": "Provider-spezifische Aufrufe, insbesondere `umami.track`, `_paq` und `gtag`, sind außerhalb der Provider-Adapter verboten."
+    },
+    {
+      "id": "ANALYTICS-002",
+      "module_id": "analytics",
+      "authority": "website.analytics",
+      "source": "docs/analytics.md",
+      "anchor": "## Tracking-Policy und Provider",
+      "text": "Tracking ist nur zulässig, wenn **alle** Bedingungen erfüllt sind: Production, öffentliche Website, anonymer Besucher, veröffentlichter Inhalt, kein Preview/CMS/Admin-Bereich und Analytics aktiviert."
+    },
+    {
+      "id": "ANALYTICS-003",
+      "module_id": "analytics",
+      "authority": "website.analytics",
+      "source": "docs/analytics.md",
+      "anchor": "## Event Schema v1",
+      "text": "VanVenture erlaubt nur zentral definierte Namen und Properties, keine frei übernommenen Strings aus Komponenten oder Benutzereingaben."
+    },
+    {
+      "id": "DESIGN-001",
+      "module_id": "design-guide",
+      "authority": "website.design",
+      "source": "docs/design-guide.md",
+      "anchor": "## Pflege des Guides",
+      "text": "Eine neue Regel, globale Komponentenvariante oder Ausnahme wird erst nach ausdrücklicher Nutzerfreigabe verbindlich oder live."
+    },
+    {
+      "id": "DESIGN-002",
+      "module_id": "design-guide",
+      "authority": "website.design",
+      "source": "docs/design-guide.md",
+      "anchor": "## Pflege des Guides",
+      "text": "Der Guide wird nie nachträglich geändert, um eine ungefragte oder fehlerhafte Umsetzung zu legitimieren."
+    },
+    {
+      "id": "TEMPLATE-001",
+      "module_id": "responsive-templates",
+      "authority": "website.responsive-templates",
+      "source": "docs/responsive-templates.md",
+      "anchor": "## 2. Ausdrückliche Ausnahme: Die Startseite bleibt eigenständig",
+      "text": "Die Startseite ist von der Vereinheitlichung der Seitenlayouts und der Überführung in die Fahrzeug-, Kajak-/Aktivitäts- oder Reisebericht-Templates ausgenommen."
+    },
+    {
+      "id": "TEMPLATE-002",
+      "module_id": "responsive-templates",
+      "authority": "website.responsive-templates",
+      "source": "docs/responsive-templates.md",
+      "anchor": "## 4. Gemeinsame Komponenten statt kopierter Implementierungen",
+      "text": "Für jeden gemeinsamen Baustein gibt es eine maßgebliche Implementierung. Nicht nur Markup, sondern auch CSS und JavaScript werden zentral gepflegt."
+    },
+    {
+      "id": "MANDATE-001",
+      "module_id": "consolidated-mandate",
+      "authority": "governance.delivery-and-approvals",
+      "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
+      "anchor": "## 2. Verbindliche Grundlagen tatsächlich lesen",
+      "text": "Vor der Umsetzung den tatsächlichen aktuellen Arbeitsstand prüfen, nicht allein einen möglicherweise älteren GitHub- oder Live-Stand."
+    },
+    {
+      "id": "MANDATE-002",
+      "module_id": "consolidated-mandate",
+      "authority": "governance.delivery-and-approvals",
+      "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
+      "anchor": "## 4. Startseite: eigenes Layout, keine Ausnahme von Bildschutz und Prüfung",
+      "text": "**Die Ausnahme betrifft ausschließlich die Vereinheitlichung der Seitenstruktur. Die Bildregeln, der Schutz der Originaldateien, die geltenden allgemeinen Designregeln und die Prüfpflicht gelten auch für die Startseite.**"
+    },
+    {
+      "id": "CMS-001",
+      "module_id": "cms-content",
+      "authority": "website.cms-content",
+      "source": "editor/README.md",
+      "anchor": "## Verwendung über die Homepage",
+      "text": "Beide Konten bearbeiten gemeinsame Entwürfe. Veraltete Versionen werden abgewiesen."
+    },
+    {
+      "id": "CMS-002",
+      "module_id": "cms-content",
+      "authority": "website.cms-content",
+      "source": "editor/README.md",
+      "anchor": "## Verwendung über die Homepage",
+      "text": "Gespeicherte Texte, Freigaben und die serverseitig geprüften Sitzungen bleiben bei einem regulären Web-Neustart erhalten; Abmeldung, Sperrung, Rollen- oder Passwortänderung machen Sitzungen sofort ungültig."
+    },
+    {
+      "id": "RELEASE-001",
+      "module_id": "release-governance",
+      "authority": "governance.release-approval",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "anchor": "## DEC-REL-001 – ausdrückliche Freigabe je Release-Umfang",
+      "text": "Jede Veröffentlichung und jedes Deployment benötigt die ausdrückliche Freigabe des Nutzers für den jeweiligen Release-Umfang."
+    },
+    {
+      "id": "RELEASE-002",
+      "section_id": "DEC-REL-002",
+      "module_id": "release-governance",
+      "authority": "governance.release-approval",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "anchor": "## DEC-REL-002 – Prüfung ist keine Veröffentlichungsfreigabe",
+      "text": "Ein erfolgreicher Test, Audit oder abgeschlossener Plan erteilt keine Veröffentlichungsfreigabe."
+    },
+    {
+      "id": "RELEASE-004",
+      "section_id": "DEC-REL-002",
+      "module_id": "release-governance",
+      "authority": "governance.release-approval",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "anchor": "## DEC-REL-002 – Prüfung ist keine Veröffentlichungsfreigabe",
+      "text": "Diese Entscheidung präzisiert das Gate aus `DEC-REL-001` und gilt für den Scrum-Entwurf und seinen Abschlussaudit."
+    },
+    {
+      "id": "RELEASE-003",
+      "module_id": "release-governance",
+      "authority": "governance.release-approval",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "anchor": "## DEC-REL-003 – Local-first und keine direkte Live-Bearbeitung",
+      "text": "Direkte Bearbeitung des Live-Systems ist unzulässig."
+    },
+    {
+      "id": "WSJF-001",
+      "module_id": "wsjf",
+      "authority": "planning.wsjf-assessment",
+      "source": "docs/governance/wsjf.md",
+      "anchor": "## Verbindlicher Bereich",
+      "text": "Dieses Modul autorisiert ausschließlich die ergänzende Bewertung bestehender Epics und Stories."
+    },
+    {
+      "id": "WSJF-002",
+      "module_id": "wsjf",
+      "authority": "planning.wsjf-assessment",
+      "source": "docs/governance/wsjf.md",
+      "anchor": "## Verbindliche Grenzen",
+      "text": "Ein Score autorisiert weder einen Claim noch einen Start, eine Board-Bewegung, eine Release-/Analytics-Aktivierung oder eine Nutzerentscheidung."
+    }
   ],
   "section_coverage": [
     {
@@ -30,19 +181,86 @@
       "heading": "## DEC-REL-002 – Prüfung ist keine Veröffentlichungsfreigabe",
       "section_sha256": "b82bd7d6e2fc57f575929a5dfff94ce8ec932f15dbf357d4b258bea0072bfc14",
       "scope": "complete_section",
-      "rule_ids": ["RELEASE-002", "RELEASE-004"],
+      "rule_ids": [
+        "RELEASE-002",
+        "RELEASE-004"
+      ],
       "evidence_ref": "docs/scrum-migration/release-decisions.md#DEC-REL-002; manual two-sentence inventory 2026-09-26",
       "remaining_outside_section": "Other release decisions and cross-module approval interactions are not covered by this section inventory."
     }
   ],
   "coverage": [
-    { "module_id": "scrum-core", "source": "docs/scrum-plan.md", "scope": "partial", "evidence_ref": "docs/scrum-plan.md#Planning Coverage und Implementation Verification", "mapped_rule_count": 2, "remaining": "Historical source matrix, Scrum lifecycle, status and gate rules are not exhaustively catalogued." },
-    { "module_id": "sot-architecture", "source": "docs/governance/source-of-truth-and-incremental-planning.md", "scope": "partial", "evidence_ref": "docs/governance/source-of-truth-and-incremental-planning.md#Source-of-Truth & Incremental Planning Architecture", "mapped_rule_count": 2, "remaining": "Detailed work items and operational rules are not exhaustively catalogued." },
-    { "module_id": "analytics", "source": "docs/analytics.md", "scope": "partial", "evidence_ref": "docs/analytics.md#Tracking-Policy und Provider", "mapped_rule_count": 3, "remaining": "Event, privacy, URL, provider and test clauses remain outside this initial excerpt set." },
-    { "module_id": "design-guide", "source": "docs/design-guide.md", "scope": "partial", "evidence_ref": "docs/design-guide.md#Pflege des Guides", "mapped_rule_count": 2, "remaining": "Visual specifications and individual approved exceptions remain outside this initial excerpt set." },
-    { "module_id": "responsive-templates", "source": "docs/responsive-templates.md", "scope": "partial", "evidence_ref": "docs/responsive-templates.md#Gemeinsame Komponenten statt kopierter Implementierungen", "mapped_rule_count": 2, "remaining": "Template-specific, gallery and acceptance rules remain outside this initial excerpt set." },
-    { "module_id": "consolidated-mandate", "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md", "scope": "partial", "evidence_ref": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md#Verbindliche Grundlagen tatsächlich lesen", "mapped_rule_count": 2, "remaining": "Image, design approval, evidence and publication sections are not exhaustively catalogued." },
-    { "module_id": "cms-content", "source": "editor/README.md", "scope": "partial", "evidence_ref": "editor/README.md#Verwendung über die Homepage", "mapped_rule_count": 2, "remaining": "Auth, publishing, operations, backup and test sections remain outside this initial excerpt set." },
-    { "module_id": "release-governance", "source": "docs/scrum-migration/release-decisions.md", "scope": "partial", "evidence_ref": "docs/scrum-migration/release-decisions.md#DEC-REL-001", "mapped_rule_count": 4, "remaining": "Historical mappings and interaction with other current approval instructions require contextual review." }
+    {
+      "module_id": "scrum-core",
+      "source": "docs/scrum-plan.md",
+      "scope": "partial",
+      "evidence_ref": "docs/scrum-plan.md#Planning Coverage und Implementation Verification",
+      "mapped_rule_count": 2,
+      "remaining": "Historical source matrix, Scrum lifecycle, status and gate rules are not exhaustively catalogued."
+    },
+    {
+      "module_id": "sot-architecture",
+      "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "scope": "partial",
+      "evidence_ref": "docs/governance/source-of-truth-and-incremental-planning.md#Source-of-Truth & Incremental Planning Architecture",
+      "mapped_rule_count": 2,
+      "remaining": "Detailed work items and operational rules are not exhaustively catalogued."
+    },
+    {
+      "module_id": "wsjf",
+      "source": "docs/governance/wsjf.md",
+      "scope": "partial",
+      "evidence_ref": "docs/governance/wsjf.md#Verbindlicher Bereich",
+      "mapped_rule_count": 2,
+      "remaining": "Automatic fact analysis, persisted assessments, queue/controller activation and end-to-end execution remain outside the excerpt set."
+    },
+    {
+      "module_id": "analytics",
+      "source": "docs/analytics.md",
+      "scope": "partial",
+      "evidence_ref": "docs/analytics.md#Tracking-Policy und Provider",
+      "mapped_rule_count": 3,
+      "remaining": "Event, privacy, URL, provider and test clauses remain outside this initial excerpt set."
+    },
+    {
+      "module_id": "design-guide",
+      "source": "docs/design-guide.md",
+      "scope": "partial",
+      "evidence_ref": "docs/design-guide.md#Pflege des Guides",
+      "mapped_rule_count": 2,
+      "remaining": "Visual specifications and individual approved exceptions remain outside this initial excerpt set."
+    },
+    {
+      "module_id": "responsive-templates",
+      "source": "docs/responsive-templates.md",
+      "scope": "partial",
+      "evidence_ref": "docs/responsive-templates.md#Gemeinsame Komponenten statt kopierter Implementierungen",
+      "mapped_rule_count": 2,
+      "remaining": "Template-specific, gallery and acceptance rules remain outside this initial excerpt set."
+    },
+    {
+      "module_id": "consolidated-mandate",
+      "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
+      "scope": "partial",
+      "evidence_ref": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md#Verbindliche Grundlagen tatsächlich lesen",
+      "mapped_rule_count": 2,
+      "remaining": "Image, design approval, evidence and publication sections are not exhaustively catalogued."
+    },
+    {
+      "module_id": "cms-content",
+      "source": "editor/README.md",
+      "scope": "partial",
+      "evidence_ref": "editor/README.md#Verwendung über die Homepage",
+      "mapped_rule_count": 2,
+      "remaining": "Auth, publishing, operations, backup and test sections remain outside this initial excerpt set."
+    },
+    {
+      "module_id": "release-governance",
+      "source": "docs/scrum-migration/release-decisions.md",
+      "scope": "partial",
+      "evidence_ref": "docs/scrum-migration/release-decisions.md#DEC-REL-001",
+      "mapped_rule_count": 4,
+      "remaining": "Historical mappings and interaction with other current approval instructions require contextual review."
+    }
   ]
 }

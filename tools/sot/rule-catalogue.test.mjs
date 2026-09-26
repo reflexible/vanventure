@@ -11,7 +11,7 @@ test('catalogues cited rules across every registered module with honest partial 
   const { registry, catalogue } = await fixture();
   const result = await validateRuleCatalogueSources(catalogue, registry);
   assert.equal(result.valid, true, result.errors.join('; '));
-  assert.equal(result.mapped_rules, 19);
+  assert.equal(result.mapped_rules, 21);
   assert.deepEqual(result.verified_sections, ['DEC-REL-002']);
   assert.equal(result.partial_modules.length, registry.modules.length);
   assert.ok(catalogue.coverage.every(entry => entry.scope === 'partial' && entry.remaining));
@@ -28,7 +28,7 @@ test('complete section inventory fails on stale hash, omitted sentence, wrong he
   missingRule.coverage.find(item => item.module_id === 'release-governance').mapped_rule_count = 3;
   assert.match((await validateRuleCatalogueSources(missingRule, registry)).errors.join('; '), /section rule inventory is incomplete/);
   const wrongHeading = structuredClone(catalogue);
-  wrongHeading.section_coverage[0].heading = '## DEC-REL-001 – ausdrückliche Freigabe je Release-Umfang';
+  wrongHeading.section_coverage[0].heading = '## DEC-REL-001 â€“ ausdrÃ¼ckliche Freigabe je Release-Umfang';
   assert.equal((await validateRuleCatalogueSources(wrongHeading, registry)).valid, false);
   const wrongScope = structuredClone(catalogue);
   wrongScope.section_coverage[0].scope = 'complete_module';
