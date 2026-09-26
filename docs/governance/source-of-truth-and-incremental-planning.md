@@ -81,15 +81,16 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement, FAST-/FULL-CHECK-Integration.
-**Current Work Item:** `WI-SOT-07-01` ist bereit. **Active Workers:** 0.
+**Phase:** Performance Enablement, inkrementelles Audit.
+**Current Work Item:** `WI-SOT-11-01` ist bereit. **Active Workers:** 0.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-07-01` (FAST CHECK), danach die
-impact-begrenzte FULL-CHECK-Engine. **Parallel Candidates:** FAST und FULL
-können auf der geprüften Impact-Schnittstelle in disjunkten Dateien entstehen.
+**NEXT RECOMMENDATION:** `WI-SOT-11-01` (inkrementelles Audit), um Delta,
+Impact und beide Prüfmodi mit gespeicherten Ergebnissen zu verbinden.
+**Parallel Candidates:** die Runtime-Anbindungen `WI-SOT-04-10`, `05-04`,
+`06-09`, `07-10` und `08-09` benötigen einen gemeinsamen State und Orchestrator.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 191 · Done 79 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 112 (einschließlich Ready und Blocked) · Progress 41,4 %.
+**Counter:** Total 192 · Done 88 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 104 (einschließlich Ready und Blocked) · Progress 45,8 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -212,15 +213,16 @@ oder
 FULL_CHECK
 #### ST-SOT-07 – PHASE 7: FAST CHECK
 FAST CHECK ist der Default für normale Änderungen.
-- [ ] READY – WI-SOT-07-01 · Delta bestimmen
-- [ ] TODO – WI-SOT-07-02 · nur betroffene Module prüfen
-- [ ] TODO – WI-SOT-07-03 · relevante Contracts prüfen
-- [ ] TODO – WI-SOT-07-04 · direkte Dependencies prüfen
-- [ ] TODO – WI-SOT-07-05 · relevante Traceability prüfen
-- [ ] TODO – WI-SOT-07-06 · relevante Tests ausführen
-- [ ] TODO – WI-SOT-07-07 · Referenzen prüfen
-- [ ] TODO – WI-SOT-07-08 · git diff --check
-- [ ] TODO – WI-SOT-07-09 · Ergebnis dokumentieren
+- [x] ~~WI-SOT-07-01 · Delta bestimmen~~
+- [x] ~~WI-SOT-07-02 · nur betroffene Module prüfen~~
+- [x] ~~WI-SOT-07-03 · relevante Contracts prüfen~~
+- [x] ~~WI-SOT-07-04 · direkte Dependencies prüfen~~
+- [x] ~~WI-SOT-07-05 · relevante Traceability prüfen~~
+- [x] ~~WI-SOT-07-06 · relevante Tests ausführen~~
+- [x] ~~WI-SOT-07-07 · Referenzen prüfen~~
+- [x] ~~WI-SOT-07-08 · git diff --check~~
+- [x] ~~WI-SOT-07-09 · Ergebnis dokumentieren~~
+- [ ] TODO – WI-SOT-07-10 · fachlich gepflegte Test- und Trace-Zuordnung im gemeinsamen Orchestrator bereitstellen; die Engine verlangt explizite Eingaben
 Ergebnis:
 FAST_CHECK_PASS
 oder
@@ -286,7 +288,7 @@ Change
 → Required Check Mode
 → Delta Validation
 → Audit Result
-- [ ] TODO – WI-SOT-11-01 · lokales Delta-Audit
+- [ ] READY – WI-SOT-11-01 · lokales Delta-Audit
 - [ ] TODO – WI-SOT-11-02 · Modul-Audit
 - [ ] TODO – WI-SOT-11-03 · Contract-Audit
 - [ ] TODO – WI-SOT-11-04 · Dependency-Audit
