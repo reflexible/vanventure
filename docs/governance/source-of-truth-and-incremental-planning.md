@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: elf prüfbare Module aufgebaut; Board und Video bleiben Core-gebundene Referenzen.
+**Phase:** Modularisierung: elf prüfbare Module aufgebaut; abgeleitete Gesamtansicht lokal verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-25-01` · schreibgeschützte Gesamtansicht aus den elf Modulen erzeugen.
+**NEXT RECOMMENDATION:** `WI-SOT-17-01` · gezielte SoT-Konsistenzprüfung als nächste Schutzschicht ergänzen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 178 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 27 (einschließlich Ready und Blocked) · Progress 86,8 %.
+**Counter:** Total 205 · Done 181 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 24 (einschließlich Ready und Blocked) · Progress 88,3 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -538,9 +538,14 @@ Backlog nachvollziehbar.
 Nur vorhandene Anforderungen übernehmen.
 Keine unnötige Modulbildung nur um der Modularisierung willen.
 #### ST-SOT-25 – PHASE 25: GENERIERTE GESAMTSICHT
-- [ ] TODO – WI-SOT-25-01 · Gesamtansicht aus Modulen erzeugen
-- [ ] TODO – WI-SOT-25-02 · klar als generiert kennzeichnen
-- [ ] TODO – WI-SOT-25-03 · keine zweite autoritative Quelle daraus erzeugen
+- [x] ~~WI-SOT-25-01 · Gesamtansicht aus Modulen erzeugen~~
+  Die Übersicht leitet alle elf Einträge ausschließlich aus der Registry ab.
+- [x] ~~WI-SOT-25-02 · klar als generiert kennzeichnen~~
+  Datei, Status und Generator markieren den Auszug als `DERIVED_INDEX_ONLY`.
+- [x] ~~WI-SOT-25-03 · keine zweite autoritative Quelle daraus erzeugen~~
+  Der Drift-Test erzwingt die exakte Ableitung; Board und Video erscheinen
+  explizit als Core-Referenzen statt Fachautoritäten. [Gesamtansicht](module-overview.generated.md)
+  und [lokaler Abnahmebericht](../abnahmeberichte/sot-module-overview-2026-09-26.md).
 ### WS-SOT-W5 – MONITORING & END-TO-END
 #### ST-SOT-26 – PHASE 26: STATUS / MONITORING
 Implementieren:
