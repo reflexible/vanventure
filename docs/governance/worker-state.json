@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 94,
+  "revision": 99,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -2535,6 +2535,168 @@
           }
         ]
       }
+    },
+    "WI-SOT-21-02": {
+      "work_item_id": "WI-SOT-21-02",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:09:37.056Z",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+        "tools/sot/worker-state.mjs",
+        "tools/sot/worker-state.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Read-only file-scope conflict analysis added.",
+        "files": [
+          "tools/sot/worker-state.mjs",
+          "tools/sot/worker-state.test.mjs",
+          "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        ],
+        "tests": [
+          "296/296 PASS"
+        ],
+        "limitations": [
+          "No automatic conflict resolution."
+        ],
+        "follow_up": [
+          "Model dependency conflicts separately."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:09:52.905Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+        "self_review_reason": "Controller verified full suite.",
+        "at": "2026-09-26T17:09:52.917Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T17:09:52.975Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+        "scope": "WI-SOT-21-02",
+        "verified_at": "2026-09-26T17:09:52.975Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-21-02",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-21-02",
+          "reason": "Read-only conflict analysis.",
+          "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "fast-check",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-21-02",
+          "audit_output": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "FAST CHECK"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "FAST CHECK"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "FAST CHECK"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "FAST CHECK"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "FAST CHECK"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-21-02",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-21-02"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -3415,6 +3577,52 @@
       "work_item_id": "WI-SOT-19-08",
       "actor": "/root",
       "evidence_ref": "docs/sot-optimization/reviews/wsjf-workflow-fast-check-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "b1bf53e0-446d-4dc9-90b9-540923b6dc85",
+      "at": "2026-09-26T17:09:37.057Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-21-02",
+      "actor": "/root",
+      "write_scope": [
+        "EXECUTION_STATE.md",
+        "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
+        "tools/sot/worker-state.mjs",
+        "tools/sot/worker-state.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "6f8879d1-80e1-4165-a883-0b18d8465676",
+      "at": "2026-09-26T17:09:37.068Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-21-02",
+      "actor": "/root"
+    },
+    {
+      "event_id": "0df4e85c-6a5c-4108-86ec-c3d3b5195506",
+      "at": "2026-09-26T17:09:52.905Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-21-02",
+      "actor": "/root",
+      "summary": "Read-only file-scope conflict analysis added."
+    },
+    {
+      "event_id": "12d17f33-37b3-45ed-b7d9-cbe7e56020f8",
+      "at": "2026-09-26T17:09:52.917Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-21-02",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md"
+    },
+    {
+      "event_id": "be8383c6-9c2f-4def-aa1f-e274bf050d40",
+      "at": "2026-09-26T17:09:52.975Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-21-02",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/file-conflicts-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
     }
   ]

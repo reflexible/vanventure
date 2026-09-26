@@ -288,6 +288,21 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
   };
 }
 
+
+/** Analyze file-scope collisions without changing claims or assignments. */
+export function analyzeWriteScopeConflicts(records) {
+  if (!records || typeof records !== 'object' || Array.isArray(records)) throw new Error('records must be an object.');
+  const active = Object.values(records).filter(record => ACTIVE.has(record?.execution_state));
+  const conflicts = [];
+  for (let index = 0; index < active.length; index++) for (let other = index + 1; other < active.length; other++) {
+    const left = active[index], right = active[other];
+    const paths = (left.write_scope ?? []).flatMap(a => (right.write_scope ?? []).filter(b => a === b || a.startsWith(`${b}/`) || b.startsWith(`${a}/`)).map(path => path));
+    if (paths.length) conflicts.push({ work_item_ids: [left.work_item_id, right.work_item_id].sort(), paths: [...new Set(paths)].sort(),
+      coordination_required: left.coordination_ref !== right.coordination_ref || !text(left.coordination_ref) });
+  }
+  return { status: conflicts.length ? 'COORDINATION_REQUIRED' : 'NO_FILE_CONFLICTS', conflicts };
+}
+
 /** Derived views for the existing graph and impact engines; no second backlog. */
 export function runtimeWorkers(state) {
   validateState(state);
