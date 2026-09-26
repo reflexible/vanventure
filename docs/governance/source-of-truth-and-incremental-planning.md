@@ -82,7 +82,7 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-13-07`, `WI-SOT-16-01`, `WI-SOT-19-08`. **Active Workers:** 1.
+**Current Work Items:** `WI-SOT-15-07`, `WI-SOT-13-07`, `WI-SOT-16-01`, `WI-SOT-19-08`. **Active Workers:** 2.
 Die beiden späteren Items bearbeiten ausschließlich lokale Sicherheitsvoraussetzungen;
 ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
@@ -93,7 +93,7 @@ die 19 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 128 · In Progress 3 · Ready 0 · Blocked 1 ·
+**Counter:** Total 198 · Done 128 · In Progress 4 · Ready 0 · Blocked 1 ·
 Open 70 (einschließlich Ready und Blocked) · Progress 64,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -326,7 +326,10 @@ Change
   modulübergreifende Suchlücken bleiben ausdrücklich `partial`/`Unknown`.
   Generische Abschnittsfindung für die acht aktiven Quellen und
   vorschlagsbezogene Mehrfachbereichsprüfung sind lokal implementiert und
-  getestet. Das Item bleibt READY, bis die fachlichen Regelbereiche eines
+  getestet. Quellengebundene Reviewer-Dispositionen und ihre Disk-Prüfung sind
+  implementiert; globale Kataloglücken bleiben sichtbar. Siehe
+  [Scope-Nachweis](../sot-optimization/reviews/scope-review-2026-09-26.md).
+  Das Item bleibt offen, bis die fachlichen Regelbereiche eines
   konkreten Vorschlags vollständig inventarisiert und alle relevanten Unknowns
   geschlossen sind.
 #### ST-SOT-14 – PHASE 14: CONFLICT CHECK
@@ -347,13 +350,17 @@ Change
 - [x] ~~WI-SOT-15-04 · SUPERSEDED~~
 - [x] ~~WI-SOT-15-05 · optional REJECTED~~
 - [x] ~~WI-SOT-15-06 · Approval-Gates implementieren~~
-- [ ] TODO – WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen
+- [ ] IN_PROGRESS – WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen
   Die lokale Übergangsfunktion erteilt weder Design- noch Release- oder
   Live-Freigabe und ändert keine autoritative Quelle. Das Eventlog nimmt
   Entscheidungen nur über einen vom vertrauenswürdigen Aufrufer gestellten
   Authentifizierungsprüfer an. Das SoT-Update liest das hashgeprüfte Eventlog
   erneut und ruft den Authentifizierungsprüfer unmittelbar vor Anwendung
-  nochmals auf. Die Anbindung an eine reale Nutzeridentität bleibt offen.
+  nochmals auf. Ein Importadapter bindet Originalnachweis und exakten
+  Vorschlagsinhalt an extern vorgegebene Vertrauensanker; Datum und Importzeit
+  bleiben getrennt. Die reale Übernahme vorhandener, passender Nutzernachweise
+  wird mit dem durchgängigen Workflow verbunden. Siehe
+  [Evidenzadapter](../sot-optimization/reviews/user-decision-evidence-2026-09-26.md).
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [ ] IN_PROGRESS – WI-SOT-16-01 · autoritative Quelle aktualisieren
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
@@ -365,9 +372,10 @@ Change
   aktueller Registry-/Approval-Revalidierung, Post-Validation-Pflicht und
   exaktem Rollback ist verfügbar; er wurde noch nicht auf eine Projektquelle
   angewendet. Dependency-/Traceability-Updates,
-  semantische Erweiterung/Superseding und der reale Nutzeridentitätsadapter
-  fehlen. Siehe
-  [Prüfbericht](../sot-optimization/reviews/sot-update-plan-2026-09-26.md).
+  semantische Erweiterung/Superseding und der durchgängige Projektablauf
+  bleiben offen. Zielanker und Baseline sind jetzt an die persistierte Freigabe
+  gebunden; ein dauerhaftes Journal ermöglicht geprüfte Crash-Recovery. Siehe
+  [Schreibschutz-Nachweis](../sot-optimization/reviews/sot-write-boundary-2026-09-26.md).
 #### ST-SOT-17 – PHASE 17: SOT POST VALIDATION
 - [ ] TODO – WI-SOT-17-01 · SoT-Konsistenz prüfen
 - [ ] TODO – WI-SOT-17-02 · Contracts prüfen
@@ -403,7 +411,7 @@ Technisch verhindern:
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
   geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
   Hard Dependencies und explizite Vergleichsräume ab.
-  Vollständige 67-Abschnitts-Traceability, Audit-Neubewertung und
+  Vollständige 67-Abschnitts-Traceability, persistierte Audit-Neubewertung und
   Governance-End-to-End-Aktivierung bleiben offen; siehe
   [ursprünglichen Prüfbericht](../sot-optimization/reviews/wsjf-scoring-2026-09-26.md).
   Confidence und Skala sind nach unabhängigem Review lokal abgeschlossen

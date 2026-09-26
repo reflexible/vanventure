@@ -3,6 +3,7 @@ import { open, readFile, rename, unlink, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { assessConflict } from './conflict-check.mjs';
 import { advanceApproval } from './approval-flow.mjs';
+import { decisionProposalHash } from './user-decision-evidence.mjs';
 
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -128,7 +129,7 @@ export function createDecisionStore(path, { verifyUserDecision } = {}) {
         const current = state.proposals.get(proposalId);
         if (!current) throw new Error('Proposal not found.');
         if (typeof verifyUserDecision !== 'function'
-          || verifyUserDecision({ proposalId, action, actor, evidence, decision }) !== true) {
+          || verifyUserDecision({ proposalId, proposal_sha256: decisionProposalHash(current.proposal), action, actor, evidence, decision }) !== true) {
           throw new Error('User decision must be authenticated by the caller; an evidence string alone is insufficient.');
         }
         if (evidence?.scope?.split(/[,;\s]+/).includes(proposalId) !== true

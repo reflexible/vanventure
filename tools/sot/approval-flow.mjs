@@ -1,18 +1,23 @@
 const isText = value => typeof value === 'string' && value.trim().length > 0;
 const isTimestamp = value => isText(value) && Number.isFinite(Date.parse(value))
   && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(value);
+const isDate = value => typeof value === 'string' && /^\d{4}-\d\d-\d\d$/.test(value)
+  && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
 
 function requireRecord(actor, evidence) {
   if (actor?.role !== 'USER' || !isText(actor.id)) {
     throw new Error('An explicit identified user decision is required.');
   }
   if (!isText(evidence?.reference) || !isText(evidence?.scope)
-    || !isText(evidence?.wording) || !isTimestamp(evidence?.decided_at)) {
-    throw new Error('Decision needs a reference, scope, wording and timestamp; silence is not approval.');
+    || !isText(evidence?.wording) || !(evidence?.date_precision === 'date'
+      ? isDate(evidence?.decided_at) : isTimestamp(evidence?.decided_at))
+    || evidence?.date_precision !== undefined && !['date', 'timestamp'].includes(evidence.date_precision)) {
+    throw new Error('Decision needs a reference, scope, wording and timestamp or explicitly date-precise record; silence is not approval.');
   }
   return { actor: { role: actor.role, id: actor.id }, evidence: {
     reference: evidence.reference, scope: evidence.scope,
     wording: evidence.wording, decided_at: evidence.decided_at,
+    ...(evidence.date_precision !== undefined ? { date_precision: evidence.date_precision } : {}),
   } };
 }
 

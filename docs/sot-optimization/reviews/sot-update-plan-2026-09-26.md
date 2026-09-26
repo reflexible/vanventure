@@ -1,5 +1,8 @@
 # Prüfgrenze: kontrollierter SoT-Update-Slice
 
+Historischer Teilstand; aktueller Stand einschließlich persistierter Zielbindung
+und Crash-Recovery: [Schreibschutz-Nachweis](sot-write-boundary-2026-09-26.md).
+
 Stand: 26.09.2026 · Teil von `ST-SOT-16`.
 
 `tools/sot/sot-update-plan.mjs` erstellt eine nicht schreibende Vorschau. Sie

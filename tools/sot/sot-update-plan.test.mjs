@@ -1,15 +1,16 @@
+import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, writeFile, rm, open } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, rm, open, link, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { applySotUpdatePlan, buildSotUpdatePlan } from './sot-update-plan.mjs';
+import { applySotUpdatePlan, buildSotUpdatePlan, recoverSotUpdate } from './sot-update-plan.mjs';
 import { createDecisionStore } from './decision-state.mjs';
 
 const hash = source => createHash('sha256').update(source).digest('hex');
 const source = '# Module\r\n\r\n## Rules\r\nExisting binding rule.\r\n\r\n```md\r\n## Example heading\r\n```\r\n\r\n## Other\r\nKeep me.\r\n';
-const proposal = { id: 'P-1', status: 'APPROVED', integration: 'NOT_STARTED', content: 'New additive requirement.',
+const proposal = { target_heading: '## Rules', source_baseline_sha256: hash(source), id: 'P-1', status: 'APPROVED', integration: 'NOT_STARTED', content: 'New additive requirement.',
   authority: 'governance.sot-architecture', owner: { module_id: 'sot-architecture', authority: 'governance.sot-architecture',
     source: 'docs/governance/source-of-truth-and-incremental-planning.md' } };
 const approvedProposal = { ...proposal, approval: { kind: 'PROPOSAL_INTEGRATION_ONLY',
@@ -165,4 +166,152 @@ test('rechecks current registered ownership at apply time', async t => {
     validateAfter: async () => ({ status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] }) });
   assert.equal(result.status, 'APPLY_BLOCKED');
   assert.equal(result.reason, 'REGISTERED_SOURCE_OWNER_CHANGED');
+});
+
+
+test('rejects arbitrary extra text and undefined conflict relationships', () => {
+  const base = input();
+  for (const proposedSection of [base.proposedSection + '\nUnapproved rule.',
+    base.proposedSection.replace('Existing binding rule.', 'Unapproved rule.\nExisting binding rule.')]) {
+    assert.equal(buildSotUpdatePlan(input({ proposedSection })).status, 'UPDATE_BLOCKED');
+  }
+  for (const relation of ['TYPO', undefined, 'CONTRADICTION', 'UNDETERMINED']) {
+    assert.equal(buildSotUpdatePlan(input({ conflict: { ...conflict, relationships: [{ relation }] } })).status, 'UPDATE_BLOCKED');
+  }
+});
+
+test('preserves every original byte across mixed line endings and trailing blank lines', () => {
+  for (const currentSource of ['# Intro\r\n\n## Rules\r\nExisting.\n\r\n\n## Other\nUntouched.\r\n\r\n',
+    '# Intro\n\n## Rules\r\nExisting.\n\r\n\n']) {
+    const boundProposal = { ...approvedProposal, source_baseline_sha256: hash(currentSource) };
+    const result = buildSotUpdatePlan(input({ currentSource, baselineSha256: hash(currentSource),
+      proposal: boundProposal, approvedProposal: boundProposal, decisionState: { events: [{ ...approvalEvent, transition: { status: 'APPROVED', proposal: boundProposal } }] },
+      proposedSection: '## Rules\nExisting.\n\nNew additive requirement.' }));
+    assert.equal(result.status, 'PREPARED_NOT_APPLIED');
+    const insertion = '\r\n\r\nNew additive requirement.';
+    assert.equal(result.plan.updated_source.replace(insertion, ''), currentSource);
+    assert.equal(result.plan.updated_source, currentSource.replace('Existing.', 'Existing.' + insertion));
+  }
+});
+
+test('apply rejects edited preview even when attacker recalculates its hash', async t => {
+  const fixture = await applyFixture(t);
+  fixture.plan.updated_source += '\nUnapproved binding rule.\n';
+  fixture.plan.after_sha256 = hash(fixture.plan.updated_source);
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => { throw new Error('must not validate'); } });
+  assert.equal(result.status, 'APPLY_BLOCKED');
+  assert.equal(result.reason, 'PREVIEW_NOT_EXACT_APPROVED_APPEND');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+});
+
+test('successful validator cannot conceal concurrent source modification', async t => {
+  const fixture = await applyFixture(t);
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async ({ plan }) => {
+    await writeFile(fixture.sourcePath, 'Concurrent independent edit');
+    plan.after_sha256 = hash('Concurrent independent edit');
+    fixture.plan.after_sha256 = hash('Concurrent independent edit');
+    return { status: 'POST_VALIDATION_PASS', audit_output: 'audit.json', checks: [{ status: 'PASS' }] };
+  } });
+  assert.equal(result.status, 'ROLLBACK_BLOCKED');
+  assert.equal(result.reason, 'SOURCE_CHANGED_DURING_SUCCESSFUL_VALIDATION');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), 'Concurrent independent edit');
+});
+
+test('blocks a hardlink alias of the protected core before writing', async t => {
+  const fixture = await applyFixture(t);
+  const corePath = join(fixture.projectRoot, 'docs/scrum-plan.md');
+  await link(fixture.sourcePath, corePath);
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => { throw new Error('must not validate'); } });
+  assert.equal(result.status, 'APPLY_BLOCKED');
+  assert.equal(result.reason, 'PROTECTED_CORE_FILE_ALIAS');
+  assert.equal(await readFile(corePath, 'utf8'), source);
+});
+
+test('blocks directory junction or symlink escaping the physical project root', async t => {
+  const fixture = await applyFixture(t);
+  const outside = await mkdtemp(join(tmpdir(), 'sot-outside-'));
+  t.after(() => rm(outside, { recursive: true, force: true }));
+  await writeFile(join(outside, 'module.md'), source);
+  const alias = join(fixture.projectRoot, 'alias');
+  await symlink(outside, alias, process.platform === 'win32' ? 'junction' : 'dir');
+  const result = await applySotUpdatePlan({ ...fixture, plan: { ...fixture.plan, source: 'alias/module.md' },
+    validateAfter: async () => { throw new Error('must not validate'); } });
+  assert.equal(result.status, 'APPLY_BLOCKED');
+  assert.equal(result.reason, 'PHYSICAL_PATH_OUTSIDE_PROJECT');
+  assert.equal(await readFile(join(outside, 'module.md'), 'utf8'), source);
+});
+
+
+test('persisted target and baseline are mandatory and target tampering blocks apply', async t => {
+  const unbound = { ...approvedProposal };
+  delete unbound.target_heading;
+  assert.equal(buildSotUpdatePlan(input({ proposal: unbound, approvedProposal: unbound })).status, 'UPDATE_BLOCKED');
+  const fixture = await applyFixture(t);
+  fixture.plan.target_heading = '## Other';
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => { throw new Error('must not validate'); } });
+  assert.equal(result.reason, 'PERSISTED_APPROVAL_REVALIDATION_FAILED');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+});
+
+function crashDuringValidation(fixture) {
+  const moduleUrl = new URL('./sot-update-plan.mjs', import.meta.url).href;
+  const child = spawnSync(process.execPath, ['--input-type=module', '-e', `
+    import { applySotUpdatePlan } from ${JSON.stringify(moduleUrl)};
+    const fixture = JSON.parse(process.argv[1]);
+    await applySotUpdatePlan({ ...fixture, verifyUserDecision: () => true,
+      validateAfter: async () => process.exit(77) });
+    process.exit(78);
+  `, JSON.stringify(fixture)], { encoding: 'utf8' });
+  assert.equal(child.status, 77, child.stderr);
+}
+
+const recoveryArgs = fixture => ({ projectRoot: fixture.projectRoot, source: 'module.md',
+  decisionStatePath: fixture.decisionStatePath, verifyUserDecision: fixture.verifyUserDecision });
+
+test('durable journal recovers exact bytes after an actual writer process exits before validation', async t => {
+  const fixture = await applyFixture(t);
+  crashDuringValidation(fixture);
+  assert.equal(hash(await readFile(fixture.sourcePath)), fixture.plan.after_sha256);
+  const result = await recoverSotUpdate(recoveryArgs(fixture));
+  assert.equal(result.status, 'RECOVERED');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), source);
+  await assert.rejects(readFile(`${fixture.sourcePath}.sot-recovery.json`), { code: 'ENOENT' });
+  await assert.rejects(readFile(`${fixture.sourcePath}.sot-update.lock`), { code: 'ENOENT' });
+});
+
+test('recovery preserves journal and concurrent edits instead of overwriting them', async t => {
+  const fixture = await applyFixture(t);
+  crashDuringValidation(fixture);
+  await writeFile(fixture.sourcePath, 'Independent later edit');
+  const result = await recoverSotUpdate(recoveryArgs(fixture));
+  assert.equal(result.reason, 'RECOVERY_CONCURRENT_SOURCE_CHANGE');
+  assert.equal(await readFile(fixture.sourcePath, 'utf8'), 'Independent later edit');
+  assert.ok(await readFile(`${fixture.sourcePath}.sot-recovery.json`));
+});
+
+test('tampered recovery baseline is rejected even with recalculated journal checksum', async t => {
+  const fixture = await applyFixture(t);
+  crashDuringValidation(fixture);
+  const journalPath = `${fixture.sourcePath}.sot-recovery.json`;
+  const { journal_sha256, ...journal } = JSON.parse(await readFile(journalPath, 'utf8'));
+  journal.before_base64 = Buffer.from('Injected prior rule').toString('base64');
+  journal.before_sha256 = hash('Injected prior rule');
+  await writeFile(journalPath, JSON.stringify({ ...journal, journal_sha256: hash(JSON.stringify(journal)) }));
+  const result = await recoverSotUpdate(recoveryArgs(fixture));
+  assert.equal(result.reason, 'RECOVERY_APPROVAL_MISMATCH');
+  assert.equal(hash(await readFile(fixture.sourcePath)), fixture.plan.after_sha256);
+  assert.ok(await readFile(journalPath));
+});
+
+test('recovery refuses an active writer and unauthenticated approval', async t => {
+  const fixture = await applyFixture(t);
+  const result = await applySotUpdatePlan({ ...fixture, validateAfter: async () => {
+    const active = await recoverSotUpdate(recoveryArgs(fixture));
+    assert.equal(active.reason, 'RECOVERY_WRITER_STILL_ACTIVE');
+    const unauthenticated = await recoverSotUpdate({ ...recoveryArgs(fixture), verifyUserDecision: () => false });
+    assert.equal(unauthenticated.reason, 'RECOVERY_APPROVAL_MISMATCH');
+    return { status: 'POST_VALIDATION_BLOCKED' };
+  } });
+  assert.equal(result.status, 'ROLLED_BACK');
+  await assert.rejects(readFile(`${fixture.sourcePath}.sot-recovery.json`), { code: 'ENOENT' });
 });

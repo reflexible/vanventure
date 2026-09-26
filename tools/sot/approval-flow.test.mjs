@@ -15,6 +15,15 @@ const clean = { proposal_id: 'p-1', status: 'CLASSIFIED', user_decision_required
 const request = (extra = {}) => ({ proposal: proposal(), action: 'APPROVE', actor, evidence,
   conflict: clean, ...extra });
 
+test('date-only user evidence retains its actual precision without an invented time', () => {
+  const dated = { ...evidence, decided_at: '2026-09-26', date_precision: 'date' };
+  const result = advanceApproval(request({ evidence: dated }));
+  assert.equal(result.proposal.approval.evidence.decided_at, '2026-09-26');
+  assert.equal(result.proposal.approval.evidence.date_precision, 'date');
+  assert.throws(() => advanceApproval(request({ evidence: { ...dated, date_precision: undefined } })), /Decision needs/);
+  assert.throws(() => advanceApproval(request({ evidence: { ...dated, decided_at: '2026-02-30' } })), /Decision needs/);
+});
+
 test('IDEA progresses to PROPOSED without binding approval or source mutation', () => {
   const original = proposal('IDEA');
   const before = structuredClone(original);

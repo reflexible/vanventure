@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
-import { open, readFile, rename, unlink } from 'node:fs/promises';
+import { open, readFile, rename, unlink, realpath, stat } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
-import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
+import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { extractHeadingSection } from './rule-catalogue.mjs';
 import { createDecisionStore } from './decision-state.mjs';
 import { loadRegistry } from './module-registry.mjs';
+import { decisionProposalHash } from './user-decision-evidence.mjs';
 
 const text = value => typeof value === 'string' && value.trim().length > 0;
 const sha256 = value => createHash('sha256').update(value).digest('hex');
@@ -19,14 +20,15 @@ function authenticatedApprovalEvent(decisionState, proposalId, verifyUserDecisio
       || !/^[a-f0-9]{64}$/.test(event.event_hash ?? '')) return null;
   const approval = event.transition.proposal.approval;
   try {
-    if (verifyUserDecision({ proposalId, action: 'APPROVE', actor: approval?.actor,
+    if (verifyUserDecision({ proposalId, proposal_sha256: decisionProposalHash(event.transition.proposal), action: 'APPROVE', actor: approval?.actor,
       evidence: approval?.evidence, decision: approval?.conflict_decision }) !== true) return null;
   } catch { return null; }
   return event;
 }
 
 function locateSection(source, heading) {
-  const lines = source.replace(/\r\n/g, '\n').split('\n');
+  const rawLines = source.match(/[^\n]*\n|[^\n]+$/g) ?? [];
+  const lines = rawLines.map(line => line.replace(/\r?\n$/, ''));
   const level = heading.match(/^(#{1,6}) /)?.[1].length;
   let start = -1;
   let end = lines.length;
@@ -48,7 +50,45 @@ function locateSection(source, heading) {
     if (next && next[1].length <= level) { end = index; break; }
   }
   if (start < 0) throw new Error('Target heading not found.');
-  return { lines, start, end };
+  return { start: rawLines.slice(0, start).join('').length, end: rawLines.slice(0, end).join('').length };
+}
+
+function appendApprovedContent(source, heading, content) {
+  const range = locateSection(source, heading);
+  const originalSection = source.slice(range.start, range.end);
+  const body = originalSection.trimEnd();
+  const eol = originalSection.match(/\r?\n/)?.[0] ?? '\n';
+  const addition = content.trim().replace(/\r\n/g, '\n').replace(/\n/g, eol);
+  const insertion = `${eol}${eol}${addition}`;
+  const offset = range.start + body.length;
+  return { updated: source.slice(0, offset) + insertion + source.slice(offset),
+    section: originalSection.replace(/\r\n/g, '\n').trimEnd(),
+    nextSection: (body + insertion).replace(/\r\n/g, '\n') };
+}
+
+const contained = (root, path) => {
+  const rel = relative(root, path);
+  return !!rel && rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
+};
+
+async function physicalPaths(projectRoot, path, decisionPath) {
+  const root = await realpath(projectRoot);
+  const source = await realpath(path);
+  const decision = await realpath(decisionPath);
+  if (!contained(root, source) || !contained(root, decision)) throw new Error('PHYSICAL_PATH_OUTSIDE_PROJECT');
+  // Reject aliases instead of writing through a junction/symlink whose target could change.
+  const samePath = (a, b) => process.platform === 'win32' ? a.toLowerCase() === b.toLowerCase() : a === b;
+  if (!samePath(source, resolve(root, relative(projectRoot, path)))
+      || !samePath(decision, resolve(root, relative(projectRoot, decisionPath)))) throw new Error('SOURCE_OR_DECISION_PATH_ALIAS');
+  const core = resolve(root, 'docs/scrum-plan.md');
+  if (samePath(source, core)) throw new Error('PROTECTED_CORE_PATH');
+  const sourceStat = await stat(source);
+  try {
+    const coreStat = await stat(core);
+    if (sourceStat.dev === coreStat.dev && sourceStat.ino === coreStat.ino) throw new Error('PROTECTED_CORE_FILE_ALIAS');
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  if (!sourceStat.isFile() || sourceStat.nlink !== 1) throw new Error('SOURCE_MUST_BE_UNALIASED_REGULAR_FILE');
+  return { root, source, decision };
 }
 
 /** Build a non-writing, append-only source update preview for a specialist module. */
@@ -83,7 +123,7 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       || !Array.isArray(conflict?.unresolved_candidate_ids) || conflict.unresolved_candidate_ids.length
       || !Array.isArray(conflict?.unknown_coverage) || conflict.unknown_coverage.length
       || !Array.isArray(conflict?.relationships)
-      || conflict.relationships.some(item => ['DUPLICATE', 'SUPERSEDES', 'CONTRADICTION', 'UNDETERMINED'].includes(item?.relation))) {
+      || conflict.relationships.some(item => !['EXTENSION', 'UNRELATED'].includes(item?.relation))) {
     errors.push('CONFLICT_REVIEW_NOT_CLOSED_OR_UNSUPPORTED_RELATION');
   }
   if (!coverage || coverage.proposal_id !== proposal?.id || !Array.isArray(coverage.unknowns)
@@ -91,6 +131,7 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
       || coverage.cross_module_unknowns.length) errors.push('RULE_COVERAGE_OR_SEMANTIC_REVIEW_INCOMPLETE');
   if (!text(currentSource) || !/^[a-f0-9]{64}$/.test(baselineSha256 ?? '')
       || sha256(currentSource) !== baselineSha256) errors.push('SOURCE_BASELINE_MISMATCH');
+  if (proposal?.target_heading !== targetHeading || proposal?.source_baseline_sha256 !== baselineSha256) errors.push('PERSISTED_TARGET_AND_BASELINE_REQUIRED');
   if (!text(targetHeading) || !text(proposedSection)) errors.push('TARGET_SECTION_AND_PROPOSED_TEXT_REQUIRED');
   if (!Array.isArray(traceability) || !traceability.some(record => record?.proposal_id === proposal?.id
       && record?.target_ref === module?.source && text(record?.source_ref) && text(record?.source_anchor))) {
@@ -98,27 +139,17 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
   }
   if (errors.length) return { status: 'UPDATE_BLOCKED', errors, plan: null };
 
-  let section;
-  let range;
+  let section, nextSection, updated;
   try {
-    section = extractHeadingSection(currentSource, targetHeading);
-    range = locateSection(currentSource, targetHeading);
+    // The section resolver also rejects ambiguous headings.
+    extractHeadingSection(currentSource, targetHeading);
+    ({ section, nextSection, updated } = appendApprovedContent(currentSource, targetHeading, proposal.content));
   } catch (error) {
     return { status: 'UPDATE_BLOCKED', errors: [`SECTION_RESOLUTION_FAILED:${error.message}`], plan: null };
   }
-  const nextSection = proposedSection.replace(/\r\n/g, '\n').trimEnd();
-  if (nextSection.split('\n')[0] !== targetHeading) errors.push('PROPOSED_SECTION_HEADING_MISMATCH');
-  const priorBody = section.split('\n').slice(1).join('\n').trimEnd();
-  const nextBody = nextSection.split('\n').slice(1).join('\n');
-  if (priorBody && !nextBody.includes(priorBody)) errors.push('EXISTING_SECTION_RULES_MUST_BE_PRESERVED_VERBATIM');
-  if (!nextBody.includes(proposal.content.trim())) errors.push('APPROVED_PROPOSAL_CONTENT_MISSING_FROM_SECTION');
-  if (errors.length) return { status: 'UPDATE_BLOCKED', errors, plan: null };
-
-  const eol = currentSource.includes('\r\n') ? '\r\n' : '\n';
-  const before = range.lines.slice(0, range.start).join(eol);
-  const after = range.lines.slice(range.end).join(eol);
-  const serializedSection = nextSection.split('\n').join(eol);
-  const updated = `${before}${before ? eol : ''}${serializedSection}${after ? `${eol}${after}` : ''}`;
+  if (proposedSection.replace(/\r\n/g, '\n').trimEnd() !== nextSection) {
+    return { status: 'UPDATE_BLOCKED', errors: ['EXACT_APPROVED_APPEND_REQUIRED'], plan: null };
+  }
   return {
     status: 'PREPARED_NOT_APPLIED', errors: [],
     plan: {
@@ -160,6 +191,8 @@ async function writeAtomic(path, bytes) {
 /** Apply only a fresh prepared specialist-module preview, then rollback on failed validation. */
 export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
   verifyUserDecision, validateAfter }) {
+  try { plan = structuredClone(plan); }
+  catch { return { status: 'APPLY_BLOCKED', reason: 'INVALID_UPDATE_PLAN' }; }
   if (!plan || plan.operation !== 'APPEND_ONLY_SECTION_EXTENSION'
       || plan.write_performed !== false || plan.module_id === 'scrum-core'
       || plan.source === 'docs/scrum-plan.md') {
@@ -181,10 +214,15 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
       || !decisionRel || decisionRel === '..' || decisionRel.startsWith(`..${sep}`) || isAbsolute(decisionRel)) {
     return { status: 'APPLY_BLOCKED', reason: 'UNSAFE_DECISION_STATE_PATH' };
   }
+  try { await physicalPaths(projectRoot, path, decisionPath); }
+  catch (error) { return { status: 'APPLY_BLOCKED', reason: error.message }; }
   const lockPath = `${path}.sot-update.lock`;
   let lock;
   try { lock = await open(lockPath, 'wx'); }
   catch (error) { return { status: 'APPLY_BLOCKED', reason: error.code === 'EEXIST' ? 'UPDATE_LOCK_EXISTS' : error.message }; }
+  const recoveryPath = `${path}.sot-recovery.json`;
+  let recoveryCreated = false;
+  let verifiedTerminal = false;
   let before;
   let after;
   let wrote = false;
@@ -203,23 +241,49 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
         || approvalEvent.revision !== plan.approval_event?.revision
         || approvalEvent.transition.proposal.owner?.source !== plan.source
         || approvalEvent.transition.proposal.owner?.module_id !== plan.module_id
-        || approvalEvent.transition.proposal.authority !== plan.authority) {
+        || approvalEvent.transition.proposal.authority !== plan.authority
+        || approvalEvent.transition.proposal.target_heading !== plan.target_heading
+        || approvalEvent.transition.proposal.source_baseline_sha256 !== plan.before_sha256) {
       return { status: 'APPLY_BLOCKED', reason: 'PERSISTED_APPROVAL_REVALIDATION_FAILED' };
     }
     before = await readFile(path);
     if (sha256(before) !== plan.before_sha256) return { status: 'APPLY_BLOCKED', reason: 'SOURCE_CHANGED_AFTER_PREVIEW' };
-    after = Buffer.from(plan.updated_source, 'utf8');
+    if (!Buffer.from(before.toString('utf8'), 'utf8').equals(before)) throw new Error('SOURCE_NOT_VALID_UTF8');
+    extractHeadingSection(before.toString('utf8'), plan.target_heading);
+    const rebuilt = appendApprovedContent(before.toString('utf8'), plan.target_heading, approvalEvent.transition.proposal.content);
+    if (rebuilt.updated !== plan.updated_source || rebuilt.section !== plan.before_section
+        || rebuilt.nextSection !== plan.after_section) throw new Error('PREVIEW_NOT_EXACT_APPROVED_APPEND');
+    await physicalPaths(projectRoot, path, decisionPath);
+    after = Buffer.from(rebuilt.updated, 'utf8');
     if (sha256(after) !== plan.after_sha256) return { status: 'APPLY_BLOCKED', reason: 'PREVIEW_HASH_MISMATCH' };
+    const payload = { schema_version: 1, transaction_id: randomUUID(), source: plan.source,
+      proposal_id: plan.proposal_id, module_id: plan.module_id, authority: plan.authority,
+      target_heading: plan.target_heading, before_sha256: plan.before_sha256,
+      after_sha256: plan.after_sha256, before_base64: before.toString('base64'),
+      approval_event: plan.approval_event };
+    const journal = { ...payload, journal_sha256: sha256(JSON.stringify(payload)) };
+    await lock.writeFile(JSON.stringify({ pid: process.pid, transaction_id: payload.transaction_id }));
+    await lock.sync();
+    const recovery = await open(recoveryPath, 'wx');
+    recoveryCreated = true;
+    try { await recovery.writeFile(JSON.stringify(journal)); await recovery.sync(); }
+    finally { await recovery.close(); }
     await writeAtomic(path, after);
     wrote = true;
     const current = await readFile(path);
     if (sha256(current) !== plan.after_sha256) throw new Error('WRITTEN_SOURCE_HASH_MISMATCH');
     let validation;
-    try { validation = await validateAfter({ plan, source: current.toString('utf8'), source_path: path }); }
+    try { validation = await validateAfter({ plan: structuredClone(plan), source: current.toString('utf8'), source_path: path }); }
     catch (error) { validation = { status: 'POST_VALIDATION_BLOCKED', reason: error instanceof Error ? error.message : String(error) }; }
     if (validation?.status === 'POST_VALIDATION_PASS'
         && text(validation.audit_output) && Array.isArray(validation.checks)
         && validation.checks.length > 0 && validation.checks.every(check => check?.status === 'PASS')) {
+      const validatedBytes = await readFile(path);
+      if (sha256(validatedBytes) !== plan.after_sha256) {
+        return { status: 'ROLLBACK_BLOCKED', reason: 'SOURCE_CHANGED_DURING_SUCCESSFUL_VALIDATION',
+          expected_sha256: plan.after_sha256, actual_sha256: sha256(validatedBytes), post_validation: validation };
+      }
+      verifiedTerminal = true;
       return { status: 'APPLIED', proposal_id: plan.proposal_id, source: plan.source,
         before_sha256: plan.before_sha256, after_sha256: plan.after_sha256,
         post_validation: validation };
@@ -235,6 +299,7 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
       return { status: 'ROLLBACK_FAILED', reason: 'RESTORED_SOURCE_HASH_MISMATCH', post_validation: validation };
     }
     wrote = false;
+    verifiedTerminal = true;
     return { status: 'ROLLED_BACK', reason: validation?.reason ?? 'POST_VALIDATION_FAILED',
       source: plan.source, restored_sha256: sha256(restored), post_validation: validation };
   } catch (error) {
@@ -244,7 +309,7 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
         if (sha256(live) === plan.after_sha256) {
           await writeAtomic(path, before);
           const restored = await readFile(path);
-          if (sha256(restored) === plan.before_sha256) wrote = false;
+          if (sha256(restored) === plan.before_sha256) { wrote = false; verifiedTerminal = true; }
           else return { status: 'ROLLBACK_FAILED', reason: 'RESTORED_SOURCE_HASH_MISMATCH', error: error.message };
         } else {
           return { status: 'ROLLBACK_BLOCKED', reason: 'SOURCE_CHANGED_DURING_APPLY', error: error.message };
@@ -255,7 +320,67 @@ export async function applySotUpdatePlan({ plan, projectRoot, decisionStatePath,
     }
     return { status: 'APPLY_BLOCKED', reason: error instanceof Error ? error.message : String(error) };
   } finally {
-    await lock.close().catch(() => {});
-    await unlink(lockPath).catch(() => {});
+    try { if (recoveryCreated && verifiedTerminal) await unlink(recoveryPath); }
+    finally {
+      await lock.close().catch(() => {});
+      await unlink(lockPath).catch(() => {});
+    }
+  }
+}
+
+
+/** Recover an interrupted local write. A concurrent/unknown state is never overwritten. */
+export async function recoverSotUpdate({ projectRoot, source, decisionStatePath, verifyUserDecision }) {
+  let lock;
+  let lockPath;
+  try {
+    if (!isAbsolute(projectRoot ?? '') || typeof verifyUserDecision !== 'function') throw new Error('RECOVERY_ROOT_AND_AUTHENTICATOR_REQUIRED');
+    for (const candidate of [source, decisionStatePath]) {
+      if (!text(candidate) || isAbsolute(candidate) || candidate.includes('\\')
+          || !contained(projectRoot, resolve(projectRoot, candidate))) throw new Error('UNSAFE_RECOVERY_PATH');
+    }
+    const path = resolve(projectRoot, source);
+    const decisionPath = resolve(projectRoot, decisionStatePath);
+    await physicalPaths(projectRoot, path, decisionPath);
+    const journalPath = `${path}.sot-recovery.json`;
+    if (await realpath(journalPath) !== journalPath || (await stat(journalPath)).nlink !== 1) throw new Error('RECOVERY_JOURNAL_ALIAS');
+    const { journal_sha256, ...journal } = JSON.parse(await readFile(journalPath, 'utf8'));
+    if (sha256(JSON.stringify(journal)) !== journal_sha256 || journal.schema_version !== 1
+        || journal.source !== source || !text(journal.transaction_id)) throw new Error('RECOVERY_JOURNAL_INVALID');
+    const state = await createDecisionStore(decisionPath, { verifyUserDecision }).read();
+    const event = authenticatedApprovalEvent(state, journal.proposal_id, verifyUserDecision);
+    const proposal = event?.transition.proposal;
+    if (!event || event.event_hash !== journal.approval_event?.event_hash
+        || event.revision !== journal.approval_event?.revision
+        || proposal.owner.source !== source || proposal.owner.module_id !== journal.module_id
+        || proposal.authority !== journal.authority || proposal.target_heading !== journal.target_heading
+        || proposal.source_baseline_sha256 !== journal.before_sha256) throw new Error('RECOVERY_APPROVAL_MISMATCH');
+    const before = Buffer.from(journal.before_base64, 'base64');
+    if (sha256(before) !== proposal.source_baseline_sha256
+        || !Buffer.from(before.toString('utf8'), 'utf8').equals(before)) throw new Error('RECOVERY_BASELINE_INVALID');
+    extractHeadingSection(before.toString('utf8'), proposal.target_heading);
+    const after = appendApprovedContent(before.toString('utf8'), proposal.target_heading, proposal.content).updated;
+    if (sha256(after) !== journal.after_sha256) throw new Error('RECOVERY_AFTER_HASH_INVALID');
+    lockPath = `${path}.sot-update.lock`;
+    try { lock = await open(lockPath, 'wx'); }
+    catch (error) {
+      if (error.code !== 'EEXIST') throw error;
+      const owner = JSON.parse(await readFile(lockPath, 'utf8'));
+      if (!Number.isSafeInteger(owner.pid) || owner.pid < 1 || owner.transaction_id !== journal.transaction_id) throw new Error('RECOVERY_LOCK_OWNER_UNKNOWN');
+      try { process.kill(owner.pid, 0); throw new Error('RECOVERY_WRITER_STILL_ACTIVE'); }
+      catch (probe) { if (probe.code !== 'ESRCH') throw probe; }
+      await unlink(lockPath);
+      lock = await open(lockPath, 'wx');
+    }
+    await physicalPaths(projectRoot, path, decisionPath);
+    const current = await readFile(path);
+    if (sha256(current) !== journal.before_sha256 && sha256(current) !== journal.after_sha256) throw new Error('RECOVERY_CONCURRENT_SOURCE_CHANGE');
+    if (sha256(current) === journal.after_sha256) await writeAtomic(path, before);
+    if (sha256(await readFile(path)) !== journal.before_sha256) throw new Error('RECOVERY_RESTORE_VERIFICATION_FAILED');
+    await unlink(journalPath);
+    return { status: 'RECOVERED', source, restored_sha256: journal.before_sha256 };
+  } catch (error) { return { status: 'RECOVERY_BLOCKED', reason: error.message }; }
+  finally {
+    if (lock) { await lock.close(); await unlink(lockPath).catch(() => {}); }
   }
 }
