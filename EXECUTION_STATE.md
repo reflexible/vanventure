@@ -3,20 +3,20 @@
 Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
-Current: `WI-SOT-20-04`
-State: `TODO`
-Last Done: `WI-SOT-22-06`
+Current: none
+State: `DONE_LOCAL_VERIFIED`
+Last Done: `WI-SOT-20-04`
 Last Commit: pending
 
 Progress:
-- Done: 167
+- Done: 168
 - Total: 205
-- Open: 38
+- Open: 37
 - Blocked: 2
 - Recovery: none
 
 Current Goal:
-Coordinate parallel slices without conflicting worker scope.
+Coordinate parallel slices without conflicting worker scope. Local implementation complete.
 
 Relevant:
 - `tools/sot/worker-state.mjs`
@@ -30,4 +30,4 @@ Verification:
 - FAST CHECK unless an escalation criterion applies
 
 Next:
-Set WI-SOT-20-04 to READY, claim it, and start its bounded implementation.
+Proceed with `WI-SOT-20-05` (Dependency Awareness).

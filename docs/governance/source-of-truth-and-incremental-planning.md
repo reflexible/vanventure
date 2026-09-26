@@ -82,16 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-20-04` · parallele Slices koordinieren. **Active Workers:** 0.
+**Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-20-04` für kontrollierte parallele Slices vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-20-05` · Dependency Awareness.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 167 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 38 (einschließlich Ready und Blocked) · Progress 81,5 %.
+**Counter:** Total 205 · Done 168 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 37 (einschließlich Ready und Blocked) · Progress 82,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -438,7 +438,13 @@ Technisch verhindern:
 - [x] ~~WI-SOT-20-01 · Work-Item-Claiming~~
 - [x] ~~WI-SOT-20-02 · Worker Ownership~~
 - [x] ~~WI-SOT-20-03 · Locking~~
-- [ ] TODO – WI-SOT-20-04 · parallele Slices
+- [x] ~~WI-SOT-20-04 · parallele Slices koordinieren~~
+  Die lokale Koordination leitet aus der bestehenden Ausführungsplanung nur
+  konfliktfreie Zuweisungsvorschläge für mindestens zwei freie Worker ab.
+  Jeder Slice muss `READY`, `ELIGIBLE_FOR_CLAIM`, `Parallel Safe` und mit
+  exakt gleichem geprüftem Write Scope vorliegen; WSJF bleibt unverändert.
+  Der Vorschlag kann weder Claim noch Ausführung auslösen. Siehe
+  [FAST-CHECK](../sot-optimization/reviews/parallel-slices-fast-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-20-05 · Dependency Awareness
 - [x] ~~WI-SOT-20-06 · Handover~~
 - [x] ~~WI-SOT-20-07 · Konflikterkennung~~
