@@ -356,6 +356,10 @@ Change
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
+  Eine freigabe- und hashgeprüfte additive Vorschau ist vorhanden; sie schreibt
+  absichtlich nicht. Atomare Anwendung, Rollback, Dependency-Neuberechnung und
+  authentifizierte Freigabe-Revalidierung fehlen. Siehe
+  [Prüfbericht](../sot-optimization/reviews/sot-update-plan-2026-09-26.md).
 #### ST-SOT-17 – PHASE 17: SOT POST VALIDATION
 - [ ] TODO – WI-SOT-17-01 · SoT-Konsistenz prüfen
 - [ ] TODO – WI-SOT-17-02 · Contracts prüfen
