@@ -24,6 +24,20 @@ test('impact expands through direct and transitive module and contract links', a
   assert.ok(impact.byType.contract.includes('contract:SCRUM-WORK-ITEM'));
 });
 
+test('derives a registered dependency update as a hard edge without a mutable graph supplement', () => {
+  const registry = { modules: [
+    { module_id: 'source', source: 'docs/source.md', dependencies: [] },
+    { module_id: 'consumer', source: 'docs/consumer.md', dependencies: ['source'] },
+  ] };
+  const graph = buildDependencyGraph({ registry, contracts: { contracts: [] }, epicText: '',
+    supplement: { nodes: [], edges: [] } });
+  assert.equal(validateDependencyGraph(graph).valid, true);
+  assert.deepEqual(graph.edges.filter(edge => edge.relation === 'depends_on'), [{
+    from: 'module:source', to: 'module:consumer', relation: 'depends_on', strength: 'hard',
+  }]);
+  assert.equal(computeImpact(graph, 'module:source').direct.includes('module:consumer'), true);
+});
+
 test('unknown nodes and dependency cycles invalidate the graph', () => {
   const graph = { schema_version: '1.0.0', nodes: [
     { id: 'module:a', type: 'module' }, { id: 'module:b', type: 'module' },
