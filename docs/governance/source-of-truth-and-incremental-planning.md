@@ -348,20 +348,21 @@ Change
   Die lokale Übergangsfunktion erteilt weder Design- noch Release- oder
   Live-Freigabe und ändert keine autoritative Quelle. Das Eventlog nimmt
   Entscheidungen nur über einen vom vertrauenswürdigen Aufrufer gestellten
-  Authentifizierungsprüfer an; die reale Anbindung und Revalidierung vor dem
-  Schreibvorgang bleiben offen.
+  Authentifizierungsprüfer an. Das SoT-Update liest das hashgeprüfte Eventlog
+  erneut und ruft den Authentifizierungsprüfer unmittelbar vor Anwendung
+  nochmals auf. Die Anbindung an eine reale Nutzeridentität bleibt offen.
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [ ] TODO – WI-SOT-16-01 · autoritative Quelle aktualisieren
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
 - [ ] TODO – WI-SOT-16-05 · Traceability aktualisieren
-  Eine freigabe- und hashgeprüfte additive Vorschau ist vorhanden; sie schreibt
-  allein nicht. Ein hashgebundener atomarer Fachmodul-Write mit
+  Eine freigabe- und hashgeprüfte additive Vorschau ist vorhanden. Ein
+  hashgebundener atomarer Fachmodul-Write mit
   Post-Validation-Pflicht und exaktem Rollback ist verfügbar; er wurde noch
   nicht auf eine Projektquelle angewendet. Dependency-/Traceability-Updates,
-  semantische Erweiterung/Superseding und authentifizierte Freigabe-
-  Revalidierung fehlen. Siehe
+  semantische Erweiterung/Superseding und der reale Nutzeridentitätsadapter
+  fehlen. Siehe
   [Prüfbericht](../sot-optimization/reviews/sot-update-plan-2026-09-26.md).
 #### ST-SOT-17 – PHASE 17: SOT POST VALIDATION
 - [ ] TODO – WI-SOT-17-01 · SoT-Konsistenz prüfen
