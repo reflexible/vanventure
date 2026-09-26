@@ -44,7 +44,7 @@ Planbeschreibung `READY` oder `DONE`.
 | ST-SOT-01 | Vollständige SoT-/WSJF-Quellen sind erfasst; jede bestehende Anforderung ist mit Ziel und Behandlung tracebar, keine Regel verschwindet. | ST-SOT-00 | P0 |
 | ST-SOT-02 | Drei Quellenpaare sind gezielt klassifiziert; echte Konflikte und Entscheidungen sind dedupliziert, Zielarchitektur begründet. | ST-SOT-01 | P0 |
 | ST-SOT-03 | Registry beantwortet Autorität je Modul deterministisch und validiert eindeutige IDs/Quellen; schaltet ST-SOT-04–06/12 frei. | ST-SOT-02, Planfreigabe | P1 |
-| ST-SOT-04 | Versionierte Contracts und Brucherkennung funktionieren an den fünf benannten Schnittstellen; schaltet ST-SOT-05–08 frei. | ST-SOT-03 | P1 |
+| ST-SOT-04 | Versionierte Contracts und Brucherkennung funktionieren an den fünf benannten Schnittstellen; schaltet ST-SOT-05–08 frei. | WI-SOT-03-01–06/08–10; Registry-Contract-Verknüpfung WI-SOT-03-07 folgt nach Contract-Definition | P1 |
 | ST-SOT-05 | Graph löst Modul-, Work-Item- und Contract-Abhängigkeiten auf und erkennt Zyklen; schaltet Impact und Parallelprüfung frei. | ST-SOT-03–04 | P1 |
 | ST-SOT-06 | Eine Änderung liefert nachvollziehbar betroffene Module, Contracts, Work Items, Prozesse und `NO_CHECK`/FAST/FULL. | ST-SOT-05 | P1 |
 | ST-SOT-07 | Lokales Delta durchläuft relevante SoT-, Contract-, Dependency-, Traceability-, Test- und Git-Prüfung mit PASS/BLOCKED. | ST-SOT-06 | P1 |
@@ -81,17 +81,18 @@ Struktur-FAST-CHECK ist bestanden. 45/45 SoT-Klauseln und 120 WSJF-Klauseln
 aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
-**Phase:** Performance Enablement vorbereiten. **Current Work Items:** keine
-aktive technische Änderung; `WI-SOT-03-01` ist bereit.
-**Active Workers:** 0. **Status:** `PLAN_STATUS: APPROVED`;
-`IMPLEMENTATION_STATUS: NOT_STARTED`.
-**NEXT RECOMMENDATION:** `WI-SOT-03-01` (Module-Registry-Schema), weil es
-Contracts, Graph und SoT-Intake freischaltet. **Parallel Candidates:**
-`WI-SOT-01-10` als spätere lesende SoT-Preservation-Prüfung, sobald eine
-Implementierung existiert; derzeit kein zweiter sicherer Schreibslice.
-**Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 186 · Done 23 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 163 (einschließlich Ready und Blocked) · Progress 12,4 %.
+**Phase:** Performance Enablement, Contracts vorbereiten. **Current Work
+Items:** Registry-Kern lokal umgesetzt; `WI-SOT-04-01` ist bereit.
+**Active Workers:** 0 nach Registry-Handover; `/root` integriert und prüft.
+**Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
+**NEXT RECOMMENDATION:** `WI-SOT-04-01` (Contract-Modell), weil erst definierte
+Contract-IDs die noch offene Registry-Verknüpfung erlauben und Graph/Impact
+freischalten. **Parallel Candidates:** nur disjunkte, lesende SoT-Prüfung;
+kein zweiter technischer Schreibslice vor festgelegten Contracts.
+**Blocked:** `WI-SOT-03-07` bis zum Contract-Katalog und `WI-SOT-27-02` bis
+zum historischen Planwechsel-Gate.
+**Counter:** Total 186 · Done 32 · In Progress 0 · Ready 1 · Blocked 2 ·
+Open 154 (einschließlich Ready und Blocked) · Progress 17,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -160,18 +161,18 @@ Besonders prüfen:
 - Traceability
 ### WS-SOT-W1 – PERFORMANCE ENABLEMENT
 #### ST-SOT-03 – PHASE 3: MODULE REGISTRY
-- [ ] READY – WI-SOT-03-01 · Module-Registry-Schema definieren
-- [ ] TODO – WI-SOT-03-02 · Modul-ID definieren
-- [ ] TODO – WI-SOT-03-03 · autoritative Quelle je Modul erfassen
-- [ ] TODO – WI-SOT-03-04 · Modulstatus definieren
-- [ ] TODO – WI-SOT-03-05 · Modulversion definieren
-- [ ] TODO – WI-SOT-03-06 · Dependencies erfassen
-- [ ] TODO – WI-SOT-03-07 · Contracts erfassen
-- [ ] TODO – WI-SOT-03-08 · letzte validierte Baseline erfassen
-- [ ] TODO – WI-SOT-03-09 · letzten Auditstatus erfassen
-- [ ] TODO – WI-SOT-03-10 · Registry validieren
+- [x] ~~WI-SOT-03-01 · Module-Registry-Schema definieren~~
+- [x] ~~WI-SOT-03-02 · Modul-ID definieren~~
+- [x] ~~WI-SOT-03-03 · autoritative Quelle je Modul erfassen~~
+- [x] ~~WI-SOT-03-04 · Modulstatus definieren~~
+- [x] ~~WI-SOT-03-05 · Modulversion definieren~~
+- [x] ~~WI-SOT-03-06 · Dependencies erfassen~~
+- [ ] BLOCKED – WI-SOT-03-07 · Contracts erfassen; Contract-Katalog wird in ST-SOT-04 definiert
+- [x] ~~WI-SOT-03-08 · letzte validierte Baseline erfassen~~
+- [x] ~~WI-SOT-03-09 · letzten Auditstatus erfassen~~
+- [x] ~~WI-SOT-03-10 · Registry validieren~~
 #### ST-SOT-04 – PHASE 4: CONTRACT SYSTEM
-- [ ] TODO – WI-SOT-04-01 · Contract-Modell definieren
+- [ ] READY – WI-SOT-04-01 · Contract-Modell definieren
 - [ ] TODO – WI-SOT-04-02 · Scrum → Work-Item Contract
 - [ ] TODO – WI-SOT-04-03 · SoT → Decision/Change Contract
 - [ ] TODO – WI-SOT-04-04 · Worker → Work Assignment Contract

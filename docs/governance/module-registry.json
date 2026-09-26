@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "modules": [
+    {
+      "module_id": "scrum-core",
+      "name": "Zentraler Scrum-Plan",
+      "authority": "planning.scrum-core",
+      "source": "docs/scrum-plan.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": [],
+      "contracts": [],
+      "last_verified_baseline": {
+        "ref": "refs/tags/golden-scrum-final-audit-pass-2026-09-26",
+        "sha256_crlf": "9ec3dbc2b1c09208580c267b683693285ee5dca609bc736243ba6a0bbe52eab2"
+      },
+      "semantic_baseline": "docs/scrum-migration/reviews/GOLDEN-BASELINE-2026-09-26.md",
+      "last_audit_status": "FINAL_AUDIT_PASS_GOLDEN_BASELINE_ONLY"
+    },
+    {
+      "module_id": "sot-architecture",
+      "name": "Source-of-Truth und inkrementelle Planung",
+      "authority": "governance.sot-architecture",
+      "source": "docs/governance/source-of-truth-and-incremental-planning.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": ["scrum-core"],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "analytics",
+      "name": "Website Analytics",
+      "authority": "website.analytics",
+      "source": "docs/analytics.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": [],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "design-guide",
+      "name": "Freigegebene visuelle Regeln",
+      "authority": "website.design",
+      "source": "docs/design-guide.md",
+      "status": "active_reference",
+      "version": "V1",
+      "dependencies": [],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "responsive-templates",
+      "name": "Responsive Seitentemplates",
+      "authority": "website.responsive-templates",
+      "source": "docs/responsive-templates.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": ["design-guide", "consolidated-mandate"],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    },
+    {
+      "module_id": "consolidated-mandate",
+      "name": "Übergreifende Schutz-, Freigabe- und Nachweispflichten",
+      "authority": "governance.delivery-and-approvals",
+      "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
+      "status": "active_reference",
+      "version": null,
+      "dependencies": ["design-guide"],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": null
+    }
+  ]
+}
