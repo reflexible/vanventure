@@ -43,3 +43,23 @@ export function attachDecisionHandover(handover, { decisionRefs, decisionStateRe
     authority: 'AUTHORITATIVE_DECISION_STORE', writable: false,
   }), decision_authorized: false, decision_write_authorized: false, execution_authorized: false });
 }
+
+
+/** Carry the registered SoT locator only; it is not a writable authority or a second plan. */
+export function attachSotHandover(handover, { module, sourceRef }) {
+  if (!handover || handover.kind !== 'local_chat_handover' || !module || !text(module.module_id)
+      || !text(module.authority) || !text(module.source) || module.status !== 'active_reference'
+      || !text(sourceRef) || !sourceRef.startsWith(`${module.source}#`)) {
+    throw new Error('HANDOVER_SOT_CONTEXT_INVALID');
+  }
+  const baseline = module.last_verified_baseline ?? null;
+  if (baseline !== null && (!text(baseline.ref) || !/^[a-f0-9]{64}$/.test(baseline.sha256_crlf ?? ''))) {
+    throw new Error('HANDOVER_SOT_BASELINE_INVALID');
+  }
+  return Object.freeze({ ...handover, sot_handover: Object.freeze({
+    module_id: module.module_id, authority: module.authority, source: module.source,
+    source_ref: sourceRef, baseline: baseline === null ? null : Object.freeze({ ref: baseline.ref, sha256_crlf: baseline.sha256_crlf }),
+    writable: false,
+  }), sot_authority: 'REGISTERED_MODULE_ONLY', sot_update_authorized: false,
+    competing_backlog_authorized: false, execution_authorized: false });
+}

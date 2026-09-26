@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { attachDecisionHandover, attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
+import { attachDecisionHandover, attachSotHandover, attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
+import { loadRegistry } from './module-registry.mjs';
 const record = { work_item_id: 'WI-SOT-22-01', execution_state: 'In Progress', assigned_agent: 'agent-a', write_scope: ['tools/sot'], blocked_by: null };
 test('builds a local non-authorizing handover from durable work state', () => {
   const result = buildChatHandover({ record, planStatus: 'IN_PROGRESS', decisionRefs: ['DEC-2', 'DEC-1'], sourceRef: 'docs/governance/worker-state.json' });
@@ -30,4 +31,17 @@ test('attaches anchored decision references without transferring decision author
   assert.equal(result.decision_write_authorized, false); assert.equal(result.execution_authorized, false);
   assert.throws(() => attachDecisionHandover(handover, { decisionRefs: ['unanchored'], decisionStateRef: 'state.jsonl#head' }), /CONTEXT/);
   assert.throws(() => attachDecisionHandover(handover, { decisionRefs: [], decisionStateRef: 'state.jsonl#head' }), /CONTEXT/);
+});
+
+
+test('attaches a registered source locator without creating a writable SoT', async () => {
+  const handover = buildChatHandover({ record, planStatus: 'IN_PROGRESS', sourceRef: 'state' });
+  const module = (await loadRegistry()).modules.find(item => item.module_id === 'sot-architecture');
+  const sourceRef = `${module.source}#st-sot-22--phase-22-cross-chat--handover`;
+  const result = attachSotHandover(handover, { module, sourceRef });
+  assert.equal(result.sot_handover.module_id, 'sot-architecture'); assert.equal(result.sot_handover.baseline, null);
+  assert.equal(result.sot_handover.writable, false); assert.equal(result.sot_update_authorized, false);
+  assert.equal(result.competing_backlog_authorized, false); assert.equal(result.execution_authorized, false);
+  assert.throws(() => attachSotHandover(handover, { module, sourceRef: 'other.md#handover' }), /CONTEXT/);
+  assert.throws(() => attachSotHandover(handover, { module: { ...module, last_verified_baseline: { ref: 'tag', sha256_crlf: 'bad' } }, sourceRef }), /BASELINE/);
 });

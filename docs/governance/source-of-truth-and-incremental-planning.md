@@ -82,16 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-22-05` · SoT-Handover vorbereiten. **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-22-06` · konkurrierende Wahrheiten verhindern. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-22-05` für den expliziten, nur lesenden SoT-Handover vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-22-06` für den Schutz gegen konkurrierende Wahrheiten vorbereiten.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 165 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 40 (einschließlich Ready und Blocked) · Progress 80,5 %.
+**Counter:** Total 205 · Done 166 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 39 (einschließlich Ready und Blocked) · Progress 81,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -466,7 +466,7 @@ Technisch verhindern:
 - [x] ~~WI-SOT-22-02 · Work-Item-Kontext~~
 - [x] ~~WI-SOT-22-03 · Statusübergabe~~
 - [x] ~~WI-SOT-22-04 · Decision-Handover~~
-- [ ] TODO – WI-SOT-22-05 · SoT-Handover
+- [x] ~~WI-SOT-22-05 · SoT-Handover~~
 - [ ] TODO – WI-SOT-22-06 · keine konkurrierenden Wahrheiten zwischen Chats
 ### WS-SOT-W4 – MODULARISIERUNG
 #### ST-SOT-23 – PHASE 23: LEAN SCRUM CORE
