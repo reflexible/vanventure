@@ -4,8 +4,10 @@ Stand: 25. September 2026<br>
 Geltung: alle neuen Projektpläne und jede spätere Überarbeitung bestehender
 Projektpläne. Diese Regel beschreibt die Planung; fachliche Anforderungen,
 Architektur, Designfreigaben, Abnahme- und Veröffentlichungsregeln bleiben in
-ihren jeweils maßgeblichen Dokumenten. Der aktive Gesamtplan steht derzeit in
-[`docs/ausbauplan.md`](../ausbauplan.md). Das private Familien-Scrum-Board ist
+ihren jeweils maßgeblichen Dokumenten. Der aktive Gesamtplan steht derzeit im
+[`zentralen Scrum-Plan`](../scrum-plan.md); der
+[`Ausbauplan`](../ausbauplan.md) bleibt als historischer Detailnachweis
+auffindbar. Das private Familien-Scrum-Board ist
 eine geplante Anwendung und keine zweite maßgebliche Projektplanung.
 
 ## 1. Planungshierarchie und Rückverfolgbarkeit

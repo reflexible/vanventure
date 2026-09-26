@@ -93,9 +93,9 @@ Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung u
 **NEXT RECOMMENDATION:** `WI-SOT-24-03` · Cards / Board abgrenzen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
-**Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 175 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 30 (einschließlich Ready und Blocked) · Progress 85,4 %.
+**Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
+**Counter:** Total 205 · Done 176 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 29 (einschließlich Ready und Blocked) · Progress 85,9 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -549,10 +549,14 @@ Done / Total
 Progress %
 #### ST-SOT-27 – PHASE 27: PLANPFLEGE
 - [x] ~~WI-SOT-27-01 · neue SoT-Implementierungsliste aus dem historischen Ausbauplan herauslösen, als einziges Fachmodul führen und additiv an den Golden Scrum Core anbinden~~
-- [ ] BLOCKED – WI-SOT-27-02 · Legacy Ausbauplan Reference Cleanup erst nach dem globalen eintragsweisen Planwechsel-Gate und Klärung der dokumentierten Holds ausführen; Altbestand bis dahin erhalten
+- [x] ~~WI-SOT-27-02 · Legacy Ausbauplan Reference Cleanup nach bestandenem eintragsweisen Alt→Neu-Abgleich durchführen~~
+  Alle 186 historischen Einträge (`SRC-0362`–`SRC-0547`) sind mit Ziel oder
+  begründeter Nichtübernahme nachweisbar. Die vier offenen Freigabe-/Evidenz-
+  Holds bleiben am jeweiligen Ziel sichtbar und blockieren den Planwechsel
+  nicht. [Abgleich](../sot-optimization/reviews/legacy-ausbauplan-migration-2026-09-26.md).
 - [x] ~~WI-SOT-27-03 · Planregister und globalen Validator auf Core-/Fachmodulrollen umstellen und das offene historische Planwechsel-Gate explizit melden~~
-  Der globale Planabgleich bleibt `PENDING`; die alte Arbeitsliste wird bis
-  zum bestandenen Gate ausdrücklich als noch aktiv erkannt.
+  Der globale historische Planabgleich ist `PASS`; die alte Arbeitsliste ist
+  als Nachweisquelle erhalten, jedoch keine zweite aktive Planung.
 Der Implementierungsplan wird laufend aktualisiert.
 Erledigte Punkte:
 Beispiel: `[x] ~~Work Item~~`.

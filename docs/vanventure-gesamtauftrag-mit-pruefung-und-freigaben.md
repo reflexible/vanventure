@@ -10,7 +10,8 @@ Sie ergänzt die technische [Template-Spezifikation](responsive-templates.md)
 und den freigegebenen [Design-Guide](design-guide.md); diese drei Dokumente
 regeln jeweils ihren eigenen Bereich und dürfen keine abweichenden
 Parallelvorgaben enthalten. Der einzige aktive Aufgabenplan ist der
-[Ausbauplan](ausbauplan.md). Der konkrete Übernahme- und Prüfstand steht im
+[zentrale Scrum-Plan](scrum-plan.md); der [Ausbauplan](ausbauplan.md) bleibt
+als historischer Detailnachweis erhalten. Der konkrete Übernahme- und Prüfstand steht im
 [Abnahmebericht](abnahmeberichte/gesamtauftrag-uebernahme-2026-09-23.md).
 
 Diese Dokumentenübernahme ist keine technische Umsetzung des gesamten

@@ -237,7 +237,7 @@
     },
     {
       "path": "docs/ausbauplan.md",
-      "role": "legacy-active-plan",
+      "role": "historical-plan-source",
       "requiredCanonicalPhrases": []
     },
     {
@@ -252,9 +252,9 @@
     }
   ],
   "legacyPlanMigration": {
-    "status": "OPEN",
+    "status": "PASS",
     "evidence": "docs/sot-optimization/reviews/legacy-ausbauplan-migration-2026-09-26.md",
-    "gate": "Each historical item has an explicit target or justified exclusion; no duplicate active plan remains."
+    "gate": "PASS: each historical item has an explicit target or justified exclusion; no duplicate active plan remains."
   },
   "scrumPlanLifecycle": {
     "currentPath": "docs/scrum-plan.md",

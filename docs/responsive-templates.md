@@ -4,7 +4,7 @@ Stand: 23. September 2026
 Zielprojekt: `reflexible/vanventure`  
 Maßgeblicher Ablageort im Repository: `docs/responsive-templates.md`
 
-**Übergabestatus:** Diese Spezifikation führt die Anforderungen aus der Abstimmung zusammen. Ihre Übernahme in das Repository bedeutet noch keine technische Umsetzung und keine Veröffentlichung. Den tatsächlichen Umsetzungsstand führt der bestehende Ausbauplan.
+**Übergabestatus:** Diese Spezifikation führt die Anforderungen aus der Abstimmung zusammen. Ihre Übernahme in das Repository bedeutet noch keine technische Umsetzung und keine Veröffentlichung. Den tatsächlichen Umsetzungsstand führt der zentrale Scrum-Plan; der Ausbauplan bleibt als historischer Detailnachweis erhalten.
 
 ## Geltung, Freigaben und Nachweise
 
@@ -13,7 +13,8 @@ Komponenten und Seitentemplates. Die übergreifenden Prüf-, technischen
 Originalschutz-, Bilddaten-, Freigabe- und Abnahmepflichten stehen verbindlich
 im [konsolidierten Gesamtauftrag](vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md).
 Freigegebene visuelle Regeln stehen ausschließlich im [Design Guide](design-guide.md).
-Der [Ausbauplan](ausbauplan.md) ist die einzige aktive Arbeitsliste.
+Der [zentrale Scrum-Plan](scrum-plan.md) ist die einzige aktive Gesamtplanung;
+der [Ausbauplan](ausbauplan.md) ist historischer Detailnachweis.
 
 Neue Designregeln, Varianten oder Ausnahmen werden vor ihrer verbindlichen
 oder Live-Wirkung ausdrücklich freigegeben. Bereits freigegebene Regeln werden
