@@ -374,6 +374,10 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-18-04 · DONE bei Contract-Bruch
 - [ ] TODO – WI-SOT-18-05 · DONE bei fehlender Dependency
 - [ ] TODO – WI-SOT-18-06 · DONE bei fehlgeschlagener Konsistenzprüfung
+  Der Guard ist an den lokalen Worker-State-Übergang zu `Done` angeschlossen
+  und speichert Evidence-Struktur sowie Gate-Ergebnis. Vertrauenswürdige
+  Prüf-Callbacks, Quellenauflösung und authentifizierte Evidenz bleiben offen;
+  deshalb sind die fachlichen Guard-Items noch nicht vollständig abgeschlossen.
 ### WS-SOT-W3 – WSJF / MULTI-AGENT
 #### ST-SOT-19 – PHASE 19: WSJF-INTEGRATION
 - [ ] TODO – WI-SOT-19-01 · bestehende WSJF-Regeln übernehmen
@@ -384,6 +388,11 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-06 · Confidence
 - [ ] TODO – WI-SOT-19-07 · bestehende relative Skala erhalten
 - [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
+  Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
+  geschützten Business Value, große Stories und Prioritäts-Override ab.
+  Vollständige 67-Abschnitts-Traceability, Audit-Neubewertung und
+  Governance-End-to-End-Aktivierung bleiben offen; siehe
+  [Prüfbericht](../sot-optimization/reviews/wsjf-scoring-2026-09-26.md).
 #### ST-SOT-20 – PHASE 20: WORKER / MULTI-AGENT
 - [x] ~~WI-SOT-20-01 · Work-Item-Claiming~~
 - [x] ~~WI-SOT-20-02 · Worker Ownership~~

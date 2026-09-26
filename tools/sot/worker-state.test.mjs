@@ -9,6 +9,18 @@ import { createWorkerStateStore, runtimeWorkers, activeProcesses } from './worke
 
 const exec = promisify(execFile);
 const moduleUrl = new URL('./worker-state.mjs', import.meta.url).href;
+const passingProof = id => ({ status: 'PASS', evidence_ref: `test-evidence:${id}` });
+const completionEvidence = () => ({
+  scope: 'work_item:WI-SOT-20-01',
+  sotUpdate: { required: false, scope: 'work_item:WI-SOT-20-01',
+    reason: 'This worker-state lifecycle test changes no authoritative SoT.', evidence_ref: 'test-scope:WI-SOT-20-01' },
+  unresolvedConflicts: [],
+  requiredChecks: [{ id: 'unit-tests', ...passingProof('unit-tests') }],
+  contracts: passingProof('contracts'), dependencies: passingProof('dependencies'), consistency: passingProof('consistency'),
+  postValidation: { status: 'POST_VALIDATION_PASS', checks: [
+    'required_check', 'contracts', 'dependencies', 'sotConsistency', 'traceability',
+  ].map(name => ({ name, status: 'PASS' })) },
+});
 async function fixture(t) {
   const dir = await mkdtemp(join(tmpdir(), 'sot-workers-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
@@ -76,8 +88,12 @@ test('handover, review and integration are required before Done', async t => {
   await assert.rejects(store.review({ work_item_id: 'WI-SOT-20-01', reviewer_id: 'A', accepted: true, evidence_ref: 'review' }), /Self-review/);
   await store.review({ work_item_id: 'WI-SOT-20-01', reviewer_id: 'B', accepted: true, evidence_ref: 'review' });
   await assert.rejects(store.integrate({ work_item_id: 'WI-SOT-20-01', integrator_id: 'C', evidence_ref: 'merge', tests_passed: false }), /passing checks/);
-  await store.integrate({ work_item_id: 'WI-SOT-20-01', integrator_id: 'C', evidence_ref: 'merge', tests_passed: true });
-  assert.equal((await store.snapshot()).records['WI-SOT-20-01'].execution_state, 'Done');
+  await assert.rejects(store.integrate({ work_item_id: 'WI-SOT-20-01', integrator_id: 'C', evidence_ref: 'merge', tests_passed: true }), /Definition-of-Done guard blocked/);
+  await store.integrate({ work_item_id: 'WI-SOT-20-01', integrator_id: 'C', evidence_ref: 'merge', tests_passed: true,
+    completion_evidence: completionEvidence() });
+  const done = (await store.snapshot()).records['WI-SOT-20-01'];
+  assert.equal(done.execution_state, 'Done');
+  assert.equal(done.done_guard.status, 'DONE_ALLOWED');
   await assert.rejects(store.claim(claim('WI-SOT-20-01', 'D', 'src/a')), /completed/);
 });
 

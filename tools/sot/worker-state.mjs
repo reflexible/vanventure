@@ -2,6 +2,7 @@ import { mkdir, open, readFile, rename, unlink, writeFile } from 'node:fs/promis
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
+import { evaluateDoneGuard } from './done-guard.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const defaultStatePath = resolve(root, 'docs/governance/worker-state.json');
@@ -37,7 +38,12 @@ function validateState(state) {
     if (record.execution_state === 'Blocked') assert(STATES.has(record.resume_state) && record.resume_state !== 'Blocked'
       && text(record.blocked_by?.cause), `Blocked ${id} needs a valid resume state and cause.`);
     if (['Integration', 'Done'].includes(record.execution_state)) assert(record.review?.accepted === true, `${id} lacks accepted review.`);
-    if (record.execution_state === 'Done') assert(record.integration?.tests_passed === true, `${id} lacks verified integration.`);
+    if (record.execution_state === 'Done') {
+      assert(record.integration?.tests_passed === true, `${id} lacks verified integration.`);
+      const guard = evaluateDoneGuard(record.completion_evidence ?? {});
+      assert(guard.status === 'DONE_ALLOWED' && record.done_guard?.status === 'DONE_ALLOWED',
+        `${id} lacks an accepted Definition-of-Done guard.`);
+    }
     if (IMPLEMENTING.has(record.execution_state)) {
       assert(!busy.has(record.assigned_agent), `Agent ${record.assigned_agent} has duplicate implementation work.`);
       busy.add(record.assigned_agent);
@@ -164,14 +170,20 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
         return record;
       });
     },
-    async integrate({ work_item_id: item, integrator_id: integrator, evidence_ref: evidence, tests_passed: testsPassed }) {
+    async integrate({ work_item_id: item, integrator_id: integrator, evidence_ref: evidence,
+      tests_passed: testsPassed, completion_evidence: completionEvidence }) {
       assert(text(evidence) && testsPassed === true, 'Integration needs passing checks and evidence_ref.');
       return transact(item, integrator, state => {
         const record = state.records[item];
         assert(record?.execution_state === 'Integration' && record.review?.accepted, 'Integration requires accepted review.');
+        const doneGuard = evaluateDoneGuard(completionEvidence ?? {});
+        assert(doneGuard.status === 'DONE_ALLOWED',
+          `Definition-of-Done guard blocked completion: ${doneGuard.findings.filter(item => item.status !== 'PASS').map(item => `${item.id}:${item.detail}`).join('; ')}`);
         record.integration = { integrator_id: integrator, evidence_ref: evidence, tests_passed: true, at: new Date().toISOString() };
+        record.completion_evidence = structuredClone(completionEvidence);
+        record.done_guard = doneGuard;
         record.execution_state = 'Done';
-        append(state, 'INTEGRATE_DONE', item, integrator, { evidence_ref: evidence });
+        append(state, 'INTEGRATE_DONE', item, integrator, { evidence_ref: evidence, done_guard: doneGuard.status });
         return record;
       });
     },
