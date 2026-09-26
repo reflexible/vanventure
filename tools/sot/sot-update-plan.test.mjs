@@ -24,8 +24,8 @@ const registry = { schema_version: '1.0.0', modules: [{ ...module, name: 'SoT Ar
 const impact = { proposal_id: 'P-1', owner: { module_id: module.module_id,
   authority: module.authority, source: module.source }, unknowns: [] };
 const conflict = { proposal_id: 'P-1', status: 'CLASSIFIED', sot_update_allowed: false,
-  user_decision_required: false, unresolved_candidate_ids: [], unknown_coverage: [] };
-const coverage = { proposal_id: 'P-1', unknowns: [], cross_module_unknowns: [], semantic_equivalence: 'REVIEWED' };
+  user_decision_required: false, unresolved_candidate_ids: [], unknown_coverage: [], relationships: [] };
+const coverage = { proposal_id: 'P-1', unknowns: [], cross_module_unknowns: [], semantic_equivalence: 'UNDETERMINED' };
 const traceability = [{ proposal_id: 'P-1', source_ref: 'request.md', source_anchor: 'REQ-1', target_ref: module.source }];
 const input = overrides => ({ proposal: approvedProposal, approvedProposal, impact, conflict, coverage, module,
   currentSource: source, baselineSha256: hash(source), targetHeading: '## Rules',
@@ -63,6 +63,15 @@ test('requires exact preservation of current section rules and approved proposal
   for (const proposedSection of ['## Rules\nReplacement only.', '## Rules\nExisting binding rule.']) {
     const result = buildSotUpdatePlan(input({ proposedSection }));
     assert.equal(result.status, 'UPDATE_BLOCKED');
+  }
+});
+
+test('blocks duplicates and unsupported superseding relationships', () => {
+  for (const relation of ['DUPLICATE', 'SUPERSEDES']) {
+    const result = buildSotUpdatePlan(input({ conflict: { ...conflict,
+      relationships: [{ candidate_id: 'RULE-1', relation }] } }));
+    assert.equal(result.status, 'UPDATE_BLOCKED');
+    assert.ok(result.errors.includes('CONFLICT_REVIEW_NOT_CLOSED_OR_UNSUPPORTED_RELATION'));
   }
 });
 

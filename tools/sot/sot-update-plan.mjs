@@ -81,10 +81,14 @@ export function buildSotUpdatePlan({ proposal, approvedProposal, impact, conflic
   if (conflict?.proposal_id !== proposal?.id || conflict?.status !== 'CLASSIFIED'
       || conflict?.sot_update_allowed !== false || conflict?.user_decision_required !== false
       || !Array.isArray(conflict?.unresolved_candidate_ids) || conflict.unresolved_candidate_ids.length
-      || !Array.isArray(conflict?.unknown_coverage) || conflict.unknown_coverage.length) errors.push('CONFLICT_REVIEW_NOT_CLOSED');
+      || !Array.isArray(conflict?.unknown_coverage) || conflict.unknown_coverage.length
+      || !Array.isArray(conflict?.relationships)
+      || conflict.relationships.some(item => ['DUPLICATE', 'SUPERSEDES', 'CONTRADICTION', 'UNDETERMINED'].includes(item?.relation))) {
+    errors.push('CONFLICT_REVIEW_NOT_CLOSED_OR_UNSUPPORTED_RELATION');
+  }
   if (!coverage || coverage.proposal_id !== proposal?.id || !Array.isArray(coverage.unknowns)
       || coverage.unknowns.length || !Array.isArray(coverage.cross_module_unknowns)
-      || coverage.cross_module_unknowns.length || coverage.semantic_equivalence === 'UNDETERMINED') errors.push('RULE_COVERAGE_OR_SEMANTIC_REVIEW_INCOMPLETE');
+      || coverage.cross_module_unknowns.length) errors.push('RULE_COVERAGE_OR_SEMANTIC_REVIEW_INCOMPLETE');
   if (!text(currentSource) || !/^[a-f0-9]{64}$/.test(baselineSha256 ?? '')
       || sha256(currentSource) !== baselineSha256) errors.push('SOURCE_BASELINE_MISMATCH');
   if (!text(targetHeading) || !text(proposedSection)) errors.push('TARGET_SECTION_AND_PROPOSED_TEXT_REQUIRED');
