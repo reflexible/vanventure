@@ -86,12 +86,12 @@ und spätere Produktprüfung bleiben offen.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-19-03`: evidenzbasierte Time-Criticality-Vorschläge als getrennten, nicht aktivierenden Bewertungsslice vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-19-04`: evidenzbasierte Risk-Reduction-/Opportunity-Enablement-Vorschläge als getrennten, nicht aktivierenden Bewertungsslice vorbereiten.
 **Parallel Candidates:**
-`WI-SOT-19-03` und `WI-SOT-19-04` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
+`WI-SOT-19-04` und `WI-SOT-19-05` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 150 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 55 (einschließlich Ready und Blocked) · Progress 73,2 %.
+**Counter:** Total 205 · Done 151 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 54 (einschließlich Ready und Blocked) · Progress 73,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -413,7 +413,10 @@ Technisch verhindern:
   Evidenzgebundene, nicht aktivierende Vorschläge prüfen Quellpfad und Auszug,
   schützen bestätigte/überschriebene Werte und markieren Ausführung sowie Persistenz
   ausdrücklich als nicht autorisiert. [FAST-CHECK](../sot-optimization/reviews/wsjf-business-value-fast-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-19-03 · Time Criticality
+- [x] ~~WI-SOT-19-03 · Time Criticality~~
+  Evidenzgebundene Vorschläge prüfen Quellpfad und Auszug; zeitbezogene Faktoren
+  verlangen zusätzlich einen ISO-Zeitpunkt. Ausführung und Persistenz bleiben
+  nicht autorisiert. [FAST-CHECK](../sot-optimization/reviews/wsjf-time-criticality-fast-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-19-04 · Risk Reduction / Opportunity Enablement
 - [ ] TODO – WI-SOT-19-05 · Job Size
 - [x] ~~WI-SOT-19-06 · Confidence~~
