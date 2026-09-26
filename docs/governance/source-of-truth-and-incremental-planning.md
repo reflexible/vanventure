@@ -86,12 +86,12 @@ und spätere Produktprüfung bleiben offen.
 Die geprüften lokalen Integrationsslices sind abgeschlossen. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-08-09`: die jetzt vorhandenen projektgebundenen Prüfer als begrenzten FULL-Check-Host für konkrete Fachmodule abnehmen.
+**NEXT RECOMMENDATION:** `WI-SOT-19-01`: die vorhandenen WSJF-Regeln in ein klar abgegrenztes Fachmodul überführen, ohne Priorisierung oder Ausführung zu aktivieren.
 **Parallel Candidates:**
-`WI-SOT-08-09` und `WI-SOT-11-07` können in getrennten Orchestrator-/Auditdateien fortgeführt werden, sofern ihre aktuellen Scopes vor dem Claim geprüft sind.
+`WI-SOT-19-01` und `WI-SOT-21-02` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 146 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 59 (einschließlich Ready und Blocked) · Progress 71,2 %.
+**Counter:** Total 205 · Done 148 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 57 (einschließlich Ready und Blocked) · Progress 72,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -261,7 +261,8 @@ Eskalationsmengen gelten kumulativ; deckungsgleiche Fälle werden dedupliziert.
 - [x] ~~WI-SOT-08-06 · laufende Worker ausgeben~~
 - [x] ~~WI-SOT-08-07 · Prüfungsumfang automatisch begrenzen~~
 - [x] ~~WI-SOT-08-08 · impact-basierten Full Check implementieren~~
-- [ ] TODO – WI-SOT-08-09 · konkrete Projektprüfer und ihre Evidenz an den Orchestrator anbinden; die Engine blockiert bei fehlenden Prüfern
+- [x] ~~WI-SOT-08-09 · konkrete Projektprüfer und ihre Evidenz an den Orchestrator anbinden; die Engine blockiert bei fehlenden Prüfern~~
+  Der projektgebundene Auditrunner lädt geprüfte Quellen und feste Profile selbst, bindet Evidenz und blockiert Drift oder fehlende Host-Prüfer. [Abnahme](../sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md).
 Auch ein FULL CHECK darf nicht automatisch die alte komplette Scrum-Migration wiederholen.
 #### ST-SOT-09 – PHASE 9: BASELINE SYSTEM
 Für relevante Module:
@@ -297,7 +298,8 @@ Change
 - [x] ~~WI-SOT-11-04 · Dependency-Audit~~
 - [x] ~~WI-SOT-11-05 · Audit-Eskalation~~
 - [x] ~~WI-SOT-11-06 · Audit-Ergebnis speichern~~
-- [ ] TODO – WI-SOT-11-07 · den Auditpfad mit gepflegten Manifesten, Test-/Trace-Zuordnungen und Projektprüfern im gemeinsamen Ablauf aufrufen
+- [x] ~~WI-SOT-11-07 · den Auditpfad mit gepflegten Manifesten, Test-/Trace-Zuordnungen und Projektprüfern im gemeinsamen Ablauf aufrufen~~
+  Der gemeinsame Projekt-Auditpfad bindet Maintainer-Manifeste, feste Profile, Original-Traceability und Host-Prüfer an unveränderliche Evidenz. [Abnahme](../sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md).
 ### WS-SOT-W2 – SOURCE OF TRUTH GOVERNANCE
 #### ST-SOT-12 – PHASE 12: SOT INTAKE
 - [x] ~~WI-SOT-12-01 · neue Idee erfassen~~

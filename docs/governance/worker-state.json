@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 53,
+  "revision": 63,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -1273,6 +1273,323 @@
           }
         ]
       }
+    },
+    "WI-SOT-08-09": {
+      "work_item_id": "WI-SOT-08-09",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T16:05:37.169Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Project-bound validators and immutable evidence are wired into the audit orchestrator.",
+        "files": [
+          "tools/sot/project-audit.mjs",
+          "tools/sot/post-validation.mjs"
+        ],
+        "tests": [
+          "40 targeted project-audit, post-validation and workflow tests PASS"
+        ],
+        "limitations": [
+          "Semantic domain validation remains host owned."
+        ],
+        "follow_up": [
+          "Use this bound audit path for individual module changes."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T16:05:37.190Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "self_review_reason": "Controller performed independent targeted regression before integration.",
+        "at": "2026-09-26T16:05:37.199Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T16:05:37.251Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-08-09",
+        "verified_at": "2026-09-26T16:05:37.251Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-08-09",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-08-09",
+          "reason": "No authoritative source update is required for this audit adapter completion.",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "project-audit-regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-08-09",
+          "audit_output": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-08-09",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-08-09"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
+    },
+    "WI-SOT-11-07": {
+      "work_item_id": "WI-SOT-11-07",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T16:05:46.974Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Maintained manifests, fixed profiles and source-bound traceability run through the shared project audit path.",
+        "files": [
+          "tools/sot/project-audit.mjs",
+          "tools/sot/project-traceability.mjs",
+          "tools/sot/project-check-profiles.mjs"
+        ],
+        "tests": [
+          "40 targeted project-audit, post-validation and workflow tests PASS"
+        ],
+        "limitations": [
+          "No active product runtime is certified."
+        ],
+        "follow_up": [
+          "Use per-slice host semantic validators for future audit runs."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        ],
+        "at": "2026-09-26T16:05:46.996Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "self_review_reason": "Controller performed independent targeted regression before integration.",
+        "at": "2026-09-26T16:05:47.005Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T16:05:47.059Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+        "scope": "WI-SOT-11-07",
+        "verified_at": "2026-09-26T16:05:47.059Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-11-07",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-11-07",
+          "reason": "No authoritative source update is required for this audit path completion.",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "project-audit-regression",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+        },
+        "postValidation": {
+          "status": "POST_VALIDATION_PASS",
+          "scope": "WI-SOT-11-07",
+          "audit_output": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "contracts",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            },
+            {
+              "name": "traceability",
+              "status": "PASS",
+              "detail": "Project audit path acceptance."
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-11-07",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-11-07"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -1773,6 +2090,92 @@
       "actor": "/root/wsjf_safety",
       "cause": "Deferred actual Analytics runtime boundary",
       "question": "Keep activation blocked until CMS/Worker/Analytics runtime transitions and pinned integration evidence exist."
+    },
+    {
+      "event_id": "37e5f17e-5aa5-4406-8f7e-5d4db84201cc",
+      "at": "2026-09-26T16:05:37.169Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-08-09",
+      "actor": "/root",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "ced70e06-613b-4390-ab6e-ec7d34ff9883",
+      "at": "2026-09-26T16:05:37.180Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-08-09",
+      "actor": "/root"
+    },
+    {
+      "event_id": "42700ba8-a08e-4509-9c12-73aef0aab373",
+      "at": "2026-09-26T16:05:37.190Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-08-09",
+      "actor": "/root",
+      "summary": "Project-bound validators and immutable evidence are wired into the audit orchestrator."
+    },
+    {
+      "event_id": "51301ec1-5dce-4328-b371-adbe2bf3e509",
+      "at": "2026-09-26T16:05:37.199Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-08-09",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "770ec92f-87b6-47ae-b6bd-9c41f30ca405",
+      "at": "2026-09-26T16:05:37.251Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-08-09",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "afc7bf0f-b986-4b00-a1b0-2ce869fa4d0b",
+      "at": "2026-09-26T16:05:46.974Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-11-07",
+      "actor": "/root",
+      "write_scope": [
+        "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "8e5d674e-0eb7-4748-a4a9-e18c21d33913",
+      "at": "2026-09-26T16:05:46.985Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-11-07",
+      "actor": "/root"
+    },
+    {
+      "event_id": "ab079fac-c9ed-40eb-95b2-3374ff050899",
+      "at": "2026-09-26T16:05:46.996Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-11-07",
+      "actor": "/root",
+      "summary": "Maintained manifests, fixed profiles and source-bound traceability run through the shared project audit path."
+    },
+    {
+      "event_id": "3ce67aa9-a11c-4bdf-a3da-4e53e122c68f",
+      "at": "2026-09-26T16:05:47.005Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-11-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md"
+    },
+    {
+      "event_id": "1d56a926-9723-4b02-a4a3-3ce272431453",
+      "at": "2026-09-26T16:05:47.060Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-11-07",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/project-audit-path-acceptance-2026-09-26.md",
+      "done_guard": "DONE_ALLOWED"
     }
   ]
 }
