@@ -85,17 +85,21 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert; historische Traceability und der bestehende Core-Delta sind preservation-geprüft. Eine Core-Reduktion bleibt auf einen einzeln nachweisbaren Entfernkandidaten begrenzt.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation, Contract-Bruch-Sperre, parallele Worker-Integration, konfliktblockierter Ablauf, exakte Recovery, sichtbare SUPERSEDE-Markierung, abgeleitete Dependency-Updates und Phase-16-Traceability verifiziert; historische Traceability und der begrenzte Core-Delta sind preservation-geprüft. Eine weitere Core-Reduktion braucht wieder einen einzeln nachweisbaren Entfernkandidaten.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-06` als kleinsten sicheren Slice beginnen: genau einen tatsächlich redundanten Core-Abschnitt auswählen, dessen Zielmodul- und Contract-Übernahme klauselscharf nachweisen und nur diesen Abschnitt entfernen; danach sofort `WI-SOT-23-07` gegen die Golden Baseline ausführen.
+**NEXT RECOMMENDATION:** `WI-SOT-04-10` erst mit einem eng begrenzten
+Laufzeit-Integrationsnachweis für CMS, Worker und Analytics wieder aufnehmen;
+vorher die Scope-/Freigabe- und gepinnten Evidenzvoraussetzungen klären. Der
+vorliegende 348/349-Suitebefund ist keine Freigabe für eine Nebenarbeit und
+bleibt bis zur eigenen Einordnung sichtbar.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 202 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 3 (einschließlich Ready und Blocked) · Progress 98,5 %.
+**Counter:** Total 205 · Done 204 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 1 (einschließlich Ready und Blocked) · Progress 99,5 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -525,18 +529,20 @@ Technisch verhindern:
   Board und Video haben `authority: null` und können deshalb keine eigene
   Regelquelle bilden. [Modulaufbau](../sot-optimization/reviews/module-build-2026-09-26.md)
   und [lokaler Abnahmebericht](../abnahmeberichte/sot-module-build-2026-09-26.md).
-- [ ] TODO – WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen
-  Die historischen Formulierungen sind explizit tracebar und der bestehende
-  Core-Delta ist separat preservation-geprüft. Offen ist nur noch der
-  eigentliche, eng begrenzte Arbeitsschritt: Für **einen** konkreten
-  Entfernkandidaten die abschnittsgenaue Preservation-/Contract-/Referenz-
-  zuordnung erstellen und erst dann diesen Kandidaten entfernen. Keine
-  pauschale oder mehrabschnittige Core-Reduktion ist freigegeben.
-  [Bereitschaftsbericht](../abnahmeberichte/sot-core-reduction-readiness-2026-09-26.md).
-- [ ] TODO – WI-SOT-23-07 · Golden-Baseline-Delta prüfen
-Die Core-Regeln und Fachdetails wurden gezielt inventarisiert. Das ist keine
-Freigabe zur Entfernung auditierter Inhalte.
-[Modulinventar und Grenzen](../sot-optimization/reviews/module-preparation-2026-09-26.md).
+- [x] ~~WI-SOT-23-06 · erst danach redundante Details aus dem Core entfernen~~
+  Entfernt wurde ausschließlich die zusammenfassende Tabellenzeile
+  `ST-SOT-23–25 · Fachmodule` aus `docs/scrum-plan.md`. Ihr vollständiger
+  Workstream-, Story-, Status- und Gate-Kontext bleibt im autoritativen
+  `ST-SOT-23`–`25` dieses Fachmoduls erhalten; Goal, Epic-Link,
+  Baseline-/Freigabegrenzen und alle einzelnen Work Items wurden nicht
+  entfernt. Die vollständige Zielmodul-/Contract-/Referenzzuordnung steht im
+  [Abnahmebericht](../abnahmeberichte/sot-core-reduction-delta-2026-09-26.md).
+- [x] ~~WI-SOT-23-07 · Golden-Baseline-Delta prüfen~~
+  Der unmittelbar nach der Reduktion ausgeführte Delta-Check bestätigt einen
+  textuellen, auf genau diese Tabellenzeile begrenzten Core-Delta bei
+  unverändertem Golden-Semantikmanifest; Recovery, Registry, Contracts,
+  Traceability und Planabgleich bestehen. Details und klare Restgrenzen im
+  [Abnahmebericht](../abnahmeberichte/sot-core-reduction-delta-2026-09-26.md).
 #### ST-SOT-24 – PHASE 24: FACHMODULE
 Mindestens vorbereiten:
 - [x] ~~WI-SOT-24-01 · Source of Truth~~

@@ -2361,7 +2361,6 @@ Dieses Epic ersetzt keine bestehende Fach-, Freigabe- oder Scrum-Core-Regel.
 | `ST-SOT-03–11` · Performance Enablement | Registry, Contracts, Graph, Impact-Auswahl, FAST/FULL, Baselines und Delta Audit liefern reproduzierbare begrenzte Prüfergebnisse. | Preservation und Merge; nötige Freigaben | Geplant |
 | `ST-SOT-12–18` · SoT Governance | Intake, Klassifizierung, Conflict Check, Approval, autoritatives Update, Post Validation und DONE Guards bilden einen geprüften Ablauf. | Performance Enablement | Geplant |
 | `ST-SOT-19–22` · WSJF und Agent-Team | Die vorhandenen Regeln sind tracebar und getestet; Claims, Review, Integration und gemeinsame Zustände umgehen keine Core- oder Nutzerfreigaben. | Governance-Gate | Geplant |
-| `ST-SOT-23–25` · Fachmodule | Core bleibt geschützt; Fachautoritäten und eine nur generierte Gesamtsicht sind eindeutig. | Registry, Governance | Modulgrenzen lokal definiert; Contracts, Aufbau, Core-Reduktion und Delta offen |
 | `ST-SOT-26–31` · Betrieb und End-to-End | Status, Counter, Next Work, Git Hygiene und ein realistischer Ablauf einschließlich Konflikt und Rollback sind nachgewiesen. | betroffene Slices | Geplant |
 
 **Epic-Abschluss:** Alle genannten Stories und Work Items sind nach ihren
