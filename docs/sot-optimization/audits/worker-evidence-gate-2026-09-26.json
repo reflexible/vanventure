@@ -1,0 +1,81 @@
+{
+  "scope": "Required host evidence verifier at local Done transition; existing gate semantics, no positive CMS/Analytics certification.",
+  "source_sha256": {
+    "tools/sot/worker-state.mjs": "af9e1dd7b1b79b571f31356efed209ce11a1d8c67fab0e45b0617b2e38b25b96",
+    "tools/sot/worker-state.test.mjs": "b732c05e84bc862fbf2e6677af0b468a029cef5c94fe0ba20d84e7ccb5a6d7c8",
+    "tools/sot/governance-workflow.mjs": "eeaf7a2d37b450acad732147b390b6f36fff36fe76850cb7128c08ea2a34764c",
+    "tools/sot/governance-workflow.test.mjs": "0ebd3b25719c92c666aacebb0426c6be5f02a073857b32395bed8e7f07eba331",
+    "tools/sot/done-guard.mjs": "880f82ec92cf0ab099d44433c3f0665add53ddc79dd427ebd056e6ce47a34323",
+    "docs/scrum-plan.md": "1871297946bc4084cb521de69a765164024092eb917c6f58851ce3f139ee1b84"
+  },
+  "tests": {
+    "command": "node --test tools/sot/worker-state.test.mjs tools/sot/governance-workflow.test.mjs tools/sot/done-guard.test.mjs",
+    "passed": 42,
+    "failed": 0
+  },
+  "independent_reviews": [
+    "docs/sot-optimization/reviews/worker-governance-evidence-gate-2026-09-26.md",
+    "docs/sot-optimization/reviews/done-integration-review-2026-09-26.md"
+  ],
+  "full_check": {
+    "schema_version": "1.0.0",
+    "alert": "⚠ FULL CHECK REQUIRED",
+    "status": "FULL_CHECK_PASS",
+    "reasons": [
+      "FULL_TRIGGER:APPROVAL_REVIEW_GATE",
+      "FULL_TRIGGER:DEFINITION_OF_DONE",
+      "FULL_TRIGGER:SOT_GOVERNANCE"
+    ],
+    "scope": {
+      "modules": [
+        "scrum-core",
+        "sot-architecture"
+      ],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
+      "work_items": [],
+      "active_processes": []
+    },
+    "checks": [
+      {
+        "type": "dependency_graph",
+        "id": "scoped-graph",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      },
+      {
+        "type": "module",
+        "id": "scrum-core",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      },
+      {
+        "type": "module",
+        "id": "sot-architecture",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "SCRUM-WORK-ITEM",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "SOT-DECISION-CHANGE",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      },
+      {
+        "type": "contract",
+        "id": "WORKER-WORK-ASSIGNMENT",
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/audits/worker-evidence-gate-2026-09-26.json"
+      }
+    ]
+  }
+}

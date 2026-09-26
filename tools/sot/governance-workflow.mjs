@@ -5,6 +5,7 @@ import { resolve, relative, isAbsolute, sep } from 'node:path';
 import { assessProjectReviewedScope } from './scope-review.mjs';
 import { assessConflict } from './conflict-check.mjs';
 import { createDecisionStore } from './decision-state.mjs';
+import { createWorkerStateStore } from './worker-state.mjs';
 import { createUserDecisionVerifier, decisionProposalHash } from './user-decision-evidence.mjs';
 import { loadRegistry } from './module-registry.mjs';
 import { loadContracts } from './contracts.mjs';
@@ -204,13 +205,11 @@ async function runtimeBinding() {
   return Promise.all(runtimeModules.map(async name => ({ module: name, sha256: hash(await readFile(new URL(`./${name}.mjs`, import.meta.url))) })));
 }
 
-/** Reopen pinned evidence and current source before using the real worker store's atomic integration gate. */
-export async function integrateGovernanceResult({ resultPath, expectedResultSha256, workItemId, workerStore,
-  integratorId, evidenceRef, projectRoot }) {
+/** Read-only proof verifier; safe to call while the worker-store writer lock is held. */
+export async function verifyGovernanceResult({ resultPath, expectedResultSha256, workItemId, projectRoot }) {
   try {
     if (!isAbsolute(projectRoot ?? '') || !/^[a-f0-9]{64}$/.test(expectedResultSha256 ?? '')
-        || !/^WI-SOT-\d{2}-\d{2}$/.test(workItemId ?? '') || !text(integratorId) || !text(evidenceRef)
-        || typeof workerStore?.snapshot !== 'function' || typeof workerStore?.integrate !== 'function') throw new Error('INTEGRATION_INPUTS_REQUIRED');
+        || !/^WI-SOT-\d{2}-\d{2}$/.test(workItemId ?? '')) throw new Error('INTEGRATION_INPUTS_REQUIRED');
     const checked = async artifact => {
       const path = localPath(projectRoot, artifact?.path);
       if (await realpath(path) !== path) throw new Error('INTEGRATION_ARTIFACT_ALIAS');
@@ -260,13 +259,45 @@ export async function integrateGovernanceResult({ resultPath, expectedResultSha2
       auditRef: result.artifacts.audit.path, postRef: result.artifacts.post_validation.path, postValidation: { ...post, scope: workItemId } });
     if (!isDeepStrictEqual(completion, result.completion_evidence)
         || evaluateDoneGuard(completion, { expectedScope: workItemId }).status !== 'DONE_ALLOWED') throw new Error('INTEGRATION_COMPLETION_EVIDENCE_INVALID');
-    const snapshot = await workerStore.snapshot();
-    const record = snapshot.records[workItemId];
-    if (record?.execution_state !== 'Integration' || record.review?.accepted !== true) throw new Error('WORKER_NOT_READY_FOR_INTEGRATION');
-    // Final source reread narrows the window after proof validation; workerStore rechecks stage under its lock.
     await checked(result.artifacts.source);
+    return { status: 'GOVERNANCE_EVIDENCE_VERIFIED', completion_evidence: completion, result_sha256: expectedResultSha256 };
+  } catch (error) { return { status: 'INTEGRATION_BLOCKED', reason: error.message }; }
+}
+
+/** Host pins are explicit constructor inputs; a work item cannot choose its own proof. */
+export function createGovernanceWorkerStore({ projectRoot, trustedResults, statePath = 'docs/governance/worker-state.json',
+  planPath = 'docs/governance/source-of-truth-and-incremental-planning.md' }) {
+  if (!isAbsolute(projectRoot ?? '') || !Array.isArray(trustedResults) || !trustedResults.length) throw new Error('HOST_PINNED_WORKER_RESULTS_REQUIRED');
+  const pins = new Map();
+  for (const pin of structuredClone(trustedResults)) {
+    if (!/^WI-SOT-\d{2}-\d{2}$/.test(pin?.workItemId ?? '') || !/^[a-f0-9]{64}$/.test(pin?.expectedResultSha256 ?? '')
+      || pins.has(pin.workItemId)) throw new Error('UNIQUE_HOST_RESULT_PIN_REQUIRED');
+    localPath(projectRoot, pin.resultPath);
+    pins.set(pin.workItemId, pin);
+  }
+  return createWorkerStateStore({ path: localPath(projectRoot, statePath), planPath: localPath(projectRoot, planPath),
+    verifyCompletionEvidence: async ({ work_item_id, completion_evidence }) => {
+      const pin = pins.get(work_item_id);
+      if (!pin) return { status: 'BLOCKED', reason: 'HOST_RESULT_PIN_MISSING' };
+      const proof = await verifyGovernanceResult({ ...pin, projectRoot });
+      return proof.status === 'GOVERNANCE_EVIDENCE_VERIFIED' && isDeepStrictEqual(completion_evidence, proof.completion_evidence)
+        ? { status: 'PASS', evidence_ref: pin.resultPath }
+        : { status: 'BLOCKED', reason: proof.reason ?? 'COMPLETION_EVIDENCE_DIFFERS_FROM_HOST_PIN' };
+    } });
+}
+
+/** Verify before integration; the securely configured worker store verifies again under its lock. */
+export async function integrateGovernanceResult({ resultPath, expectedResultSha256, workItemId, workerStore,
+  integratorId, evidenceRef, projectRoot }) {
+  try {
+    if (!text(integratorId) || !text(evidenceRef) || typeof workerStore?.snapshot !== 'function'
+      || typeof workerStore?.integrate !== 'function') throw new Error('INTEGRATION_INPUTS_REQUIRED');
+    const verified = await verifyGovernanceResult({ resultPath, expectedResultSha256, workItemId, projectRoot });
+    if (verified.status !== 'GOVERNANCE_EVIDENCE_VERIFIED') return verified;
+    const record = (await workerStore.snapshot()).records[workItemId];
+    if (record?.execution_state !== 'Integration' || record.review?.accepted !== true) throw new Error('WORKER_NOT_READY_FOR_INTEGRATION');
     const integrated = await workerStore.integrate({ work_item_id: workItemId, integrator_id: integratorId,
-      evidence_ref: evidenceRef, tests_passed: true, completion_evidence: completion });
+      evidence_ref: evidenceRef, tests_passed: true, completion_evidence: verified.completion_evidence });
     return { status: 'WORK_ITEM_INTEGRATED', work_item_id: workItemId, result_sha256: expectedResultSha256, record: integrated };
   } catch (error) { return { status: 'INTEGRATION_BLOCKED', reason: error.message }; }
 }

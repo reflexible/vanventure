@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { runGovernanceWorkflow, recoverGovernanceWorkflow, integrateGovernanceResult, attestLegacyGovernanceResult } from './governance-workflow.mjs';
+import { runGovernanceWorkflow, recoverGovernanceWorkflow, integrateGovernanceResult, attestLegacyGovernanceResult, createGovernanceWorkerStore } from './governance-workflow.mjs';
 import { scopeReviewBinding } from './scope-review.mjs';
 import { sectionSha256 } from './rule-catalogue.mjs';
 import { buildDependencyGraph } from './dependency-graph.mjs';
@@ -236,10 +236,11 @@ test('the owner may also be the work-item source when exact approved bytes prese
 });
 
 
-async function workerFixture(f, integrationReady = true) {
+async function workerFixture(f, result, integrationReady = true) {
   const planPath = join(f.projectRoot, 'worker-plan.md');
   await writeFile(planPath, '- [ ] READY - WI-SOT-16-01 - Fixture governance work\n');
-  const store = createWorkerStateStore({ path: join(f.projectRoot, 'workers.json'), planPath });
+  const store = createGovernanceWorkerStore({ projectRoot: f.projectRoot, statePath: 'workers.json', planPath: 'worker-plan.md',
+    trustedResults: [{ workItemId: 'WI-SOT-16-01', resultPath: result.result_output, expectedResultSha256: result.result_sha256 }] });
   await store.claim({ work_item_id: 'WI-SOT-16-01', worker_id: 'implementer', write_scope: [f.module.source] });
   await store.start({ work_item_id: 'WI-SOT-16-01', worker_id: 'implementer' });
   await store.handover({ work_item_id: 'WI-SOT-16-01', worker_id: 'implementer', summary: 'Exact tested append.',
@@ -264,19 +265,50 @@ test('pinned on-disk evidence drives the actual reviewed worker state to Done', 
   const f = await fixture(t);
   const result = await runGovernanceWorkflow(f.input);
   assert.equal(result.status, 'LOCAL_WORKFLOW_VERIFIED');
-  const store = await workerFixture(f);
+  const store = await workerFixture(f, result);
   const integrated = await integrateGovernanceResult(integrationInput(f, result, store));
   assert.equal(integrated.status, 'WORK_ITEM_INTEGRATED', JSON.stringify(integrated));
   const record = (await store.snapshot()).records['WI-SOT-16-01'];
   assert.equal(record.execution_state, 'Done');
   assert.equal(record.completion_evidence.scope, 'WI-SOT-16-01');
   assert.equal(record.completion_evidence.postValidation.scope, 'WI-SOT-16-01');
+  assert.equal(record.completion_verification.evidence_ref, result.result_output);
+});
+
+test('direct store calls cannot bypass missing verifier, wrong host pins, substituted evidence or current-source validation', async t => {
+  for (const kind of ['missing-verifier', 'wrong-pin', 'substituted-evidence', 'changed-source']) {
+    const f = await fixture(t);
+    const result = await runGovernanceWorkflow(f.input);
+    let store = await workerFixture(f, result);
+    if (kind === 'missing-verifier') store = createWorkerStateStore({ path: join(f.projectRoot, 'workers.json'), planPath: join(f.projectRoot, 'worker-plan.md') });
+    if (kind === 'wrong-pin') store = createGovernanceWorkerStore({ projectRoot: f.projectRoot, statePath: 'workers.json', planPath: 'worker-plan.md',
+      trustedResults: [{ workItemId: 'WI-SOT-16-01', resultPath: result.result_output, expectedResultSha256: '0'.repeat(64) }] });
+    if (kind === 'changed-source') await writeFile(join(f.projectRoot, f.module.source), 'Unexpected source change');
+    const completion = structuredClone(result.completion_evidence);
+    if (kind === 'substituted-evidence') completion.contracts.evidence_ref = 'untrusted.json';
+    const before = await readFile(join(f.projectRoot, 'workers.json'), 'utf8');
+    await assert.rejects(store.integrate({ work_item_id: 'WI-SOT-16-01', integrator_id: 'integrator',
+      evidence_ref: result.result_output, tests_passed: true, completion_evidence: completion }), /verifier|verification/i);
+    assert.equal(await readFile(join(f.projectRoot, 'workers.json'), 'utf8'), before);
+    assert.equal((await store.snapshot()).records['WI-SOT-16-01'].execution_state, 'Integration');
+  }
+});
+
+test('host pins cannot be supplied or replaced by work-item evidence', async t => {
+  const f = await fixture(t); const result = await runGovernanceWorkflow(f.input);
+  await workerFixture(f, result);
+  assert.throws(() => createGovernanceWorkerStore({ projectRoot: f.projectRoot, trustedResults: [] }), /HOST_PINNED/);
+  const pins = [{ workItemId: 'WI-SOT-16-01', resultPath: result.result_output, expectedResultSha256: '0'.repeat(64) }];
+  const store = createGovernanceWorkerStore({ projectRoot: f.projectRoot, statePath: 'workers.json', planPath: 'worker-plan.md', trustedResults: pins });
+  pins[0].expectedResultSha256 = result.result_sha256;
+  await assert.rejects(store.integrate({ work_item_id: 'WI-SOT-16-01', integrator_id: 'integrator',
+    evidence_ref: result.result_output, tests_passed: true, completion_evidence: result.completion_evidence }), /verification/i);
 });
 
 test('a different requested work item and non-Integration worker stage are rejected', async t => {
   const f = await fixture(t);
   const result = await runGovernanceWorkflow(f.input);
-  const store = await workerFixture(f, false);
+  const store = await workerFixture(f, result, false);
   const wrongItem = await integrateGovernanceResult({ ...integrationInput(f, result, store), workItemId: 'WI-SOT-16-02' });
   assert.equal(wrongItem.status, 'INTEGRATION_BLOCKED');
   assert.equal(wrongItem.reason, 'WORKFLOW_RESULT_SCOPE_OR_STATUS_INVALID');
@@ -300,7 +332,7 @@ test('changed result, failed post-check artifact, runtime binding and owner sour
   ];
   for (const mutate of mutations) {
     const f = await fixture(t); const result = await runGovernanceWorkflow(f.input);
-    const store = await workerFixture(f); await mutate(f, result);
+    const store = await workerFixture(f, result); await mutate(f, result);
     const integrated = await integrateGovernanceResult(integrationInput(f, result, store));
     assert.equal(integrated.status, 'INTEGRATION_BLOCKED', JSON.stringify(integrated));
     assert.equal((await store.snapshot()).records['WI-SOT-16-01'].execution_state, 'Integration');
@@ -329,7 +361,7 @@ test('legacy success gets a new pinned attestation without changing any original
   const attested = await attestLegacyGovernanceResult(request);
   assert.equal(attested.status, 'LOCAL_WORKFLOW_VERIFIED', JSON.stringify(attested));
   assert.equal(attested.historical_result_rewritten, false);
-  const store = await workerFixture(f);
+  const store = await workerFixture(f, attested);
   const integrated = await integrateGovernanceResult(integrationInput(f, attested, store));
   assert.equal(integrated.status, 'WORK_ITEM_INTEGRATED', JSON.stringify(integrated));
   assert.equal(await readFile(join(f.projectRoot, legacyPath), 'utf8'), legacyBytes);

@@ -2,6 +2,7 @@ import { mkdir, open, readFile, rename, unlink, writeFile } from 'node:fs/promis
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { evaluateDoneGuard } from './done-guard.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -95,8 +96,12 @@ async function saveState(path, state) {
   } finally { await unlink(temp).catch(error => { if (error.code !== 'ENOENT') throw error; }); }
 }
 
-/** Operational status only. The plan remains the sole source for backlog rules and item definitions. */
-export function createWorkerStateStore({ path = defaultStatePath, planPath = defaultPlanPath, lockTimeoutMs = 5000 } = {}) {
+/** Operational status only. The plan remains the sole source for backlog rules and item definitions.
+ * verifyCompletionEvidence is a trusted host dependency, never a payload/record field.
+ * New Done transitions require it; historical Done records remain structurally readable.
+ */
+export function createWorkerStateStore({ path = defaultStatePath, planPath = defaultPlanPath, lockTimeoutMs = 5000,
+  verifyCompletionEvidence } = {}) {
   async function transact(item, actor, mutate) {
     assert(idPattern.test(item), 'Invalid Work Item ID.');
     assert(text(actor), 'An actor ID is required.');
@@ -104,7 +109,10 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
       const planItems = await knownItems(planPath);
       assert(planItems.has(item), `Unknown Work Item ${item}; add it to the authoritative plan first.`);
       const state = await readState(path);
-      const result = mutate(state, planItems.get(item));
+      const originalState = structuredClone(state);
+      const result = await mutate(state, planItems.get(item));
+      assert(isDeepStrictEqual(await readState(path), originalState), 'Worker state changed outside the transaction lock.');
+      assert((await knownItems(planPath)).get(item) === planItems.get(item), 'Work item plan status changed during transaction.');
       state.revision++;
       validateState(state);
       await saveState(path, state);
@@ -198,13 +206,24 @@ export function createWorkerStateStore({ path = defaultStatePath, planPath = def
       tests_passed: testsPassed, completion_evidence: completionEvidence }) {
       assert(text(evidence) && testsPassed === true, 'Integration needs passing checks and evidence_ref.');
       const capturedEvidence = structuredClone(completionEvidence ?? {});
-      return transact(item, integrator, state => {
+      return transact(item, integrator, async state => {
         const record = state.records[item];
         assert(record?.execution_state === 'Integration' && record.review?.accepted, 'Integration requires accepted review.');
         const doneGuard = evaluateDoneGuard(capturedEvidence, { expectedScope: item });
         assert(doneGuard.status === 'DONE_ALLOWED',
           `Definition-of-Done guard blocked completion: ${doneGuard.findings.filter(item => item.status !== 'PASS').map(item => `${item.id}:${item.detail}`).join('; ')}`);
+        assert(typeof verifyCompletionEvidence === 'function', 'Trusted completion evidence verifier is required.');
+        const context = structuredClone({ work_item_id: item, completion_evidence: capturedEvidence,
+          review: record.review, integration: { integrator_id: integrator, evidence_ref: evidence, tests_passed: true }, record });
+        const originalContext = structuredClone(context);
+        let verification;
+        try { verification = structuredClone(await verifyCompletionEvidence(context)); }
+        catch (error) { throw new Error(`Completion evidence verification failed: ${error.message}`); }
+        assert(isDeepStrictEqual(context, originalContext), 'Completion verifier mutated its bound context.');
+        assert(verification?.status === 'PASS' && text(verification.evidence_ref), 'Trusted completion evidence verification did not pass.');
         record.integration = { integrator_id: integrator, evidence_ref: evidence, tests_passed: true, at: new Date().toISOString() };
+        record.completion_verification = { status: 'PASS', evidence_ref: verification.evidence_ref,
+          scope: item, verified_at: record.integration.at };
         record.completion_evidence = structuredClone(capturedEvidence);
         record.done_guard = doneGuard;
         record.execution_state = 'Done';

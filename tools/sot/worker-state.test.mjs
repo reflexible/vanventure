@@ -21,13 +21,15 @@ const completionEvidence = () => ({
     'required_check', 'contracts', 'dependencies', 'sotConsistency', 'traceability',
   ].map(name => ({ name, status: 'PASS' })) },
 });
-async function fixture(t) {
+// Explicit fixture-only host verifier; it is not a project artifact validator.
+const fixtureVerifier = async () => ({ status: 'PASS', evidence_ref: 'fixture:trusted-checker' });
+async function fixture(t, verifyCompletionEvidence = fixtureVerifier) {
   const dir = await mkdtemp(join(tmpdir(), 'sot-workers-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
   const planPath = join(dir, 'plan.md');
   await writeFile(planPath, '- [ ] READY – WI-SOT-20-01 · Claim\n- [ ] READY – WI-SOT-20-02 · Owner\n- [ ] TODO – WI-SOT-20-03 · Lock\n');
   const path = join(dir, 'state.json');
-  return { store: createWorkerStateStore({ path, planPath }), path, planPath };
+  return { store: createWorkerStateStore({ path, planPath, verifyCompletionEvidence }), path, planPath };
 }
 const claim = (item, worker, scope, coordination_ref) => ({ work_item_id: item, worker_id: worker, write_scope: [scope], coordination_ref });
 
@@ -201,4 +203,83 @@ test('integration and persisted Done validation reject duplicate post-validation
   state.records['WI-SOT-20-01'].completion_evidence.postValidation.checks.push({ name: 'contracts', status: 'PASS' });
   await writeFile(path, JSON.stringify(state));
   await assert.rejects(store.snapshot(), /Definition-of-Done guard/);
+});
+
+test('direct integration cannot replace a missing host verifier with payload PASS claims', async t => {
+  const { store, path, planPath } = await fixture(t, null);
+  await readyForIntegration(store);
+  const before = await readFile(path, 'utf8');
+  const input = integrateInput(completionEvidence());
+  input.verifyCompletionEvidence = fixtureVerifier;
+  input.completion_evidence.verification = { status: 'PASS', evidence_ref: 'invented' };
+  await assert.rejects(store.integrate(input), /Trusted completion evidence verifier is required/);
+  assert.equal(await readFile(path, 'utf8'), before);
+  const trusted = createWorkerStateStore({ path, planPath, verifyCompletionEvidence: fixtureVerifier });
+  await trusted.integrate(integrateInput(completionEvidence()));
+  // A historical accepted record can still be inspected without invoking a new verifier.
+  assert.equal((await store.snapshot()).records['WI-SOT-20-01'].execution_state, 'Done');
+});
+
+test('host rejection, exception, absent evidence and async context mutation cannot write Done', async t => {
+  for (const verifier of [
+    async () => ({ status: 'BLOCKED', reason: 'Artifact missing.' }),
+    async () => { throw new Error('Artifact read failed.'); },
+    async () => ({ status: 'PASS' }),
+    async context => { await Promise.resolve(); context.completion_evidence.scope = 'WI-SOT-20-02'; return fixtureVerifier(); },
+  ]) {
+    const { store, path } = await fixture(t, verifier);
+    await readyForIntegration(store);
+    const before = await readFile(path, 'utf8');
+    await assert.rejects(store.integrate(integrateInput(completionEvidence())), /verification|verifier mutated/);
+    assert.equal(await readFile(path, 'utf8'), before);
+  }
+});
+
+test('host verifier receives detached bound context and its evidence is persisted', async t => {
+  let observed;
+  const { store } = await fixture(t, async context => {
+    observed = context;
+    await Promise.resolve();
+    assert.equal(context.work_item_id, 'WI-SOT-20-01');
+    assert.equal(context.review.accepted, true);
+    assert.equal(context.record.execution_state, 'Integration');
+    assert.equal(context.integration.integrator_id, 'C');
+    return { status: 'PASS', evidence_ref: 'fixture:checked-artifacts' };
+  });
+  await readyForIntegration(store);
+  await store.integrate(integrateInput(completionEvidence()));
+  observed.review.accepted = false;
+  observed.completion_evidence.contracts.status = 'FAIL';
+  const result = (await store.snapshot()).records['WI-SOT-20-01'];
+  assert.equal(result.review.accepted, true);
+  assert.equal(result.completion_evidence.contracts.status, 'PASS');
+  assert.equal(result.completion_verification.evidence_ref, 'fixture:checked-artifacts');
+});
+
+test('out-of-lock state changes during an async verifier are not overwritten', async t => {
+  let path;
+  const fixtureResult = await fixture(t, async () => {
+    const state = JSON.parse(await readFile(path, 'utf8'));
+    state.revision++;
+    await writeFile(path, JSON.stringify(state));
+    return fixtureVerifier();
+  });
+  path = fixtureResult.path;
+  await readyForIntegration(fixtureResult.store);
+  await assert.rejects(fixtureResult.store.integrate(integrateInput(completionEvidence())), /outside the transaction lock/);
+  assert.equal((await fixtureResult.store.snapshot()).records['WI-SOT-20-01'].execution_state, 'Integration');
+});
+
+test('changed authoritative item status during verification blocks the transition', async t => {
+  let planPath;
+  const fixtureResult = await fixture(t, async () => {
+    const plan = await readFile(planPath, 'utf8');
+    await writeFile(planPath, plan.replace('READY', 'TODO'));
+    return fixtureVerifier();
+  });
+  planPath = fixtureResult.planPath;
+  await readyForIntegration(fixtureResult.store);
+  const before = await readFile(fixtureResult.path, 'utf8');
+  await assert.rejects(fixtureResult.store.integrate(integrateInput(completionEvidence())), /plan status changed/);
+  assert.equal(await readFile(fixtureResult.path, 'utf8'), before);
 });
