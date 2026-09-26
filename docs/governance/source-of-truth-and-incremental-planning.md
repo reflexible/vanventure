@@ -86,12 +86,12 @@ und spätere Produktprüfung bleiben offen.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-19-02`: evidenzbasierte Business-Value-Vorschläge als getrennten, nicht aktivierenden Bewertungsslice vorbereiten.
+**NEXT RECOMMENDATION:** `WI-SOT-19-03`: evidenzbasierte Time-Criticality-Vorschläge als getrennten, nicht aktivierenden Bewertungsslice vorbereiten.
 **Parallel Candidates:**
-`WI-SOT-19-02` und `WI-SOT-21-02` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
+`WI-SOT-19-03` und `WI-SOT-19-04` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 149 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 56 (einschließlich Ready und Blocked) · Progress 72,7 %.
+**Counter:** Total 205 · Done 150 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 55 (einschließlich Ready und Blocked) · Progress 73,2 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -409,7 +409,10 @@ Technisch verhindern:
 #### ST-SOT-19 – PHASE 19: WSJF-INTEGRATION
 - [x] ~~WI-SOT-19-01 · bestehende WSJF-Regeln übernehmen~~
   Das eigenständige WSJF-Bewertungsmodul besitzt die vollständige 67-Abschnitts-Zuordnung, schützt vor Ausführungsaktivierung und ist per begrenztem FULL CHECK abgenommen. [Nachweis](../sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-19-02 · Business Value
+- [x] ~~WI-SOT-19-02 · Business Value~~
+  Evidenzgebundene, nicht aktivierende Vorschläge prüfen Quellpfad und Auszug,
+  schützen bestätigte/überschriebene Werte und markieren Ausführung sowie Persistenz
+  ausdrücklich als nicht autorisiert. [FAST-CHECK](../sot-optimization/reviews/wsjf-business-value-fast-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-19-03 · Time Criticality
 - [ ] TODO – WI-SOT-19-04 · Risk Reduction / Opportunity Enablement
 - [ ] TODO – WI-SOT-19-05 · Job Size
