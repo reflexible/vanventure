@@ -281,6 +281,11 @@
       "requiredCanonicalPhrases": []
     },
     {
+      "path": "docs/abnahmeberichte/sot-git-integration-order-2026-09-26.md",
+      "role": "audit-reference",
+      "requiredCanonicalPhrases": []
+    },
+    {
       "path": "docs/scrum-migration/source-index.md",
       "role": "audit-reference",
       "requiredCanonicalPhrases": []
