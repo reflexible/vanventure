@@ -83,15 +83,15 @@ und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
 **Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
-Die geprüften lokalen Integrationsslices sind abgeschlossen. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
+Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-19-01`: die vorhandenen WSJF-Regeln in ein klar abgegrenztes Fachmodul überführen, ohne Priorisierung oder Ausführung zu aktivieren.
+**NEXT RECOMMENDATION:** `WI-SOT-19-02`: evidenzbasierte Business-Value-Vorschläge als getrennten, nicht aktivierenden Bewertungsslice vorbereiten.
 **Parallel Candidates:**
-`WI-SOT-19-01` und `WI-SOT-21-02` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
+`WI-SOT-19-02` und `WI-SOT-21-02` können mit getrennten Dateiscopes vorbereitet werden; vor einem Claim müssen aktuelle Scopeanalysen vorliegen.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 148 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 57 (einschließlich Ready und Blocked) · Progress 72,2 %.
+**Counter:** Total 205 · Done 149 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 56 (einschließlich Ready und Blocked) · Progress 72,7 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -407,7 +407,8 @@ Technisch verhindern:
   [Unabhängige Abnahme](../sot-optimization/reviews/done-guard-acceptance-2026-09-26.md).
 ### WS-SOT-W3 – WSJF / MULTI-AGENT
 #### ST-SOT-19 – PHASE 19: WSJF-INTEGRATION
-- [ ] TODO – WI-SOT-19-01 · bestehende WSJF-Regeln übernehmen
+- [x] ~~WI-SOT-19-01 · bestehende WSJF-Regeln übernehmen~~
+  Das eigenständige WSJF-Bewertungsmodul besitzt die vollständige 67-Abschnitts-Zuordnung, schützt vor Ausführungsaktivierung und ist per begrenztem FULL CHECK abgenommen. [Nachweis](../sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md).
 - [ ] TODO – WI-SOT-19-02 · Business Value
 - [ ] TODO – WI-SOT-19-03 · Time Criticality
 - [ ] TODO – WI-SOT-19-04 · Risk Reduction / Opportunity Enablement

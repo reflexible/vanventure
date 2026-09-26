@@ -9,7 +9,11 @@
       "status": "active_reference",
       "version": null,
       "dependencies": [],
-      "contracts": ["SCRUM-WORK-ITEM", "SOT-DECISION-CHANGE", "WORKER-WORK-ASSIGNMENT"],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
       "last_verified_baseline": {
         "ref": "refs/tags/golden-scrum-final-audit-pass-2026-09-26",
         "sha256_crlf": "9ec3dbc2b1c09208580c267b683693285ee5dca609bc736243ba6a0bbe52eab2"
@@ -24,11 +28,33 @@
       "source": "docs/governance/source-of-truth-and-incremental-planning.md",
       "status": "active_reference",
       "version": null,
-      "dependencies": ["scrum-core"],
-      "contracts": ["SCRUM-WORK-ITEM", "SOT-DECISION-CHANGE", "WORKER-WORK-ASSIGNMENT"],
+      "dependencies": [
+        "scrum-core"
+      ],
+      "contracts": [
+        "SCRUM-WORK-ITEM",
+        "SOT-DECISION-CHANGE",
+        "WORKER-WORK-ASSIGNMENT"
+      ],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
+    },
+    {
+      "module_id": "wsjf",
+      "name": "WSJF-Bewertungsmodell",
+      "authority": "planning.wsjf-assessment",
+      "source": "docs/governance/wsjf.md",
+      "status": "active_reference",
+      "version": "1.0.0",
+      "dependencies": [
+        "scrum-core",
+        "sot-architecture"
+      ],
+      "contracts": [],
+      "last_verified_baseline": null,
+      "semantic_baseline": null,
+      "last_audit_status": "LOCAL_VERIFIED_PARTIAL"
     },
     {
       "module_id": "analytics",
@@ -38,7 +64,9 @@
       "status": "active_reference",
       "version": null,
       "dependencies": [],
-      "contracts": ["ANALYTICS-CONTENT-ID"],
+      "contracts": [
+        "ANALYTICS-CONTENT-ID"
+      ],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
@@ -63,7 +91,10 @@
       "source": "docs/responsive-templates.md",
       "status": "active_reference",
       "version": null,
-      "dependencies": ["design-guide", "consolidated-mandate"],
+      "dependencies": [
+        "design-guide",
+        "consolidated-mandate"
+      ],
       "contracts": [],
       "last_verified_baseline": null,
       "semantic_baseline": null,
@@ -71,12 +102,14 @@
     },
     {
       "module_id": "consolidated-mandate",
-      "name": "Übergreifende Schutz-, Freigabe- und Nachweispflichten",
+      "name": "Ãœbergreifende Schutz-, Freigabe- und Nachweispflichten",
       "authority": "governance.delivery-and-approvals",
       "source": "docs/vanventure-gesamtauftrag-mit-pruefung-und-freigaben.md",
       "status": "active_reference",
       "version": null,
-      "dependencies": ["design-guide"],
+      "dependencies": [
+        "design-guide"
+      ],
       "contracts": [],
       "last_verified_baseline": null,
       "semantic_baseline": null,
@@ -84,26 +117,33 @@
     },
     {
       "module_id": "cms-content",
-      "name": "Bestehende Redaktion und Content-Identität",
+      "name": "Bestehende Redaktion und Content-IdentitÃ¤t",
       "authority": "website.cms-content",
       "source": "editor/README.md",
       "status": "active_reference",
       "version": null,
-      "dependencies": ["release-governance"],
-      "contracts": ["CMS-PUBLISHING", "ANALYTICS-CONTENT-ID"],
+      "dependencies": [
+        "release-governance"
+      ],
+      "contracts": [
+        "CMS-PUBLISHING",
+        "ANALYTICS-CONTENT-ID"
+      ],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null
     },
     {
       "module_id": "release-governance",
-      "name": "Verbindliche Veröffentlichungsentscheidungen",
+      "name": "Verbindliche VerÃ¶ffentlichungsentscheidungen",
       "authority": "governance.release-approval",
       "source": "docs/scrum-migration/release-decisions.md",
       "status": "active_reference",
       "version": null,
       "dependencies": [],
-      "contracts": ["CMS-PUBLISHING"],
+      "contracts": [
+        "CMS-PUBLISHING"
+      ],
       "last_verified_baseline": null,
       "semantic_baseline": null,
       "last_audit_status": null

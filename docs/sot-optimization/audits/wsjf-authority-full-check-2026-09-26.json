@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "alert": "⚠ FULL CHECK REQUIRED",
+  "status": "FULL_CHECK_PASS",
+  "reasons": [
+    "FULL_TRIGGER:SOT_GOVERNANCE_MODULE"
+  ],
+  "scope": {
+    "modules": [
+      "sot-architecture",
+      "wsjf"
+    ],
+    "contracts": [],
+    "work_items": [
+      "WI-SOT-19-01"
+    ],
+    "active_processes": []
+  },
+  "checks": [
+    {
+      "type": "dependency_graph",
+      "id": "scoped-graph",
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md"
+    },
+    {
+      "type": "module",
+      "id": "sot-architecture",
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md"
+    },
+    {
+      "type": "module",
+      "id": "wsjf",
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md"
+    },
+    {
+      "type": "work_item",
+      "id": "WI-SOT-19-01",
+      "status": "PASS",
+      "evidence_ref": "docs/sot-optimization/reviews/wsjf-authority-full-check-2026-09-26.md"
+    }
+  ],
+  "generated_at": "2026-09-26T00:00:00Z",
+  "source_sha256": {
+    "docs/governance/wsjf.md": "c22d6470afff242f1588034751faa74eb2e809c8f0eba08d0ef0c8570a07c1a4",
+    "docs/governance/module-registry.json": "b17ec39c8dc599a7584d4adeb956bdff7d629cb12d8fb0790a074fd4c308d2bd",
+    "docs/governance/contracts.json": "6e106ec34934f84c08c40594dc9d0acb3eac17453d45f37fb1cd7f8779928154",
+    "docs/governance/source-of-truth-and-incremental-planning.md": "522289f9712e49d67ad4c8f0fe2ceb83009c8645d9f31b1dba61f3ea1e5ebf0a"
+  },
+  "product_release": false,
+  "live_verified": false
+}
