@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung, strukturelle SoT-Post-Validation und begrenzter Cross-Domain-FULL-CHECK verifiziert.
+**Phase:** Modularisierung, strukturelle SoT-Post-Validation und Contract-Bruch-Sperre im Ablauf verifiziert.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-31-04` · einen Contract-Bruch im integrierten Ablauf sperren.
+**NEXT RECOMMENDATION:** `WI-SOT-31-05` · parallele Worker mit Konflikt- und Integrationskontrolle prüfen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen.
-**Counter:** Total 205 · Done 195 · In Progress 0 · Ready 0 · Blocked 1 ·
-Open 10 (einschließlich Ready und Blocked) · Progress 95,1 %.
+**Counter:** Total 205 · Done 196 · In Progress 0 · Ready 0 · Blocked 1 ·
+Open 9 (einschließlich Ready und Blocked) · Progress 95,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -661,7 +661,10 @@ weil ihr bisheriger Fließtext keine einzeln prüfbare Statuszuordnung ermöglic
   Die gemeinsame Änderung von Analytics und CMS-Inhalt eskaliert zu FULL,
   prüft nur beide Module und ihren Contract und leitet keinen historischen
   Gesamtaudit ab. [Lokaler Abnahmebericht](../abnahmeberichte/sot-cross-domain-full-check-2026-09-26.md).
-- [ ] TODO – WI-SOT-31-04 · Contract-Bruch im integrierten Ablauf sperren
+- [x] ~~WI-SOT-31-04 · Contract-Bruch im integrierten Ablauf sperren~~
+  Ein brechender Contract ohne scoped Evidenz blockiert den FULL CHECK; ein
+  Katalogwechsel während des Governance-Ablaufs führt zum Rollback statt zu
+  Integration oder DONE. [Lokaler Abnahmebericht](../abnahmeberichte/sot-contract-break-workflow-2026-09-26.md).
 - [ ] TODO – WI-SOT-31-05 · parallele Worker mit Konflikt- und Integrationskontrolle prüfen
 - [ ] TODO – WI-SOT-31-06 · echten Konflikt ohne stille Regeländerung behandeln
 - [ ] TODO – WI-SOT-31-07 · Rollback und exakte Golden-Baseline-Recovery im integrierten Ablauf nachweisen
