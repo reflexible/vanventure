@@ -298,6 +298,14 @@ export function describeWorkerScope(record, { protected_scopes = ['docs/scrum-pl
   return { work_item_id: record.work_item_id, assigned_agent: record.assigned_agent, allowed_write_scope: allowed, protected_scopes: protectedPaths, execution_authorized: false };
 }
 
+/** Check a proposed file path against a projected scope without changing state. */
+export function isWorkerPathAllowed(scope, path) {
+  if (!scope || !Array.isArray(scope.allowed_write_scope) || !Array.isArray(scope.protected_scopes) || !text(path)) throw new Error('Valid worker scope and path are required.');
+  const allowed = normalizeScope(scope.allowed_write_scope), protectedPaths = normalizeScope(scope.protected_scopes);
+  const inside = base => path === base || path.startsWith(`${base}/`);
+  return { allowed: allowed.some(inside) && !protectedPaths.some(inside), path, execution_authorized: false };
+}
+
 /** Analyze file-scope collisions without changing claims or assignments. */
 export function analyzeWriteScopeConflicts(records) {
   if (!records || typeof records !== 'object' || Array.isArray(records)) throw new Error('records must be an object.');
