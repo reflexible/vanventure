@@ -90,8 +90,8 @@ die 18 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 197 · Done 119 · In Progress 0 · Ready 1 · Blocked 1 ·
-Open 78 (einschließlich Ready und Blocked) · Progress 60,4 %.
+**Counter:** Total 198 · Done 125 · In Progress 0 · Ready 1 · Blocked 1 ·
+Open 73 (einschließlich Ready und Blocked) · Progress 63,1 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -306,8 +306,9 @@ Change
 - [x] ~~WI-SOT-12-03 · neue Entscheidung erfassen~~
 - [x] ~~WI-SOT-12-04 · neue Regel erfassen~~
 - [x] ~~WI-SOT-12-05 · Intake klassifizieren~~
-  Die vier Intake-Typen werden als nicht bindende Vorschläge klassifiziert;
-  ihre dauerhafte Erfassung folgt in `WI-SOT-12-01`–`04`.
+  Die vier Intake-Typen werden als nicht bindende Vorschläge klassifiziert und
+  im gemeinsamen operativen Intake-Nachweis gespeichert. Impact, Conflict,
+  Freigabe und SoT-Update bleiben getrennte Folgeschritte.
 #### ST-SOT-13 – PHASE 13: SOT IMPACT CHECK
 - [x] ~~WI-SOT-13-01 · zuständiges Modul bestimmen~~
 - [x] ~~WI-SOT-13-02 · autoritative Source bestimmen~~
@@ -328,12 +329,15 @@ Change
   Texttreffer allein werden nicht als fachliche Beziehung gewertet; die
   lokale Engine benötigt explizite Review-Eingaben und ändert keine Regel.
 #### ST-SOT-15 – PHASE 15: APPROVAL FLOW
-- [ ] TODO – WI-SOT-15-01 · IDEA
-- [ ] TODO – WI-SOT-15-02 · PROPOSED
-- [ ] TODO – WI-SOT-15-03 · APPROVED
-- [ ] TODO – WI-SOT-15-04 · SUPERSEDED
-- [ ] TODO – WI-SOT-15-05 · optional REJECTED
-- [ ] TODO – WI-SOT-15-06 · Approval-Gates implementieren
+- [x] ~~WI-SOT-15-01 · IDEA~~
+- [x] ~~WI-SOT-15-02 · PROPOSED~~
+- [x] ~~WI-SOT-15-03 · APPROVED~~
+- [x] ~~WI-SOT-15-04 · SUPERSEDED~~
+- [x] ~~WI-SOT-15-05 · optional REJECTED~~
+- [x] ~~WI-SOT-15-06 · Approval-Gates implementieren~~
+- [ ] TODO – WI-SOT-15-07 · Nutzerentscheidungen mit nachprüfbarer Provenienz dauerhaft im gemeinsamen Governance-Zustand speichern und vor SoT-Änderung erneut prüfen
+  Die lokale Übergangsfunktion erteilt weder Design- noch Release- oder
+  Live-Freigabe und ändert keine autoritative Quelle.
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
 - [ ] TODO – WI-SOT-16-01 · autoritative Quelle aktualisieren
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
