@@ -23,6 +23,18 @@ const delta = (modules = [], contracts = [], extra = {}) => ({ modules, contract
 const moduleChange = id => ({ module_id: id, classification: 'SEMANTIC_MANIFEST_CHANGED', semantic_manifest_match: false });
 const pass = ({ id }) => ({ status: 'PASS', evidence_ref: `evidence/${id}.json` });
 const validators = { dependencyGraph: pass, module: pass, contract: pass, workItem: pass, activeProcess: pass };
+const crossDomainGraph = {
+  schema_version: '1.0.0',
+  nodes: [
+    { id: 'module:analytics', type: 'module' },
+    { id: 'module:cms-content', type: 'module' },
+    { id: 'contract:ANALYTICS-CONTENT-ID', type: 'contract' },
+  ],
+  edges: [
+    { from: 'module:analytics', to: 'contract:ANALYTICS-CONTENT-ID', relation: 'provides', strength: 'reference' },
+    { from: 'contract:ANALYTICS-CONTENT-ID', to: 'module:cms-content', relation: 'consumes', strength: 'reference' },
+  ],
+};
 
 test('semantic Scrum Core FULL CHECK validates only its graph-selected targets with evidence', async () => {
   const impact = assessImpact({
@@ -51,6 +63,17 @@ test('a contract break cannot pass without its scoped contract validation', asyn
   assert.equal(result.status, 'FULL_CHECK_BLOCKED');
   assert.ok(result.reasons.includes('CONTRACT_BREAK'));
   assert.deepEqual(result.checks.filter(check => check.reason === 'MISSING_CHECKER').map(check => check.id), ['SCRUM-WORK-ITEM']);
+});
+
+test('cross-domain change runs a bounded FULL CHECK across both changed modules', async () => {
+  const impact = assessImpact({ change: { kind: 'SEMANTIC' },
+    delta: delta([moduleChange('analytics'), moduleChange('cms-content')]), graph: crossDomainGraph });
+  const result = await runFullCheck({ impact, validators });
+  assert.equal(result.status, 'FULL_CHECK_PASS');
+  assert.ok(result.reasons.includes('CROSS_DOMAIN'));
+  assert.deepEqual(result.scope.modules, ['analytics', 'cms-content']);
+  assert.deepEqual(result.scope.contracts, ['ANALYTICS-CONTENT-ID']);
+  assert.equal(result.checks.some(check => check.type === 'historical_migration'), false);
 });
 
 test('unknown impact stays blocked despite successful callbacks', async () => {
