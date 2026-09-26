@@ -30,3 +30,16 @@ export function attachStatusHandover(handover, { planStatus, executionState }) {
   if (!handover || handover.kind !== 'local_chat_handover' || !text(planStatus) || !text(executionState)) throw new Error('HANDOVER_STATUS_INVALID');
   return Object.freeze({ ...handover, status_handover: Object.freeze({ plan_status: planStatus, execution_state: executionState }), status_authority: 'AUTHORITATIVE_PLAN_AND_WORKER_STATE', execution_authorized: false });
 }
+
+/** Attach only anchored references to decisions; the decision store remains the sole decision authority. */
+export function attachDecisionHandover(handover, { decisionRefs, decisionStateRef }) {
+  if (!handover || handover.kind !== 'local_chat_handover' || !Array.isArray(decisionRefs) || !decisionRefs.length
+      || decisionRefs.some(ref => !text(ref) || !/^[^\s#]+#[^\s#]+$/.test(ref))
+      || !text(decisionStateRef) || !/^[^\s#]+#[^\s#]+$/.test(decisionStateRef)) {
+    throw new Error('HANDOVER_DECISION_CONTEXT_INVALID');
+  }
+  return Object.freeze({ ...handover, decision_handover: Object.freeze({
+    decision_refs: Object.freeze([...new Set(decisionRefs)].sort()), decision_state_ref: decisionStateRef,
+    authority: 'AUTHORITATIVE_DECISION_STORE', writable: false,
+  }), decision_authorized: false, decision_write_authorized: false, execution_authorized: false });
+}

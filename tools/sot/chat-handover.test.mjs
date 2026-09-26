@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
+import { attachDecisionHandover, attachStatusHandover, attachWorkItemContext, buildChatHandover } from './chat-handover.mjs';
 const record = { work_item_id: 'WI-SOT-22-01', execution_state: 'In Progress', assigned_agent: 'agent-a', write_scope: ['tools/sot'], blocked_by: null };
 test('builds a local non-authorizing handover from durable work state', () => {
   const result = buildChatHandover({ record, planStatus: 'IN_PROGRESS', decisionRefs: ['DEC-2', 'DEC-1'], sourceRef: 'docs/governance/worker-state.json' });
@@ -20,3 +20,14 @@ test('attaches explicit work-item context without creating authority', () => {
 });
 
 test('attaches read-only plan and execution status', () => { const h=buildChatHandover({record,planStatus:'IN_PROGRESS',sourceRef:'state'}); const r=attachStatusHandover(h,{planStatus:'IN_PROGRESS',executionState:'Review'}); assert.equal(r.status_authority,'AUTHORITATIVE_PLAN_AND_WORKER_STATE'); assert.equal(r.execution_authorized,false); });
+
+
+test('attaches anchored decision references without transferring decision authority', () => {
+  const handover = buildChatHandover({ record, planStatus: 'IN_PROGRESS', sourceRef: 'state' });
+  const result = attachDecisionHandover(handover, { decisionRefs: ['state.jsonl#revision-4', 'state.jsonl#revision-2', 'state.jsonl#revision-2'], decisionStateRef: 'state.jsonl#head' });
+  assert.deepEqual(result.decision_handover.decision_refs, ['state.jsonl#revision-2', 'state.jsonl#revision-4']);
+  assert.equal(result.decision_handover.writable, false); assert.equal(result.decision_authorized, false);
+  assert.equal(result.decision_write_authorized, false); assert.equal(result.execution_authorized, false);
+  assert.throws(() => attachDecisionHandover(handover, { decisionRefs: ['unanchored'], decisionStateRef: 'state.jsonl#head' }), /CONTEXT/);
+  assert.throws(() => attachDecisionHandover(handover, { decisionRefs: [], decisionStateRef: 'state.jsonl#head' }), /CONTEXT/);
+});

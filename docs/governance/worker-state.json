@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 134,
+  "revision": 139,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3820,6 +3820,172 @@
           }
         ]
       }
+    },
+    "WI-SOT-22-04": {
+      "work_item_id": "WI-SOT-22-04",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:45:04.913Z",
+      "write_scope": [
+        "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Read-only anchored decision handover.",
+        "files": [
+          "tools/sot/chat-handover.mjs",
+          "tools/sot/chat-handover.test.mjs",
+          "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        ],
+        "tests": [
+          "chat-handover 5/5 PASS",
+          "tools/sot 309/309 PASS",
+          "progress check PASS",
+          "Golden baseline diff PASS"
+        ],
+        "limitations": [
+          "The packet references the authoritative decision store and cannot import or authenticate a user decision."
+        ],
+        "follow_up": [
+          "Add the SoT handover packet in WI-SOT-22-05."
+        ],
+        "decision_refs": [
+          "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        ],
+        "at": "2026-09-26T17:46:31.244Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+        "self_review_reason": "Bounded deterministic API and regression review; independent reviewer unavailable.",
+        "at": "2026-09-26T17:46:31.257Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+        "tests_passed": true,
+        "at": "2026-09-26T17:46:54.678Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+        "scope": "WI-SOT-22-04",
+        "verified_at": "2026-09-26T17:46:54.678Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-22-04",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-22-04",
+          "reason": "local additive handover module",
+          "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "chat_handover",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "sot_suite",
+            "status": "PASS",
+            "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "scope": "WI-SOT-22-04",
+          "audit_output": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-22-04",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-22-04"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:2"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -5071,6 +5237,51 @@
       "work_item_id": "WI-SOT-22-03",
       "actor": "/root",
       "evidence_ref": "tools/sot/chat-handover.test.mjs",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "0986244f-f528-431f-ae72-87b67b91f06b",
+      "at": "2026-09-26T17:45:04.914Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-22-04",
+      "actor": "/root",
+      "write_scope": [
+        "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "99a86908-1072-469e-a0ec-ac7b996f94e1",
+      "at": "2026-09-26T17:45:05.108Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-22-04",
+      "actor": "/root"
+    },
+    {
+      "event_id": "79646ad0-c316-4164-bea4-465021b4faa3",
+      "at": "2026-09-26T17:46:31.244Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-22-04",
+      "actor": "/root",
+      "summary": "Read-only anchored decision handover."
+    },
+    {
+      "event_id": "6030f50f-1bb2-4272-bead-ca78375616a5",
+      "at": "2026-09-26T17:46:31.257Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-22-04",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md"
+    },
+    {
+      "event_id": "5f4bf196-f7d4-44b0-aa72-dbd4e3c19185",
+      "at": "2026-09-26T17:46:54.679Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-22-04",
+      "actor": "/root",
+      "evidence_ref": "docs/sot-optimization/reviews/decision-handover-fast-check-2026-09-26.md",
       "done_guard": "DONE_ALLOWED"
     }
   ]
