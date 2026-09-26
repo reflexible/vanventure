@@ -82,15 +82,18 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Item:** `WI-SOT-13-07` ist bereit. **Active Workers:** 0.
+**Current Work Items:** `WI-SOT-13-07`, `WI-SOT-16-01`, `WI-SOT-19-08`. **Active Workers:** 1.
+Die beiden späteren Items bearbeiten ausschließlich lokale Sicherheitsvoraussetzungen;
+ihre Governance-/Aktivierungsgates bleiben offen. Claims und Dateibereiche stehen in
+[worker-state.json](worker-state.json). Die Worker-Änderungen sind zur Integration übergeben; der Controller prüft den gemeinsamen Stand.
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
 **NEXT RECOMMENDATION:** `WI-SOT-13-07` (regelgenaue Scope-Abdeckung), weil
-die 18 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
+die 19 belegten Katalogeinträge nur Teilbereiche der acht Quellen abdecken.
 **Parallel Candidates:**
 `WI-SOT-04-10`, `07-10`, `08-09` und `11-07` können nach den jeweils nötigen
 Projektprüfern und der Orchestrator-Anbindung in getrennten Dateien entstehen.
 **Blocked:** `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 198 · Done 126 · In Progress 0 · Ready 1 · Blocked 1 ·
+**Counter:** Total 198 · Done 126 · In Progress 3 · Ready 0 · Blocked 1 ·
 Open 72 (einschließlich Ready und Blocked) · Progress 63,6 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
@@ -316,7 +319,7 @@ Change
 - [x] ~~WI-SOT-13-04 · bestehende Regel suchen~~
 - [x] ~~WI-SOT-13-05 · neue vs. bestehende Regel vergleichen~~
 - [x] ~~WI-SOT-13-06 · belegten bestehenden Regelkatalog je zuständigem Modul aufbauen und Coverage nachweisen; fehlende Bereiche bleiben Unknown~~
-- [ ] READY – WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird
+- [ ] IN_PROGRESS – WI-SOT-13-07 · betroffene Regelbereiche inventarisieren und ihre Abdeckung nachweisen, bevor ein konkreter Vorschlag ohne Unknowns weitergegeben wird
   Bisher sind 19 genaue Auszüge aus acht autoritativen Quellen geprüft.
   `DEC-REL-002` besitzt einen vollständig inventarisierten, gegen aktuelle
   Quellbytes geprüften Pilotabschnitt. Sämtliche acht Modulabdeckungen und
@@ -352,7 +355,7 @@ Change
   erneut und ruft den Authentifizierungsprüfer unmittelbar vor Anwendung
   nochmals auf. Die Anbindung an eine reale Nutzeridentität bleibt offen.
 #### ST-SOT-16 – PHASE 16: SOT UPDATE
-- [ ] TODO – WI-SOT-16-01 · autoritative Quelle aktualisieren
+- [ ] IN_PROGRESS – WI-SOT-16-01 · autoritative Quelle aktualisieren
 - [ ] TODO – WI-SOT-16-02 · bestehende Regel erweitern statt duplizieren
 - [ ] TODO – WI-SOT-16-03 · ersetzte Regel markieren
 - [ ] TODO – WI-SOT-16-04 · Dependencies aktualisieren
@@ -396,7 +399,7 @@ Technisch verhindern:
 - [ ] TODO – WI-SOT-19-05 · Job Size
 - [ ] TODO – WI-SOT-19-06 · Confidence
 - [ ] TODO – WI-SOT-19-07 · bestehende relative Skala erhalten
-- [ ] TODO – WI-SOT-19-08 · Priorisierungsworkflow integrieren
+- [ ] IN_PROGRESS – WI-SOT-19-08 · Priorisierungsworkflow integrieren
   Ein isolierter Rechen-/Queue-Prototyp deckt Skala, Begründung, Confidence,
   geschützten Business Value, große Stories, Prioritäts-Override, erfüllte
   Hard Dependencies und explizite Vergleichsräume ab.
