@@ -303,7 +303,8 @@ export function isWorkerPathAllowed(scope, path) {
   if (!scope || !Array.isArray(scope.allowed_write_scope) || !Array.isArray(scope.protected_scopes) || !text(path)) throw new Error('Valid worker scope and path are required.');
   const allowed = normalizeScope(scope.allowed_write_scope), protectedPaths = normalizeScope(scope.protected_scopes);
   const inside = base => path === base || path.startsWith(`${base}/`);
-  return { allowed: allowed.some(inside) && !protectedPaths.some(inside), path, execution_authorized: false };
+  const matched_protected_scopes = protectedPaths.filter(inside);
+  return { allowed: allowed.some(inside) && matched_protected_scopes.length === 0, path, matched_protected_scopes, execution_authorized: false };
 }
 
 /** Analyze file-scope collisions without changing claims or assignments. */

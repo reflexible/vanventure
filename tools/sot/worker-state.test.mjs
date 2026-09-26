@@ -302,6 +302,6 @@ test('projects an explicit worker scope and excludes protected Core paths', () =
 test('allows only files within explicit worker scope', () => {
   const scope = describeWorkerScope({ work_item_id: 'WI-SOT-21-05', assigned_agent: 'A', write_scope: ['tools/sot'] });
   assert.equal(isWorkerPathAllowed(scope, 'tools/sot/worker-state.mjs').allowed, true);
-  assert.equal(isWorkerPathAllowed(scope, 'docs/scrum-plan.md').allowed, false);
+  const protectedPath = isWorkerPathAllowed(scope, 'docs/scrum-plan.md'); assert.equal(protectedPath.allowed, false); assert.deepEqual(protectedPath.matched_protected_scopes, ['docs/scrum-plan.md']);
   assert.equal(isWorkerPathAllowed(scope, 'tools/other.mjs').allowed, false);
 });
