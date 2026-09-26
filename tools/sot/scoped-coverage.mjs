@@ -18,8 +18,8 @@ export function discoverSourceSections(source) {
   for (const [index, line] of lines.entries()) {
     const marker = line.match(/^\s*(`{3,}|~{3,})/);
     if (marker) {
-      if (!fence) fence = marker[1][0];
-      else if (marker[1][0] === fence) fence = null;
+      if (!fence) fence = { char: marker[1][0], length: marker[1].length };
+      else if (marker[1][0] === fence.char && marker[1].length >= fence.length) fence = null;
       continue;
     }
     if (fence) continue;

@@ -25,6 +25,10 @@ test('section discovery ignores fenced headings and records stable hashes', asyn
   assert.equal(result[0].section_sha256, (await import('./rule-catalogue.mjs')).sectionSha256(
     (await import('./rule-catalogue.mjs')).extractHeadingSection(source, '## Rules')));
 });
+test('a shorter code fence cannot expose fake scope headings', () => {
+  const sections = discoverSourceSections('# Owner\n````md\n```\n## Fake\n````\n## Real\nText.');
+  assert.deepEqual(sections.map(item => item.heading), ['# Owner', '## Real']);
+});
 
 test('coverage passes structural completeness only for every affected module', () => {
   const result = assessScopedCoverage({ proposal, impact, catalogue, registry,
