@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "kind": "operational_worker_state",
-  "revision": 129,
+  "revision": 134,
   "records": {
     "WI-SOT-13-07": {
       "work_item_id": "WI-SOT-13-07",
@@ -3669,6 +3669,157 @@
           }
         ]
       }
+    },
+    "WI-SOT-22-03": {
+      "work_item_id": "WI-SOT-22-03",
+      "execution_state": "Done",
+      "assigned_agent": "/root",
+      "claimed_at": "2026-09-26T17:31:45.413Z",
+      "write_scope": [
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null,
+      "handoff": {
+        "summary": "Read-only status handover.",
+        "files": [
+          "tools/sot/chat-handover.mjs"
+        ],
+        "tests": [
+          "target PASS"
+        ],
+        "limitations": [],
+        "follow_up": [],
+        "decision_refs": [
+          "tools/sot/chat-handover.test.mjs"
+        ],
+        "at": "2026-09-26T17:31:45.438Z"
+      },
+      "review": {
+        "reviewer_id": "/root",
+        "accepted": true,
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "self_review_reason": "Deterministic review.",
+        "at": "2026-09-26T17:31:45.450Z"
+      },
+      "integration": {
+        "integrator_id": "/root",
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "tests_passed": true,
+        "at": "2026-09-26T17:32:25.417Z"
+      },
+      "blocked_by": null,
+      "completion_verification": {
+        "status": "PASS",
+        "evidence_ref": "tools/sot/chat-handover.test.mjs",
+        "scope": "WI-SOT-22-03",
+        "verified_at": "2026-09-26T17:32:25.417Z"
+      },
+      "completion_evidence": {
+        "scope": "WI-SOT-22-03",
+        "sotUpdate": {
+          "required": false,
+          "scope": "WI-SOT-22-03",
+          "reason": "local",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "unresolvedConflicts": [],
+        "requiredChecks": [
+          {
+            "id": "t",
+            "status": "PASS",
+            "evidence_ref": "tools/sot/chat-handover.test.mjs"
+          }
+        ],
+        "contracts": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "dependencies": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "consistency": {
+          "status": "PASS",
+          "evidence_ref": "tools/sot/chat-handover.test.mjs"
+        },
+        "postValidation": {
+          "schema_version": "1.0.0",
+          "status": "POST_VALIDATION_PASS",
+          "mode": "FAST_CHECK",
+          "scope": "WI-SOT-22-03",
+          "audit_output": "tools/sot/chat-handover.test.mjs",
+          "checks": [
+            {
+              "name": "required_check",
+              "status": "PASS"
+            },
+            {
+              "name": "contracts",
+              "status": "PASS"
+            },
+            {
+              "name": "dependencies",
+              "status": "PASS"
+            },
+            {
+              "name": "sotConsistency",
+              "status": "PASS"
+            },
+            {
+              "name": "traceability",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      "done_guard": {
+        "schema_version": "1.0.0",
+        "status": "DONE_ALLOWED",
+        "scope": "WI-SOT-22-03",
+        "findings": [
+          {
+            "id": "scope",
+            "status": "PASS",
+            "detail": "WI-SOT-22-03"
+          },
+          {
+            "id": "sot_update",
+            "status": "PASS",
+            "detail": "EXPLICITLY_NOT_REQUIRED"
+          },
+          {
+            "id": "unresolved_conflicts",
+            "status": "PASS",
+            "detail": "NONE"
+          },
+          {
+            "id": "required_checks",
+            "status": "PASS",
+            "detail": "PASS:1"
+          },
+          {
+            "id": "contracts",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "dependencies",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "consistency",
+            "status": "PASS",
+            "detail": "tools/sot/chat-handover.test.mjs"
+          },
+          {
+            "id": "post_validation",
+            "status": "PASS",
+            "detail": "POST_VALIDATION_PASS"
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -4874,6 +5025,50 @@
       "at": "2026-09-26T17:29:43.606Z",
       "event": "INTEGRATE_DONE",
       "work_item_id": "WI-SOT-22-02",
+      "actor": "/root",
+      "evidence_ref": "tools/sot/chat-handover.test.mjs",
+      "done_guard": "DONE_ALLOWED"
+    },
+    {
+      "event_id": "cf666c0f-8b00-4899-89c9-c23af296491f",
+      "at": "2026-09-26T17:31:45.414Z",
+      "event": "CLAIM",
+      "work_item_id": "WI-SOT-22-03",
+      "actor": "/root",
+      "write_scope": [
+        "tools/sot/chat-handover.mjs",
+        "tools/sot/chat-handover.test.mjs"
+      ],
+      "coordination_ref": null
+    },
+    {
+      "event_id": "c065a613-8c16-47b6-b3f2-aea1577eac7a",
+      "at": "2026-09-26T17:31:45.426Z",
+      "event": "START",
+      "work_item_id": "WI-SOT-22-03",
+      "actor": "/root"
+    },
+    {
+      "event_id": "308fb8d3-861a-4d8a-a92a-6ab64aa513fb",
+      "at": "2026-09-26T17:31:45.438Z",
+      "event": "SUBMIT_REVIEW",
+      "work_item_id": "WI-SOT-22-03",
+      "actor": "/root",
+      "summary": "Read-only status handover."
+    },
+    {
+      "event_id": "7c69545c-7f63-4a54-b01b-6d6938a5db0d",
+      "at": "2026-09-26T17:31:45.450Z",
+      "event": "REVIEW_ACCEPT",
+      "work_item_id": "WI-SOT-22-03",
+      "actor": "/root",
+      "evidence_ref": "tools/sot/chat-handover.test.mjs"
+    },
+    {
+      "event_id": "1ee58d37-9724-4159-955b-bfcc50d38792",
+      "at": "2026-09-26T17:32:25.417Z",
+      "event": "INTEGRATE_DONE",
+      "work_item_id": "WI-SOT-22-03",
       "actor": "/root",
       "evidence_ref": "tools/sot/chat-handover.test.mjs",
       "done_guard": "DONE_ALLOWED"

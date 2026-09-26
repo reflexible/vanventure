@@ -464,7 +464,7 @@ Technisch verhindern:
 #### ST-SOT-22 – PHASE 22: CROSS-CHAT / HANDOVER
 - [x] ~~WI-SOT-22-01 · Chat-Handover-Modell~~
 - [x] ~~WI-SOT-22-02 · Work-Item-Kontext~~
-- [ ] TODO – WI-SOT-22-03 · Statusübergabe
+- [ ] READY – WI-SOT-22-03 · Statusübergabe
 - [ ] TODO – WI-SOT-22-04 · Decision-Handover
 - [ ] TODO – WI-SOT-22-05 · SoT-Handover
 - [ ] TODO – WI-SOT-22-06 · keine konkurrierenden Wahrheiten zwischen Chats
