@@ -1022,6 +1022,12 @@ Als Interessent finde ich belegte Informationen zum HYMER Grand Canyon S CrossOv
 ### EPIC-CONTENT – VAN, EXPLORE, MOVE und Riverstar haben belegte Inhalte und auswertbare Ergebnisse.
 
 **Epic-Grenze:** Belegte redaktionelle Ausgaben und Reviews für VAN, EXPLORE, MOVE und Riverstar. Ausgaben bleiben einzeln abnehmbar; Publication Decisions und Release-Gates bleiben je Ausgabe separat.
+**Modulreferenz und Vorrang:** Der wiederverwendbare Ablauf bleibt in
+[`docs/creator-system.md`](creator-system.md); konkrete Produktionsaussagen
+und Zielwerte bleiben ausschließlich im jeweiligen
+[Produktionsbrief](production-briefs/gcs-nach-einem-jahr.md). Diese Referenzen
+erzeugen keine zweite Video-Autorität und ersetzen weder die Stories dieses
+Epics noch deren Fakten-, Bild- und Veröffentlichungsfreigaben.
 **Priorisierte Stories:** ST-CON-01, ST-CON-04, ST-CON-05, ST-CON-06, ST-CON-07, ST-CON-08, ST-CON-02, ST-CON-03, ST-CON-09, ST-CON-10, ST-CON-11, ST-CON-12, ST-CON-13, ST-CON-14, ST-CON-15, ST-CON-16
 **Abschlussbedingung:** Alle Stories dieses Epics sind einzeln anhand ihrer Acceptance Criteria geprüft; Abhängigkeiten, offene Evidence-/Publication-Holds und konkrete Freigaben sind dokumentiert. Das Epic gilt erst abgeschlossen, wenn alle verpflichtenden Stories abgenommen sind; ein einzelner historischer oder bestehender Nachweis schließt Folgearbeit nicht.
 

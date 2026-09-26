@@ -85,17 +85,17 @@ der prüfbare Detailnachweis steht im
 Semantische Produktprüfung, Release und Live-Verifikation bleiben getrennt
 offen.
 
-**Phase:** Modularisierung: Contracts abgeglichen, CMS-Modulreferenz ergänzt.
+**Phase:** Modularisierung: Contracts abgeglichen, CMS- und Video-Referenzen ergänzt.
 **Current Work Items:** keine. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-23-05` · Module zuerst aufbauen.
+**NEXT RECOMMENDATION:** `WI-SOT-24-03` · Cards / Board abgrenzen.
 **Parallel Candidates:**
 Keine nebenläufige Implementierung: der aktive Übergabe-Scope hat Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 174 · In Progress 0 · Ready 0 · Blocked 2 ·
-Open 31 (einschließlich Ready und Blocked) · Progress 84,9 %.
+**Counter:** Total 205 · Done 175 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 30 (einschließlich Ready und Blocked) · Progress 85,4 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -520,7 +520,10 @@ Mindestens vorbereiten:
 - [x] ~~WI-SOT-24-05 · CMS~~
   Die bestehende CMS-Betriebsautorität ist im Core direkt referenziert; Core-
   Acceptance Criteria und Release-Gates behalten Vorrang. [Abnahmebericht](../abnahmeberichte/sot-cms-module-reference-2026-09-26.md).
-- [ ] TODO – WI-SOT-24-06 · Video Production
+- [x] ~~WI-SOT-24-06 · Video Production~~
+  Creator-System und produktbezogener GCS-Brief sind aus dem Core direkt
+  referenziert, ohne eine allgemeine zweite Video-Autorität zu erzeugen.
+  [Abnahmebericht](../abnahmeberichte/sot-video-module-reference-2026-09-26.md).
 SoT und Analytics besitzen bereits zugeordnete autoritative Fachdateien. Ihre
 Vorbereitung ist belegt; die jeweilige operative Umsetzung bleibt separat im
 Backlog nachvollziehbar.
