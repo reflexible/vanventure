@@ -82,16 +82,16 @@ aus 67/67 Abschnitten sind planerisch zugeordnet. Technische Preservation
 und spätere Produktprüfung bleiben offen.
 
 **Phase:** Übergang zu SoT Governance.
-**Current Work Items:** `WI-SOT-21-07` · Merge-Reihenfolge definieren. **Active Workers:** 1.
+**Current Work Items:** keine aktive Implementierung. **Active Workers:** 0.
 Das WSJF-Bewertungsmodul ist begrenzt integriert; reale automatische Bewertung und Ausführung bleiben getrennte Folgeslices. Der reale Analytics-Laufzeitübergang bleibt sichtbar blockiert; Claims und Dateibereiche stehen in
 [worker-state.json](worker-state.json).
 **Status:** `PLAN_STATUS: APPROVED`; `IMPLEMENTATION_STATUS: LOCAL_PARTIAL`.
-**NEXT RECOMMENDATION:** `WI-SOT-21-07` wird bearbeitet; anschließend `WI-SOT-20-10` zur Synchronisierung des lokalen Worker-State prüfen.
+**NEXT RECOMMENDATION:** `WI-SOT-20-10`: lokalen gemeinsamen Worker-State an reale Chat-/Controller-Abläufe und Planstatus synchronisieren.
 **Parallel Candidates:**
-Keine nebenläufige Implementierung: der aktive Worker hält den Planner- und Status-Scope; Worker-Scopes haben Vorrang.
+`WI-SOT-22-01` kann nach der Prüfung von `WI-SOT-20-10` mit getrenntem Übergabe-Scope vorbereitet werden; Worker-Scopes haben Vorrang.
 **Blocked:** `WI-SOT-04-10` bis reale CMS-/Worker-/Analytics-Laufzeitgrenzen und gepinnte Integrationsbelege vorliegen; `WI-SOT-27-02` bis zum historischen Planwechsel-Gate.
-**Counter:** Total 205 · Done 159 · In Progress 1 · Ready 0 · Blocked 2 ·
-Open 46 (einschließlich Ready und Blocked) · Progress 77,6 %.
+**Counter:** Total 205 · Done 160 · In Progress 0 · Ready 0 · Blocked 2 ·
+Open 45 (einschließlich Ready und Blocked) · Progress 78,0 %.
 Der Zähler berücksichtigt das Musterbeispiel `[x] ~~Work Item~~` nicht.
 
 ### WS-SOT-PREP – Preservation und Merge
@@ -458,7 +458,8 @@ Technisch verhindern:
 - [x] ~~WI-SOT-21-04 · Worker-Scope definieren~~
 - [x] ~~WI-SOT-21-05 · erlaubte Dateien definieren~~
 - [x] ~~WI-SOT-21-06 · verbotene Dateien definieren~~
-- [ ] IN_PROGRESS – WI-SOT-21-07 · Merge-Reihenfolge definieren
+- [x] ~~WI-SOT-21-07 · Merge-Reihenfolge definieren~~
+  Harte Abhängigkeiten und kollidierende Write Scopes ergeben rein ableitende, nicht autorisierende Integrationsgruppen. [FAST-CHECK](../sot-optimization/reviews/merge-order-fast-check-2026-09-26.md).
 #### ST-SOT-22 – PHASE 22: CROSS-CHAT / HANDOVER
 - [ ] TODO – WI-SOT-22-01 · Chat-Handover-Modell
 - [ ] TODO – WI-SOT-22-02 · Work-Item-Kontext

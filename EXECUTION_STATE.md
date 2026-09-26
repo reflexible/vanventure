@@ -3,31 +3,30 @@
 Operational checkpoint only. The authoritative backlog is
 `docs/governance/source-of-truth-and-incremental-planning.md`.
 
-Current: `WI-SOT-21-07`
-State: `IN_PROGRESS`
-Last Done: `WI-SOT-21-06`
-Last Commit: `b31a1cc`
+Current: `WI-SOT-20-10`
+State: `TODO`
+Last Done: `WI-SOT-21-07`
+Last Commit: `871d794`
 
 Progress:
-- Done: 159
+- Done: 160
 - Total: 205
-- Open: 46
+- Open: 45
 - Blocked: 2
 - Recovery: none
 
 Current Goal:
-Derive a dependency- and scope-safe merge order without authorizing any merge.
+Synchronize the local operational worker state with real chat/controller flows without creating a second backlog.
 
 Relevant:
-- `tools/sot/execution-planner.mjs`
-- `tools/sot/execution-planner.test.mjs`
-- `docs/governance/source-of-truth-and-incremental-planning.md#st-sot-21--phase-21-parallel-execution-engine`
+- `tools/sot/worker-state.mjs`
+- `tools/sot/worker-runtime.mjs`
+- `docs/governance/source-of-truth-and-incremental-planning.md#st-sot-20--phase-20-worker-state`
 
 Verification:
-- Targeted execution planner tests
-- Full SoT suite
+- Targeted worker-state/runtime tests
 - Golden Baseline diff: `docs/scrum-plan.md` versus `dac0199`
 - FAST CHECK unless an escalation criterion applies
 
 Next:
-Implement and verify the derived merge-order projection; then complete review and integration.
+Read the active Work Item and its direct runtime boundary before creating a claim.
